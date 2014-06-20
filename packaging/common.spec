@@ -1,4 +1,4 @@
-Name:       _common 
+Name:       common 
 Summary:    Common files for widgets
 Version:    0.0.1
 Release:    1
@@ -14,12 +14,14 @@ Common files upon which the widget components depend during their build.
 %setup -q -n %{name}-%{version}
 
 %build
+cd _common
 make
 
 %install
 rm -rf %{buildroot}
+cd _common
 %make_install
 
 %files
 %defattr(-,root,root,-)
-/opt/usr/apps/_common/*
+/opt/usr/apps/common/*

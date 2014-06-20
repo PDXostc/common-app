@@ -20,22 +20,23 @@ A proof of concept pure html5 UI
 %setup -q -n %{name}-%{version}
 
 %build
-
+cd %{name}
 make wgtPkg
 
 %install
 rm -rf %{buildroot}
+cd %{name}
 %make_install
 
 %post
 if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
-    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
+    wrt-installer -i /opt/usr/apps/.preinstallWidgets/%{name}.wgt;
 fi
 
 %postun
-    wrt-installer -un intelPoc10.HomeScreen
+    wrt-installer -un intelPoc10.%{name}
 
 %files
 %defattr(-,root,root,-)
-/opt/usr/apps/.preinstallWidgets/HomeScreen.wgt
+/opt/usr/apps/.preinstallWidgets/%{name}.wgt
 
