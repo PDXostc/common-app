@@ -6,7 +6,7 @@ Group:      Applications/System
 License:    ASL 2.0
 URL:        http://www.tizen.org2
 Source0:    %{name}-%{version}.tar.bz2
-BuildRequires:  common
+#BuildRequires:  common
 BuildRequires:  zip
 BuildRequires:  desktop-file-utils
 Requires:  speech-recognition
