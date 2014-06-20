@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+ * Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
+ *
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>HOMESCREEN</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<!-- <meta name = "viewport" content = "width = device-width,height =device-height, user-scalable = no"> -->
+<meta name="viewport" content="width=720, height=1280, user-scalable=no" />
+
+
+<link rel="stylesheet" href="./css/car/car.css" />
+<link rel="stylesheet" href="./css/car/components/incomingCall/incomingCall.css" />
+
+<link rel="stylesheet" href="./css/car/components/dateTime/dateTime.css" />
+<link rel="stylesheet" href="./css/car/components/progressBar/progressBar.css" />
+<link rel="stylesheet" href="./css/car/components/topBarIcons/topBarIcons.css" />
+<link rel="stylesheet" href="./css/style.css"/>
+
+<script type="text/javascript" src="./css/car/components/jQuery/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="./css/car/components/knockout/knockout.js"></script>
+<script type="text/javascript" src="./css/car/components/jsViews/jsrender.js"></script>
+<script type="text/javascript" src="./css/car/components/jsViews/template.js"></script>
+<script type="text/javascript" src="./css/car/car.js"></script>
+
+<script type='text/javascript' src='./js/services/bootstrap.js'></script>
+
+<link rel="stylesheet" href="./css/car/components/bottomPanel/volumeSlider.css" />
+
+<script type="text/javascript" src="./css/car/components/audioPlayer/most.js"></script>
+<script type="text/javascript" src="./css/car/components/bottomPanel/jquery.nouislider.js"></script>
+
+<script type="text/javascript" src="./css/car/components/bottomPanel/bottomPanel.js"></script>
+<script type="text/javascript" src="./css/car/components/progressBar/progressBar.js"></script>
+<script type="text/javascript" src="./css/car/components/buttonControls/buttonControls.js"></script>
+<script type="text/javascript" src="./css/car/components/audioPlayer/audioPlayer.js"></script>
+<script type="text/javascript" src="./css/car/components/topBarIcons/topBarIcons.js"></script>
+<script type="text/javascript" src="./css/car/components/dateTime/dateTime.js"></script>
+
+<script type="text/javascript" src="./js/predefAppModel.js"></script>
+<script type="text/javascript" src="./js/installedApps.js"></script>
+<script type="text/javascript" src="./js/keyControl.js"></script>
+<script type="text/javascript" src="./js/actionCatcher.js"></script>
+<script type="text/javascript" src="./js/main.js"></script>
+
+
+</head>
+
+<body class="homeScr_body">
+	<div id="wrapper" class="wrapper">
+		<div id="topBarIcons" class="topBarIcons"></div>
+		<div id="actionsCatcher" class="actionsCatcher" onmouseup="actionCatcher.touchEnd();" onmousedown="actionCatcher.touchStart();" onmousemove="actionCatcher.over();">
+		</div>
+	
+		<div id="homeScrAppGridView" class="homeScrAppGridView pageBgColorNormalTransparent">
+			<div class="HSAGWHeading fontColorNormal fontSizeLarger ">Apps</div>
+			<div class="exitButton tabsCloseButton"></div>
+		</div>
+		<div id="dateTime" class="dateTime"></div> 
+		<div id="viewPort">
+			<div id="corpus" class="corpus">
+				<ul id="content_ul">
+					<li class="item sector1 fontWeightBold fontColorNormal">
+						<div class="sector1icon iconLeftImg abs"></div>
+						<div class="sector1street abs fontSizeLarge">45 south ave</div>
+						<div class="sector1distance abs fontSizeXSmall">600 ft</div>
+						<img src="./css/images/navigation_selector.png"></img>
+					</li>
+					<li class="item sector2 fontWeightBold fontColorNormal">
+						<div id="fanStatus" class="sector2valInterior abs fontSizeXXLarge">0°C</div>
+						<div class="sector2Interior abs fontSizeXSmall">interior</div>
+						<div id="weatherStatus" class="sector2valExterior abs fontSizeXXLarge fontColorDark">0°F</div>
+						<div class="sector2Exterior abs fontSizeXSmall fontColorDark">exterior</div>
+						<img src="./css/images/music_selector.png"></img>
+					</li>
+					<li class="item sector3 fontWeightBold fontColorNormal">
+						<div id="audioHeader" class="sector3header abs fontSizeNormal">author</div>
+						<div id="audioTitle" class="sector3title abs fontSizeLarge">title</div>
+						<div id="audioAlbum"class="sector3subHeader abs fontSizeXSmall fontColorDark">album</div>
+						<img src="./css/images/radio_selector.png"></img>
+					</li>
+					<li class="item sector4 fontWeightBold fontColorNormal">
+						<!-- <div class="sector4name abs fontSizeXSmall">Smart Device Link</div> -->
+						<img src="./css/images/video_selector.png"></img>
+					</li>
+					<li class="item sector5 fontWeightBold fontColorNormal">
+						<img src="./css/images/social_selector.png"></img>
+					</li>
+					<li class="item sector6 fontWeightBold fontColorNormal">
+<!-- 						<div class="sector6postsWrapper abs">
+							<div class="sector6row">
+								<div class="sector6icon iconFacebook"></div>
+								<div class="sector6time">9:23 AM</div>
+								<div class="sector6text"></div>
+							</div>
+							<div class="sector6row">
+								<div class="sector6icon iconFacebook"></div>
+								<div class="sector6time">9:45 AM</div>
+								<div class="sector6text">Cheryl Johnson</div>
+							</div>
+							<div class="sector6row">
+								<div class="sector6icon iconTwitter"></div>
+								<div class="sector6time">10:01 AM</div>
+								<div class="sector6text">CNN</div>
+							</div>
+						</div>
+ -->						<img src="./css/images/phone_selector.png"></img>
+					</li>
+					<li class="item sector7 fontWeightBold fontColorNormal">
+						<div class="sector7iconSpeed abs iconSpeed"></div>
+						<div id="homeScrSpeed" class="sector7valSpeed fontSizeXXXLarge abs">0</div>
+						<div id="sector7SpeedUnits" class="sector7SpeedUnits fontSizeXSmall abs">mph</div>
+						<div class="sector7iconBattery abs batteryImage"></div>
+						<div id="batteryStatus" class="sector7valBatteryPerc abs fontSizeLarge">0%</div>
+						<div id="batteryRange" class="sector7valRange abs fontSizeLarge">0 mi</div>
+						<img src="./css/images/dashboard_selector.png"></img>
+					</li>
+				</ul>
+			</div>
+			<div id="indicator" class="indicator indSize colorBasic fontSizeNormal fontWeightBold">
+				<div id="centerIco" class="centerIco"></div>
+				<div id="innerRing" class="innerRing indSize rollLeft"></div>
+				<div id="outerRing" class="outerRing indSize rollRight"></div>
+			</div>
+		</div>
+		<div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>
+	</div>
+</body>
+</html>

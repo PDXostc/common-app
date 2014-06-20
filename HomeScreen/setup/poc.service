@@ -1,0 +1,9 @@
+[Unit]
+Description=Intel POC HomeScreen application
+After=ac.target
+
+[Service]
+ExecStart=/usr/lib/systemd/system/poc_launcher.sh
+
+[Install]
+WantedBy=graphical.target
