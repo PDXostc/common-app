@@ -20,11 +20,12 @@ A proof of concept pure html5 UI
 %setup -q -n %{name}-%{version}
 
 %build
-
+cd HomeScreen
 make
 
 %install
 rm -rf %{buildroot}
+cd HomeScreen
 %make_install
 
 %post
