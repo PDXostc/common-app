@@ -3,7 +3,7 @@
  *	Demo's and documentation:
  *	caroufredsel.dev7studios.com
  *
- *	Copyright (c) 2013 Fred Heusschen
+ *	Copyright (c) 2014 Fred Heusschen
  *	www.frebsite.nl
  *
  *	Dual licensed under the MIT and GPL licenses.

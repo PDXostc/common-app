@@ -44,9 +44,11 @@ dev-common: ../_common
 	@echo "Please checkout Common Assets"
 	exit 1
 
-install:
-	@echo "Installing $(PROJECT), stand by..."
+$(INSTALL_DIR) :
 	mkdir -p $(INSTALL_DIR)/
+
+install: $(INSTALL_DIR)
+	@echo "Installing $(PROJECT), stand by..."
 	cp $(PROJECT).wgt $(INSTALL_DIR)/
 
 dist:
