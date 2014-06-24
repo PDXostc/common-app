@@ -27,7 +27,7 @@ make
 
 rm -rf %{buildroot}
 cd HomeScreen
-make install
+%make install
 
 #%post
 #if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
