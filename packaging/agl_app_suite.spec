@@ -39,5 +39,5 @@ make install_xwalk
 
 %files
 %defattr(-,app,app,-)
-/home/app/.preinstallWidgets/HomeScreen.wgt
+/home/app/HomeScreen.wgt
 
