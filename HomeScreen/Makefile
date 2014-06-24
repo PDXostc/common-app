@@ -4,7 +4,7 @@ WRT_FILES = common css icon.png index.html setup config.xml images js
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
-INSTALL_DIR = $(DESTDIR)/home/app
+INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
