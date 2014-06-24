@@ -21,7 +21,7 @@ A proof of concept pure html5 UI
 
 %build
 
-make wgtPkg
+make
 
 %install
 rm -rf %{buildroot}
