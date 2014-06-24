@@ -27,7 +27,7 @@ make
 
 rm -rf %{buildroot}
 cd HomeScreen
-make install_xwalk
+make install
 
 #%post
 #if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
