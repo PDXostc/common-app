@@ -4,7 +4,7 @@ WRT_FILES = common css icon.png index.html setup config.xml images js
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
-INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
+INSTALL_DIR = $(DESTDIR)/home/app/.preinstallWidgets
 
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
@@ -50,6 +50,12 @@ $(INSTALL_DIR) :
 install: $(INSTALL_DIR)
 	@echo "Installing $(PROJECT), stand by..."
 	cp $(PROJECT).wgt $(INSTALL_DIR)/
+
+install_xwalk: $(INSTALL_DIR)
+	@echo "Installing $(PROJECT), stand by..."
+	cp $(PROJECT).wgt $(INSTALL_DIR)/
+	export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
+	su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
 
 dist:
 	tar czf ../$(PROJECT).tar.bz2 .

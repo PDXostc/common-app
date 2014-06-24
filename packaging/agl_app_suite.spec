@@ -24,19 +24,20 @@ cd HomeScreen
 make
 
 %install
+
 rm -rf %{buildroot}
 cd HomeScreen
-%make_install
+make install_xwalk
 
-%post
-if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
-    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
-fi
+#%post
+#if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
+#    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
+#fi
 
-%postun
-    wrt-installer -un intelPoc10.HomeScreen
+#%postun
+#    wrt-installer -un intelPoc10.HomeScreen
 
 %files
-%defattr(-,root,root,-)
-/opt/usr/apps/.preinstallWidgets/HomeScreen.wgt
+%defattr(-,app,app,-)
+/home/app/.preinstallWidgets/HomeScreen.wgt
 
