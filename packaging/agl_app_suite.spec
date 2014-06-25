@@ -20,8 +20,9 @@ A proof of concept pure html5 UI
 %setup -q -n %{name}-%{version}
 
 %build
-cd HomeScreen
-make
+build.sh
+#cd HomeScreen
+#make
 #cd ../Boilerplate
 #make
 #cd ../Browser
@@ -29,7 +30,7 @@ make
 
 %install
 #rm -rf %{buildroot}
-cd HomeScreen
+#cd HomeScreen
 %make_install
 #cd ../Boilerplate
 #%make_install
@@ -38,7 +39,7 @@ cd HomeScreen
 
 %post
 #export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
-#su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
+su app -c"xwalkctl -i $(INSTALL_DIR)/$(PROJECT).wgt"
 #if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
 #    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
 #fi
