@@ -22,18 +22,19 @@ A proof of concept pure html5 UI
 %build
 cd HomeScreen
 make
-cd ../Boilerplate
-make
-cd ../Browser
+#cd ../Boilerplate
+#make
+#cd ../Browser
+#make
 
 %install
 #rm -rf %{buildroot}
 cd HomeScreen
 %make_install
-cd ../Boilerplate
-%make_install
-cd ../Browser
-%make_install
+#cd ../Boilerplate
+#%make_install
+#cd ../Browser
+#%make_install
 
 %post
 #export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
@@ -48,6 +49,6 @@ cd ../Browser
 %files
 %defattr(-,root,root,-)
 /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt
-/opt/usr/apps/.preinstallWidgets/Boilerplate.wgt
-/opt/usr/apps/.preinstallWidgets/Browser.wgt
+#/opt/usr/apps/.preinstallWidgets/Boilerplate.wgt
+#/opt/usr/apps/.preinstallWidgets/Browser.wgt
 
