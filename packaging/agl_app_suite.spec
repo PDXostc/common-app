@@ -22,16 +22,22 @@ A proof of concept pure html5 UI
 %build
 cd HomeScreen
 make
+cd ../Boilerplate
+make
+cd ../Browser
 
 %install
 #rm -rf %{buildroot}
 cd HomeScreen
-#make install_xwalk
+%make_install
+cd ../Boilerplate
+%make_install
+cd ../Browser
 %make_install
 
 %post
 #export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
-su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
+#su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
 #if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
 #    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
 #fi
@@ -42,4 +48,6 @@ su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
 %files
 %defattr(-,root,root,-)
 /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt
+/opt/usr/apps/.preinstallWidgets/Boilerplate.wgt
+/opt/usr/apps/.preinstallWidgets/Browser.wgt
 
