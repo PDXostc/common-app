@@ -1,4 +1,4 @@
-Name:       HomeScreen	
+Name:       agl_app_suite	
 Summary:    A HTML Home Screen application
 Version:    0.0.1
 Release:    1
