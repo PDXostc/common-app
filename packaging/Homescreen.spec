@@ -26,16 +26,18 @@ make
 %install
 #rm -rf %{buildroot}
 cd HomeScreen
-make install_xwalk
-#%make_install
+#make install_xwalk
+%make_install
 
 %post
-if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
-    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
-fi
+#export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
+su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
+#if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
+#    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
+#fi
 
 %postun
-    wrt-installer -un intelPoc10.HomeScreen
+#    wrt-installer -un intelPoc10.HomeScreen
 
 %files
 %defattr(-,root,root,-)
