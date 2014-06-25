@@ -9,9 +9,9 @@ Source0:    %{name}-%{version}.tar.bz2
 #BuildRequires:  common
 BuildRequires:  zip
 BuildRequires:  desktop-file-utils
-Requires:  speech-recognition
-Requires:   wrt-installer
-Requires:   wrt-plugins-ivi
+#Requires:  speech-recognition
+#Requires:   wrt-installer
+#Requires:   wrt-plugins-ivi
 
 %description
 A proof of concept pure html5 UI
