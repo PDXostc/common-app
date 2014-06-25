@@ -232,7 +232,7 @@ window.intelIVI.corpus = (window.intelIVI.corpus || {
     init: function() {
         "use strict";
         var i;
-        for (i = 1; i < 10; i++) {
+        for (i = 8; i < 10; i++) {
             var viewPortBg = document.createElement('div');
             viewPortBg.className = "backGround step" + i;
             /*global wrapper*/

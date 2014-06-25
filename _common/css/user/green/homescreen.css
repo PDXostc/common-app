@@ -1,7 +1,7 @@
 /* homescreen user style*/
 
 .wrapper {
-	background-color: #0D1906;
+	background-color: rgba(102, 210, 45, 0.3); /*#66d22d;*/
 }
 .backGround{
 	background: url('./images/homescreen/bg_green_01.png') no-repeat black;
@@ -36,37 +36,46 @@
 
 .sector1{
  	background: url('./images/homescreen/navigation_bg_green.png') no-repeat transparent;
+ 	z-index: 2;
 }
 .sector2{
  	background: url('./images/homescreen/music_bg_green.png') no-repeat transparent;
+ 	z-index: 2;
 }
 .sector3{
  	background: url('./images/homescreen/radio_bg_green.png') no-repeat transparent;
+ 	z-index: 2;
 }
 .sector4{
  	background: url('./images/homescreen/smart_bg_green.png') no-repeat transparent;
+ 	z-index: 2;
 }
 .sector5{
  	background: url('./images/homescreen/social_bg_green.png') no-repeat transparent;
+ 	z-index: 2;
 }
 .sector6{
  	background: url('./images/homescreen/store_bg_green.png') no-repeat transparent;
+ 	z-index: 2;
 }
 .sector7{
  	background: url('./images/homescreen/dashboard_bg_green.png') no-repeat transparent;
+ 	z-index: 2;
 }
 
 .indicator {
-	background-image: url('./images/homescreen/center_green.png');
+	/*background-image: url('./images/homescreen/center_green.png');*/
 }
 .centerIco {
 	background-image: url('./images/homescreen/center_ico_green.png');
 }
 .outerRing {
-	background-image: url('./images/homescreen/center_outer_move_green.png');
+	/*background-image: url('./images/homescreen/center_outer_move_green.png');*/
+	top:3px;
+	left: 3px;
 }
 .innerRing {
-	background-image: url('./images/homescreen/center_inner_move_green.png');
+	/*background-image: url('./images/homescreen/center_inner_move_green.png');*/
 }
 
 .homeScrAppGridView {
