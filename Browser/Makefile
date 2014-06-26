@@ -1,0 +1,52 @@
+PROJECT = Browser
+PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
+INSTALL_FILES = images js icon.png index.html
+WGT_FILES = common  config.xml css dev-common error.html icon.png images index.html js search.html  templates warning.html
+DEPLOY_URL = app@192.168.1.253:/home/app/
+SSH_SVR = app@192.168.1.253
+VERSION := 0.0.1
+PACKAGE = $(PROJECT)-$(VERSION)
+
+INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
+
+dev: clean
+	zip -r $(PROJECT).wgt $(WGT_FILES)
+	
+$(PROJECT).wgt : dev
+
+deploy: $(PROJECT).wgt
+	scp $(PROJECT).wgt $(DEPLOY_URL)
+
+all:
+	@echo "Nothing to build"
+
+wgtPkg:
+	zip -r $(PROJECT).wgt $(WGT_FILES)
+
+clean:
+	rm -f $(PROJECT).wgt
+
+common: /opt/usr/apps/_common
+	cp -r /opt/usr/apps/_common/js/* js/
+	cp -r /opt/usr/apps/_common/css/* css/
+
+/opt/usr/apps/_common:
+	@echo "Please install Common Assets"
+	exit 1
+
+dev-common: ../_common
+	cp -r ../_common/js/* js/
+	cp -r ../_common/css/* css/
+
+../_common:
+	@echo "Please checkout Common Assets"
+	exit 1
+
+install:
+	@echo "Installing $(PROJECT), stand by..."
+	mkdir -p $(INSTALL_DIR)/
+	cp $(PROJECT).wgt $(INSTALL_DIR)/
+
+dist:
+	tar czf ../$(PROJECT).tar.bz2 .
+
