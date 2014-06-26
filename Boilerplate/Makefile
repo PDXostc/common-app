@@ -1,4 +1,4 @@
-PROJECT = BoilerPlate
+PROJECT = Boilerplate
 INSTALL_FILES = images js icon.png index.html
 TIZEN_IP=192.168.1.253
 
