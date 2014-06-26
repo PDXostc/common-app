@@ -1,14 +1,9 @@
 all:
-	cd  HomeScreen
-	make
-	cd ..
+	cd  HomeScreen && make
 
 clean:
-	cd HomeScreen
-	make clean
-	cd ..
+	cd HomeScreen && make clean
 
 install:
-	cd HomeScreen
-	make install
-	cd ..
+	cd HomeScreen && make install
+
