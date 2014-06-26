@@ -1,0 +1,19 @@
+.tabsCloseButton {
+	background-image: url('images/tabs/bt_close_green.png');
+}
+
+.tabsTopPanel {
+	background-image: url('images/tabs/bg_top_navi_green.png');
+}
+
+.tabsTab, .tabsTabClear {
+	background-image: url('images/tabs/bg_top_navi_unselect1px_green.png');
+}
+
+.tabsTabSelected {
+	background-image: url('images/tabs/bg_top_navi_select_green.png');
+}
+
+.tabsCloseSubPanelButton {
+	background-image: url('images/tabs/bt_back_green.png');
+}

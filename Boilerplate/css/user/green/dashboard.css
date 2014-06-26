@@ -1,0 +1,74 @@
+.dashboardBackGround {
+	background-image: url('images/dashboard/bg_green.png');
+}
+
+.carImage {
+	background-image:
+		url('images/dashboard/car_with__inactive_lights_green.png');
+}
+.whelImage{
+	background-image:
+		url('images/dashboard/wheel_green.png');
+}
+.dashboardSunElement{
+	background-image:
+		url('images/dashboard/sun_green.png');
+}
+.dashboardMoonElement{
+	background-image:
+		url('images/dashboard/moon_green.png');
+}
+.batteryImage {
+	background-image: url('images/dashboard/icon_battery_green.png');
+}
+
+.dashboardLineLong {
+	background-image:
+		url('images/dashboard/line_with_pointer_long_green.png')
+}
+.dashboardLineShort {
+	background-image:
+		url('images/dashboard/line_with_pointer_short_green.png')
+}
+
+.corner {
+	background-image:
+		url('images/dashboard/corner_green.png')
+}
+.dashboardCircle{
+	background-image:
+		url('images/dashboard/circle_green.png')
+}
+
+.padlocInactive{
+	background-image:
+		url('images/dashboard/icon_padlock_inactive_green.png')
+}
+.padlocActive{
+	background-image:
+		url('images/dashboard/icon_padlock_active_green.png')
+}
+.dashboardFrontLightsActive{
+	background-image:
+		url('images/dashboard/lights_front_active_green.png')
+}
+.dashboardRearLightsActive{
+	background-image:
+		url('images/dashboard/lights_rear_active_green.png');
+}
+.dashboardBreakLightsActive{
+	background-image:
+		url('images/dashboard/lights_break_active.png');
+}
+.dashBoardWeatherSun{
+	background-image:
+		url('images/dashboard/icon_sun.png')
+}
+.dashBoardWeatherCloudy{
+	background-image:
+		url('images/dashboard/icon_cloudy.png')
+}
+.dashBoardWeatherThunder{
+	background-image:
+		url('images/dashboard/icon_thunder.png')
+}
