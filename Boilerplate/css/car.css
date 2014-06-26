@@ -9,7 +9,8 @@ html {
 }
 
 body {
-	font-family: HelveticaNeue;
+	/*font-family: HelveticaNeue;*/
+	font-family: "Arial Narrow", Arial, "Helvetica Condensed", Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	position: absolute !important;
 	height: 1280px !important;

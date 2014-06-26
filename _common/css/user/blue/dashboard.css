@@ -2,11 +2,11 @@
 	background-image: url('images/dashboard/bg_blue.png');
 }
 
-.carImage {
+/*.carImage {
 	background-image:
 		url('images/dashboard/car_with__inactive_lights_blue.png');
 }
-.whelImage{
+*/.whelImage{
 	background-image:
 		url('images/dashboard/wheel_blue.png');
 }
