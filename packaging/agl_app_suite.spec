@@ -13,33 +13,46 @@ BuildRequires:  desktop-file-utils
 #Requires:   wrt-installer
 #Requires:   wrt-plugins-ivi
 
+%global app_list HomeScreen Boilerplate Browser
+%global app_id_list cciaaojcnnbbpfioidejhigcboenjmmg kmmeobdkikjechfejkakmfmfgjldjkco gnipnignbkkkjeglidcdnedabpekbiah
+
 %description
 A collection of IVI software
 
 %prep
+
 %setup -q -n %{name}-%{version}
 
 %build
-for app in HomeScreen Boilerplate Browser; do
+for app in %{app_list}; do
     make -C ${app}
 done
 
 %install
 #rm -rf %{buildroot}
-for app in HomeScreen Boilerplate Browser; do
+for app in %{app_list}; do
     cd ${app}
     %make_install
     cd ..
 done
 
 %post
-#export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
-su app -c"xwalkctl -i $(INSTALL_DIR)/$(PROJECT).wgt"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
+for app in %{app_list}; do
+	su app -c'xwalkctl -i /opt/usr/apps/.preinstallWidgets/'${app}'.wgt'
+done
+#su app -c'echo xwalkctl -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt'
+#su app -c'echo xwalkctl -i /opt/usr/apps/.preinstallWidgets/Boilerplate.wgt'
+#su app -c'echo xwalkctl -i /opt/usr/apps/.preinstallWidgets/Browser.wgt'
 #if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
 #    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
 #fi
 
 %postun
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
+for app in %{app_id_list}; do
+	su app -c'xwalkctl -u '${app}''
+done
 #    wrt-installer -un intelPoc10.HomeScreen
 
 %files
