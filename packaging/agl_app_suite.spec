@@ -20,17 +20,13 @@ A proof of concept pure html5 UI
 %setup -q -n %{name}-%{version}
 
 %build
-build.sh
-#cd HomeScreen
-#make
-#cd ../Boilerplate
-#make
-#cd ../Browser
-#make
+cd HomeScreen
+make
 
 %install
 #rm -rf %{buildroot}
-#cd HomeScreen
+cd HomeScreen
+#make install_xwalk
 %make_install
 #cd ../Boilerplate
 #%make_install
