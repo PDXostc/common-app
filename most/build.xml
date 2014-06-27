@@ -1,0 +1,360 @@
+<project name="intelivipoc" default="buildAll" basedir=".">
+	<property name="commonDir" value="${basedir}/applications/_common" />
+	<import file="${basedir}/builder/utils.xml" />
+
+	<target name="buildAll" description="Builds all listed applications.">
+		<antcall target="buildNative" />
+		<antcall target="lintCommon" />
+		<antcall target="buildDashboard" />
+		<antcall target="buildHomescreen" />
+		<antcall target="buildMusicPlayer" />
+		<antcall target="buildNavigation" />
+		<antcall target="buildPhone" />
+		<antcall target="buildStore" />
+		<antcall target="buildHVAC" />
+		<antcall target="buildSDL" />
+		<antcall target="buildAMBSimulator" />
+		<antcall target="buildAudioNonPOC" />
+	</target>
+
+	<target name="deployAll" description="Deploys all listed applications.">
+		<antcall target="deployDashboard" />
+		<antcall target="deployHomescreen" />
+		<antcall target="deployMusicPlayer" />
+		<antcall target="deployNavigation" />
+		<antcall target="deployPhone" />
+		<antcall target="deployStore" />
+		<antcall target="deployHVAC" />
+		<antcall target="deploySDL" />
+		<antcall target="deployAMBSimulator" />
+		<antcall target="deployAudioNonPOC" />
+	</target>
+
+	<target name="cleanNative" description="Cleans native binaries.">
+		<property name="appDir" value="${basedir}/native" />
+		<exec dir="${appDir}" executable="bash" osfamily="unix" failonerror="true">
+			<arg line="build.sh clean" />
+		</exec>
+	</target>
+
+	<target name="buildNative" description="Build native binaries.">
+		<property name="appDir" value="${basedir}/native" />
+		<exec dir="${appDir}" executable="bash" osfamily="unix" failonerror="true">
+			<arg line="build.sh" />
+		</exec>
+	</target>
+
+	<target name="lintCommon" description="jsHint and csslint for common files">
+		<property name="appDir" value="${basedir}/applications/_common"/>
+		<property name="buildResultsDir" value="${appDir}/_buildResults" />
+		<mkdir dir="${buildResultsDir}" />
+		<antcall target="jslint" />
+		<antcall target="csslint" />
+	</target>
+
+	<!-- Boilerplate application -->
+
+	<target name="cleanBoilerplate" description="Cleans Boilerplate application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/_boilerplate" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildBoilerplate" description="Build Dashboard application.">
+		<property name="appDir" value="${basedir}/applications/_boilerplate" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugBoilerplate" description="Starts debugging of Dashboard application on target machine.">
+		<property name="appDir" value="${basedir}/applications/_boilerplate" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployBoilerplate" description="Deploy Dashboard application to target machine.">
+		<property name="appDir" value="${basedir}/applications/_boilerplate" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runBoilerplate" description="Run Dashboard application on target machine.">
+		<property name="appDir" value="${basedir}/applications/_boilerplate" />
+		<antcall target="run" />
+	</target>
+
+	<target name="cleanDashboard" description="Cleans Dashboard application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/_boilerplate" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildDashboard" description="Build Dashboard application.">
+		<property name="appDir" value="${basedir}/applications/dashboard" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugDashboard" description="Starts debugging of Dashboard application on target machine.">
+		<property name="appDir" value="${basedir}/applications/dashboard" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployDashboard" description="Deploy Dashboard application to target machine.">
+		<property name="appDir" value="${basedir}/applications/dashboard" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runDashboard" description="Run Dashboard application on target machine.">
+		<property name="appDir" value="${basedir}/applications/dashboard" />
+		<antcall target="run" />
+	</target>
+
+	<target name="cleanHomescreen" description="Cleans Homescreen application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/homescreen" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildHomescreen" description="Build Homescreen application.">
+		<property name="appDir" value="${basedir}/applications/homescreen" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugHomescreen" description="Starts debugging of Homescreen application on target machine.">
+		<property name="appDir" value="${basedir}/applications/homescreen" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployHomescreen" description="Deploy Homescreen application to target machine.">
+		<property name="appDir" value="${basedir}/applications/homescreen" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runHomescreen" description="Run Homescreen application on target machine.">
+		<property name="appDir" value="${basedir}/applications/homescreen" />
+		<antcall target="run" />
+	</target>
+
+
+
+	<target name="cleanMusicPlayer" description="Cleans MusicPlayer application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/musicplayer" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildMusicPlayer" description="Build MusicPlayer application.">
+		<property name="appDir" value="${basedir}/applications/musicplayer" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugMusicPlayer" description="Starts debugging of MusicPlayer application on target machine.">
+		<property name="appDir" value="${basedir}/applications/musicplayer" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployMusicPlayer" description="Deploy MusicPlayer application to target machine.">
+		<property name="appDir" value="${basedir}/applications/musicplayer" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runMusicPlayer" description="Run MusicPlayer application on target machine.">
+		<property name="appDir" value="${basedir}/applications/musicplayer" />
+		<antcall target="run" />
+	</target>
+
+
+
+	<target name="cleanNavigation" description="Cleans Navigation application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/navigationgoogle" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildNavigation" description="Build Navigation application.">
+		<property name="appDir" value="${basedir}/applications/navigationgoogle" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugNavigation" description="Starts debugging of Navigation application on target machine.">
+		<property name="appDir" value="${basedir}/applications/navigationgoogle" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployNavigation" description="Deploy Navigation application to target machine.">
+		<property name="appDir" value="${basedir}/applications/navigationgoogle" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runNavigation" description="Run Navigation application on target machine.">
+		<property name="appDir" value="${basedir}/applications/navigationgoogle" />
+		<antcall target="run" />
+	</target>
+
+
+
+	<target name="cleanPhone" description="Cleans Phone application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/phone" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildPhone" description="Build Phone application.">
+		<property name="appDir" value="${basedir}/applications/phone" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugPhone" description="Starts debugging of Phone application on target machine.">
+		<property name="appDir" value="${basedir}/applications/phone" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployPhone" description="Deploy Phone application to target machine.">
+		<property name="appDir" value="${basedir}/applications/phone" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runPhone" description="Run Phone application on target machine.">
+		<property name="appDir" value="${basedir}/applications/phone" />
+		<antcall target="run" />
+	</target>
+
+
+
+	<target name="cleanStore" description="Cleans Store application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/store" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildStore" description="Build Store application.">
+		<property name="appDir" value="${basedir}/applications/store" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugStore" description="Starts debugging of Store application on target machine.">
+		<property name="appDir" value="${basedir}/applications/store" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployStore" description="Deploy Store application to target machine.">
+		<property name="appDir" value="${basedir}/applications/store" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runStore" description="Run Store application on target machine.">
+		<property name="appDir" value="${basedir}/applications/store" />
+		<antcall target="run" />
+	</target>
+
+
+
+	<target name="cleanHVAC" description="Cleans Hvac application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/hvac" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildHVAC" description="Build Hvac application.">
+		<property name="appDir" value="${basedir}/applications/hvac" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugHVAC" description="Starts debugging of Hvac application on target machine.">
+		<property name="appDir" value="${basedir}/applications/hvac" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployHVAC" description="Deploy Hvac application to target machine.">
+		<property name="appDir" value="${basedir}/applications/hvac" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runHVAC" description="Run Hvac application on target machine.">
+		<property name="appDir" value="${basedir}/applications/hvac" />
+		<antcall target="run" />
+	</target>
+
+
+
+	<target name="cleanAMBSimulator" description="Clean AMB Simulator application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/ambsimulator" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildAMBSimulator" description="Build AMB Simulator application.">
+		<property name="appDir" value="${basedir}/applications/ambsimulator" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugAMBSimulator" description="Start debugging of AMB Simulator application on target machine.">
+		<property name="appDir" value="${basedir}/applications/ambsimulator" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployAMBSimulator" description="Deploy AMB Simulator application to target machine.">
+		<property name="appDir" value="${basedir}/applications/ambsimulator" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runAMBSimulator" description="Run AMB Simulator application on target machine.">
+		<property name="appDir" value="${basedir}/applications/ambsimulator" />
+		<antcall target="run" />
+	</target>
+
+
+
+	<target name="cleanSDL" description="Clean SmartDeviceLink application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/smartdevicelink" />
+		<property name="notCommon" value="true" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildSDL" description="Build SmartDeviceLink application.">
+		<property name="appDir" value="${basedir}/applications/smartdevicelink" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugSDL" description="Start debugging of SmartDeviceLink  application on target machine.">
+		<property name="appDir" value="${basedir}/applications/smartdevicelink" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deploySDL" description="Deploy SmartDeviceLink application to target machine.">
+		<property name="appDir" value="${basedir}/applications/smartdevicelink" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runSDL" description="Run SmartDeviceLink application on target machine.">
+		<property name="appDir" value="${basedir}/applications/smartdevicelink" />
+		<antcall target="run" />
+	</target>
+		
+
+	<target name="cleanAudioNonPOC" description="Clean AudioNonPOC application _dist folder.">
+		<property name="appDir" value="${basedir}/applications/AudioNonPOC" />
+		<property name="notCommon" value="true" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="buildAudioNonPOC" description="Build AudioNonPOC application.">
+		<property name="appDir" value="${basedir}/applications/AudioNonPOC" />
+		<antcall target="buildApp" />
+	</target>
+
+	<target name="debugAudioNonPOC" description="Start debugging of AudioNonPOC  application on target machine.">
+		<property name="appDir" value="${basedir}/applications/AudioNonPOC" />
+		<antcall target="debug" />
+	</target>
+
+	<target name="deployAudioNonPOC" description="Deploy AudioNonPOC application to target machine.">
+		<property name="appDir" value="${basedir}/applications/AudioNonPOC" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="runAudioNonPOC" description="Run AudioNonPOC application on target machine.">
+		<property name="appDir" value="${basedir}/applications/AudioNonPOC" />
+		<antcall target="run" />
+	</target>
+	
+	
+	
+    <target name="docs" depends="generateJavascriptDocumentation, generateNativeDocumenatation" description="Generates documentation of project">
+		<zip destfile="js-docs.zip">
+			<fileset dir="docs/js" />
+		</zip>
+    	<zip destfile="native-docs.zip">
+			<fileset dir="native/docs" />
+		</zip>
+    </target>
+
+</project>

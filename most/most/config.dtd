@@ -1,0 +1,32 @@
+<!ELEMENT plugin-properties (library-name, feature-install-uri?,
+  feature-key-cn?, feature-root-cn?,
+  feature-root-fingerprint?, feature-set*, api-feature+) >
+
+<!ELEMENT library-name (#PCDATA)>
+
+<!ELEMENT feature-set (api-feature-ref+)>
+<!ATTLIST feature-set name CDATA #REQUIRED >
+
+<!ELEMENT api-feature-ref EMPTY>
+<!ATTLIST api-feature-ref name CDATA #REQUIRED >
+
+<!ELEMENT api-feature (name, device-capability*, Object*, Function*, Property* )>
+
+<!ELEMENT name (#PCDATA) >
+<!ELEMENT device-capability (#PCDATA )>
+
+<!ELEMENT Object (Function*, Property*)>
+<!ATTLIST Object name CDATA #REQUIRED >
+
+<!ELEMENT Function (#PCDATA )>
+<!ATTLIST Function name CDATA #REQUIRED >
+<!ATTLIST Function restricted CDATA #IMPLIED >
+
+<!ELEMENT Property (#PCDATA )>
+
+
+<!ELEMENT feature-install-uri (#PCDATA)>
+<!ELEMENT feature-key-cn (#PCDATA)>
+<!ELEMENT feature-root-cn (#PCDATA)>
+<!ELEMENT feature-root-fingerprint (#PCDATA)>
+

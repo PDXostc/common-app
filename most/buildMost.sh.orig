@@ -1,0 +1,34 @@
+#
+# Build the plugin into a RPM package that be installed on the NDIS
+<<<<<<< HEAD
+rm -fr wrt-plugins-ivi-most-0.8.6
+cp -r most wrt-plugins-ivi-most-0.8.6
+
+cd wrt-plugins-ivi-most-0.8.6
+=======
+rm -fr ../wrt-plugins-ivi-most-0.8.6
+mkdir ../wrt-plugins-ivi-most-0.8.6
+cp -r * ../wrt-plugins-ivi-most-0.8.6
+
+pushd ../wrt-plugins-ivi-most-0.8.6
+>>>>>>> 7e0359baf75a0553f0b0b6b8baaaf40e3ce3e645
+rm -fr CMakeCache.txt CMakeFiles cmake_install.cmake Makefile
+cd ..
+tar czf wrt-plugins-ivi-most-0.8.6.tar.gz wrt-plugins-ivi-most-0.8.6
+
+<<<<<<< HEAD
+cp wrt-plugins-ivi-most-0.8.6.tar.gz /usr/src/packages/SOURCES/
+
+cd most/packaging
+rpmbuild -ba wrt-plugins-ivi-most.spec
+=======
+mv wrt-plugins-ivi-most-0.8.6.tar.gz /usr/src/packages/SOURCES/
+
+popd
+cd packaging
+rpmbuild -ba wrt-plugins-ivi-most.spec
+cd ..
+rm -fr ../wrt-plugins-ivi-most-0.8.6
+>>>>>>> 7e0359baf75a0553f0b0b6b8baaaf40e3ce3e645
+
+
