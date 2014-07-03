@@ -1,6 +1,11 @@
 all:
 	cd  HomeScreen && make
 
+deploy:
+	cd HomeScreen && make deploy
+	cd Browser && make deploy
+	cd Boilerplate && make deploy
+
 clean:
 	cd HomeScreen && make clean
 	cd Boilerplate && make clean
