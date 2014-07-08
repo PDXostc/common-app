@@ -41,10 +41,10 @@ common: /opt/usr/apps/_common
 	@echo "Please install Common Assets"
 	exit 1
 
-dev-common: ../_common
-	#cp -r ../_common/js/* js/
-	#cp -r ../_common/css/* css/
-	cp -rf ../_common common
+dev-common: ../common
+	#cp -r ../common/js/* js/
+	#cp -r ../common/css/* css/
+	cp -rf ../common common
 
 ../_common:
 	@echo "Please checkout Common Assets"
