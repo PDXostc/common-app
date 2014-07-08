@@ -1,4 +1,5 @@
 PROJECT = HomeScreen
+PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
 WRT_FILES = common css icon.png index.html setup config.xml images js
 VERSION := 0.0.1
@@ -6,13 +7,17 @@ PACKAGE = $(PROJECT)-$(VERSION)
 
 INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 
+ifndef TIZEN_IP
+TIZEN_IP=192.168.1.214
+endif
+
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 	
 $(PROJECT).wgt : dev
 
 deploy: $(PROJECT).wgt
-	scp $(PROJECT).wgt app@192.168.1.253:/home/app
+	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
 
 all:
 	@echo "Nothing to build"
@@ -26,6 +31,7 @@ clean:
 	rm -rf css/car
 	rm -rf css/user
 	rm -f $(PROJECT).wgt
+	git clean -f
 
 common: /opt/usr/apps/_common
 	cp -r /opt/usr/apps/_common/js/* js/
@@ -36,8 +42,8 @@ common: /opt/usr/apps/_common
 	exit 1
 
 dev-common: ../_common
-	cp -r ../_common/js/* js/
-	cp -r ../_common/css/* css/
+	#cp -r ../_common/js/* js/
+	#cp -r ../_common/css/* css/
 	cp -rf ../_common common
 
 ../_common:

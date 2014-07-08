@@ -89,23 +89,23 @@ Bootstrap.prototype.loadThemeEngine = function(callback) {
 	"use strict";
 	var self = this;
 
-	console.log("Loading ThemeEngine object");
+	//console.log("Loading ThemeEngine object");
 
-	loadScript('./common/js/themeengine.js', function(path, status) {
-		if (status === "ok") {
-			self.themeEngine = ThemeEngine;
-			self.themeEngine.init(function(themeStatus) {
-				if (!themeStatus) {
-					self.initCarIndicators(callback);
-				} else {
-					callback(themeStatus);
-				}
-			});
-		} else {
-			console.log("Error occured during loading of Configuration", status);
-			callback(status);
-		}
-	});
+	//loadScript('./common/js/themeengine.js', function(path, status) {
+		//if (status === "ok") {
+			//self.themeEngine = ThemeEngine;
+			//self.themeEngine.init(function(themeStatus) {
+				//if (!themeStatus) {
+					//self.initCarIndicators(callback);
+				//} else {
+					//callback(themeStatus);
+				//}
+			//});
+		//} else {
+			//console.log("Error occured during loading of Configuration", status);
+			//callback(status);
+		//}
+	//});
 };
 
 /** 

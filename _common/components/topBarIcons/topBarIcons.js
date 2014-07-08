@@ -218,7 +218,7 @@ function launchApplication(id) {
 		 */
 		onAppInfoSuccess: function(list) {
 			try {
-				var registeredApps = {"Home Screen":"/common/images/homescreen_icon.png", Browser:"/common/images/browser_icon.png", Boilerplate:"/common/images/boilerplate_icon.png" };
+				var registeredApps = {"Home Screen":"/common/images/homescreen_icon.png", Browser:"/common/images/browser_icon.png", Boilerplate:"/common/images/boilerplate_icon.png", Weather:"/common/images/weather_icon.png"};
 				var appListLenght;
 					var i = 0,
 						j = 0;
@@ -227,7 +227,7 @@ function launchApplication(id) {
 
 					for (i = 0; i < list.length; i++) {
 						var app = list[i];
-						console.log(app.name);
+						//console.log(app.name);
 						if (registeredApps[app.name]) {
 							var newApp = {
 								id: app.id,
@@ -240,7 +240,7 @@ function launchApplication(id) {
 								installed: true,
 								running: TopBarIcons.runningAppName === app.id
 							};
-							console.log(newApp);
+							//console.log(newApp);
 
 							if (app.name === "Home Screen") {
 								homeScreenApp = newApp;

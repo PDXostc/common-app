@@ -1,12 +1,15 @@
 PROJECT = Boilerplate
+PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
-TIZEN_IP=192.168.1.253
-
 WRT_FILES = common css icon.png index.html setup config.xml images js
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
 INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
+
+ifndef TIZEN_IP
+TIZEN_IP=192.168.1.253
+endif
 
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
@@ -46,10 +49,18 @@ dev-common: ../_common
 	@echo "Please checkout Common Assets"
 	exit 1
 
-install:
-	@echo "Installing $(PROJECT), stand by..."
+$(INSTALL_DIR) :
 	mkdir -p $(INSTALL_DIR)/
+
+install: $(INSTALL_DIR)
+	@echo "Installing $(PROJECT), stand by..."
 	cp $(PROJECT).wgt $(INSTALL_DIR)/
+
+install_xwalk: $(INSTALL_DIR)
+	@echo "Installing $(PROJECT), stand by..."
+	cp $(PROJECT).wgt $(INSTALL_DIR)/
+	export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
+	su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
 
 dist:
 	tar czf ../$(PROJECT).tar.bz2 .
