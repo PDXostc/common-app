@@ -162,3 +162,14 @@ var actionCatcher = {
 		}
 	}
 };
+/*
+function setupACListener() {
+	console.log("setupACListener");
+	ac = document.getElementById("actionsCatcher");
+	if (typeof ac !="undefined") {
+		ac.onmouseup=actionCatcher.touchEnd();
+		ac.onmousedown=actionCatcher.touchStart();
+		ac.onmouseover=actionCatcher.over();
+		console.log("setupACListener2");
+	}
+}*/

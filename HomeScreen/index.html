@@ -26,8 +26,9 @@
 <link rel="stylesheet" href="./css/car/components/topBarIcons/topBarIcons.css" />
 -->
 <link rel="stylesheet" href="./css/style.css"/>
+<link rel="stylesheet" href="./common/css/style.css"/>
 <script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script>
-<script type="text/javascript" src="./common/init.js"></script>
+<script type="text/javascript" src="./common/js/init.js"></script>
 
 <!--
 <script type="text/javascript" src="./css/car/components/knockout/knockout.js"></script>
@@ -51,12 +52,20 @@
 <script type="text/javascript" src="./css/car/components/topBarIcons/topBarIcons.js"></script>
 <script type="text/javascript" src="./css/car/components/dateTime/dateTime.js"></script>
 -->
-
+<script type="text/javascript">
+	includeJs("./js/predefAppModel.js");
+	includeJs("./js/installedApps.js");
+	includeJs("./js/keyControl.js");
+	includeJs("./js/actionCatcher.js");
+	includeJs("./js/main.js");
+</script>
+<!--
 <script type="text/javascript" src="./js/predefAppModel.js"></script>
 <script type="text/javascript" src="./js/installedApps.js"></script>
 <script type="text/javascript" src="./js/keyControl.js"></script>
 <script type="text/javascript" src="./js/actionCatcher.js"></script>
 <script type="text/javascript" src="./js/main.js"></script>
+-->
 
 
 </head>
@@ -65,6 +74,7 @@
 	<div id="wrapper" class="wrapper">
 		<div id="topBarIcons" class="topBarIcons"></div>
 		<div id="actionsCatcher" class="actionsCatcher" onmouseup="actionCatcher.touchEnd();" onmousedown="actionCatcher.touchStart();" onmousemove="actionCatcher.over();">
+		<!--<div id="actionsCatcher" class="actionsCatcher" onmouseup="console.log(window.event);" onmousedown="console.log(window.event);" onmousemove="console.log(window.event);">-->
 		</div>
 	
 		<div id="homeScrAppGridView" class="homeScrAppGridView pageBgColorNormalTransparent">
