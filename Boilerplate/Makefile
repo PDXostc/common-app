@@ -8,7 +8,7 @@ PACKAGE = $(PROJECT)-$(VERSION)
 INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 
 ifndef TIZEN_IP
-TIZEN_IP=192.168.1.253
+TIZEN_IP=192.168.1.214
 endif
 
 dev: clean dev-common
@@ -31,21 +31,22 @@ clean:
 	rm -rf css/car
 	rm -rf css/user
 	rm -f $(PROJECT).wgt
+	git clean -f
 
-common: /opt/usr/apps/_common
-	cp -r /opt/usr/apps/_common/js/* js/
-	cp -r /opt/usr/apps/_common/css/* css/
+common: /opt/usr/apps/common
+	cp -r /opt/usr/apps/common/js/* js/
+	cp -r /opt/usr/apps/common/css/* css/
 
 /opt/usr/apps/_common:
 	@echo "Please install Common Assets"
 	exit 1
 
-dev-common: ../_common
-	cp -r ../_common/js/* js/
-	cp -r ../_common/css/* css/
-	cp -rf ../_common common
+dev-common: ../common
+	#cp -r ../common/js/* js/
+	#cp -r ../common/css/* css/
+	cp -rf ../common common
 
-../_common:
+../common:
 	@echo "Please checkout Common Assets"
 	exit 1
 
