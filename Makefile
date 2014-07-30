@@ -4,10 +4,10 @@ all:
 	cd  Boilerplate && make
 
 deploy:
-	cd HomeScreen && make deploy TIZEN_IP=192.168.1.214
-	cd Browser && make deploy TIZEN_IP=192.168.1.214
-	cd Boilerplate && make deploy TIZEN_IP=192.168.1.214
-	scp InstallWgts.sh root@192.168.1.214:/root/
+	cd HomeScreen && make deploy TIZEN_IP=192.168.4.53
+	cd Browser && make deploy TIZEN_IP=192.168.4.53
+	cd Boilerplate && make deploy TIZEN_IP=192.168.4.53
+	scp InstallWgts.sh app@192.168.4.53:/home/app/
 
 clean:
 	cd HomeScreen && make clean

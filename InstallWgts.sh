@@ -1,3 +1,3 @@
-wrt-installer -i HomeScreen.wgt
-wrt-installer -i Browser.wgt
-wrt-installer -i Boilerplate.wgt
+xwalkctl -i /home/app/HomeScreen.wgt
+xwalkctl -i /home/app/Browser.wgt
+xwalkctl -i /home/app/Boilerplate.wgt
