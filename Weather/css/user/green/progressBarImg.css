@@ -1,0 +1,19 @@
+#VCicon {
+    background-image: url(./images/progressBar/icon_volume_green.png);
+}
+
+#VCcircle {
+    background-image: url(./images/progressBar/handle_green.png);
+}
+
+.noVolumeSlider div {
+	background:url("images/progressBar/handle_green.png") no-repeat center center;
+}
+
+.noVolumeSlider.connect.lower a {
+	background:url("images/progressBar/progresbarbg.png") repeat-x left center;
+}
+
+.sliderStart{
+	background-image: url(./images/progressBar/progresbarbgstart.png);
+}

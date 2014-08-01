@@ -1,0 +1,177 @@
+/* Styles specific to News app */
+
+body {
+  overflow: hidden;
+}
+
+.newsChannels {
+  position: absolute;
+  display: block;
+  top: 152px;
+  left: 0px;
+  height: 47px;
+  line-height: 47px !important;
+  width: 670px;
+  z-index: -500;
+  // text-align: justify;
+  letter-spacing: 2px;
+  padding: 0px 25px 0px 25px;
+}
+
+#topArticleList {
+  visibility: visible;
+  z-index: -800;
+  overflow: hidden;
+}
+
+#entertainArticleList {
+  visibility: hidden;
+  z-index: -530;
+  overflow: hidden;
+}
+
+#sportsArticleList {
+  visibility: hidden;
+  z-index: -550;
+  overflow: hidden;
+}
+
+.articleList {
+  position: absolute;
+  display: block;
+  top: 210px;
+  left: 0px;
+  height: 890px;
+  width: 716px;
+  border-style: solid;
+  border-width: 2px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.articleListItem {
+  display: block;
+  width: 708px;
+  height: 130px;
+  margin: 0px 4px 8px 4px;
+}
+
+.itemDate {
+  text-transform: uppercase;
+}
+
+.article {
+  visibility: hidden;
+  position: absolute;
+  top: 220px;
+  left: 10px;
+  height: 870px;
+  width: 695px;
+  border-width: 1px;
+  border-style: solid;
+  outline: 18px solid black;
+  z-index: 10;
+  background: #000000;
+  overflow: hidden;
+}
+
+#articleClose {
+  display: none;
+  position: absolute;
+  top: 221px;
+  left: 655px;
+  width: 40px;
+  height: 40px;
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  z-index: 11;
+  padding: 5px;
+}
+
+.articleHead {
+  display: block;
+  padding: -8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.articlePhoto {
+  display: block;
+  text-align: center;
+  border: 4px solid #333333;
+  margin: 10px 0px 10px 0px;
+}
+
+.articleBody {
+  display: block;
+  padding: 22px 31px 31px 31px;
+  letter-spacing: 3px;
+}
+
+.thumbnail {
+  display: inline-block;
+  width: 180px;
+  height: 120px;
+  padding: 4px 4px 2px 4px;
+  vertical-align: middle;
+}
+
+.itemTitle {
+  font-weight: bold;
+  font-size: 188%;
+  line-height: 95%;
+}
+
+.itemText {
+  display: inline-block;
+  width: 490px;
+  height: 117px;
+  padding: 2px 2px 2px 8px;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.itemTextGradFade {
+  display: block;
+  width: 490px;
+  height: 35px;
+  z-index: 0;
+  left: 195px;
+  bottom: 36px;
+}
+
+.articleListGradFade {
+  display: block;
+  width: 712px;
+  height: 55px;
+  z-index: 1;
+  left: 2px;
+  top: 1032px;
+  background: -webkit-linear-gradient(top, rgba(2,46,73,0) 0%,rgba(2,46,73,0.59) 25%,rgba(1,14,22,1) 85%,rgba(0,0,0,1) 100%);
+}
+
+.scrollIndicator {
+  display: block;
+  width:52px;
+  height: 32px;
+  margin-left: 50%;
+  margin-right: 50%;
+  margin-top: 15px;
+  background-image: url('../images/carron.png');
+}
+
+.bottomPanelLogoImg {
+	background: url('../images/logo_icon.png') no-repeat center !important;
+}
+
+.bottomPanelLogoImg {
+  background-repeat: no-repeat;
+  width: 234px !important;
+}

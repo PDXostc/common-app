@@ -1,0 +1,24 @@
+{
+    "slots": [
+        {
+            "Key": "350473",
+            "LocalizedName": "Portland"
+        },
+        {
+            "Key": "328328",
+            "LocalizedName": "London"
+        },
+        {
+            "Key": "349727",
+            "LocalizedName": "New York"
+        },
+        {
+            "Key": "329506",
+            "LocalizedName": "Las Vegas"
+        },
+        {
+            "Key": "226396",
+            "LocalizedName": "Tokyo"
+        }
+    ]
+}

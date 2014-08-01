@@ -1,0 +1,83 @@
+.phoneBody {
+	background-image: url("images/phone/bg_with_glow_green.png");
+}
+
+.deleteButton {
+	background-image: url("images/phone/bt_delete_green.png");
+}
+
+.callingTrue {
+	background-image: url("images/phone/icon_endcall_green.png");
+}
+
+.callingFalse {
+	background-image: url("images/phone/icon_call_green.png");
+}
+
+.carouselNumber {
+	background-image: url("images/phone/icon_number_green.png");
+}
+
+.speakerButton {
+	background-image: url("images/phone/icon_speaker_green.png");
+}
+
+.muteButton {
+	background-image: url("images/phone/icon_mute_green.png");
+}
+
+.holdButton {
+	background-image: url("images/phone/icon_hold_green.png");
+}
+
+.addCallButton {
+	background-image: url("images/phone/icon_addcall_green.png");
+}
+
+.isFavoriteTrue {
+	background-image: url("images/phone/icon_favorite_true_green.png");
+}
+
+.isFavoriteFalse {
+	background-image: url("images/phone/icon_favorite_false_green.png");
+}
+
+.phoneIcon {
+	background-image: url("images/phone/icon_mobile_green.png");
+}
+
+.contactDetailBox3:hover .phoneIcon {
+	background-image: url("images/phone/icon_mobile_green_hover.png");
+}
+
+.contactDetailBox3 .phoneIcon:hover {
+	background-image: url("images/phone/icon_mobile_green_hover.png");
+}
+
+.emailIcon {
+	background-image: url("images/phone/icon_email_green.png");
+}
+
+.addressIcon {
+	background-image: url("images/phone/icon_address_green.png");
+}
+
+.missedCallIcon {
+	background-image: url("images/phone/icon_missed_green.png");
+}
+
+.missedNewCallIcon {
+	background-image: url("images/phone/icon_missed_new_green.png");
+}
+
+.receivedCallIcon {
+	background-image: url("images/phone/icon_received_green.png");
+}
+
+.dialedCallIcon {
+	background-image: url("images/phone/icon_dialed_green.png");
+}
+
+.noContactPhoto {
+	background-image: url("images/phone/contact_picture_green.png");
+}
