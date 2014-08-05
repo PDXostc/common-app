@@ -33,11 +33,11 @@ clean:
 	rm -f $(PROJECT).wgt
 	git clean -f
 
-common: /opt/usr/apps/_common
-	cp -r /opt/usr/apps/_common/js/* js/
-	cp -r /opt/usr/apps/_common/css/* css/
+common: /opt/usr/apps/common
+	cp -r /opt/usr/apps/common/js/* js/
+	cp -r /opt/usr/apps/common/css/* css/
 
-/opt/usr/apps/_common:
+/opt/usr/apps/common:
 	@echo "Please install Common Assets"
 	exit 1
 
@@ -46,7 +46,7 @@ dev-common: ../common
 	#cp -r ../common/css/* css/
 	cp -rf ../common common
 
-../_common:
+../common:
 	@echo "Please checkout Common Assets"
 	exit 1
 
