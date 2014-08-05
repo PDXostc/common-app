@@ -12,7 +12,7 @@ all:
 	@echo "Nothing to build"
 
 wgtPkg: common
-	zip -r $(PROJECT).wgt config.xml css icon.png index.html js images
+	zip -r $(PROJECT).wgt config.xml manifest.json css icon.png index.html js images
 
 clean:
 	rm -rf js/services
