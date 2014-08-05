@@ -125,15 +125,18 @@ Bootstrap.prototype.initCarIndicators = function(callback) {
 		if (status === "ok") {
 			try {
 				self.carIndicator = new CarIndicator();
+				console.log(self.carIndicator);
 
 				self.carIndicator.addListener({
 					onNightModeChanged: function(nightMode) {
-						self.themeEngine.setUserTheme("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
+						//self.themeEngine.setUserTheme("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
+						cosole.log("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
 					}
 				});
+				console.log(self);
 				self.initSpeech(callback);
 			} catch (ex) {
-				console.error("Error occured during CarIndicator initialization", ex);
+				console.error("Error occured during CarIndicator initialization", self.CarIndicator, path, status, ex);
 				callback(ex);
 			}
 		} else {
