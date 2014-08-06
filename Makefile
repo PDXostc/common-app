@@ -8,6 +8,7 @@ deploy:
 	cd Browser && make deploy TIZEN_IP=192.168.6.53
 	cd Boilerplate && make deploy TIZEN_IP=192.168.6.53
 	scp InstallWgts.sh app@192.168.6.53:/home/app/
+	ssh app@192.168.6.53 ./InstallWgts.sh
 
 clean:
 	cd HomeScreen && make clean
