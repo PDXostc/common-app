@@ -13,7 +13,13 @@ endif
 
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
-	
+
+wgt:
+	zip -r $(PROJECT).wgt $(WRT_FILES)
+
+run:
+	ssh app@192.168.6.53 "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Weather' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+
 $(PROJECT).wgt : dev
 
 deploy: $(PROJECT).wgt
