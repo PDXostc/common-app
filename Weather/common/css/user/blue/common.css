@@ -1,0 +1,407 @@
+/* FONT SIZE */
+.fontSizeXXSmall {
+	font-size: 14px;
+	line-height: 14px;
+}
+
+.fontSizeXSmall {
+	font-size: 18px;
+	line-height: 18px;
+}
+
+.fontSizeSmaller {
+	font-size: 20px;
+	line-height: 20px;
+}
+
+.fontSizeSmall {
+	font-size: 24px;
+	line-height: 24px;
+}
+
+.fontSizeMedium {
+	font-size: 28px;
+	line-height: 28px;
+}
+
+.fontSizeLarge {
+	font-size: 30px;
+	line-height: 30px;
+}
+
+.fontSizeLarger {
+	font-size: 34px;
+	line-height: 34px;
+}
+
+.fontSizeXLarge {
+	font-size: 40px;
+	line-height: 40px;
+}
+
+.fontSizeXXLarge {
+	font-size: 48px;
+	line-height: 48px;
+}
+
+.fontSizeXXXLarge {
+	font-size: 62px;
+	line-height: 62px;
+}
+
+.fontSizeXXXXLarge {
+	font-size: 80px;
+	line-height: 80px;
+}
+
+.fontWeightNormal {
+	font-weight: normal;
+}
+
+.fontWeightBold {
+	font-weight: bold;
+}
+
+.fontWeightBolder {
+	font-weight: bolder;
+}
+
+.fontWeightLighter {
+	font-weight: lighter;
+}
+
+/* FONT COLOR */
+.fontColorNormal {
+	color: rgb(255, 255, 255);
+	color: rgba(255, 255, 255, 1.0); /*#ffffff*/
+}
+
+.fontColorTheme {
+	color: rgb(58, 174, 255);
+	color: rgba(58, 174, 255, 1.0); /*#3aaeff*/
+}
+
+.fontColorLight {
+	color: rgb(65, 183, 255);
+	color: rgba(65, 183, 255, 1.0); /*#41b7ff*/
+}
+
+.fontColorDark {
+	color: rgb(0, 128, 191); /*#0080bf*/
+	color: rgba(0, 128, 191, 1.0); /*#0080bf*/
+}
+
+.fontColorSelected {
+	color: rgb(0, 171, 255);
+	color: rgba(0, 171, 255, 1.0); /*#00abff*/
+}
+
+.fontColorDimmed {
+	color: rgb(145, 149, 153);
+	color: rgba(145, 149, 153, 1.0); /*#919599*/
+}
+
+.fontColorDimmedLight {
+	color: rgb(199, 199, 199);
+	color: rgba(199, 199, 199, 1.0); /*#c7c7c7*/
+}
+
+.fontColorLightRed {
+	color: rgb(255, 3, 3);
+	color: rgba(255, 3, 3, 0.8);
+}
+
+/* PAGE BACKGROUND COLOR */
+.pageBgColorNormal {
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 1.0);
+}
+
+.pageBgColorNormalTransparent {
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.pageBgColorTheme {
+	background-color: rgb(58, 174, 255);
+	background-color: rgba(58, 174, 255, 1.0);
+}
+
+.pageBgColorThemeTransparent {
+	background-color: rgb(58, 174, 255);
+	background-color: rgba(58, 174, 255, 0.8);
+}
+
+.pageBgColorLight {
+	background-color: rgb(65, 183, 255);
+	background-color: rgba(65, 183, 255, 1.0);
+}
+
+.pageBgColorLightTransparent {
+	background-color: rgb(65, 183, 255);
+	background-color: rgba(65, 183, 255, 0.8);
+}
+
+.pageBgColorDark {
+	background-color: rgb(0, 128, 191);
+	background-color: rgba(0, 128, 191, 1.0);
+}
+
+.pageBgColorDarkTransparent {
+	background-color: rgb(0, 128, 191);
+	background-color: rgba(0, 128, 191, 0.8);
+}
+
+.pageBgColorSelected {
+	background-color: rgb(0, 171, 255);
+	background-color: rgba(0, 171, 255, 1.0);
+}
+
+.pageBgColorSelectedTransparent {
+	background-color: rgb(0, 171, 255);
+	background-color: rgba(0, 171, 255, 0.8);
+}
+
+.pageBgColorDimmed {
+	background-color: rgb(145, 149, 153);
+	background-color: rgba(145, 149, 153, 1.0);
+}
+
+.pageBgColorDimmedTransparent {
+	background-color: rgb(145, 149, 153);
+	background-color: rgba(145, 149, 153, 0.8);
+}
+
+/* BACKGROUND COLOR */
+.bgColorNormal {
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 1.0);
+}
+
+.bgColorNormalTransparent {
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bgColorTheme {
+	background-color: rgb(58, 174, 255);
+	background-color: rgba(58, 174, 255, 1.0);
+}
+
+.bgColorThemeTransparent {
+	background-color: rgb(58, 174, 255);
+	background-color: rgba(58, 174, 255, 0.5);
+}
+
+.bgColorLight {
+	background-color: rgb(65, 183, 255);
+	background-color: rgba(65, 183, 255, 1.0);
+}
+
+.bgColorLightTransparent {
+	background-color: rgb(65, 183, 255);
+	background-color: rgba(65, 183, 255, 0.5);
+}
+
+.bgColorDark {
+	background-color: rgb(6, 36, 55);
+	background-color: rgba(6, 36, 55, 1.0);
+}
+
+.bgColorDarkTransparent {
+	background-color: rgb(6, 36, 55);
+	background-color: rgba(6, 36, 55, 0.5);
+}
+
+.bgColorSelected {
+	background-color: rgb(0, 171, 255);
+	background-color: rgba(0, 171, 255, 1.0);
+}
+
+.bgColorSelectedTransparent {
+	background-color: rgb(0, 171, 255);
+	background-color: rgba(0, 171, 255, 0.5);
+}
+
+.bgColorDimmed {
+	background-color: rgb(145, 149, 153);
+	background-color: rgba(145, 149, 153, 1.0);
+}
+
+.bgColorDimmedTransparent {
+	background-color: rgb(145, 149, 153);
+	background-color: rgba(145, 149, 153, 0.5);
+}
+
+/* BOX SHADOW */
+.boxShadow1 {
+	box-shadow: 0 0 10px 2px rgba(18, 75, 115, 0.8);
+}
+
+.boxShadow1Active:active,.boxShadow1Active:focus {
+	box-shadow: 0 0 10px 2px rgb(18, 75, 115);
+}
+
+.boxShadow2 {
+	box-shadow: 0 0 50px 5px rgba(18, 75, 115, 0.8);
+}
+
+.boxShadow2Active:active,.boxShadow2Active:focus {
+	box-shadow: 0 0 50px 5px rgb(18, 75, 115);
+}
+
+.boxShadow3 {
+	box-shadow: 0 0 30px 2px rgba(29, 162, 255, 0.8);
+}
+
+.boxShadow3Active:active,.boxShadow3Active:focus {
+	box-shadow: 0 0 30px 2px rgb(29, 162, 255);
+}
+
+.boxShadow4 {
+	box-shadow: 0 0 70px 2px rgba(29, 162, 255, 0.4);
+}
+
+.boxShadow4Active:active,.boxShadow4Active:focus {
+	box-shadow: 0 0 70px 2px rgb(29, 162, 255);
+}
+
+.boxShadowInset {
+	box-shadow: 0 0 2px 2px #1DA2FF inset;
+}
+
+.boxShadowInset:active,.boxShadowInset:hover {
+	box-shadow: 0 0 2px 2px #124B73 inset;
+}
+
+/* BORDER COLOR */
+.borderColorNormal {
+	border-color: rgb(0, 0, 0);
+	border-color: rgba(0, 0, 0, 1.0);
+}
+
+.borderColorTheme {
+	border-color: rgb(1, 128, 201);
+	border-color: rgba(1, 128, 201, 0.5);
+}
+
+.borderColorLight {
+	border-color: rgb(128, 203, 255);
+	border-color: rgba(128, 203, 255, 1.0);
+}
+
+.borderColorDark {
+	border-color: rgb(0, 89, 151);
+	border-color: rgba(0, 89, 151, 1.0);
+}
+
+.borderColorSelected {
+	border-color: rgb(29, 162, 255);
+	border-color: rgba(29, 162, 255, 1.0);
+}
+
+.borderColorDimmed {
+	border-color: rgb(199, 199, 199);
+	border-color: rgba(199, 199, 199, 1.0);
+}
+
+/* TEXT BACKGROUND COLOR */
+.textBgColorNormal {
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 1.0);
+}
+
+.textBgColorNormalTransparent {
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.textBgColorTheme {
+	background-color: rgb(29, 162, 255);
+	background-color: rgba(29, 162, 255, 1.0);
+}
+
+.textBgColorThemeTransparent {
+	background-color: rgb(29, 162, 255);
+	background-color: rgba(29, 162, 255, 0.4);
+}
+
+.textBgColorLight {
+	background-color: rgb(128, 203, 255);
+	background-color: rgba(128, 203, 255, 1.0);
+}
+
+.textBgColorLightTransparent {
+	background-color: rgb(128, 203, 255);
+	background-color: rgba(128, 203, 255, 0.4);
+}
+
+.textBgColorDark {
+	background-color: rgb(0, 89, 151);
+	background-color: rgba(0, 89, 151, 1.0);
+}
+
+.textBgColorDarkTransparent {
+	background-color: rgb(0, 89, 151);
+	background-color: rgba(0, 89, 151, 0.4);
+}
+
+.textBgColorSelected {
+	background-color: rgb(29, 162, 255);
+	background-color: rgba(29, 162, 255, 1.0);
+}
+
+.textBgColorSelectedTransparent {
+	background-color: rgb(29, 162, 255);
+	background-color: rgba(29, 162, 255, 0.4);
+}
+
+.textBgColorDimmed {
+	background-color: rgb(199, 199, 199);
+	background-color: rgba(199, 199, 199, 1.0);
+}
+
+.textBgColorDimmedTransparent {
+	background-color: rgb(199, 199, 199);
+	background-color: rgba(199, 199, 199, 0.4);
+}
+
+/* OPACITY */
+.opacityFull {
+	opacity: 1.0;
+}
+
+.opacityHeavy {
+	opacity: 0.8;
+}
+
+.opacityMedium {
+	opacity: 0.65;
+}
+
+.opacityLight {
+	opacity: 0.5;
+}
+/* phone button */
+.callButton {
+	vertical-align: top;
+	display: inline-block;
+	margin-left: 108px;
+	border: none;
+	width: 72px;
+	height: 157px;
+	margin-right: 7px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.callingTrue {
+	margin-top: 279px;
+	background-color: rgb(255, 3, 3);
+	background-color: rgba(255, 3, 3, 0.8);
+}
+
+.callingFalse {
+	margin-top: 117px;
+	background-color: rgb(138, 255, 0);
+	background-color: rgba(138, 255, 0, 0.54);
+}
