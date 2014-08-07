@@ -22,6 +22,7 @@
 */
 function loadScript(path, callback) {
     "use strict";
+    console.log("loadScript("+path+","+callback+")");
     var scripts = document.getElementsByTagName("script"),
         i = 0,
         done = false,

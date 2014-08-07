@@ -18,10 +18,10 @@ function includeJs(jsFilePath) {
 
 includeJs("/common/js/car.js");
 includeJs("/common/js/user.js");
+includeJs("/common/js/bootstrap.js");
 includeJs("/common/components/knockout/knockout.js");
 includeJs("/common/components/jsViews/jsrender.js");
 includeJs("/common/components/jsViews/template.js");
-includeJs("/common/js/bootstrap.js");
 includeJs("/common/components/audioPlayer/most.js");
 includeJs("/common/components/bottomPanel/jquery.nouislider.js");
 includeJs("/common/components/bottomPanel/bottomPanel.js");
@@ -30,3 +30,9 @@ includeJs("/common/components/buttonControls/buttonControls.js");
 includeJs("/common/components/audioPlayer/audioPlayer.js");
 includeJs("/common/components/topBarIcons/topBarIcons.js");
 includeJs("/common/components/dateTime/dateTime.js");
+includeJs("/common/components/uri/uri.js");
+includeJs("/common/components/boxCaption/boxCaption.js");
+includeJs("/common/components/alphabetBookmark/alphabetBookmark.js");
+includeJs("/common/components/keyboard/keyboard.js");
+includeJs("/common/components/library/library.js");
+includeJs("/common/components/weather/weather.js");
