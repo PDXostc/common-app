@@ -1,4 +1,4 @@
-apps = HomeScreen Browser Boilderplate News Weather
+apps = HomeScreen Browser Boilerplate News Weather
 
 all:
 	$(foreach app,$(apps), make -C $(app);)
