@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/settings" version="0.5" viewmodes="fullscreen">
+    <icon src="icon.png"/>
+    <content src="index.html"/>
+<name>Settings</name>
+<tizen:application id="CF6vRBuTFI" required_version="1.0"/>
+</widget>

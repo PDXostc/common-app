@@ -112,7 +112,7 @@ function onLaunchSuccess() {
  */
 function launchApplication(id) {
 	"use strict";
-	console.log('launchApplication('+id+');');
+	//console.log('launchApplication('+id+');');
 	if (id === "http://com.intel.tizen/settings") {
 		if (typeof Settings === 'undefined') {
 			loadScript('./common/components/settings/js/settings.js', function(path, status) {
@@ -127,7 +127,7 @@ function launchApplication(id) {
 	}
 
 	var app = getAppByID(id);
-	console.log(app);
+	//console.log(app);
 	if ( !! app) {
 		if( app != tizen.application.getCurrentApplication() )
 		{
@@ -138,7 +138,7 @@ function launchApplication(id) {
 				console.log("Application is running!");
 				console.log(app);
 			}
-		}
+		 }
 	} else {
 		console.log("Application is not installed!");
 		alert("Application is not installed!");

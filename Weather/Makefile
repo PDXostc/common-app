@@ -18,9 +18,13 @@ wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 run:
-	ssh app@192.168.6.53 "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Weather' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Weather' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
 
-$(PROJECT).wgt : dev
+install:
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Weather' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/Weather.wgt"
+
+$(PROJECT).wgt : wgt
 
 deploy: $(PROJECT).wgt
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
@@ -32,12 +36,12 @@ wgtPkg: common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 clean:
-	rm -rf js/services
-	rm -rf common
-	rm -rf css/car
-	rm -rf css/user
+	#rm -rf js/services
+	#rm -rf common
+	#rm -rf css/car
+	#rm -rf css/user
 	rm -f $(PROJECT).wgt
-	git clean -f
+	#git clean -f
 
 common: /opt/usr/apps/common
 	cp -r /opt/usr/apps/common/js/* js/
@@ -50,7 +54,7 @@ common: /opt/usr/apps/common
 dev-common: ../common
 	#cp -r ../common/js/* js/
 	#cp -r ../common/css/* css/
-	cp -rf ../common common
+	cp -rf ../common/* common/*
 
 ../common:
 	@echo "Please checkout Common Assets"
@@ -58,10 +62,6 @@ dev-common: ../common
 
 $(INSTALL_DIR) :
 	mkdir -p $(INSTALL_DIR)/
-
-install: $(INSTALL_DIR)
-	@echo "Installing $(PROJECT), stand by..."
-	cp $(PROJECT).wgt $(INSTALL_DIR)/
 
 install_xwalk: $(INSTALL_DIR)
 	@echo "Installing $(PROJECT), stand by..."
