@@ -36,12 +36,12 @@ wgtPkg: common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 clean:
-	#rm -rf js/services
-	#rm -rf common
-	#rm -rf css/car
-	#rm -rf css/user
+	rm -rf js/services
+	rm -rf common
+	rm -rf css/car
+	rm -rf css/user
 	rm -f $(PROJECT).wgt
-	#git clean -f
+	git clean -f
 
 common: /opt/usr/apps/common
 	cp -r /opt/usr/apps/common/js/* js/
@@ -54,7 +54,7 @@ common: /opt/usr/apps/common
 dev-common: ../common
 	#cp -r ../common/js/* js/
 	#cp -r ../common/css/* css/
-	cp -rf ../common/* common/*
+	cp -rf ../common .
 
 ../common:
 	@echo "Please checkout Common Assets"
