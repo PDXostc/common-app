@@ -545,6 +545,7 @@ var awxGetCurrentWeather = function (locationKey) {
 
 // Configure our weather widget during jQuery.OnReady
 $(document).ready(function() {
+	console.log('onready');
 
   var isMetric = false;
   var locationUrl = "";
@@ -683,8 +684,9 @@ $(document).ready(function() {
           return true;
       }
   });
-
+	console.log('onready search');
   $("#awxSearchButton").click(function () {
+	  console.log('awxSearchButton click');
       var text = $("#awxSearchTextBox").val();
       awxCityLookUp(text);
   });
