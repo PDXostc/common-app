@@ -17,16 +17,16 @@ dev: clean dev-common
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
-run:
+run: install
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Weather' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
 
-install:
+install: deploy
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Weather' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/Weather.wgt"
 
 $(PROJECT).wgt : wgt
 
-deploy: $(PROJECT).wgt
+deploy: dev
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
 
 all:
