@@ -55,6 +55,7 @@ $(INSTALL_DIR) :
 
 install: $(INSTALL_DIR)
 	@echo "Installing $(PROJECT), stand by..."
+	mkdir -p $(INSTALL_DIR)/
 	cp $(PROJECT).wgt $(INSTALL_DIR)/
 
 install_xwalk: $(INSTALL_DIR)
