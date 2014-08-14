@@ -16,6 +16,7 @@
         <tizen:privilege name="http://tizen.org/privilege/bluetooth.spp" />
         <tizen:privilege name="http://tizen.org/privilege/bluetooth.gap" />
         <tizen:privilege name="http://tizen.org/privilege/speech" />
+	<tizen:privilege name="http://tizen.org/privilege/vehicle" />
 	<tizen:setting screen-orientation="portrait"
 		context-menu="enable" background-support="disable" encryption="disable"
 		install-location="auto" hwkey-event="enable" />

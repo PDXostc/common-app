@@ -8,7 +8,7 @@ PACKAGE = $(PROJECT)-$(VERSION)
 INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 
 ifndef TIZEN_IP
-TIZEN_IP=192.168.1.214
+TIZEN_IP=192.168.6.53
 endif
 
 dev: clean dev-common
@@ -37,7 +37,7 @@ common: /opt/usr/apps/common
 	cp -r /opt/usr/apps/common/js/* js/
 	cp -r /opt/usr/apps/common/css/* css/
 
-/opt/usr/apps/_common:
+/opt/usr/apps/common:
 	@echo "Please install Common Assets"
 	exit 1
 

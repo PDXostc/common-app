@@ -176,6 +176,7 @@ var evalInstalledApps = null;
 function onAppInfoSuccess(list) {
 	"use strict";
 	var i = 0;
+	//console.log("onAppInfoSuccess(list)");
 	try {
 		index = 0;
 		var applications = [];

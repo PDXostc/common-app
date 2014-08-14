@@ -1,5 +1,39 @@
 @import url("./spinner.css");
 
+/* This is theme aimed for Intel Coulomb 2012 */
+
+@font-face {
+	font-family: HelveticaNeue;
+
+	src: url('./fonts/HelveticaNeue-Regular.eot?#iefix') format('embedded-opentype'), 
+	     url('./fonts/HelveticaNeue-Regular.woff') format('woff'), 
+	     url('./fonts/HelveticaNeue-Regular.ttf')  format('truetype'),
+	     url('./fonts/HelveticaNeue-Regular.svg#svgFontName') format('svg'),
+	     local("HelveticaNeue");
+}
+
+@font-face {
+	font-family: HelveticaNeue;
+	src: url('./fonts/HelveticaNeue-CondensedBold.eot?#iefix') format('embedded-opentype'), 
+	     url('./fonts/HelveticaNeue-CondensedBold.woff') format('woff'), 
+	     url('./fonts/HelveticaNeue-CondensedBold.ttf')  format('truetype'),
+	     url('./fonts/HelveticaNeue-CondensedBold.svg#svgFontName') format('svg'),
+	     local("HelveticaNeue");
+	
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: HelveticaNeue;
+	src: url('./fonts/HelveticaNeue-Light.eot?#iefix') format('embedded-opentype'), 
+	     url('./fonts/HelveticaNeue-Light.woff') format('woff'), 
+	     url('./fonts/HelveticaNeue-Light.ttf')  format('truetype'),
+	     url('./fonts/HelveticaNeue-Light.svg#svgFontName') format('svg'),
+	     local("HelveticaNeue");
+	
+	font-weight: 100;
+}
+
 html {
 	height: 1280px !important;
 	width: 720px !important;
@@ -9,8 +43,7 @@ html {
 }
 
 body {
-	/*font-family: HelveticaNeue;*/
-	font-family: "Arial Narrow", Arial, "Helvetica Condensed", Helvetica, sans-serif;
+	font-family: HelveticaNeue;
 	-webkit-font-smoothing: antialiased;
 	position: absolute !important;
 	height: 1280px !important;

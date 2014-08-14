@@ -152,7 +152,7 @@ var Configuration = (function() {
         aCallback = aCallback || function() {};
 
         if (typeof(tizen) !== 'undefined') {
-			console.log("Settings updated.", this._settingsStorageName);
+			//console.log("Settings updated.", this._settingsStorageName);
             tizen.filesystem.resolve(this._settingsStorageName, function(directory) {
                 var settingsFile;
                 try {

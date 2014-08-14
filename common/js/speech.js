@@ -35,14 +35,15 @@ var Speech = (function() {
 		console.info("Starting up service Speech");
 
 		// workaround for TTS
-		this.vocalizeString("");
+		//TODO: this.vocalizeString("");
 
 		// workaround for STT
+		/* TODO: remove until API fixed for crosswalk
 		if (typeof (tizen) !== 'undefined' && typeof (tizen.content) !== 'undefined' && typeof (tizen.speech.find) !== 'undefined') {
 			tizen.content.find(function(content) {
 			}, function(error) {
 			}, null);
-		}
+		}*/
 
 		this._initVoiceRecognition();
 	}
@@ -233,7 +234,7 @@ var Speech = (function() {
 		console.log("Speech vocalize string called.");
 		if (typeof (tizen) !== 'undefined' && typeof (tizen.speech) !== 'undefined' && typeof (tizen.speech.vocalizeString) !== 'undefined') {
 			try {
-				tizen.speech.vocalizeString(string);
+				//TODO: tizen.speech.vocalizeString(string);
 			} catch (err) {
 				console.log("Speech vocalize string FAILED: " + err.message);
 				console.log(err);
@@ -246,6 +247,7 @@ var Speech = (function() {
 	/**
 	 * Performs text to speech synthesis of the current application name.
 	 * 
+	 * 
 	 * @method readCurrentAppName
 	 */
 	Speech.prototype.readCurrentAppName = function() {
@@ -254,7 +256,7 @@ var Speech = (function() {
 			if (appName === "hvac") {
 				appName = "air conditioning";
 			}
-			this.vocalizeString(appName);
+			//TODO: this.vocalizeString(appName);
 		}
 	};
 
