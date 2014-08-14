@@ -1,0 +1,11 @@
+*.o
+*.so
+*.wgt
+*.d
+*.tar
+*.gz
+*.iso
+*.zip
+*.rar
+*.rpm
+*.bin

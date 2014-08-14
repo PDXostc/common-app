@@ -35,6 +35,7 @@ var isPc = true,
     audioVolumeService,
     audioObj;
 
+console.log("bootstrap created");
 var bootstrap;
 
 if (typeof tizen !== 'undefined') {
@@ -243,3 +244,4 @@ window.intelIVI.corpus = (window.intelIVI.corpus || {
         return wrapper;
     }
 });
+console.log("main.js end");

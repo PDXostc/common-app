@@ -93,7 +93,7 @@ function onFrameClick(appData) {
 			if (appList[i].id === appData.id) {
 				if (appData.id === "http://com.intel.tizen/intelPocSettings") {
 					if (typeof Settings === 'undefined') {
-						loadScript('./css/car/components/settings/js/settings.js', scriptCallback);
+						loadScript('./common/components/settings/js/settings.js', scriptCallback);
 					} else {
 						Settings.show();
 					}
@@ -159,6 +159,7 @@ function insertAppFrame(appFrame) {
 	};
 
 	img.src = appFrame.iconPath;
+	console.log("img "+img.src+" app "+appFrame.appName);
 
 	index++;
 	appList.push(appFrame);
@@ -183,7 +184,7 @@ function onAppInfoSuccess(list) {
 			id: "http://com.intel.tizen/intelPocSettings",
 			appName: "Settings",
 			show: true,
-			iconPath: "./css/car/components/settings/icon.png"
+			iconPath: "./common/components/settings/icon.png"
 		});
 
 		list.sort(function(x, y) {

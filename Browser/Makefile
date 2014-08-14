@@ -1,30 +1,37 @@
 PROJECT = Browser
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
-WGT_FILES = common  config.xml css dev-common error.html icon.png images index.html js search.html  templates warning.html
-DEPLOY_URL = app@192.168.1.253:/home/app/
-SSH_SVR = app@192.168.1.253
+WRT_FILES = common setup config.xml css dev-common error.html icon.png images index.html js search.html  templates warning.html
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
 INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 
-dev: clean
-	zip -r $(PROJECT).wgt $(WGT_FILES)
+ifndef TIZEN_IP
+TIZEN_IP=192.168.1.214
+endif
+
+dev: clean dev-common
+	zip -r $(PROJECT).wgt $(WRT_FILES)
 	
 $(PROJECT).wgt : dev
 
 deploy: $(PROJECT).wgt
-	scp $(PROJECT).wgt $(DEPLOY_URL)
+	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
 
 all:
 	@echo "Nothing to build"
 
-wgtPkg:
-	zip -r $(PROJECT).wgt $(WGT_FILES)
+wgtPkg: common
+	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 clean:
+	rm -rf js/services
+	rm -rf common
+	rm -rf css/car
+	rm -rf css/user
 	rm -f $(PROJECT).wgt
+	git clean -f
 
 common: /opt/usr/apps/_common
 	cp -r /opt/usr/apps/_common/js/* js/
@@ -34,18 +41,28 @@ common: /opt/usr/apps/_common
 	@echo "Please install Common Assets"
 	exit 1
 
-dev-common: ../_common
-	cp -r ../_common/js/* js/
-	cp -r ../_common/css/* css/
+dev-common: ../common
+	#cp -r ../common/js/* js/
+	#cp -r ../common/css/* css/
+	cp -rf ../common common
 
 ../_common:
 	@echo "Please checkout Common Assets"
 	exit 1
 
-install:
+$(INSTALL_DIR) :
+	mkdir -p $(INSTALL_DIR)/
+
+install: $(INSTALL_DIR)
 	@echo "Installing $(PROJECT), stand by..."
 	mkdir -p $(INSTALL_DIR)/
 	cp $(PROJECT).wgt $(INSTALL_DIR)/
+
+install_xwalk: $(INSTALL_DIR)
+	@echo "Installing $(PROJECT), stand by..."
+	cp $(PROJECT).wgt $(INSTALL_DIR)/
+	export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
+	su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
 
 dist:
 	tar czf ../$(PROJECT).tar.bz2 .
