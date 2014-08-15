@@ -62,23 +62,40 @@
 	    				   orientation: "horizontal",
 	    				   slide :function(){
 	
-	    						if(tizen.most)
+// WRT -> XW:					if(tizen.most)
 	    						{
 	    							var n = 255 - (( 24- ($(".noVolumeSlider").val()) * 1) / 2)*8;	
 	    	
 	    							var i = Math.floor(n+0.5);   // Volume.
 	
-	    							console.log("noVolumeSlider "  + $(".noVolumeSlider").val().toString() + " " +i);
+	    							// For XW, encode the WRT api name, destination, and volume level/increment parameters into JSON
+	    							// and send to the MOST plugin's asynch interface.
+	    							var jsonenc = {api:"setTone", dest:"volume", level:i, incr:0};
+									console.log("JE: volume stringify is "+JSON.stringify(jsonenc));
+									most.mostAsync(JSON.stringify(jsonenc), volumeSetCB);
+									 
 	    							
-	    							tizen.most.setTone("volume", i, 0, function(result) {
+	/* WRT -> XW:    							tizen.most.setTone("volume", i, 0, function(result) {
 	                 						console.log(result.message);
-	                    			} );               			
+	                    			} );
+   */	                    			               			
 	    						}
 	    					}
 	    				});
 	                    // tizen.most.volume query here reads the MOST volume setting and applies it to the slider.
-	                	if( tizen.most)
+       // WRT -> XW:   	if( tizen.most)
 	                	{
+	                		// For XW, encode the WRT api name, and volumeQuery destination parameters into JSON
+							// and send to the MOST plugin's asynch interface.
+	                		// Under WRT it was a little unreliable, so try multiple times.
+							var jsonenc = {api:"setTone", dest:"volumeQuery", level:0, incr:0};
+							 console.log("JE: volume stringify is "+JSON.stringify(jsonenc));
+							 most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
+							 
+							var jsonenc = {api:"setTone", dest:"volumeQuery", level:0, incr:0};
+							console.log("JE: volume stringify is "+JSON.stringify(jsonenc));
+							most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
+/* WRT way:							
 	                		// It's a little unreliable, so try multiple times.
 	                		tizen.most.setTone("volumeQuery", 0, 0, function(result) {
 	                				console.log(result.message);
@@ -88,10 +105,12 @@
 	            				console.log(result.message);
 	            				
 	                		} ); 
-	                		var st = tizen.most.volume;
-	                		var sl = (tizen.most.volume - 159)/4;
+*/	                		
+// For crosswalk, this code must be moved to the callback:
+	                //		var st = tizen.most.volume;
+	                //		var sl = (tizen.most.volume - 159)/4;
 	
-	                		$(".noVolumeSlider").val(sl);
+	               // 		$(".noVolumeSlider").val(sl);
 	                	}
 	                }
                 }
@@ -136,42 +155,29 @@
 // when moving from widget to widget.
 
 var volumeTimer = setInterval(refreshVolume, 2000);
-var previousVolume = -1;
+var previousVolume = -1, curVolume=0;
 
-//JE: test for constant volume polling.
+// This is called by a peiodic timer to cause a volumeQuery command to be sent to MOST. This is done so that when
+// navigating from screen to screen, the volume control slider on the visible screen will stay in synch with the
+// current MOST volume setting.
+//
 function refreshVolume() {
-	if (typeof(tizen) == 'undefined') return false;
-	if( tizen.most)
-	{
-		do {             			
-				
-	   		// It's a little unreliable, so try multiple times until
-				// same volume value is received twice.
-	   		tizen.most.setTone("volumeQuery", 0, 0, function(result) {
-	   				console.log(result.message);
-	   				
-	   		} ); 
-	   		var st1 = tizen.most.volume;
-   		
-	   		// If we are still at the same volume level, don't send the 2nd query and wait until next time to look again.
-			if( st1 == previousVolume)
-			{	
-				return;
-			}
-			
-	   		tizen.most.setTone("volumeQuery", 0, 0, function(result) {
-					console.log(result.message);					
-	   		} ); 
-		   		
-		   	var st2 = tizen.most.volume;
-			
-		} while ((st1 != st2) && (st1 + st2 == 0));				
-
-		var sl = (st2 - 159)/4;
-		
-		$(".noVolumeSlider").val(sl);
-		
-		previousVolume = st2;
-
-	}
+								
+	var jsonenc = {api:"setTone", dest:"volumeQuery", level:0, incr:0};
+	console.log("JE: refreshVolume query");
+	most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
+	
 }
+// One or both of these will need to set the variable which holds the latest updated volume
+// received from the MOST.
+var volumeQueryCB = function(response) {
+	 console.log("JE js: volumeQueryCB " + response);
+	 curVolume = response;
+	var sl = (curVolume - 159)/4;
+		
+	$(".noVolumeSlider").val(sl);
+};
+	
+var volumeSetCB = function(response) {
+	  console.log("JE js: volumeSetCB " + response);
+};	

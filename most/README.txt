@@ -1,16 +1,10 @@
-This is source code for the MOST WRT plugin and also the generic example
-WRT plugin for use with the 'Boilerplate.99' widget. 
+############
+This is source code for the for the Crosswalk version of the MOST plugin.
 
-To build the MOST plugin into it's RPM package form, ready to install: buildMost.sh
+To build the MOST plugin into it's RPM package, ready to install: 
+sudo gbs build --include-all --spec agl_plugin_suite.spec -A i586
 
-To install the built MOST RPM package: ermo.sh
-
-To build the MOST plugin during development to check for build problems:
-cd into most and run:
-cmake .
-make
-
-The cmake need only be run on a freshly cloned depot, or when source files are added (in which case edit CMakeLists.txt SRCS_IMPL statement).
+To install the built MOST RPM package:  rpm -ivh agl_plugin_suite-0.0.1-1.i586.rpm
 
 The most/ut dir contains Google Test based unit tests for the most/src code, and
 the Makefile there can also build a stand alone non-Google Test app, ot.
