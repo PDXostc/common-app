@@ -12,5 +12,12 @@ the Makefile there can also build a stand alone non-Google Test app, ot.
 Running ot should fully initialize the Optolyzer and MOST hardware, and result in 
 audio if you have an audio input driving the Optolyzer audio input.
 
+On an NDIS, using the COM1 port will map to /dev/ttyS0 which the MOST plugin uses by default.
+If you need to use a different tty device, create the file /etc/most/conf and in it put a line:
+MOST_SERIAL <dev path>
+
+For example:
+MOST_SERIAL  /dev/ttyUSB0
+
 
 
