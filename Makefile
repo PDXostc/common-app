@@ -18,7 +18,7 @@ all:
 	#cd  News && make
 
 deploy:
-	$(foreach app,$(apps), make -C $(app) deploy TIZEN_IP=192.168.6.53;)
+	$(foreach app,$(apps), make -C $(app) deploy TIZEN_IP=$(TIZEN_IP);)
 	#cd HomeScreen && make deploy TIZEN_IP=192.168.6.53
 	#cd Browser && make deploy TIZEN_IP=192.168.6.53
 	#cd Boilerplate && make deploy TIZEN_IP=192.168.6.53
