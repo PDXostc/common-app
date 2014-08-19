@@ -13,4 +13,9 @@ install:
 	cp -r css ${DESTDIR}/opt/usr/apps/_common/css
 	cp -r js ${DESTDIR}/opt/usr/apps/_common/js
 
+#to clean old common files out to test.
 
+clean:
+	rm -rf css/car
+	rm -rf css/user
+	rm -rf js/services
