@@ -153,7 +153,7 @@ function insertAppFrame(appFrame) {
 	img.onerror = img.onabort = function() {
 		$("div.homeScrAppGridImg img").each(function() {
 			if ($(this).data("src") === appFrame.iconPath) {
-				$(this).attr("src", "./css/images/default_icon.png");
+				$(this).attr("src", "/images/default_icon.png");
 			}
 		});
 	};
@@ -175,8 +175,14 @@ var evalInstalledApps = null;
  **/
 function onAppInfoSuccess(list) {
 	"use strict";
+	var registeredApps = {"Home Screen":"/common/images/homescreen_icon.png",
+						   Browser:"/common/images/browser_icon.png", 
+						   Boilerplate:"/common/images/boilerplate_icon.png",
+						   News:"/common/images/news_icon.png",
+						   Weather:"/common/images/weather_icon.png"};
 	var i = 0;
 	//console.log("onAppInfoSuccess(list)");
+	//console.log(list);
 	try {
 		index = 0;
 		var applications = [];
@@ -203,6 +209,12 @@ function onAppInfoSuccess(list) {
 				css: "app_" + app.id.replace(/\./g, "_").replace(/\ /g, "_"),
 				installed: true
 			};
+			if (registeredApps[app.name]) {
+				//console.log(newApp);
+				newApp.style = "background-image: url('"+ registeredApps[app.name] + "');";
+				newApp.iconPath = registeredApps[app.name];
+				//console.log(newApp);
+			}
 			applications.push(newApp);
 		}
 		var equals = applications.length === appList.length;
