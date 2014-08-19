@@ -1,4 +1,4 @@
-apps = HomeScreen Browser Boilerplate News Weather
+apps = HomeScreen Browser Boilerplate News Weather GestureGame
 TIZEN_IP=TizenNuc
 #TIZEN_IP=192.168.6.36
 
@@ -36,7 +36,7 @@ clean:
 	#cd Browser && make clean
 	#cd News && make clean
 	cd Leap && make clean
-	cd GestureGame && make clean
+	#cd GestureGame && make clean
 
 install:
 	cd HomeScreen && make install
