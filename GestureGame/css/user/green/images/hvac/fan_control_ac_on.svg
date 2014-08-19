@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="112px" height="88px" viewBox="174 763 112 88" overflow="visible" enable-background="new 174 763 112 88"
+	 xml:space="preserve">
+<defs>
+</defs>
+<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="360.0005" y1="946" x2="360.0005" y2="46.8912">
+	<stop  offset="0" style="stop-color:#042417"/>
+	<stop  offset="1" style="stop-color:#000000"/>
+</linearGradient>
+<rect display="none" fill="url(#SVGID_3_)" width="720" height="1001"/>
+<rect x="174.5" y="763.898" display="none" fill="#6DD436" fill-opacity="0.29" stroke="#6DD436" stroke-width="0.8472" stroke-miterlimit="10" stroke-opacity="0.64" width="111" height="87"/>
+<g display="none">
+	<defs>
+		<rect id="SVGID_1_" x="152" y="346" width="158" height="232"/>
+	</defs>
+	<clipPath id="SVGID_4_" display="inline">
+		<use xlink:href="#SVGID_1_"  display="none" overflow="visible"/>
+	</clipPath>
+	<g clip-path="url(#SVGID_4_)">
+		<text transform="matrix(1 0 0 1 160.3643 784.9795)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">20°</text>
+		<text transform="matrix(1 0 0 1 160.3643 888.7236)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">21°</text>
+		<text transform="matrix(1 0 0 1 160.3643 689.0361)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">19°</text>
+		<text transform="matrix(1 0 0 1 160.3643 591.3809)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">18°</text>
+		<text transform="matrix(1 0 0 1 160.3643 496.998)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">17°</text>
+		<text transform="matrix(1 0 0 1 160.3643 403.3945)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">16°</text>
+	</g>
+</g>
+<rect x="174.5" y="763.5" fill="#6DD436" fill-opacity="0.29" stroke="#6DD436" stroke-width="0.8472" stroke-miterlimit="10" stroke-opacity="0.64" width="111" height="87"/>
+<g display="none">
+	<g display="inline">
+		<path display="none" fill="#6DD436" d="M212.333,810.863l-1.711,5.637h-3.748l6.375-19.89h4.633l6.463,19.89h-3.896l-1.8-5.637
+			H212.333z M218.028,808.119l-1.564-4.898c-0.383-1.21-0.708-2.567-1.003-3.719h-0.059c-0.295,1.151-0.59,2.538-0.944,3.719
+			l-1.535,4.898H218.028z"/>
+		<path display="none" fill="#6DD436" d="M225.262,817.681l7.2-21.396H235l-7.201,21.396H225.262z"/>
+		<path display="none" fill="#6DD436" d="M251.321,815.91c-0.855,0.442-2.744,0.885-5.135,0.885
+			c-6.315,0-10.151-3.954-10.151-10.004c0-6.552,4.544-10.506,10.624-10.506c2.391,0,4.102,0.502,4.84,0.886l-0.797,2.892
+			c-0.944-0.413-2.243-0.768-3.896-0.768c-4.043,0-6.964,2.538-6.964,7.319c0,4.367,2.567,7.171,6.935,7.171
+			c1.476,0,3.01-0.295,3.955-0.738L251.321,815.91z"/>
+	</g>
+</g>
+<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="230" y1="765.6836" x2="230" y2="849.0061">
+	<stop  offset="0.5092" style="stop-color:#6DD436;stop-opacity:0"/>
+	<stop  offset="0.9018" style="stop-color:#6DD436"/>
+	<stop  offset="1" style="stop-color:#65d02D"/>
+</linearGradient>
+<rect x="174.5" y="763.5" fill="url(#SVGID_6_)" stroke="#6DD436" stroke-miterlimit="10" width="111" height="87"/>
+<g>
+	<g>
+		<path fill="#FFFFFF" d="M212.333,810.863l-1.711,5.637h-3.748l6.375-19.89h4.633l6.463,19.89h-3.896l-1.8-5.637H212.333z
+			 M218.028,808.119l-1.564-4.898c-0.383-1.21-0.708-2.567-1.003-3.719h-0.059c-0.295,1.151-0.59,2.538-0.944,3.719l-1.535,4.898
+			H218.028z"/>
+		<path fill="#FFFFFF" d="M225.262,817.681l7.2-21.396H235l-7.201,21.396H225.262z"/>
+		<path fill="#FFFFFF" d="M251.321,815.91c-0.855,0.442-2.744,0.885-5.135,0.885c-6.315,0-10.151-3.954-10.151-10.004
+			c0-6.552,4.544-10.506,10.624-10.506c2.391,0,4.102,0.502,4.84,0.886l-0.797,2.892c-0.944-0.413-2.243-0.768-3.896-0.768
+			c-4.043,0-6.964,2.538-6.964,7.319c0,4.367,2.567,7.171,6.935,7.171c1.476,0,3.01-0.295,3.955-0.738L251.321,815.91z"/>
+	</g>
+</g>
+<g display="none">
+	
+		<text transform="matrix(1 0 0 1 206.2534 816.5)" display="inline" fill="#6DD436" font-family="'MyriadPro-Semibold'" font-size="29.5171">A/C</text>
+</g>
+</svg>

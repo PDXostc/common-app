@@ -1,0 +1,30 @@
+.boxIconText {
+	position: relative;
+	height: 25px;
+}
+
+.boxIconRectangle {
+	display: inline-block;
+	vertical-align: middle;
+	width: 55px;
+	height: 15px;
+}
+
+.boxIconCaption {
+	margin-left: 3px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.boxIconRectangleSmall {
+	width: 30px;
+	height: 10px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.boxIconCaptionSmall {
+	margin-left: 3px;
+	display: inline-block;
+	vertical-align: middle;
+}

@@ -1,0 +1,75 @@
+/* homescreen user style*/
+
+.wrapper {
+	background-color: #0D1906;
+}
+.backGround{
+	background: url('./images/homescreen/bg_green_01.png') no-repeat black;
+}
+.wrapper .step1{
+	background: url('./images/homescreen/bg_green_02.png') no-repeat black;
+}
+.wrapper .step2{
+	background: url('./images/homescreen/bg_green_03.png') no-repeat black;
+}
+.wrapper .step3{
+	background: url('./images/homescreen/bg_green_04.png') no-repeat black;
+}
+.wrapper .step4{
+	background: url('./images/homescreen/bg_green_05.png') no-repeat black;
+}
+.wrapper .step5{
+	background: url('./images/homescreen/bg_green_06.png') no-repeat black;
+}
+.wrapper .step6{
+	background: url('./images/homescreen/bg_green_07.png') no-repeat black;
+}
+.wrapper .step7{
+	background: url('./images/homescreen/bg_green_08.png') no-repeat black;
+}
+.wrapper .step8{
+	background: url('./images/homescreen/bg_green_09.png') no-repeat black;
+}
+.wrapper .step9{
+	background: url('./images/homescreen/bg_green_10.png') no-repeat black;
+}
+
+.sector1{
+ 	background: url('./images/homescreen/navigation_bg_green.png') no-repeat transparent;
+}
+.sector2{
+ 	background: url('./images/homescreen/music_bg_green.png') no-repeat transparent;
+}
+.sector3{
+ 	background: url('./images/homescreen/radio_bg_green.png') no-repeat transparent;
+}
+.sector4{
+ 	background: url('./images/homescreen/smart_bg_green.png') no-repeat transparent;
+}
+.sector5{
+ 	background: url('./images/homescreen/social_bg_green.png') no-repeat transparent;
+}
+.sector6{
+ 	background: url('./images/homescreen/store_bg_green.png') no-repeat transparent;
+}
+.sector7{
+ 	background: url('./images/homescreen/dashboard_bg_green.png') no-repeat transparent;
+}
+
+.indicator {
+	background-image: url('./images/homescreen/center_green.png');
+}
+.centerIco {
+	background-image: url('./images/homescreen/center_ico_green.png');
+}
+.outerRing {
+	background-image: url('./images/homescreen/center_outer_move_green.png');
+}
+.innerRing {
+	background-image: url('./images/homescreen/center_inner_move_green.png');
+}
+
+.homeScrAppGridView {
+	background-color: #2110b;
+	background-color: rgba(2, 17, 11,0.85);
+}

@@ -1,0 +1,15 @@
+PROJECT = html5_UI_POC
+
+VERSION := 0.0.1
+PACKAGE = $(PROJECT)-$(VERSION)
+
+INSTALL_FILES = html5POCHomescreen.wgt
+INSTALL_DIR = ${DESTDIR}/opt/usr/apps/.preinstallWidgets
+
+all:
+
+install:
+	#zip -r ../html5POCHomescreen.wgt css js 
+	mkdir -p ${DESTDIR}/opt/usr/apps/_common
+	cp -r css ${DESTDIR}/opt/usr/apps/_common/css
+	cp -r js ${DESTDIR}/opt/usr/apps/_common/js

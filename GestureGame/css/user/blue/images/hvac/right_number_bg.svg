@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="159px" height="232px" viewBox="410 345.813 159 232"
+	 overflow="visible" enable-background="new 410 345.813 159 232" xml:space="preserve">
+<defs>
+</defs>
+<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="360.0005" y1="946" x2="360.0005" y2="46.8912">
+	<stop  offset="0" style="stop-color:#041724"/>
+	<stop  offset="1" style="stop-color:#000000"/>
+</linearGradient>
+<rect fill="url(#SVGID_3_)" width="720" height="1001"/>
+<polygon fill="#31ABFF" fill-opacity="0.29" stroke="#FFFFFF" stroke-width="1.3481" stroke-miterlimit="10" stroke-opacity="0.64" points="
+	410.861,435.516 410.861,345.813 568.427,345.813 568.427,577.48 410.861,577.48 410.861,486.998 436.603,461.257 "/>
+<g display="none">
+	<defs>
+		<rect id="SVGID_1_" x="410" y="346" width="158" height="232"/>
+	</defs>
+	<clipPath id="SVGID_4_" display="inline">
+		<use xlink:href="#SVGID_1_"  display="none" overflow="visible"/>
+	</clipPath>
+	<g clip-path="url(#SVGID_4_)">
+		<text transform="matrix(1 0 0 1 427.5938 489.4902)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">20°</text>
+		<text transform="matrix(1 0 0 1 427.5938 593.2334)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">21°</text>
+		<text transform="matrix(1 0 0 1 427.5938 393.5469)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">19°</text>
+		<text transform="matrix(1 0 0 1 427.5938 295.8911)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">18°</text>
+		<text transform="matrix(1 0 0 1 427.5938 201.5078)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="93.6032">17°</text>
+	</g>
+</g>
+<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="229.4995" y1="349.6606" x2="229.4995" y2="574.0165" gradientTransform="matrix(-1 0 0 1 719 0)">
+	<stop  offset="0" style="stop-color:#2175AD"/>
+	<stop  offset="0.2822" style="stop-color:#2175AD;stop-opacity:0"/>
+	<stop  offset="0.7055" style="stop-color:#2175AD;stop-opacity:0"/>
+	<stop  offset="1" style="stop-color:#2175AD"/>
+</linearGradient>
+<polygon display="none" fill="url(#SVGID_6_)" stroke="#31ABFF" stroke-miterlimit="10" points="410.5,435.516 410.5,345.5 
+	568.5,345.5 568.5,577.5 410.5,577.5 410.5,486.998 436.241,461.257 "/>
+</svg>
