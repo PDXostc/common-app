@@ -179,6 +179,7 @@ function onAppInfoSuccess(list) {
 						   Browser:"/common/images/browser_icon.png", 
 						   Boilerplate:"/common/images/boilerplate_icon.png",
 						   News:"/common/images/news_icon.png",
+						   gestureGame:"/common/images/GestureGame_icon.png",
 						   Weather:"/common/images/weather_icon.png"};
 	var i = 0;
 	//console.log("onAppInfoSuccess(list)");
