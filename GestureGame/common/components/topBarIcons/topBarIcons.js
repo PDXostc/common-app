@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
@@ -100,7 +100,7 @@ function getAppByName(appName) {
 function onLaunchSuccess() {
 	"use strict";
 	console.log("App launched succesfully...");
-	tizen.application.getCurrentApplication().hide();
+	//tizen.application.getCurrentApplication().hide();
 }
 
 /**
@@ -112,6 +112,7 @@ function onLaunchSuccess() {
  */
 function launchApplication(id) {
 	"use strict";
+	console.log('launchApplication('+id+');');
 	if (id === "http://com.intel.tizen/settings") {
 		if (typeof Settings === 'undefined') {
 			loadScript('./common/components/settings/js/settings.js', function(path, status) {
@@ -126,14 +127,16 @@ function launchApplication(id) {
 	}
 
 	var app = getAppByID(id);
+	console.log(app);
 	if ( !! app) {
 		if( app != tizen.application.getCurrentApplication() )
 		{
 			if (app.installed && !app.running) {
-				console.log("Application is running!");
+				console.log("Application is not running!");
 				tizen.application.launch(app.id, onLaunchSuccess, onError);
 			} else if (app.running) {
 				console.log("Application is running!");
+				console.log(app);
 			}
 		}
 	} else {
@@ -218,7 +221,11 @@ function launchApplication(id) {
 		 */
 		onAppInfoSuccess: function(list) {
 			try {
-				var registeredApps = {"Home Screen":"/common/images/homescreen_icon.png", Browser:"/common/images/browser_icon.png", Boilerplate:"/common/images/boilerplate_icon.png" };
+				var registeredApps = {"Home Screen":"/common/images/homescreen_icon.png",
+									   Browser:"/common/images/browser_icon.png", 
+									   Boilerplate:"/common/images/boilerplate_icon.png",
+									   News:"/common/images/news_icon.png",
+									   Weather:"/common/images/weather_icon.png"};
 				var appListLenght;
 					var i = 0,
 						j = 0;
@@ -227,7 +234,7 @@ function launchApplication(id) {
 
 					for (i = 0; i < list.length; i++) {
 						var app = list[i];
-						console.log(app.name);
+						//console.log(app.name);
 						if (registeredApps[app.name]) {
 							var newApp = {
 								id: app.id,
@@ -240,7 +247,7 @@ function launchApplication(id) {
 								installed: true,
 								running: TopBarIcons.runningAppName === app.id
 							};
-							console.log(newApp);
+							//console.log(newApp);
 
 							if (app.name === "Home Screen") {
 								homeScreenApp = newApp;

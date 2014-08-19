@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
@@ -490,7 +490,6 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 	var self = this;
 	this._listeners[id] = aCallbackObject;
 	this._listenerIDs.push(id);
-
 	var subscribeCallback = function(data) {
 		self.onDataUpdate(data, self);
 	};
@@ -507,17 +506,16 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 					if (mapping.subscribeName !== undefined) {
 						subscribeName = mapping.subscribeName;
 					}
-
 					if (mapping.callBackPropertyName.toLowerCase() === prop.toLowerCase() && !mapping.subscribeCount) {
 						mapping.subscribeCount = typeof (mapping.subscribeCount) === 'undefined' ? 0 : mapping.subscribeCount++;
-
 						if (typeof (tizen) !== 'undefined') {
+							console.log(tizen);
 							if (!(subscribeName.toString().trim().toLowerCase() === "nightmode" && id === this._listenerIDs[0])) {
-								var setUpData = tizen.vehicle.get(subscribeName, zone);
+								//TODO: var setUpData = tizen.vehicle.get(subscribeName, zone);
 								self.onDataUpdate(setUpData, self, id);
 							}
 
-							tizen.vehicle.subscribe(subscribeName, subscribeCallback, zone);
+							//TODO: tizen.vehicle.subscribe(subscribeName, subscribeCallback, zone);
 						} else {
 							console.warn("Tizen API is not available, cannot subscribe to signal", signal);
 						}
@@ -526,7 +524,7 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 			}
 		}
 	}
-
+	console.log("addListener End");
 	return id;
 };
 /** 

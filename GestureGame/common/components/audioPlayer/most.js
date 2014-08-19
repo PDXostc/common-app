@@ -14,7 +14,7 @@ var Most = (function() {
 	}
 
 	Most.prototype.callInitMost = function() {
-
+		if (typeof(tizen) == 'undefined') return;
 		var self = this;
 	/*	tizen.most.initMost("1234"); */
 		if(tizen.most)

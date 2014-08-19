@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
@@ -12,6 +12,7 @@
  * @module Services
  */
 
+console.log("loading of bootstrap.js has started");
 /** 
  * This class provides unified way to boot up the HTML applications by loading shared components in proper order:
  * 
@@ -88,24 +89,25 @@ Bootstrap.prototype.incomingCall = null;
 Bootstrap.prototype.loadThemeEngine = function(callback) {
 	"use strict";
 	var self = this;
+	self.initCarIndicators(callback);
 
-	console.log("Loading ThemeEngine object");
+	//console.log("Loading ThemeEngine object");
 
-	loadScript('./common/js/themeengine.js', function(path, status) {
-		if (status === "ok") {
-			self.themeEngine = ThemeEngine;
-			self.themeEngine.init(function(themeStatus) {
-				if (!themeStatus) {
-					self.initCarIndicators(callback);
-				} else {
-					callback(themeStatus);
-				}
-			});
-		} else {
-			console.log("Error occured during loading of Configuration", status);
-			callback(status);
-		}
-	});
+	//loadScript('./common/js/themeengine.js', function(path, status) {
+		//if (status === "ok") {
+			//self.themeEngine = ThemeEngine;
+			//self.themeEngine.init(function(themeStatus) {
+				//if (!themeStatus) {
+					//self.initCarIndicators(callback);
+				//} else {
+					//callback(themeStatus);
+				//}
+			//});
+		//} else {
+			//console.log("Error occured during loading of Configuration", status);
+			//callback(status);
+		//}
+	//});
 };
 
 /** 
@@ -123,15 +125,18 @@ Bootstrap.prototype.initCarIndicators = function(callback) {
 		if (status === "ok") {
 			try {
 				self.carIndicator = new CarIndicator();
+				console.log(self.carIndicator);
 
 				self.carIndicator.addListener({
 					onNightModeChanged: function(nightMode) {
-						self.themeEngine.setUserTheme("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
+						//self.themeEngine.setUserTheme("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
+						cosole.log("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
 					}
 				});
+				console.log(self);
 				self.initSpeech(callback);
 			} catch (ex) {
-				console.error("Error occured during CarIndicator initialization", ex);
+				console.error("Error occured during CarIndicator initialization", self.CarIndicator, path, status, ex);
 				callback(ex);
 			}
 		} else {
@@ -243,3 +248,5 @@ Bootstrap.prototype.reload = function() {
 		Configuration.reload();
 	}, 1000);
 };
+
+console.log("loading of bootstrap.js has ended");

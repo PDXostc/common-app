@@ -130,3 +130,48 @@
         $.error('Method ' +  method + ' does not exist on jQuery.infoPanelAPI');
     };
 }(jQuery));
+
+
+// Volume control update timer; this keeps the volume control slider synchronized
+// when moving from widget to widget.
+
+var volumeTimer = setInterval(refreshVolume, 2000);
+var previousVolume = -1;
+
+//JE: test for constant volume polling.
+function refreshVolume() {
+	if (typeof(tizen) == 'undefined') return false;
+	if( tizen.most)
+	{
+		do {             			
+				
+	   		// It's a little unreliable, so try multiple times until
+				// same volume value is received twice.
+	   		tizen.most.setTone("volumeQuery", 0, 0, function(result) {
+	   				console.log(result.message);
+	   				
+	   		} ); 
+	   		var st1 = tizen.most.volume;
+   		
+	   		// If we are still at the same volume level, don't send the 2nd query and wait until next time to look again.
+			if( st1 == previousVolume)
+			{	
+				return;
+			}
+			
+	   		tizen.most.setTone("volumeQuery", 0, 0, function(result) {
+					console.log(result.message);					
+	   		} ); 
+		   		
+		   	var st2 = tizen.most.volume;
+			
+		} while ((st1 != st2) && (st1 + st2 == 0));				
+
+		var sl = (st2 - 159)/4;
+		
+		$(".noVolumeSlider").val(sl);
+		
+		previousVolume = st2;
+
+	}
+}

@@ -1,23 +1,12 @@
-/* Copyright (C) Jaguar Land Rover - All Rights Reserved
+/*
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
  *
- * Proprietary and confidential
- * Unauthorized copying of this file, via any medium, is strictly prohibited
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
- * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
- * PARTICULAR PURPOSE.
- *
- * Filename:		 header.txt
- * Version:              1.0
- * Date:                 January 2013
- * Project:              Widget incorporation
- * Contributors:         XXXXXXX
- *                       xxxxxxx
- *
- * Incoming Code:        GStreamer 0.93, <link>
- *
-*/
+ */
+/*global template */
 
 var Keyboard=function()
     {

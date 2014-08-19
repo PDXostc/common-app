@@ -5,10 +5,10 @@
 //var apiKey = "cloudBurst"; 
 
 var language = 'en';
-//var apiKey = 'c15a496f002b40aaad42797852e9b09e';
+var apiKey = '9db0cdaee186459f981212bb806d0c80';
 var api = 'apidev';
 //var api = 'api';
-var apiKey = 'cloudburst';
+//var apiKey = 'cloudburst';
 
 var severeWeatherInterval = setInterval(checkSevereWeather,300000);
 

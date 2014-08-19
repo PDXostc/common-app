@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
@@ -126,12 +126,13 @@ Bootstrap.prototype.initCarIndicators = function(callback) {
 
 				self.carIndicator.addListener({
 					onNightModeChanged: function(nightMode) {
-						self.themeEngine.setUserTheme("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
+						//self.themeEngine.setUserTheme("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
+						cosole.log("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
 					}
 				});
 				self.initSpeech(callback);
 			} catch (ex) {
-				console.error("Error occured during CarIndicator initialization", ex);
+				console.error("Error occured during CarIndicator initialization", self.CarIndicator, path, status, ex);
 				callback(ex);
 			}
 		} else {

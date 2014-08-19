@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
@@ -152,7 +152,7 @@ var Configuration = (function() {
         aCallback = aCallback || function() {};
 
         if (typeof(tizen) !== 'undefined') {
-			console.log("Settings updated.", this._settingsStorageName);
+			//console.log("Settings updated.", this._settingsStorageName);
             tizen.filesystem.resolve(this._settingsStorageName, function(directory) {
                 var settingsFile;
                 try {
