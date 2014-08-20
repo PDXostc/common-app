@@ -251,11 +251,13 @@ var Speech = (function() {
 	 * @method readCurrentAppName
 	 */
 	Speech.prototype.readCurrentAppName = function() {
+		console.log("readCurrentAppName()");
 		if (typeof (tizen) !== 'undefined') {
 			var appName = tizen.application.getCurrentApplication().appInfo.name.toString().trim().toLowerCase();
 			if (appName === "hvac") {
 				appName = "air conditioning";
 			}
+			console.log("App Name "+appName);
 			//TODO: this.vocalizeString(appName);
 		}
 	};
