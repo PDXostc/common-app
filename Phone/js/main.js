@@ -537,7 +537,10 @@ $(document).ready(
                 }
                 });
                 /* initialize phone widget by active call status */
-                var callStatus = tizen.phone.activeCall.state.toLowerCase();
+                var callStatus='DISCONNECTED'
+                if (typeof(tizen.phone.activeCall.state)!=='undefined') {
+					callStatus = tizen.phone.activeCall.state.toLowerCase();
+				}
                 if (callStatus === "INCOMING".toLowerCase() || callStatus === "DIALING".toLowerCase() || callStatus === "ACTIVE".toLowerCase()) {
                     var contact;
                     if (tizen.phone.callState) {
