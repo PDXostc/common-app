@@ -8,20 +8,16 @@
 * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 * PARTICULAR PURPOSE.
 *
-* Filename:	 AudioMost.cpp
-* Version:              1.0
-* Date:                 Feb. 2014
-* Project:              
-* Contributors:         
-*                       
 *
-* Incoming Code:        
+* Created by: Jeff Eastwood
+* Purpose: Provides MOST hardware specific classes and API for use by MostMaster to send
+* audio related commands to the MOST hardware, via the Optolyzer.
 *
+* Uses the Optolyzer object to communicate to the MOST hardware via the Optolyzer serial-to optical-hardware.
+*
+* Provides mapping classes to map API calls to Optolyzer ASCII strings, and also to encode API parameters into these strings.
 */
-/**
-*	Classes for the Optolyzer hardware; connect to, initialize and manage the Optolyzer
-*	box.
-*/
+
 #include "AudioMost.h"
 #include "Optolyzer.h"
 #include "ControlDesc.h"
@@ -61,7 +57,6 @@ struct CmdDesc
 map<string, CmdDesc> CmdMap
 {
 	{"volume", {"+87000FFF018600220046D0090100XXXXXXXXXXXXXX\r\n", -128, 0, 0}},
-//	{"volume", {"+87000FFF018600220046D0090100XX000000000000\r\n", -128, 0, 0}},
 	{"bass", {"+87000FFF0322002200202201XX\r\n", -12, 12, 0}},
 	{"treble", {"+87000FFF0322002200203201XX\r\n", -12, 12, 0}},
 	{"subwoofer", {"+87000FFF0322002200E09201XX\r\n", -12, 12, 0}},
@@ -83,54 +78,6 @@ map<string, CmdDesc> CmdMap
 
 };
 
-/** Removed due to problems with the serial receive thread being somehow started with the pid of a previously
-    started widget app.
- * Callback to get the response to the query volume level command.
- * Puts it into the CmdMap as the current value for the MOST volume.
- */
-class VolumeSettingCB : public OptolyzerRecvCB
-{
-	public:
-
-	// Uses the filter function (below) to filter out incoming strings that are not the volume query response.
-    void userCB(string& recvStr, int status, void* data)
-    {
-
-/*  Removed due to problems with the serial receive thread being somehow started with the pid of a previously
-    started widget app.
-    	syslog(LOG_USER | LOG_DEBUG, "JE CB pre lock pid %d getpid %d", OptolyzerImpl::instance().pid, getpid() );
-
-		char buf[3];
-		buf[0] = recvStr[23];
-		buf[1] = recvStr[24];
-		buf[2] = 0;
-		int val=0;
-		sscanf(buf, "%2X", &val);
-		//curVal = val;  // JE EXP.
-		syslog(LOG_USER | LOG_DEBUG, "JE CB extracts val: %d pid is %d\n", val, getpid());
-
-		CmdMap["volumeQuery"].curVal = val;
-		syslog(LOG_USER | LOG_DEBUG, "JE CB setting val in CB to: %d\n", val);
-
-		syslog(LOG_USER | LOG_DEBUG, "JE CB post unlock");
-
-*/
-    }
-
-/*
-    bool filter( string& recvStr )
-    {
-   // 	syslog(LOG_USER | LOG_DEBUG, "VolumeSettingCB filter sees: %s\n", recvStr.c_str());
-        //  return true; // filter all.
-    	return !((recvStr.size() > 25) && (recvStr[9]=='2') &&  (recvStr[10]=='2') && (recvStr[13]=='4') && (recvStr[14]=='6') && (recvStr[15]=='D')  );
-        // return false; // filter none.
-    }
-*/
-
-};
-
-// Instantiate the volume query callback object.
-static VolumeSettingCB curVolCB;
 
 /** Ctor; requires an Optolyzer object.
  *
@@ -159,6 +106,7 @@ AudioMostImpl::AudioMostImpl(OptolyzerImpl& _theOptolyzer) : theOptolyzer(_theOp
 */
 int AudioMostImpl::send(std::string& cmd, unsigned int wait)
 {
+	syslog(LOG_USER | LOG_DEBUG, "JE: AudioMostImpl::send %s\n", cmd.c_str());
 
 	return theOptolyzer.send(cmd, wait);
 }
@@ -174,6 +122,7 @@ AudioMostImpl::~AudioMostImpl()
  */
 bool AudioMostImpl::setTone(const string& control, int level, int increment)
 {
+	syslog(LOG_USER | LOG_DEBUG, "JE: AudioMostImpl::setTone %s %d %d\n", control.c_str(), level, increment);
 
 	if( control == "volumeQuery")
 	{
@@ -302,7 +251,6 @@ bool AudioMostImpl::set(const string& control, int level, int increment)
 		if( cmd.size() > 0)
 		{
 			send(cmd, 100);
-		//	syslog(LOG_USER | LOG_DEBUG, "JE Sent to control %s cmd %s", control.c_str(), cmd.c_str());
 
 			retVal=true;
 		}
@@ -343,5 +291,57 @@ string AudioMostImpl::curValue(std::string dest)
 	return "0";
 }
 
+/*  Removed due to problems with the serial receive thread being somehow started with the pid of a previously
+    started widget app.
+*/
+#if 0
+
+ * Callback to get the response to the query volume level command.
+ * Puts it into the CmdMap as the current value for the MOST volume.
+ */
+
+// Instantiate the volume query callback object.
+static VolumeSettingCB curVolCB;
+class VolumeSettingCB : public OptolyzerRecvCB
+{
+	public:
+
+	// Uses the filter function (below) to filter out incoming strings that are not the volume query response.
+    void userCB(string& recvStr, int status, void* data)
+    {
+
+/*  Removed due to problems with the serial receive thread being somehow started with the pid of a previously
+    started widget app.
+    	syslog(LOG_USER | LOG_DEBUG, "JE CB pre lock pid %d getpid %d", OptolyzerImpl::instance().pid, getpid() );
+
+		char buf[3];
+		buf[0] = recvStr[23];
+		buf[1] = recvStr[24];
+		buf[2] = 0;
+		int val=0;
+		sscanf(buf, "%2X", &val);
+		//curVal = val;  // JE EXP.
+		syslog(LOG_USER | LOG_DEBUG, "JE CB extracts val: %d pid is %d\n", val, getpid());
+
+		CmdMap["volumeQuery"].curVal = val;
+		syslog(LOG_USER | LOG_DEBUG, "JE CB setting val in CB to: %d\n", val);
+
+		syslog(LOG_USER | LOG_DEBUG, "JE CB post unlock");
+
+*/
+    }
+
+/*
+    bool filter( string& recvStr )
+    {
+   // 	syslog(LOG_USER | LOG_DEBUG, "VolumeSettingCB filter sees: %s\n", recvStr.c_str());
+        //  return true; // filter all.
+    	return !((recvStr.size() > 25) && (recvStr[9]=='2') &&  (recvStr[10]=='2') && (recvStr[13]=='4') && (recvStr[14]=='6') && (recvStr[15]=='D')  );
+        // return false; // filter none.
+    }
+*/
+
+};
+#endif
 } // Most
 } // DeviceAPI

@@ -8,35 +8,25 @@
 * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 * PARTICULAR PURPOSE.
 *
-* Filename:	 Most.cpp
-* Version:              1.0
-* Date:                 Feb. 2014
-* Project:              
-* Contributors:         
-*                       
-*
-* Incoming Code:        
-*
 */
 
 /*
- * This is the implementation of the C++ interface to the MOST WRT plugin. It is made accessible to the
- * widget application through
- * the intermediation of the bridge code in JSMost.cpp and .h. Essentially, the members of tizen.most
- * visible in the widget application JavaScript will correspond with the member functions defined here.
+ * Created by: Jeff Eastwood
+ * Purpose: Provides implementation of top level api used by the JSMost JavaScript interface.
+ * Description:
+ * This is the C++ interface to the MOST plugin. It is made accessible to the widget application through
+ * the intermediation of the bridge code in JSMost.cpp and .h (for WRT plugins; for XW,
+ * the JavaScript interface is in most_instance.cpp). Essentially, the members of tizen.most (for WRT; just most for XW)
+ * visible in the widget application JavaScript will correspond with the member functions declared here.
  *
  * MostMaster makes use of the OptolyzerImpl singleton to access the serial port for sending commands to
  * the MOST hardware.
  */
 
 #include "Most.h"
-#include <gio/gio.h>
-#include <stdexcept>
-#include <Logger.h>
 
-#include <Commons/ThreadPool.h>
-#include <CommonsJavaScript/Converter.h>
-#include <json-glib/json-gvariant.h>
+#include <stdexcept>
+#include <memory>
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -47,12 +37,6 @@
 
 
 #define TIZEN_PREFIX            "org.tizen"
-#define PHONE_SERVICE           TIZEN_PREFIX ".phone"
-#define PHONE_IFACE             TIZEN_PREFIX ".Phone"
-#define PHONE_OBJ_PATH          "/"
-
-#define DEFAULT_PINCODE         "123456"
-#define DEFAULT_PASSKEY          123456
 
 namespace DeviceAPI
 {
@@ -71,18 +55,22 @@ public:
      }
 };
 
-using namespace WrtDeviceApis::Commons;
-using namespace WrtDeviceApis::CommonsJavaScript;
+
 
 static	MyCB mycb;
 
-AudioMostImpl* am=0;
+std::unique_ptr<AudioMostImpl> am;
+
 
 /**
  * This class is the top level of the native WRT plugin. It's only duties are to create the
  * OptolyzerImpl singleton and pass on strings received in sendCmd to the OptolyzerImpl
  * send() function.
+ *
+ * Dependencies: uses class AudioMostImpl for sending commands to the audio hardware.
  */
+
+
 MostMaster::MostMaster()
 {
     syslog(LOG_USER | LOG_DEBUG, "MostMaster ctor");
@@ -117,6 +105,12 @@ void MostMaster::initMost(std::string str, JSObjectRef errorCallback, JSContextR
 /**
  * Pass on strings received in sendCmd to the OptolyzerImpl
  * send() function.
+ *
+ * Parameters (purpose and usage):
+ * str: contains the ASCII string that will be sent to the Optolyzer.
+ * errorCallback: currently unused, but provides a way to communicate an error state back
+ * 					to the JavaScript.
+ * context: currently unused, part of the JSMost to JavaScript parameter mechanism.
 */
 void MostMaster::sendCmd(std::string str, JSObjectRef errorCallback, JSContextRef context)
 {
@@ -128,7 +122,7 @@ void MostMaster::sendCmd(std::string str, JSObjectRef errorCallback, JSContextRe
 
 	if(!am)
 	{
-		am = new AudioMostImpl(OptolyzerImpl::instance());
+		am = std::unique_ptr<AudioMostImpl>(new AudioMostImpl(OptolyzerImpl::instance()));
 	}
 
 	// We have done all the one-time initializations and creations;
@@ -136,75 +130,122 @@ void MostMaster::sendCmd(std::string str, JSObjectRef errorCallback, JSContextRe
 	am->send(str, 0);
 }
 /**
- * High level API: set tone (bass, treble, sub woofer, volume)
+ * High level API: set tone control (bass, treble, sub woofer, volume)
+ * Applies an absolute level or an incremental change to the level of the selected tone control.
+ *
+ * Parameters (purpose and usage):
+ * dest: contains the destination audio control for this command; bass, treble, sub woofer, volume, or volume.
+ * level: an absolute level to set the tone control to. If 0, the increment parameter is sent instead.
+ * increment: if level is 0, then the increment value is applied to the current tone setting to increase or decrease it.
+ * errorCallback: currently unused, but provides a way to communicate an error state back
+ * 					to the JavaScript.
+ * context: currently unused, part of the JSMost to JavaScript parameter mechanism.
 */
 void MostMaster::setTone(std::string dest, int level, int increment, JSObjectRef errorCallback, JSContextRef context)
 {
-	// TODO: this can go away once concurrent init code is added.
 	if(!am)
 	{
-		am = new AudioMostImpl(OptolyzerImpl::instance());
+		am = std::unique_ptr<AudioMostImpl>(new AudioMostImpl(OptolyzerImpl::instance()));
 	}
 	am->setTone(dest, level, increment);
 
 }
 /**
  * High level API: set toneRange (bass, treble, sub woofer, volume)
+ * Sets the valid range for tone control values passed to setTone.
+ *
+ * Parameters (purpose and usage):
+ * min: the minimum allowed tone value.
+ * max: the maximum allowed tone value.
+  * errorCallback: currently unused, but provides a way to communicate an error state back
+ * 					to the JavaScript.
+ * context: currently unused, part of the JSMost to JavaScript parameter mechanism.
 */
 void MostMaster::setToneRange(std::string dest, int min, int max, JSObjectRef errorCallback, JSContextRef context)
 {
 	// TODO: this can go away once concurrent init code is added.
 	if(!am)
 	{
-		am = new AudioMostImpl(OptolyzerImpl::instance());
+		am = std::unique_ptr<AudioMostImpl>(new AudioMostImpl(OptolyzerImpl::instance()));
 	}
 	am->setToneRange(dest, min, max);
 }
 /**
  * High level API: set balance (balance, fade)
+ * Applies an absolute level or an incremental change to the level of the selected balance control.
+ *
+ * Parameters (purpose and usage):
+ * dest: contains the destination audio control for this command; balance (right/left) or fade (front/rear)
+ * level: an absolute level to set the balance control to. If 0, the increment parameter is sent instead.
+ * increment: if level is 0, then the increment value is applied to the current balance setting to increase or decrease it.
+ * errorCallback: currently unused, but provides a way to communicate an error state back
+ * 					to the JavaScript.
+ * context: currently unused, part of the JSMost to JavaScript parameter mechanism.
 */
 void MostMaster::setBalance(std::string dest, int level, int increment, JSObjectRef errorCallback, JSContextRef context)
 {
 	// TODO: this can go away once concurrent init code is added.
 	if(!am)
 	{
-		am = new AudioMostImpl(OptolyzerImpl::instance());
+		am = std::unique_ptr<AudioMostImpl>(new AudioMostImpl(OptolyzerImpl::instance()));
 	}
 	am->setBalance(dest, level, increment);
 }
 /**
  * High level API: set balanceRange (bass, treble, sub woofer, volume)
+ * Sets the valid range for balance control values passed to setBalance.
+ *
+ * Parameters (purpose and usage):
+ * min: the minimum allowed balance value.
+ * max: the maximum allowed balance value.
+  * errorCallback: currently unused, but provides a way to communicate an error state back
+ * 					to the JavaScript.
+ * context: currently unused, part of the JSMost to JavaScript parameter mechanism.
 */
 void MostMaster::setBalanceRange(std::string dest, int min, int max, JSObjectRef errorCallback, JSContextRef context)
 {
 	// TODO: this can go away once concurrent init code is added.
 	if(!am)
 	{
-		am = new AudioMostImpl(OptolyzerImpl::instance());
+		am = std::unique_ptr<AudioMostImpl>(new AudioMostImpl(OptolyzerImpl::instance()));
 	}
 	am->setBalanceRange(dest, min, max);
 }
 /**
  * High level API: set surround mode (dolby, dts, stereo, etc.)
+ *
+ * Parameters (purpose and usage):
+ * dest: the surround sound control to be changed.
+ * state: true for on, false for off.
+ * errorCallback: currently unused, but provides a way to communicate an error state back
+ * 					to the JavaScript.
+ * context: currently unused, part of the JSMost to JavaScript parameter mechanism.
 */
 void MostMaster::setSurround(std::string dest, bool state, std::string mode, JSObjectRef errorCallback, JSContextRef context)
 {
 	// TODO: this can go away once concurrent init code is added.
 	if(!am)
 	{
-		am = new AudioMostImpl(OptolyzerImpl::instance());
+		am = std::unique_ptr<AudioMostImpl>(new AudioMostImpl(OptolyzerImpl::instance()));
 	}
 	am->setSurround(dest, state, mode);
 }
 
 /**
- * Get current value of a control; volume is currently supported.
+ * Get current value of a control; only volume is currently supported.
+ *
+ * Parameters (purpose and usage):
+ * dest: the control to be queried.
+ *
+ * Return value:
+ * The string returns contains the current value of the volume control as last reported by the audio hardware.
  */
 std::string MostMaster::curValue(std::string dest)
 {
 	if(!am)
 	{
-		am = new AudioMostImpl(OptolyzerImpl::instance());
+	//	am = new AudioMostImpl(OptolyzerImpl::instance());
+		am = std::unique_ptr<AudioMostImpl>(new AudioMostImpl(OptolyzerImpl::instance()));
 	}
 	return am->curValue(dest);
 

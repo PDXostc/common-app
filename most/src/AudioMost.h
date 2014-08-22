@@ -8,14 +8,13 @@
 * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 * PARTICULAR PURPOSE.
 *
-* Filename:	 AudioMost.h
-* Version:              1.0
-* Date:                 Feb. 2014
-* Project:              
-* Contributors:         
-*                       
+* Created by: Jeff Eastwood
+* Purpose: Provides MOST hardware specific classes and API for use by MostMaster to send
+* audio related commands to the MOST hardware, via the Optolyzer.
 *
-* Incoming Code:        
+* Uses the Optolyzer object to communicate to the MOST hardware via the Optolyzer serial-to optical-hardware.
+*
+* Provides mapping classes to map API calls to Optolyzer ASCII strings, and also to encode API parameters into these strings.
 *
 */
 
