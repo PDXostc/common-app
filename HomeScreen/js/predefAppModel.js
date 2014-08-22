@@ -130,7 +130,7 @@ var areasDefinitions = [ {
 	shape: 'pieWithoutCenter'
 }, {
 	name: 'phone',
-	id: 'intelPoc15.phone',
+	id: 'xwalk.hpjjjnbkfcbpdjaplleojadhidkmakcn',
 	iconPath: '../phone/icon.png',
 	sectorId: 5,
 	sc: 82,
