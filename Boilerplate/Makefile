@@ -1,7 +1,7 @@
 PROJECT = Boilerplate
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
-WRT_FILES = common css icon.png index.html setup config.xml images js
+WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
@@ -9,6 +9,7 @@ INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 
 ifndef TIZEN_IP
 TIZEN_IP=TizenNuc
+#TIZEN_IP=192.168.6.36
 endif
 
 dev: clean dev-common
@@ -16,7 +17,19 @@ dev: clean dev-common
 	
 $(PROJECT).wgt : dev
 
-deploy: $(PROJECT).wgt
+wgt:
+	zip -r $(PROJECT).wgt $(WRT_FILES)
+
+run: install
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Boilerplate' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+
+install: deploy
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Boilerplate' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/Boilerplate.wgt"
+
+$(PROJECT).wgt : wgt
+
+deploy: dev
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
 
 all:
@@ -44,7 +57,7 @@ common: /opt/usr/apps/common
 dev-common: ../common
 	#cp -r ../common/js/* js/
 	#cp -r ../common/css/* css/
-	cp -rf ../common common
+	cp -rf ../common .
 
 ../common:
 	@echo "Please checkout Common Assets"
@@ -52,10 +65,6 @@ dev-common: ../common
 
 $(INSTALL_DIR) :
 	mkdir -p $(INSTALL_DIR)/
-
-install: $(INSTALL_DIR)
-	@echo "Installing $(PROJECT), stand by..."
-	cp $(PROJECT).wgt $(INSTALL_DIR)/
 
 install_xwalk: $(INSTALL_DIR)
 	@echo "Installing $(PROJECT), stand by..."
