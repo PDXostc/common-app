@@ -4,78 +4,78 @@
 	background-color: rgba(1, 128, 201, 0.3);
 }
 .backGround{
-	background: url('/images/bg_blue_01.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_01.png') no-repeat black;
 }
 .step1{
-	background: url('/images/bg_blue_02.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_02.png') no-repeat black;
 }
 .step2{
-	background: url('/images/bg_blue_03.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_03.png') no-repeat black;
 }
 .step3{
-	background: url('/images/bg_blue_04.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_04.png') no-repeat black;
 }
 .step4{
-	background: url('/images/bg_blue_05.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_05.png') no-repeat black;
 }
 .step5{
-	background: url('/images/bg_blue_06.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_06.png') no-repeat black;
 }
 .step6{
-	background: url('/images/bg_blue_07.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_07.png') no-repeat black;
 }
 .step7{
-	background: url('/images/bg_blue_08.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_08.png') no-repeat black;
 }
 .step8{
-	background: url('/images/bg_blue_09.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_09.png') no-repeat black;
 }
 .step9{
-	background: url('/images/bg_blue_10.png') no-repeat black;
+	background: url('./images/homescreen/bg_blue_10.png') no-repeat black;
 }
 
 .sector1{
- 	background: url('/images/navigation_bg_blue.png') no-repeat transparent;
+ 	background: url('./images/homescreen/navigation_bg_blue.png') no-repeat transparent;
  	z-index: 2;
 }
 .sector2{
- 	background: url('/images/music_bg_blue.png') no-repeat transparent;
+ 	background: url('./images/homescreen/music_bg_blue.png') no-repeat transparent;
  	z-index: 2;
 }
 .sector3{
- 	background: url('/images/radio_bg_blue.png') no-repeat transparent;
+ 	background: url('./images/homescreen/radio_bg_blue.png') no-repeat transparent;
  	z-index: 2;
 }
 .sector4{
- 	background: url('/images/smart_bg_blue.png') no-repeat transparent;
+ 	background: url('./images/homescreen/smart_bg_blue.png') no-repeat transparent;
  	z-index: 2;
 }
 .sector5{
- 	background: url('/images/social_bg_blue.png') no-repeat transparent;
+ 	background: url('./images/homescreen/social_bg_blue.png') no-repeat transparent;
  	z-index: 2;
 }
 .sector6{
- 	background: url('/images/store_bg_blue.png') no-repeat transparent;
+ 	background: url('./images/homescreen/store_bg_blue.png') no-repeat transparent;
  	z-index: 2;
 }
 .sector7{
- 	background: url('/images/dashboard_bg_blue.png') no-repeat transparent;
+ 	background: url('./images/homescreen/dashboard_bg_blue.png') no-repeat transparent;
  	z-index: 2;
 }
 
 .indicator {
-	/*background-image: url('/images/center_blue.png');*/
+	/*background-image: url('./images/homescreen/center_blue.png');*/
 }
 .centerIco {
-	background-image: url('/images/center_ico_blue.png');
+	background-image: url('./images/homescreen/center_ico_blue.png');
 }
 .outerRing {
-	/*background-image: url('/images/center_outer_move_blue.png');*/
+	/*background-image: url('./images/homescreen/center_outer_move_blue.png');*/
 	top: 3px;
 	left: 3px;
 }
 .innerRing {
-	/*background-image: url('/images/center_inner_move_blue.png');*/
+	/*background-image: url('./images/homescreen/center_inner_move_blue.png');*/
 }
 
 .homeScrAppGridView {
