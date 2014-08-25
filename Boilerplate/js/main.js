@@ -56,6 +56,29 @@ var carIndicatorSignals =  [
                             "IviPoC_NightMode"
                             ];
 
+function deleteItemClick(item) {
+	console.log(item.target);
+	console.log(item.data.html());
+	item.data.remove();
+}
+
+function addItemClick(item) {
+	console.log('addItemClick()');
+	console.log(item);
+	console.log($("input[name='item_title']").val());
+	console.log($("textarea[name='item_description']").val());
+	console.log($("[name='item_template']").contents());
+	var newItemTemplate = $($("[name='item_template']").html());
+	console.log(newItemTemplate);
+	newItemTemplate.find("td[name='item_title_field']").text($("input[name='item_title']").val());
+	newItemTemplate.find("td[name='item_description_field']").text($("textarea[name='item_description']").val());
+	console.log(newItemTemplate);
+	var newItem = newItemTemplate.clone();
+	newItem.find("input[name='delete_item']").click(newItem,deleteItemClick);
+	$("tbody[name='item_list_body']").append(newItem);
+	$("form[name='add_item_form']")[0].reset();
+}
+
 /**
  * Initialize application components and register button events.
  * 
@@ -80,6 +103,7 @@ var init = function () {
 		// setThemeImageColor();
 	});
     });
+    $("input[name='add_item_button']").click(addItemClick);
 };
 
 /**
