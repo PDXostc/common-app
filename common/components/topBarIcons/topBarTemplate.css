@@ -1,13 +1,14 @@
-.topBarIcons {
+.top-bar-icons {
 	position: absolute;
 	display: block;
 	top: 0;
 	width: 720px;
 	height: 85px;
 	z-index: 4;
+	background-image: url('images/topbaricons/top_bar_icons_bg_blue.png');
 }
 
-.appIcon {
+.app-icon {
 	cursor: pointer;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -32,43 +33,8 @@
 	-o-transition:all 1s,background-image 0s;
 }
 
-.appIconLast {
+.app-icon:last-of-type {
 	border: none;
 }
 
-.appIconNo {
-	background-image: url('images/icon_back_blue.png');
-}
-
-.appIconNo0 {
-	background-image: url('images/icon_maps_blue.png');
-}
-
-.appIconNo1 {
-	background-image: url('images/icon_fan_blue.png');
-}
-
-.appIconNo2 {
-	background-image: url('images/icon_music_blue.png');
-}
-
-.appIconNo3 {
-	background-image: url('images/icon_video_blue.png');
-}
-
-.appIconNo4 {
-	background-image: url('images/icon_phone_blue.png');
-}
-
-.appIconNo5 {
-	background-image: url('images/icon_social_blue.png');
-}
-
-.appIconNo6 {
-	background-image: url('images/icon_diagnostic_blue.png');
-}
-
-.appIconNo7 {
-	background-image: url('images/icon_settings_blue.png');
-	background-size: 65%;
-}
+/* Set background-img url value with JS */
