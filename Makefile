@@ -1,4 +1,4 @@
-apps = HomeScreen Browser Boilerplate News Weather GestureGame
+apps = HomeScreen Browser Boilerplate News Weather GestureGame Phone
 TIZEN_IP=TizenNuc
 #TIZEN_IP=192.168.6.36
 
