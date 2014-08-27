@@ -16,7 +16,7 @@ function includeJs(jsFilePath) {
 	}
 }
 
-includeJs("/common/js/car.js");
+includeJs("/common/components/car/js/car.js");
 includeJs("/common/js/user.js");
 includeJs("/common/js/bootstrap.js");
 includeJs("/common/components/knockout/knockout.js");
