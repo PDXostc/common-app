@@ -27,116 +27,100 @@
 </head>
 
 <body >
-	<div class="dashboardBackGround">
+	<div class="dashboard-background">
 		<div id="error" class="fontColorNormal fontSizeMedium" style="z-index: 100;"></div>
-		<div class="carImage"></div>
+		<div class="car-image"></div>
 		<!-- <div class="dashboardCircleAll"></div> -->
-		<div id="frontLightsImage" class="dashboardFrontLightsActive frontLightsImage"></div>
-		<div id="rearLightsImage" class="dashboardRearLightsActive rearLightsImage"></div>
-		<div id="breakLightsImage" class="dashboardBreakLightsActive rearLightsImage"></div>
+		<div id="frontLightsImage" class="active lights"></div>
+		<div id="rearLightsImage" class="active lights"></div>
+		<div id="breakLightsImage" class="active lights"></div>
 		<div id="clockElement"></div>
-		<div id="leftWhell" class="whelImage leftWhell"></div>
-		<div id="rightWhell" class="whelImage rightWhell"></div>
-		<div id="dayNightElement" class="dayNightElement">
-			<div id="dayNight" class="dashboardSunElement dayNight"></div>
+		<div id="leftWhell" class="wheel left"></div>
+		<div id="rightWhell" class="wheel right"></div>
+		<div id="dayNightElement">
+			<div id="dayNight" class="dashboardSunElement"></div>
 		</div>
-		<div id="batteryElement" class = "batteryElement">
-			<div id="batteryLevelCaption" class="boxIconText batteryLevelCaption"></div>
-			<div id="batteryProgressBar" class = "batteryProgressBar"></div>
-			<div class="batteryImage"></div>
-			<div id="batteryStatus"
-				class="fontSizeLarger fontWeightBold fontColorNormal batteryStatus">82%</div>
-			<div id="batteryRange"
-				class="fontSizeLarger fontWeightBold fontColorTheme batteryRange">~215MI</div>
+		<div id="batteryElement">
+			<div id="batteryLevelCaption" class="boxIconText"></div>
+			<div id="batteryProgressBar"></div>
+			<div class="battery-image"></div>
+			<div id="batteryStatus" class="fontSizeLarger fontWeightBold fontColorNormal">82%</div>
+			<div id="batteryRange" class="fontSizeLarger fontWeightBold fontColorTheme">~215MI</div>
 		</div>
-		<div id="weatherElement" class = "weatherElement">
-			<div id="dashBoardWeatherIcon" class="dashBoardWeatherThunder dashBoardWeatherIcon"></div>
-			<div id="weatherCaption" class="boxIconText weatherCaption"></div>
-			<div id="weatherStatus"
-				class="fontSizeXXLarge fontWeightBold fontColorNormal weatherStatus">15.20°C</div>
-			<div id="weatherCity" class="fontSizeLarge fontColorDimmed weatherCity">SAN
-				FRANCISCO</div>
+		<div id="weatherElement">
+			<div id="dashBoardWeatherIcon" class="dashBoardWeatherThunder"></div>
+			<div id="weatherCaption" class="boxIconText"></div>
+			<div id="weatherStatus" class="fontSizeXXLarge fontWeightBold fontColorNormal">
+				15.20°C
+			</div>
+			<div id="weatherCity" class="fontSizeLarge fontColorDimmed">SAN FRANCISCO</div>
 		</div>
-
-		<div id="leftFrontPressure" class="statusIndicatorClass leftFrontPressure statusBox"></div>
-		<div id="leftFrontLine" class="dashboardLineLong leftFrontLine"></div>
-
-		<div id="rightFrontPressure" class="statusIndicatorClass rightFrontPressure statusBox"></div>
-		<div id="rightFrontLine" class="dashboardLineLong rightFrontLine"></div>
-
-		<div id="leftRearPressure" class="statusIndicatorClass leftRearPressure statusBox"></div>
-		<div id="leftRearLine" class="dashboardLineLong leftRearLine"></div>
-
-		<div id="engineStatus" class="statusIndicatorClass engineStatus">
+		<div id="leftFrontPressure" class="status-indicator status-box"></div>
+		<div id="leftFrontLine" class="dashboard-line-long"></div>
+		<div id="rightFrontPressure" class="status-indicator status-box"></div>
+		<div id="rightFrontLine" class="dashboard-line-long"></div>
+		<div id="leftRearPressure" class="status-indicator status-box"></div>
+		<div id="leftRearLine" class="dashboard-line-long"></div>
+		<div id="engineStatus" class="status-indicator">
 			<div id="leftTopCorner" class="corner leftTopCorner"></div>
 			<div id="leftBottomCorner" class="corner leftBottomCorner"></div>
 			<div id="rightTopCorner" class="corner rightTopCorner"></div>
 			<div id="rightBottomCorner" class="corner rightBottomCorner"></div>
 			<div class="boxIconText">
 				<div class="boxIconRectangleSmall bgColorTheme"></div>
-				<div class="boxIconCaptionSmall fontSizeXXSmall fontWeightBold fontColorLight">ENGINE STATUS</div>
+				<div class="boxIconCaptionSmall fontSizeXXSmall fontWeightBold fontColorLight">
+					ENGINE STATUS
+				</div>
 			</div>
-			<div id="gearboxStatus" class="fontSizeXXXLarge fontWeightBold fontColorNormal gearboxStatus">D</div>
+			<div id="gearboxStatus" class="fontSizeXXXLarge fontWeightBold fontColorNormal">D</div>
 			<div id="textIndicator" class="fontSizeSmall fontWeightBold fontColorNormal textIndicator">65 mph</div>
 			<div id="statusIndicator" class="fontSizeXSmall fontWeightBold fontColorDimmed statusIndicator">78.123 mi</div>
 		</div>
-
-		<div id="rightRearPressure" class="statusIndicatorClass rightRearPressure statusBox"></div>
-		<div id="rightRearLine" class="dashboardLineLong rightRearLine"></div>
-		<div id="leftPadlock" class="padlocInactive leftPadlock"></div>
-		<div id="rightPadlock" class="padlocInactive rightPadlock"></div>
-		<div id="randomizer" class="dashboardCircle randomizer" ></div>
-
-		<div id="childLock" class="childLock">
-
+		<div id="rightRearPressure" class="status-indicator status-box"></div>
+		<div id="rightRearLine" class="dashboard-line-long"></div>
+		<div id="leftPadlock" class="padloc-inactive"></div>
+		<div id="rightPadlock" class="padloc-inactive"></div>
+		<div id="randomizer" class="dashboard-circle randomizer" ></div>
+		<div id="childLock">
 			<div id="leftTopCorner" class="corner leftTopCorner"></div>
 			<div id="leftBottomCorner" class="corner leftBottomCorner"></div>
 			<div id="rightTopCorner" class="corner rightTopCorner"></div>
 			<div id="rightBottomCorner" class="corner rightBottomCorner"></div>
-
-			<div id="childLockText"
-				class="fontColorNormal fontSizeSmall  fontWeightBold childLockText">CHILD
-				LOCK ACTIVATED</div>
-			<div id="childLockLine" class="dashboardLineShort childLockLine"></div>
+			<div id="childLockText" class="fontColorNormal fontSizeSmall fontWeightBold">
+				CHILD LOCK ACTIVATED
+			</div>
+			<div id="childLockLine" class="dashboard-line-short"></div>
 		</div>
-		<div id="frontLightsButton" class="dashboardCircle frontLightsButton"></div>
-		<div id="rearLightsButton" class="dashboardCircle rearLightsButton"></div>
+		<div id="frontLightsButton" class="dashboard-circle"></div>
+		<div id="rearLightsButton" class="dashboard-circle"></div>
 
-		<div id="avgConsumptionElement" class = "avgConsumptionElement">
-			<div id="avgEConsumption" class = "avgEConsumption"></div>
-			<div class="batteryImage"></div>
-			<div id="avgConsumptionCaption"
-				class="fontColorNormal  fontSizeSmall  fontWeightBold avgConsumptionCaption">0.28
-				KW-H / MI</div>
-			<div id="avgConsumptionStatus"
-				class="fontColorDimmed  fontSizeXSmall fontWeightBold avgConsumptionStatus">~350 MI
-				/ FULL CHARGE</div>
+		<div id="avgConsumptionElement">
+			<div id="avgEConsumption"></div>
+			<div class="battery-image"></div>
+			<div id="avgConsumptionCaption" class="fontColorNormal fontSizeSmall fontWeightBold">
+				0.28 KW-H / MI
+			</div>
+			<div id="avgConsumptionStatus" class="fontColorDimmed fontSizeXSmall fontWeightBold">
+				~350 MI / FULL CHARGE
+			</div>
 		</div>
 		<div id="rearLElement">
-			<div id="rearLDisplay" class = "rearLDisplay"></div>
-			<div id="rearLButton" class="dashboardButton rearLButton"
-				onClick="dashBoardIndicator.onRearLDisplayClick();">
-
-				<div
-					class="bgColorThemeTransparent boxShadowInset dashboardButton dashboardButtonOpacity"></div>
-
-				<div id="rearLButtonText"
-					class="dashboardButtonText fontColorNormal fontSizeMedium fontWeightBold">OFF</div>
+			<div id="rearLDisplay"></div>
+			<div id="rearLButton" class="dashboard-button" onClick="dashBoardIndicator.onRearLDisplayClick();">
+				<div class="bgColorThemeTransparent boxShadowInset dashboard-button dashboard-button-opacity"></div>
+				<div id="rearLButtonText" class="dashboard-button-text fontColorNormal fontSizeMedium fontWeightBold">OFF</div>
 			</div>
 		</div>
 		<div id="rearRElement">
-			<div id="rearRDisplay" class = "rearRDisplay"></div>
-			<div id="rearRButton" class="dashboardButton rearRButton"
-				onClick="dashBoardIndicator.onRearRDisplayClick();">
-				<div
-					class="bgColorThemeTransparent boxShadowInset dashboardButton dashboardButtonOpacity"></div>
-				<div id="rearRButtonText"
-					class="dashboardButtonText fontColorNormal fontSizeMedium fontWeightBold">OFF</div>
+			<div id="rearRDisplay"></div>
+			<div id="rearRButton" class="dashboard-button" onClick="dashBoardIndicator.onRearRDisplayClick();">
+				<div class="bgColorThemeTransparent boxShadowInset dashboard-button dashboard-button-opacity"></div>
+				<div id="rearRButtonText" class="dashboard-button-text fontColorNormal fontSizeMedium fontWeightBold">OFF</div>
 			</div>
 		</div>
-		<div id="exteriorBrightnessElement" class = "exteriorBrightnessElement">
+		<div id="exteriorBrightnessElement">
 			<div id="exteriorBrightnessCaption" class="boxIconText exteriorBrightnessCaption"></div>
-			<div id="exteriorBrightnessProgressBar" class = "exteriorBrightnessProgressBar"></div>
+			<div id="exteriorBrightnessProgressBar"></div>
 		</div>
 		<div id="topBarIcons"></div>
 		<div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>

@@ -1,18 +1,18 @@
-.statusIndicatorClass{
+.status-indicator {
 	width:180px;
 	height:85px;
 }
-.statusIndicatorClass .boxIconText{
+.status-indicator .boxIconText{
 	position: absolute;
 	top: 8px;
 	left: 15px;
 }
-.statusBox .textIndicator{
+.status-box .textIndicator{
 	position: absolute;
 	left:15px;	
 	top:30px
 }
-.statusBox .statusIndicator{
+.status-box .statusIndicator{
 	position: absolute;
 	left:15px;
 	top:60px; 

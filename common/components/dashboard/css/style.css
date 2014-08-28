@@ -43,7 +43,7 @@
 	-o-transition: 1s
 	
 }
-.dashboardBackGround {
+.dashboard-background {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -58,7 +58,8 @@
 	width: 720px;
 	height: 1280px;
 }
-.whelImage{
+
+.wheel{
 	width: 65px;
 	height: 105px;
 	/*-webkit-transition: 0.1s;*/
@@ -71,22 +72,22 @@
 	-ms-transition-timing-function:linear;
 	
 	-o-transition:0.1s;
-	-o-transition-timing-function:linear;*/
-	
-	
+	-o-transition-timing-function:linear;*/	
 }
-.leftWhell{
+
+.wheel.left {
 	position: absolute;
 	left: 225px;
 	top: 430px;
 }
-.rightWhell{
+
+.wheel.right{
 	position: absolute;
 	left: 430px;
 	top: 430px;
 }
 
-.carImage {
+.car-image {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -94,30 +95,30 @@
 	height: 1280px;
 }
 
-.batteryLevelCaption {
+#batteryLevelCaption {
 	position: absolute;
 	left: 15px;
 	top: 200px;
 }
 
-.weatherCaption {
+#weatherCaption {
 	position: absolute;
 	left: 545px;
 	top: 200px;
 }
 
-.dashboardLineLong {
+.dashboard-line-long {
 	width: 120px;
 	height: 10px;
 }
 
-.leftFrontPressure {
+#leftFrontPressure {
 	position: absolute;
 	left: 30px;
 	top: 370px;
 }
 
-.leftFrontLine {
+#leftFrontLine {
 	position: absolute;
 	left: 130px;
 	top: 462px;
@@ -128,13 +129,13 @@
 	transform: rotate(20deg);
 }
 
-.rightFrontPressure {
+#rightFrontPressure {
 	position: absolute;
 	left: 500px;
 	top: 340px;
 }
 
-.rightFrontLine {
+#rightFrontLine {
 	position: absolute;
 	left: 470px;
 	top: 445px;
@@ -147,19 +148,19 @@
 	
 }
 
-.engineStatus {
+#engineStatus {
 	position: absolute;
 	left: 520px;
 	top: 540px;
 }
 
-.engineStatus .gearboxStatus {
+#engineStatus #gearboxStatus {
 	position: absolute;
 	left: 110px;
 	top: 22px;
 }
 
-.engineStatus .textIndicator {
+#engineStatus .textIndicator {
 	position: absolute;
 	top: 32px;
 	right: 92px;
@@ -168,7 +169,7 @@
 	text-align: right;
 }
 
-.engineStatus .statusIndicator {
+#engineStatus .statusIndicator {
 	position: absolute;
 	top: 62px;
 	right: 92px;
@@ -176,13 +177,13 @@
 	text-align: right;
 }
 
-.leftRearPressure {
+#leftRearPressure {
 	position: absolute;
 	left: 20px;
 	top: 750px;
 }
 
-.leftRearLine {
+#leftRearLine {
 	position: absolute;
 	left: 115px;
 	top: 842px;
@@ -194,13 +195,13 @@
 	transform: rotate(15deg);
 }
 
-.rightRearPressure {
+#rightRearPressure {
 	position: absolute;
 	left: 510px;
 	top: 750px;
 }
 
-.rightRearLine {
+#rightRearLine {
 	position: absolute;
 	left: 480px;
 	top: 842px;
@@ -212,136 +213,138 @@
 	transform: rotate(165deg);
 }
 
-.avgEConsumption {
+#avgEConsumption {
 	position: absolute;
 	left: 15px;
 	top: 960px;
 }
 
-.rearLDisplay {
+#rearLDisplay {
 	position: absolute;
 	left: 280px;
 	top: 960px;
 }
-.rearRDisplay {
+#rearRDisplay {
 	position: absolute;
 	left: 500px;
 	top: 960px;
 }
 
-.batteryImage {
+.battery-image {
 	width: 37px;
 	height: 23px;
 }
-.batteryProgressBar{
+
+#batteryProgressBar{
 	position: absolute;
 	left: -9px;
 	top: 205px;
 	width: 395px;
 	height: 50px;
 }
-.exteriorBrightnessElement{
+#exteriorBrightnessElement{
 	position: absolute;
 	right: 30px;
 	top: 150px;
 }
-.exteriorBrightnessProgressBar{
+#exteriorBrightnessProgressBar{
 	position: absolute;
 	left: -25px;
 	top: 0;
 	width: 280px;
 	height: 50px;
 }
-.dayNightElement{
+
+#dayNightElement {
 	position: absolute;
 	top: 150px;
 	left: 30px;
 	width: 65px;
 	height: 65px;
 }
-.batteryElement{
+#batteryElement {
 	position: absolute;
 	left: 15px;
 	top: 25px;
 	width: 300px;
 	height: 200px;
 }
-.batteryElement .batteryImage {
+#batteryElement .battery-image {
 	position: absolute;
 	left: 15px;
 	top: 260px;
 }
 
-.batteryElement	.batteryStatus {
+#batteryElement	#batteryStatus {
 	position: absolute;
 	left: 65px;
 	top: 253px;
 }
 
-.batteryElement	.batteryRange {
+#batteryElement #batteryRange {
 	position: absolute;
 	left: 150px;
 	top: 253px;
 }
 
-.weatherElement .weatherStatus {
+#weatherElement #weatherStatus {
 	position: absolute;
 	right: 30px;
 	top: 227px;
 }
 
-.weatherElement .weatherCity {
+#weatherElement #weatherCity {
 	position: absolute;
 	right: 30px;
 	top: 275px;
 }
 
-.avgConsumptionElement .batteryImage {
+#avgConsumptionElement .battery-image {
 	position: absolute;
 	left: 15px;
 	top: 990px;
 }
 
-.avgConsumptionElement .avgConsumptionCaption {
+#avgConsumptionElement #avgConsumptionCaption {
 	position: absolute;
 	left: 65px;
 	top: 990px;
 }
 
-.avgConsumptionElement .avgConsumptionStatus {
+#avgConsumptionElement #avgConsumptionStatus {
 	position: absolute;
 	left: 15px;
 	top: 1020px;
 }
 
-.dashboardButton {
+.dashboard-button {
 	width: 90px;
 	height: 55px;
 }
 
-.dashboardButtonOpacity {
+.dashboard-button-opacity {
 	opacity: 0.5;
 }
 
-.dashboardButton .dashboardButtonText {
+.dashboard-button .dashboard-button-text {
 	position: relative;
 	text-align: center;
 	top: -45px
 }
 
-.rearLButton {
+#rearLButton {
 	position: absolute;
 	left: 280px;
 	top: 990px;
 }
 
-.rearRButton {
+#rearRButton {
 	position: absolute;
 	left: 500px;
 	top: 990px;
 }
 
-.padlocInactive {
+.padloc-inactive {
 	width: 45px;
 	height: 45px;
 }
@@ -351,7 +354,7 @@
 	height: 45px;
 }
 
-.leftPadlock {
+#leftPadlock {
 	position: absolute;
 	left: 200px;
 	top: 700px;
@@ -368,7 +371,7 @@
 	-o-transition: 2s
 }
 
-.rightPadlock {
+#rightPadlock {
 	position: absolute;
 	left: 480px;
 	top: 700px;
@@ -385,7 +388,7 @@
 	-o-transition: 2s;
 }
 
-.childLock {
+#childLock {
 	position: absolute;
 	left: 45px;
 	top: 625px;
@@ -393,7 +396,7 @@
 	height: 70px;
 }
 
-.childLockText {
+#childLockText {
 	position: absolute;
 	left: 0;
 	top: 10px;
@@ -413,12 +416,12 @@
 	-o-transition: 1s;
 }
 
-.dashboardLineShort {
+.dashboard-line-short {
 	width: 95px;
 	height: 11px;
 }
 
-.childLockLine {
+#childLockLine {
 	position: absolute;
 	left: 75px;
 	top: 80px;
@@ -430,12 +433,12 @@
 	transform: rotate(15deg);
 }
 
-.dashboardCircle {
+.dashboard-circle {
 	width: 110px;
 	height: 110px;
 }
 
-.frontLightsButton {
+#frontLightsButton {
 	position: absolute;
 	left: 254px;
 	top: 313px;
@@ -455,7 +458,7 @@
 	-o-transition: 1s;
 }
 
-.rearLightsButton {
+#rearLightsButton {
 	position: absolute;
 	left: 230px;
 	top: 880px;
@@ -474,7 +477,7 @@
 	-o-transition-timing-function: linear;
 	-o-transition: 1s;
 }
-.dashboardFrontLightsActive {
+.active {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -491,51 +494,9 @@
 	
 	-o-transition-timing-function: linear;
 	-o-transition: 1s;
-	
-}
-.dashboardRearLightsActive {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 720px;
-	height: 1280px;
-	-webkit-transition-timing-function: linear;
-	-webkit-transition: 1s;
-	
-	-moz-transition-timing-function: linear;
-	-moz-transition: 1s;
-	
-	-ms-transition-timing-function: linear;
-	-ms-transition: 1s;
-	
-	-o-transition-timing-function: linear;
-	-o-transition: 1s;
-	
-	}
-.dashboardBreakLightsActive {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 720px;
-	height: 1280px;
-	-webkit-transition-timing-function: linear;
-	-webkit-transition: 1s;
-	
-	-moz-transition-timing-function: linear;
-	-moz-transition: 1s;
-	
-	-ms-transition-timing-function: linear;
-	-ms-transition: 1s;
-	
-	-o-transition-timing-function: linear;
-	-o-transition: 1s;
-	
-	}	
-.rearLightsImage {
-	opacity: 0;
 }
 
-.frontLightsImage {
+.lights {
 	opacity: 0;
 }
 .dashBoardWeatherSun{
@@ -550,12 +511,13 @@
 	width: 110px;
 	height: 110px;
 }
-.dashBoardWeatherIcon{
+
+#dashBoardWeatherIcon{
 	position: absolute;
 	left: 425px;
 	top: 165px;
 }
-.dayNight{
+#dayNight {
 	width:100%;
 	height: 100%;
 	-webkit-transition-timing-function: linear;
