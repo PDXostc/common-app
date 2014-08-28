@@ -1,3 +1,21 @@
+/* CSS available for use in JS */
+
+/* element.classList.toggle('on', true) */
+/* element.classList.toggle('on', false) */
+.on {
+	opacity: 1;
+}
+
+/* dashBoardControler.prototype.onFanChanged = function(newStatus) */
+.rotate720 {
+	-webkit-transform: rotate(720deg);
+	-moz-transform: rotate(720deg);
+	-ms-transform: rotate(720deg);
+	-o-transform: rotate(720deg);
+}
+
+/* App-specific CSS */
+
 .randomizer{
 	position: absolute;
 	left: 396px;
