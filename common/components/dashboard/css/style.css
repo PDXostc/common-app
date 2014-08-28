@@ -14,6 +14,12 @@
 	-o-transform: rotate(720deg);
 }
 
+/* Candidate Global Styles */
+
+.uppercase {
+	text-transform: uppercase;
+}
+
 /* App-specific CSS */
 
 .randomizer{
