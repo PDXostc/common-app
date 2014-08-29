@@ -229,6 +229,7 @@ function launchApplication(id) {
 									   Phone:"/common/images/phone_icon.png",
 									   Dashboard:"/common/images/dashboard_icon.png",
 									   Weather:"/common/images/weather_icon.png"};
+									   Handwriting:"/common/images/handwriting_icon.png"};
 				var appListLenght;
 					var i = 0,
 						j = 0;

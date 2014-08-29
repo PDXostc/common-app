@@ -1,0 +1,141 @@
+/* Copyright (C) Jaguar Land Rover - All Rights Reserved
+*
+* Proprietary and confidential
+* Unauthorized copying of this file, via any medium, is strictly prohibited
+*
+* THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+* PARTICULAR PURPOSE.
+*
+* Filename:	 header.txt
+* Version:              1.0
+* Date:                 January 2013
+* Project:              Widget incorporation
+* Contributors:         XXXXXXX
+*                       xxxxxxx
+*
+* Incoming Code:        GStreamer 0.93, <link>
+*
+*/
+
+/* from settings.css  pull out of settings and put in common? */
+.toggleButtonBackground {
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
+}
+
+.toggleButtonText {
+	position: relative;
+	text-align: center;
+	top: -43px;
+	line-height: 43px;
+	font-size: 28px;
+}
+
+
+/*new handwriting CSS styles*/
+textarea {
+	height: 275px;
+	width: 616px;
+}
+.text {
+	padding-left: 2%;
+	padding-top: 4%;
+	padding-bottom: 2%;
+	font-size: 2rem;
+	line-height: 2rem;
+	padding-top: 2%;
+}
+.textBoxArea 	{
+	height: 275px;
+	width: 616px;
+	margin: 10px auto;
+}
+input[type=text] {
+	width: 100%;
+	height: 100%;
+	border: none;
+	background-color: #fff;
+	color: #202020;
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+
+.handwritingOutput	{
+	position: relative;
+	top:15%; /*top may be necessary for the top bar icons*/
+	width: 86%;
+	margin: 0 auto;
+	background-color: rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
+	padding: 2%;
+}
+.handwritingCanvas	{
+	position: relative;
+	top:15%; 
+	width: 86%;
+	margin: 0 auto;
+	background-color: rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
+	padding: 2%;
+}
+.buttonsAreaHandwriting	{
+	min-height: 43px;
+}
+.inputButton {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0;
+	padding: 0;
+	height: 36px;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.clearButton {
+	width: 180px;
+	height: 43px;
+}
+.buttonRight {
+	float: right;
+}
+.buttonCenter {
+	margin: 0 auto;
+}
+.buttonLeft {
+	float: left;
+}
+.autocompleteText {
+	width: 616px;
+	height: 43px;
+	margin: 0 auto;
+}
+
+/* usually lives in phone.css, will need to move into handwriting.css, 
+and will need to earmark for future conversion to pure CSS when there is time */
+.deleteButton {
+	background-image: url("images/phone/bt_delete_blue.png");
+	width: 55px;
+}
+
+/*Convert these to pure CSS on another CSS org task*/
+.returnButton	{
+	background-image: url("images/phone/hw_return_blue.png");
+	width: 45px;
+}
+.keyboardButton	{
+	background-image: url("images/phone/hw_keyboard_blue.png");
+	width: 45px;
+}
+.spaceButton {
+	background-image: url("images/phone/hw_space_blue.png");
+	width: 400px;
+}
+.num_sym_toggle {
+	background-image: url("images/phone/hw_num_sym_toggle.png");
+	width: 36px;
+}
+
+

@@ -183,6 +183,7 @@ function onAppInfoSuccess(list) {
 						   Phone:"/common/images/phone_icon.png",
 						   Dashboard:"/common/images/dashboard_icon.png",
 						   Weather:"/common/images/weather_icon.png"};
+						   Handwriting:"/common/images/handwriting_icon.png"};
 	var i = 0;
 	//console.log("onAppInfoSuccess(list)");
 	//console.log(list);

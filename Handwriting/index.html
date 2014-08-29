@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
+ *
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Boilerplate application</title>
+<meta name="viewport" content="width=720, height=1280, user-scalable=no" />
+<link rel="stylesheet" href="./css/style.css"/>
+<link rel="stylesheet" href="./common/css/style.css"/>
+<script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="./common/js/init.js"></script>
+<script type="text/javascript">
+	includeJs("./js/predefAppModel.js");
+	includeJs("./js/installedApps.js");
+	includeJs("./js/keyControl.js");
+	includeJs("./js/actionCatcher.js");
+	includeJs("./js/main.js");
+</script>
+
+</head>
+
+	<body>	
+
+		<div class="wrapper">			
+			<div class="handwritingOutput">
+
+				<div class="buttonsAreaHandwriting">
+					<div id="" class="clearButton buttonRight">
+						<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>
+						<div class="fontColorNormal fontWeightBold toggleButtonText">X  CLEAR</div>
+					</div>
+				</div>
+
+				<div class="textBoxArea">
+					<textarea placeholder="input"class="boxShadow4 boxShadow4Active"></textarea>
+				</div>
+
+				<div class="buttonsAreaHandwriting">
+					<div id="" class="autocompleteText">
+						<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>
+						<div class="fontColorNormal fontWeightBold toggleButtonText"></div>
+					</div>
+				</div>
+
+			</div>s
+
+			<div class="handwritingCanvas">			
+				<div class="buttonsAreaHandwriting">
+
+					<div class="buttonRight">
+					<div id="" class="inputButton spaceButton"></div>
+					<div id="" class="inputButton deleteButton"></div>
+					<div id="" class="inputButton returnButton"></div>
+					</div>
+
+					<div class="buttonLeft">
+						<div id="" class="inputButton num_sym_toggle"></div>
+						<div id="" class="inputButton keyboardButton"></div>
+					</div>
+
+				</div>
+
+				<div class="textBoxArea">
+					<textarea class="boxShadow4 boxShadow4Active"></textarea>
+				</div>
+			</div>
+
+	  </div>
+
+	</body>
+
+</html>
