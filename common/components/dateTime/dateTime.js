@@ -121,8 +121,8 @@ Clock.prototype.handleTimerEv = function (clockSelector, dateSelector) {
 			 **/
 			init: function (seconds) {
 				this.empty();
-				var appendText = '<div id="clock" class="clockElemnt fontSizeXXLarge  fontColorDark fontWeightBold">TIME</div>';
-				appendText += '<div id="date" class="dateElemnt fontSizeXXLarge fontColorDark fontWeightBold">DATE</div>';
+				var appendText = '<div id="clock" class="clockElemnt fontSizeXLarge  fontColorDark fontWeightBold">TIME</div>';
+				appendText += '<div id="date" class="dateElemnt fontSizeXLarge fontColorDark fontWeightBold">DATE</div>';
 				this.append(appendText);
 				ClockPlugin.clockDiv = "#clock";
 				ClockPlugin.dateDiv = "#date";
