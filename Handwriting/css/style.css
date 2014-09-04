@@ -18,6 +18,24 @@
 * Incoming Code:        GStreamer 0.93, <link>
 *
 */
+body {
+	font-family: "Droid Sans", sans-serif;
+}
+
+.handwritingButton	{
+
+}
+/* from car.css */
+.button {
+	display: block;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	z-index: 10;
+}
+
 
 /* from settings.css  pull out of settings and put in common? */
 .toggleButtonBackground {
@@ -25,17 +43,6 @@
 	height: 100%;
 	opacity: 0.5;
 }
-
-.toggleButtonText {
-	position: relative;
-	text-align: center;
-	top: -43px;
-	line-height: 43px;
-	font-size: 28px;
-}
-
-
-/*new handwriting CSS styles*/
 textarea {
 	height: 275px;
 	width: 616px;
@@ -62,80 +69,188 @@ input[type=text] {
 	font-weight: bold;
 	font-size: 1.25rem;
 }
-
-.handwritingOutput	{
+.handwriting_output	{
 	position: relative;
 	top:15%; /*top may be necessary for the top bar icons*/
 	width: 86%;
-	margin: 0 auto;
+	margin: 3% auto;
 	background-color: rgba(0,0,0,0.8);
 	-webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
 	padding: 2%;
 }
-.handwritingCanvas	{
+.handwriting_canvas	{
 	position: relative;
-	top:15%; 
+	top:15%;
 	width: 86%;
-	margin: 0 auto;
+	margin: 3% auto;
 	background-color: rgba(0,0,0,0.8);
 	-webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
 	padding: 2%;
 }
-.buttonsAreaHandwriting	{
-	min-height: 43px;
+.buttons_area_handwriting	{
+	min-height: 36px;
 }
-.inputButton {
-	display: inline-block;
-	vertical-align: top;
-	margin: 0;
-	padding: 0;
+.action_buttons_color	{
+	background-color: rgb(58, 174, 255);
+}
+.clear_button {
+	width: 160px;
 	height: 36px;
-	background-position: center;
-	background-repeat: no-repeat;
-	cursor: pointer;
+	text-align: center;
 }
-.clearButton {
-	width: 180px;
-	height: 43px;
+.clear_text {
+	font-size: 26px;
+	margin-left: 5%;
+	top: -57px;
 }
-.buttonRight {
+.button_left {
+	float: left;
+	margin-right: 2%;
+}
+.button_right {
 	float: right;
+	margin-left: 2%;
 }
-.buttonCenter {
+.button_center {
 	margin: 0 auto;
 }
-.buttonLeft {
-	float: left;
-}
-.autocompleteText {
+.autocomplete_text {
 	width: 616px;
 	height: 43px;
 	margin: 0 auto;
 }
 
-/* usually lives in phone.css, will need to move into handwriting.css, 
-and will need to earmark for future conversion to pure CSS when there is time */
-.deleteButton {
-	background-image: url("images/phone/bt_delete_blue.png");
+/*Converted to CSS background buttons (blue color theme) */
+.num_sym_button	{
+	width: 45px;
+	height: 36px;
+}
+.num_sym_graphic {
+	background: url("/images/handwriting/num_sym_toggle.png") no-repeat 5px;
+	width: 36px;
+	height: 36px;
+	margin-top: -36px;
+}
+.num_sym_graphic:hover {
+	background-image: url("/images/handwriting/num_sym_toggle_rollover.png");
+}
+.keyboard_button	{
+	height: 36px;
 	width: 55px;
 }
-
-/*Convert these to pure CSS on another CSS org task*/
-.returnButton	{
-	background-image: url("images/phone/hw_return_blue.png");
+.keyboard_graphic	{
+	background: url("/images/handwriting/keyboard.png") no-repeat 5px;
 	width: 45px;
+	height: 36px;
+	margin-top: -36px;
 }
-.keyboardButton	{
-	background-image: url("images/phone/hw_keyboard_blue.png");
+.keyboard_graphic:hover	{
+	background-image: url("/images/handwriting/keyboard_rollover.png");
+}
+.space_button {
+	width: 200px;
+	height: 36px;
+	margin-left: 14%;
+}
+.space_bar_graphic {
+	background: url("/images/handwriting/space_bar.png") no-repeat left top;
+	width: 180px;
+	height: 36px;
+	margin-left: 5%;
+	margin-top: -36px;
+}
+.space_bar_graphic:hover {
+	background-image: url("/images/handwriting/space_bar_rollover.png");
+}
+.return_graphic	{
+	background: url("/images/handwriting/return_arrow.png") no-repeat 5px;
+	width: 50px;
+	height: 36px;
+	margin-top: -36px;
+}
+.return_graphic:hover {
+	background: url("/images/handwriting/return_arrow_rollover.png") no-repeat 5px;
+}
+.return_button	{
+	width: 55px;
+	height: 36px;
+}
+.delete_button {
 	width: 45px;
+	height: 36px;
 }
-.spaceButton {
-	background-image: url("images/phone/hw_space_blue.png");
-	width: 400px;
+.delete_button:before {
+   content:"";
+   position: absolute;
+   right: 100%;
+   width: 0;
+   height: 0;
+   border-top: 20px solid transparent;
+   border-right: 22px solid rgba(58, 174, 255, 0.5); 
+   border-bottom: 17px solid transparent;
+   /*border-right: 26px solid #245f88;*/	
+   /*box-shadow: 0 0 2px 2px #124B73 inset; for .delete_button:active and .delete_button:hover;*/
 }
-.num_sym_toggle {
-	background-image: url("images/phone/hw_num_sym_toggle.png");
-	width: 36px;
+.x_graphic {
+	background: url("/images/handwriting/X_graphic.png") no-repeat left top;
+	width: 35px;
+	height: 24px;
+	top: -30px;
+	left: 5px;
+}
+.x_graphic:hover {
+	background: url("/images/handwriting/X_graphic_rollover.png") no-repeat left top;
+
+/* WARNING/MODAL dialog box styles,  add these to common files */	
+}
+.x_graphic_modal {
+	background: url("/images/handwriting/X_graphic.png") no-repeat left top;
+	width: 35px;
+	height: 24px;
+}
+.x_graphic_modal:hover {
+	background: url("images/phone/X_graphic_rollover.png") no-repeat left top;
+}
+.modal	{
+	top: 40%;
+	z-index: 2;
+	width: 35%;
+	margin: 0 auto;
 }
 
+/*put form in commons.css, as it's used by RVI also, must test on RVI also */
+form {
+	position: absolute;
+	padding: 4% 4% 15% 4%;
+	margin: 0 auto;
+	background-color: rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
+	text-align: center;
+}
+p {
+	font-size:1.25em;
+	color: #fff;
+	text-align: left;
+	margin-left: 5%;
+	padding: 8%;
+}
+.submit_button {
+	height: 41%;
+	width: 70%;
+	background-color: #245f88;
+	color: rgb(128, 203, 255);
+	text-transform: uppercase;
+	border: 2px solid rgba(128, 203, 255, 1);
+	padding: 2%;
+}
+#overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    z-index: 1;
+}
 

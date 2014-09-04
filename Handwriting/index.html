@@ -10,31 +10,44 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Boilerplate application</title>
+<title>Handwriting application</title>
 <meta name="viewport" content="width=720, height=1280, user-scalable=no" />
 <link rel="stylesheet" href="./css/style.css"/>
 <link rel="stylesheet" href="./common/css/style.css"/>
 <script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script>
 <script type="text/javascript" src="./common/js/init.js"></script>
 <script type="text/javascript">
-	includeJs("./js/predefAppModel.js");
-	includeJs("./js/installedApps.js");
-	includeJs("./js/keyControl.js");
-	includeJs("./js/actionCatcher.js");
 	includeJs("./js/main.js");
+	
 </script>
 
 </head>
-
 	<body>	
 
-		<div class="wrapper">			
-			<div class="handwritingOutput">
+		<div class="wrapper">	
 
-				<div class="buttonsAreaHandwriting">
-					<div id="" class="clearButton buttonRight">
+			<!-- WARNING/MODAL dialog box  -->
+
+<!-- 			<div id="overlay"></div>
+
+			<div class="modal">
+		    <form id="warning">
+		    		<div class="x_graphic_modal"></div>
+		        <div class="fontSizeMedium fontColorNormal">WARNING!</div>
+		        <p>Your text will be lost if you continue. </p>
+
+		        <input id="" class="fontSizeSmall submit_button" type="submit" value="CONTINUE">
+		    </form>
+			</div> -->
+
+
+			<div class="handwriting_output">
+
+				<div class="buttons_area_handwriting">
+					<div id="" class="clear_button button_right">
 						<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>
-						<div class="fontColorNormal fontWeightBold toggleButtonText">X  CLEAR</div>
+						<div class="x_graphic"></div>
+						<div class="fontColorNormal fontWeightBold clear_text">CLEAR</div>
 					</div>
 				</div>
 
@@ -42,29 +55,42 @@
 					<textarea placeholder="input"class="boxShadow4 boxShadow4Active"></textarea>
 				</div>
 
-				<div class="buttonsAreaHandwriting">
-					<div id="" class="autocompleteText">
+				<div class="buttons_area_handwriting">
+					<div id="" class="autocomplete_text">
 						<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>
 						<div class="fontColorNormal fontWeightBold toggleButtonText"></div>
 					</div>
 				</div>
 
-			</div>s
+			</div>
 
-			<div class="handwritingCanvas">			
-				<div class="buttonsAreaHandwriting">
+			<div class="handwriting_canvas">			
+				<div class="buttons_area_handwriting">
 
-					<div class="buttonRight">
-					<div id="" class="inputButton spaceButton"></div>
-					<div id="" class="inputButton deleteButton"></div>
-					<div id="" class="inputButton returnButton"></div>
+					<div class="num_sym_button button_left">
+						<div class="action_buttons_color toggleButtonBackground"></div>
+						<div class="num_sym_graphic"></div>
 					</div>
 
-					<div class="buttonLeft">
-						<div id="" class="inputButton num_sym_toggle"></div>
-						<div id="" class="inputButton keyboardButton"></div>
+					<div class="keyboard_button button_left">
+						<div class="action_buttons_color toggleButtonBackground"></div>
+						<div class="keyboard_graphic"></div>
 					</div>
 
+					<div class="space_button button_left">
+						<div class="action_buttons_color toggleButtonBackground"></div>
+						<div class="space_bar_graphic"></div>
+					</div>
+
+					<div class="return_button button_right">
+						<div class="action_buttons_color toggleButtonBackground"></div>
+						<div class="return_graphic"></div>
+					</div>
+
+					<div class="delete_button button_right">
+						<div class="action_buttons_color toggleButtonBackground"></div>
+						<div class="x_graphic"></div>
+					</div>
 				</div>
 
 				<div class="textBoxArea">
@@ -75,5 +101,4 @@
 	  </div>
 
 	</body>
-
 </html>
