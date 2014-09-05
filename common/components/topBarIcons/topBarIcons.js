@@ -228,7 +228,7 @@ function launchApplication(id) {
 									   gestureGame:"/common/images/GestureGame_icon.png",
 									   Phone:"/common/images/phone_icon.png",
 									   Dashboard:"/common/images/dashboard_icon.png",
-									   Weather:"/common/images/weather_icon.png"};
+									   Weather:"/common/images/weather_icon.png",
 									   Handwriting:"/common/images/handwriting_icon.png"};
 				var appListLenght;
 					var i = 0,

@@ -1,5 +1,5 @@
-apps = HomeScreen Browser Boilerplate Dashboard News Weather GestureGame Phone
-TIZEN_IP=TizenNDIS
+apps = HomeScreen Browser Boilerplate Dashboard News Weather GestureGame Phone Handwriting
+TIZEN_IP=TizenNuc
 #TIZEN_IP=192.168.6.29
 
 #to avoid typing a password for each scp or ssh command you need to copy
