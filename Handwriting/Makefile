@@ -1,4 +1,4 @@
-PROJECT = Boilerplate
+PROJECT = Handwriting
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
 WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json
@@ -9,23 +9,20 @@ INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 
 ifndef TIZEN_IP
 TIZEN_IP=TizenNuc
-#TIZEN_IP=192.168.6.36
 endif
 
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
-	
-$(PROJECT).wgt : dev
 
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 run: install
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Boilerplate' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Handwriting' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
 
 install: deploy
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Boilerplate' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/Boilerplate.wgt"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Handwriting' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/Handwriting.wgt"
 
 $(PROJECT).wgt : wgt
 

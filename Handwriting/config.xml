@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/boilerplate" version="1.0.0" viewmodes="fullscreen">
-    <tizen:application id="intelPoc99.Boilerplate" package="intelPoc99" required_version="2.1"/>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/handwriting" version="1.0.0" viewmodes="fullscreen">
+    <tizen:application id="intelPoc40.Handwriting" package="intelPoc40" required_version="2.1"/>
     <content src="index.html"/>
     <icon src="icon.png"/>
-    <name>Boilerplate</name>
+    <name>Handwriting</name>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
