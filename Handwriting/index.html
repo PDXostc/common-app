@@ -31,7 +31,7 @@
 
 			<!-- WARNING/MODAL dialog box  -->
 
-			<div id="overlay"></div>
+			<!--<div id="overlay"></div>
 
 			<div class="modal">
 		    <form id="warning">
@@ -41,8 +41,8 @@
 
 		        <input id="" class="fontSizeSmall submit_button" type="submit" value="CONTINUE">
 		    </form>
-			</div>
-
+			</div> -->
+			<!-- end of WARNING/MODAL dialog box  -->
 
 			<div class="handwriting_output">
 
@@ -55,13 +55,39 @@
 				</div>
 
 				<div class="textBoxArea">
-					<textarea placeholder="input"class="boxShadow4 boxShadow4Active"></textarea>
+					<textarea placeholder="input" class="handwriting_font boxShadow4 boxShadow4Active"></textarea>
 				</div>
 
 				<div class="buttons_area_handwriting">
 					<div id="" class="autocomplete_text">
 						<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>
-						<div class="fontColorNormal fontWeightBold toggleButtonText"></div>
+						
+						<!-- TEXT RECOGNITION -->
+						<div class="fontColorNormal fontSizeSmall fontWeightBold toggleButtonText">
+							
+						<!-- TEXT RECOGNITION table option; selected td cell background is bright blue -->	
+						  <table>
+							  <tbody>
+								<tr>
+								  <td class="selected">Recognition</td>
+								  <td class="">Word</td>
+								  <td class="">Test</td>
+								</tr>
+							  </tbody>
+						  </table>
+						  
+						  <!-- TEXT RECOGNITION list option; selected text is bright blue -->
+						  <!--
+							<ul>								
+								<li class="word_rec selected">Test</li>
+								<li class="pipe"> | </li>
+								<li class="word_rec">Word</li>
+								<li class="pipe"> | </li>
+								<li class="word_rec">Recognition</li>
+							</ul>-->
+						</div>
+						<!-- end of TEXT RECOGNITION -->
+						
 					</div>
 				</div>
 

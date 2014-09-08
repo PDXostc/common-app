@@ -19,17 +19,64 @@
 *
 */
 
-/* from car.css */
-.button {
-	display: block;
-	margin: 0;
-	padding: 0;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	z-index: 10;
+/*  styles for word recognition  */
+.autocomplete_text ul {
+	list-style: none;
+	text-align: justify;
+	line-height: 30px;
+	margin-top: -39px;
+	margin: -39px 30px 0 30px; /* This line shall be unnecessary when dynamically produced 
+	with a function to center the text within each <li>, such as percentage((@ul / @li)) */
 }
+.autocomplete_text ul::after {
+	width: 100%; 
+	display: inline-block; 
+	content: "."; 
+	visibility: hidden;
+}
+li {
+	display: inline-block;
+	padding: 2px;
+}
+li a {
+	text-align: center;
+}
+li a:hover, li a:active {
+	background-color: rgb(28, 90, 132);
+}
+li.pipe {
+	font-size: 40px;
+	font-weight: normal;
+	color: #41b7ff;
+}
+/*The closest word match shall be have this style when dynamically produced*/
+.word_rec {
+	color: #fff;
+}
+/* use this style if using a list to select word recognition */
+/*.selected {
+	color: #41b7ff;
+}*/
 
+/* if using a table */
+table {
+	width: 100%;
+	margin-top: -44px;
+}
+td:last-child {
+	border: none;
+}
+td {
+	border-right: 1px solid #41b7ff;
+	text-align: center;
+	padding-top: 9px;
+	padding-bottom: 9px;
+}
+.selected {
+	background: #41b7ff;
+}
+	
+/* end of styles for word recognition  */
 
 /* from settings.css  pull out of settings and put in common? */
 .toggleButtonBackground {
@@ -37,18 +84,23 @@
 	height: 100%;
 	opacity: 0.5;
 }
-textarea {
-	height: 275px;
-	width: 616px;
+
+.wrapper {
+margin-top: 200px;
 }
-.text {
+textarea {
+	height: 75%;
+	width: 90%;
+	padding: 5%;
+}
+/* .text {
 	padding-left: 2%;
 	padding-top: 4%;
 	padding-bottom: 2%;
 	font-size: 2rem;
 	line-height: 2rem;
 	padding-top: 2%;
-}
+} */
 .textBoxArea 	{
 	height: 275px;
 	width: 616px;
@@ -62,6 +114,12 @@ input[type=text] {
 	color: #202020;
 	font-weight: bold;
 	font-size: 1.25rem;
+}
+.handwriting_font {
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 30px;
+	color: #3D3D3D;
 }
 .handwriting_output	{
 	position: relative;
