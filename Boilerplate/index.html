@@ -32,20 +32,95 @@
 
 <div id="clockElement"></div>
 
-<!-- BEGIN HTML ELEMENTS -->
 
-<div class="panel fontColorNormal fontSizeSmaller fontWeightBold">Hello Tizen IVI 
-<form name="add_item_form">
-<table>
-	<tbody><tr><td>Title:</td><td><input name="item_title"></td></tr></tbody>
-	<tbody><tr><td>Descrpition:</td><td><textarea name="item_description"></textarea><td class="max"><input type="button" value="Add Item" class="button" name="add_item_button"></td></td></tr></tbody>
-</table>
-</form>
-<table><thead><td>name</td><td>description</td></thead>
-<tbody name="item_list_body">
-	<template name="item_template"><tr><td name="item_title_field">Name</td><td name="item_description_field">Description</td><td><input type="button" name="delete_item" value="Delete"></td></tr></template>
-</tbody></table>
-</div>
+<!-- BEGIN HTML ELEMENTS -->
+<div class="wrapper">	
+
+	<div class="wifiElement borderColorTheme">
+		<div class="wifiElementInfoBox">
+			<div class="wifiElementTitle fontSizeLarge fontWeightBold fontColorNormal fontWeightBold">Hello Tizen ivi</div>
+			<div class="wifiElementSubtitle fontSizeSmaller fontColorNormal fontWeightBold">subtitle</div>
+			<div class="wifiElementDescription fontSizeSmaller fontColorNormal fontWeightBold">description</div>
+			<!-- <div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold">more</div> -->
+		</div>
+		
+		<div class="toggleButton wifiElementButton">
+			<div class="bgColorThemeTransparent boxShadowInset toggleButton toggleButtonBackground"></div>
+			<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">button</div>
+		</div>
+	</div>
+	
+	<!--input information form -->
+	<form name="add_item_form">
+		<table>
+			<tbody><tr><td>Title:</td><td><input name="item_title"></td></tr></tbody>
+			<tbody><tr><td>Description:</td><td><textarea name="item_description"></textarea><td class="max"><input type="button" value="Add Item" class="button" name="add_item_button"></td></td></tr></tbody>
+		</table>
+	</form>
+	
+	<!-- output from information form -->
+	<div class="wifiElement borderColorTheme">
+		<table><thead><td>name</td><td>description</td></thead>
+			<tbody name="item_list_body">
+				<template name="item_template"><tr><td name="item_title_field">Name</td><td name="item_description_field">Description</td><td><input type="button" name="delete_item" value="Delete"></td></tr></template>
+			</tbody>
+		</table>	
+	</div>
+	
+	
+	<!-- centered button sample	-->	
+	<div class="buttonsArea">
+		<div id="bluetoothRefreshButton" class="toggleButton bluetoothRefreshButton">
+			<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>
+			<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">BUTTON</div>
+		</div>
+	</div>
+		
+
+	<!-- Sample form, remove commenting to display -->		
+	<!-- <form name="">
+		<textarea placeholder="text input area here" class="handwriting_font boxShadow4 boxShadow4Active"></textarea>
+	</form> -->
+	
+	
+	<!-- Sample form, remove commenting to display -->	
+	<!--<form class="form_narrow boxShadow3">
+
+	<div class="labelBox">
+		<div class="text fontSizeLarge fontWeightBold fontColorTheme">NUMBER</div>
+		<div class="text fontSizeLarge fontWeightBold fontColorTheme">Some ID</div>
+	</div>
+
+		<div class="inputNumberBox">
+			<input id="" class="inputNumber fontSizeLarge fontSizeBold fontColorNormal boxShadow4 boxShadow4Active" type="password">
+			<div id="" class="button deleteButton"></div>
+
+			<input id="" class="inputNumber fontSizeLarge fontSizeBold fontColorNormal boxShadow4 boxShadow4Active" type="text">
+			<div id="" class="button deleteButton"></div>
+		</div>
+
+		<div class="submitButton">
+			<input id="" class="submit" type="submit" value="submit">
+		</div>
+
+	</form> -->
+	
+	
+	<!-- Sample WARNING/MODAL dialog box, remove commenting to display -->
+
+	<!--<div id="overlay"></div>
+
+	<div class="modal">
+		<form id="warning">
+			<div class="x_graphic_modal"></div>
+			<div class="fontSizeMedium fontColorNormal">WARNING!</div>
+			<p>Your text will be lost if you continue. </p>
+			<input id="" class="fontSizeSmall submit_button" type="submit" value="CONTINUE">
+		</form>
+	</div> -->
+	<!-- end of WARNING/MODAL dialog box  -->
+
+</div><!--end of wrapper -->
 
 <!-- END HTML ELEMENTS -->
 

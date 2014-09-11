@@ -138,7 +138,7 @@ input[type=text] {
 	height: 36px;
 	margin-top: -36px;
 }
-.num_sym_graphic:hover {
+.num_sym_graphic:active {
 	background-image: url("/images/num_sym_toggle_rollover.png");
 }
 .keyboard_button	{
@@ -151,7 +151,7 @@ input[type=text] {
 	height: 36px;
 	margin-top: -36px;
 }
-.keyboard_graphic:hover	{
+.keyboard_graphic:active {
 	background-image: url("/images/keyboard_rollover.png");
 }
 .space_button {
@@ -166,7 +166,7 @@ input[type=text] {
 	margin-left: 5%;
 	margin-top: -36px;
 }
-.space_bar_graphic:hover {
+.space_bar_graphic:active {
 	background-image: url("/images/space_bar_rollover.png");
 }
 .return_graphic	{
@@ -175,7 +175,7 @@ input[type=text] {
 	height: 36px;
 	margin-top: -36px;
 }
-.return_graphic:hover {
+.return_graphic:active {
 	background: url("/images/return_arrow_rollover.png") no-repeat 5px;
 }
 .return_button	{
@@ -203,7 +203,7 @@ input[type=text] {
 	top: -30px;
 	left: 5px;
 }
-.x_graphic:hover {
+.x_graphic:active {
 	background: url("/images/X_graphic_rollover.png") no-repeat left top;
 
 /* WARNING/MODAL dialog box styles,  add these to common files */	
@@ -213,7 +213,7 @@ input[type=text] {
 	width: 35px;
 	height: 24px;
 }
-.x_graphic_modal:hover {
+.x_graphic_modal:active {
 	background: url("/images/X_graphic_rollover.png") no-repeat left top;
 }
 .modal	{
@@ -251,7 +251,7 @@ p {
 	border: 2px solid rgba(128, 203, 255, 1);
 	padding: 2%;
 }
-.submit_button:hover, .submit_button:active {
+.submit_button:active {
 	color: #41b7ff;
 	border: 2px solid #41b7ff;
 	background-color: #0e3148;
