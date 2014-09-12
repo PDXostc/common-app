@@ -38,7 +38,7 @@
 
 	<div class="wifiElement borderColorTheme">
 		<div class="wifiElementInfoBox">
-			<div class="wifiElementTitle fontSizeLarge fontWeightBold fontColorNormal fontWeightBold">Hello Tizen ivi</div>
+			<div class="wifiElementTitle fontSizeLarge fontColorNormal fontWeightBold">Hello Tizen ivi</div>
 			<div class="wifiElementSubtitle fontSizeSmaller fontColorNormal fontWeightBold">subtitle</div>
 			<div class="wifiElementDescription fontSizeSmaller fontColorNormal fontWeightBold">description</div>
 			<!-- <div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold">more</div> -->
@@ -51,21 +51,40 @@
 	</div>
 	
 	<!--input information form -->
-	<form name="add_item_form">
+	
 		<table>
-			<tbody><tr><td>Title:</td><td><input name="item_title"></td></tr></tbody>
-			<tbody><tr><td>Description:</td><td><textarea name="item_description"></textarea><td class="max"><input type="button" value="Add Item" class="button" name="add_item_button"></td></td></tr></tbody>
+			<form name="add_item_form" class="input_form">
+			<tbody><tr>
+				<th>Title</th>
+				<td><input name="item_title" class="max button_height"></td>
+				<td class="right"><input type="button" value="Add Item" class="button" name="add_item_button"></td>
+
+			</tr></tbody>
+			
+			<tbody><tr>
+				<th>Description</th>
+				<td class="max"><textarea name="item_description"></textarea>
+			</tr></tbody>
+			</form>
 		</table>
-	</form>
+	
 	
 	<!-- output from information form -->
-	<div class="wifiElement borderColorTheme">
-		<table><thead><td>name</td><td>description</td></thead>
-			<tbody name="item_list_body">
-				<template name="item_template"><tr><td name="item_title_field">Name</td><td name="item_description_field">Description</td><td><input type="button" name="delete_item" value="Delete"></td></tr></template>
+	<div class="output_form wifiElement borderColorTheme">
+		<table><thead>
+			<th>name</td>
+			<th>description</th>
+			</thead>
+			<tbody name="item_list_body">s
+				<template name="item_template"><tr>
+					<td name="item_title_field">Name</td>
+					<td name="item_description_field" class="max">Description</td>
+					<td class="right"><input type="button" name="delete_item" class="button" value="Delete"></td>
+				</tr></template>
 			</tbody>
 		</table>	
 	</div>
+
 	
 	
 	<!-- centered button sample	-->	
@@ -79,7 +98,7 @@
 
 	<!-- Sample form, remove commenting to display -->		
 	<!-- <form name="">
-		<textarea placeholder="text input area here" class="handwriting_font boxShadow4 boxShadow4Active"></textarea>
+		<textarea placeholder="text input area here" class="font boxShadow4 boxShadow4Active"></textarea>
 	</form> -->
 	
 	
