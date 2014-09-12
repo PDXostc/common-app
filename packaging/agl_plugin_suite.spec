@@ -10,7 +10,7 @@ Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  python
 BuildRequires:  desktop-file-utils
 
-%global plugin_list most
+%global plugin_list BoilerPlateExtension most 
 
 %description
 A collection of IVI software
@@ -30,4 +30,5 @@ for plugin in %{plugin_list}; do
 done
 
 %files
+%{_prefix}/lib/tizen-extensions-crosswalk/libbp.so
 %{_prefix}/lib/tizen-extensions-crosswalk/libmost.so
