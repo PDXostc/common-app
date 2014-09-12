@@ -51,6 +51,7 @@ private:
 	bpMaster(bpMaster&);
 	bpMaster& operator=(bpMaster&);
 	std::string curTitle;  // Is set to the last title received by handleItem.
+};
 
 } // bp
 } // DeviceAPI
