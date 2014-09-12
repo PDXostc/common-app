@@ -61,6 +61,11 @@ function deleteItemClick(item) {
 	console.log(item.data.html());
 	item.data.remove();
 }
+// Handler function invoked from the Crosswalk extension
+// when  bp.bpAsync is called.
+var callback = function(response) {
+console.log("bp callback js: Async>>> " + response);
+};
 
 function addItemClick(item) {
 	console.log('addItemClick()');
@@ -68,6 +73,11 @@ function addItemClick(item) {
 	console.log($("input[name='item_title']").val());
 	console.log($("textarea[name='item_description']").val());
 	console.log($("[name='item_template']").contents());
+	
+	// Capture the title and description data to be sent to the extension later.
+	var ti=$("input[name='item_title']").val();
+	var descr=$("textarea[name='item_description']").val();
+	
 	var newItemTemplate = $($("[name='item_template']").html());
 	console.log(newItemTemplate);
 	newItemTemplate.find("td[name='item_title_field']").text($("input[name='item_title']").val());
@@ -77,6 +87,11 @@ function addItemClick(item) {
 	newItem.find("input[name='delete_item']").click(newItem,deleteItemClick);
 	$("tbody[name='item_list_body']").append(newItem);
 	$("form[name='add_item_form']")[0].reset();
+	
+	// Send the title and description to the extension:
+	var jsonenc = {api:"handleItem", dest:"Item Consumer", title:ti, desc:descr};
+	console.log("stringify before bp.bpAsynch is "+JSON.stringify(jsonenc));
+	bp.bpAsync(JSON.stringify(jsonenc), callback);
 }
 
 /**
