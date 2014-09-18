@@ -28,6 +28,9 @@ body {
 	padding: 0;
 	-webkit-user-select: none;
 }
+*:focus {
+	outline: none;
+}
 
 div {
 	position: relative;

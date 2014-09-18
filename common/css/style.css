@@ -9,6 +9,6 @@
 @import url("/common/components/boxCaption/boxCaption.css");
 @import url("/common/components/progressBar/progressBar.css");
 @import url("/common/components/alphabetBookmark/alphabetBookmark.css");
-@import url("/common/components/keyboard/keyboard.css");
+/* @import url("/common/components/keyboard/keyboard.css"); non-native keyboard */
 @import url("/common/components/library/library.css");
 @import url("/common/components/weather/weather.css");

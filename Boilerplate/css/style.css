@@ -35,6 +35,22 @@ form {
 	text-align: center;
 	margin-top: 5%;
 }
+.input_form {
+	color: #fff;
+	font-weight: bold;
+	display: inline-block;
+	width: 92%;
+}
+.input_form label {
+	float: left;
+	text-align: right;
+	text-transform: uppercase;
+	display: inline;
+	width: 25%;
+	margin-right: 2%;
+	margin-top: 2%;
+	font-size: 1.25em;
+}
 .form_narrow {
 	width: 80%;
 }
@@ -130,6 +146,8 @@ table {
 	text-align:left;
 	width:100%;
 	color: #fff;
+	/* table-layout: fixed; */
+	white-space: normal;
 }
 th {
 	text-transform: uppercase;
@@ -140,13 +158,25 @@ th {
 	text-align: right;
 }	
 td {
-	padding:5px;
+	word-wrap: break-word;
+}
+.td_description	{
+	width: 50%;
+	text-transform: none;
+}
+.td_name	{
+	width: 28%;
 }
 .max {
 	width:100%;
 }
-.button_height {
-	height: 40px;
+.inputs {
+	padding: 2% 4%;
+	display:inline;
+	float: left;
+	width: 42%;
+	border: none;
+	line-height: 1.25em;
 }
 input.button {
 	width: 120px;
@@ -155,8 +185,9 @@ input.button {
 	background-color: rgb(28, 90, 132);
 	color: #ffffff;
 	text-transform: uppercase;
-	font-size: 18px;
+	font-size: 1.15em;
 	margin-left: 2%;
+	margin-bottom: 8%;
 }
 input.button:visited {
 	border: none;
@@ -172,9 +203,7 @@ input.button:active {
 	border: none;
 }
 textarea {
-	height: 75%;
-	width: 90%;
-	padding: 5%;
+	margin-top: 2%;
 }
 textarea > input[type=text] {
 	width: 100%;
@@ -185,22 +214,23 @@ textarea > input[type=text] {
 	font-weight: bold;
 	font-size: 1.25rem;
 }
-.input_form textarea {
+/*.input_form textarea {
 	height: 100%;
 	font-weight: bold;
 	font-size: 1.25rem;
-}
-.input_form input {
+}*/
+/*.input_form input {
 	font-size: 1.25rem;
 	padding-left: 5%;
 	padding-right: 5%;
 	border: none;
-}
+}*/
 .font {
 	font-weight: bold;
-	font-size: 30px;
-	line-height: 30px;
+	font-size: 1.5em;
+	line-height: 1.5em;
 	color: #3D3D3D;
+	padding: 10px;
 }
 
 /* modal css */
@@ -212,14 +242,14 @@ textarea > input[type=text] {
     height: 100%;
     background: #000;
     opacity: 0.8;
-    z-index: 1;
+    z-index: 4;
 }
 .modal	{
 	position: absolute;
 	top: 38%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	z-index: 2;
+	z-index: 5;
 	width: 35%;
 	margin: 0 auto;
 }
@@ -341,11 +371,3 @@ p {
 }
 
 /* end of buttons from settings.css */
-
-/*
-.panel {
-	top: 190px;
-	left:35px;
-	position: absolute;
-	width: 100%;
-}*/

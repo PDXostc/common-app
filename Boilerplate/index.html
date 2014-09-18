@@ -12,8 +12,8 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Boilerplate application</title>
 <meta name="viewport" content="width=720, height=1280, user-scalable=no" />
-<link rel="stylesheet" href="./css/style.css"/>
 <link rel="stylesheet" href="./common/css/style.css"/>
+<link rel="stylesheet" href="./css/style.css"/>
 <script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script>
 <script type="text/javascript" src="./common/js/init.js"></script>
 <script type="text/javascript">
@@ -49,38 +49,35 @@
 			<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">button</div>
 		</div>
 	</div>
-	
-	<!--input information form -->
-	
-		<table>
-			<form name="add_item_form" class="input_form">
-			<tbody><tr>
-				<th>Title</th>
-				<td><input name="item_title" class="max button_height"></td>
-				<td class="right"><input type="button" value="Add Item" class="button" name="add_item_button"></td>
-
-			</tr></tbody>
 			
-			<tbody><tr>
-				<th>Description</th>
-				<td class="max"><textarea name="item_description"></textarea>
-			</tr></tbody>
-			</form>
-		</table>
-	
-	
+	<form name="add_item_form" class="input_form">
+
+		<!--input information -->
+		 
+		<label>Title</label>
+		<input name="item_title" class="inputs">
+		<input type="button" value="Add Item" class="button right" name="add_item_button">
+
+		<label>Description</label>
+		<textarea name="item_description" class="inputs"></textarea>
+
+
+	</form>
+
 	<!-- output from information form -->
 	<div class="output_form wifiElement borderColorTheme">
 		<table><thead>
 			<th>name</td>
 			<th>description</th>
 			</thead>
-			<tbody name="item_list_body">s
-				<template name="item_template"><tr>
-					<td name="item_title_field">Name</td>
-					<td name="item_description_field" class="max">Description</td>
-					<td class="right"><input type="button" name="delete_item" class="button" value="Delete"></td>
-				</tr></template>
+			<tbody name="item_list_body">
+				<template name="item_template">
+					<tr>
+						<td name="item_title_field" class="td_name">Name</td>
+						<td name="item_description_field" class="td_description">Description</td>
+						<td class="right"><input type="button" name="delete_item" class="button" value="Delete"></td>
+					</tr>
+				</template>
 			</tbody>
 		</table>	
 	</div>
