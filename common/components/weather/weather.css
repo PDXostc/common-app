@@ -11,6 +11,7 @@ div#weather_alert {
 	-webkit-box-shadow: 0 0 90px rgba(255,255,255,0.4);
 	overflow: scroll;
 	overflow-x: hidden;
+	z-index: 1000;
 }
 /*header text in severe weather alert*/
 div#weather_alert > h1	{
