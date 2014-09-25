@@ -29,6 +29,7 @@ var Player;
 var rootLevelItems;
 var options;
 var songs;
+var hold;
 
 
 function mminit(){
@@ -41,6 +42,23 @@ function mminit(){
 	playQueue = [];
 
 	setRootContainer();
+    generatePlaylistElements();
+
+    MediaManager.registerNotificationHandler (function (method, params) {
+        switch (method) {
+            case "CurrentTrack":
+                populateCurrentlyPlaying($($("#media-carousel-content li")[params]).data());
+                console.log(method,params);
+                Player.getDuration(function(r,e){
+                     $("#songProgress").data("track_length",r);
+                });
+            break;
+            default:
+                console.log(method,params);
+            break;
+        }
+    });
+
 
     //setup playback progress.
     setInterval(function(){updatePlayback()},1000);
@@ -97,6 +115,8 @@ function listItems(itemSet){
             clone.querySelector(".content-listing").setAttribute("data-item_url",itemSet[item]["Resources"][1]["URL"]);
             clone.querySelector(".content-listing").setAttribute("data-artist_name",itemSet[item].Artist);
             clone.querySelector(".content-listing").setAttribute("data-song_title",itemSet[item].DisplayName);
+            clone.querySelector(".content-listing").setAttribute("data-artwork",itemSet[item].AlbumArtURL);
+            clone.querySelector(".content-listing").setAttribute("data-song_duration",itemSet[item].Duration);
 
             clone.querySelector(".play-now-btn").addEventListener("click",function(ev){playSongFromElement(ev)});
             clone.querySelector(".add-to-playlist-btn").addEventListener("click",function(ev){
@@ -115,18 +135,56 @@ function queueItemsFromElement(ev){
     //var tc = document.querySelector("#carousel-items-template");
     var song_data = $(ev.target).closest("li.content-listing").data();
     //reintroduce when passing a url doesn't cause a segfault.
-    //Player.enqueueUri(song_data.item_url,function(r,e){
-        addElementToQueue(song_data);
-    //});
+    Player.enqueueUri(song_data.item_path,function(r,e){
+        generatePlaylistElements();
+    });
 }
 
-function addElementToQueue(itemData){
-        var t = document.querySelector("#carousel-items-template");
-        t.content.querySelector(".carousel-item-container");
+function generatePlaylistElements(){
+    Player.getCurrentPlayQueue(function(r,e){
+        $("#media-carousel-content").empty();
+        for(song in r){
+            song_object = {
+                "item_url":r[song].URLs[0],
+                "item_path":r[song].Path,
+                "artwork":r[song].AlbumArtURL,
+                "song_title":r[song].DisplayName,
+                "artist_name":r[song].Artist,
+                "album_title":r[song].AlbumTitle
+            }
+
+            addElementToCarousel(song_object);
+        }
+        coverScroll.refresh();
+    });
+}
+
+
+//Returns a local webserver 
+function getAlbumImage(filepath){
+    if(filepath != undefined){
+        var fragment = filepath.substring(filepath.lastIndexOf("/"),filepath.length);
+        return "http://127.0.0.1:8000"+fragment;    
+    }else{
+        return "images/cover_album.png";
+    }
+}
+
+
+function addElementToCarousel(itemData){
+        var t = document.querySelector("#carousel-listed-items"); //carousel-items-template
+        
+        artwork = getAlbumImage(itemData.artwork);
 
         var clone = document.importNode(t.content,true);
-        clone.querySelector(".carousel-item-container").setAttribute("data-item_url",itemData.item_url);
+        clone.querySelector("li").setAttribute("data-item_url",itemData.item_url);
+        clone.querySelector("li").setAttribute("data-song_title",itemData.song_title);
+        clone.querySelector("li").setAttribute("data-artist_name",itemData.artist_name);
+        clone.querySelector("li").setAttribute("data-artwork",itemData.artwork);
+        clone.querySelector("li").setAttribute("data-album_title",itemData.album_title);
+        clone.querySelector("li").setAttribute("data-song_duration",itemData.Duration);
 
+        clone.querySelector("img").setAttribute("src",artwork);
         clone.querySelector(".song-title-carousel").innerHTML = itemData.song_title;
         clone.querySelector(".artist-name-carousel").innerHTML = itemData.artist_name;
         clone.querySelector(".song-title-carousel").setAttribute("data-song_title",itemData.song_title);
@@ -135,20 +193,48 @@ function addElementToQueue(itemData){
         $("#media-carousel-content").append(clone);
 }
 
+//Populates the "Now playing section of the application"
+function populateCurrentlyPlaying(song_data){
+
+    $("#current-artist-name").html(song_data.artist_name);
+    $("#current-album-title").html(song_data.album_title);
+    $("#current-song-title").html(song_data.song_title);
+
+    $("#thumbnail").attr("src",getAlbumImage(song_data.artwork));
+    Player.getDuration(function(r,e){
+        $("#songProgress").data("track_length",r);
+    });
+
+
+    //$("#songProgress").data("track_length",song_data.song_duration);
+}
+
+
 
 function playSongFromElement(playEvent){
 
-    var song_data = $(playEvent.target).closest("li.content-listing").data();
-    addElementToQueue(song_data);
+    songInfo = $(playEvent.target).closest("li.content-listing").data();
 
-    Player.openUri(song_data.item_url,function(obj,err){
-       //set path to empty.
-       Player.play(function(r){
-            //updatePlayButton();
+    //dequeue all existing items
+    //enqueue new song
+    //play song
+    Player.emptyPlayQueue(function(r){
+
+
+        Player.enqueueUri(songInfo.item_path,function(r,e){
+            //addElementToCarousel(songInfo);
+            generatePlaylistElements();
+
             var back = $("#libraryCloseSubPanelButton")
             back.data("nested",back.data("root"));
             goToPreviousList();
-       });
+
+            populateCurrentlyPlaying(songInfo);
+
+
+            next();
+            play();
+        })
     });
 }
 
@@ -247,16 +333,35 @@ function updatePlayButton(){
 
 
 function updatePlayback(){
-    var songLength = 240; //This will be provided by the data available on Playback, but for the time being, it'll be a constant.
+    //var songLength = 240; //This will be provided by the data available on Playback, but for the time being, it'll be a constant.
+    var songLength = $("#songProgress").data("track_length");
+
+
 
     Player.getPosition(function(p){
-        var seconds = p/1000000;
-        var ratio = 100/(songLength/seconds);
+        var ratio = 100/(songLength/p);
 
         $(".progressPot").css("width",ratio+"%");
     });
 
 }
+
+function fastSeek(direction){
+    if(Date.now() - lastStamp > 500){
+        console.log("seeking "+direction+""+Date.now())
+        seek(direction * 10000000);
+        lastStamp = Date.now();
+    }
+}
+
+function setPlaybackPosition(xVal){
+    var track_length = $("#songProgress").data("track_length");
+    setPosition(Math.ceil(track_length*(xVal/720)));
+    updatePlayback();
+}
+
+
+
 
 function pause() {
     Player.pause(function(msg, error) {

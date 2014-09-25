@@ -15,7 +15,7 @@
 <!-- <script type="text/javascript" src="./components/spectrumAnalyzer/spectrumAnalyzer.js"></script> -->
 <script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script>
 <script type="text/javascript" src="./common/js/init.js"></script>
-
+<script type="text/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript">
 	includeJs("/js/main.js");
 </script>
@@ -23,6 +23,8 @@
 <link href="css/multimedia_manager_720.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/mediamanager.js"></script>
 <script>
+	var coverScroll = {};
+
 
 	$(document).ready(function(){
 
@@ -48,8 +50,49 @@
 				playPause();
 			});
 
+			$("#fastFowardButton").on("touchstart",function(ev){
+				lastStamp = Date.now();
+				$("#fastFowardButton").addClass("btn-fforward-on");
+				hold = setInterval(function(){
+					fastSeek(1);
+				},500);
+			});
+
+			$("#fastRewindButton").on("touchstart",function(ev){
+				lastStamp = Date.now();
+				$("#fastFowardButton").addClass("btn-frewind-on");
+				hold = setInterval(function(){
+					fastSeek(-1);
+				},500);
+			});
+
+			$("#fastFowardButton, #fastRewindButton").on("touchend",function(ev){
+				$("#fastFowardButton,#fastRewindButton").removeClass("btn-fforward-on btn-frewind-on");
+				clearInterval(hold);
+			});
 
 
+			$("#set-media-time-slider").on("touchstart",function(ev){
+				setPlaybackPosition(ev.originalEvent.touches[0].pageX - 40)
+			});
+
+			$("#nextButton").on("touchstart",function(ev){
+				$("#nextButton").addClass("btn-next-on");
+			}).on("touchend",function(ev){
+				$("#nextButton").removeClass("btn-next-on");
+				next();
+			})
+
+			$("#prevButton").on("touchstart",function(ev){
+				$("#prevButton").addClass("btn-previous-on");
+				
+			}).on("touchend",function(ev){
+				$("#prevButton").removeClass("btn-previous-on");
+				previous();
+			});
+
+
+			coverScroll = new iScroll(document.getElementById("scroll-container"),{scrollY:true});
 
 		},500);
 		
@@ -72,7 +115,7 @@
 </div>
 
 
-<div class="media-carousel-container">
+<div id="scroll-container" class="media-carousel-container">
 	<ul id="media-carousel-content" class="no-bullets media-carousel-items">
 		
 	</ul>
@@ -82,7 +125,7 @@
 	<template id="media_playing_item_template"></template>
 		<img id="thumbnail" class="currentlyPlayingPreviewClass albumThumbnail carouselImage boxShadow2" data-album-thumbnail-pic="" src="" alt="">
 		<div id="timeBar" class="timeBarClass" data-timebar="">
-			<div id="songIndex" class="leftText fontColorNormal fontSizeLarge fontWeightBold" data-track-number-of-track=""></div>
+			<div id="songIndex" class="fontColorNormal fontSizeLarge fontWeightBold" data-track-number-of-track=""></div>
 			<div id="songTime" class="rightText fontColorTheme fontSizeLarge fontWeightBold" data-song-time=""></div>
 		</div>
 
@@ -93,7 +136,9 @@
 			<!-- this creates the thick bar to left of "Now Playing" -->
 			<div class="boxIconCaption fontSizeXSmall fontWeightBold fontColorLight">NOW PLAYING</div>
 		</div>
-		<!-- <template id="trackPlayingInformation"></template>-->
+		<div id="current-artist-name" class="fontColorNormal fontSizeLarger fontWeightBold artistNameTextMargin oneLineEllipsis" data-artist-name=""></div>
+		<div id="current-album-title" class="fontSizeSmaller fontColorTheme fontWeightBold oneLineEllipsis" data-album-title=""></div>
+		<div id="current-song-title" class="fontSizeXXLarge fontColorNormal fontWeightBold songNameTextPosition oneLineEllipsis" data-song-title=""></div>		
 	</div>
 </div>
 <div id="spectAnalyzer" class="spectrumAnalyzer clear-me"></div>
@@ -179,7 +224,7 @@
 	<div id="incomingCallAccept" class="incomingCallAccept button callButton callingFalse boxShadow4Active"></div>
 	<div id="incomingCallDeny" class="incomingCallDeny button callButton callingTrue boxShadow4Active"></div>
 </div>
-
+</div>
 <!-- TEMPLATES BELOW -->
 
 <template id="carousel-items-template">
@@ -218,6 +263,16 @@
 	</div>
 </li>
 </template>
-</div>
+
+
+<template id="carousel-listed-items">
+<li> 
+	<img src="" class="carousel-image-reflect" alt="">
+	<span class="song-title-carousel one-line-ellipsis" data-song-title=""></span>
+	<span class="artist-name-carousel two-lines-ellipsis" data-artist-name=""></span>
+</li>
+</template>
+
+
 </body>
 </html>
