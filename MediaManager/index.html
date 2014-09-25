@@ -25,7 +25,6 @@
 <script>
 	var coverScroll = {};
 
-
 	$(document).ready(function(){
 
 		setTimeout(function(){
@@ -60,7 +59,7 @@
 
 			$("#fastRewindButton").on("touchstart",function(ev){
 				lastStamp = Date.now();
-				$("#fastFowardButton").addClass("btn-frewind-on");
+				$("#fastRewindButton").addClass("btn-frewind-on");
 				hold = setInterval(function(){
 					fastSeek(-1);
 				},500);
@@ -92,7 +91,7 @@
 			});
 
 
-			coverScroll = new iScroll(document.getElementById("scroll-container"),{scrollY:true});
+			coverScroll = new IScroll(document.getElementById("scroll-container"));
 
 		},500);
 		
