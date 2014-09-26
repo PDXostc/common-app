@@ -191,6 +191,9 @@ function addElementToCarousel(itemData){
         clone.querySelector(".artist-name-carousel").setAttribute("data-artist_name",itemData.artist_name);
 
         $("#media-carousel-content").append(clone);
+        //var playlistLength = $("#media-carousel-content li").length;
+        //$("#media-carousel-content").css("width",playlistLength*200);
+        coverScroll.refresh();
 }
 
 //Populates the "Now playing section of the application"

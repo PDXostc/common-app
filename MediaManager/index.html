@@ -90,8 +90,41 @@
 				previous();
 			});
 
+			$("#repeatButton").on("touchend",function(ev){
+				Player.getRepeated(function(repeatState,err){
+					console.log(repeatState);
 
-			coverScroll = new IScroll(document.getElementById("scroll-container"));
+					switch(repeatState){
+						case "REPEAT_SINGLE":
+							// change to all tracks.
+							$("#repeatButton span").html("All Tracks");
+						break;
+						case "NO_REPEAT":
+							$("#repeatButton span").html("Current Track");
+							$("#repeatButton").addClass("btn-repeat-on");
+						break;
+						case "REPEAT":
+							$("#repeatButton span").html("OFF");
+							$("#repeatButton").removeClass("btn-repeat-on");
+						break;
+					}
+				});
+			});
+
+			$("#shuffleButton").on("touchend",function(ev){
+				Player.setShuffled(function(shuffleState,err){
+					Player.getShuffled(function(shuffleState,err){
+						if(shuffleState == true){
+							$("#shuffleButton").removeClass("btn-shuffle-on");
+						}else{
+							$("#shuffleButton").addClass("btn-shuffle-on");
+						}
+					});
+				});
+			});
+
+
+			coverScroll = new IScroll(document.getElementById("scroll-container"),{scrollX:true});
 
 		},500);
 		
