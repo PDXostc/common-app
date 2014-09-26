@@ -43,6 +43,7 @@ function mminit(){
 
 	setRootContainer();
     generatePlaylistElements();
+    updateRepeatButton();
 
     MediaManager.registerNotificationHandler (function (method, params) {
         switch (method) {
@@ -234,7 +235,6 @@ function playSongFromElement(playEvent){
 
             populateCurrentlyPlaying(songInfo);
 
-
             next();
             play();
         })
@@ -347,6 +347,45 @@ function updatePlayback(){
         $(".progressPot").css("width",ratio+"%");
     });
 
+}
+
+function updateRepeatButton(){
+    Player.getRepeated(function(repeatState,err){
+                
+                var states = ["REPEAT_SINGLE","NO_REPEAT","REPEAT"];
+                var newState = states.indexOf(repeatState)+1;
+                if(newState > 2){
+                    newState = 0;
+                }
+
+                $("#repeatButton").data("repeat_next_state",states[newState]);
+
+                switch(repeatState){
+                    case "REPEAT_SINGLE":
+                        // change to all tracks.
+                        $("#repeatButton span").html("All Tracks");
+                        $("#repeatButton").addClass("btn-repeat-on");
+                    break;
+                    case "NO_REPEAT":
+                        $("#repeatButton span").html("Current Track");
+                    break;
+                    case "REPEAT":
+                        $("#repeatButton span").html("OFF");
+                        $("#repeatButton").removeClass("btn-repeat-on");
+                    break;
+                }
+            });
+}
+
+function updateShuffleButton(){
+    Player.getShuffled(function(shuffledStatus,err){
+        if(shuffledStatus == true){
+            $("#shuffleButton").addClass("btn-shuffle-on");
+        }else{
+            $("#shuffleButton").removeClass("btn-shuffle-on");
+        }
+        $("#shuffleButton").data("shuffle_state",shuffledStatus);
+    });
 }
 
 function fastSeek(direction){

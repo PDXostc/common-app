@@ -91,35 +91,16 @@
 			});
 
 			$("#repeatButton").on("touchend",function(ev){
-				Player.getRepeated(function(repeatState,err){
-					console.log(repeatState);
-
-					switch(repeatState){
-						case "REPEAT_SINGLE":
-							// change to all tracks.
-							$("#repeatButton span").html("All Tracks");
-						break;
-						case "NO_REPEAT":
-							$("#repeatButton span").html("Current Track");
-							$("#repeatButton").addClass("btn-repeat-on");
-						break;
-						case "REPEAT":
-							$("#repeatButton span").html("OFF");
-							$("#repeatButton").removeClass("btn-repeat-on");
-						break;
-					}
+				var repeatState = $(this).data("repeat_next_state");
+				Player.setRepeated(repeatState,function(r,e){
+					updateRepeatButton();
 				});
 			});
 
 			$("#shuffleButton").on("touchend",function(ev){
-				Player.setShuffled(function(shuffleState,err){
-					Player.getShuffled(function(shuffleState,err){
-						if(shuffleState == true){
-							$("#shuffleButton").removeClass("btn-shuffle-on");
-						}else{
-							$("#shuffleButton").addClass("btn-shuffle-on");
-						}
-					});
+				newState = ($("#shuffleButton").data("shuffle_state") == true)?false:true;
+				Player.setShuffled(newState,function(r,err){
+					updateShuffleButton();
 				});
 			});
 
@@ -187,7 +168,7 @@
 		<div id="fastFowardButton" class="audio-crtl-button btn-fforward"></div>
 		<div id="nextButton" class="audio-crtl-button btn-next"></div>
 		<div id="shuffleButton" class="audio-crtl-button btn-shuffle"></div>
-		<div id="repeatButton" class="audio-crtl-button btn-repeat"></div>
+		<div id="repeatButton" class="audio-crtl-button btn-repeat"><span></span></div>
 	</div>
 </div>
 <div id="bottomPanel" class="bottomPanel bottomPanelImg">
