@@ -49,7 +49,7 @@ function mminit(){
         switch (method) {
             case "CurrentTrack":
                 populateCurrentlyPlaying($($("#media-carousel-content li")[params]).data());
-                console.log(method,params);
+                updatePlayButton();
                 Player.getDuration(function(r,e){
                      $("#songProgress").data("track_length",r);
                 });
@@ -163,7 +163,7 @@ function generatePlaylistElements(){
 
 //Returns a local webserver 
 function getAlbumImage(filepath){
-    if(filepath != undefined){
+    if(filepath != undefined && filepath != "undefined"){
         var fragment = filepath.substring(filepath.lastIndexOf("/"),filepath.length);
         return "http://127.0.0.1:8000"+fragment;    
     }else{
@@ -327,9 +327,9 @@ function discoverMediaManagers() {
 function updatePlayButton(){
     Player.getPlaybackStatus(function(r){
         if(r == "PAUSED"){
-            $("#playButton").addClass("pause-on");
+            $("#playButton").addClass("btn-play-pause-pause");
         }else{
-            $("#playButton").removeClass("pause-on");
+            $("#playButton").removeClass("btn-play-pause-pause");
         }
     });
 }
