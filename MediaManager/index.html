@@ -17,7 +17,11 @@
 <script type="text/javascript" src="./common/js/init.js"></script>
 <script type="text/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript">
-	includeJs("/js/main.js");
+//	includeJs("./js/predefAppModel.js");
+//	includeJs("./js/installedApps.js");
+//	includeJs("./js/keyControl.js");
+//	includeJs("./js/actionCatcher.js");
+	includeJs("./js/main.js");
 </script>
 
 <link href="css/multimedia_manager_720.css" rel="stylesheet" type="text/css">
@@ -39,6 +43,7 @@
  				
  				var libClose = $("#libraryCloseSubPanelButton");
 				libClose.data("nested",libClose.data("root"));
+				
 			});
 
 			$('#libraryCloseSubPanelButton').click(function(){
@@ -104,9 +109,10 @@
 				});
 			});
 
-			$("#searchButton").on("touchend",function(ev){
-				var searchVal = $("#searchBoxContainer input").val();
-				 searchAndDisplay(searchVal);
+			$("#searchButton").click(function(ev){ 
+				console.log("event fired");
+				var searchVal = $(".searchingBox").val();
+				searchAndDisplay(searchVal);
 			});
 
 			coverScroll = new IScroll(document.getElementById("scroll-container"),{scrollX:true});
@@ -212,7 +218,7 @@
 </div>
 <div id="libraryContent" class="libraryContent musicLibraryContentGrid" style="max-height: 1170px; ">
 	<div class="searchBoxContainer">
- 		<input type="text" class="searchingBox fl-left" value="search string"><div id="searchButton" class="fakeButton fl-right">SEARCH</div>
+ 		<input type="text" class="searchingBox fl-left inputs" value="search string"><div id="searchButton" class="fakeButton fl-right">SEARCH</div>
   	</div>
 	<ul class="musicContentListedItems">
 <!--		<template id="media-content-list"></template>-->

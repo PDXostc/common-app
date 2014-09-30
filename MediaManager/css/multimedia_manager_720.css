@@ -334,5 +334,6 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .callingTrue { margin-top: 279px; background-color: rgb(255, 3, 3); background-color: rgba(255, 3, 3, 0.8); }
 .callingFalse { margin-top: 117px; background-color: rgb(138, 255, 0); background-color: rgba(138, 255, 0, 0.54); }
 
-.searchingBox { width: 60%; height: 40px; border: 1px rgba(58, 174, 255, 1.0) solid; background-color: transparent; margin-right: 20px; }
+.searchingBox { width: 60%; height: 40px; border: 1px rgba(58, 174, 255, 1.0) solid; color: white; background-color: transparent; margin-right: 20px; }
+
 .fakeButton { height: 20px; width: 119px; background-color: #0e3e5f; text-align: center; padding-top: 25px; margin-right: 109px; font-weight: bold; }

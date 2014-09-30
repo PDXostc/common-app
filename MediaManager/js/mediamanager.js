@@ -65,8 +65,6 @@ function mminit(){
 
     //setup playback progress.
     setInterval(function(){updatePlayback()},1000);
-
-
 }
 
 function setRootContainer(){
@@ -74,14 +72,18 @@ function setRootContainer(){
 	manager = {"DisplayName":"Root"};
 	Browser.discoverMediaManagers(function(obj,err){ 
 		manager.Path = obj[0];
+        $("#libraryCloseSubPanelButton").data("root",JSON.stringify([manager.Path]));
+
+        //getChildren(manager.Path);
+
+        
 		Browser.listContainers(manager,0,100,["DisplayName","Path","Type"],
 			function(obj,err){
-
-                $("#libraryCloseSubPanelButton").data("root",JSON.stringify([manager.Path]));
 
 				options = obj;
 				listItems(options);
 		});
+        
 	});
 }
 
@@ -304,7 +306,6 @@ function getChildren(path){
             });
         }
 	});
-    
 }
 
 

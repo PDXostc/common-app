@@ -33,6 +33,6 @@ includeJs("/common/components/dateTime/dateTime.js");
 includeJs("/common/components/uri/uri.js");
 includeJs("/common/components/boxCaption/boxCaption.js");
 includeJs("/common/components/alphabetBookmark/alphabetBookmark.js");
-// includeJs("/common/components/keyboard/keyboard.js");
+//includeJs("/common/components/keyboard/keyboard.js");
 includeJs("/common/components/library/library.js");
 includeJs("/common/components/weather/weather.js");
