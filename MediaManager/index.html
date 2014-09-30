@@ -104,6 +104,10 @@
 				});
 			});
 
+			$("#searchButton").on("touchend",function(ev){
+				var searchVal = $("#searchBoxContainer input").val();
+				 searchAndDisplay(searchVal);
+			});
 
 			coverScroll = new IScroll(document.getElementById("scroll-container"),{scrollX:true});
 
@@ -207,6 +211,9 @@
 	</div>
 </div>
 <div id="libraryContent" class="libraryContent musicLibraryContentGrid" style="max-height: 1170px; ">
+	<div class="searchBoxContainer">
+ 		<input type="text" class="searchingBox fl-left" value="search string"><div id="searchButton" class="fakeButton fl-right">SEARCH</div>
+  	</div>
 	<ul class="musicContentListedItems">
 <!--		<template id="media-content-list"></template>-->
 <li class="content-listing">

@@ -50,9 +50,11 @@ function mminit(){
             case "CurrentTrack":
                 populateCurrentlyPlaying($($("#media-carousel-content li")[params]).data());
                 updatePlayButton();
+                /*
                 Player.getDuration(function(r,e){
                      $("#songProgress").data("track_length",r);
                 });
+                */
             break;
             default:
                 console.log(method,params);
@@ -214,6 +216,24 @@ function populateCurrentlyPlaying(song_data){
 }
 
 
+//searchAndDisplay
+function searchAndDisplay(searchTerm){
+    
+    var lastContainer = JSON.parse($("#libraryCloseSubPanelButton").data("nested"));
+    var searchPath = lastContainer[lastContainer.length-1];
+
+    searchString = "DisplayName contains \""+searchTerm+"\"";
+
+    Browser.searchObjects({"Path":searchPath},0,1000,["*"],searchString,function(re,err){
+        if(re.length > 0){
+            listItems(re);
+        }else{
+            console.log("no items found");
+        }
+        
+    });
+}
+
 
 function playSongFromElement(playEvent){
 
@@ -293,6 +313,7 @@ function goToPreviousList(){
     var path = popPath();
     if(path == undefined){
         $('#musicLibrary').removeClass('toShow');
+        $(".musicContentListedItems").empty();
     }else{
         Browser.listContainers({"Path":path},0,1000,["DisplayName","Path","Type"],function(obj,err){
             if(obj.length > 0){
@@ -339,8 +360,6 @@ function updatePlayback(){
     //var songLength = 240; //This will be provided by the data available on Playback, but for the time being, it'll be a constant.
     var songLength = $("#songProgress").data("track_length");
 
-
-
     Player.getPosition(function(p){
         var ratio = 100/(songLength/p);
 
@@ -361,15 +380,16 @@ function updateRepeatButton(){
                 $("#repeatButton").data("repeat_next_state",states[newState]);
 
                 switch(repeatState){
-                    case "REPEAT_SINGLE":
+                    case "REPEAT":
                         // change to all tracks.
                         $("#repeatButton span").html("All Tracks");
                         $("#repeatButton").addClass("btn-repeat-on");
                     break;
-                    case "NO_REPEAT":
+                    case "REPEAT_SINGLE":
                         $("#repeatButton span").html("Current Track");
+                        $("#repeatButton").addClass("btn-repeat-on");
                     break;
-                    case "REPEAT":
+                    case "NO_REPEAT":
                         $("#repeatButton span").html("OFF");
                         $("#repeatButton").removeClass("btn-repeat-on");
                     break;
