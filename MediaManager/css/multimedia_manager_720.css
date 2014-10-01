@@ -17,6 +17,8 @@ div, p, ul { margin: 0; padding: 0; }
 .backgroundAudioClass { position: absolute; top: 0; left: 0; width: 720px; height: 1280px; -webkit-background-size: cover; cover;
 background-size: cover; }
 
+.wrapper {width:720px;overflow:hidden;position:absolute;top:0;left:0;}
+
 
 
 /* spectrum analyzer */
@@ -334,6 +336,7 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .callingTrue { margin-top: 279px; background-color: rgb(255, 3, 3); background-color: rgba(255, 3, 3, 0.8); }
 .callingFalse { margin-top: 117px; background-color: rgb(138, 255, 0); background-color: rgba(138, 255, 0, 0.54); }
 
+.searchBoxContainer{margin:20px 0 20px 28px;overflow:auto;width:100%}
 .searchingBox { width: 60%; height: 40px; border: 1px rgba(58, 174, 255, 1.0) solid; color: white; background-color: transparent; margin-right: 20px; }
 
 .fakeButton { height: 20px; width: 119px; background-color: #0e3e5f; text-align: center; padding-top: 25px; margin-right: 109px; font-weight: bold; }
