@@ -49,7 +49,6 @@ function mminit(){
         switch (method) {
             case "CurrentTrack":
                 populateCurrentlyPlaying($($("#media-carousel-content li")[params]).data());
-                updatePlayButton();
             break;
             case "PlaybackStatus":
                 updatePlayButton(params);
@@ -363,11 +362,6 @@ function updatePlayButton(status){
     Player.getPlaybackStatus(function(r){
         console.log("Playback status returned");
 
-        if(r == "PAUSED"){
-            $("#playButton").addClass("btn-play-pause-pause");
-        }else if(r == "PLAYING"){
-            $("#playButton").removeClass("btn-play-pause-pause");
-        }
         console.log(r);
     });
 */
