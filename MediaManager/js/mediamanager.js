@@ -212,9 +212,13 @@ function populateCurrentlyPlaying(song_data){
     $("#current-song-title").html(song_data.song_title);
 
     $("#thumbnail").attr("src",getAlbumImage(song_data.artwork));
-    Player.getDuration(function(r,e){
-        $("#songProgress").data("track_length",r);
-    });
+    
+    setTimeout(function(){
+        Player.getDuration(function(r,e){
+            $("#songProgress").data("track_length",r);
+        });
+    },700);
+    
 
 
     //$("#songProgress").data("track_length",song_data.song_duration);
@@ -235,7 +239,6 @@ function searchAndDisplay(searchTerm){
         }else{
             console.log("no items found");
         }
-        
     });
 }
 
@@ -379,7 +382,7 @@ function updatePlayback(){
         var timeSeconds = (seconds%60);
         var timeMinutes = Math.floor(seconds/60);
 
-        if(String(sec).length == 1){ timeSeconds = "0"+String(timeSeconds);}
+        //if(String(sec).length == 1){ timeSeconds = "0"+String(timeSeconds);}
 
         $("#songTime").html(timeMinutes+":"+timeSeconds);
         $(".progressPot").css("width",ratio+"%");
