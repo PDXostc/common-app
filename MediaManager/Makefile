@@ -1,4 +1,4 @@
-PROJECT = MediaManager
+PROJECT = intelPoc26.MediaManager
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
 WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json
@@ -20,12 +20,21 @@ $(PROJECT).wgt : dev
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
+scan:
+	ssh app@$(TIZEN_IP) "lightmediascannerctl scan"
+
+stop:
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && ./mm stop"
+
 run: install
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'MediaManager' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && ./mm start"
+	#ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'MediaManager' | awk '{print $1}' | xargs --no-run-if-empty LD_LIBRARY_PATH=/opt/genivi/lib xwalk-launcher"
 
 install: deploy
+	scp mm app@$(TIZEN_IP):
+	ssh app@$(TIZEN_IP) "chmod +x mm"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'MediaManager' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/MediaManager.wgt"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/intelPoc26.MediaManager.wgt"
 
 $(PROJECT).wgt : wgt
 
