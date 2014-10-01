@@ -254,9 +254,9 @@ function playSongFromElement(playEvent){
             //addElementToCarousel(songInfo);
             generatePlaylistElements();
 
-            var back = $("#libraryCloseSubPanelButton")
-            back.data("nested",back.data("root"));
-            goToPreviousList();
+            //var back = $("#libraryCloseSubPanelButton")
+            //back.data("nested",back.data("root"));
+            //goToPreviousList();
 
             populateCurrentlyPlaying(songInfo);
 
