@@ -50,11 +50,6 @@ function mminit(){
             case "CurrentTrack":
                 populateCurrentlyPlaying($($("#media-carousel-content li")[params]).data());
                 updatePlayButton();
-                /*
-                Player.getDuration(function(r,e){
-                     $("#songProgress").data("track_length",r);
-                });
-                */
             break;
             default:
                 console.log(method,params);
@@ -314,7 +309,7 @@ function goToPreviousList(){
     var path = popPath();
     if(path == undefined){
         $('#musicLibrary').removeClass('toShow');
-        $(".musicContentListedItems").empty();
+        //$(".musicContentListedItems").empty();
     }else{
         Browser.listContainers({"Path":path},0,1000,["DisplayName","Path","Type"],function(obj,err){
             if(obj.length > 0){
@@ -347,24 +342,34 @@ function discoverMediaManagers() {
 }
 
 function updatePlayButton(){
+    console.log("updating playbutton");
     Player.getPlaybackStatus(function(r){
+        console.log("Playback status returned");
+
         if(r == "PAUSED"){
             $("#playButton").addClass("btn-play-pause-pause");
-        }else{
+        }else if(r == "PLAYING"){
             $("#playButton").removeClass("btn-play-pause-pause");
         }
+        console.log(r);
     });
 }
 
 
-function updatePlayback(){
-    //var songLength = 240; //This will be provided by the data available on Playback, but for the time being, it'll be a constant.
+function updatePlayback(){    
     var songLength = $("#songProgress").data("track_length");
 
     Player.getPosition(function(p){
         var ratio = 100/(songLength/p);
+        var seconds = p/1000000;
+
+        var timeSeconds = (seconds%60);
+        var timeMinutes = Math.floor(seconds/60);
+
+        if(String(sec).length == 1){ timeSeconds =+ 0; }
 
         $(".progressPot").css("width",ratio+"%");
+        $("#songTime").val(timeMinutes+":"+timeSeconds);
     });
 
 }
