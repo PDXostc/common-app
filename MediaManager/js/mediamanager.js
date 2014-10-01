@@ -279,7 +279,7 @@ function popPath(){
 
 //The event handler call for getChildren()
 function displayChildren(tapEvent){
-    var path = $(tapEvent.target).data("item_path");
+    var path = $(tapEvent.target).closest("li.content-listing").data("item_path");
     getChildren(path);
 }
 
@@ -359,17 +359,18 @@ function updatePlayButton(){
 function updatePlayback(){    
     var songLength = $("#songProgress").data("track_length");
 
-    Player.getPosition(function(p){
+    Player.getPosition(function(p,e){
+
         var ratio = 100/(songLength/p);
         var seconds = p/1000000;
-
+        
         var timeSeconds = (seconds%60);
         var timeMinutes = Math.floor(seconds/60);
 
-        if(String(sec).length == 1){ timeSeconds =+ 0; }
+        if(String(sec).length == 1){ timeSeconds = "0"+String(timeSeconds);}
 
+        $("#songTime").html(timeMinutes+":"+timeSeconds);
         $(".progressPot").css("width",ratio+"%");
-        $("#songTime").val(timeMinutes+":"+timeSeconds);
     });
 
 }
