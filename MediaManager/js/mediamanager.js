@@ -43,7 +43,7 @@ function mminit(){
 
 	setRootContainer();
     generatePlaylistElements();
-    updateRepeatButton();
+    updateRepeatButton("REPEAT");
 
     MediaManager.registerNotificationHandler (function (method, params) {
         switch (method) {
@@ -51,6 +51,15 @@ function mminit(){
                 populateCurrentlyPlaying($($("#media-carousel-content li")[params]).data());
                 updatePlayButton();
             break;
+            case "PlaybackStatus":
+                updatePlayButton(params);
+            break;
+            case "Shuffle":
+                updateShuffleButton(params);
+            break;
+            case "Repeat":
+                updateRepeatButton(params);
+            break;            
             default:
                 console.log(method,params);
             break;
@@ -341,8 +350,16 @@ function discoverMediaManagers() {
     });
 }
 
-function updatePlayButton(){
+function updatePlayButton(status){
     console.log("updating playbutton");
+
+    if(status == "PAUSED"){
+        $("#playButton").removeClass("btn-play-pause-pause");
+    }else if(status == "PLAYING"){
+        $("#playButton").addClass("btn-play-pause-pause");
+    }
+
+/*
     Player.getPlaybackStatus(function(r){
         console.log("Playback status returned");
 
@@ -353,6 +370,7 @@ function updatePlayButton(){
         }
         console.log(r);
     });
+*/
 }
 
 
@@ -375,44 +393,41 @@ function updatePlayback(){
 
 }
 
-function updateRepeatButton(){
-    Player.getRepeated(function(repeatState,err){
-                
-                var states = ["REPEAT_SINGLE","NO_REPEAT","REPEAT"];
-                var newState = states.indexOf(repeatState)+1;
-                if(newState > 2){
-                    newState = 0;
-                }
+function updateRepeatButton(repeatState){
+    var states = ["REPEAT_SINGLE","NO_REPEAT","REPEAT"];
+    var newState = states.indexOf(repeatState)+1;
+    if(newState > 2){
+        newState = 0;
+    }
 
-                $("#repeatButton").data("repeat_next_state",states[newState]);
+    $("#repeatButton").data("repeat_next_state",states[newState]);
 
-                switch(repeatState){
-                    case "REPEAT":
-                        // change to all tracks.
-                        $("#repeatButton span").html("All Tracks");
-                        $("#repeatButton").addClass("btn-repeat-on");
-                    break;
-                    case "REPEAT_SINGLE":
-                        $("#repeatButton span").html("Current Track");
-                        $("#repeatButton").addClass("btn-repeat-on");
-                    break;
-                    case "NO_REPEAT":
-                        $("#repeatButton span").html("OFF");
-                        $("#repeatButton").removeClass("btn-repeat-on");
-                    break;
-                }
-            });
+    switch(repeatState){
+        case "REPEAT":
+            // change to all tracks.
+            $("#repeatButton span").html("All Tracks");
+            $("#repeatButton").addClass("btn-repeat-on");
+        break;
+        case "REPEAT_SINGLE":
+            $("#repeatButton span").html("Current Track");
+            $("#repeatButton").addClass("btn-repeat-on");
+        break;
+        case "NO_REPEAT":
+            $("#repeatButton span").html("OFF");
+            $("#repeatButton").removeClass("btn-repeat-on");
+        break;
+    }
 }
 
-function updateShuffleButton(){
-    Player.getShuffled(function(shuffledStatus,err){
-        if(shuffledStatus == true){
+function updateShuffleButton(shuffleStatus){
+
+    if(shuffleStatus == true){
             $("#shuffleButton").addClass("btn-shuffle-on");
-        }else{
+    }else if(shuffleStatus == false){
             $("#shuffleButton").removeClass("btn-shuffle-on");
-        }
-        $("#shuffleButton").data("shuffle_state",shuffledStatus);
-    });
+    }
+    //$("#shuffleButton").data("shuffle_state",shuffledStatus);
+
 }
 
 function fastSeek(direction){
@@ -434,7 +449,7 @@ function setPlaybackPosition(xVal){
 
 function pause() {
     Player.pause(function(msg, error) {
-        updatePlayButton();
+        //updatePlayButton();
         if (error)
             logError("Error pausing: " + error.message);
     });
@@ -447,7 +462,7 @@ function play() {
         // Set Title
         // Setup progress bar.
 
-        updatePlayButton();
+        //updatePlayButton();
         if (error)
             logError("Error playing: " + error.message);
     });
@@ -455,7 +470,7 @@ function play() {
 
 function playPause() {
     Player.playPause(function(msg, error) {
-        updatePlayButton();
+        //updatePlayButton();
         if (error)
             logError("Error playPausing: " + error.message);
     });

@@ -103,10 +103,8 @@
 			});
 
 			$("#shuffleButton").on("touchend",function(ev){
-				newState = ($("#shuffleButton").data("shuffle_state") == true)?false:true;
-				Player.setShuffled(newState,function(r,err){
-					updateShuffleButton();
-				});
+				newState = ($("#shuffleButton").hasClass("btn-shuffle-on"))? false : true;
+				Player.setShuffled(newState,function(r,err){console.log("setting shuffle to "+newState)});
 			});
 
 			$("#searchButton").click(function(ev){ 
