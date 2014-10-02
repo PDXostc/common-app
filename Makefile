@@ -1,7 +1,7 @@
-apps = HomeScreen Boilerplate 
-# apps = HomeScreen Browser Boilerplate Dashboard News Weather GestureGame Phone Handwriting
-#TIZEN_IP=TizenNuc
-TIZEN_IP=192.168.6.12
+app_list = HomeScreen Browser Boilerplate Dashboard News Weather GestureGame Phone Handwriting
+extension_list = extension_common wkb_client_ext most
+TIZEN_IP=TizenNuc
+#TIZEN_IP=192.168.6.11
 
 #to avoid typing a password for each scp or ssh command you need to copy
 #your public key over 
@@ -11,15 +11,22 @@ TIZEN_IP=192.168.6.12
 # This command will require your password and then you will be able to 
 # use ssh and scp without a password from that user.
 
-all:
-	$(foreach app,$(apps), make -C $(app);)
+all: apps extensions
+
+apps:
+	$(foreach app,$(app_list), make -C $(app);)
 	#cd  HomeScreen && make
 	#cd  Browser && make
 	#cd  Boilerplate && make
 	#cd  News && make
 
-deploy:
-	$(foreach app,$(apps), make -C $(app) deploy TIZEN_IP=$(TIZEN_IP);)
+extensions:
+	$(foreach extension,$(extension_list), make -C $(extension);)
+
+deploy: deploy_apps 
+
+deploy_apps:
+	$(foreach app,$(app_list), make -C $(app) deploy TIZEN_IP=$(TIZEN_IP);)
 	#cd HomeScreen && make deploy TIZEN_IP=192.168.6.53
 	#cd Browser && make deploy TIZEN_IP=192.168.6.53
 	#cd Boilerplate && make deploy TIZEN_IP=192.168.6.53
@@ -27,17 +34,25 @@ deploy:
 	scp InstallWgts.sh app@$(TIZEN_IP):/home/app/
 	ssh app@$(TIZEN_IP) ./InstallWgts.sh
 
+deploy_extensions:
+	$(foreach extension,$(extension_list), make -C $(extension) deploy TIZEN_IP=$(TIZEN_IP);)
+
 run:
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
 
-clean:
-	$(foreach app,$(apps), make -C $(app) clean;)
+clean: clean_apps clean_extensions
+
+clean_apps:
+	$(foreach app,$(app_list), make -C $(app) clean;)
 	#cd HomeScreen && make clean
 	#cd Boilerplate && make clean
 	#cd Browser && make clean
 	#cd News && make clean
 	cd Leap && make clean
 	#cd GestureGame && make clean
+
+clean_extensions: 
+	$(foreach extension,$(extension_list), make -C $(extension) clean;)
 
 install:
 	cd HomeScreen && make install
