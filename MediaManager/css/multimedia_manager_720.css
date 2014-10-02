@@ -170,11 +170,11 @@ ul.no-bullets { list-style-type: none }
 
 
 /* LIBRARY */
-.musicContentListedItems{padding-left:22px;list-style-type:none;}
+.musicContentListedItems{padding:0 10px;list-style-type:none;}
 
 
 /* changes to images */
-.listingImageSize{width:5%;}
+.listingImageSize{width:5%; margin:0 6px;}
 li.musicLibraryContentList {padding:20px 0 37px 0px;border-bottom: 1px rgba(58, 174, 255, 1.0) solid;}
 .push-10right{margin-right:10px;}
 .library { position: absolute; left: 720px; top: 0; width: 720px; min-height: 1280px; z-index: 100; -webkit-transition: 1s;}
@@ -184,10 +184,11 @@ li.musicLibraryContentList {padding:20px 0 37px 0px;border-bottom: 1px rgba(58, 
 .libraryLeftPanel { position: absolute; top: 173px; left: -24px;; width: 100px; min-height: 1280px; height: 100%; border-right: 1px rgba(58, 174, 255, 1.0) solid; background-repeat: no-repeat; background-position: left top; }
 
 /* new as well */
-.content-listing img {position:relative;top:8px;margin: 0 6px;}
+.content-listing img {position:relative;top:8px;}
 li.content-listing {border-bottom:1px rgba(58, 174, 255, 1.0) solid;height:68px;padding-top:20px;}
 li.content-listing.no-images img.add-to-playlist-btn, li.content-listing.no-images img.play-now-btn {display:none;}
-.artist-track-title {display:inline;font-size:x-large;}
+.add-to-playlist-btn{margin-right:20px;}
+.artist-track-title {display:inline;font-size:large;margin-left:12px;}
 .track-time-total{margin: 0 20px;}
 .album-and-track-totals{float:right;}
 
@@ -335,8 +336,14 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .callButton { vertical-align: top; display: inline-block; margin-left: 108px; border: none; width: 72px; height: 157px; margin-right: 7px; background-position: center center; background-repeat: no-repeat; }
 .callingTrue { margin-top: 279px; background-color: rgb(255, 3, 3); background-color: rgba(255, 3, 3, 0.8); }
 .callingFalse { margin-top: 117px; background-color: rgb(138, 255, 0); background-color: rgba(138, 255, 0, 0.54); }
-
+*:focus{outline:none;}
 .searchBoxContainer{margin:20px 0 20px 28px;overflow:auto;width:100%}
-.searchingBox { width: 60%; height: 40px; border: 1px rgba(58, 174, 255, 1.0) solid; color: white; background-color: transparent; margin-right: 20px; }
+.searchingBox { width: 360px; height: 40px; border: 1px rgba(58, 174, 255, 1.0) solid; color: white; background-color: transparent; margin-right: 20px; padding-left:10px;}
 
-.fakeButton { height: 20px; width: 119px; background-color: #0e3e5f; text-align: center; padding-top: 25px; margin-right: 109px; font-weight: bold; }
+#geniviBottomPanel {width:720px;height:160px;position:relative;top:-50px;}
+.logoCenter {
+margin:0 auto;
+width:270px;
+}
+
+.fakeButton { height: 20px; width: 119px; background-color: #0e3e5f; text-align: center; padding-top: 25px; font-weight: bold; }
