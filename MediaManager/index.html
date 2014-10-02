@@ -124,8 +124,10 @@
 
 <body>
 <div class="wrapper">
-<div id="topBarIcons" class="topBarIcons" style="height:85px;"></div>
-<div id="clockElement">
+<div id="topBar">
+	<img class="header-title" src="images/mm-header-type-only.png" alt="">
+</div>
+<div id="clock-and-time">
 	<div id="date" class="date-element fontSizeXXLarge fontColorDark fontWeightBold">date</div>
 	<div id="clock" class="clock-element fontSizeXXLarge fontColorDark fontWeightBold">clock</div>
 </div>
@@ -220,7 +222,7 @@
 </ul>
 </div>
 
-<!-- Kept from original to maintain original functionality of general app (Art wanted apps to work the same so I left this mark-up) but removed the 'onClicks'.-->
+<!-- Kept from original to maintain original functionality of general app-->
 <div id="incomingCall" class="incomingCall incomingCallHide">
 	<div class="pageBgColorNormalTransparent" style="width:100%; height: 100%"></div>
 	<div id="incomingCallTopPanel" class="tabsTopPanel"></div>
@@ -239,7 +241,9 @@
 </div>
 
 </div>
-<div id="geniviBottomPanel"><div class="logoCenter"><img src="images/genivi_white.png" alt=""></div></div>
+<div id="geniviBottomPanel">
+	<!-- for future logo swap <div class="logoCenter"><img src="images/genivi_white_sm.png" alt=""></div>-->
+</div>
 <!-- TEMPLATES BELOW -->
 
 <template id="carousel-items-template">

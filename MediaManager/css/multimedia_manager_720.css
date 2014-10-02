@@ -1,9 +1,7 @@
 body { font-family: "Droid Sans"; margin: 0; padding: 0; width: 720px; height: 1280px; color: #fff; background:url(../images/bg_blue.png) no-repeat #000; position: relative; overflow: hidden;}
 div, p, ul { margin: 0; padding: 0; }
 .fontThemeColor {color:rgba(58, 174, 255, 1.0);}
-#clockElement{width:704px;overflow:hidden;padding:0 15px;margin:20px 0 30px 0;}
-.clock-element {float:right;}
-.date-element { float:left;}
+#clock-and-time{width:704px;overflow:hidden;padding:0 15px;margin:20px 0 30px 0;}
 .playerWrapper video { position: absolute; top: 230px; left: 55px; width: 610px; height: 300px; padding: 0; margin: 0; display: none; }
 .carouselWrapper { width: 720px; height: 300px; position: absolute; top: 230px; left: -15px; padding: 0; margin: 0; display: block; border-bottom-style: solid; border-bottom-width: 1px; }
 .carouselList { margin: 0; padding: 0; list-style: none; display: block; }
@@ -17,7 +15,7 @@ div, p, ul { margin: 0; padding: 0; }
 .backgroundAudioClass { position: absolute; top: 0; left: 0; width: 720px; height: 1280px; -webkit-background-size: cover; cover;
 background-size: cover; }
 
-.wrapper {width:720px;overflow:hidden;position:absolute;top:0;left:0;}
+.wrapper {width:720px;overflow:hidden;position:absolute;top:0;left:0;height:1280px;}
 
 
 
@@ -50,24 +48,24 @@ background-size: cover; }
 
 
 /*audio controls*/
-.audio-crtl-button { float: left; padding: 0 65px 0 0; width: 32px; height: 44px; }
+.audio-crtl-button { float: left; margin: 0 25px; width: 45px; height: 44px; }
 .audio-control-btns-wrapper { width: 680px; height: 45px; padding:0 0 0 40px;}
-.btn-previous { background: url(../images/btn-previous.png) no-repeat 0 top; }
-.btn-frewind { background: url(../images/btn-frewind.png) no-repeat 0 top; }
-.btn-play-pause { background: url(../images/btn-play-pause.png) no-repeat 0 top; }
+.btn-previous { background: url(../images/btn-previous.png) no-repeat 50% top; }
+.btn-frewind { background: url(../images/btn-frewind.png) no-repeat 50% top; }
+.btn-play-pause { background: url(../images/btn-play-pause.png) no-repeat 50% top; }
 .btn-play-pause.pause-on {background-position: 0 -48px;}
-.btn-fforward { background: url(../images/btn-fforward.png) no-repeat 0 top; }
-.btn-next { background: url(../images/btn-next.png) no-repeat 0 top; }
-.btn-shuffle { background: url(../images/btn-shuffle.png) no-repeat 0 top; }
-.btn-repeat { background: url(../images/btn-repeat.png) no-repeat 0 top; }
+.btn-fforward { background: url(../images/btn-fforward.png) no-repeat 50% top; }
+.btn-next { background: url(../images/btn-next.png) no-repeat 50% top; }
+.btn-shuffle { background: url(../images/btn-shuffle.png) no-repeat 50% top; }
+.btn-repeat { background: url(../images/btn-repeat.png) no-repeat 50% top; }
 
-.btn-previous-on { background-position: 0 -49px; }
-.btn-frewind-on { background-position: 0 -49px; }
-.btn-play-pause-pause { background-position: 0 -49px; } 
-.btn-fforward-on { background-position: 0 -49px; } 
-.btn-next-on { background-position: 0 -49px; } 
-.btn-shuffle-on { background-position: 0 -49px; }
-.btn-repeat-on { background-position: 0 -44px; }
+.btn-previous-on { background-position: 50% -49px; }
+.btn-frewind-on { background-position: 50% -49px; }
+.btn-play-pause-pause { background-position: 50% -49px; } 
+.btn-fforward-on { background-position: 50% -49px; } 
+.btn-next-on { background-position: 50% -49px; } 
+.btn-shuffle-on { background-position: 50% -49px; }
+.btn-repeat-on { background-position: 50% -44px; }
 
 #repeatButton span {font-size: 8pt; white-space: nowrap; position: relative; top: -25px;}
 
@@ -113,7 +111,7 @@ ul.no-bullets { list-style-type: none }
 .album-title-text { font-size: 42px; color: #3aaeff; }
 .album-thumbnail { width: 300px; height: 300px; }
 .clear-me { clear: both; }
-.playback-console-container { position:relative; width: 720px; height: 121px; margin: 450px 0 54px 0; }
+.playback-console-container { position:relative; width: 720px; height: 121px; margin: 450px 0 0 0; }
 .set-media-time-bar-holder { height: 55px; }
 /* ARTISTS */
 .musicLibraryContentList .musicElement { padding: 10px 0 10px 0; height: 70px; box-shadow: none; border-bottom-style: solid; border-bottom-width: 2px; line-height: 0; text-align: left; cursor: pointer; }
@@ -340,10 +338,13 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .searchBoxContainer{margin:20px 0 20px 28px;overflow:auto;width:100%}
 .searchingBox { width: 360px; height: 40px; border: 1px rgba(58, 174, 255, 1.0) solid; color: white; background-color: transparent; margin-right: 20px; padding-left:10px;}
 
-#geniviBottomPanel {width:720px;height:160px;position:relative;top:-50px;}
+#geniviBottomPanel {width:720px;height:210px;position:relative;background: url('../images/mm-bottom-panel-bg.png') no-repeat 0 bottom;}
 .logoCenter {
 margin:0 auto;
 width:270px;
 }
-
+.clock-element{float:left;size:200px;}
+.date-element {float:right;margin-right:20px;}
 .fakeButton { height: 20px; width: 119px; background-color: #0e3e5f; text-align: center; padding-top: 25px; font-weight: bold; }
+#topBar{height:85px;width:720px;background: url('../images/mm-top-header-bckgnd.png') no-repeat 0 0;}
+.header-title {opacity:.5;}
