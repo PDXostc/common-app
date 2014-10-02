@@ -10,6 +10,8 @@ INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 ifndef TIZEN_IP
 TIZEN_IP=TizenNDIS
 #TIZEN_IP=192.168.6.54
+#TIZEN_IP=192.168.4.196
+#TIZEN_IP=192.168.4.189
 endif
 
 dev: clean dev-common
@@ -32,6 +34,7 @@ run: install
 
 install: deploy
 	scp mm app@$(TIZEN_IP):
+	ssh root@$(TIZEN_IP) "rpm --force -ivh weekeyboard-0.0.2-0.i686.rpm"
 	ssh app@$(TIZEN_IP) "chmod +x mm"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'MediaManager' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/intelPoc26.MediaManager.wgt"
@@ -40,6 +43,7 @@ $(PROJECT).wgt : wgt
 
 deploy: dev
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
+	scp packaging/keyboard/weekeyboard-0.0.2-0.i686.rpm root@$(TIZEN_IP):
 
 all:
 	@echo "Nothing to build"
