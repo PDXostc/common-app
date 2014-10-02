@@ -113,6 +113,9 @@ function listItems(itemSet){
 
             clone.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
 
+            var artwork = getAlbumImage(itemSet[item].Artist);
+            clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);
+
             clone.querySelector(".content-listing").addEventListener("click",function(ev){
                 console.log("displayChildren");
                 displayChildren(ev);
@@ -296,7 +299,7 @@ function displayChildren(tapEvent){
 
 function getChildren(path){
 
-	Browser.listContainers({"Path":path},0,1000,['DisplayName','Type','Path'],function(obj,err){
+	Browser.listContainers({"Path":path},0,1000,['DisplayName','Type','Path','AlbumArtURL'],function(obj,err){
 		if(obj.length > 0){
             var nestedPath = pushPath(path); //pushes path to items
 			listItems(obj);
