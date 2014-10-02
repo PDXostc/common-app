@@ -227,17 +227,19 @@ function populateCurrentlyPlaying(song_data){
 
 //searchAndDisplay
 function searchAndDisplay(searchTerm){
-    
+    console.log("searchAndDisplay");
     var lastContainer = JSON.parse($("#libraryCloseSubPanelButton").data("nested"));
-    var searchPath = lastContainer[lastContainer.length-1];
+    //var searchPath = lastContainer[lastContainer.length-1];
+    var searchPath = lastContainer[0];
 
     searchString = "DisplayName contains \""+searchTerm+"\"";
-
+	console.log("Path:"+searchPath+"String:"+searchString);
     Browser.searchObjects({"Path":searchPath},0,1000,["*"],searchString,function(re,err){
         if(re.length > 0){
             listItems(re);
         }else{
             console.log("no items found");
+            console.log(err);
         }
     });
 }
