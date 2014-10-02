@@ -81,8 +81,8 @@ background-size: cover; }
 /* Media Carousel*/
 .caroufredsel_wrapper { display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 720px; height: 0px; margin: 0px; overflow: hidden; cursor: move; }
 .carousellist { text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 383px; margin: 0px; width: 720px; height: 0px; }
-#media-carousel-content { display:inline-block; margin: 0 auto; white-space:nowrap; height:238px;}
-.media-carousel-container { width: 720px; margin: 100px 0 58px 0; position:relative; background: none; overflow: hidden; border-bottom: #3399FF 1px solid; }
+#media-carousel-content { display:inline-block; margin: 0 0 0 50px; white-space:nowrap; height:238px;}
+.media-carousel-container { width: 650px; margin: 100px 0 58px 26px; position:relative; background: none; overflow: hidden; border-bottom: #3399FF 1px solid; }
 .media-carousel-container li img { width: 178px; }
 .media-carousel-container li {width: 180px; text-align: center; margin: 0 10px; display:inline-block;}
 .carousel-item-container { height: 240px; width: 240px; position: relative; }
