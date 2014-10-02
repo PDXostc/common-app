@@ -382,7 +382,9 @@ function updatePlayback(){
         var timeSeconds = (seconds%60);
         var timeMinutes = Math.floor(seconds/60);
 
-        //if(String(sec).length == 1){ timeSeconds = "0"+String(timeSeconds);}
+        if(String(timeSeconds).length == 1){ 
+            timeSeconds = "0"+String(timeSeconds);
+        }
 
         $("#songTime").html(timeMinutes+":"+timeSeconds);
         $(".progressPot").css("width",ratio+"%");
