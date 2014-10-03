@@ -46,7 +46,16 @@
  				
  				var libClose = $("#libraryCloseSubPanelButton");
 				libClose.data("nested",libClose.data("root"));
-				
+				var path = JSON.parse(libClose.data("root"));
+
+			    Browser.listContainers({"Path":path[0]},0,1000,["DisplayName","Path","Type"],function(obj,err){
+            		if(obj.length > 0){
+                		var newScreen = path;
+                		listItems(obj);
+            		}
+        		});
+
+			    $(".searchingBox").val("");
 			});
 
 			$('#libraryCloseSubPanelButton').click(function(){
