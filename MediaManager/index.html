@@ -110,9 +110,7 @@
 
 			$("#repeatButton").on("touchend",function(ev){
 				var repeatState = $(this).data("repeat_next_state");
-				Player.setRepeated(repeatState,function(r,e){
-					updateRepeatButton();
-				});
+				Player.setRepeated(repeatState,function(r,e){});
 			});
 
 			$("#shuffleButton").on("touchend",function(ev){
