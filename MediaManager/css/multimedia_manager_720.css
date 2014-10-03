@@ -234,6 +234,8 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 /* let li content bottom border fill ul parent by taking out margin-right:50px*/
 .libraryContent { margin-left: 90px; overflow-x: hidden; overflow-y: auto;/*-webkit-overflow-scrolling: touch;*/ }
 
+#listingWrapper{ height:1000px; overflow-y: hidden}
+
 
 .boxIconText { position: relative; height: 25px; }
 .boxIconRectangle { display: inline-block; vertical-align: middle; width: 55px; height: 15px; }

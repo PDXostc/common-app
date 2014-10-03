@@ -31,6 +31,7 @@
 <script type="text/javascript" src="js/mediamanager.js"></script>
 <script>
 	var coverScroll = {};
+	var libraryScroll = {};
 
 	$(document).ready(function(){
 
@@ -122,7 +123,7 @@
 			});
 
 			coverScroll = new IScroll(document.getElementById("scroll-container"),{scrollX:true});
-
+			libraryScroll = new IScroll(document.getElementById("listingWrapper"),{"tap":true});
 		},500);
 		
 	});
@@ -217,17 +218,19 @@
 	<div class="searchBoxContainer">
  		<input type="text" class="searchingBox fl-left inputs" value="search string"><div id="searchButton" class="fakeButton fl-left">SEARCH</div>
   	</div>
-	<ul class="musicContentListedItems">
-<!--		<template id="media-content-list"></template>-->
-<li class="content-listing">
-	<img src="images/replace-current-queue-btn.png" alt="" data-replace-current-btn="">
-    <img src="images/album-art-test.jpg" alt="" class="listingImageSize albumArt">
-	<p class="artist-track-title" data-artist-track-title=""></p>
-	<div class="album-and-track-totals"><span class="number-of-albums" data-album-number-total=""></span><span class="track-time-total" data-track-time-total=""></span>
-		<img src="images/add-to-current-queue-btn.png" alt="" data-add-to-current-btn="">
+  	<div id="listingWrapper">
+		<ul class="musicContentListedItems">
+		<!--		<template id="media-content-list"></template>-->
+			<li class="content-listing">
+				<img src="images/replace-current-queue-btn.png" alt="" data-replace-current-btn="">
+			    <img src="images/album-art-test.jpg" alt="" class="listingImageSize albumArt">
+				<p class="artist-track-title" data-artist-track-title=""></p>
+				<div class="album-and-track-totals"><span class="number-of-albums" data-album-number-total=""></span><span class="track-time-total" data-track-time-total=""></span>
+					<img src="images/add-to-current-queue-btn.png" alt="" data-add-to-current-btn="">
+				</div>
+			</li>
+		</ul>
 	</div>
-</li>
-</ul>
 </div>
 
 <!-- Kept from original to maintain original functionality of general app-->

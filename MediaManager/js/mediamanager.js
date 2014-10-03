@@ -110,10 +110,13 @@ function listItems(itemSet){
             var artwork = getAlbumImage(itemSet[item].Artist);
             clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);
 
-            clone.querySelector(".content-listing").addEventListener("click",function(ev){
+            clone.querySelector(".content-listing").addEventListener("tap",function(ev){
                 console.log("displayChildren");
                 displayChildren(ev);
             });            
+
+            libraryScroll.refresh();
+
         }else if(itemSet[item].Type == "music"){
 
             clone.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
@@ -126,11 +129,12 @@ function listItems(itemSet){
             var artwork = getAlbumImage(itemSet[item].AlbumArtURL);
             clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);
 
-            clone.querySelector(".play-now-btn").addEventListener("click",function(ev){playSongFromElement(ev)});
-            clone.querySelector(".add-to-playlist-btn").addEventListener("click",function(ev){
+            clone.querySelector(".play-now-btn").addEventListener("tap",function(ev){playSongFromElement(ev)});
+            clone.querySelector(".add-to-playlist-btn").addEventListener("tap",function(ev){
                 queueItemsFromElement(ev);
             });
 
+            libraryScroll.refresh();
             //carousel-items-template
         }
 
