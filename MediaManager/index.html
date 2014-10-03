@@ -25,6 +25,9 @@
 </script>
 
 <link href="css/multimedia_manager_720.css" rel="stylesheet" type="text/css">
+<link href="common/components/dateTIme/dateTime.css" rel="stylesheet" type="text/css">
+<!--<link href="common/css/style.css" rel="stylesheet" type="text/css">-->
+<!--<link href="css/style.css" rel="stylesheet" type="text/css">-->
 <script type="text/javascript" src="js/mediamanager.js"></script>
 <script>
 	var coverScroll = {};
@@ -108,8 +111,9 @@
 			});
 
 			$("#searchButton").click(function(ev){ 
-				console.log("event fired");
+				console.log("Search event fired");
 				var searchVal = $(".searchingBox").val();
+				console.log(searchVal);
 				searchAndDisplay(searchVal);
 			});
 
