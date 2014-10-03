@@ -90,12 +90,6 @@ function setRootContainer(){
 	});
 }
 
-function setSongsList(ob){
-	Browser.listItems(ob,0,100,["DisplayName","Path"],function(obj,err){
-	 songs = obj;
-	});
-}
-
 function listItems(itemSet){
 	$(".musicContentListedItems").empty();
 	var t = document.querySelector("#media-content-list");	
@@ -128,6 +122,9 @@ function listItems(itemSet){
             clone.querySelector(".content-listing").setAttribute("data-song_title",itemSet[item].DisplayName);
             clone.querySelector(".content-listing").setAttribute("data-artwork",itemSet[item].AlbumArtURL);
             clone.querySelector(".content-listing").setAttribute("data-song_duration",itemSet[item].Duration);
+
+            var artwork = getAlbumImage(itemSet[item].AlbumArtURL);
+            clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);
 
             clone.querySelector(".play-now-btn").addEventListener("click",function(ev){playSongFromElement(ev)});
             clone.querySelector(".add-to-playlist-btn").addEventListener("click",function(ev){

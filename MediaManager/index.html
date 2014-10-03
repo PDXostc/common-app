@@ -113,6 +113,10 @@
 				searchAndDisplay(searchVal);
 			});
 
+			$(".searchingBox").focus(function(ev){
+				$(".searchingBox").val("");
+			});
+
 			coverScroll = new IScroll(document.getElementById("scroll-container"),{scrollX:true});
 
 		},500);
