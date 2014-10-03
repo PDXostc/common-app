@@ -330,10 +330,8 @@ function goToPreviousList(){
     }else{
         Browser.listContainers({"Path":path},0,1000,["DisplayName","Path","Type"],function(obj,err){
             if(obj.length > 0){
-
                 var newScreen = path;
                 listItems(obj);
-
             }
         });
     }
