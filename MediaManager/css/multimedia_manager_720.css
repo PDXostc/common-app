@@ -113,6 +113,8 @@ ul.no-bullets { list-style-type: none }
 .clear-me { clear: both; }
 .playback-console-container { position:relative; width: 720px; height: 121px; margin: 450px 0 0 0; }
 .set-media-time-bar-holder { height: 55px; }
+#songSeek { width:0%; }
+
 /* ARTISTS */
 .musicLibraryContentList .musicElement { padding: 10px 0 10px 0; height: 70px; box-shadow: none; border-bottom-style: solid; border-bottom-width: 2px; line-height: 0; text-align: left; cursor: pointer; }
 .musicLibraryContentList .musicImage { width: 70px; height: 70px; display: inline-block; margin-right: 20px; background-position: center center; background-repeat: no-repeat; background-size: 100% 100%; }
