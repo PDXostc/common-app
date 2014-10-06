@@ -15,7 +15,10 @@ case "$action" in
         ;;
     start)
         echo "Starting media manager services..."
-		rm -f /home/app/.config/lightmediascanner/*
+		rm -f /home/app/.config/lightmediascannerd/*
+		ls /home/app/.config/lightmediascannerd/
+		rm -f /home/app/.cache/media-manager-artwork/*.jpg
+		ls /home/app/.cache/media-manager-artwork/
         lightmediascannerd -S -D /mnt &
         sleep 2
         rygel -n lo &
