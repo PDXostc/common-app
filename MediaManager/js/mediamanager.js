@@ -328,7 +328,7 @@ function goToPreviousList(){
         $('#musicLibrary').removeClass('toShow');
         //$(".musicContentListedItems").empty();
     }else{
-        Browser.listContainers({"Path":path},0,1000,["DisplayName","Path","Type"],function(obj,err){
+        Browser.listContainers({"Path":path},0,1000,["*"],function(obj,err){
             if(obj.length > 0){
                 var newScreen = path;
                 listItems(obj);
