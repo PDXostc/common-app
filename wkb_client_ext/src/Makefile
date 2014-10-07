@@ -24,7 +24,7 @@ $(TARGET): prepare $(OBJS)
 	cp -f $(TARGET) $(TARGET_DIR)
 
 .cpp.o:
-	$(CC) $(CFLAGS) -c -o $@  -I./ $<
+	$(CC) $(CFLAGS) `pkg-config --cflags glib-2.0` -c -o $@  -I./ $<
 
 .cc.o:
 	$(CC) $(CFLAGS) -c -o $@  -I./ $<

@@ -1,20 +1,24 @@
 
-all: lib
+all: lib themes
 
-install: lib
+install: 
 	make -C src install
-
-test: api
+	make -C themes install
 
 lib: 
 	make -C src
 
-api:
-	make -C ut api
+themes:
+	make -C themes
 
 clean:
 	make -C src clean
 	make -C ut clean
+
+test: api
+
+api:
+	make -C ut api
 
 
 .PHONY: all prepare clean
