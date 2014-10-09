@@ -7,10 +7,27 @@ License:    ASL 2.0
 URL:        http://www.tizen.org2
 Source0:    %{name}-%{version}.tar.bz2
 #BuildRequires:  common
+
 BuildRequires:  python
 BuildRequires:  desktop-file-utils
 
-%global plugin_list BoilerPlateExtension most 
+#BuildRequires:  pkgconfig(glibc)
+BuildRequires:  pkgconfig(eina)
+BuildRequires:  pkgconfig(eet)
+BuildRequires:  pkgconfig(evas)
+BuildRequires:  pkgconfig(ecore)
+BuildRequires:  pkgconfig(ecore-evas)
+BuildRequires:  pkgconfig(edje)
+BuildRequires:  pkgconfig(efreet)
+BuildRequires:  pkgconfig(eldbus)
+
+Requires:       ibus
+Requires:       ibus-hangul
+Requires:       ibus-libpinyin
+
+
+# global plugin_list BoilerPlateExtension most wkb_client
+%global plugin_list extension_common BoilerPlateExtension most wkb_client_ext
 
 %description
 A collection of IVI software
@@ -29,6 +46,12 @@ for plugin in %{plugin_list}; do
     make -C ${plugin} install DESTDIR=%{buildroot} PREFIX=%{_prefix}
 done
 
+
 %files
 %{_prefix}/lib/tizen-extensions-crosswalk/libbp.so
 %{_prefix}/lib/tizen-extensions-crosswalk/libmost.so
+%{_prefix}/lib/tizen-extensions-crosswalk/libwkb_client.so
+%{_prefix}/share/weekeyboard/blue_1080.edj
+%{_prefix}/share/weekeyboard/blue_720.edj
+%{_prefix}/share/weekeyboard/blue_600.edj
+
