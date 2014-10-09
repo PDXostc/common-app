@@ -42,7 +42,8 @@ function mminit(){
 	playQueue = [];
 
 	setRootContainer();
-    generatePlaylistElements();
+    //generatePlaylistElements();
+    generatePlaylistElementsPromise({}); 
     updateRepeatButton("REPEAT");
 
     MediaManager.registerNotificationHandler (function (method, params) {
@@ -103,7 +104,8 @@ function listItems(itemSet){
 		
         if(itemSet[item].Type == "container"){
 
-            $(clone.querySelector(".content-listing")).addClass("no-images");
+            //$(clone.querySelector(".content-listing")).addClass("no-images");
+
 
             clone.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
 
@@ -114,8 +116,6 @@ function listItems(itemSet){
                 console.log("displayChildren");
                 displayChildren(ev);
             });            
-
-            libraryScroll.refresh();
 
         }else if(itemSet[item].Type == "music"){
 
@@ -128,30 +128,103 @@ function listItems(itemSet){
 
             var artwork = getAlbumImage(itemSet[item].AlbumArtURL);
             clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);
-
-            clone.querySelector(".play-now-btn").addEventListener("tap",function(ev){playSongFromElement(ev)});
-            clone.querySelector(".add-to-playlist-btn").addEventListener("tap",function(ev){
-                queueItemsFromElement(ev);
-            });
-
-            libraryScroll.refresh();
-            //carousel-items-template
         }
 
+        clone.querySelector(".play-now-btn").addEventListener("tap",function(ev){addPlayPromiseCall(ev)});
+        clone.querySelector(".add-to-playlist-btn").addEventListener("tap",function(ev){addPlayPromiseCall(ev)}); //queueItemsFromElement(ev)
+        clone.querySelector(".content-listing").setAttribute("data-item_type",itemSet[item].Type);
+
 		$(".musicContentListedItems").append(clone);
+        libraryScroll.refresh();
 	}
 }
 
-
-function queueItemsFromElement(ev){
-    //var tc = document.querySelector("#carousel-items-template");
+function addPlayPromiseCall(ev){
     var song_data = $(ev.target).closest("li.content-listing").data();
-    //reintroduce when passing a url doesn't cause a segfault.
-    Player.enqueueUri(song_data.item_path,function(r,e){
-        generatePlaylistElements();
-    });
+
+    //A variable to pass down on whether or not we should empty and play this.
+    song_data.playNow = ($(ev.target).hasClass("play-now-btn"))? true:false;
+
+    $.when(cleanQueuePromise(song_data))
+    .then(function(res){return queueItemsFromElement(res)})
+    .then(function(res){return generatePlaylistElementsPromise(res)})
+    .then(function(input_data){
+            if(input_data.playNow == true){
+
+                Player.next(function(msg, error) {
+                    play();
+                    if (error)
+                        logError("Error going next: " + error.message);
+                });
+            }             
+        });
+
+    //event.stopPropogation throws an undefined error for some reason, using this instead.
+    ev.cancelBubble = true;
 }
 
+function cleanQueuePromise(data){
+    myPromise = new $.Deferred();
+    if(data.playNow == true){
+        Player.emptyPlayQueue(function(r){
+            myPromise.resolve(data);
+        });
+    }else{
+        myPromise.resolve(data);
+    }
+    return myPromise;
+}
+
+
+function queueItemsFromElement(song_data){
+
+    //create a new deferred object
+    queuePromise = new $.Deferred();
+
+    if(song_data.item_type =="container"){
+        Browser.listItems({"Path":song_data.item_path},0,1000,["*"],function(r,e){
+            for(song in r){
+                Player.enqueueUri(r[song].Path,function(x,err){
+                    //if this is the last item, resolve the deferred object
+                    if(song == r.length-1){
+                        queuePromise.resolve(song_data);
+                    }
+                });
+            }
+        });
+    }else{
+        Player.enqueueUri(song_data.item_path,function(r,e){
+            queuePromise.resolve(song_data);
+        });        
+    }
+
+    
+    return queuePromise;
+}
+
+function generatePlaylistElementsPromise(input_data){
+    playlistElementsOb = new $.Deferred();
+
+    Player.getCurrentPlayQueue(function(r,e){
+        $("#media-carousel-content").empty();
+        for(song in r){
+            song_object = {
+                "item_url":r[song].URLs[0],
+                "item_path":r[song].Path,
+                "artwork":r[song].AlbumArtURL,
+                "song_title":r[song].DisplayName,
+                "artist_name":r[song].Artist,
+                "album_title":r[song].AlbumTitle
+            }
+
+            addElementToCarousel(song_object);
+        }
+        playlistElementsOb.resolve(input_data);
+        coverScroll.refresh();
+    }); 
+    return playlistElementsOb;
+}
+/*
 function generatePlaylistElements(){
     Player.getCurrentPlayQueue(function(r,e){
         $("#media-carousel-content").empty();
@@ -170,7 +243,7 @@ function generatePlaylistElements(){
         coverScroll.refresh();
     });
 }
-
+*/
 
 //Returns a local webserver 
 function getAlbumImage(filepath){
@@ -247,34 +320,49 @@ function searchAndDisplay(searchTerm){
         }
     });
 }
-
-
-function playSongFromElement(playEvent){
-
-    songInfo = $(playEvent.target).closest("li.content-listing").data();
-
-    //dequeue all existing items
-    //enqueue new song
-    //play song
-    Player.emptyPlayQueue(function(r){
-
-
-        Player.enqueueUri(songInfo.item_path,function(r,e){
-            //addElementToCarousel(songInfo);
-            generatePlaylistElements();
-
-            //var back = $("#libraryCloseSubPanelButton")
-            //back.data("nested",back.data("root"));
-            //goToPreviousList();
-
-            populateCurrentlyPlaying(songInfo);
-
-            next();
-            play();
-        })
-    });
+/*
+function playSongElementPromiseCall(ev){
+    generatePlaylistElements();
+    populateCurrentlyPlaying(songInfo);
+    //next();
+    play();
 }
 
+function playSongFromElement(playEvent){
+//    playEvent.stopPropogation();
+
+    songInfo = $(playEvent.target).closest("li.content-listing").data();
+    playPromise = new $.Deferred();
+    
+
+    Player.emptyPlayQueue(function(r){
+
+        if(song_data.item_type =="container"){
+            Browser.listItems({"Path":song_data.item_path},0,1000,["*"],function(r,e){
+                for(song in r){
+                    Player.enqueueUri(r[song].Path,function(x,err){
+                        //if this is the last item, resolve the deferred object
+                        if(song == r.length-1){
+                            queuePromise.resolve();
+                        } 
+                        
+                    });
+                }
+            });
+        }else{
+            Player.enqueueUri(song_data.item_path,function(r,e){
+                //generatePlaylistElements();
+                queuePromise.resolve();
+            });        
+        }
+        Player.enqueueUri(songInfo.item_path,function(re,err){
+
+
+        })
+    });
+    playEvent.cancelBubble == true;
+}
+*/
 
 //Adds the supplied path to the stack stored in the back button for navigation.
 function pushPath(path){
