@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* BLUE THEME */
+/* GREEN THEME */
 
 images {
    image: "icon-backspace.png" COMP;
@@ -55,7 +55,7 @@ collections {
             type: RECT;
             description {
                state: "default" 0.0;
-               color: 0 0 0 0; /* Changes color of bottom keyboard background */
+               color: 0 0 0 0; /*Changes color of bottom keyboard background*/
                rel1 {
                   relative: 0.0 0.0;
                   offset: 0 0;
@@ -74,7 +74,7 @@ collections {
             type: RECT;
             description {
                state: "default" 0.0;
-               color: 10 86 131 150; /* Changes color of top keyboard background */
+               color: 7 27 1 240; /*Changes color of top keyboard background*/
                rel1 {
                   relative: 0.0 0.0;
                   offset: 0 (150*SCALE);
@@ -366,7 +366,7 @@ collections {
            effect: SHADOW BOTTOM_LEFT;                                 \
            description {                                               \
               state: "default" 0.0;                                    \
-              color: 226 238 246 255; /*Changes color of key labels*/  \
+              color: 230 242 227 255; /*Changes color of key labels*/  \
               color2: 0 0 0 255;                                       \
               color3: 0 0 0 0;                                         \
               rel1 {                                                   \
@@ -391,7 +391,7 @@ collections {
            effect: SHADOW BOTTOM_LEFT;                                 \
            description {                                               \
               state: "default" 0.0;                                    \
-              color: 128 163 184 255; /*Color for secondary key lables*/  \
+              color: 177 202 170 255; /*Color of secondary key lables*/  \
               color2: 0 0 0 255;                                       \
               color3: 0 0 0 0;                                         \
               rel1 {                                                   \
@@ -426,7 +426,7 @@ collections {
                }                                                       \
                rel2 {                                                  \
                   to: "key-img-"key_name;                              \
-                  relative: 1.0 0;                                     \
+                  relative: 1.0 0.0;                                   \
                   offset: 0 (-20*SCALE);                               \
                }                                                       \
                image {                                                 \
@@ -448,7 +448,7 @@ collections {
             effect: SHADOW BOTTOM_LEFT;                                \
             description {                                              \
                state: "default" 0.0;                                   \
-               color: 226 238 246 255; /*Changes color of hint key labels*/  \
+               color: 230 242 227 255; /*Changes color of hint key labels*/  \
                color2: 0 0 0 255;                                      \
                color3: 0 0 0 0;                                        \
                rel1 {                                                  \
@@ -709,7 +709,7 @@ collections {
             effect: SHADOW BOTTOM_LEFT;                                \
             description {                                              \
                state: "default" 0.0;                                   \
-               color: 226 238 246 255; /*Changes color of special key label*/  \
+               color: 230 242 227 255; /*Changes color of special key label*/  \
                color2: 0 0 0 255;                                      \
                color3: 0 0 0 0;                                        \
                rel1 {                                                  \
