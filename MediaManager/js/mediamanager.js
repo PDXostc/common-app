@@ -23,6 +23,9 @@
 var options = [];
 var songs = [];
 
+//Containers where allAll and PlayAll should be shown
+var addAllAllowed = ["Albums","Playlists"];
+
 var Indexer;
 var Browser;
 var Player;
@@ -40,6 +43,8 @@ function mminit(){
 	playlistCookie = "/706c61796c69737473";
 	activePlayQueueIndex = 0;
 	playQueue = [];
+
+    $("#libraryCloseSubPanelButton").data("breadcrumb_trail",JSON.stringify(["root"]));
 
 	setRootContainer();
     //generatePlaylistElements();
@@ -94,6 +99,10 @@ function setRootContainer(){
 function listItems(itemSet){
 	$(".musicContentListedItems").empty();
 	var t = document.querySelector("#media-content-list");	
+    var trail = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
+
+    var showImages = (addAllAllowed.indexOf(trail[trail.length-1]) >= 0)? true: false;
+    
 
 	for(item in itemSet){
 
@@ -103,10 +112,12 @@ function listItems(itemSet){
 		var clone = document.importNode(t.content,true);
 		
         if(itemSet[item].Type == "container"){
-
-            //$(clone.querySelector(".content-listing")).addClass("no-images");
-
-
+            
+            if(!showImages){
+                $(clone.querySelector(".content-listing")).addClass("no-images");    
+            }
+            
+            
             clone.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
 
             var artwork = getAlbumImage(itemSet[item].Artist);
@@ -381,10 +392,31 @@ function popPath(){
 }
 
 
+//Adds an item to the Breadcrumb, which we'll use for filtering
+function pushCrumb(crumb){
+    var trail = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
+    trail.push(crumb);
+    $("#libraryCloseSubPanelButton").data("breadcrumb_trail",JSON.stringify(trail));
+
+    return trail;
+}
+
+//Removes the last item from the Breadcrumb
+function popCrumb(){
+   var trail = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
+    var lastCrumb = trail.pop();
+    $("#libraryCloseSubPanelButton").data("breadcrumb_trail",JSON.stringify(trail));
+    
+    return trail[trail.length-1];
+}
+
 
 //The event handler call for getChildren()
 function displayChildren(tapEvent){
     var path = $(tapEvent.target).closest("li.content-listing").data("item_path");
+    var crumbName = $(tapEvent.target).closest("li.content-listing").children("p").html();
+
+    pushCrumb(crumbName);
     getChildren(path);
 }
 
@@ -416,6 +448,7 @@ function goToPreviousList(){
         $('#musicLibrary').removeClass('toShow');
         //$(".musicContentListedItems").empty();
     }else{
+        popCrumb()
         Browser.listContainers({"Path":path},0,1000,["*"],function(obj,err){
             if(obj.length > 0){
                 var newScreen = path;
