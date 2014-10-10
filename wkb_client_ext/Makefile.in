@@ -10,6 +10,7 @@ INCLUDE_PATH= \
     -I/usr/include/eo-1 \
     -I/usr/include/eldbus-1 \
     -I/usr/include/ecore-1 \
+    -I/usr/include/ecore-evas-1 \
     -I/usr/include/evas-1 \
     -I/usr/include/glib-2.0
 
