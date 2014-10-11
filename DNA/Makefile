@@ -8,8 +8,5 @@ SEND := ~/send
 
 wgtPkg:
 	zip -r $(PROJECT).wgt config.xml css icon.png index.html js images common
-	@echo -e '\e[0;31m'
-	@[ -f ~/send ] && send $(PROJECT).wgt || sleep 0
-	@echo -e '\e[0m'
 clean:
 	rm $(PROJECT).wgt

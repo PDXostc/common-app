@@ -1,24 +1,24 @@
 /* JavaScript Document
-TODO: Mouse control: Drag Scroll Vertical
+TODO:
+**> Icons should be attached to individual nucleotides, not rows!
+>>> Icons should start at first visible 'nucleotide' hex
+*
+! Horizontal scrolling of speeds > 1 relocate icon positions!
+? Fix horizontal scroll speed to stay at speed user set
+? Add original bars to interface
+? Retheme/Steal Bars/Informatics
+*
+* Mouse control: Drag Scroll Vertical
 */
 
 //Define Icons
-var IconFolder = "images/", IconLinks = [], IconType = ".png";
+var IconFolder = "images/", IconLinks = [], IconType = ".png", IconCount=0;
 var Debug = false;
-
-//addIcon syntax: Image Name, Callback Function
-addIcon('Dashboard',	function(){ tizen.application.launch("intelPoc12.Dashboard");			});
-addIcon('Fingerprint',	function(){ tizen.application.launch("intelPoc32.FingerPrint");			});
-addIcon('HVAC',			function(){ tizen.application.launch("intelPoc16.HVAC");				});
-addIcon('Media',		function(){ tizen.application.launch("intelPoc14.MultimediaPlayer");	});
-addIcon('Navigation',	function(){ tizen.application.launch("intelPoc11.navigation");			});
-addIcon('News',			function(){ tizen.application.launch("intelPoc30.News");				});
-addIcon('Phone',		function(){ tizen.application.launch("intelPoc15.phone");				});
-addIcon('Weather',		function(){ tizen.application.launch("intelPoc31.Weather");				});
 
 //Definitions
 var Width = 1080,
-	Height = 1920,
+	Height = 1920, /*1920 or 1800, 1220 for testing*/
+	VerticalOffset = -200, /*-200, 200 for testing */
 	ClickSensitivity = 10,
 	DragSensitivity = 20,
 	Edges = true,
@@ -33,41 +33,44 @@ var Width = 1080,
 	AnimatedLines = true,
 	AnimationHeight = 6,
 	AnimationHeight2 = 12,
+	ShowFPS = 1,
 	Background = "images/Hex-Background.jpg",
-	
-	/* === === === === === */
-	
-	RungCount = 12,
-	
-	StrandCount = 3,
-	
-	/* === === === === === */
-	
 	ClickableDistance = 0.0; //(1.0 to -1.0) Larger numbers allow farther icon clicks
-	//Number of strands to display (4-360)
+	
+	/* === === === === === */
+	
+var MinRungCount = 6,
+	MaxRungCount = 10,
+	MinStrandCount = 2,
+	SkipRows=2,
+	StrandCount=2,
+	RungCount=10;
+
+	/* === === === === === */
+	
+	//RungCount: Number of rungs to display (4-360)
 	//Change to constant 41 or 81 when vertical scrolling is complete?
 
 //Globals! [Determines framerate dynamically via FPS setting]
 var ImageCenter = 0,
-	Icon1Size = 150,
-	Icon2Size = 117,
+	NucleotideSize = 150,
+	IconSize = 120,
 	FPS = 60,
 	Framerate = 1000/FPS,
-	Speed=0,
+	Speed=-1,
 	Count=0,
 	MinSpeed = 1,
 	MaxSpeed = 5,
-	VerticalOffset = -150,
-	WidthMultiplier = 0.30;
-
-//Calculations!
-var RungSpacing = 1/RungCount*(Height+480),
-	Twist = 360 / RungCount,
+	AnimateStrand = null,
+	listenerID = null,
+	WidthMultiplier = 0.30,
+	RungSpacing = 0,
+	Twist = 0,
 	TwistHeight = -40,
-	Width=Width*WidthMultiplier;
-
-//Settings array
-var Setting=[RungCount,RungSpacing,Twist,TwistHeight,Speed,VerticalOffset,Width,WidthMultiplier,FPS,ImageCenter];
+	Setting=[];
+	
+//Temp
+var iter=0;
 
 //Empty globals
 var canvas = $("#dnaCanvas"),
@@ -83,6 +86,7 @@ G.LHDist=0, G.SpeedTimer=0; //Last Horizontal Distance, for drag speed
 G.Timer=0; //How long screen is touched
 G.Icon=0; //Icon Count
 G.Largest=0;
+G.Callback=false;
 G.Mousedown=false;
 G.MouseX=0, G.MouseY=0; //Current Mouse Coords
 G.LastMouseX=0, G.LastMouseY=0; //Last Mouse Coords
@@ -90,33 +94,20 @@ G.Q=[]; //Drawing Queue
 G.X={},G.Y={},G.Num={};
 G.LastX={}, G.LastY={}, G.Strand={};
 G.NewCos={}, G.SColor={}, G.HexScale={}, G.IconScale={};
-for(var i=0;i<StrandCount;i++){
-	G.X[i]=0;
-	G.Y[i]=0;
-	G.Num[i]=0;
-	G.LastX[i]=0;
-	G.LastY[i]=0;
-	G.Strand[i]=0;
-	G.NewCos[i]=0;
-	G.SColor[i]="";
-	G.HexScale[i]=0;
-	G.IconScale[i]=0;
-}
 G.HotZone = {};
-for(var i=0;i<RungCount*StrandCount;i++){
-	G.HotZone[i]={};
-}
 
 var img=new Image();
 img.src=Background;
 
-var fpsFilter = 20; // the low pass filter to apply to the FPS average
+var fpsFilter = 2; // the low pass filter to apply to the FPS average
 var fpsDesired = 50; // your desired FPS, also works as a max
 var fpsAverage = fpsDesired;
 var timeCurrent, timeLast = Date.now();
 var drawing = false;
+
+//FPS Functions
 function fpsUpdate() {
-    //textAt(100,200,"FPS: "+fpsAverage.toFixed(2));
+    textAt(50,450,"FPS: "+fpsAverage.toFixed(2));
 }
 function frameDraw() {
     if(drawing) { return; } else { drawing = true; }
@@ -130,7 +121,9 @@ function frameDraw() {
 
     drawing = false;
 }
-setInterval(frameDraw, 10 / fpsDesired);
+if(ShowFPS){
+	setInterval(frameDraw, 10 / fpsDesired);
+}
 
 //Constants
 C = {
@@ -138,14 +131,13 @@ C = {
 };
 
 //Object Prototypes
-DNA = function(commonContext, Twist, XVal, YVal, Height, Width, rungIcon) {
+DNA = function(commonContext, Twist, XVal, YVal, Height, Width) {
     this.x = XVal;
     this.y = YVal;
     this.radiusHeight = Height;
     this.radiusWidth = Width;
     this.revS = Math.round(Twist);
     this.Context = commonContext;
-    this.rungIcon = rungIcon[0];
     this.Update();
 };
 DNA.prototype = {
@@ -205,7 +197,6 @@ DNA.prototype = {
 		a.lineWidth=5.0;
 		str={};
 		for(var i in G.X){
-		/* */
 			G.NewCos[i]=(G.LastCos+G.Strand[i])/2;
 			//Use the cosine value to obtain proper color gradient for helix rung
 			if(Gradients){
@@ -253,72 +244,74 @@ DNA.prototype = {
 		G.LastCos=G.Strand[0];
     },
     paintIcons: function() {
+		//Called each rung
         var a = this.Context;
         this.UpdateStrand(this.posCacheValues[Math.floor(this.revS)]);
-		
-		G.Icon++;Count++;
-		
-		if(G.Icon>IconLinks.length || this.rungIcon==0)
-			G.Icon=1;
-		if(Count>RungCount)
-			Count=1;
+
+		Count++;
+		if(Count>=RungCount)
+			Count=0;
+
 		//Side Images
 		var SideImg={};
 		//Center Image
-        var CenterImg = G.Nucleotides[this.rungIcon];
+        var CenterImg = IconLinks[StrandCount][0];
 
 // --------------------------------------
-
+		//Increment through the icons
 		for(var i in G.X){
+			//i=Current Strand [0-3]
+			//Count=Current Rung [0-13]
+			//G.Icon=Current Icon [0-20]
+			//G.Num[i]=Current Node [0-35]
+			//IconLinks[] = [image, link]
+
+			var Buffer = SkipRows*StrandCount;
 			i=parseInt(i);
-			G.Num[i]=Count*StrandCount-3+i;
+			G.HexScale[i]=NucleotideSize;
+			G.IconScale[i]=IconSize;
+			G.Num[i]=Count*StrandCount-StrandCount+i;
 			
-			SideImg[i] = G.Nucleotides[this.rungIcon];
+			G.Icon=G.Num[i]-Buffer;
+			while(G.Icon>=IconLinks.length)
+				G.Icon=G.Icon-IconLinks.length;
 			
-			G.HexScale[i]=Icon1Size;
-			G.IconScale[i]=Icon2Size;
+			//If strand is within buffered zone
+			var StrandLength = StrandCount*RungCount;
+			if(G.Num[i] >= Buffer && G.Num[i] < StrandLength-Buffer){
 
-			if(ImageCenter===2){}
-			else if(ImageCenter)
-				a.drawImage(CenterImg, this.x-(G.HexScale[0]/2), this.y-(G.HexScale[0]/2))
-			else{
-				//scale the images according to the cosine
-				if(Scaling){
-					G.HexScale[i]=rescale(G.HexScale[i],G.Strand[i]);
-					G.IconScale[i]=rescale(G.IconScale[i],G.Strand[i]);
-				}
-				buildStrand(G.Num[i],G.X[i],G.Y[i],G.HexScale[i],G.Strand[i],IconLinks[G.Icon-1][1]);
-				
-				//Todo: Draw smaller images behind larger ones?
-				drawPolygon(a, G.Strand[i], document.getElementById('nucleotideYellow'), G.X[i],G.Y[i],G.HexScale[i], 1);
-				placeImage(a, G.Strand[i], SideImg[i], G.X[i],G.Y[i],G.IconScale[i],0,1);
-				//var Canv = $("#dnaCanvas");
-				//draw smaller image behind larger one, at proper alpha transparency
-				/*if(G.HexScale[0]<G.HexScale[1]){
-					placeImage(a, G.Strand[0], document.getElementById('nucleotideYellow'), G.X[0],G.Y[0],G.HexScale[0], 1);
-					placeImage(a, G.Strand[0], SideImg[0], G.X[0],G.Y[0],G.IconScale[0]);
+				//Assign icon images
+				SideImg[i] = IconLinks[G.Icon][0];
 
-					placeImage(a, G.Strand[1], document.getElementById('nucleotideYellow'), G.X[1],G.Y[1],G.HexScale[1], 1);
-					placeImage(a, G.Strand[1], SideImg[1], G.X[1],G.Y[1],G.IconScale[1]);
-				}else{
-					placeImage(a, G.Strand[1], document.getElementById('nucleotideYellow'), G.X[1],G.Y[1],G.HexScale[1], 1);
-					placeImage(a, G.Strand[1], SideImg[1], G.X[1],G.Y[1],G.IconScale[1]);
-
-					placeImage(a, G.Strand[0], document.getElementById('nucleotideYellow'), G.X[0],G.Y[0],G.HexScale[0], 1);
-					placeImage(a, G.Strand[0], SideImg[0], G.X[0],G.Y[0],G.IconScale[0]);
-				}*/
-
-				//display debugging information: Bounding boxes and link text
-				if (Canv.length && Canv[0].getContext && Debug){
-					var Context = Canv[0].getContext("2d");
-					Context.lineWidth=2.0;
-					//display hotzones and function callbacks
-					if(G.HotZone[G.Num[i]]["Cos"] < ClickableDistance && IgnoreDistantLinks){
-						drawRect(Context,G.HotZone[G.Num[i]]["X"],G.HotZone[G.Num[i]]["Y"],G.HotZone[G.Num[i]]["X"]+G.HotZone[G.Num[i]]["S"],G.HotZone[G.Num[i]]["Y"]+G.HotZone[G.Num[i]]["S"],"#FF0000");
-						textAt(G.HotZone[G.Num[i]]["X"],G.HotZone[G.Num[i]]["Y"],G.HotZone[G.Num[i]]["F"].toString().substring(13,G.HotZone[G.Num[i]]["F"].toString().length-1));
+				if(ImageCenter===2){}
+				else if(ImageCenter)
+					a.drawImage(CenterImg, this.x-(G.HexScale[0]/2), this.y-(G.HexScale[0]/2))
+				else{
+					//scale the images according to the cosine
+					if(Scaling){
+						G.HexScale[i]=rescale(G.HexScale[i],G.Strand[i]);
+						G.IconScale[i]=rescale(G.IconScale[i],G.Strand[i]);
 					}
-					//display cosines
-					textAt(G.X[i],G.Y[i], G.Strand[i]);
+					
+					//Create model for nucleotide icons
+					buildStrand(G.Num[i],G.X[i],G.Y[i],G.HexScale[i],G.Strand[i],IconLinks[G.Icon][1]);
+					
+					//Add images to queue
+					placeImage(a, G.Strand[i], document.getElementById('nucleotide'), G.X[i],G.Y[i],G.HexScale[i], 1);
+					placeImage(a, G.Strand[i], SideImg[i], G.X[i],G.Y[i],G.IconScale[i],0,1);
+
+					//display debugging information: Bounding boxes and link text
+					if (Canv.length && Canv[0].getContext && Debug){
+						var Context = Canv[0].getContext("2d");
+						Context.lineWidth=2.0;
+						//display hotzones and function callbacks
+						if(G.HotZone[G.Num[i]]["Cos"] < ClickableDistance && IgnoreDistantLinks){
+							drawRect(Context,G.HotZone[G.Num[i]]["X"],G.HotZone[G.Num[i]]["Y"],G.HotZone[G.Num[i]]["X"]+G.HotZone[G.Num[i]]["S"],G.HotZone[G.Num[i]]["Y"]+G.HotZone[G.Num[i]]["S"],"#FF0000");
+							textAt(G.HotZone[G.Num[i]]["X"],G.HotZone[G.Num[i]]["Y"],G.HotZone[G.Num[i]]["F"].toString().substring(13,G.HotZone[G.Num[i]]["F"].toString().length-1));
+						}
+						//display cosines
+						textAt(G.X[i],G.Y[i], G.Strand[i]);
+					}
 				}
 			}
 		}
@@ -340,18 +333,14 @@ var Display = function(commonContext) {
 Display.prototype = {
     createStrand: function(Twist, XVal, Setting) {
 	//var Setting=[1RungSpacing,2Twist,3TwistHeight,5VerticalOffset,6Width];
-		Icon=Twist;
 		Length=IconLinks.length;
-		while(Icon>Length-1){
-			Icon=Icon-Length;
-		}
 		var YVal=Setting[5] + Twist * Setting[1];
 		var Width=Setting[6];
 		var Height=Setting[3];
 		Twist=Twist*Setting[2];
 
         //var ReturnVal = new DNA(this.commonContext, Twist, XVal, YVal, Height, Width, [Icon,Icon]); //return ReturnVal;
-        return new DNA(this.commonContext, Twist, XVal, YVal, Height, Width, [Icon,Icon]);
+        return new DNA(this.commonContext, Twist, XVal, YVal, Height, Width);
     }
 };
 
@@ -369,17 +358,7 @@ var Spinner = function(fps, canvas, Context, models) {
 };
 Spinner.prototype = {
     Update: function() {
-        var e = [];
-		for(i=0;i<RungCount;i++){
-			Icon=i;
-			Length=IconLinks.length;
-			while(Icon>Length-1){
-				Icon=Icon-Length;
-			}
-			e.push(IconLinks[Icon][0]);
-		}
-        G.Nucleotides = e;
-        this.opacity = 0
+        this.opacity = 0;
     },
     play: function() {
         var b = this;
@@ -398,20 +377,20 @@ Spinner.prototype = {
 		//redraw canvas
         b.canvas.width = b.canvas.width;
 		b.Context.drawImage(img,0,0,1080,1920);
-        fpsUpdate();
+		if(ShowFPS)
+			fpsUpdate();
 		//butt,round,square
         b.Context.lineCap = "round";
         if (b.opacity < 1) {
             b.opacity += 0.04;
             $(b.canvas).css("opacity", b.opacity);
         }
-        var Length = b.models.length;
-        for (var c = 0; c < Length; c++) {
+        for (var c = 0; c < RungCount; c++) {
             var d = b.models[c];
             d.moveToNext();
             d.paintLines(this.offset);
         }
-        for (var c = 0; c < Length; c++) {
+        for (var c = 0; c < RungCount; c++) {
             var d = b.models[c];
             d.paintIcons(this.offset);
         }
@@ -473,7 +452,8 @@ Spinner.prototype = {
 						}
 					}
 				}catch(e){
-					console.log('Runs '+G.HotZone[i]["F"]);
+					if(typeof(G.HotZone[i])!=='undefined')
+						console.log('Runs '+G.HotZone[i]["F"]);
 				}
 			}
 			//stop the mouse click routine!
@@ -494,16 +474,17 @@ function unqueue(Canvas){
 	G.Q.sort(function(a,b) { return a.o - b.o; });
 	
 	for(i=G.Q.length;i>0;i--){
-		if(typeof(G.Q[i])!=="undefined"){
+		if(typeof(G.Q[i])!== typeof undefined){
 			if(G.Q[i]["t"]==0)
-			drawLine(Canvas,G.Q[i]["x"],G.Q[i]["y"],G.Q[i]["x2"],G.Q[i]["y2"],G.Q[i]["c"]);
-			else
-			Canvas.drawImage(G.Q[i]["c"],G.Q[i]["x"],G.Q[i]["y"],G.Q[i]["x2"], G.Q[i]["y2"]);
+				drawLine(Canvas,G.Q[i]["x"],G.Q[i]["y"],G.Q[i]["x2"],G.Q[i]["y2"],G.Q[i]["c"]);
+			else if(typeof G.Q[i]["c"] != "undefined"){
+				Canvas.drawImage(G.Q[i]["c"],G.Q[i]["x"],G.Q[i]["y"],G.Q[i]["x2"], G.Q[i]["y2"]);
+			}
 			G.Q.pop();
 		}
 	}
 }
-
+var Increm=0;
 //Graphics functions
 function drawLine(a,x1,y1,x2,y2,color, color2){
 	if(false){
@@ -526,7 +507,7 @@ function drawLine(a,x1,y1,x2,y2,color, color2){
 	}
 	
 	dist=getDistance(x1,y1,x2,y2);
-	ang=getAngle(x1,y1,x2,y2)-AnimationHeight/8; //angles were misbehaving, and Math.floor made them wibbly
+	ang=getAngle(x1,y1,x2,y2)-AnimationHeight/32; //angles were misbehaving, and Math.floor made them wibbly
 
 	var imgPreload=document.getElementById("Particle");
 	var imgPreload2=document.getElementById("Particle2");
@@ -535,8 +516,10 @@ function drawLine(a,x1,y1,x2,y2,color, color2){
 	if(color!=="#66CCFF"){
 		 img=imgPreload2;
 		 ah=AnimationHeight2;
+	}else{
+		ang=ang-0.5; //rung center fix
 	}
-	drawRotated(ang,img,x1,y1,ah,dist,color);
+	drawRotated(ang,img,x1-5,y1,ah,dist,color); //offset to account for outer line width
 }
 function drawRotated(degrees,img,x1,y1,AnimationHeight,dist,image){
 	context.save();
@@ -546,45 +529,6 @@ function drawRotated(degrees,img,x1,y1,AnimationHeight,dist,image){
 	context.drawImage(img,0,0,dist+2,AnimationHeight); //adding pixels to dist connects all the images
 	context.globalAlpha = 1.0;
 	context.restore();
-}
-function drawPolygon(ctx, Strand, image, x, y, scale, force){
-	placeImage(ctx, Strand, image, x, y, scale, force);
-	/*
-	//a, x, y, radius, sides, startAngle, anticlockwise
-	//unneeded: image, force
-	//needed: scale, color, fillcolor, startangle?
-	ctx.beginPath();
-	//polygon(ctx,125,125,100,5,-Math.PI/2);
-		switch(true){
-			case sides<1:
-				return;
-			case sides==1:
-				ctx.fillRect(x,y,1,1);
-				return;
-			case sides==2:
-				var a = (Math.PI * 2)/sides;
-				a = anticlockwise?-a:a;
-				ctx.save();
-				ctx.translate(x,y);
-				ctx.rotate(startAngle);
-				ctx.moveTo(radius/2,0);
-				break;
-			default:
-				var a = (Math.PI * 2)/sides;
-				a = anticlockwise?-a:a;
-				ctx.save();
-				ctx.translate(x,y);
-				ctx.rotate(startAngle);
-				ctx.moveTo(radius,0);
-		}
-		for (var i = 1; i < sides; i++) {
-			ctx.lineTo(radius*Math.cos(a*i),radius*Math.sin(a*i));
-		}
-		ctx.closePath();
-		ctx.restore();
-	context.fillStyle="rgba(227,11,93,0.75)";
-	context.fill();
-	context.stroke();*/
 }
 function drawRect(C,X1,Y1,X2,Y2,Color){
 	drawLine(C,X1,Y1,X1,Y2,Color);
@@ -610,7 +554,7 @@ function placeImage(canvas, cosine, img, x, y, scale, force, override){
 		canvas.globalAlpha = (cosine+1)/2;
 	scalex=scale;
 	if(Flipping) scalex=Math.abs(cosine)*scalex;
-	if(HideBacks && !force) scalex=(cosine > 0 ? 0 : cosine)*scalex;
+	if(HideBacks && !force) scalex=(cosine > 0 ? 0 : 1)*scalex;
 	scaley=scale;
 	
 	//canvas.drawImage(img,x-(scalex/2),y-(scaley/2),scalex,scaley);
@@ -644,11 +588,18 @@ function writeMessage(message){
 	context.fillStyle = 'white';
 	context.fillText(message, 15, 25);
 }
-function addIcon(Icon, Callback){
+function addIcon(Icon, Callback, Path, Id){
 	var img=new Image();
-	img.src=IconFolder+Icon+IconType;
+	if(Path)
+		img.src=Path;
+	else
+		img.src=IconFolder+Icon+IconType;
 	img.onload=function(){}
-	IconLinks.push([img,Callback]);
+	if(Callback!==null)
+		IconLinks.push([img,Callback]);
+	else
+		IconLinks.push([img,function(){ tizen.application.launch(Id); }])
+	IconCount++;
 }
 function rescale(scale,cos){
 	return scale-((cos+1)/2)*(scale/2);
@@ -714,6 +665,7 @@ function initDrag(){
 	G.LastMouseY=G.MouseY;
 }
 
+//Misc functions
 function launchSettings(){
 	if (typeof Settings === 'undefined') {
 		loadScript('./common/components/settings/js/settings.js', function(path, status) {
@@ -730,16 +682,107 @@ function initListeners(){
 	canvas[0].addEventListener('mouseup', function(evt) {	setMousedown(false);	}, false);
 	canvas[0].addEventListener('mouseout', function(evt) {	setMousedown(false);	}, false);
 	canvas[0].addEventListener('mousemove', function(evt) {	getMouseloc(evt);		}, false);
-	
-	$('#BackIcon').click(function(evt) {		tizen.application.launch("intelPoc10.HomeScreen");	}, false);
-	$("#GridIcon").click(function(evt) {		$("#homeScrAppGridView").fadeIn();	}, false);
-	$("#settingsIcon").click(function(evt) {	launchSettings();	}, false);
+}
+
+//App Icon functions
+function onAppRecallSuccess(list) {
+	var registeredApps = {"Home Screen":"/common/images/homescreen_icon.png",
+						   Browser:"/common/images/browser_icon.png", 
+						   Boilerplate:"/common/images/boilerplate_icon.png",
+						   gestureGame:"/common/images/GestureGame_icon.png",
+						   News:"./images/News.png",
+						   HVAC:"./images/HVAC.png",
+						   Dialer:"./images/Phone.png",
+						   Phone:"./images/Phone.png",
+						   Dashboard:"./images/Dashboard.png",
+						   Weather:"./images/Weather.png",
+						   Navigation:"./images/Navigation.png",
+						   "Multimedia Player":"./images/Media.png",
+						   "Finger Print":"./images/Fingerprint.png",
+						   Handwriting:"/common/images/handwriting_icon.png"};
+	var i = 0;
+	var path="";
+	try {
+		index = 0;
+		var applications = [];
+		
+		list.sort(function(x, y) {
+			return x.appName > y.appName ? 1 : -1;
+		});
+
+		for (i = 0; i < list.length; i++) {
+			var app = list[i];
+			if (registeredApps[app.name]) {
+				addIcon(app.name, null, registeredApps[app.name], app.id);
+			}else{
+				if(app.iconPath.substr(app.iconPath.length - 4) != ".png"){
+					var path="./images/tizen_32.png";
+				}else{
+					var path=app.iconPath;
+				}
+				addIcon(app.name, null, path, app.id);
+			}
+		}
+	} catch (exc) {
+		console.log(exc.message);
+	} finally {
+		G.Callback();
+	}
+}
+function getInstalledApps(callback){
+	G.Callback = callback;
+	//Add defaults until app pulls icons properly
+	/*for(i=0;i<SkipRows*StrandCount;i++){
+		addIcon('Dashboard',	function(){ tizen.application.launch("intelPoc12.Dashboard");			});
+	}*/
+	"use strict";
+	if (typeof tizen !== 'undefined') {
+		try {
+			// get the installed applications list
+			tizen.application.getAppsInfo(onAppRecallSuccess, function(err) {
+				// Workaround due to https://bugs.tizen.org/jira/browse/TIVI-2018
+				window.setTimeout(function() {
+					getInstalledApps();
+				}, 1000);
+				onError(err);
+			},callback);
+		} catch (exc) {
+			console.error(exc.message);
+		}
+	}else{
+		//Add some defaults for the Web Simulator
+		//addIcon syntax: Image Name, Callback Function
+		addIcon('Dashboard',	function(){ tizen.application.launch("intelPoc12.Dashboard");			});
+		addIcon('Fingerprint',	function(){ tizen.application.launch("intelPoc32.FingerPrint");			});
+		addIcon('HVAC',			function(){ tizen.application.launch("intelPoc16.HVAC");				});
+		addIcon('Media',		function(){ tizen.application.launch("intelPoc14.MultimediaPlayer");	});
+		addIcon('Navigation',	function(){ tizen.application.launch("intelPoc11.navigation");			});
+		addIcon('News',			function(){ tizen.application.launch("intelPoc30.News");				});
+		addIcon('Phone',		function(){ tizen.application.launch("intelPoc15.phone");				});
+		addIcon('Weather',		function(){ tizen.application.launch("intelPoc31.Weather");				});
+		//IconCount=30; //for testing purposes
+		callback();
+	}
 }
 
 var Layout = new Display(context);
 
-//Main Loop
-$(function() {
+getInstalledApps(function(){
+	//Calculations!
+	//Increase strands to hold appropriate number of icons when MaxRungCount is exceeded
+	StrandCount = MinStrandCount;
+	while(IconCount > MaxRungCount * StrandCount){StrandCount++;}
+
+	//Increase rungs to hold appropriate number of icons when necessary
+	RungCount = (IconCount<MinRungCount*StrandCount) ? MinRungCount+SkipRows*2 : Math.ceil(IconCount/StrandCount)+SkipRows*2;
+
+	RungSpacing = 1/RungCount*(Height+480),
+	Twist = 360 / RungCount,
+	TwistHeight = -40,
+	Width = Width*WidthMultiplier;
+	
+	Setting=[null,RungSpacing,Twist,TwistHeight,Speed,VerticalOffset,Width,WidthMultiplier,FPS,ImageCenter];
+
 	initListeners();
     AnimateStrand = null;
 	//Create and call anonymous function
@@ -747,7 +790,7 @@ $(function() {
 		if (AnimateStrand !== null) AnimateStrand.pause();
         if (canvas.length && canvas[0].getContext) {
 			//var Setting=[0RungCount];
-            for (var numStrand = 0; numStrand < Setting[0]; numStrand++) {
+            for (var numStrand = 0; numStrand < RungCount; numStrand++) {
                 DnaArray.push(Layout.createStrand(numStrand, (canvas[0].width/2), Setting));
             }
             AnimateStrand = new Spinner(FPS, canvas[0], context, DnaArray);
