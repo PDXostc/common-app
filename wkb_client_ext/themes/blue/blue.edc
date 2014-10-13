@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* BLUE THEME */
+/*BLUE THEME*/
 
 images {
    image: "icon-backspace.png" COMP;
@@ -416,12 +416,12 @@ collections {
             mouse_events: 0;                                           \
             description {                                              \
                state: "default" 0.0;                                   \
-               min: KEY_WIDTH KEY_HEIGHT;                              \
-               max: KEY_WIDTH KEY_HEIGHT;                              \
+               min: KEY_WIDTH*1.4 KEY_HEIGHT*1.4; /*Size of hint keys*/  \
+               max: KEY_WIDTH*1.4 KEY_HEIGHT*1.4;                      \
                fixed: 1 1;                                             \
                rel1 {                                                  \
                   to: "key-img-"key_name;                              \
-                  relative: 0.0 0.3; /*Relative position of hint keys to primary keys*/  \
+                  relative: 0.0 -0.2; /*Relative position of hint keys to primary keys*/  \
                   offset: 0 ((-20*SCALE)-KEY_HEIGHT);                  \
                }                                                       \
                rel2 {                                                  \
@@ -448,7 +448,7 @@ collections {
             effect: SHADOW BOTTOM_LEFT;                                \
             description {                                              \
                state: "default" 0.0;                                   \
-               color: 226 238 246 255; /*Changes color of hint key labels*/  \
+               color: 30 78 106 255; /*Changes color of hint key labels*/  \
                color2: 0 0 0 255;                                      \
                color3: 0 0 0 0;                                        \
                rel1 {                                                  \
@@ -461,7 +461,7 @@ collections {
                }                                                       \
                text {                                                  \
                   font: "DroidSans";                                   \
-                  size: (44*SCALE);                                    \
+                  size: (70*SCALE); /*Text size of hint key labels*/   \
                   text: key_low;                                       \
                }                                                       \
                visible: 0;                                             \

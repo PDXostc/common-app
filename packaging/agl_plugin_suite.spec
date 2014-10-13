@@ -6,12 +6,10 @@ Group:      Applications/System
 License:    ASL 2.0
 URL:        http://www.tizen.org2
 Source0:    %{name}-%{version}.tar.bz2
-#BuildRequires:  common
 
 BuildRequires:  python
 BuildRequires:  desktop-file-utils
 
-#BuildRequires:  pkgconfig(glibc)
 BuildRequires:  pkgconfig(eina)
 BuildRequires:  pkgconfig(eet)
 BuildRequires:  pkgconfig(evas)
@@ -26,7 +24,6 @@ Requires:       ibus-hangul
 Requires:       ibus-libpinyin
 
 
-# global plugin_list BoilerPlateExtension most wkb_client
 %global plugin_list extension_common BoilerPlateExtension most wkb_client_ext
 
 %description
@@ -54,4 +51,10 @@ done
 %{_prefix}/share/weekeyboard/blue_1080.edj
 %{_prefix}/share/weekeyboard/blue_720.edj
 %{_prefix}/share/weekeyboard/blue_600.edj
+%{_prefix}/share/weekeyboard/green_1080.edj
+%{_prefix}/share/weekeyboard/green_720.edj
+%{_prefix}/share/weekeyboard/green_600.edj
+%{_prefix}/share/weekeyboard/amber_1080.edj
+%{_prefix}/share/weekeyboard/amber_720.edj
+%{_prefix}/share/weekeyboard/amber_600.edj
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* AMBER THEME */
+/*AMBER THEME*/
 
 images {
    image: "icon-backspace.png" COMP;
@@ -74,7 +74,7 @@ collections {
             type: RECT;
             description {
                state: "default" 0.0;
-               color: 44 28 1 200; /*Changes color of top keyboard background*/
+               color: 23 14 0 200; /*Changes color of top keyboard background*/
                rel1 {
                   relative: 0.0 0.0;
                   offset: 0 (150*SCALE);
@@ -346,7 +346,7 @@ collections {
             pointer_mode: NOGRAB;                                      \
             description {                                              \
                state: "default" 0.0;                                   \
-               color: 0 0 0 0;                                         \
+               color:  0 0 0 0; /*Color of primary keys*/        \
                rel1 {                                                  \
                   to: "key-img-"key_name;                              \
                   relative: 0.0 0.0;                                   \
@@ -366,7 +366,7 @@ collections {
            effect: SHADOW BOTTOM_LEFT;                                 \
            description {                                               \
               state: "default" 0.0;                                    \
-              color: 245 242 236 255; /*Changes color of key labels*/  \
+              color: 255 255 255 255; /*Changes color of primary key labels*/  \
               color2: 0 0 0 255;                                       \
               color3: 0 0 0 0;                                         \
               rel1 {                                                   \
@@ -391,7 +391,7 @@ collections {
            effect: SHADOW BOTTOM_LEFT;                                 \
            description {                                               \
               state: "default" 0.0;                                    \
-              color: 206 181 137 255; /*Color for secondary key lables*/ \
+              color: 255 255 255 255; /*Color for secondary key lables*/ \
               color2: 0 0 0 255;                                       \
               color3: 0 0 0 0;                                         \
               rel1 {                                                   \
@@ -416,12 +416,12 @@ collections {
             mouse_events: 0;                                           \
             description {                                              \
                state: "default" 0.0;                                   \
-               min: KEY_WIDTH KEY_HEIGHT;                              \
-               max: KEY_WIDTH KEY_HEIGHT;                              \
+               min: KEY_WIDTH*1.4 KEY_HEIGHT*1.4; /*Size of hint keys*/  \
+               max: KEY_WIDTH*1.4 KEY_HEIGHT*1.4;                      \
                fixed: 1 1;                                             \
                rel1 {                                                  \
                   to: "key-img-"key_name;                              \
-                  relative: 0.0 0.3; /*Relative position of hint keys to primary keys*/  \
+                  relative: 0.0 -0.2; /*Relative position of hint keys to primary keys*/  \
                   offset: 0 ((-20*SCALE)-KEY_HEIGHT);                  \
                }                                                       \
                rel2 {                                                  \
@@ -448,7 +448,7 @@ collections {
             effect: SHADOW BOTTOM_LEFT;                                \
             description {                                              \
                state: "default" 0.0;                                   \
-               color: 245 242 236 255; /*Changes color of hint key label*/  \
+               color: 0 0 0 255; /*Changes color of hint key label*/  \
                color2: 0 0 0 255;                                      \
                color3: 0 0 0 0;                                        \
                rel1 {                                                  \
@@ -461,7 +461,7 @@ collections {
                }                                                       \
                text {                                                  \
                   font: "DroidSans";                                   \
-                  size: (44*SCALE);                                    \
+                  size: (70*SCALE); /*Text size of hint key labels*/   \
                   text: key_low;                                       \
                }                                                       \
                visible: 0;                                             \
@@ -709,7 +709,7 @@ collections {
             effect: SHADOW BOTTOM_LEFT;                                \
             description {                                              \
                state: "default" 0.0;                                   \
-               color:  245 242 236 255; /*Changes color of special key label*/  \
+               color:  248 233 208 255; /*Changes color of special key label*/  \
                color2: 0 0 0 255;                                      \
                color3: 0 0 0 0;                                        \
                rel1 {                                                  \
