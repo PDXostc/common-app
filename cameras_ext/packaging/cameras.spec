@@ -18,6 +18,7 @@ BuildRequires:  boost-system
 BuildRequires:  boost-filesystem
 BuildRequires:  pkgconfig(json-glib-1.0)
 Requires:  speech-recognition
+Requires:  crosswalk
 
 %description
 JLRCameras extension for Crosswalk.
@@ -34,12 +35,12 @@ cameras project crosswalk extension development headers
 %setup -q
 
 %build
-
+%{__python} %{_builddir}/%{name}-%{version}/extension_tools/generate_api.py %{_builddir}/%{name}-%{version}/cameras_ext/src/cameras_api.js kSource_cameras_api %{_builddir}/%{name}-%{version}/cameras_ext/src/cameras_api.cc
 %define PREFIX "%{_libdir}/tizen-extensions-crosswalk"
 
 export LDFLAGS+="-Wl,--rpath=%{PREFIX} -Wl,--as-needed"
 
-cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix} -DDPL_LOG="ON" -DENABLE_TIME_TRACER="OFF"
+cmake ./cameras_ext -DCMAKE_INSTALL_PREFIX=%{_prefix} -DDPL_LOG="ON" -DENABLE_TIME_TRACER="OFF"
 
 make %{?jobs:-j%jobs} VERBOSE=1
 
@@ -53,7 +54,6 @@ rm -rf %{buildroot}
 
 
 %files
-%manifest wrt-plugins-cameras.manifest 
 %{_libdir}/tizen-extensions-crosswalk/*
 /usr/etc/tizen-apis/*
 

@@ -23,6 +23,7 @@ SET(SRCS_IMPL
 	cameras_instance.cc
 	cameras_extension.cc
 	JLRCameras.cc
+	cameras_api.cc
 )
 
 ADD_LIBRARY(${TARGET_NAME} SHARED ${SRCS_IMPL})
