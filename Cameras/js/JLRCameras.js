@@ -866,8 +866,8 @@ JLRCameras = {
             return false;
         }
 
-        JLRCameras.api.setCamerasListener("onCameraServerStatusChanged", cameraServerEventHandler);
-        JLRCameras.api.setCamerasListener("onCameraStatusChanged", cameraSignalEventHandler);
+        JLRCameras.api.setCamerasListener("CameraServerStatusChanged", cameraServerEventHandler);
+        JLRCameras.api.setCamerasListener("CameraStatusChanged", cameraSignalEventHandler);
 
         fillCamerasArray({
             id : "listAnalogId",
