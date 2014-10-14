@@ -20,9 +20,16 @@
 #define WEEKEYBOARD_CONFIG_CLIENT_H
 
 #include <string>
+#include <stdio.h>
+#include <unistd.h>
 
 struct _Eldbus_Connection;
 typedef _Eldbus_Connection Eldbus_Connection;
+struct _Eldbus_Object;
+typedef _Eldbus_Object Eldbus_Object;
+struct _Eldbus_Proxy;
+typedef _Eldbus_Proxy Eldbus_Proxy;
+
 
 class WeekeyboardConfigClient
 {
@@ -31,20 +38,26 @@ class WeekeyboardConfigClient
     ~WeekeyboardConfigClient();
     
     void Init();
+    void Cleanup();
     void SetTheme(std::string theme);
     
   private:
-    void Cleanup();
 
+    char tmp_address[4096];
+    int log_domain;
     Eldbus_Connection* conn;
+    Eldbus_Object* obj;
+    Eldbus_Proxy* proxy;
+    
+    pthread_t g_thread;
+    pthread_t ecore_thread;
     
     enum init_e
     {
-        none, eina, ecore, eldbus, all
+        none, eina, ecore, eldbus, connected, all
     };
     init_e initstate;
 
-    int log_domain;
 };
 
 #endif
