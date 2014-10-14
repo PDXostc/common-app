@@ -35,7 +35,7 @@ JLRCameras.api = {
      * @return {Integer} error code.
      */
     enableCamera : function(cameraID, port) {
-        return tizen.jlrcameras.startCameraStreamingServer(cameraID, port);
+        return tizen.cameras.startCameraStreamingServer(cameraID, port);
     },
 
     /** 
@@ -46,7 +46,7 @@ JLRCameras.api = {
      * @return {Integer} error code.
      */
     disableCamera : function(cameraID) {
-         return tizen.jlrcameras.stopCameraStreamingServer(cameraID);
+         return tizen.cameras.stopCameraStreamingServer(cameraID);
     },
 
     /** 
@@ -58,7 +58,7 @@ JLRCameras.api = {
      * @return {Integer} error code.
      */
     setCamerasListener : function(signalName, signalHandler) {
-        return tizen.jlrcameras.subscribe(signalName, signalHandler);
+        return tizen.cameras.subscribe(signalName, signalHandler);
     },
     
     /** 
@@ -69,7 +69,7 @@ JLRCameras.api = {
      * @return {Integer} camera signal status.
      */
     getCameraStatus : function(cameraID) {
-        return tizen.jlrcameras.getCameraStatus(cameraID);
+        return tizen.cameras.getCameraStatus(cameraID);
     }
     
 }

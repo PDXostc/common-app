@@ -1,16 +1,17 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
-PROJECT(cameras)
+PROJECT(tizen_cameras)
 
 # -----------------------------------------------------------------------------
 # Required platform modules
 # -----------------------------------------------------------------------------
 INCLUDE(FindPkgConfig)
 
-PKG_CHECK_MODULES(dpl REQUIRED dpl-efl)
-PKG_CHECK_MODULES(dpl-event REQUIRED dpl-event-efl)
+PKG_CHECK_MODULES(glib REQUIRED glib-2.0)
+PKG_CHECK_MODULES(gio REQUIRED gio-2.0)
 
 INCLUDE_DIRECTORIES(
-  ${dpl_INCLUDE_DIRS}
+  ${gio_INCLUDE_DIRS}
+  ${glib_INCLUDE_DIRS}
 )
 
 # -----------------------------------------------------------------------------
@@ -100,14 +101,6 @@ ADD_DEFINITIONS("-D_FILE_OFFSET_BITS=64")
 #ADD_DEFINITIONS("-Wextra")
 ADD_DEFINITIONS("-DAPPLICATION_API_BACKWARD_COMPATIBILITY")
 
-
-# -----------------------------------------------------------------------------
-# Schema of plugin's configuration file
-# -----------------------------------------------------------------------------
-SET(COMMON_CONFIG_DTD ${CMAKE_CURRENT_SOURCE_DIR}/config.dtd)
-SET(COMMON_CONFIG_DTD_DST /usr/etc/tizen-apis)
-INSTALL(FILES ${COMMON_CONFIG_DTD} DESTINATION ${COMMON_CONFIG_DTD_DST})
-
 # -----------------------------------------------------------------------------
 # Global variables
 # -----------------------------------------------------------------------------
@@ -121,8 +114,8 @@ SET(TOP ${CMAKE_SOURCE_DIR}/src)
 SET(INCLUDE_COMMON ${TOP}/../..)
 
 SET(LIBS_COMMON
-    ${dpl_LDFLAGS}
-    ${dpl-event_LDFLAGS}
+    ${gio_LDFLAGS}
+    ${glib_LDFLAGS}
 )
 
 # -----------------------------------------------------------------------------
@@ -142,7 +135,6 @@ ENDMACRO(configure_and_install_pkg)
 
 FUNCTION(set_target NAME)
   STRING(TOLOWER ${NAME} LOWER_NAME)
-  SET(${LOWER_NAME}_dest tizen-${LOWER_NAME} PARENT_SCOPE)
   SET(${LOWER_NAME}_target ${LOWER_NAME} PARENT_SCOPE)
   SET(${LOWER_NAME}_config ${LOWER_NAME}-config PARENT_SCOPE)
   configure_and_install_pkg(${LOWER_NAME}.pc)

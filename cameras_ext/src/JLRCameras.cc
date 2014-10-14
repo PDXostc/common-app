@@ -15,6 +15,9 @@
  * Contributors:         Zoltan Podolyak
  *
 */
+
+#include <gio/gio.h>
+
 #include "JLRCameras.h"
 #include "cameras_instance.h"
 

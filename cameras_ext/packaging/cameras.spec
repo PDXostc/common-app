@@ -6,18 +6,12 @@ Group:      Development/Libraries
 License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
 
-BuildRequires:  pkgconfig(dpl-efl)
-BuildRequires:  pkgconfig(dpl-event-efl)
-BuildRequires:  dleyna
-BuildRequires:  expat-devel
 BuildRequires:  cmake
-BuildRequires:  gettext-devel
-BuildRequires:  boost-devel
-BuildRequires:  boost-thread
-BuildRequires:  boost-system
-BuildRequires:  boost-filesystem
+BuildRequires:	python
+BuildRequires:  pkgconfig(gio-2.0)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(dbus-glib-1)
 BuildRequires:  pkgconfig(json-glib-1.0)
-Requires:  speech-recognition
 Requires:  crosswalk
 
 %description
@@ -40,9 +34,9 @@ cameras project crosswalk extension development headers
 
 export LDFLAGS+="-Wl,--rpath=%{PREFIX} -Wl,--as-needed"
 
-cmake ./cameras_ext -DCMAKE_INSTALL_PREFIX=%{_prefix} -DDPL_LOG="ON" -DENABLE_TIME_TRACER="OFF"
+cmake ./cameras_ext -DCMAKE_INSTALL_PREFIX=%{_prefix} -DENABLE_TIME_TRACER="OFF"
 
-make %{?jobs:-j%jobs} VERBOSE=1
+make %{?_smp_mflags} VERBOSE=1
 
 %install
 rm -rf %{buildroot}
@@ -55,7 +49,6 @@ rm -rf %{buildroot}
 
 %files
 %{_libdir}/tizen-extensions-crosswalk/*
-/usr/etc/tizen-apis/*
 
 %files devel
 %{_includedir}/*

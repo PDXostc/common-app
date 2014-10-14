@@ -227,7 +227,7 @@
     -webkit-transform: rotateY(180deg);
 }
 body {
-    background-image: url('../images/Camera_bkcgrnd_GRN.jpg');
+    background-image: url('../images/Camera_bkcgrnd.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -266,7 +266,7 @@ body {
     content: url("../images/Empty.png");
 }
 .enableButton {
-    content: url("../images/EnableGrey_GRN.png");
+    content: url("../images/EnableGrey_BLU.png");
 }
 .disableButton {
     content: url("../images/Enable_WHITE.png");
@@ -276,25 +276,25 @@ body {
     content: url("../images/Enlarge_WHITE.png");
 }
 .dislargeButton {
-    content: url("../images/EnlargeGrey_GRN.png");
+    content: url("../images/EnlargeGrey_BLU.png");
 }
 
 .mirrorOnButton {
-    content: url("../images/MirrorGrey_GRN.png");
+    content: url("../images/MirrorGrey_BLU.png");
 }
 .mirrorOffButton {
     content: url("../images/Mirror_WHITE.png");
 }
 
 .menuItem > img {
-    content: url("../images/Camera_Pg_OFF_GRN.png");
+    content: url("../images/Camera_Pg_OFF_BLU.png");
 }
 .menuItem > img.selectedMenu {
     content: url("../images/Camera_Pg_ON.png");
 }
 
 .inputLabelBg {
-    background-image: url('../images/Input_Label_GRN.png');
+    background-image: url('../images/Input_Label_BLU.png');
     background-size: 100% 100%;
 }
 

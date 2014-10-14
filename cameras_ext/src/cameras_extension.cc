@@ -15,7 +15,7 @@
 #include "cameras_extension.h"
 #include "cameras_instance.h"
 
-extern const char kSource_wkb_client_api[];
+extern const char kSource_cameras_api[];
 
 common::Extension* CreateExtension()
 {
@@ -25,7 +25,7 @@ common::Extension* CreateExtension()
 CamerasExtension::CamerasExtension()
 {
 	SetExtensionName("tizen.cameras");
-	SetJavaScriptAPI(kSource_wkb_client_api);
+	SetJavaScriptAPI(kSource_cameras_api);
     
 	LOGD("CamerasExtension ctor");
 }
