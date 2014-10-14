@@ -7,6 +7,8 @@ PACKAGE = $(PROJECT)-$(VERSION)
 SEND := ~/send
 
 wgtPkg:
+	cp -rf ../common .
 	zip -r $(PROJECT).wgt config.xml css icon.png index.html js images common
 clean:
 	rm $(PROJECT).wgt
+	rm -rf common

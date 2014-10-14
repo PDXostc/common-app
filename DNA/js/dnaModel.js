@@ -60,7 +60,7 @@ var ImageCenter = 0,
 	Speed=-1,
 	Count=0,
 	MinSpeed = 1,
-	MaxSpeed = 5,
+	MaxSpeed = 4,
 	AnimateStrand = null,
 	listenerID = null,
 	WidthMultiplier = 0.30,
@@ -395,7 +395,7 @@ Spinner.prototype = {
             d.paintIcons(this.offset);
         }
 		unqueue(b.Context);
-
+		
 		if(G.Mousedown){
 			//Keep track of how long screen is touched
 			G.Timer=G.Timer+1;
@@ -633,22 +633,21 @@ function initDrag(){
 		Speed=G.LHDist;
 		G.SpeedTimer=0;
 	}
-	
 	if(G.Mousedown){
 		var dist=getDistance(G.DragStartX,G.DragStartY,G.MouseX,G.MouseY);
 		if(dist>20){
-			G.LHDist=Math.round(getDistance(G.LastMouseX,0,G.MouseX,0)); //Last Horizontal Distance
-			if(G.LHDist>MaxSpeed){ G.LHDist=MaxSpeed; }
-			if(G.MouseX>G.LastMouseX){
-				G.LHDist=-1*G.LHDist;
-				Speed=G.LHDist;
-				G.LastDir=-1;
-			}else if(G.MouseX<G.LastMouseX){
-				Speed=G.LHDist;
-				G.LastDir=1;
-			}else{
-				Speed=0;
-			}
+				G.LHDist=Math.round(getDistance(G.LastMouseX,0,G.MouseX,0)); //Last Horizontal Distance
+				if(G.LHDist>MaxSpeed){ G.LHDist=MaxSpeed; }
+				if(G.MouseX>G.LastMouseX){
+					G.LHDist=-1*G.LHDist;
+					Speed=G.LHDist;
+					G.LastDir=-1;
+				}else if(G.MouseX<G.LastMouseX){
+					Speed=G.LHDist;
+					G.LastDir=1;
+				}else{
+					Speed=0;
+				}
 		}else{
 			Speed=0;
 			G.LHDist=0;

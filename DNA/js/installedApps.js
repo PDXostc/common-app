@@ -116,17 +116,17 @@ function onFrameClick(appData) {
  **/
 function insertAppFrame(appFrame) {
 	"use strict";
-	var rootDiv = $("<div></div>").addClass("homeScrAppGridFrame boxShadow3").data("app-data", appFrame).click(function() {
+	var rootDiv = $("<div></div>").addClass("homeScrAppGridFrame").data("app-data", appFrame).click(function() {
 		onFrameClick($(this).data("app-data"));
 	});
-
-	var innerDiv = $("<div></div>").addClass("homeScrAppGridImg").appendTo(rootDiv);
+	var hexDivs = $("<div></div><div></div>").appendTo(rootDiv);
+	var innerDiv = $("<span></span>").addClass("homeScrAppGridImg").appendTo(rootDiv);
 	$("<img />").data("src", appFrame.iconPath).appendTo(innerDiv);
-	var textDiv = $("<div />").addClass("homeScrAppGridText").appendTo(rootDiv);
-	$("<div />").addClass("homeScrAppGridTitle fontColorNormal fontSizeSmaller fontWeightBold").text(appFrame.appName).appendTo(textDiv);
-	$("<div />").addClass("homeScrAppGridCategory").text(appFrame.appName).appendTo(textDiv);
+	var textDiv = $("<span />").addClass("homeScrAppGridText").appendTo(rootDiv);
+	$("<span />").addClass("homeScrAppGridTitle fontColorNormal fontSizeSmaller fontWeightBold").text(appFrame.appName).appendTo(textDiv);
+	$("<span />").addClass("homeScrAppGridCategory").text(appFrame.appName).appendTo(textDiv);
 
-	$('#homeScrAppGridView').append(rootDiv);
+	$('.hexrow').last().append(rootDiv);
 
 	var img = new Image();
 	var ctx = document.createElement('canvas').getContext('2d');
@@ -143,7 +143,7 @@ function insertAppFrame(appFrame) {
 		}
 		ctx.drawImage(img, 0, 0);
 
-		$("div.homeScrAppGridImg img").each(function() {
+		$("span.homeScrAppGridImg img").each(function() {
 			if ($(this).data("src") === appFrame.iconPath) {
 				$(this)[0].src = ctx.canvas.toDataURL();
 			}
@@ -151,7 +151,7 @@ function insertAppFrame(appFrame) {
 	};
 
 	img.onerror = img.onabort = function() {
-		$("div.homeScrAppGridImg img").each(function() {
+		$("span.homeScrAppGridImg img").each(function() {
 			if ($(this).data("src") === appFrame.iconPath) {
 				$(this).attr("src", "/common/images/default_icon.png");
 			}
@@ -235,8 +235,13 @@ function onAppInfoSuccess(list) {
 		if (!equals) {
 			appList = [];
 			$('#homeScrAppGridView .homeScrAppGridFrame').remove();
+			//$('#homeScrAppGridView .hexrow').remove();
 
 			for (i = 0; i < applications.length; i++) {
+				if(i/5==Math.floor(i/5)){
+					var rowDiv = $("<div></div>").addClass("hexrow");
+					$('#homeScrAppGridView #hexes').append(rowDiv);
+				}
 				insertAppFrame(applications[i]);
 			}
 		}
