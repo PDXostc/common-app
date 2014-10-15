@@ -33,7 +33,7 @@ when      who       what, where, why
  D-Bus verification:
  dbus-send --dest='com.jlr.JLRCameras' \
                /           \
-              com.jlr.JLRCameras.CamerasInterface.onCameraServerStatusChanged   \
+              com.jlr.JLRCameras.CamerasInterface.CameraServerStatusChanged   \
               int32:1 int32:1
 
 dbus-send   --system --type=method_call --dest=com.jlr.JLRCameras         \
@@ -506,8 +506,8 @@ static void handleMethodCall(GDBusConnection       *connection,
 
             g_variant_get(parameters,"(s)",&signalName);
 
-            if(g_strcmp0 (signalName, "onCameraServerStatusChanged") == 0 ||
-               g_strcmp0 (signalName, "onCameraStatusChanged") == 0)
+            if(g_strcmp0 (signalName, "CameraServerStatusChanged") == 0 ||
+               g_strcmp0 (signalName, "CameraStatusChanged") == 0)
             {
                 result = g_variant_new ("(b)", TRUE);
             }
@@ -663,7 +663,7 @@ FUNCTION
     server_set_status
 
 DESCRIPTION
-    Change status of the streaming server and notifies client using D-Bus onCameraServerStatusChanged
+    Change status of the streaming server and notifies client using D-Bus CameraServerStatusChanged
     event on com.jlr.JLRCameras.CamerasInterface.
     
 DEPENDENCIES
@@ -693,7 +693,7 @@ static void server_set_status(int cameraID, int status)
         servers[cameraID].status = status;
         LOG(APP_PREFIX "Server for camera %d: changing status to %d\n", cameraID, status);
         g_dbus_connection_emit_signal (g_bus_get_sync(G_BUS_TYPE_SYSTEM, NULL,NULL),
-                                       NULL, "/", "com.jlr.JLRCameras.CamerasInterface", "onCameraServerStatusChanged",
+                                       NULL, "/", "com.jlr.JLRCameras.CamerasInterface", "CameraServerStatusChanged",
                                        g_variant_new("(ii)", cameraID, status), NULL);
 
         if(status == SHUTDOWN || status == EMERGENCY_SHUTDOWN)
@@ -2008,7 +2008,7 @@ FUNCTION
     setCameraStatus
 
 DESCRIPTION
-    Sets appropriate status for the camera and emits onCameraStatusChanged DBus signal.
+    Sets appropriate status for the camera and emits CameraStatusChanged DBus signal.
     
 DEPENDENCIES
     None
@@ -2039,7 +2039,7 @@ static void setCameraStatus(int cameraID, int cameraStatus)
         LOG(APP_PREFIX "Status of camera %d changed to %d\n", cameraID, cameraStatus);
         cam_status[cameraID].status = cameraStatus;
         g_dbus_connection_emit_signal (g_bus_get_sync(G_BUS_TYPE_SYSTEM, NULL,NULL),
-                                       NULL, "/", "com.jlr.JLRCameras.CamerasInterface", "onCameraStatusChanged",
+                                       NULL, "/", "com.jlr.JLRCameras.CamerasInterface", "CameraStatusChanged",
                                        g_variant_new("(ii)", cameraID, cameraStatus), NULL);
     }
     pthread_mutex_unlock(&set_status_lock);

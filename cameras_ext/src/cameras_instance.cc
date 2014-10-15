@@ -49,7 +49,9 @@ void CamerasInstance::HandleMessage(const char *msg)
 		mError["error"]=picojson::value("an unknown command string had been sent");
 
 	resp["error"]=picojson::value(mError);
-	PostMessage(picojson::value(resp).serialize().c_str());
+	LOGD("Posting async message");
+	picojson::value re(resp);
+	PostMessage(re.serialize().c_str());
 }
 
 void CamerasInstance::HandleSyncMessage(const char *msg)
@@ -70,7 +72,8 @@ void CamerasInstance::HandleSyncMessage(const char *msg)
 	if(cmd=="getCameraStatus")
 	{
 		resp["value"]=picojson::value(static_cast<double>(GetCameraStatus(v)));
-		SendSyncReply(picojson::value(resp).to_str().c_str());
+		picojson::value re(resp);
+		SendSyncReply(re.serialize().c_str());
 	}
 	else
 		LOGE("unrecognized command %s", cmd.c_str());
@@ -105,6 +108,7 @@ int CamerasInstance::GetCameraStatus(const picojson::value& msg)
 
 void CamerasInstance::SendSignal(const std::string &signal_name, const picojson::value& msg)
 {
+	LOGD("SendSignal entered with %s", signal_name.c_str());
 	picojson::value::object o;
 	o["cmd"]=picojson::value("signal");
 	o["signal_name"]=picojson::value(signal_name.c_str());

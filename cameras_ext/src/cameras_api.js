@@ -53,6 +53,7 @@ extension.setMessageListener(function(msg) {
 
 function handleStatusChange(msg) 
 {
+	console.log("handling signal from cameras extension");
 	for (var key in _status_listeners) {
     		var cb = _status_listeners[key];
     		if (!cb || typeof(cb) !== 'function') {
