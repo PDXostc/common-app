@@ -13,7 +13,11 @@
 	<title>DNA Model using HTML5</title>
 	<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
 	<link rel="stylesheet" href="./css/style.css"/>
-	<!--script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script>
+
+	<link rel="stylesheet" href="./common/css/common.css"/>
+	<link rel="stylesheet" href="./common/css/car/components/incomingCall/incomingCall.css"/>
+
+	<script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script>
 	<script type="text/javascript" src="./common/js/init.js"></script>
 	<script type="text/javascript">
 		includeJs("./js/predefAppModel.js");
@@ -21,9 +25,8 @@
 		includeJs("./js/keyControl.js");
 		includeJs("./js/actionCatcher.js");
 		includeJs("./js/main.js");
-	</script-->
+	</script>
 
-	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<meta content="DNA structure animation using HTML5, canvas, Javascript js." name="description">
@@ -33,369 +36,78 @@
 </head>
 
 <body data-twttr-rendered="true" style="height:1920px !important;width:1080px !important;">
-	
-  <div id="container">
-	<div id="main">
-		<div id="content">
-				<div id="TopBar" class="shadowStd">&nbsp;<img src="images/backicon.png" id="BackIcon" width="89px" height="59px" />
-				<svg id="GridIcon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="89px"
-	 height="89px" viewBox="0 0 113 113" enable-background="new 0 0 113 113" xml:space="preserve">
-<g id="Layer_1" display="none" >
-	<rect x="-0.5" y="0.5" display="inline" stroke="#FFFFFF" stroke-miterlimit="10" width="110" height="110"/>
-</g>
-<g id="Layer_2">
-	<g>
-		<g>
-			<rect x="1" y="1" width="33" height="32"/>
-			<path fill="#FFFFFF" d="M33,1v31H2V1H33 M34,0H1v33h33V0L34,0z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="1" y="0" width="33" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="1" y="0" width="33" height="33" id="SVGID_1_">
-			<g filter="url(#Adobe_OpacityMaskFilter)">
-				
-					<image overflow="visible" width="38" height="38" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGzAAACCwAAAn//2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACYAJgMBIgACEQEDEQH/
-xACNAAADAQEBAAAAAAAAAAAAAAAABAcFBgMBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwQCAwAAAAAA
-AAAAAAMBAgQABQYwERMUMxYhEjYRAAECAwMGDwAAAAAAAAAAAAEAAhEhBDFBshBRcdEScoGhsSIy
-QlKCktIDEyMkNBIBAAAAAAAAAAAAAAAAAAAAMP/aAAwDAQACEQMRAAAA4/dKUTpaqIkeNkG6XK6M
-aKwgcGLhk7IHquBjgH//2gAIAQIAAQUA0f/aAAgBAwABBQDR/9oACAEBAAEFALZbO7QsM5E9H+JG
-IKJrrf8AWdhgkJUaMNo+IdXGKxQmEns2D7ULx1O8B/1WISGiWLcQqzvAq43EXEY6LkdvdObQjZNt
-z5VRzZGqOdM7n//aAAgBAgIGPwAf/9oACAEDAgY/AB//2gAIAQEBBj8AvthJRmusiZyTKXtx4hFT
-zoSVicQLlTsuJdhK7yGR2hU2l+FymYTQBcF0gnAOVP6kZAuwlfVZt8IHKuZTkjebrX5j42+ZH3Kc
-gbzdaaS3557LYjMv/9k=" transform="matrix(1 0 0 1 -1 -2)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_1_)">
-			<rect x="1" y="1" fill="#B2F0FF" width="33" height="32"/>
-			<path fill="#B2F0FF" d="M33,1v31H2V1H33 M34,0H1v33h33V0L34,0z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<rect x="41" y="1" width="31" height="32"/>
-			<path fill="#FFFFFF" d="M72,1v31H41V1H72 M73,0H40v33h33V0L73,0z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="40" y="0" width="33" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="40" y="0" width="33" height="33" id="SVGID_2_">
-			<g filter="url(#Adobe_OpacityMaskFilter_1_)">
-				
-					<image overflow="visible" width="37" height="38" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGtAAACBAAAAmH/2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACYAJQMBIgACEQEDEQH/
-xACHAAADAQEBAAAAAAAAAAAAAAAABQcEAwYBAQAAAAAAAAAAAAAAAAAAAAAQAAIBAwQCAwAAAAAA
-AAAAAAEDBQIEBgAwERQTFRIzRREAAgAEAgYLAAAAAAAAAAAAAAERIUECEBIxUdFyEwRxgbEiMoKS
-0gMjJBIBAAAAAAAAAAAAAAAAAAAAMP/aAAwDAQACEQMRAAAA8e9KSTrFWEpJRgDqlyujDFVqSk/O
-QZ3IHTGAnAP/2gAIAQIAAQUA2f/aAAgBAwABBQDZ/9oACAEBAAEFAIyM7ulYYWA4QQLrFiinqntY
-YoM1bWy6VlKyJu1oCvgPd4PxpX16myPB+9iFxSo2skk0GQQBMyC6leQe5j6r6nS3ZNwX5TxctnyO
-bjs//9oACAECAgY/AB//2gAIAQMCBj8AH//aAAgBAQEGPwCumhGZUbnI4BPWKRCBc0qGU8wsLujC
-bhMSdyPEi5J0M5+WzN1pdp3OXbW9btJ8s/Vb7h8X4GlvLaRh9uo//9k=" transform="matrix(1 0 0 1 38 -2)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_2_)">
-			<rect x="41" y="1" fill="#FE9C00" width="31" height="32"/>
-			<path fill="#FE9C00" d="M72,1v31H41V1H72 M73,0H40v33h33V0L73,0z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<rect x="80" y="1" width="32" height="32"/>
-			<path fill="#FFFFFF" d="M112,1v31H80V1H112 M113,0H79v33h34V0L113,0z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter_2_" filterUnits="userSpaceOnUse" x="79" y="0" width="34" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="79" y="0" width="34" height="33" id="SVGID_3_">
-			<g filter="url(#Adobe_OpacityMaskFilter_2_)">
-				
-					<image overflow="visible" width="38" height="38" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGzAAACCwAAAn//2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACYAJgMBIgACEQEDEQH/
-xACNAAADAQEBAAAAAAAAAAAAAAAABAcFBgMBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwQCAwAAAAAA
-AAAAAAMBAgQABQYwERMUMxYhEjYRAAECAwMGDwAAAAAAAAAAAAEAAhEhBDFBshBRcdEScoGhsSIy
-QlKCktIDEyMkNBIBAAAAAAAAAAAAAAAAAAAAMP/aAAwDAQACEQMRAAAA4/dKUTpaqIkeNkG6XK6M
-aKwgcGLhk7IHquBjgH//2gAIAQIAAQUA0f/aAAgBAwABBQDR/9oACAEBAAEFALZbO7QsM5E9H+JG
-IKJrrf8AWdhgkJUaMNo+IdXGKxQmEns2D7ULx1O8B/1WISGiWLcQqzvAq43EXEY6LkdvdObQjZNt
-z5VRzZGqOdM7n//aAAgBAgIGPwAf/9oACAEDAgY/AB//2gAIAQEBBj8AvthJRmusiZyTKXtx4hFT
-zoSVicQLlTsuJdhK7yGR2hU2l+FymYTQBcF0gnAOVP6kZAuwlfVZt8IHKuZTkjebrX5j42+ZH3Kc
-gbzdaaS3557LYjMv/9k=" transform="matrix(1 0 0 1 77 -2)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_3_)">
-			<rect x="80" y="1" fill="#B2F0FF" width="32" height="32"/>
-			<path fill="#B2F0FF" d="M112,1v31H80V1H112 M113,0H79v33h34V0L113,0z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<rect x="1" y="41" width="33" height="31"/>
-			<path fill="#FFFFFF" d="M33,41v31H2V41H33 M34,40H1v33h33V40L34,40z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter_3_" filterUnits="userSpaceOnUse" x="1" y="40" width="33" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="1" y="40" width="33" height="33" id="SVGID_4_">
-			<g filter="url(#Adobe_OpacityMaskFilter_3_)">
-				
-					<image overflow="visible" width="38" height="37" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGyAAACCgAAAmX/2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACUAJgMBIgACEQEDEQH/
-xACHAAACAwEBAAAAAAAAAAAAAAAABAUGBwIDAQEAAAAAAAAAAAAAAAAAAAAAEAACAQMDBAMAAAAA
-AAAAAAABAwUCBAYAERQwExUWIRIlEQACAQIDBAsAAAAAAAAAAAAAAQIRIRBBBDEisgNRYXGBobEy
-QlIjMxIBAAAAAAAAAAAAAAAAAAAAMP/aAAwDAQACEQMRAAAAp86aSZ2tqiJjxMg1peT34nlFY8p4
-mERIAd+QCAB//9oACAECAAEFAOj/AP/aAAgBAwABBQDo/wD/2gAIAQEAAQUAjIzm6VhncHo/xcYg
-VU1R/wBb7DFBhtrZdK+0vUla0FLlj2bCCAUkFepAgIeR7Ti11Sg2s2oUGbRtITKqltuQZ+15W9Hm
-9v3tM8zseTyP/9oACAECAgY/AB//2gAIAQMCBj8AH//aAAgBAQEGPwDPbQrc9w3exDS/Kvgql+kV
-jYSaWRp4ZNy4Wd4qYS7DTPrlwyLulxJyR6kNKSORza2Tl5M+g3cN8Vf1yP/Z" transform="matrix(1 0 0 1 -1 38)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_4_)">
-			<rect x="1" y="41" fill="#FE9C00" width="33" height="31"/>
-			<path fill="#FE9C00" d="M33,41v31H2V41H33 M34,40H1v33h33V40L34,40z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<rect x="41" y="41" width="31" height="31"/>
-			<path fill="#FFFFFF" d="M72,41v31H41V41H72 M73,40H40v33h33V40L73,40z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter_4_" filterUnits="userSpaceOnUse" x="40" y="40" width="33" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="40" y="40" width="33" height="33" id="SVGID_5_">
-			<g filter="url(#Adobe_OpacityMaskFilter_4_)">
-				
-					<image overflow="visible" width="37" height="37" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGmAAAB+wAAAkT/2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACUAJQMBIgACEQEDEQH/
-xACAAAACAwEBAAAAAAAAAAAAAAAABQQGBwMCAQEAAAAAAAAAAAAAAAAAAAAAEAACAAUFAAMAAAAA
-AAAAAAABAxECBAUGADATFBUSIyURAAIBAwEJAQAAAAAAAAAAAAABIRFBAjEQUXGBEiIyEyNjEgEA
-AAAAAAAAAAAAAAAAAAAw/9oADAMBAAIRAxEAAACnvTSTOoWsJTJRgDnS8nvw9UiUpRwCIwA9cAIA
-B//aAAgBAgABBQDZ/9oACAEDAAEFANn/2gAIAQEAAQUAtls7ulYYWA4QQKrFuCXqntYYoMNNTLlW
-UrIvdLIFfAe3hBAKSCvV7mHDH93FqqVGqW9qEk17TC7XZbF8w9al7UZPbgfd071ofby//9oACAEC
-AgY/AB//2gAIAQMCBj8AH//aAAgBAQEGPwC+tIKyXG5g9BO8UFKGTSsdJzFTZlwKkukiTyR5IySy
-PZY+B2kn00P0P//Z" transform="matrix(1 0 0 1 38 38)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_5_)">
-			<rect x="41" y="41" fill="#B2F0FF" width="31" height="31"/>
-			<path fill="#B2F0FF" d="M72,41v31H41V41H72 M73,40H40v33h33V40L73,40z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<rect x="80" y="41" width="32" height="31"/>
-			<path fill="#FFFFFF" d="M112,41v31H80V41H112 M113,40H79v33h34V40L113,40z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter_5_" filterUnits="userSpaceOnUse" x="79" y="40" width="34" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="79" y="40" width="34" height="33" id="SVGID_6_">
-			<g filter="url(#Adobe_OpacityMaskFilter_5_)">
-				
-					<image overflow="visible" width="38" height="37" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGyAAACCgAAAmX/2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACUAJgMBIgACEQEDEQH/
-xACHAAACAwEBAAAAAAAAAAAAAAAABAUGBwIDAQEAAAAAAAAAAAAAAAAAAAAAEAACAQMDBAMAAAAA
-AAAAAAABAwUCBAYAERQwExUWIRIlEQACAQIDBAsAAAAAAAAAAAAAAQIRIRBBBDEisgNRYXGBobEy
-QlIjMxIBAAAAAAAAAAAAAAAAAAAAMP/aAAwDAQACEQMRAAAAp86aSZ2tqiJjxMg1peT34nlFY8p4
-mERIAd+QCAB//9oACAECAAEFAOj/AP/aAAgBAwABBQDo/wD/2gAIAQEAAQUAjIzm6VhncHo/xcYg
-VU1R/wBb7DFBhtrZdK+0vUla0FLlj2bCCAUkFepAgIeR7Ti11Sg2s2oUGbRtITKqltuQZ+15W9Hm
-9v3tM8zseTyP/9oACAECAgY/AB//2gAIAQMCBj8AH//aAAgBAQEGPwDPbQrc9w3exDS/Kvgql+kV
-jYSaWRp4ZNy4Wd4qYS7DTPrlwyLulxJyR6kNKSORza2Tl5M+g3cN8Vf1yP/Z" transform="matrix(1 0 0 1 77 38)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_6_)">
-			<rect x="80" y="41" fill="#FE9C00" width="32" height="31"/>
-			<path fill="#FE9C00" d="M112,41v31H80V41H112 M113,40H79v33h34V40L113,40z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<rect x="1" y="79" width="33" height="33"/>
-			<path fill="#FFFFFF" d="M33,80v31H2V80H33 M34,79H1v33h33V79L34,79z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter_6_" filterUnits="userSpaceOnUse" x="1" y="79" width="33" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="1" y="79" width="33" height="33" id="SVGID_7_">
-			<g filter="url(#Adobe_OpacityMaskFilter_6_)">
-				
-					<image overflow="visible" width="38" height="38" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGzAAACCwAAAn//2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACYAJgMBIgACEQEDEQH/
-xACNAAADAQEBAAAAAAAAAAAAAAAABAcFBgMBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwQCAwAAAAAA
-AAAAAAMBAgQABQYwERMUMxYhEjYRAAECAwMGDwAAAAAAAAAAAAEAAhEhBDFBshBRcdEScoGhsSIy
-QlKCktIDEyMkNBIBAAAAAAAAAAAAAAAAAAAAMP/aAAwDAQACEQMRAAAA4/dKUTpaqIkeNkG6XK6M
-aKwgcGLhk7IHquBjgH//2gAIAQIAAQUA0f/aAAgBAwABBQDR/9oACAEBAAEFALZbO7QsM5E9H+JG
-IKJrrf8AWdhgkJUaMNo+IdXGKxQmEns2D7ULx1O8B/1WISGiWLcQqzvAq43EXEY6LkdvdObQjZNt
-z5VRzZGqOdM7n//aAAgBAgIGPwAf/9oACAEDAgY/AB//2gAIAQEBBj8AvthJRmusiZyTKXtx4hFT
-zoSVicQLlTsuJdhK7yGR2hU2l+FymYTQBcF0gnAOVP6kZAuwlfVZt8IHKuZTkjebrX5j42+ZH3Kc
-gbzdaaS3557LYjMv/9k=" transform="matrix(1 0 0 1 -1 76)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_7_)">
-			<rect x="1" y="79" fill="#B2F0FF" width="33" height="33"/>
-			<path fill="#B2F0FF" d="M33,80v31H2V80H33 M34,79H1v33h33V79L34,79z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<rect x="41" y="79" width="31" height="33"/>
-			<path fill="#FFFFFF" d="M72,80v31H41V80H72 M73,79H40v33h33V79L73,79z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter_7_" filterUnits="userSpaceOnUse" x="40" y="79" width="33" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="40" y="79" width="33" height="33" id="SVGID_8_">
-			<g filter="url(#Adobe_OpacityMaskFilter_7_)">
-				
-					<image overflow="visible" width="37" height="38" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGtAAACBAAAAmH/2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACYAJQMBIgACEQEDEQH/
-xACHAAADAQEBAAAAAAAAAAAAAAAABQcEAwYBAQAAAAAAAAAAAAAAAAAAAAAQAAIBAwQCAwAAAAAA
-AAAAAAEDBQIEBgAwERQTFRIzRREAAgAEAgYLAAAAAAAAAAAAAAERIUECEBIxUdFyEwRxgbEiMoKS
-0gMjJBIBAAAAAAAAAAAAAAAAAAAAMP/aAAwDAQACEQMRAAAA8e9KSTrFWEpJRgDqlyujDFVqSk/O
-QZ3IHTGAnAP/2gAIAQIAAQUA2f/aAAgBAwABBQDZ/9oACAEBAAEFAIyM7ulYYWA4QQLrFiinqntY
-YoM1bWy6VlKyJu1oCvgPd4PxpX16myPB+9iFxSo2skk0GQQBMyC6leQe5j6r6nS3ZNwX5TxctnyO
-bjs//9oACAECAgY/AB//2gAIAQMCBj8AH//aAAgBAQEGPwCumhGZUbnI4BPWKRCBc0qGU8wsLujC
-bhMSdyPEi5J0M5+WzN1pdp3OXbW9btJ8s/Vb7h8X4GlvLaRh9uo//9k=" transform="matrix(1 0 0 1 38 76)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_8_)">
-			<rect x="41" y="79" fill="#FE9C00" width="31" height="33"/>
-			<path fill="#FE9C00" d="M72,80v31H41V80H72 M73,79H40v33h33V79L73,79z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<rect x="80" y="79" width="32" height="33"/>
-			<path fill="#FFFFFF" d="M112,80v31H80V80H112 M113,79H79v33h34V79L113,79z"/>
-		</g>
-		<defs>
-			<filter id="Adobe_OpacityMaskFilter_8_" filterUnits="userSpaceOnUse" x="79" y="79" width="34" height="33">
-				
-					<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
-			</filter>
-		</defs>
-		<mask maskUnits="userSpaceOnUse" x="79" y="79" width="34" height="33" id="SVGID_9_">
-			<g filter="url(#Adobe_OpacityMaskFilter_8_)">
-				
-					<image overflow="visible" width="38" height="38" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
-EAMCAwYAAAGzAAACCwAAAn//2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
-Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
-JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIACYAJgMBIgACEQEDEQH/
-xACNAAADAQEBAAAAAAAAAAAAAAAABAcFBgMBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwQCAwAAAAAA
-AAAAAAMBAgQABQYwERMUMxYhEjYRAAECAwMGDwAAAAAAAAAAAAEAAhEhBDFBshBRcdEScoGhsSIy
-QlKCktIDEyMkNBIBAAAAAAAAAAAAAAAAAAAAMP/aAAwDAQACEQMRAAAA4/dKUTpaqIkeNkG6XK6M
-aKwgcGLhk7IHquBjgH//2gAIAQIAAQUA0f/aAAgBAwABBQDR/9oACAEBAAEFALZbO7QsM5E9H+JG
-IKJrrf8AWdhgkJUaMNo+IdXGKxQmEns2D7ULx1O8B/1WISGiWLcQqzvAq43EXEY6LkdvdObQjZNt
-z5VRzZGqOdM7n//aAAgBAgIGPwAf/9oACAEDAgY/AB//2gAIAQEBBj8AvthJRmusiZyTKXtx4hFT
-zoSVicQLlTsuJdhK7yGR2hU2l+FymYTQBcF0gnAOVP6kZAuwlfVZt8IHKuZTkjebrX5j42+ZH3Kc
-gbzdaaS3557LYjMv/9k=" transform="matrix(1 0 0 1 77 76)">
-				</image>
-			</g>
-		</mask>
-		<g mask="url(#SVGID_9_)">
-			<rect x="80" y="79" fill="#B2F0FF" width="32" height="33"/>
-			<path fill="#B2F0FF" d="M112,80v31H80V80H112 M113,79H79v33h34V79L113,79z"/>
-		</g>
-	</g>
-</g>
-<g id="Layer_3">
-	<g>
-		<path fill="#FFFFFF" d="M33,1v31H2V1H33 M34,0H1v33h33V0L34,0z"/>
-	</g>
-	<g>
-		<path fill="#FFFFFF" d="M72,1v31H41V1H72 M73,0H40v33h33V0L73,0z"/>
-	</g>
-	<g>
-		<path fill="#FFFFFF" d="M112,1v31H80V1H112 M113,0H79v33h34V0L113,0z"/>
-	</g>
-	<g>
-		<path fill="#FFFFFF" d="M33,41v31H2V41H33 M34,40H1v33h33V40L34,40z"/>
-	</g>
-	<g>
-		<path fill="#FFFFFF" d="M72,41v31H41V41H72 M73,40H40v33h33V40L73,40z"/>
-	</g>
-	<g>
-		<path fill="#FFFFFF" d="M112,41v31H80V41H112 M113,40H79v33h34V40L113,40z"/>
-	</g>
-	<g>
-		<path fill="#FFFFFF" d="M33,80v31H2V80H33 M34,79H1v33h33V79L34,79z"/>
-	</g>
-	<g>
-		<path fill="#FFFFFF" d="M72,80v31H41V80H72 M73,79H40v33h33V79L73,79z"/>
-	</g>
-	<g>
-		<path fill="#FFFFFF" d="M112,80v31H80V80H112 M113,79H79v33h34V79L113,79z"/>
-	</g>
-</g>
-</svg></div>
-			
-			<div id="canvasContainer">
-				<canvas height="1917" width="1080" id="dnaCanvas">
-					Sorry, your browser does not support the canvas element. You need to check this page in a browser that supports HTML5 canvas (like current version of Chrome, Opera, Firefox or Safari).
-				</canvas><br />
-			</div>
-			<div id="BottomBar"class="shadowSmall"><img src="images/gearicon.png" id="settingsIcon" width="89px" height="89px" />
-&nbsp;</div>
-		</div>
-	</div>
-  </div> 
+	<div id="wrapper" class="wrapper">
+		<div id="topBarIcons" class="topBarIcons"></div>
+		<div id="viewPort">
+			<div id="main">
+				<div id="content">
+
+
+
+					<div id="TopBar" class="shadowStd">&nbsp;
+						<a href="" onclick="launchApplication('intelPoc10.HomeScreen')"><img src="images/iconback.png" id="backicon" width="89px" height="59px" /></a>
+						<a onclick='$("#homeScrAppGridView").fadeIn();'><img src="images/icongrid.png" id="gridicon" /></a>
+					</div>
+
+
+
+					<div id="canvasContainer">
+						<canvas height="1917" width="1080" id="dnaCanvas">
+							Sorry, your browser does not support the canvas element. You need to check this page in a browser that supports HTML5 canvas (like current version of Chrome, Opera, Firefox or Safari).
+						</canvas><br />
+					</div>
+
+
+
+					<div id="BottomBar"class="shadowSmall">&nbsp;
+						<a onclick="launchApplication('http://com.intel.tizen/settings')"><img id="settingsicon" src="images/icongear.png" width="87px" height="89px"></a>
+						<img id="logoicon" src="images/JLR-Logo.png">
+						<img id="volume" src="images/Volume.png">
+					</div>
+
+
+
+				</div><!--content-->
+				<div id="overlay">
+					<div id="lefties" class="DNAfence">
+						<div id="weather" class="DNAfence">
+							<div id="weatherStatus" class="DNAtemp">29&deg; C</div>
+							<div id="weatherloc" class="DNAtitle">Portland OR</div>
+							<div id="weathericon" class="DNAwidget"><img src="images/4-s.png"></div>
+						</div>
+						<div id="speedo" class="DNAfence">
+							<div id="homeScrSpeed" class="DNAwidget">45</div>
+							<div id="sector7SpeedUnits" class="DNAtitle">MPH</div>
+						</div>
+					</div>
+					<div id="righties" class="DNAfence">
+						<div id="temporal" class="DNAfence">
+							<div id="date" class="DNAwidget">7/7/2014</div>
+							<div id="clock" class="DNAwidget">9:22</div>
+						</div>
+						<div id="condition" class="DNAfence">
+							<div id="temptitle" class="DNAtitle">Int. Temp</div>
+							<div id="fanStatus" class="DNAtemp">18&deg; C</div>
+						</div>
+						<div id="fuel" class="DNAfence">
+							<div id="fueltitle" class="DNAtitle">Fuel</div>
+							<div id="batteryStatus" class="DNAwidget">60%</div>
+						</div>
+					</div>
+				</div><!--overlay-->
+			</div><!--main-->
+		</div> <!--container-->
   
-	<header id="head">
-		<img style="display:none;" src="images/HomeHex.svg" id="nucleotideYellow">
-		<img src="images/Particle-Stream.gif" id="Particle">
-		<img src="images/Particle-Stream2.gif" id="Particle2">
-	</header>
-	<div id="homeScrAppGridView" class="homeScrAppGridView pageBgColorNormalTransparent">
-		<div class="HSAGWHeading fontColorNormal fontSizeLarger ">Apps</div>
-		<div class="exitButton tabsCloseButton"></div>
+		<header id="head">
+			<img style="display:none;" src="images/HomeHex.png" id="nucleotide">
+			<img src="images/Particle-Stream.gif" id="Particle">
+			<img src="images/Particle-Stream2.gif" id="Particle2">
+		</header>
+		<div id="homeScrAppGridView" class="homeScrAppGridView pageBgColorNormalTransparent">
+			<div class="HSAGWHeading fontColorNormal fontSizeLarger ">Apps</div>
+			<div class="exitButton tabsCloseButton"></div>
+		</div>
+		<div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>
 	</div>
 	<script src="js/dnaModel.js"></script>
 </body></html>

@@ -2,21 +2,162 @@
     font-family: Lucida Sans, Arial, Helvetica, sans-serif;
 }
 
-html, body, div, span, iframe  {
+html, body, iframe  {
 	margin:0;
 	padding:0;
 	border:0;
 	outline:0;
 	font-size:100%;
 	vertical-align:baseline;
-	background-image: url("../images/Hex-Background.jpg");
 }                  
 
-body { font: 14px/19px Tahoma,Geneva,sans-serif; background-color:black; } 
+body { font: 14px/19px Tahoma,Geneva,sans-serif; background-color:black; background-image: url("../images/Hex-Background.jpg"); } 
 
 body, select, input, textarea {   color: #444; }
 
 html { overflow-y: hidden; }
+
+#overlay{
+	position:absolute;
+	top:80px;
+	width:1000px;
+	padding:40px;
+	align:center;
+	color:#FFFFFF;
+	font-weight:bold;
+	background:none;
+}
+.DNAfence{
+	margin-top:15px;
+}
+.DNAfence, .DNAtitle, .DNAtemp, .DNAwidget{
+	background:none;
+}
+.tabs{
+	width:1080px !important;
+	height:1920px;
+}
+.tabsTabs{
+	width:1080px !important;
+}
+.tabsTabClear{
+	width:870px !important;
+}
+.tabsTopPanel{
+	background-size:1080px 110px;
+}
+.tabsCloseButton{
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:42px !important;
+	height:42px !important;
+	margin:32px 43px;
+	background-image: url('../images/bt_close.png');
+}
+#homeScrAppGridView{
+	display:none;
+	position:absolute;
+	top:0px;
+	padding:33px;
+	width:1014px;
+	height:1854px;
+	z-index:5;
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+.HSAGWHeading{
+	text-transform:uppercase;
+	margin:0 0 47px 0;
+}
+.homeScrAppGridFrame{
+	width:196px;
+	height:196px;
+	background-color:rgba(0,0,0,0.2);
+	float:left;
+	margin:3px;
+	text-align:center;
+}
+.homeScrAppImg{
+	width:200px;
+}
+.homeScrAppGridImg img{
+	margin-top:40px;
+	height:100px;
+}
+#weathericon{
+	height:60px;
+	width:100px;
+	text-align:center;
+	display:inline-block;
+	vertical-align:middle;
+}
+#weathericon img{
+	margin-top:20px;
+}
+#overlay,#lefties,#righties{
+	height:0px;
+}
+#lefties{
+	float:left;
+}
+#righties{
+	float:right;
+	text-align:right;
+}
+#speedo,#condition{
+	color:#00BFF3;
+}
+#homeScrSpeed{
+	font-size:75px;
+	line-height:77px;
+	float:left;
+}
+#sector7SpeedUnits{
+	float:left;
+	margin-top:45px;
+	margin-left:10px;
+}
+#clock{
+	font-size:62px;
+	line-height:64px;
+}
+#date,#batteryStatus{
+	font-size:35px;
+	line-height:37px;
+}
+.DNAtemp{
+	font-size:45px;
+	line-height:47px;
+}
+.DNAtitle{
+	font-size:22px;
+	line-height:24px;
+}
+#logoicon{
+	width:400px;
+	height:100px;
+	margin: 16px 0 0 215px;
+}
+#backicon{
+	position: absolute;
+	left:0;
+	top: 0;
+	margin: 20px 0 0 20px;
+}
+#gridicon{
+	float:right;
+	height:85px;
+	width:85px;
+	margin: 10px 20px 0 0;
+}
+#settingsicon{
+	margin:38px 0 0 21px;
+}
+#volume{
+	float:right;
+	margin:68px 31px 0 0;
+}
 
 .shadowStd
 {	
@@ -32,7 +173,8 @@ html { overflow-y: hidden; }
    -webkit-box-shadow: inset 0 0 20px rgb(179, 227, 255);
    box-shadow:         inset 0 0 20px rgb(179, 227, 255);
 	
-   }
+}
+
 #TopBar {
 	width: 1078px;
 	height: 114px;
@@ -49,24 +191,7 @@ html { overflow-y: hidden; }
 	left: 0;
 	z-index:4;
 }
-#BackIcon
-{	position: absolute;
- left:0;
- top: 0;
- margin: 20px 0 0 20px;
-}
-#GridIcon
-{	position: absolute;
- right:0;
- top: 0;
- margin: 10px 20px 0 0;
-}
-#settingsIcon
-{	position: absolute;
- left:0;
- bottom: 0;
- margin: 0 0 40px 20px;
-}
+
 #Particle{
 	display:block;
 	position:relative;
