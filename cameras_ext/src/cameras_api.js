@@ -18,7 +18,7 @@ var _status_listener_id = 0;
 function postMessage(msg, callback) {
 	var replyId = _nextReplyId++;
 	_callbacks[replyId] = callback;
-	msg.replyId = replyId;
+	msg.reply_id = replyId;
 	extension.postMessage(JSON.stringify(msg));
 }
 
@@ -28,7 +28,7 @@ var sendSyncMessage = function(msg) {
 
 extension.setMessageListener(function(msg) {
 	var m = JSON.parse(msg);
-  	var replyId = m.replyId;
+  	var replyId = m.reply_id;
   	var callback = _callbacks[replyId];
 
   	if (m.cmd === 'signal') {
@@ -43,7 +43,7 @@ extension.setMessageListener(function(msg) {
   	} 
 	else if (!isNaN(parseInt(replyId)) && (typeof(callback) === 'function')) {
   		callback(m);
-    		delete m.replyId;
+    		delete m.reply_id;
     		delete _callbacks[replyId];
   	} 
 	else {
@@ -86,7 +86,7 @@ exports.startCameraStreamingServer = function(cam_id, port) {
       			throw new tizen.WebAPIException(tizen.WebAPIException.UNKNOWN_ERR);
     		}
 
-		if (result.value != undefined) {
+		if (result.value != undefined) 
       			return result.value;
 	});
 	return null;

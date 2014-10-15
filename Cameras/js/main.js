@@ -66,21 +66,22 @@ var carIndicatorSignals =  [
 var init = function () {
     var bootstrap = new Bootstrap(function (status) {
         $("#topBarIcons").topBarIconsPlugin('init', 'news');
-    	$('#bottomPanel').bottomPanel('init');
-    
-    	// if (tizen.speech) {
-    	    // setupSpeechRecognition();
-    	// } else {
-    	    // console.log("Store: Speech Recognition not running, voice control will be unavailable");
-    	// }
-    		
-    	bootstrap.themeEngine.addStatusListener(function (eData) {
-    		// setThemeImageColor();
-    	});
-    	
-        JLRCameras.startApp();
+	$("#clockElement").ClockPlugin('init', 5);
+	$("#clockElement").ClockPlugin('startTimer');
+	$('#bottomPanel').bottomPanel('init');
 
+	if (tizen.speech) {
+	    setupSpeechRecognition();
+	} else {
+	    console.log("Store: Speech Recognition not running, voice control will be unavailable");
+	}
+		
+
+	bootstrap.themeEngine.addStatusListener(function (eData) {
+		// setThemeImageColor();
+	});
     });
+    JLRCameras.startApp();
 };
 
 /**
