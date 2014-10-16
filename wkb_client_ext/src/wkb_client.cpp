@@ -31,12 +31,14 @@ WeekeyboardClient::WeekeyboardClient()
         {
             syslog(LOG_USER | LOG_ERR, "wkb_client - Error initializing.");
             syslog(LOG_USER | LOG_ERR, e.what());
+            _configInstance = NULL;
         }
     }
 }
 
 WeekeyboardClient::~WeekeyboardClient()
 {
+    
 }
 
 // Called by JavaScript to pass in a message that will be executed asynchronously;
@@ -49,6 +51,13 @@ WeekeyboardClient::~WeekeyboardClient()
 void
 WeekeyboardClient::HandleMessage(const char* message)
 {
+    if (! _configInstance)
+    {
+        syslog(LOG_USER | LOG_ERR, "Weekeyboard client not initialized");
+        return ;
+    }
+
+
 	syslog(LOG_USER | LOG_DEBUG, "RE:  HandleMessage str is %s", message);
 
 	// Parse json string into string, value pairs:
@@ -75,6 +84,12 @@ WeekeyboardClient::HandleMessage(const char* message)
 void
 WeekeyboardClient::HandleSyncMessage(const char* message)
 {
+    if (! _configInstance)
+    {
+        syslog(LOG_USER | LOG_ERR, "Weekeyboard client not initialized");
+        return ;
+    }
+    
 	syslog(LOG_USER | LOG_DEBUG, "RE:  HandleSyncMessage str is %s", message);
 
     picojson::value v;

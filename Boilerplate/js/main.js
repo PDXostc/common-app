@@ -94,6 +94,26 @@ function addItemClick(item) {
 	bp.bpAsync(JSON.stringify(jsonenc), callback);
 }
 
+function themeErrorCB (msg) {
+    console.log("Theme Error Callback: " + msg);
+}
+
+function smallClick(item) {
+    console.log('smallClick()');
+
+    var jsonenc = {api:"setTheme", theme:"/usr/share/weekeyboard/blue_600.edj"};
+    console.log("RE: setTheme stringify: "+JSON.stringify(jsonenc));
+    wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
+}
+
+function bigClick(item) {
+    console.log('bigClick()');
+
+    var jsonenc = {api:"setTheme", theme:"/usr/share/weekeyboard/blue_1080.edj"};
+    console.log("RE: setTheme stringify: "+JSON.stringify(jsonenc));
+    wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
+}
+
 /**
  * Initialize application components and register button events.
  * 
@@ -119,6 +139,8 @@ var init = function () {
 	});
     });
     $("input[name='add_item_button']").click(addItemClick);
+    $("input[name='small_button']").click(smallClick);
+    $("input[name='big_button']").click(bigClick);
 };
 
 /**

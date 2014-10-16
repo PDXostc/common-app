@@ -15,7 +15,7 @@ LIB_DIRS=-L../../lib
 
 LIBS=-lecore -leldbus -Wl,--whole-archive -lextension-common -Wl,--no-whole-archive
 
-CFLAGS:=$(CFLAGS) $(LIB_DIRS) $(LIBS)
+CFLAGS:=$(CFLAGS) $(LIB_DIRS) $(LIBS) `pkg-config --cflags glib-2.0`
 
 all: $(TARGET)
 
@@ -24,7 +24,7 @@ $(TARGET): prepare $(OBJS)
 	cp -f $(TARGET) $(TARGET_DIR)
 
 .cpp.o:
-	$(CC) $(CFLAGS) `pkg-config --cflags glib-2.0` -c -o $@  -I./ $<
+	$(CC) $(CFLAGS) -c -o $@  -I./ $<
 
 .cc.o:
 	$(CC) $(CFLAGS) -c -o $@  -I./ $<
