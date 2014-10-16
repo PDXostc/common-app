@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!DOCTYPE plugin-properties SYSTEM "/usr/etc/tizen-apis/config.dtd">
+<plugin-properties>
+    <library-name>libwrt-plugins-tizen-cameras.so</library-name>
+    <feature-install-uri>cameras.install.uri</feature-install-uri>
+    <feature-key-cn>INTEL plugin group</feature-key-cn>
+    <feature-root-cn>INTEL certificate authority</feature-root-cn>
+    <feature-root-fingerprint>AAAABBBBCCCCDDDEEEE0000</feature-root-fingerprint>
+
+    <api-feature>
+        <name>http://tizen.org/privilege/cameras</name>
+        <device-capability>cameras</device-capability>
+    </api-feature>
+                            
+</plugin-properties>

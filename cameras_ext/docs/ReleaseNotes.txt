@@ -1,0 +1,555 @@
+=====================================================================
+                         JLR POC - Cameras
+=====================================================================
+
+=====================================================================
+ 1 Release info
+=====================================================================
+ Version:     1.2
+ Date:        07 April 2014
+
+ Components: 
+             JLRCameras Media Streaming Server, v.1.0.2
+             JLRCameras WRT plugin, v.1.0.1
+             JLRCameras WRT application, v.1.0.2
+
+ Delivery structure:
+	docs - Documentation for delivery.
+
+	jlr_cmss - JLR Cameras Media Streaming Server component. Contains sources, configuration for cameras and build files for the component.
+		config - contains cameras configuration.
+		packaging - contains spec file for component build with Git Build System.
+		service - contains D-Bus service file for com.jlr.JLRCameras interface.
+		src - contains sources of JLRCMSS.
+
+	wrt-plugins-jlrcameras - JLRCameras WRT plugin. Contains sources and build files for the component.
+		packaging - contains spec file for component build with Git Build System.
+		pkgconfigs - contains pkgconfig files.
+		src - contains sources of JLRCameras WRT plugin. 
+
+	wrt-application-jlrcameras - JLRCameras WRT application.
+		css - contains Cascading Style Sheets(CSS) files for the application.
+		images - contains images for the application.
+		js - JavaScript sources of the application.
+    
+ Please refer to the point 8 for System SW and HW limitations.
+
+=====================================================================
+ 2 HW Target Setup
+=====================================================================
+2.1	Install MPX-855 video capture card to the mini PCI-E slot of a target
+	and connect one analog camera to it.
+2.2	Attach one USB camera to the target directly or using USB hub.
+2.3	Attach 6 IP cameras to the target via the Ethernet switch.
+2.4	Attach USB mouse and keyboard to the target, if required.
+
+=====================================================================
+ 3 SW Target Setup
+=====================================================================
+On any Linux-based system: (tested on ubuntu-13.10-desktop-i386):
+3.1 	Install Tizen-IVI image on the USB flash drive.
+	3.1.1	Insert USB flash drive to the computer.
+	3.1.2	Verify new device that represents USB flash is appeared in /dev directory "ls /dev | grep sd"
+	3.1.3	Go to the System Settings-> Network -> Network proxy and set proxy settings for your network, if required. Apply proxy settings system wide.
+	3.1.4	Update apt manager’s database with "sudo apt-get update" command.
+	3.1.5	Install pbzip2 tool using apt-get, zypper, or other package manager available "sudo apt-get install pbzip2"
+	3.1.6	Download tizen_20140115.4_ivi-release-mbr-i586-sdb.raw.bz2 release by this link:
+		http://download.tizen.org/releases/milestone/tizen/ivi/tizen_20140115.4/images/ivi-release-mbr-i586/tizen_20140115.4_ivi-release-mbr-i586-sdb.raw.bz2
+	3.1.7	Unpack and install Tizen release on the USB flash using the following command:
+		"sudo pbzip2 -dc tizen_20140115.4_ivi-release-mbr-i586-sdb.raw.bz2 | sudo dd of=/dev/sdX bs=1M", where /dev/sdX represents USB flash drive.
+
+On Tizen IVI system:
+3.2	Login
+	3.2.1	Login as root to the Tizen-IVI system via SSH. Password for the "root" user is "tizen". 
+		Note: Execute "su" command to login as root from the Tizen-IVI console.	
+3.3	Set http_proxy and https_proxy for your network, if required.
+	3.3.1	Execute "export http_proxy=<proxy:port>" command to set http proxy, for example "export http_proxy=http://jlr_proxy:8080"
+	3.3.2	Execute "export https_proxy=<proxy:port>" command to set https proxy, for example "export https_proxy=https://jlr_proxy:8080"
+3.4	Video4Liniux installation.
+	3.4.1	Execute "zypper install v4l-utils" to install Video4Linux utils. Confirm packages installation.
+3.5	Change screen orientation.
+	3.5.1	Edit /etc/xdg/weston/weston.ini file and add [output] section with the following parameters:
+			name=<output_name>. Put correct output name here. For example, for NDIS166 target, list of outputs is availabe in the /sys/class/drm/card0 directory and the correct output name is HDMI3.
+			mode=<resolution>. Set it to "1280x720".
+			transform=<angle>. Set it to "270".
+"
+[output]
+name=HDMI1
+mode=1280x720
+transform=270
+"
+
+		Note: Reboot is required for these changes to take place.
+			
+3.6	Set up MPX-855 video capture card.
+	3.6.1	Ensure MPX-855 video capture card is attached to the PCI-E mini slot of a target.
+	3.6.2	Create /etc/modprobe.d/cx23885.conf file and add "options cx23885 card=32"  line to this file to modify startup parameters of cx23855 driver.
+		Note: Reboot is required for these changes to take place.
+		Note: Init of cx23855 drivers takes approximately one minute. So, MPX-855 card is not available at least one minute after system startup.
+3.7	Modify DBus permissions.
+	3.7.1	Allow owning and calling methods on DBus system bus by changing <deny own="*"/> to <allow own="*"/> and <deny send_type="method_call"/> 
+		to <allow send_type="method_call"/> in the "/etc/dbus-1/system.conf" file.
+
+=====================================================================
+ 4 Build environment setup
+=====================================================================
+Install ubuntu-13.10-desktop-i386 from http://www.ubuntu.com/download/desktop using VMware Player software and power it on.
+
+4.1	Building Web Runtime plugins and native components using GBS(Git Build System):
+	4.1.1	Go to the System Settings-> Network -> Network proxy and set proxy settings for your network, if required. 
+		Apply proxy settings system wide.
+	4.1.2	Add Tizen tools repository to the apt sources list by adding "deb http://download.tizen.org/tools/latest-release/Ubuntu_13.10/ /" 
+		line to the /etc/apt/sources.list file.
+	4.1.3	Update sources list of apt package manager by executing "sudo apt-get update" command.
+	4.1.4	Install gbs tool using "sudo apt-get install gbs" command. Confirm packages installation.
+	4.1.5	Install Open SSH server, by executing "sudo apt-get install openssh-server" command, if required.
+	4.1.6	Copy source files you want to build to some directory on the Virtual Machine. (/home/tizen/build/wrt-plugin-jlrcameras, for example)
+	4.1.7	If root folder of your sources(/home/tizen/build/wrt-plugin-jlrcameras/) doesn't contain .git directory in it,
+		go to this directory and init git repository with "git init" command. It'll create .git directory with git data in it. 
+		Having .git directory in the root folder of the sources being built is required for GBS.
+	4.1.8	Create .gbs.conf file in the root directory of your sources, i.e. /home/tizen/build/wrt-plugins-jlrcameras/.gbs.conf with the following content:
+"
+[general]
+#Current profile name which should match a profile section name
+profile = profile.tizen
+
+[profile.tizen]
+#Common authentication info for whole profile
+#user =
+#CAUTION: please use the key name "passwd" to reset plaintext password
+#passwd =
+obs = obs.tizen
+#Comma separated list of repositories
+repos = repo.tizen_2.0
+
+[obs.tizen]
+#OBS API URL pointing to a remote OBS.
+url = https://api.tizen.org
+#Optional user and password, set if differ from profile's user and password
+#user =
+#passwd =
+
+#Repo section
+[repo.tizen_2.0]
+#Build against repo's URL
+url = http://download.tizen.org/releases/milestone/tizen/ivi/tizen_20140115.4/repos/ivi/ia32/packages/
+#Optional user and password, set if differ from profile's user and password
+#user =
+#passwd =
+"
+
+	4.1.9	Being in the root directory of your source code(/home/tizen/build/wrt-plugins-jlr-cameras/), 
+		execute "gbs build -A i586 --include-all" for getting your sources built.
+	4.1.10	After the build is finished, gbs will inform you about rpm files' location.
+
+=====================================================================
+ 5 Development environment setup for Web Runtime applications
+=====================================================================
+5.1	Install Java SE JRE
+	5.1.1	Download Java SE JRE 7 from http://www.oracle.com/technetwork/java/javase/downloads/index.html, choose tar.gz version.
+	5.1.2	If you have OpenJDK installed, you have to uninstall it by command: "sudo apt-get purge openjdk-\*"
+	5.1.3	Create directory to hold java binaries: "sudo mkdir -p /usr/local/java"
+	5.1.4	Copy downloaded file to "/usr/local/java", i.e. "sudo cp -r jre-7u51-linux-i586.tar.gz /usr/local/java"
+	5.1.5	Go to this directory and unpack Java binaries, i.e. "sudo tar xvzf jre-7u51-linux-i586.tar.gz"
+	5.1.6	Then you have directory "/usr/local/java/jre1.7.0_51"
+	5.1.7	Add to the system PATH file ("sudo nano /etc/profile") the following content:
+			JAVA_HOME=/usr/local/java/jre1.7.0_51
+			PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+			export JAVA_HOME
+			export PATH 
+	5.1.8	Type the following commands to inform the system where Java located:
+			sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jre1.7.0_51/bin/java" 1
+			sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/local/java/jre1.7.0_51/bin/javaws" 1
+			sudo update-alternatives --set java /usr/local/java/jre1.7.0_51/bin/java
+			sudo update-alternatives --set javaws /usr/local/java/jre1.7.0_51/bin/javaws
+	5.1.9	Restart the system
+	Refer http://www.wikihow.com/Install-Oracle-Java-JRE-on-Ubuntu-Linux for more details.
+
+5.2	Install dependency packages needed for Tizen SDK Manager:
+		"sudo apt-get install expect"
+		"sudo apt-get install libgnome2-0"
+		"sudo apt-get install libudev-dev"
+
+5.3	Install Tizen SDK Manager from https://developer.tizen.org/downloads/tizen-sdk/ link:
+	5.3.1	Set up proxy settings for your network in opened manager.
+	5.3.2	Select SDK 2.2.1 package from default repository
+	5.3.3	Choose typical installation type
+	5.3.4	After installation finished start Tizen IDE
+
+5.4	Start Tizen IDE and import application project to Tizen IDE workspace.
+
+5.5	Right-click on project root in Project Explorer view and select Build Project.
+ 
+
+=====================================================================
+ 6 Delivery Installation procedure on Tizen target
+=====================================================================
+---------------------------------------------------------------------
+  6.1 Required packages installation
+---------------------------------------------------------------------
+Note:	This release was tested with gstreamer-1.0.7 from tizen_20140115.4 repository.
+	But in tizen_20140115.4 release "zypper" package manager tool is configured the way, so it always installs packages from the latest repository.
+	Using tizen_20140115.4 release with gstreamer later than 1.0.7 may lead to the different side effects - video may not work, freeze, etc.
+	(for example, please refer chapter 8.9) 
+
+	Side effects, described above, were not observed during development and integration test with tizen_20140115.4 + gstreamer-1.0.7.
+	So, before gstreamer installation, "zypper" tool should be configured the way, so it gets gstreamer-1.0.7 packages
+	from the tizen_20140115.4 repository. This may be done using following commands:
+		- Launch "zypper lr" command. It will show you all zypper repositories.
+		- Check the ones that are enabled and disable them using "zypper mr -d number", where "number" is repository’s number.
+		- Add tizen_20140115.4 repository using
+		  "zypper ar https://download.tizen.org/releases/milestone/tizen/ivi/tizen_20140115.4/repos/ivi/ia32/packages/ tizen_jan" command.
+
+6.1.1 GStreamer installation.
+	6.1.1.1	Install GStreamer and GStreamer tools by executing "zypper install gstreamer*". Confirm packages installation.
+	6.1.1.2	Install GStreamer plugins with "zypper install gst-plugins-*" command. Confirm packages installation.
+        6.1.1.3	Download good plugins for gstreamer0.10 by this link: 
+		http://download.tizen.org/releases/milestone/tizen/ivi/tizen_20130829.9/repos/ivi/ia32/packages/i686/gst-plugins-good0.10-0.10.32-26.21.i686.rpm
+	6.1.1.4	Install downloaded plugin with "rpm -ivh gst-plugins-good0.10-0.10.32-26.21.i686.rpm" command.
+
+---------------------------------------------------------------------
+  6.2 Delivery package installation
+---------------------------------------------------------------------
+
+6.2.1	Install JLRCameras Media Streaming Server (JLRCMSS).
+	6.2.1.1	Install JLRCMSS by executing "rpm –ivh jlr_cmss-1.0.1-1.i686.rpm" command. 
+		jlr_cmss-1.0.1-1.i686.rpm package is provided with the release.
+
+6.2.2	Install JLRCameras Web Runtime plug-in.
+	6.2.2.1	Install JLRCameras Web Runtime plug-in with the following command:  "rpm -ivh wrt-plugins-jlrcameras-1.0.1-1.i686.rpm".
+                wrt-plugins-jlrcameras-1.0.1-1.i686.rpm package is provided with the release.
+	6.2.2.2	Execute "wrt-installer –p" to install plug-in to the WRT environment.
+	6.2.2.3	Add "jlrcameras" device capability to the "/usr/etc/ace/TizenPolicy.xml", i.e.
+		        <rule effect="permit">
+		            <condition combine="or">
+		                <resource-match attr="device-cap" func="equal" match="jlrcameras" />
+		            </condition>
+		        </rule>
+		Note: "jlrcameras" device capability should be added into the each <policy> node of the "/usr/etc/ace/TizenPolicy.xml" file.
+	
+       	6.2.2.4	Reboot the system with "reboot" command.
+
+6.2.3	Install JLRCameras WRT application.
+	6.2.3.1	Install JLRCameras WRT application to the system by executing "wrt-installer -i JLRCameras.wgt".
+
+=====================================================================
+ 7 Execution
+=====================================================================
+---------------------------------------------------------------------
+  7.1 SW Configuration
+---------------------------------------------------------------------
+7.1.1	JLRCameras Media Streaming Server configuration.
+	JLRCameras Media Streaming Server's configuration is located in "/etc/jlr_cmss/config.xml" config file. 
+	Each camera is described by the following parameters:
+			camera id	– ID of the camera.
+			type 		– type of the camera. May be one of the following: USB, IP, ANALOG.
+			location 	– Location of the camera source. Describes location of USB bus for USB cameras, 
+	 				  PCI bus for ANALOG cameras and rtsp path for IP cameras. 
+					  This parameter should be modified for your system accordingly. 
+					  Use "v4l2-ctl --list-devices" command to verify USB and ANALOG cameras bus paths. For example:
+						  usb-0000:00:1d.0-1.2.1.2 	- for USB camera, 
+						  PCIe:0000:02:00.0 		- for ANALOG camera,
+				          Use IP camera's vendor software to get proper locations of IP cameras rtsp sources. For example:
+						  rtsp://<camera_ip>:554/live1.sdp.
+			gst_launch_cmd  – GStreamer launch command for the camera. This command should be written in one line and contain <video_source> tag. 
+					  This tag will be replaced with the right video source by the JLRCMSS before launching GStreamer instance.
+			input 	 	– This parameter is applicable for analog cameras only and describes video input the camera is attached to. 
+					  Execute "v4l2-ctl -d /dev/videoX --list-inputs" command to see the list of inputs available.
+			standard 	– This parameter is applicable for analog cameras only and describes video standard for 
+					  the camera output(PAL, PAL-N, NSTC, SECAM, etc.). 
+					  Execute "v4l2-ctl -d /dev/videoX --list-standards" to see the list of available standards supported. 
+					  Check your analog camera’s guide to see what its output video standard.
+	Note: location, input and standard parameters should be properly modified for your system before launching of JLRCameras application.
+
+---------------------------------------------------------------------
+  7.2 SW Execution
+---------------------------------------------------------------------
+7.2.1 Launch JLRCameras application by executing "wrt-launcher -s intelPoc21.JLRCameras", where "intelPoc21.JLRCameras" is the ID of JLRCameras application.
+
+=====================================================================
+ 8 Known issues/Workarounds
+=====================================================================
+---------------------------------------------------------------------
+  8.1 USB Bandwidth issue
+---------------------------------------------------------------------
+Issue description:
+	One of the features of USB technology is USB bandwidth. USB bandwidth is a limited resource and it should be shared between multiple devices, 
+	connected to the same USB bus. All the cameras in the project are connected via one USB root hub, therefore they use one USB bus and all 
+	resources of the bus should be shared among them. When camera is streaming video it requires USB hub to reserve particular bandwidth of the USB bus. 
+	The amount of bandwidth occupied usually depends on video resolution & quality and managed by camera firmware.
+
+	VF0700 Live! Cam Chat HD camera’s firmware (that is used in the project) designed the way that it always occupies 57% of the USB bus. 
+	So, it’s not possible to capture video from 2 such cameras simultaneously. Linux USB core subsystem rejects capturing video from the second camera, 
+	because there is not enough bandwidth for it left.
+
+Solution:
+	To work around of this issue the following may be done:
+		1.	Connect all cameras to the different USB root hubs. Usually, there are not many USB root hubs present in the system and 
+			many USB ports are located on the same USB root hub. For example, all 7 USB ports of Intel NUC DCCP847DYE are on the same USB root hub.
+			So, this solution is not applicable for the project.
+		2.	Use different cameras that occupy not so much USB bandwidth. For example, A4 TECH USB2.0 PC Camera J, streaming on 320x240, 
+			occupies only 21% of the bandwidth. So, it’s capable to capture video from 4 cameras that are on the same bus simultaneously.
+
+	It is also possible to modify EHCI (Enhanced Host Controller Interface) component of a Linux kernel, so USB bandwidth limitation is ignored. 
+	But such changes lead to different side effects, like USB devices reset, URBs lost, application crashing and so on.
+	Please refer Chapter #9 to see how this workaournd can be applied.
+
+Note:
+	As per agreement with the Customer current delivery is configured to work with one USB camera only.	
+
+---------------------------------------------------------------------
+  8.2 Late cameras video start and lag issues.
+---------------------------------------------------------------------
+Issue description:
+	Two tasks which require much time take place before playing the video: 
+	-	GStreamer initialization. GStreamer needs to be initialized before starting capturing and encoding video from cameras. 
+		Time for GStreamer’s initialization varies from 0.15s (D-Link IP camera) to 2.20s (HKVision IP camera).
+	-	WebKit video buffering. Using HTML5 <video> tag, WebKit doesn’t start playing video immediately, but buffer some data before 
+		starting to play it. Time for video buffering varies from 3.5-5.0 seconds.
+
+	Described time delays lead to the following issues:
+	-	When user enables camera feed, video is not starting to play immediately. It takes approximately 4-6 seconds 
+		(depending on camera type and video resolution) to start playing the video.  (GStreamer initialization + WebKit video buffering).
+	-	Video is lagged on 2.5-5 seconds. (WebKit video buffering).
+
+	Table below describes time delays for different types of cameras and resolutions, where:
+	Gstreamer init time – time passed after GStreamer was launched and first data packet from it was received.
+	WebKit video init time – time passed after playing the video was requested with the <video> tag and WebKit buffered 
+ 				 enough data for start playing it (oncanplay event was invoked).
+
+		Camera				HKVision	D-Link		USB 160x120	USB 320x240	USB 640x480	Analogue
+		Gstreamer init time(s)		2.20		0.15		0.85		0.85		0.90		0.30
+		WebKit video init time(s)	4.80		2.50-5.0	6.00		4.90		4.20		3.60
+
+Possible solution for the further project investigation:
+	-	One of the possible solutions is not to use HTML5 <video> tag, but use the image-in-canvas approach. 
+		The main idea is to get frames from the camera one-by-one and then put them to the canvas, shown on the screen. 
+		Since there won’t be any video buffering by WebKit, video lag will be minimal. 
+	-	Another possible solution is to use overlay technique for showing of camera video, i.e. not to pass it to the WebKit for drawing, 
+		but to draw it directly in a WRT application’s surface, using appropriate Weston plugins functionality.
+
+---------------------------------------------------------------------
+  8.3 Video from only one analog camera can be played at 30 fps at a time.
+---------------------------------------------------------------------
+Issue description:
+	MPX-855 card is used for video capturing from analog cameras in the project.
+	This card is represented as one v4l2 device with 4 or 8 video inputs in the system, and the issue is that the video may be captured only from
+	one video input (camera) at a time, and it's not possible to capture video from 2 inputs (cameras) simultaneously.
+	If it’s required to capture video from the input that is not currently set, it has to be switched to the required one.
+
+Solutions:
+	1. Following algorithm can be implemented to show video from 2 or more analog cameras simultaneously using MPX-855 card:
+		-	Capture one frame from the first camera
+		-	Switch video input to the second camera
+		-	Capture one frame from the second camera
+		-	Switch video input to the third camera
+		-	…
+
+	MPX-885 supports video capturing rate of 30 fps for NTSC and 25 fps for PAL, i.e. if video from 4 cameras will be captured 
+	according the algorithm above, the rate will be decreased at least to 7 fps for NTSC (30/4) and 6 fps for PAL (25/4).
+	Also, switching between inputs requires time; frames stabilization after input switching requires time, and so on... 
+	As a result video capturing rate is decreased to 2 fps for each camera when all 4 cameras are playing.
+	To increase video fps, cards with higher capturing rate can be used. 
+	For example, MPX-6864 card's capturing rate is 120 fps for NTSC and 100 fps for PAL. 
+	So using the proposed algorithm, it should be possible to show video from 4 cameras simultaneously at a rate close to 30 fps (120/4).
+
+	2. Use video capture cards that allow capturing video from 2 or more cameras simultaneously.
+	Ability for capturing video from multiple cameras simultaneously should be implemented either using v4l2 API
+	(for example, separate v4l2 device is created for each video input), or some other API should be provided by the card's vendors.
+
+Note:
+	As per agreement with the Customer current delivery is configured to work with one analog camera only.
+
+---------------------------------------------------------------------
+  8.4 Driver’s initialization for MPX-885 card takes much time.
+---------------------------------------------------------------------
+Issue description:
+	There are two issues with cx23885 drivers for MPX-885 video capture card:
+	1.	MPX-885 card is not recognized properly by cx23885 drivers, so these drivers need to be reloaded using correct card number (#32).
+	2.	It takes approximately 60 seconds for cx23885 drivers reloading.
+
+Solution:
+	Initialize cx23885 on startup with correct card number. But even then it will not be possible to use analogue camera at least 
+	for one minute after system start.
+
+---------------------------------------------------------------------
+  8.5 gst-plugins-good0.10 is not available for the tizen_20140115.4
+---------------------------------------------------------------------
+Issue description:
+	gst-plugins-good0.10, required for USB and ANALOG cameras video encoding in ogg format, is not available in the 
+	tizen_20140115.4 repository. 
+
+Solution:
+	Get gst-plugins-good0.10 plugin from the previous tizen_20130829.9 repository by the link:
+		http://download.tizen.org/releases/milestone/tizen/ivi/tizen_20130829.9/repos/ivi/ia32/packages/i686/gst-plugins-good0.10-0.10.32-26.21.i686.rpm
+
+---------------------------------------------------------------------
+  8.6 Video from USB cameras is not playing smoothly.
+---------------------------------------------------------------------
+Note: 
+	This issue is observed with USB bandwidth patch described in Chapter #9 only.
+
+Issue description:
+	Sometimes video from USB cameras is not playing smoothly, and the more USB cameras are playing simultaneously, 
+	the more video twitches are observed. Please see chapter #8.1 for the detailed description of the issue.
+
+Solution:
+	Solutions for this issue are the same as mentioned in chapter #8.1
+
+---------------------------------------------------------------------
+  8.7 USB devices reset.
+---------------------------------------------------------------------
+Note: 
+	This issue is observed with USB bandwidth patch described in Chapter #9 only.
+
+Issue description:
+	To be able to capture video from 6 cameras simultaneously, EHCI (Enhanced Host Controller Interface) component of Linux kernel 
+	can be modified and USB bandwidth limitation logic should be removed (Please refer Chapter#9). With this workaround USB bus become overloaded when 
+	video is capturing from 2 or more cameras simultaneously, which sometimes leads to USB devices reset. When USB device reset happens, 
+	Linux removes it from the /dev directory, re-initialize the device and creates new node for it under the /dev/ directory. 
+	From the application’s perspective it means that cameras, for which device reset happened, stopped playing, and user should enable 
+	them once again manually in order to capture the video. (Since all 6 USB cameras are connected via USB hub, they all reset simultaneously).
+
+Solution:
+	Solutions for this issue are the same as described in #8.1
+
+---------------------------------------------------------------------
+  8.8 Unable to capture video from MPX-855 card using GStreamer framework.
+---------------------------------------------------------------------
+Issue description:
+	During development/testing of the analog video with 640x480 resolution we were unable to capture video from MPX-855 card using 
+	GStreamer framework once. As a result - green screen was shown on the display instead of a video.
+
+Solution:
+	There is no exact solution for this issue, since the reason why it happened is unknown. 
+	Possile reasons:
+		- MPX-855 card was superheated(it was really hot when the issue occured)
+		- HW or FW issue of MPX-855 card.
+		- Software issues in v4l2 drivers or GStreamer itself.
+		
+	The only thing that can be said for sure is that the issue is below newely developed components,
+	since only GStreamer and below software layers were used when the issue was observed.
+	
+Note: 
+	This issue was observed only once.
+
+---------------------------------------------------------------------
+  8.9 Video is not working
+---------------------------------------------------------------------
+Note: 
+	The issue is observed when GStreamer later than 1.0.7 is used on tizen_20140115.4 release only.
+
+Issue description:
+	With some GStreamer versions(later than 1.0.7) video is not working and black screen is displayed instead.
+
+Solution:
+	"zypper" tool should be set up the way so it gets packages from the tizen_20140115.4 repository before installing GStreamer.
+	Please refer chapter 6.1 for more information.
+
+---------------------------------------------------------------------
+  8.10 USB and Analog video freeze is observed sometimes
+---------------------------------------------------------------------
+Issue description:
+	While video from USB or Analog camera is playing it sometimes freezes on several seconds and then resume playing.
+	
+	In current architecture GStreamer captures video from USB and Analog cameras in YUV I420 format. Then, it decodes it in 
+	ogg format using "theora" encoder and encoded video is passed to the WebKit. 
+	To identify the place, where video freeze takes place following tests were done using only Tizen native components: 
+		1. Encoded video from the GStreamer was not passed to the WebKit, but saved to the file and then played using VLC player. 
+		   Video was frozen sometimes, while playing it in VLC.
+		2. Raw camera's video was placed on Wayland surface without encoding it with "theora" encoder. No video freeze was observed.
+
+	According results of the tests above - the issue is somewhere in "theora" encoder of GStreamer component.
+	"theora" encoder is a native Tizen component, and it means that video freeze issue will be observed in any other application(or component) 
+	that uses it.
+	It is also possible that the issue is not in the "theora" codec itself, but in the way how it works while CPU loading is high,
+	because during encoding process no HW acceleration is used and encoding process occupies almost 100% of CPU.
+	For the analog camera video freeze issue may also be related to the issue, described in chapter 8.8.	
+
+Solution:
+	1. Once of the possible solutions is not to use HTML5 <video> tag that supports only "ogg", "mp4" and "webm" formats, but use image-in-canvas approach.
+	   Please refer "8.2 Late cameras video start and lag issues." chapter for more information.
+	2. Use cameras that may stream in H264 format. No encoding with "theora" codec will be required then and video will not freeze.
+	   IP cameras we are using now streaming in H264 format and no video freeze is observed even when all 6 cameras are streaming simultaneously.
+	3. Video freezes were mostly observed using 640x480 resolution, so one of the possible solutions is to use 320x240 or 160x120 resolution.	
+	4. From 6 VF0700 Live! USB cameras we have, one camera was defective. It gave video very slowly and this was one of the root causes of the video freeze
+	   when video was played with this camera. So, as a possible solution - try to use other camera.
+
+=====================================================================
+ 9 Workaround for USB bandwidth limitation
+=====================================================================
+ To do workaround for USB bandwidth limitation, Enhanced Host Controller Interface (EHCI) component of Linux USB core 
+ should be modified. Instructions below describe how to do this.
+	9.1	Setup build environment as it is described in Chapter 4.
+	9.2	Download kernel source rpm file by this link:
+			http://download.tizen.org/releases/milestone/tizen/ivi/tizen_20140115.4/repos/ivi/source/kernel-x86-ivi-3.12.4-10.1.src.rpm
+	9.3	Copy downloaded rpm file to some location (/home/tizen/build/, for example) and unpack it by executing
+		"rpm2cpio kernel-x86-ivi-3.12.4-10.1.src.rpm | cpio --extract --make-directories --verbose" command.
+	9.4	Unpack kernel sources with "tar jxvf kernel-x86-ivi-3.12.4.tar.bz2" command.
+	9.5	Make "packaging" directory in the unpacked kernel sources' root directory, i.e. "mkdir kernel-x86-ivi-3.12.4/packaging"
+	9.6	Move spec file to the packaging directory "mv kernel-x86-ivi.spec kernel-x86-ivi-3.12.4/packaging"
+	9.7	Copy all patches to the packaging directory "mv 00*.patch kernel-x86-ivi-3.12.4/packaging/"
+	9.8	Create new file, named 0012-usb-bus-unlim.patch, in the kernel-x86-ivi-3.12.4/packaging/ directory
+		with the following content (with no quotes):
+"
+diff --recursive '--unified=3' --show-c-function --new-file a/drivers/usb/host/ehci-sched.c b/drivers/usb/host/ehci-sched.c
+--- a/drivers/usb/host/ehci-sched.c	2013-12-08 20:18:58.000000000 +0400
++++ b/drivers/usb/host/ehci-sched.c	2014-02-06 07:27:35.000000000 +0400
+@@ -795,7 +795,8 @@ static int check_intr_schedule (
+ 	}
+ #endif
+ done:
+-	return retval;
++/*	return retval;*/
++	return 0;
+ }
+ 
+ /* "first fit" scheduling policy used the first time through,
+@@ -1410,8 +1411,9 @@ iso_stream_schedule (
+ 			ehci_dbg(ehci, "iso sched full %p (%u-%u < %u mod %u)\n",
+ 					urb, stream->next_uframe, base,
+ 					period, mod);
+-			status = -ENOSPC;
++/*			status = -ENOSPC;
+ 			goto fail;
++*/
+ 		}
+ 
+ 		/* Behind the scheduling threshold? */
+@@ -1474,8 +1476,9 @@ iso_stream_schedule (
+ 		/* no room in the schedule */
+ 		if (!done) {
+ 			ehci_dbg(ehci, "iso sched full %p", urb);
+-			status = -ENOSPC;
++/*			status = -ENOSPC;
+ 			goto fail;
++*/
+ 		}
+ 	}
+ 
+
+"
+	9.9 	Add "Patch11:    0012-usb-bus-unlim.patch" line to the patches section of the 
+		kernel-x86-ivi-3.12.4/packaging/kernel-x86-ivi.spec. (Right after "Patch10:    0011-drm-i915-vlv-fix-up-broken-precision-in-vlv_crtc_clo.patch")
+	9.10	Add following lines to the %prep section of kernel-x86-ivi-3.12.4/packaging/kernel-x86-ivi.spec:
+"
+# 0012-usb-bus-unlim.patch
+%patch11 -p1
+"
+	9.11	Create .gbs.conf file in the kernel-x86-ivi-3.12.4/ directory as it is described in 4.1.8.
+	9.12	Change directory to the kernel-x86-ivi-3.12.4/ with "cd kernel-x86-ivi-3.12.4"
+		and execute "git init" to init git repository
+	9.13	Execute "git add -f *" command to start files tracking.
+	9.14	Being in the kernel-x86-ivi-3.12.4/ directory, execute "gbs build -A i586 --include-all" 
+		for getting kernel sources built.
+	9.15	After kernel sources are built, copy them to the target.
+	9.16	From the target's console execute following command to uninstall kernel: "rpm -e --nodeps kernel-x86-ivi-3.12.4"
+	9.17	From the target's console execute following command to install pathched kernel: "rpm -ivh kernel-x86-ivi-3.12.4-10.1.i686.rpm"
+	9.18	Reboot the system.
+
+ After step#9.18 system will be loaded with no USB bandwidth limitation and you will be able to capture video from 
+ 2 or more cameras simultaneously.
+
+=====================================================================
+                         JLR POC - Cameras
+=====================================================================

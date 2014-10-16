@@ -1,0 +1,13 @@
+prefix=/usr
+project_name=@CMAKE_PROJECT_NAME@
+module_name=tizen_cameras
+exec_prefix=${prefix}
+libdir=${prefix}/lib/tizen-extensions-crosswalk
+includedir=${prefix}/include/${project_name}
+
+Name: ${module_name}
+Description: ${module_name}
+Version: @CMAKE_PROJECT_VERSION@
+Requires: icu-i18n icu-io icu-le icu-lx icu-uc 
+Libs: -L${libdir}
+Cflags: -I${includedir}/${module_name}
