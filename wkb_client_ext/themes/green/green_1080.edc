@@ -24,3 +24,4 @@
 #define NUMERIC_KEY_HEIGHT 150
 
 #include "green.edc"
+#include "../common.edc"

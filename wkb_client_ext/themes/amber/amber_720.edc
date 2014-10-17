@@ -24,3 +24,4 @@
 #define NUMERIC_KEY_HEIGHT 100
 
 #include "amber.edc"
+#include "../common.edc"
