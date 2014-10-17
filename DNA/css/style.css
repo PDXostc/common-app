@@ -10,8 +10,17 @@ html, body, iframe  {
 	font-size:100%;
 	vertical-align:baseline;
 }                  
-
-body { font: 14px/19px Tahoma,Geneva,sans-serif; background-color:black; background-image: url("../images/Hex-Background.jpg"); } 
+body{
+	font: 14px/19px Tahoma,Geneva,sans-serif;
+	background-color:black;
+	background-image: url("../common/images/Hex-Background.jpg");
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+} 
 
 body, select, input, textarea {   color: #444; }
 
@@ -53,7 +62,7 @@ html { overflow-y: hidden; }
 	width:42px !important;
 	height:42px !important;
 	margin:32px 43px;
-	background-image: url('../images/bt_close.png');
+	background-image: url('../common/images/bt_close.png');
 }
 #homeScrAppGridView{
 	display:none;
@@ -85,14 +94,14 @@ html { overflow-y: hidden; }
 	margin-top:40px;
 	height:100px;
 }
-#weathericon{
+#weather{
 	height:60px;
 	width:100px;
 	text-align:center;
 	display:inline-block;
 	vertical-align:middle;
 }
-#weathericon img{
+#weather img{
 	margin-top:20px;
 }
 #overlay,#lefties,#righties{
@@ -176,15 +185,18 @@ html { overflow-y: hidden; }
 }
 
 .appIconNo7{
-	background-image:url('../images/icongear.png');
+	background-image:url('../common/images/icongear.png') !important;
 	height:87px !important;
 	width:87px !important;
+	background-size:87px 87px !important;
 	margin-top:12px;
 }
 #topBarIcons div{
-	width:115px;
-	height:115px;
+	width:112px;
+	height:112px;
 	float:left;
+	background-size:112px 112px;
+	margin-left:4px;
 }
 
 #topBarIcons {
@@ -410,9 +422,9 @@ footer p {
     right/left = ( width x sin(30) ) makes no overlap 
     right/left = (( width x sin(30) ) / 2) leaves a narrow separation
     */
-    margin: 10px 43px; 
+    margin: 30px 43px; 
     position: relative;
-    background-image: url('../images/HomeHex2.png');
+    background-image: url('../common/images/AppHex.png');
     background-position: -50px 0px; /* -left position -1 x width x sin(30) */
     background-repeat: no-repeat;
     background-size: auto 100%;
@@ -428,7 +440,7 @@ footer p {
 }
 
 .hexrow > div:nth-child(even) {
-    top: 43.3px; /* ( width x cos(30) / 2 ) */
+    top: 73.3px; /* ( width x cos(30) / 2 ) */
 }
 
 .hexrow > div > div:first-of-type {

@@ -27,8 +27,8 @@
 		includeJs("./js/main.js");
 	</script>
 
-	<script src="js/jquery-ui.min.js"></script>
-	<link href="css/jquery-ui.css" rel="stylesheet">
+	<script src="./common/js/jquery-ui.min.js"></script>
+	<link href="./common/css/jquery-ui.css" rel="stylesheet">
 	<meta content="DNA structure animation using HTML5, canvas, Javascript js." name="description">
 	<meta content="Kasen Lam, Steve Mattison" name="author">
 	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -42,8 +42,8 @@
 				<div id="content">
 
 					<div id="topBarIcons" class="shadowStd">&nbsp;
-						<a href="" onclick="launchApplication('intelPoc10.HomeScreen')"><img src="images/iconback.png" id="backicon" width="89px" height="59px" /></a>
-						<a onclick="launchApplication('http://com.intel.tizen/settings')"><img id="settingsicon" src="images/icongear.png" width="87px" height="89px"></a>
+						<a onclick="launchApplication('intelPoc10.HomeScreen')"><img src="./common/images/iconback.png" id="backicon" width="89px" height="59px" /></a>
+						<a onclick="launchApplication('http://com.intel.tizen/settings')"><img id="settingsicon" src="./common/images/icongear.png" width="87px" height="89px"></a>
 					</div>
 
 					<div id="canvasContainer">
@@ -53,18 +53,124 @@
 					</div>
 
 					<div id="BottomBar"class="shadowSmall">&nbsp;
-						<a onclick='$("#homeScrAppGridView").fadeIn();'><img src="images/icongrid.png" id="gridicon" /></a>
-						<img id="logoicon" src="images/JLR-Logo.png">
-						<img id="volume" src="images/Volume.png">
-					</div>
+						<a onclick='$("#homeScrAppGridView").fadeIn();'><img src="./common/images/icongrid.png" id="gridicon" /></a>
+						<img id="logoicon" src="./common/images/JLR-Logo.png" onclick="launchApplication('intelPoc10.HomeScreen')">
+						
+						<div id="volumeSlider">
+							<div id="volumeChannel"><div id="volumeSlideCrop">
+								<img id="volumeIndicator2" src="./common/images/VolSlideFull.png">
+							</div></div><br clear=all />
+							<div id="volumeKnob">
+								<img src="./common/images/VolSlideCtrl.png" />
+							</div>
+							<span id="VolLabel">Volume</span>
+						</div>
+						<div id="volume">
+							<div id="volumeCrop">
+								<img id="volumeIndicator" src="./common/images/VolFull.png">
+							</div>
+						</div>
+<style>
+	#volumeSlideCrop, #volumeKnob, #volumeSlider{
+		position:absolute;
+	}
+	#volumeChannel, #volumeIndicator2, #volumeKnob{
+		pointer-events: none;
+	}
+	#volume,#volumeSlider,#volumeSlideCrop{
+		width:210px;
+	}
+	#volumeChannel,#volumeSlider{
+		height:896px;
+	}
+	#volume{
+		height:60px;
+		background-image:url('./common/images/VolBckgrnd.png');
+	}
+	#volumeSlider{
+		display:none;
+		bottom:250px;
+		right:25px;
+		background-image:url('./common/images/VolSlideBckgrnd.png')
+	}
+	#VolLabel{
+		font-weight:bold;
+		font-size:32px;
+		margin-left:45px;
+		line-height:60px;
+		color:white !important;
+	}
+	#volumeSlideCrop{
+		height:60%;
+		bottom:6px;
+		overflow:hidden;
+	}
+	#volumeKnob{
+		left:30px;
+		top:282px;
+	}
+	#volumeIndicator2{
+		width:209px;
+	}
+	#volumeCrop{
+		height:60px;
+		width:60%;
+		overflow:hidden;
+	}
+</style>
+<script type="text/javascript">
+	var Slide=[];
+	$("#volume").click(function(e){
+	   $("#volumeSlider").toggle();
+	});
+	$("#volumeSlider").mousedown(function(e){
+		Slide.mousedown=1; Slide.button=1;
+	})
+	.mouseout(function(e){
+		Slide.mousedown=0;
+	})
+	.mouseover(function(e){
+		if(Slide.button)
+			Slide.mousedown=1;
+	});
+	$("body").mouseup(function(e){
+		Slide.mousedown=0; Slide.button=0;
+	});
+	$("#volumeSlider").mousemove(function(e){
+		if(Slide.mousedown){
+			//pull some coordinates and percentages
+			var parentOffset = $(this).offset();
+			var relY = Math.floor((e.pageY - parentOffset.top)/8.96);
+			//quick and dirty math
+			if(relY<1) relY=1;
+			if(relY>100) relY=100;
+			var invY = 100-relY;
+			jqY = Math.floor((invY+1)*0.92+163);
+			//update appropriate onscreen widgets
+			$("#volumeCrop").width(invY+'%');
+			$("#volumeSlideCrop").height(invY+'%');
+			$("#volumeKnob").css('top',(relY*8.80-70)+'px');
+			console.log('Inv'+invY+'Rel'+relY);
+			
+			//functionality from bottomPanel.js:
+			
+			//encode some stringified json (jqY = level 163 to 255)
+			//{"api":"setTone","dest":"volume","level":jqY,"incr":0}
+			
+			//send to most
+			//most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
+		}
+	});
+</script>
+
+					</div><!--BottomBar-->
 
 				</div><!--content-->
 				<div id="overlay">
 					<div id="lefties" class="DNAfence">
-						<div id="weather" class="DNAfence">
-							<div id="weatherStatus" class="DNAtemp">29&deg; C</div>
-							<div id="weatherloc" class="DNAtitle">Portland OR</div>
-							<div id="weathericon" class="DNAwidget"><img src="images/4-s.png"></div>
+						<div id="fuel" class="DNAfence">
+							<div id="fuelTitle" class="DNAtitle">Fuel</div>
+							<div id="batteryStatus" class="DNAwidget">60%</div>
 						</div>
 						<div id="speedo" class="DNAfence">
 							<div id="homeScrSpeed" class="DNAwidget">45</div>
@@ -76,13 +182,13 @@
 							<div id="date" class="DNAwidget">7/7/2014</div>
 							<div id="clock" class="DNAwidget">9:22</div>
 						</div>
-						<div id="condition" class="DNAfence">
-							<div id="temptitle" class="DNAtitle">Int. Temp</div>
-							<div id="fanStatus" class="DNAtemp">18&deg; C</div>
+						<div id="weatherInfo" class="DNAfence">
+							<div id="weatherStatus" class="DNAtemp">29&deg; C</div>
+							<div id="weatherLoc" class="DNAtitle">Portland OR</div>
 						</div>
-						<div id="fuel" class="DNAfence">
-							<div id="fueltitle" class="DNAtitle">Fuel</div>
-							<div id="batteryStatus" class="DNAwidget">60%</div>
+						<div id="condition" class="DNAfence">
+							<div id="tempTitle" class="DNAtitle">Int. Temp</div>
+							<div id="fanStatus" class="DNAtemp">18&deg; C</div>
 						</div>
 					</div>
 				</div><!--overlay-->

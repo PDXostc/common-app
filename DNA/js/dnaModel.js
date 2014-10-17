@@ -12,7 +12,7 @@ TODO:
 */
 
 //Define Icons
-var IconFolder = "images/", IconLinks = [], IconType = ".png", IconCount=0;
+var IconFolder = "common/images/", IconLinks = [], IconType = ".png", IconCount=0;
 var Debug = false;
 
 //Definitions
@@ -33,8 +33,8 @@ var Width = 1080,
 	AnimatedLines = true,
 	AnimationHeight = 6,
 	AnimationHeight2 = 12,
-	ShowFPS = 1,
-	Background = "images/Hex-Background.jpg",
+	ShowFPS = 0,
+	Background = "common/images/Hex-Background.jpg",
 	ClickableDistance = 0.0; //(1.0 to -1.0) Larger numbers allow farther icon clicks
 	
 	/* === === === === === */
@@ -68,7 +68,6 @@ var ImageCenter = 0,
 	Twist = 0,
 	TwistHeight = -40,
 	Setting=[];
-	
 //Temp
 var iter=0;
 
@@ -689,15 +688,15 @@ function onAppRecallSuccess(list) {
 						   Browser:"/common/images/browser_icon.png", 
 						   Boilerplate:"/common/images/boilerplate_icon.png",
 						   gestureGame:"/common/images/GestureGame_icon.png",
-						   News:"./images/News.png",
-						   HVAC:"./images/HVAC.png",
-						   Dialer:"./images/Phone.png",
-						   Phone:"./images/Phone.png",
-						   Dashboard:"./images/Dashboard.png",
-						   Weather:"./images/Weather.png",
-						   Navigation:"./images/Navigation.png",
-						   "Multimedia Player":"./images/Media.png",
-						   "Finger Print":"./images/Fingerprint.png",
+						   News:"./common/images/news_inactive.png",
+						   HVAC:"./common/images/hvac_inactive.png",
+						   Dialer:"./common/images/phone_inactive.png",
+						   Phone:"./common/images/phone_inactive.png",
+						   Dashboard:"./common/images/dashboard_inactive.png",
+						   Weather:"./common/images/weather_inactive.png",
+						   Navigation:"./common/images/navigation_inactive.png",
+						   "Multimedia Player":"./images/mediaplayer_inactive.png",
+						   "Finger Print":"./images/fingerprint_inactive.png",
 						   Handwriting:"/common/images/handwriting_icon.png"};
 	var i = 0;
 	var path="";
@@ -715,7 +714,7 @@ function onAppRecallSuccess(list) {
 				addIcon(app.name, null, registeredApps[app.name], app.id);
 			}else{
 				if(app.iconPath.substr(app.iconPath.length - 4) != ".png"){
-					var path="./images/tizen_32.png";
+					var path="./common/images/default_icon.png";
 				}else{
 					var path=app.iconPath;
 				}

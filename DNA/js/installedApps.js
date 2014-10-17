@@ -123,7 +123,7 @@ function insertAppFrame(appFrame) {
 	var innerDiv = $("<span></span>").addClass("homeScrAppGridImg").appendTo(rootDiv);
 	$("<img />").data("src", appFrame.iconPath).appendTo(innerDiv);
 	var textDiv = $("<span />").addClass("homeScrAppGridText").appendTo(rootDiv);
-	$("<span />").addClass("homeScrAppGridTitle fontColorNormal fontSizeSmaller fontWeightBold").text(appFrame.appName).appendTo(textDiv);
+	$("<span />").addClass("homeScrAppGridTitle fontColorNormal fontSizeSmaller fontWeightBold").text(appFrame.appName.substring(0,10).replace("-","")).appendTo(textDiv);
 	$("<span />").addClass("homeScrAppGridCategory").text(appFrame.appName).appendTo(textDiv);
 
 	$('.hexrow').last().append(rootDiv);
@@ -166,6 +166,7 @@ function insertAppFrame(appFrame) {
 }
 
 var evalInstalledApps = null;
+var extras = 0;
 
 /**
  * Callback method for getting and resorting appList array for Homescreen app using.
@@ -221,7 +222,7 @@ function onAppInfoSuccess(list) {
 			}
 			applications.push(newApp);
 		}
-		var equals = applications.length === appList.length;
+		var equals = applications.length+extras === appList.length;
 
 		if (equals) {
 			for (var j = 0; j < applications.length; j++) {
@@ -243,6 +244,20 @@ function onAppInfoSuccess(list) {
 					$('#homeScrAppGridView #hexes').append(rowDiv);
 				}
 				insertAppFrame(applications[i]);
+			}
+			if(true){
+				for (j=0;j<5-applications.length%5;j++){
+					insertAppFrame({iconPath:'',appName:'',id:0});
+					extras++;
+				}
+				for (i = 1; i <= 5; i++) {
+					var rowDiv = $("<div></div>").addClass("hexrow");
+					$('#homeScrAppGridView #hexes').append(rowDiv);
+					for (j=1;j<=5;j++){
+						insertAppFrame({iconPath:'',appName:'',id:0});
+						extras++;
+					}
+				}
 			}
 		}
 	} catch (exc) {

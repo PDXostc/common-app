@@ -72,6 +72,9 @@ var init = function() {
                 var newBatteryRange = "~" + Math.round(((newValue / 100) * bootstrap.carIndicator.status.fullBatteryRange)).toString() + " MI";
                 $('#batteryRange').html(newBatteryRange);
             },
+            onWeatherChanged: function(newValue){
+				$("#weather").html("<img src='images/"+newValue+"-s.png'>");
+			},
             onOutsideTempChanged: function(newValue) {
                 $("#weatherStatus").html(newValue + "°C");
             },
