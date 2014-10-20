@@ -1,0 +1,14 @@
+#alphabetBookmarkList {
+	position: absolute;
+	top: 115px;
+	right: 15px;
+	cursor: pointer;
+	-webkit-transition: 0.7s;
+	z-index: 10;
+	text-align: center;
+}
+
+.alphabetBookmarkItem {
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
