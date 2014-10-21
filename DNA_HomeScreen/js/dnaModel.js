@@ -16,8 +16,9 @@ var IconFolder = "DNA_common/images/", IconLinks = [], IconType = ".png", IconCo
 var Debug = false;
 
 //Definitions
-var Width = 1080,
-	Height = 1920, /*1920 or 1800, 1220 for testing*/
+var ScreenScale=1.5;
+	ScreenWidth = 720*ScreenScale,
+	ScreenHeight = 1280*ScreenScale, /*1920 or 1800, 1220 for testing*/
 	VerticalOffset = -200, /*-200, 200 for testing */
 	ClickSensitivity = 10,
 	DragSensitivity = 20,
@@ -53,8 +54,8 @@ var MinRungCount = 6,
 
 //Globals! [Determines framerate dynamically via FPS setting]
 var ImageCenter = 0,
-	NucleotideSize = 150,
-	IconSize = 120,
+	NucleotideSize = 100*ScreenScale,
+	IconSize = 80*ScreenScale,
 	FPS = 60,
 	Framerate = 1000/FPS,
 	Speed=-1,
@@ -375,7 +376,7 @@ Spinner.prototype = {
     frameAction: function(b) {
 		//redraw canvas
         b.canvas.width = b.canvas.width;
-		b.Context.drawImage(img,0,0,1080,1920);
+		b.Context.drawImage(img,0,0,ScreenWidth,ScreenHeight);
 		if(ShowFPS)
 			fpsUpdate();
 		//butt,round,square
@@ -776,10 +777,10 @@ getInstalledApps(function(){
 	//Increase rungs to hold appropriate number of icons when necessary
 	RungCount = (IconCount<MinRungCount*StrandCount) ? MinRungCount+SkipRows*2 : Math.ceil(IconCount/StrandCount)+SkipRows*2;
 
-	RungSpacing = 1/RungCount*(Height+480),
+	RungSpacing = 1/RungCount*(ScreenHeight+480),
 	Twist = 360 / RungCount,
 	TwistHeight = -40,
-	Width = Width*WidthMultiplier;
+	Width = ScreenWidth*WidthMultiplier;
 	
 	Setting=[null,RungSpacing,Twist,TwistHeight,Speed,VerticalOffset,Width,WidthMultiplier,FPS,ImageCenter];
 

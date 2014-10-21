@@ -1,6 +1,9 @@
 /**
  * @module CarTheme
  **/
+ 
+$("#bottomPanel").remove();
+$("body").append('<div id="bottomPanel" class="shadowSmall"></div>');
 
 (function ($) {
     "use strict";
@@ -17,6 +20,7 @@
      * @constructor
      * @static
      */
+
     var BottomPanel = {
             /**
              * Holds current object of this JQuery plugin.
@@ -32,11 +36,13 @@
             init: function (backButtonDisabled,volumeSliderDisabled) {
             	
             	volumeSliderDisabled = (volumeSliderDisabled == undefined)? false:true;
+            	
 				$("#settingsMenu").remove();
 				$("#settingsicon").remove();
 				$("#bottomPanelLogoImg").remove();
 				$("#volumeSlider").remove();
 				$("#volume").remove();
+
 				var CloseButton='';
                 if (!backButtonDisabled) {
                     CloseButton='<img id="closeApp" src="./DNA_common/images/Kill_App_Off.png" onclick="$(\'#' + this.attr('id') + '\').bottomPanel(\'onBackButtonClick\');">';
@@ -55,7 +61,7 @@
 	                if(!volumeSliderDisabled){
 						$("#volumeSlider").remove();
 	                	this.append(
-						'<div id="volumeSlider" onmousedown="console.warn(\'mousedown on volumeslider\')">' +
+						'<div id="volumeSlider" onmousedown="volDown();" onmouseout="volOut();" onmouseover="volOver();" onmousemove="volMove(arguments[0]);">' +
 							'<div id="volumeChannel"><div id="volumeSlideCrop">' +
 								'<img id="volumeIndicator2" src="./DNA_common/images/VolSlideFull.png">' +
 							'</div></div><br clear="all">' +
@@ -72,105 +78,6 @@
 							'</div>' +
 						'</div>');
 	                	
-	                    $("#noVolumeSlider").noUiSlider({
-	                    	range: [0, 24],
-	                    	step: 1,
-	    				   start: 12,
-	    				   handles: 1,
-	    				   connect: "lower",
-	    				   orientation: "vertical",
-	    				   slide :function(){
-	
-// WRT -> XW:					if(tizen.most)
-	    						{
-	    							var n = 255 - (( 24- ($(".noVolumeSlider").val()) * 1) / 2)*8;	
-	    	
-	    							var i = Math.floor(n+0.5);   // Volume.
-	
-	    							// For XW, encode the WRT api name, destination, and volume level/increment parameters into JSON
-	    							// and send to the MOST plugin's asynch interface.
-	    							var jsonenc = {api:"setTone", dest:"volume", level:i, incr:0};
-									console.log("JE: volume stringify is "+JSON.stringify(jsonenc));
-									most.mostAsync(JSON.stringify(jsonenc), volumeSetCB);
-									 
-	    							
-	/* WRT -> XW:    							tizen.most.setTone("volume", i, 0, function(result) {
-	                 						console.log(result.message);
-	                    			} );
-   */	                    			               			
-	    						}
-	    					}
-	    				});
-    
-    var Slide=[];
-	$("body").mouseup(function(e){
-		Slide.mousedown=0; Slide.button=0;
-		console.warn("mouseup on body");
-	});
-
-	$("#volumeSlider").mousedown(function(e){
-		Slide.mousedown=1; Slide.button=1;
-		console.warn("mousedown on volumeslider");
-	});
-	$("#volumeSlider").mouseout(function(e){
-		Slide.mousedown=0;
-		console.warn("mouseout on volumeslider");
-	});
-	$("#volumeSlider").mouseover(function(e){
-		if(Slide.button)
-			Slide.mousedown=1;
-	});
-	$("#volumeSlider").mousemove(function(e){
-		if(Slide.mousedown){
-			//pull some coordinates and percentages
-			var parentOffset = $(this).offset();
-			var relY = Math.floor((e.pageY - parentOffset.top)/8.96);
-			//quick and dirty math
-			if(relY<1) relY=1;
-			if(relY>100) relY=100;
-			var invY = 100-relY;
-			jqY = Math.floor((invY+1)*0.92+163);
-			//update appropriate onscreen widgets
-			$("#volumeCrop").width(invY+'%');
-			$("#volumeSlideCrop").height(invY+'%');
-			$("#volumeKnob").css('top',(relY*8.80-70)+'px');
-			console.log('Inv'+invY+'Rel'+relY);
-			
-			//encode some stringified json (jqY = level 163 to 255) and send to most
-			//var jsonenc = {"api":"setTone","dest":"volume","level":jqY,"incr":0};
-			//most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
-		}
-	});
-	                    // tizen.most.volume query here reads the MOST volume setting and applies it to the slider.
-       // WRT -> XW:   	if( tizen.most)
-	                	{
-	                		// For XW, encode the WRT api name, and volumeQuery destination parameters into JSON
-							// and send to the MOST plugin's asynch interface.
-	                		// Under WRT it was a little unreliable, so try multiple times.
-							var jsonenc = {api:"setTone", dest:"volumeQuery", level:0, incr:0};
-							 console.log("JE: volume stringify is "+JSON.stringify(jsonenc));
-							 most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
-							 
-							var jsonenc = {api:"setTone", dest:"volumeQuery", level:0, incr:0};
-							console.log("JE: volume stringify is "+JSON.stringify(jsonenc));
-							most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
-/* WRT way:							
-	                		// It's a little unreliable, so try multiple times.
-	                		tizen.most.setTone("volumeQuery", 0, 0, function(result) {
-	                				console.log(result.message);
-	                				
-	                		} ); 
-	                		tizen.most.setTone("volumeQuery", 0, 0, function(result) {
-	            				console.log(result.message);
-	            				
-	                		} ); 
-*/	                		
-// For crosswalk, this code must be moved to the callback:
-	                //		var st = tizen.most.volume;
-	                //		var sl = (tizen.most.volume - 159)/4;
-	
-	               // 		$(".noVolumeSlider").val(sl);
-	                	}
 	                }
                 }
                 
@@ -209,6 +116,44 @@
     };
 }(jQuery));
 
+/* ==== ==== ==== init new volume slider js code ==== ==== ==== */
+    var Slide=[];
+	$("body").mouseup(function(e){
+		Slide.mousedown=0; Slide.button=0;
+    });
+	function volDown(){
+		Slide.mousedown=1; Slide.button=1;
+    }
+	function volOut(){
+		Slide.mousedown=0;
+    }
+	function volOver(){
+		if(Slide.button)
+			Slide.mousedown=1;
+    }
+	function volMove(e){
+		if(Slide.mousedown){
+			//pull some coordinates and percentages
+			var parentOffset = e.target.offsetHeight-120; //seems to be offset by topbar height
+			var relY = Math.floor((e.pageY - parentOffset)/8.96);
+			
+			//quick and dirty math
+			if(relY<1) relY=1;
+			if(relY>100) relY=100;
+			var invY = 100-relY;
+			jqY = Math.floor((invY+1)*0.92+163); //From 163 to 255 = 92 different discreet volume settings
+			
+			//update appropriate onscreen widgets
+			$("#volumeCrop").width(invY+'%');
+			$("#volumeSlideCrop").height(invY+'%');
+			$("#volumeKnob").css('top',(relY*8.80-70)+'px');
+			
+			//encode some stringified json (jqY = level 163 to 255) and send to most
+			var jsonenc = {"api":"setTone","dest":"volume","level":jqY,"incr":0};
+			most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
+		}
+    }
+/* ==== ==== ==== quit new volume slider js code ==== ==== ==== */
 
 // Volume control update timer; this keeps the volume control slider synchronized
 // when moving from widget to widget.

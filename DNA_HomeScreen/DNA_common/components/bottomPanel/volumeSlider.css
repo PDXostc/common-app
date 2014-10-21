@@ -1,144 +1,85 @@
-.noVolumeSlider, 
-.noVolumeSlider * {
-	-webkit-box-sizing: border-box;
-   	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	-webkit-user-select: none;
-   	-moz-user-select: none;
-	-ms-user-select: none;
-	display: block;
-	cursor: default;
-}
-.noVolumeSlider {
-	position: relative;
-}
-.noVolumeSlider a {
-	position: absolute;
-	z-index: 1;
-}
-.noVolumeSlider a:nth-child(2) {
-	background: inherit !important;
-}
-.noVolumeSlider.vertical a {
-	width: 100%;
-	bottom: 0;
-}
-.noVolumeSlider.horizontal a {
-	height: 100%;
-	right: 0;
-}
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-	.noVolumeSlider:before,
-	.TOUCH,
-	.noVolumeSlider div {
-		-ms-touch-action: none;
-	}
-	.noVolumeSlider:before {
-		display: block;
-		position: absolute;
-		width: 150%;
-		left: -25%;
-		height: 400%;
-		top: -150%;
-		content: "";
-		z-index: -1;
-	}
-	.noVolumeSlider.vertical:before {
-		width: 400%;
-		left: -150%;
-		height: 150%;
-		top: -25%;
-	}
-}
-.noVolumeSlider {
-	border-radius: 3px;
-}
-
-.noVolumeSlider,
-.noVolumeSlider.connect.lower a {
-	left:0;
-
-}
-/*.noVolumeSlider.disabled,
-.noVolumeSlider.disabled.connect.lower a {
-		
-}*/
-.noVolumeSlider div {
-	width:100px;
-	height: 100px;
-	border-radius: 3px;
-	/*background: #efefe7;*/
-		
-/*	left:100%; */					
-}
-/*.noVolumeSlider.disabled div {
-		
-		
-}
-.noVolumeSlider.horizontal {
-		
-}*/
-.noVolumeSlider.horizontal div {
-	margin: -23px 0 0 -50px;
-	top: -27px;
-}
-
-#volumeControl .noVolumeSlider.horizontal a{
-	top:30px;
-	height:4px;
-	background: #05141d;
-}
-
-.noVolumeSlider{
-	width: 150px;
-	height: 100%;
-}
-
-.sliderStart{
-	position:absolute;
-	top: 25px;
-	left: 0px;
-	width: 2px;
-	height: 6px;
-}
-
-#volumeControl.volumeControlClass{
-	position:absolute;
-	top: 105px;
-	right: 5px;
-}
-
-#volumeControl #VCinner{
-	width: 100%;
-}
-
-#VCline {
-	position: absolute;
-	top: 36px;
-	height: 1px;
-	width: 100%;
-}
-#VCicon {
-	position: absolute;
-	top: 0;
+#bottomPanel{
+	width: 1078px;
+	height: 139px;
+	position: fixed;
+	bottom: 0px;
 	left: 0;
-	width: 37px;
-	height: 18px;
-	background-size: 37px 18px;
-	display: block;
+	z-index:4;
 }
-
-#VCcircle {
-	position: absolute;
-	top: -10px;
-	width: 80px;
-	height: 80px;
+#settingsicon{
+	margin-left:21px;
+	height:85px;
+	width:85px;
 }
-
-#VCinner {
-	position: absolute;
-	top: 30px;
-	height: 2px;
+	#settingsMenu{
+		Height: 800px;
+		width: 117px;
+		position: fixed;
+		bottom: 140px;
+		left: 0;
+		display:none;
+		border: 1px solid white;
+		box-shadow: 0 0 36px rgba(196, 196, 196, 1) inset;
+	}
+	#settingsMenu img{
+		border-bottom:1px solid white;
+	}
+#bottomPanelLogoImg{
+	width:400px;
+	height:100px;
+	margin: 16px 0 0 215px;
 }
-
-
+#volume{
+	float:right;
+	margin:50px 31px 0 0;
+}
+	#volumeSlideCrop, #volumeKnob, #volumeSlider{
+		position:absolute;
+	}
+	#volumeChannel, #volumeIndicator2, #volumeKnob{
+		pointer-events: none;
+	}
+	#volume,#volumeSlider,#volumeSlideCrop{
+		width:210px;
+	}
+	#volumeChannel,#volumeSlider{
+		height:896px;
+	}
+	#volume{
+		height:60px;
+		background-image:url('../../../DNA_common/images/VolBckgrnd.png');
+	}
+	#volumeSlider{
+		display:none;
+		bottom:250px;
+		right:25px;
+		background-image:url('../../../DNA_common/images/VolSlideBckgrnd.png')
+	}
+	#VolLabel{
+		font-weight:bold;
+		font-size:32px;
+		margin-left:45px;
+		line-height:60px;
+		color:white !important;
+	}
+	#volumeSlideCrop{
+		height:60%;
+		bottom:6px;
+		overflow:hidden;
+	}
+	#volumeKnob{
+		left:30px;
+		top:282px;
+	}
+	#volumeKnob img{
+		width:100px;
+		margin: 25px 0 0 25px;
+	}
+	#volumeIndicator2{
+		width:209px;
+	}
+	#volumeCrop{
+		height:60px;
+		width:60%;
+		overflow:hidden;
+	}

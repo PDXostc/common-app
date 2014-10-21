@@ -40,7 +40,7 @@ var listenerID = null;
 var index = 0;
 
 /**
- * Provides hiding installed app grid afted click out of app cells.
+ * Provides hiding installed app grid after click out of app cells.
  * @method $
  * @static
  **/
@@ -93,7 +93,7 @@ function onFrameClick(appData) {
 			if (appList[i].id === appData.id) {
 				if (appData.id === "http://com.intel.tizen/intelPocSettings") {
 					if (typeof Settings === 'undefined') {
-						loadScript('./common/components/settings/js/settings.js', scriptCallback);
+						loadScript('./DNA_common/components/settings/js/settings.js', scriptCallback);
 					} else {
 						Settings.show();
 					}
@@ -153,7 +153,7 @@ function insertAppFrame(appFrame) {
 	img.onerror = img.onabort = function() {
 		$("span.homeScrAppGridImg img").each(function() {
 			if ($(this).data("src") === appFrame.iconPath) {
-				$(this).attr("src", "/common/images/default_icon.png");
+				$(this).attr("src", "/DNA_common/images/default_icon.png");
 			}
 		});
 	};
@@ -176,15 +176,15 @@ var extras = 0;
  **/
 function onAppInfoSuccess(list) {
 	"use strict";
-	var registeredApps = {"Home Screen":"/common/images/homescreen_icon.png",
-						   Browser:"/common/images/browser_icon.png", 
-						   Boilerplate:"/common/images/boilerplate_icon.png",
-						   News:"/common/images/news_icon.png",
-						   gestureGame:"/common/images/GestureGame_icon.png",
-						   Phone:"/common/images/phone_icon.png",
-						   Dashboard:"/common/images/dashboard_icon.png",
-						   Weather:"/common/images/weather_icon.png",
-						   Handwriting:"/common/images/handwriting_icon.png"};
+	var registeredApps = {"Home Screen":"/DNA_common/images/homescreen_icon.png",
+						   Browser:"/DNA_common/images/browser_icon.png", 
+						   Boilerplate:"/DNA_common/images/boilerplate_icon.png",
+						   News:"/DNA_common/images/news_icon.png",
+						   gestureGame:"/DNA_common/images/GestureGame_icon.png",
+						   Phone:"/DNA_common/images/phone_icon.png",
+						   Dashboard:"/DNA_common/images/dashboard_icon.png",
+						   Weather:"/DNA_common/images/weather_icon.png",
+						   Handwriting:"/DNA_common/images/handwriting_icon.png"};
 	var i = 0;
 	//console.log("onAppInfoSuccess(list)");
 	//console.log(list);
@@ -196,7 +196,7 @@ function onAppInfoSuccess(list) {
 			id: "http://com.intel.tizen/intelPocSettings",
 			appName: "Settings",
 			show: true,
-			iconPath: "./common/components/settings/icon.png"
+			iconPath: "./DNA_common/components/settings/icon.png"
 		});
 
 		list.sort(function(x, y) {

@@ -12,14 +12,20 @@
 /**
  * @module CarTheme
  **/
+ 
+$("#topBarIcons").remove();
+$("#homeScrAppGridView").remove();
+$("body").append('<div id="topBarIcons" class="topBarIcons shadowStd">&nbsp;</div>');
+$("body").append('<div id="homeScrAppGridView" class="homeScrAppGridView pageBgColorNormalTransparent"><div class="HSAGWHeading fontColorNormal fontSizeLarger ">Apps</div><div class="exitButton tabsCloseButton"></div><div id="hexes"></div></div>');
+
 /** 
  * Array of applications that will be rendered to the top bar panel.
- * @property topBarAplicationsModel
+ * @property topBarApplicationsModel
  * @type {Array}
  * @for window
  */
 
-var topBarAplicationsModel = [];
+var topBarApplicationsModel = [];
 
 /** 
  * Array of applications that would not fit the top bar panel.
@@ -43,7 +49,7 @@ function onError(err) {
 }
 
 /**
- * Returns the application object by application id from topBarAplicationsModel.
+ * Returns the application object by application id from topBarApplicationsModel.
  *
  * @method getAppByID
  * @for window
@@ -53,9 +59,9 @@ function onError(err) {
 function getAppByID(id) {
 	"use strict";
 	var j, i = 0;
-	for (j = 0; j < topBarAplicationsModel.length; ++j) {
-		if (id === topBarAplicationsModel[j].id) {
-			return topBarAplicationsModel[j];
+	for (j = 0; j < topBarApplicationsModel.length; ++j) {
+		if (id === topBarApplicationsModel[j].id) {
+			return topBarApplicationsModel[j];
 		}
 	}
 	for (i = 0; i < extraAppsModel.length; ++i) {
@@ -68,7 +74,7 @@ function getAppByID(id) {
 }
 
 /**
- * Returns the application object by application name from topBarAplicationsModel.
+ * Returns the application object by application name from topBarApplicationsModel.
  *
  * @method getAppByName
  * @for window
@@ -77,9 +83,9 @@ function getAppByID(id) {
  */
 function getAppByName(appName) {
 	"use strict";
-	for (var j = 0; j < topBarAplicationsModel.length; ++j) {
-		if (appName.toString().trim().toLowerCase() === topBarAplicationsModel[j].appName.toString().trim().toLowerCase()) {
-			return topBarAplicationsModel[j];
+	for (var j = 0; j < topBarApplicationsModel.length; ++j) {
+		if (appName.toString().trim().toLowerCase() === topBarApplicationsModel[j].appName.toString().trim().toLowerCase()) {
+			return topBarApplicationsModel[j];
 		}
 	}
 	for (var i = 0; i < extraAppsModel.length; ++i) {
@@ -113,7 +119,18 @@ function onLaunchSuccess() {
 function launchApplication(id) {
 	"use strict";
 	console.log('launchApplication('+id+');');
-	if (id === "http://com.jaguar.tizen/apps") {
+	if (id === "http://com.intel.tizen/settings") {
+		if (typeof Settings === 'undefined') {
+			loadScript('./common/components/settings/js/settings.js', function(path, status) {
+				if (status === "ok") {
+					Settings.init();
+				}
+			});
+		} else {
+			Settings.show();
+		}
+		return;
+	}else if (id === "http://com.jaguar.tizen/apps") {
 		$("#homeScrAppGridView").fadeIn();
 		return;
 	}
@@ -274,19 +291,19 @@ function launchApplication(id) {
 						installed: true,
 						lastIcon: true
 					});
-					var equals = modelData.length === topBarAplicationsModel.length;
+					var equals = modelData.length === topBarApplicationsModel.length;
 
 					if (equals) {
 						for (j = 0; j < modelData.length; j++) {
-							equals = modelData[j].id === topBarAplicationsModel[j].id ? equals : false;
-							equals = modelData[j].appName === topBarAplicationsModel[j].appName ? equals : false;
-							equals = modelData[j].css === topBarAplicationsModel[j].css ? equals : false;
-							equals = modelData[j].iconPath === topBarAplicationsModel[j].iconPath ? equals : false;
+							equals = modelData[j].id === topBarApplicationsModel[j].id ? equals : false;
+							equals = modelData[j].appName === topBarApplicationsModel[j].appName ? equals : false;
+							equals = modelData[j].css === topBarApplicationsModel[j].css ? equals : false;
+							equals = modelData[j].iconPath === topBarApplicationsModel[j].iconPath ? equals : false;
 						}
 					}
 
 					if (!equals) {
-						topBarAplicationsModel = modelData;
+						topBarApplicationsModel = modelData;
 						if (appListLenght !== list.length) {
 							loadScript('./DNA_common/components/jsViews/jsrender.js', function(path, status) {
 								if (status === "ok") {
@@ -295,7 +312,7 @@ function launchApplication(id) {
 											TopBarIcons.renderApps();
 
 											// jsRender adds additional properties so we need to store it once again for comparsion in next round
-											topBarAplicationsModel = modelData;
+											topBarApplicationsModel = modelData;
 										}
 									});
 								}
@@ -322,13 +339,13 @@ function launchApplication(id) {
 			$(".topBarIcons").empty();
 			//$(".topBarIcons").css("display", "none");
 
-			template.compile(topBarAplicationsModel, "./DNA_common/components/topBarIcons/templates/topBarIconsDelegate.html", ".topBarIcons", function() {
+			template.compile(topBarApplicationsModel, "./DNA_common/components/topBarIcons/templates/topBarIconsDelegate.html", ".topBarIcons", function() {
 				var j = 0;
-				for (j = 0; j < topBarAplicationsModel.length; ++j) {
-					if (topBarAplicationsModel[j].running) {
-						changeCssBgImageColor("." + topBarAplicationsModel[j].css, ThemeKeyColorSelected);
+				for (j = 0; j < topBarApplicationsModel.length; ++j) {
+					if (topBarApplicationsModel[j].running) {
+						changeCssBgImageColor("." + topBarApplicationsModel[j].css, ThemeKeyColorSelected);
 					} else {
-						changeCssBgImageColor("." + topBarAplicationsModel[j].css, ThemeKeyColor);
+						changeCssBgImageColor("." + topBarApplicationsModel[j].css, ThemeKeyColor);
 					}
 				}
 				setTimeout(function() {
