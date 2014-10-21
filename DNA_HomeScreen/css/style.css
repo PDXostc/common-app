@@ -23,8 +23,10 @@ body{
 
 body, select, input, textarea {   color: #444; }
 
-html { overflow-y: hidden; }
+html, #viewPort { overflow-y: hidden; }
 
+#viewPort{
+}
 #overlay{
 	position:absolute;
 	top:80px;
@@ -82,6 +84,9 @@ html { overflow-y: hidden; }
 	font-size:35px;
 	line-height:37px;
 }
+.keyboard{
+	display:none;
+}
 .DNAtemp{
 	font-size:45px;
 	line-height:47px;
@@ -91,29 +96,7 @@ html { overflow-y: hidden; }
 	line-height:24px;
 }
 
-.shadowStd
-{	
-	border: 1px solid white;
-	background: rgba(0, 0, 0, 0.8);
-   -webkit-box-shadow: inset 0 0 43px rgb(179, 227, 255);
-   box-shadow:         inset 0 0 43px rgb(179, 227, 255);
-   }
-.shadowSmall
-{	
-	border: 1px solid white;
-	background: rgba(0, 0, 0, 0.9);
-   -webkit-box-shadow: inset 0 0 20px rgb(179, 227, 255);
-   box-shadow:         inset 0 0 20px rgb(179, 227, 255);
-	
-}
-
-#Particle{
-	display:block;
-	position:relative;
-	margin-top:-25px;
-	z-index:-1;
-}
-#Particle2{
+#Particle, #Particle2{
 	display:block;
 	position:relative;
 	margin-top:-25px;
@@ -128,17 +111,7 @@ html { overflow-y: hidden; }
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px
 }
-#controls .controlGroup
-{
-	float:left;
-	clear:both;
-}
-#controls .title
-{
-	float:left;
-	clear:both;
-}
-#controls .controlGroup *
+#controls .controlGroup, #controls .title, #controls .controlGroup *
 {
 	float:left;
 	clear:both;
@@ -177,9 +150,8 @@ html { overflow-y: hidden; }
 {
 	margin: 0px 10px 10px;
 	font-size:1.2em;
-	float:right;
 }
-#controls .about span
+#controls .about span, #controls .about
 {
 	float:right;
 }

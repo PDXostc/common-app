@@ -43,7 +43,7 @@
 .tabsTabs {
 	position: absolute;
 	left: 15px;
-	width: 705px;
+	width: 1065px !important;
 	overflow: hidden;
 	white-space: nowrap;
 }
@@ -96,11 +96,10 @@
 	cursor: pointer;
 	text-transform: uppercase;
 	position: absolute;
-	top: 20px;
 }
 
 .tabsCloseSubPanelButton:active {
-	top: 21px;
+	padding-top: 1px;
 }
 
 .tabsTopSubPanel .tabsSubPanelArea {

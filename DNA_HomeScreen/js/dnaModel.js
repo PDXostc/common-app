@@ -1,16 +1,3 @@
-/* JavaScript Document
-TODO:
-**> Icons should be attached to individual nucleotides, not rows!
->>> Icons should start at first visible 'nucleotide' hex
-*
-! Horizontal scrolling of speeds > 1 relocate icon positions!
-? Fix horizontal scroll speed to stay at speed user set
-? Add original bars to interface
-? Retheme/Steal Bars/Informatics
-*
-* Mouse control: Drag Scroll Vertical
-*/
-
 //Define Icons
 var IconFolder = "DNA_common/images/", IconLinks = [], IconType = ".png", IconCount=0;
 var Debug = false;
@@ -34,8 +21,24 @@ var ScreenScale=1.5;
 	AnimatedLines = true,
 	AnimationHeight = 6,
 	AnimationHeight2 = 12,
-	ShowFPS = 0,
 	Background = "DNA_common/images/Hex-Background.jpg",
+	ImageCenter = 0,
+	NucleotideSize = 100*ScreenScale,
+	IconSize = 80*ScreenScale,
+	ShowFPS = 0,
+	FPS = 60,
+	Framerate = 1000/FPS,
+	Speed=-1,
+	Count=0,
+	MinSpeed = 1,
+	MaxSpeed = 4,
+	AnimateStrand = null,
+	listenerID = null,
+	WidthMultiplier = 0.30,
+	RungSpacing = 0,
+	Twist = 0,
+	TwistHeight = -40,
+	Setting=[],
 	ClickableDistance = 0.0; //(1.0 to -1.0) Larger numbers allow farther icon clicks
 	
 	/* === === === === === */
@@ -52,23 +55,6 @@ var MinRungCount = 6,
 	//RungCount: Number of rungs to display (4-360)
 	//Change to constant 41 or 81 when vertical scrolling is complete?
 
-//Globals! [Determines framerate dynamically via FPS setting]
-var ImageCenter = 0,
-	NucleotideSize = 100*ScreenScale,
-	IconSize = 80*ScreenScale,
-	FPS = 60,
-	Framerate = 1000/FPS,
-	Speed=-1,
-	Count=0,
-	MinSpeed = 1,
-	MaxSpeed = 4,
-	AnimateStrand = null,
-	listenerID = null,
-	WidthMultiplier = 0.30,
-	RungSpacing = 0,
-	Twist = 0,
-	TwistHeight = -40,
-	Setting=[];
 //Temp
 var iter=0;
 
@@ -131,7 +117,7 @@ C = {
 };
 
 //Object Prototypes
-DNA = function(commonContext, Twist, XVal, YVal, Height, Width) {
+DNA = function (commonContext, Twist, XVal, YVal, Height, Width) {
     this.x = XVal;
     this.y = YVal;
     this.radiusHeight = Height;
@@ -141,12 +127,12 @@ DNA = function(commonContext, Twist, XVal, YVal, Height, Width) {
     this.Update();
 };
 DNA.prototype = {
-    moveToNext: function() {
+    moveToNext: function () {
         this.revS+=Speed;
         if (this.revS > 359) this.revS = 0;
         if (this.revS < 0) this.revS = 359;
     },
-    Update: function() {
+    Update: function () {
         var MainArray = [];
 		var b = 0;
         for (revS = 0; revS < 360; revS++) {
@@ -171,13 +157,13 @@ DNA.prototype = {
         }
         this.posCacheValues = MainArray;
     },
-    UpdateStrand: function(c) {
+    UpdateStrand: function (c) {
 		for(i=0;i<StrandCount;i++){
 			n=i*3;
 			G.Strand[i]=c[n+1];	G.X[i]=c[n+2]; G.Y[i]=c[n+3];
 		}
 	},
-    paintLines: function(offset) {
+    paintLines: function (offset) {
 		var a = this.Context;
         this.UpdateStrand(this.posCacheValues[Math.floor(this.revS)]);
 		/*
@@ -243,7 +229,7 @@ DNA.prototype = {
 		}
 		G.LastCos=G.Strand[0];
     },
-    paintIcons: function() {
+    paintIcons: function () {
 		//Called each rung
         var a = this.Context;
         this.UpdateStrand(this.posCacheValues[Math.floor(this.revS)]);
@@ -327,11 +313,11 @@ function buildStrand(N,X,Y,S,C,F){
 }
 
 //Display Functions
-var Display = function(commonContext) {
+var Display = function (commonContext) {
     this.commonContext = commonContext;
 };
 Display.prototype = {
-    createStrand: function(Twist, XVal, Setting) {
+    createStrand: function (Twist, XVal, Setting) {
 	//var Setting=[1RungSpacing,2Twist,3TwistHeight,5VerticalOffset,6Width];
 		Length=IconLinks.length;
 		var YVal=Setting[5] + Twist * Setting[1];
@@ -345,7 +331,7 @@ Display.prototype = {
 };
 
 //Strand Definitions
-var Spinner = function(fps, canvas, Context, models) {
+var Spinner = function (fps, canvas, Context, models) {
     this.fps = fps;
     this.timeoutFnId = null;
     this.models = models;
@@ -357,23 +343,23 @@ var Spinner = function(fps, canvas, Context, models) {
     this.Update();
 };
 Spinner.prototype = {
-    Update: function() {
+    Update: function () {
         this.opacity = 0;
     },
-    play: function() {
+    play: function () {
         var b = this;
-        var a = function() {
+        var a = function () {
             b.frameAction(b);
         };
         this.timeoutFnId = setInterval(a, Framerate);
 		G.Paused=false;
     },
-    pause: function() {
+    pause: function () {
         var b = this;
         clearInterval(b.timeoutFnId);
 		G.Paused=true;
     },
-    frameAction: function(b) {
+    frameAction: function (b) {
 		//redraw canvas
         b.canvas.width = b.canvas.width;
 		b.Context.drawImage(img,0,0,ScreenWidth,ScreenHeight);
@@ -471,7 +457,7 @@ function queueImage(img, x, y, scalex, scaley, cos){
 }
 function unqueue(Canvas){
 	//Sort on G.Q[i]["o"]
-	G.Q.sort(function(a,b) { return a.o - b.o; });
+	G.Q.sort(function (a,b) { return a.o - b.o; });
 	
 	for(i=G.Q.length;i>0;i--){
 		if(typeof(G.Q[i])!== typeof undefined){
@@ -596,11 +582,11 @@ function addIcon(Icon, Callback, Path, Id){
 		img.src=Path;
 	else
 		img.src=IconFolder+Icon+IconType;
-	img.onload=function(){}
+	img.onload=function (){}
 	if(Callback!==null)
 		IconLinks.push([img,Callback]);
 	else
-		IconLinks.push([img,function(){ tizen.application.launch(Id); }])
+		IconLinks.push([img,function (){ tizen.application.launch(Id); }])
 	IconCount++;
 }
 function rescale(scale,cos){
@@ -667,30 +653,25 @@ function initDrag(){
 }
 
 //Misc functions
-function launchSettings(){
-	if (typeof Settings === 'undefined') {
-		loadScript('./DNA_common/components/settings/js/settings.js', function(path, status) {
-			if (status === "ok") {
-				Settings.init();
-			}
-		});
-	} else {
-		Settings.show();
-	}
-}
 function initListeners(){
-	canvas[0].addEventListener('mousedown', function(evt) {	setMousedown(true);		}, false);
-	canvas[0].addEventListener('mouseup', function(evt) {	setMousedown(false);	}, false);
-	canvas[0].addEventListener('mouseout', function(evt) {	setMousedown(false);	}, false);
-	canvas[0].addEventListener('mousemove', function(evt) {	getMouseloc(evt);		}, false);
+	console.log('DNA Canvas Listeners Initialized!');
+
+	var b = document.body;
+	b.addEventListener('mousedown', function (evt) {	console.log("Clicked at "+evt.pageX +","+evt.pageY);	console.log("Body mouse event registered!");	}, false);
+	b.addEventListener('mouseup', function (evt) {		console.log("Released at "+evt.pageX +","+evt.pageY);	}, false);
+
+	canvas[0].addEventListener('mousedown', function (evt) {	setMousedown(true);	console.log("Canvas mouse event registered!");	}, false);
+	canvas[0].addEventListener('mouseup', function (evt) {	setMousedown(false);	}, false);
+	canvas[0].addEventListener('mouseout', function (evt) {	setMousedown(false);	}, false);
+	canvas[0].addEventListener('mousemove', function (evt) {	getMouseloc(evt);		}, false);
 }
 
 //App Icon functions
 function onAppRecallSuccess(list) {
-	var registeredApps = {"Home Screen":"/DNA_common/images/homescreen_icon.png",
-						   Browser:"/DNA_common/images/browser_icon.png", 
-						   Boilerplate:"/DNA_common/images/boilerplate_icon.png",
-						   gestureGame:"/DNA_common/images/GestureGame_icon.png",
+	var registeredApps = {"Home Screen":"./DNA_common/images/homescreen_icon.png",
+						   Browser:"./DNA_common/images/browser_icon.png", 
+						   Boilerplate:"./DNA_common/images/boilerplate_icon.png",
+						   gestureGame:"./DNA_common/images/GestureGame_icon.png",
 						   News:"./DNA_common/images/news_inactive.png",
 						   HVAC:"./DNA_common/images/hvac_inactive.png",
 						   Dialer:"./DNA_common/images/phone_inactive.png",
@@ -700,14 +681,14 @@ function onAppRecallSuccess(list) {
 						   Navigation:"./DNA_common/images/navigation_inactive.png",
 						   "Multimedia Player":"./DNA_common/images/mediaplayer_inactive.png",
 						   "Finger Print":"./DNA_common/images/fingerprint_inactive.png",
-						   Handwriting:"/DNA_common/images/handwriting_icon.png"};
+						   Handwriting:"./DNA_common/images/handwriting_icon.png"};
 	var i = 0;
 	var path="";
 	try {
 		index = 0;
 		var applications = [];
 		
-		list.sort(function(x, y) {
+		list.sort(function (x, y) {
 			return x.appName > y.appName ? 1 : -1;
 		});
 
@@ -734,15 +715,15 @@ function getInstalledApps(callback){
 	G.Callback = callback;
 	//Add defaults until app pulls icons properly
 	/*for(i=0;i<SkipRows*StrandCount;i++){
-		addIcon('Dashboard',	function(){ tizen.application.launch("intelPoc12.Dashboard");			});
+		addIcon('Dashboard',	function (){ tizen.application.launch("intelPoc12.Dashboard");			});
 	}*/
 	"use strict";
 	if (typeof tizen !== 'undefined') {
 		try {
 			// get the installed applications list
-			tizen.application.getAppsInfo(onAppRecallSuccess, function(err) {
+			tizen.application.getAppsInfo(onAppRecallSuccess, function (err) {
 				// Workaround due to https://bugs.tizen.org/jira/browse/TIVI-2018
-				window.setTimeout(function() {
+				window.setTimeout(function () {
 					getInstalledApps();
 				}, 1000);
 				onError(err);
@@ -753,14 +734,14 @@ function getInstalledApps(callback){
 	}else{
 		//Add some defaults for the Web Simulator
 		//addIcon syntax: Image Name, Callback Function
-		addIcon('dashboard_inactive',	function(){ tizen.application.launch("intelPoc12.Dashboard");			});
-		addIcon('fingerprint_inactive',	function(){ tizen.application.launch("intelPoc32.FingerPrint");			});
-		addIcon('hvac_inactive',			function(){ tizen.application.launch("intelPoc16.HVAC");				});
-		addIcon('mediaplayer_inactive',		function(){ tizen.application.launch("intelPoc14.MultimediaPlayer");	});
-		addIcon('navigation_inactive',	function(){ tizen.application.launch("intelPoc11.navigation");			});
-		addIcon('news_inactive',			function(){ tizen.application.launch("intelPoc30.News");				});
-		addIcon('phone_inactive',		function(){ tizen.application.launch("intelPoc15.phone");				});
-		addIcon('weather_inactive',		function(){ tizen.application.launch("intelPoc31.Weather");				});
+		addIcon('dashboard_inactive',	function (){ tizen.application.launch("intelPoc12.Dashboard");			});
+		addIcon('fingerprint_inactive',	function (){ tizen.application.launch("intelPoc32.FingerPrint");			});
+		addIcon('hvac_inactive',			function (){ tizen.application.launch("intelPoc16.HVAC");				});
+		addIcon('mediaplayer_inactive',		function (){ tizen.application.launch("intelPoc14.MultimediaPlayer");	});
+		addIcon('navigation_inactive',	function (){ tizen.application.launch("intelPoc11.navigation");			});
+		addIcon('news_inactive',			function (){ tizen.application.launch("intelPoc30.News");				});
+		addIcon('phone_inactive',		function (){ tizen.application.launch("intelPoc15.phone");				});
+		addIcon('weather_inactive',		function (){ tizen.application.launch("intelPoc31.Weather");				});
 		//IconCount=30; //for testing purposes
 		callback();
 	}
@@ -768,7 +749,7 @@ function getInstalledApps(callback){
 
 var Layout = new Display(context);
 
-getInstalledApps(function(){
+getInstalledApps(function (){
 	//Calculations!
 	//Increase strands to hold appropriate number of icons when MaxRungCount is exceeded
 	StrandCount = MinStrandCount;
@@ -782,12 +763,12 @@ getInstalledApps(function(){
 	TwistHeight = -40,
 	Width = ScreenWidth*WidthMultiplier;
 	
-	Setting=[null,RungSpacing,Twist,TwistHeight,Speed,VerticalOffset,Width,WidthMultiplier,FPS,ImageCenter];
+	Setting=[null,RungSpacing,Twist,TwistHeight,Speed,VerticalOffset,Width];
 
 	initListeners();
     AnimateStrand = null;
 	//Create and call anonymous function
-    (function(Setting) {
+    (function (Setting) {
 		if (AnimateStrand !== null) AnimateStrand.pause();
         if (canvas.length && canvas[0].getContext) {
 			//var Setting=[0RungCount];

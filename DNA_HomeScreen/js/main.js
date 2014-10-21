@@ -15,9 +15,9 @@
  *
  * <img id="Image-Maps_1201312180420487" src="../assets/img/homescreen.png" usemap="#Image-Maps_1201312180420487" border="0" width="649" height="1152" alt="" />
  *   <map id="_Image-Maps_1201312180420487" name="Image-Maps_1201312180420487">
- *     <area shape="rect" coords="0,0,573,78" href="../classes/topbaricons.html" alt="top bar icons" title="Top bar icons" />
+ *     <area shape="rect" coords="0,0,573,78" href="../classes/topbar.html" alt="top bar icons" title="Top bar icons" />
  *     <area shape="rect" coords="0,77,644,132" href="../classes/clock.html" alt="clock" title="Clock"    />
- *     <area shape="rect" coords="0,994,644,1147" href="../classes/bottompanel.html" alt="bottom panel" title="Bottom panel" />
+ *     <area shape="rect" coords="0,994,644,1147" href="../classes/bottombar.html" alt="bottom bar" title="Bottom panel" />
  *     <area shape="rect" coords="0,159,644,961" href="../classes/actionCatcher.html" alt="Action catcher" title="Action catcher" />
  *     <area shape="rect" coords="573,1,644,76" href="../modules/Settings.html" alt="Settings" title="Settings"    />
  *   </map> 
@@ -59,8 +59,8 @@ var init = function() {
         $('#dateTime').ClockPlugin('init', 60);
         $('#dateTime').ClockPlugin('startTimer');
 
-        $('#bottomPanel').bottomPanel('init', true);
-        $("#topBarIcons").topBarIconsPlugin('init', 'dashboard');
+        $('#bottomBar').bottomBar('init', true);
+        $("#topBar").topBar('init', 'dashboard');
 
         evalInstalledApps();
         window.intelIVI.main.init();
@@ -207,9 +207,9 @@ window.intelIVI.utility = (window.intelIVI.utility || {
         "use strict";
         $('#content_ul .sector' + index).css('opacity', '1');
         if (index === 4) {
-            $('#bottomPanel').addClass('showBP');
+            $('#bottomBar').addClass('showBP');
             $('#dateTime').addClass('showDT');
-            $('#topBarIcons').addClass('showTBI');
+            $('#topBar').addClass('showTBI');
         }
         if (index === 8) {
             $('#wrapper .step9').css('opacity', '0.4');

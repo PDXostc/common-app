@@ -25,8 +25,8 @@
   * Boilerplate application provides starting point for new applications and provides basic layout and infrastructure:
   *
   * * {{#crossLink "Bootstrap"}}{{/crossLink}} component
-  * * {{#crossLink "BottomPanel"}}{{/crossLink}} component
-  * * {{#crossLink "TopBarIcons"}}{{/crossLink}} component
+  * * {{#crossLink "BottomBar"}}{{/crossLink}} component
+  * * {{#crossLink "TopBar"}}{{/crossLink}} component
   *
   * Update following code for new applications built from this code:
   *
@@ -65,10 +65,10 @@ var carIndicatorSignals =  [
 
 var init = function () {
     var bootstrap = new Bootstrap(function (status) {
-        $("#topBarIcons").topBarIconsPlugin('init', 'news');
-	$("#clockElement").ClockPlugin('init', 5);
-	$("#clockElement").ClockPlugin('startTimer');
-	$('#bottomPanel').bottomPanel('init');
+        $("#topBar").topBar('init', 'news');
+		$("#clockElement").ClockPlugin('init', 5);
+		$("#clockElement").ClockPlugin('startTimer');
+		$('#bottomBar').bottomBar('init');
 
 	if (tizen.speech) {
 	    setupSpeechRecognition();
