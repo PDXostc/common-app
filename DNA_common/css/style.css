@@ -1,17 +1,14 @@
-@import url('/DNA_common/css/car.css');
-@import url('/DNA_common/css/user.css');
-@import url('/DNA_common/components/incomingCall/incomingCall.css');
-@import url('/DNA_common/components/dateTime/dateTime.css');
-@import url('/DNA_common/components/progressBar/progressBar.css');
-@import url('/DNA_common/components/topBarIcons/topBarIcons.css');
-@import url('/DNA_common/components/bottomPanel/bottomBar.css');
-@import url("/DNA_common/components/incomingCall/incomingCall.css");
-@import url("/DNA_common/components/boxCaption/boxCaption.css");
-@import url("/DNA_common/components/progressBar/progressBar.css");
-@import url("/DNA_common/components/alphabetBookmark/alphabetBookmark.css");
-/* @import url("/DNA_common/components/keyboard/keyboard.css"); non-native keyboard */
-@import url("/DNA_common/components/library/library.css");
-@import url("/DNA_common/components/weather/weather.css");
-body {
-background-color: #000;
-}
+@import url("../components/dateTime/dateTime.css");
+@import url("../components/topBar/topBar.css");
+@import url("../components/bottomBar/bottomBar.css");
+@import url("../components/progressBar/progressBar.css");
+@import url("../components/incomingCall/incomingCall.css");
+@import url("../components/boxCaption/boxCaption.css");
+/* @import url("../components/keyboard/keyboard.css"); non-native keyboard */
+/*
+@import url("../css/car.css");
+@import url("../css/user.css");
+@import url("../components/alphabetBookmark/alphabetBookmark.css");
+@import url("../components/library/library.css");
+@import url("../components/weather/weather.css");
+*/

@@ -131,7 +131,7 @@ var Settings = (function() {
 	 * @type String
 	 * @default ./common/components/settings/
 	 */
-	Settings.prototype.SETTINGS_BASEPATH = "./common/components/settings/";
+	Settings.prototype.SETTINGS_BASEPATH = "./DNA_common/components/settings/";
 	/**
 	 * Defines path to Settings templates.
 	 * 
@@ -140,7 +140,7 @@ var Settings = (function() {
 	 * @type String
 	 * @default ./common/components/settings/templates/
 	 */
-	Settings.prototype.SETTINGS_TEMPLATES_PATH = "./common/components/settings/templates/";
+	Settings.prototype.SETTINGS_TEMPLATES_PATH = "./DNA_common/components/settings/templates/";
 	/**
 	 * Defines path to Settings javascript files.
 	 * 
@@ -149,7 +149,7 @@ var Settings = (function() {
 	 * @type String
 	 * @default ./common/components/settings/js/
 	 */
-	Settings.prototype.SETTINGS_JS_PATH = "./common/components/settings/js/";
+	Settings.prototype.SETTINGS_JS_PATH = "./DNA_common/components/settings/js/";
 	/**
 	 * Holds the git revision number.
 	 * 
@@ -236,12 +236,12 @@ var Settings = (function() {
 	 */
 	Settings.prototype.init = function() {
 		var self = this;
-		loadScript('./common/components/boxCaption/boxCaption.js', function(path, status) {
+		loadScript('./DNA_common/components/boxCaption/boxCaption.js', function(path, status) {
 			if (status === "ok") {
-				loadScript('./common/components/tabs/tabs.js', function(path, status) {
+				loadScript('./DNA_common/components/tabs/tabs.js', function(path, status) {
 					if (status === "ok") {
-						$("head").append($("<link rel='stylesheet' href='./common/components/boxCaption/boxCaption.css' />"));
-						$("head").append($("<link rel='stylesheet' href='./common/components/tabs/tabs.css' />"));
+						$("head").append($("<link rel='stylesheet' href='./DNA_common/components/boxCaption/boxCaption.css' />"));
+						$("head").append($("<link rel='stylesheet' href='./DNA_common/components/tabs/tabs.css' />"));
 						$("head").append($("<link rel='stylesheet' href='" + self.SETTINGS_BASEPATH + "/css/settings.css' />"));
 
 						if (!$("#settingsTabs").length) {
