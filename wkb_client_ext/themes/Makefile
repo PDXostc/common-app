@@ -10,6 +10,6 @@ clean:
 
 install:
 	$(foreach theme,$(themes), make -C $(theme) install;)
-	install -D jlr $(DESTDIR)$(PREFIX)/share/X11/xkb/symbols/jlr
+	install -D wkb $(DESTDIR)$(PREFIX)/share/X11/xkb/symbols/wkb
 
 .PHONE: all clean install

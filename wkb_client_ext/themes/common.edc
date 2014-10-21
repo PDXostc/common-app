@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-/*BLUE THEME*/
-
 images {
    image: "icon-backspace.png" COMP;
    image: "icon-enter.png" COMP;
@@ -42,6 +40,7 @@ data {
 }
 
 collections {
+
    group {
       name: "main";
 
@@ -260,21 +259,40 @@ collections {
              new _timer;                                               \
              get_str(pressed_key, _cur, 20);                           \
              if (strlen(_cur) > 0) {                                   \
-                _set_key_released(_cur);                               \
+                 snprintf(_prg, 30, "key-release-%s", _cur);           \
+                 run_program(get_program_id(_prg));                    \
              }                                                         \
              set_str(pressed_key, _key);                               \
-             _timer = timer(1.0, "_set_long_press", 1);                \
+             _timer = get_int(long_press_timer);                       \
+             if (_timer) {                                             \
+                cancel_timer(_timer);                                  \
+                set_int(long_press_timer, 0);                          \
+             }                                                         \
+             _timer = timer(0.4, "_set_long_press", 1);                \
              set_int(long_press_timer, _timer);                        \
+                                                                       \
              snprintf(_prg, 30, "key-press-%s", _key);                 \
              run_program(get_program_id(_prg));                        \
           }                                                            \
                                                                        \
           _set_key_released(_key[]) {                                  \
+             new _cur[20];                                             \
+             new _timer;                                               \
              new _prg[30];                                             \
              _set_long_press(0);                                       \
-             set_str(pressed_key, "");                                 \
              snprintf(_prg, 30, "key-release-%s", _key);               \
              run_program(get_program_id(_prg));                        \
+             get_str(pressed_key, _cur, 20);                           \
+             if (strlen(_cur) > 0 && strcmp(_cur, _key) != 0) {        \
+                 snprintf(_prg, 30, "key-release-%s", _cur);           \
+                 run_program(get_program_id(_prg));                    \
+             }                                                         \
+             set_str(pressed_key, "");                                 \
+             _timer = get_int(long_press_timer);                       \
+             if (_timer) {                                             \
+                cancel_timer(_timer);                                  \
+                set_int(long_press_timer, 0);                          \
+             }                                                         \
           }                                                            \
       }                                                                \
       programs {                                                       \
@@ -300,7 +318,7 @@ collections {
       MOUSE_DOWN_UP_PROGRAMS
       parts {
 #undef INIT_HSPACE
-#define INIT_HSPACE 5
+#define INIT_HSPACE (15*SCALE)
 #define KEY_WIDTH (65*SCALE)
 #define KEY_HEIGHT (90*SCALE)
 #define COL_SPACE 5
@@ -579,14 +597,14 @@ collections {
 #define INIT_HSPACE (45*SCALE)
 #define SECOND_ROW FIRST_ROW+KEY_HEIGHT+ROW_SPACE
 
-         KEY_FULL("a", "A", "-", KEY_OFFSET(0), SECOND_ROW)
-         KEY_FULL("s", "S", "@", KEY_OFFSET(1), SECOND_ROW)
-         KEY_FULL("d", "D", "*", KEY_OFFSET(2), SECOND_ROW)
-         KEY_FULL("f", "F", "^", KEY_OFFSET(3), SECOND_ROW)
-         KEY_FULL("g", "G", ":", KEY_OFFSET(4), SECOND_ROW)
-         KEY_FULL("h", "H", ";", KEY_OFFSET(5), SECOND_ROW)
-         KEY_FULL("j", "J", "(", KEY_OFFSET(6), SECOND_ROW)
-         KEY_FULL("k", "K", ")", KEY_OFFSET(7), SECOND_ROW)
+         KEY_FULL("a", "A", "(", KEY_OFFSET(0), SECOND_ROW)
+         KEY_FULL("s", "S", ")", KEY_OFFSET(1), SECOND_ROW)
+         KEY_FULL("d", "D", "-", KEY_OFFSET(2), SECOND_ROW)
+         KEY_FULL("f", "F", "@", KEY_OFFSET(3), SECOND_ROW)
+         KEY_FULL("g", "G", "*", KEY_OFFSET(4), SECOND_ROW)
+         KEY_FULL("h", "H", "^", KEY_OFFSET(5), SECOND_ROW)
+         KEY_FULL("j", "J", ":", KEY_OFFSET(6), SECOND_ROW)
+         KEY_FULL("k", "K", ";", KEY_OFFSET(7), SECOND_ROW)
          KEY_FULL("l", "L", "~", KEY_OFFSET(8), SECOND_ROW)
 
 #undef INIT_HSPACE
@@ -991,6 +1009,7 @@ collections {
    public _repeat_key(val) {                                           \
        new _cur[20];                                                   \
        new _prg[30];                                                   \
+       new _timer;                                                     \
        set_int(repeat_pressed, val);                                   \
        if (!val)                                                       \
            return;                                                     \
@@ -998,6 +1017,9 @@ collections {
        if (strlen(_cur) > 0) {                                         \
            snprintf(_prg, 30, "key-release-%s", _cur);                 \
            run_program(get_program_id(_prg));                          \
+                                                                       \
+           _timer = timer(0.1, "_repeat_key", 1);                      \
+           set_int(repeat_timer, _timer);                              \
        }                                                               \
    }                                                                   \
                                                                        \
@@ -1012,21 +1034,23 @@ collections {
        set_str(repeat_key, _key);                                      \
        _timer = timer(0.5, "_repeat_key", 1);                          \
        set_int(repeat_timer, _timer);                                  \
-       snprintf(_prg, 30, "key-press-%s", _key);                       \
+       snprintf(_prg, 30, "key-pressed-%s", _key);                     \
        run_program(get_program_id(_prg));                              \
    }                                                                   \
                                                                        \
    public _repeat_key_released(_key[]) {                               \
        new _prg[30];                                                   \
        new _timer;                                                     \
+       set_str(repeat_key, "");                                        \
        _timer = get_int(repeat_timer);                                 \
        if (_timer) {                                                   \
            cancel_timer(_timer);                                       \
            set_int(repeat_timer, 0);                                   \
        }                                                               \
-       set_str(repeat_key, "");                                        \
-       snprintf(_prg, 30, "key-release-%s", _key);                     \
-       run_program(get_program_id(_prg));                              \
+       else {                                                          \
+           snprintf(_prg, 30, "key-release-%s", _key);                 \
+           run_program(get_program_id(_prg));                          \
+       }                                                               \
    }
 
 
@@ -1065,7 +1089,7 @@ collections {
                signal: "mouse,up,1";                                   \
                source: "key-bg-"val;                                   \
                script {                                                \
-                  _repeat_key_released(val)     ;                      \
+                 _repeat_key_released(val);                            \
                }                                                       \
             }                                                          \
             program {                                                  \
@@ -1073,7 +1097,6 @@ collections {
                signal: "mouse,up,1";                                   \
                source: "key-bg-"val;                                   \
                script {                                                \
-                  emit("key_down", val);                               \
                   run_program(PROGRAM:"key-release-"val);              \
                }                                                       \
             }                                                          \
@@ -1091,6 +1114,9 @@ collections {
                transition: LINEAR 0.2;                                 \
                target: "key-img-"val;                                  \
                target: "key-lbl-"val;                                  \
+                script {                                               \
+                  emit("key_down", val);                               \
+                }                                                      \
             }                                                          \
          }
 
@@ -1141,8 +1167,8 @@ collections {
 
    group {
       name: "numeric";
-       
-      script {
+
+       script {
           REPEAT_KEY_SCRIPTS("backspace")
           MOUSE_DOWN_UP_PROGRAMS
 
