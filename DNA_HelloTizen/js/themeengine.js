@@ -87,7 +87,7 @@ var ThemeEngine = (function() {
     ThemeEngine.prototype.init = function(aCallback) {
         var self = this;
 
-        loadScript('./common/components/configuration/configuration.js', function (path, status) {
+        loadScript('./DNA_common/components/configuration/configuration.js', function (path, status) {
             if (status === "ok") {
                 var storedTheme = Configuration.get("selectedTheme");
                 self._injectHeaders(storedTheme, function() {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/HelloTizen" version="1.0.0" viewmodes="fullscreen">
-    <tizen:application id="intelPoc42.HelloTizen" package="intelPoc42" required_version="2.1"/>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/DNAHelloTizen" version="1.0.0" viewmodes="fullscreen">
+    <tizen:application id="intelPoc43.DNAHelloTizen" package="intelPoc43" required_version="2.1"/>
     <content src="index.html"/>
     <icon src="icon.png"/>
-    <name>Boilerplate</name>
+    <name>Hello Tizen</name>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>

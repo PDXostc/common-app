@@ -47,7 +47,7 @@ var Bootstrap = function(callback) {
 
 	console.log("Loading Configuration object");
 
-	loadScript('./common/components/configuration/configuration.js', function(path, status) {
+	loadScript('./DNA_common/components/configuration/configuration.js', function(path, status) {
 		if (status === "ok") {
 			Configuration.reload(function() {
 				self.loadThemeEngine(callback);
@@ -91,7 +91,7 @@ Bootstrap.prototype.loadThemeEngine = function(callback) {
 
 	//console.log("Loading ThemeEngine object");
 
-	//loadScript('./common/js/themeengine.js', function(path, status) {
+	//loadScript('./DNA_common/js/themeengine.js', function(path, status) {
 		//if (status === "ok") {
 			//self.themeEngine = ThemeEngine;
 			//self.themeEngine.init(function(themeStatus) {
@@ -119,7 +119,7 @@ Bootstrap.prototype.initCarIndicators = function(callback) {
 
 	console.log("Loading CarIndicators object");
 
-	loadScript('./common/js/carIndicator.js', function(path, status) {
+	loadScript('./DNA_common/js/carIndicator.js', function(path, status) {
 		if (status === "ok") {
 			try {
 				self.carIndicator = new CarIndicator();
@@ -150,10 +150,10 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 	var self = this;
 
 	console.log("Loading IncomingCall object");
-	loadScript('./common/components/boxCaption/boxCaption.js', function(path, status) {
+	loadScript('./DNA_common/components/boxCaption/boxCaption.js', function(path, status) {
 		if (status === "ok") {
 
-			loadScript('./common/components/incomingCall/incomingCall.js', function(path, status) {
+			loadScript('./DNA_common/components/incomingCall/incomingCall.js', function(path, status) {
 				if (status === "ok") {
 					try {
 						self.incomingCall = new IncomingCall();
@@ -221,7 +221,7 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 Bootstrap.prototype.initSpeech = function(callback) {
 	"use strict";
 	var self = this;
-	loadScript('./common/js/speech.js', function(path, status) {
+	loadScript('./DNA_common/js/speech.js', function(path, status) {
 		Speech.readCurrentAppName();
 		self.reload();
 		self.initIncomingCall(callback);
