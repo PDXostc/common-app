@@ -211,7 +211,7 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .libraryTopSubPanel {margin-top:-22px;border-top:rgba(58, 174, 255, 1.0) solid;}
 .libraryTopPanel .libraryTopPanelTitle { position: absolute; left: 57px; top: 19px; font-size: 0; }
 .closeLibraryButton { position: absolute; top: 25px; right: 25px; background-repeat: no-repeat; background-position: left top; width: 42px; height: 42px; z-index: 1; }
-.closeLibraryButton:active { position: absolute; top: 26px; }
+.closeLibraryButton:active { position: absolute; top: 16px; }
 .libraryTabs { position: absolute; left: 40px; font-size: 0; overflow:hidden; white-space: nowrap; width: 550px; height: 100%; bottom: -10px; padding-bottom: 10px; }
 .tabsWrapper { position: absolute; font-size: 0; /*overflow: auto;*/ height: 100%; }
 .libraryTab { float: left; padding-top: 33px; padding-left: 15px; padding-right: 15px; height: 77px; max-width: 220px; overflow: hidden; white-space: nowrap; cursor: pointer; background-repeat: repeat-x; background-position: center top; text-transform: uppercase; }
@@ -362,3 +362,12 @@ width:270px;
     background: url(../images/set-media-time-btn.png) no-repeat center center;
     padding: 0 15px;
  }
+.closeLibraryButton {
+	position: absolute;
+	top: 16px;
+	right: 25px;
+	background: url('../images/bt_close.png') no-repeat left top;
+	width: 42px;
+	height: 42px;
+	z-index: 1;
+}

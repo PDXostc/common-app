@@ -790,3 +790,6 @@ function emptyPlayQueue() {
             logError("Error emptying play queue: " + error.message);
     });
 }
+function closeLibraryWindow() {
+		$("#musicLibrary").removeClass("toShow");
+}
