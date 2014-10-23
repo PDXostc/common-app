@@ -86,15 +86,15 @@ background-size: cover; }
 .media-carousel-container li img { width: 178px; }
 .media-carousel-container li {width: 180px; text-align: center; margin: 0 10px; display:inline-block;float:left;}/*added float*/
 .carousel-item-container { height: 240px; width: 240px; position: relative; }
-.song-title-carousel { font-size: 30px; position: relative; top: -62px; }
+.song-title-carousel { font-size: 30px; position: relative; top: -65px; }
 .artist-name-carousel { font-size: 18px; position: relative; top: -65px; }
 .album-carousel-description { width: 180px; }
 ul.no-bullets { list-style-type: none }
 .media-carousel-items { text-transform: uppercase; color: #fff; font-weight: 700; border-color: #E00DCF; }
-.one-line-ellipsis { overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1 }
-.two-lines-ellipsis { overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2 }
-.three-lines-ellipsis { overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3 }
-.carousel-image-reflect { -webkit-box-reflect: below 1px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(white)); 
+.one-line-ellipsis { overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; white-space:normal;display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1 }
+.two-lines-ellipsis { overflow: hidden; text-overflow: ellipsis; word-wrap: break-word;white-space:normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2 }
+.three-lines-ellipsis { overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; white-space:normal;display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3 }
+.carousel-image-reflect { -webkit-box-reflect: below 0px -webkit-gradient(linear, left 80, left bottom, from(transparent), color-stop(0.5, transparent), to(white)); 
 }
 /* Current Playing Media*/
 .current-playing-media-container { position:relative;width: 720px; text-transform: uppercase; }
