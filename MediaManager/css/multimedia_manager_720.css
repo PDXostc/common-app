@@ -257,7 +257,7 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .fontSizeLarge { font-size: 30px; line-height: 30px; }
 .fontSizeLarger { font-size: 34px; line-height: 34px; }
 .fontSizeXLarge { font-size: 40px; line-height: 40px; }
-.fontSizeXXLarge { font-size: 48px; line-height: 48px; }
+.fontSizeXXLarge { font-size: 48px; line-height: 50px; }
 .fontSizeXXXLarge { font-size: 62px; line-height: 62px; }
 .fontSizeXXXXLarge { font-size: 80px; line-height: 80px; }
 .fontWeightNormal { font-weight: normal; }
