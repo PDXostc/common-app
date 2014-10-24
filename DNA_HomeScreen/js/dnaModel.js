@@ -24,14 +24,14 @@ var ScreenScale=1.5;
 	Background = "DNA_common/images/Hex-Background.jpg",
 	ImageCenter = 0,
 	NucleotideSize = 100*ScreenScale,
-	IconSize = 80*ScreenScale,
-	ShowFPS = 0,
+	IconSize = 100*ScreenScale,
+	ShowFPS = 1,
 	FPS = 60,
 	Framerate = 1000/FPS,
 	Speed=-1,
 	Count=0,
 	MinSpeed = 1,
-	MaxSpeed = 4,
+	MaxSpeed = 5,
 	AnimateStrand = null,
 	listenerID = null,
 	WidthMultiplier = 0.30,
@@ -668,20 +668,38 @@ function initListeners(){
 
 //App Icon functions
 function onAppRecallSuccess(list) {
-	var registeredApps = {"Home Screen":"./DNA_common/images/homescreen_icon.png",
-						   Browser:"./DNA_common/images/browser_icon.png", 
-						   Boilerplate:"./DNA_common/images/boilerplate_icon.png",
-						   gestureGame:"./DNA_common/images/GestureGame_icon.png",
-						   News:"./DNA_common/images/news_inactive.png",
-						   HVAC:"./DNA_common/images/hvac_inactive.png",
-						   Dialer:"./DNA_common/images/phone_inactive.png",
-						   Phone:"./DNA_common/images/phone_inactive.png",
-						   Dashboard:"./DNA_common/images/dashboard_inactive.png",
-						   Weather:"./DNA_common/images/weather_inactive.png",
-						   Navigation:"./DNA_common/images/navigation_inactive.png",
-						   "Multimedia Player":"./DNA_common/images/mediaplayer_inactive.png",
+	var registeredApps = {"Home Screen":"./DNA_common/images/return_arrow_inactive.png",
+						   "DNA":"./DNA_common/images/return_arrow_inactive.png",
+						   "AMB Simulator":"./DNA_common/images/amb_simulator_inactive.png",
+						   "Hello Tizen":"./DNA_common/images/tizen_inactive.png",
+						   "Audio Settings":"./DNA_common/images/audio_settings_inactive.png",
 						   "Finger Print":"./DNA_common/images/fingerprint_inactive.png",
-						   Handwriting:"./DNA_common/images/handwriting_icon.png"};
+						   "Multimedia Player":"./DNA_common/images/mediaplayer_inactive.png",
+						   "SmartDeviceLink":"./DNA_common/images/sdl_inactive.png",
+						   "pkgmgr-install":"./DNA_common/images/pkgmgr-install_inactive.png",
+						   "syspopup-app":"./DNA_common/images/syspopup-app_inactive.png",
+						   ApplicationVisibility:"./DNA_common/images/app_visibility_inactive.png",
+						   Boilerplate:"./DNA_common/images/boilerplate_icon.png",
+						   Browser:"./DNA_common/images/browser_inactive.png", 
+						   Dashboard:"./DNA_common/images/dashboard_inactive.png",
+						   Dialer:"./DNA_common/images/dialer_inactive.png",
+						   Email:"./DNA_common/images/email_inactive.png",
+						   Grid:"./DNA_common/images/grid_inactive.png",
+						   HVAC:"./DNA_common/images/hvac_inactive.png",
+						   Handwriting:"./DNA_common/images/handwriting_inactive.png",
+						   Keyboard:"./DNA_common/images/keyboard_inactive.png",
+						   MiniBrowser:"./DNA_common/images/mini_browser_inactive.png", 
+						   NFC:"./DNA_common/images/nfc_inactive.png",
+						   Navigation:"./DNA_common/images/navigation_inactive.png",
+						   News:"./DNA_common/images/news_inactive.png",
+						   Phone:"./DNA_common/images/phone_inactive.png",
+						   Settings:"./DNA_common/images/settings_inactive.png",
+						   Terminal:"./DNA_common/images/terminal_inactive.png",
+						   Tizen:"./DNA_common/images/tizen_inactive.png",
+						   Voiceprint:"./DNA_common/images/voiceprint_inactive.png",
+						   Weather:"./DNA_common/images/weather_inactive.png",
+						   gestureGame:"./DNA_common/images/gesture_game_inactive.png",
+						   saythis:"./DNA_common/images/say_this_inactive.png"};
 	var i = 0;
 	var path="";
 	try {
@@ -697,8 +715,9 @@ function onAppRecallSuccess(list) {
 			if (registeredApps[app.name]) {
 				addIcon(app.name, null, registeredApps[app.name], app.id);
 			}else{
+				//console.warn('Name: '+app.name)
 				if(app.iconPath.substr(app.iconPath.length - 4) != ".png"){
-					var path="./DNA_common/images/default_icon.png";
+					var path="./DNA_common/images/tizen_inactive.png";
 				}else{
 					var path=app.iconPath;
 				}
