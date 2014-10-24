@@ -225,7 +225,7 @@ function generatePlaylistElementsPromise(input_data){
                 "artwork":r[song].AlbumArtURL,
                 "song_title":r[song].DisplayName,
                 "artist_name":r[song].Artist,
-                "album_title":r[song].AlbumTitle
+                "album_title":r[song].Album
             }
 
             addElementToCarousel(song_object);
