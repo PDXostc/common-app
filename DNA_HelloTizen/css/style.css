@@ -39,6 +39,7 @@ overflow: hidden;
 	overflow: hidden;
 	background-image: url("/DNA_common/images/Hex-Background.jpg");
 	
+	padding: 3%;
 }
 form {
 	padding: 4%;

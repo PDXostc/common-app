@@ -1,19 +1,19 @@
 @import url("./spinner.css");
 
-html {
+/*html {
 	height: 1280px !important;
 	width: 720px !important;
 	overflow: hidden;
 	position: absolute !important;
 	background-color: #000;
-}
+}*/
 
 body {
 	font-family: HelveticaNeue;
 	-webkit-font-smoothing: antialiased;
 	position: absolute !important;
-	height: 1280px !important;
-	width: 720px !important;
+	height: 1920px !important;
+	width: 1080px !important;
 	overflow: hidden;
 	z-index: 1;
 	background-color: #000;
@@ -52,19 +52,7 @@ li {
 	background-image: url('images/bt_close.png');
 }
 
-.button {
-	display: block;
-	margin: 0;
-	padding: 0;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	z-index: 10;
-}
 
-.button:hover {
-	text-decoration: none;
-}
 
 .libraryButton {
 	position: absolute;
