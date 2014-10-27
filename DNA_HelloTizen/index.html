@@ -44,10 +44,7 @@
 			<!-- <div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold">more</div> -->
 		</div>
 		
-		<div class="toggleButton wifiElementButton">
-			<div class="bgColorThemeTransparent boxShadowInset toggleButton toggleButtonBackground"></div>
-			<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">button</div>
-		</div>
+		<div class="lgBtn wifiElementButton fontSizeMedium fontWeightBold ">Button</div>
 	</div>
 			
 	<form name="add_item_form" class="input_form">
@@ -56,7 +53,7 @@
 		 
 		<label>Title</label>
 		<input name="item_title" class="inputs">
-		<input type="button" value="Add Item" class="button right" name="add_item_button">
+		<input type="button" value="Add Item" class="formButton" name="add_item_button">
 
 		<label>Description</label>
 		<textarea name="item_description" class="inputs"></textarea>
@@ -75,7 +72,7 @@
 					<tr>
 						<td name="item_title_field" class="td_name">Name</td>
 						<td name="item_description_field" class="td_description">Description</td>
-						<td class="right"><input type="button" name="delete_item" class="button" value="Delete"></td>
+						<td class=""><input type="button" name="delete_item" class="formButton2" value="Delete"></td>
 					</tr>
 				</template>
 			</tbody>
@@ -86,10 +83,7 @@
 	
 	<!-- centered button sample	-->	
 	<div class="buttonsArea">
-		<div id="bluetoothRefreshButton" class="toggleButton bluetoothRefreshButton">
-			<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>
-			<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">BUTTON</div>
-		</div>
+		<div id="bluetoothRefreshButton" class="fontSizeMedium fontWeightBold lgBtnRnd">BUTTON</div>
 	</div>
 		
 
@@ -100,26 +94,26 @@
 	
 	
 	<!-- Sample form, remove commenting to display -->	
-	<!--<form class="form_narrow boxShadow3">
+	<form class="form_narrow ">
 
 	<div class="labelBox">
-		<div class="text fontSizeLarge fontWeightBold fontColorTheme">NUMBER</div>
-		<div class="text fontSizeLarge fontWeightBold fontColorTheme">Some ID</div>
+		<div class="text fontSizeLarge fontWeightBold ">NUMBER</div>
+		<div class="text fontSizeLarge fontWeightBold ">Some ID</div>
 	</div>
 
 		<div class="inputNumberBox">
-			<input id="" class="inputNumber fontSizeLarge fontSizeBold fontColorNormal boxShadow4 boxShadow4Active" type="password">
-			<div id="" class="button deleteButton"></div>
+			<input id="" class="inputNumber fontSizeLarge fontSizeBold" type="password">
+			<div id="" class="button deleteButton">Delete</div>
 
-			<input id="" class="inputNumber fontSizeLarge fontSizeBold fontColorNormal boxShadow4 boxShadow4Active" type="text">
-			<div id="" class="button deleteButton"></div>
+			<input id="" class="inputNumber fontSizeLarge fontSizeBold " type="text">
+			<div id="" class="button deleteButton">Delete</div>
 		</div>
 
-		<div class="submitButton">
+		<div class="">
 			<input id="" class="submit" type="submit" value="submit">
 		</div>
 
-	</form> -->
+	</form> <!---->
 	
 	
 	<!-- Sample WARNING/MODAL dialog box, remove commenting to display -->
@@ -128,8 +122,8 @@
 
 	<div class="modal">
 		<form id="warning">
-			<div class="x_graphic_modal"></div>
-			<div class="fontSizeMedium fontColorNormal">WARNING!</div>
+			<div class="x_graphic_modal">X</div>
+			<div class="fontSizeMedium fontColorNormal clearBoth">WARNING!</div>
 			<p>Your text will be lost if you continue. </p>
 			<input id="" class="fontSizeSmall submit_button" type="submit" value="CONTINUE">
 		</form>

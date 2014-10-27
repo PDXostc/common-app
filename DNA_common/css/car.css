@@ -1,27 +1,5 @@
 @import url("./spinner.css");
 
-html {
-	height: 1280px !important;
-	width: 720px !important;
-	overflow: hidden;
-	position: absolute !important;
-	background-color: #000;
-}
-
-body {
-	font-family: "Droid Sans", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	position: absolute !important;
-	height: 1280px !important;
-	width: 720px !important;
-	overflow: hidden;
-	z-index: 1;
-	background-color: #000;
-	/*-webkit-transform: scale(0.5, 0.5) !important;
-	-webkit-transform: rotate(-90deg) !important;
-	-webkit-transform-origin: left top !important;
-	 top: 720px !important;*/
-}
 
 * {
 	margin: 0;

@@ -308,14 +308,14 @@ div.fadeBtn{
 	left:60.77%;
 }
 
-#audiosettings div.right{
+/*#audiosettings div.right{
 	background:url("images/audiocontrols/move_right_58_194.svg") no-repeat;
-	left:88.8888888888889%;/*640/720*/
+	left:88.8888888888889%;/*640/720
 	background-size:100%;
 }
 div.right:hover, .right:active{
 	background:url("images/audiocontrols/move_right_hover_58_194.svg") no-repeat;
-	background-size:100%;
+	background-size:100%;*/
 }
 #audiosettings div.left{
 	background:url("images/audiocontrols/left_move_58_194.svg") no-repeat;
