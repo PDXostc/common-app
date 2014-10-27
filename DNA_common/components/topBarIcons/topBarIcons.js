@@ -342,11 +342,11 @@ function launchApplication(id) {
 			template.compile(topBarApplicationsModel, "./DNA_common/components/topBarIcons/templates/topBarIconsDelegate.html", ".topBarIcons", function() {
 				var j = 0;
 				for (j = 0; j < topBarApplicationsModel.length; ++j) {
-					if (topBarApplicationsModel[j].running) {
-						changeCssBgImageColor("." + topBarApplicationsModel[j].css, ThemeKeyColorSelected);
-					} else {
-						changeCssBgImageColor("." + topBarApplicationsModel[j].css, ThemeKeyColor);
-					}
+					//if (topBarApplicationsModel[j].running) {
+						//changeCssBgImageColor("." + topBarApplicationsModel[j].css, ThemeKeyColorSelected);
+					//} else {
+						//changeCssBgImageColor("." + topBarApplicationsModel[j].css, ThemeKeyColor);
+					//}
 				}
 				setTimeout(function() {
 					//	$(".topBarIcons").css("display", "block");
