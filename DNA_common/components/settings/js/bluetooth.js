@@ -97,6 +97,7 @@ var Bluetooth = function() {
 						self.togglePowerLocked(false);
 						//self.loadDefaultAdapter();
 						hideLoadingSpinner("Turning off");
+						$('#settingBlu').attr('src', './DNA_common/images/BluTooth_On.png');
 					}, function(err) {
 						var error = "An error occured while turning bluetooth off.";
 						console.log(error, err);
@@ -119,6 +120,7 @@ var Bluetooth = function() {
 						setTimeout(function() {
 							hideLoadingSpinner("Turning on");
 							self.scan(true);
+							$('#settingBlu').attr('src', './DNA_common/images/BluTooth_Off.png');
 						}, 1000);
 					}, function(err) {
 						var error = "An error occured while turning bluetooth on.";
@@ -180,9 +182,9 @@ var Bluetooth = function() {
 	/**
 	 * Starts discovering nearby and known remote Bluetooth devices or stops an active discovery session.
 	 * 
-	 * @method toogleScanDevices
+	 * @method toggleScanDevices
 	 */
-	this.toogleScanDevices = function() {
+	this.toggleScanDevices = function() {
 		console.log("Bluetooth: toggle scan devices called.");
 		if (self.scanning()) {
 			console.log("Bluetooth: stop scan called.");
@@ -599,7 +601,7 @@ Bluetooth.prototype.show = function(successCallback) {
 
 			var button = "";
 			button += '<div class="buttonsArea">';
-			button += '<div id="bluetoothRefreshButton" class="toggleButton bluetoothRefreshButton" data-bind="click: Settings.Bluetooth.toogleScanDevices, style: { display: Settings.Bluetooth.adapter().powered ? \'block\' : \'none\' }">';
+			button += '<div id="bluetoothRefreshButton" class="toggleButton bluetoothRefreshButton" data-bind="click: Settings.Bluetooth.toggleScanDevices, style: { display: Settings.Bluetooth.adapter().powered ? \'block\' : \'none\' }">';
 			button += '<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>';
 			button += '<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText" data-bind="text: Settings.Bluetooth.scanning() ? \'STOP\' : \'SCAN\'"></div>';
 			button += '</div>';

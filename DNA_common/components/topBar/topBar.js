@@ -16,7 +16,7 @@
 $("#topBar").remove();
 $("#homeScrAppGridView").remove();
 $("body").append('<div id="topBar" class="topBar shadowStd">&nbsp;</div>');
-$("body").append('<div id="homeScrAppGridView" class="homeScrAppGridView pageBgColorNormalTransparent"><div class="HSAGWHeading fontColorNormal fontSizeLarger ">Apps</div><div class="exitButton tabsCloseButton"></div><div id="hexes"></div></div>');
+$("body").append('<div id="homeScrAppGridView" class="homeScrAppGridView pageBgColorNormalTransparent"><div class="HSAGWHeading fontColorNormal fontSizeLarger">Apps</div><div class="exitButton tabsCloseButton"></div><div id="hexes"></div></div>');
 
 /** 
  * Array of applications that will be rendered to the top bar panel.

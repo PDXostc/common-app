@@ -25,7 +25,8 @@ body, select, input, textarea {   color: #444; }
 
 html, #viewPort { overflow-y: hidden; }
 
-#viewPort{
+#head{
+margin-top:18px;
 }
 #overlay{
 	position:absolute;

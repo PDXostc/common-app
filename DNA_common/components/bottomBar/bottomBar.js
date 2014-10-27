@@ -5,6 +5,17 @@
 $("#bottomBar").remove();
 $("body").append('<div id="bottomBar" class="shadowSmall"></div>');
 
+function loadSettings(){
+	if (typeof Settings === 'undefined') {
+		loadScript('./DNA_common/components/settings/js/settings.js', function(path, status) {
+			if (status === "ok") {
+				Settings.silentinit();
+			}
+		});
+	}
+	$('#settingsMenu').toggle();
+}
+
 (function ($) {
     "use strict";
     /**
@@ -49,13 +60,12 @@ $("body").append('<div id="bottomBar" class="shadowSmall"></div>');
                 }
                	this.append(
 						'<div id="settingsMenu">' +
-							'<img id="settingBlu" src="./DNA_common/images/BluTooth_Off.png" onclick="Settings.openSetting(\'bluetooth\')">' +
-							'<img id="settingNet" src="./DNA_common/images/WiFi_Off.png" onclick="Settings.openSetting(\'wifinetworks\')">' +
-							'<img id="settingTet" src="./DNA_common/images/Tether_Off.png" onclick="Settings.openSetting(\'wifitethering\')">' +
+							'<img id="settingBlu" src="./DNA_common/images/BluTooth_On.png" onclick="launchApplication(\'http://com.intel.tizen/settings\');Settings.openSetting({id:\'bluetooth\'});">' +
+							'<img id="settingNet" src="./DNA_common/images/WiFi_On.png" onclick="launchApplication(\'http://com.intel.tizen/settings\');Settings.openSetting({id:\'wifinetworks\'});">' +
+							'<img id="settingTet" src="./DNA_common/images/Tether_Off.png" onclick="launchApplication(\'http://com.intel.tizen/settings\');Settings.openSetting({id:\'wifitethering\'});">' +
 							CloseButton +
 						'</div>');
-
-						this.append('<img id="settingsicon" onclick="$(\'#settingsMenu\').toggle();" src="./DNA_common/images/icongear.png" width="87px" height="89px">');
+						this.append('<img id="settingsicon" onclick="loadSettings();" src="./DNA_common/images/icongear.png" width="87px" height="89px">');
 						this.append('<img id="bottomBarLogoImg" src="./DNA_common/images/JLR-Logo.png" onclick="launchApplication(\'intelPoc10.HomeScreen\')">');
                 
                 if($('#volumeControl').length == 0){
@@ -83,12 +93,6 @@ $("body").append('<div id="bottomBar" class="shadowSmall"></div>');
                 }
                 
                 BottomBar.thisObj = this;
-
-				loadScript("DNA_common/components/settings/js/settings.js", function(path, status) {
-					if (status === "ok") {
-						Settings.init();
-					}
-				});
             },
             /** 
              * Method is invoked after click on back button, fires clickOnBackButton event and causes application exit.

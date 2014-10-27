@@ -46,8 +46,8 @@ var index = 0;
  **/
 $(function() {
 	"use strict";
-	$("#homeScrAppGridView").live("click", function() {
-		$(this).fadeOut();
+	$(".HSAGWHeading, .exitButton").live("click", function() {
+		$("#homeScrAppGridView").fadeOut();
 	});
 });
 
@@ -78,6 +78,16 @@ function onError(err) {
  * @param appData {object} Contains Object of specific app.
  * @static
  **/
+function Right(str, n) {
+	var iLen = String(str).length;
+	if (n <= 0)
+		return '';
+	else if ( n > iLen )
+		return str;
+	else{
+		return String(str).substring(iLen, iLen - n);
+	}
+}
 function onFrameClick(appData) {
 	"use strict";
 	//launch application
@@ -85,6 +95,7 @@ function onFrameClick(appData) {
 	try {
 		var scriptCallback = function(path, status) {
 			if (status === "ok") {
+				console.warn("installedApps is initializing settings");
 				Settings.init();
 			}
 		};
@@ -144,7 +155,7 @@ function insertAppFrame(appFrame) {
 		ctx.drawImage(img, 0, 0);
 
 		$("span.homeScrAppGridImg img").each(function() {
-			if ($(this).data("src") === appFrame.iconPath) {
+			if ($(this).data("src") === appFrame.iconPath && Right(appFrame.iconPath,4)=='.png') {
 				$(this)[0].src = ctx.canvas.toDataURL();
 			}
 		});
@@ -159,7 +170,7 @@ function insertAppFrame(appFrame) {
 	};
 
 	img.src = appFrame.iconPath;
-	console.log("img "+img.src+" app "+appFrame.appName);
+	//console.log("img "+img.src+" app "+appFrame.appName);
 
 	index++;
 	appList.push(appFrame);

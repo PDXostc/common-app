@@ -43,6 +43,7 @@ var Wifi = function() {
 					self.setAdapterProperty("Powered", false);
 					hideLoadingSpinner("Turning off");
 					self.rescanEnabled(true);
+					$('#settingNet').attr('src', './DNA_common/images/WiFi_Off.png');
 				}, function(err) {
 					var error = "An error occured while turning wifi off.";
 					console.log(error, err);
@@ -59,6 +60,7 @@ var Wifi = function() {
 					self.setAdapterProperty("Powered", true);
 					hideLoadingSpinner("Turning on");
 					self.scanNetwork();
+					$('#settingNet').attr('src', './DNA_common/images/WiFi_On.png');
 				}, function(err) {
 					var error = "An error occured while turning wifi on.";
 					console.log(error, err);
@@ -819,6 +821,10 @@ Wifi.prototype.setTethering = function(enabled) {
 			self.adapter().technology.setTethering(identifier, passphrase, enabled, function() {
 				console.log("SUCCESS");
 				hideLoadingSpinner("Processing");
+				if(enabled)
+					$('#settingNet').attr('src', './DNA_common/images/WiFi_On.png');
+				else
+					$('#settingNet').attr('src', './DNA_common/images/WiFi_Off.png');
 			}, function(err) {
 				console.log("ERROR", err);
 				alert(err);

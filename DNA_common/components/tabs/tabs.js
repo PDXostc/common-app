@@ -47,7 +47,7 @@
  * Default sub panel delegate to render sub panel view.
  * @property TABS_SUB_PANEL_DELEGATE_DEFAULT
  * @type {String}
- * @default "./common/components/tabs/templates/subPanelDelegate.html"
+ * @default "./DNA_common/components/tabs/templates/subPanelDelegate.html"
  * @static
  * @final
  */
@@ -55,12 +55,12 @@
  * Default top panel delegate to render top panel view.
  * @property TABS_TOP_PANEL_DELEGATE_DEFAULT
  * @type {String}
- * @default "./common/components/tabs/templates/tabMenuItemDelegate.html"
+ * @default "./DNA_common/components/tabs/templates/tabMenuItemDelegate.html"
  * @static
  * @final
  */
-var TABS_SUB_PANEL_DELEGATE_DEFAULT = "./common/components/tabs/templates/subPanelDelegate.html",
-	TABS_TOP_PANEL_DELEGATE_DEFAULT = "./common/components/tabs/templates/tabMenuItemDelegate.html";
+var TABS_SUB_PANEL_DELEGATE_DEFAULT = "./DNA_common/components/tabs/templates/subPanelDelegate.html",
+	TABS_TOP_PANEL_DELEGATE_DEFAULT = "./DNA_common/components/tabs/templates/tabMenuItemDelegate.html";
 
 (function ($) {
 	"use strict";
@@ -109,7 +109,7 @@ var TABS_SUB_PANEL_DELEGATE_DEFAULT = "./common/components/tabs/templates/subPan
 			 */
 			init: function () {
 				this.empty();
-				var str = "<div id='tabsTopPanel' class='tabsTopPanel'>";
+				var str = "<div id='tabsTopPanel' class='tabsTopPanel' onclick='$(\"#settingsTabs\").tabs(\"hidePage\")'>";
 				str += "<div class='tabsTopPanelTitle'></div>";
 				str += "<div class='tabsCloseButton' onClick=\'$(\"#" + this.attr('id') + "\").tabs(\"hidePage\")\'></div>";
 				str += "<div id='tabsTabsID' class='tabsTabs'></div>";
@@ -305,7 +305,8 @@ var TABS_SUB_PANEL_DELEGATE_DEFAULT = "./common/components/tabs/templates/subPan
 						}
 						if (!!model.action) {
 							$("#tabsCloseSubPanelButton").click(function() {
-								model.action();
+								//model.action(); //return to a central modal settings dialog (Deprecated!)
+								$("#settingsTabs").tabs("hidePage");
 							});
 						}
 						Tabs.showSubpanel();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/DNA" version="1.0.0" height="1739" width="980" viewmodes="fullscreen">
-    <name>DNA</name>
-    <tizen:application id="gydCqwLJKz.DNA" package="gydCqwLJKz" required_version="2.1"/>
+    <name>Home Screen</name>
+    <tizen:application id="intelPoc10.HomeScreen" package="intelPoc10" required_version="2.1"/>
     <content src="index.html"/>
     <icon src="icon.png"/>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>

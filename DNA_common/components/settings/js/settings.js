@@ -47,17 +47,6 @@ var Settings = (function() {
 				self.locked = true;
 				self.selectedSetting = setting;
 				switch (setting.id) {
-				case "theme":
-					loadScript(self.SETTINGS_JS_PATH + "themes.js", function(path, status) {
-						if (status === "ok") {
-							if (!self.Theme) {
-								self.Theme = new Themes();
-							}
-							self.Theme.show();
-						}
-						self.locked = false;
-					});
-					break;
 				case "wifinetworks":
 					loadScript(self.SETTINGS_JS_PATH + "wifi.js", function(path, status) {
 						if (status === "ok") {
@@ -206,19 +195,7 @@ var Settings = (function() {
 	 * @property settingsModel
 	 * @type {Array}
 	 */
-	Settings.prototype.settingsModel = ko.observableArray([ {
-		id : "theme",
-		name : "Theme"
-	}, {
-		id : "wifinetworks",
-		name : "Wifi networks"
-	}, {
-		id : "wifitethering",
-		name : "Wifi tethering"
-	}, {
-		id : "bluetooth",
-		name : "Bluetooth"
-	} ]);
+	Settings.prototype.settingsModel = ko.observableArray([ {} ]);
 	/**
 	 * Represents opened Settings option.
 	 * 
@@ -270,6 +247,51 @@ var Settings = (function() {
 							self.renderSettingsView(function() {
 								self.show();
 							});
+						});
+					}
+				});
+			}
+		});
+	};
+	/**
+	 * Loads all the javascript and style files, initializes UI components that Settings list view depends on.
+	 * 
+	 * @method init
+	 */
+	Settings.prototype.silentinit = function() {
+		var self = this;
+		loadScript('./DNA_common/components/boxCaption/boxCaption.js', function(path, status) {
+			if (status === "ok") {
+				loadScript('./DNA_common/components/tabs/tabs.js', function(path, status) {
+					if (status === "ok") {
+						$("head").append($("<link rel='stylesheet' href='./DNA_common/components/boxCaption/boxCaption.css' />"));
+						$("head").append($("<link rel='stylesheet' href='./DNA_common/components/tabs/tabs.css' />"));
+						$("head").append($("<link rel='stylesheet' href='" + self.SETTINGS_BASEPATH + "/css/settings.css' />"));
+
+						if (!$("#settingsTabs").length) {
+							var settings = '<div id="settingsTabs" class="tabs pageBgColorNormalTransparent"></div>';
+							$(settings).appendTo("body");
+							self.domElement = $("#settingsTabs");
+						}
+
+						self.domElement.bind('eventClick_menuItemBtn', function() {
+							self.renderSettingsView();
+						});
+
+						self.domElement.tabs("setSectionTitle", "APPS");
+						var version = typeof tizen === 'undefined' ? "" : tizen.application.getCurrentApplication().appInfo.version;
+						self.domElement.tabs("setSectionHint", "v. " + version + " rev. " + self.SETTINGS_REVISION);
+						self.domElement.tabs("init");
+
+						var tabMenuModel = {
+							Tabs : [ {
+								text : "SETTINGS",
+								selected : true
+							} ]
+						};
+
+						self.domElement.tabs("tabMenuTemplateCompile", tabMenuModel, function() {
+							self.renderSettingsView(function() {});
 						});
 					}
 				});

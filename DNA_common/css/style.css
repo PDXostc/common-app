@@ -4,6 +4,9 @@
 @import url("../components/progressBar/progressBar.css");
 @import url("../components/incomingCall/incomingCall.css");
 @import url("../components/boxCaption/boxCaption.css");
+@import url("./common.css");
+@import url("./tabs.css");
+@import url("./settings.css");
 /* @import url("../components/keyboard/keyboard.css"); non-native keyboard */
 /*
 @import url("../css/car.css");

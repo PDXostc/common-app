@@ -142,7 +142,7 @@
 		margin-right:72px;
 		width:42px !important;
 		height:42px !important;
-		background-image: url('../../../DNA_common/images/bt_close.png');
+		background-image: url('../../../DNA_common/images/bt_close.png') !important;
 	}
 .shadowStd{	
 	border: 1px solid white;
