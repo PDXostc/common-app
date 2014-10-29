@@ -156,6 +156,14 @@ function addPlayPromiseCall(ev){
     //A variable to pass down on whether or not we should empty and play this.
     song_data.playNow = ($(ev.target).hasClass("play-now-btn"))? true:false;
 
+//show user a note of an item added to queue
+$(event.target).click(function() {
+    if (!$(this).hasClass("play-now-btn")) {
+        $(this).addClass("hideMe");
+        $(this).siblings(".addedNote").removeClass("hideMe");
+    }
+});
+
     $.when(cleanQueuePromise(song_data))
     .then(function(res){return queueItemsFromElement(res)})
     .then(function(res){return generatePlaylistElementsPromise(res)})
