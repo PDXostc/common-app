@@ -20,6 +20,10 @@
 */
 body {
 	font-family: "Droid Sans", sans-serif;
+	background-color: rgb(0,0,0);
+}
+html {
+overflow: hidden;
 }
 .clearBoth {
 	clear:both;
@@ -29,9 +33,12 @@ body {
 	border-color: rgba(196, 196, 196, 0.5);
 }
 .wrapper {
+	height:1920px;
+	width: 1080px;
 	margin-top: 125px;
 	overflow: hidden;
-	padding: 3%;
+	background-image: url("/DNA_common/images/Hex-Background.jpg");
+	
 }
 form {
 	padding: 4%;
