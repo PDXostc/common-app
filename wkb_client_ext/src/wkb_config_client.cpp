@@ -26,9 +26,6 @@
 #include <pthread.h>
 
 
-FILE* _log_fp;
-
-
 
 #define FIRST(...) FIRST_HELPER(__VA_ARGS__, throwaway)
 #define FIRST_HELPER(first, ...) first
@@ -51,6 +48,9 @@ FILE* _log_fp;
 #define DBG_INIT() /* */
 
 /*
+FILE* _log_fp;
+
+
 #define DBG(...)      {                                                 \
         char _sz[4096];                                                 \
         sprintf(_sz, "RE: wkb_client - " FIRST(__VA_ARGS__) "\n" REST(__VA_ARGS__)); \
@@ -67,7 +67,6 @@ FILE* _log_fp;
 
 */
 
-static Ecore_Timer* _timeout = NULL;
 
 class wkb_client_exception : public std::exception
 {
@@ -110,7 +109,6 @@ WeekeyboardConfigClient::~WeekeyboardConfigClient()
     {
         Cleanup();
     }
-    fclose(_log_fp);
 }
 
 void
