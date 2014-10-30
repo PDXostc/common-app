@@ -129,8 +129,8 @@ DNA = function (commonContext, Twist, XVal, YVal, Height, Width) {
 DNA.prototype = {
     moveToNext: function () {
         this.revS+=Speed;
-        if (this.revS > 359) this.revS = 0;
-        if (this.revS < 0) this.revS = 359;
+        while (this.revS > 359){ this.revS = this.revS - 360; }
+        while (this.revS < 0){ this.revS = this.revS + 360; }
     },
     Update: function () {
         var MainArray = [];
