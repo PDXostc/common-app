@@ -16,14 +16,14 @@
 <link rel="stylesheet" href="./css/style.css"/>
 <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
 <script type="text/javascript" src="./DNA_common/js/init.js"></script>
-<!----><script type="text/javascript">
+<!--<script type="text/javascript">
 	includeJs("./DNA_common/js/predefAppModel.js");
 	includeJs("./DNA_common/js/installedApps.js");
 	includeJs("./DNA_common/js/keyControl.js");
 	includeJs("./DNA_common/js/actionCatcher.js");
 	includeJs("./DNA_common/js/HomeScreenMain.js");
 </script>
-
+-->
 </head>
 
 <body>
@@ -36,23 +36,23 @@
 <!-- BEGIN HTML ELEMENTS -->
 <div class="wrapper">	
 
-	<div class="wifiElement borderColorTheme">
-		<div class="wifiElementInfoBox">
-			<div class="wifiElementTitle fontSizeLarge fontColorNormal fontWeightBold">Hello Tizen ivi</div>
-			<div class="wifiElementSubtitle fontSizeSmaller fontColorNormal fontWeightBold">subtitle</div>
-			<div class="wifiElementDescription fontSizeSmaller fontColorNormal fontWeightBold">description</div>
-			<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold">more</div>
+	<div class="title borderWhite fontNormal">
+		<div class="titleInfoBox">
+			<div class="title fontSizeLarge fontColorNormal fontWeightBold">Hello Tizen ivi</div>
+			<div class="titleSubtitle fontSizeSmaller fontColorNormal fontWeightBold">subtitle</div>
+			<div class="titleDescription fontSizeSmaller fontColorNormal fontWeightBold">description</div>
+			<div class="titleMore fontSizeSmaller fontColorSelected fontWeightBold">more</div>
 		</div>
 		
-		<div class="lgBtn wifiElementButton fontSizeMedium fontWeightBold ">Button</div>
+		<div class="lgBtn titleButton fontSizeMedium fontWeightBold ">Button</div>
 	</div>
 			
-	<form name="add_item_form" class="input_form">
+	<form name="add_item_form" class="input_form boxShadowI1Lt bgColorNormal">
 
 		<!--input information -->
 		 
 		<label>Title</label>
-		<input name="item_title" class="inputs">
+		<input name="item_title" class="inputs boxShadow1Std">
 		<input type="button" value="Add Item" class="formButton" name="add_item_button">
 
 		<label>Description</label>
@@ -62,7 +62,7 @@
 	</form>
 
 	<!-- output from information form -->
-	<div class="output_form wifiElement borderColorTheme">
+	<div class="output_form wifiElement borderLtBlue">
 		<table><thead>
 			<th>name</td>
 			<th>description</th>
@@ -88,13 +88,13 @@
 		
 
 	<!-- Sample form, remove commenting to display -->		
-	<!-- <form name="">
-		<textarea placeholder="text input area here" class="font boxShadow4 boxShadow4Active"></textarea>
-	</form> -->
+	<!-- --><form name="" class="boxShadowI2Lt bgColorNormalTransparent">
+		<textarea placeholder="text input area here" class="font boxShadow1Med bgColorNormal"></textarea>
+	</form> 
 	
 	
 	<!-- Sample form, remove commenting to display -->	
-	<form class="form_narrow ">
+	<form class="form_narrow bgColorDark boxShadowI4Lt">
 
 	<div class="labelBox">
 		<div class="text fontSizeLarge fontWeightBold ">NUMBER</div>
@@ -102,15 +102,17 @@
 	</div>
 
 		<div class="inputNumberBox">
-			<input id="" class="inputNumber fontSizeLarge fontSizeBold" type="password">
-			<div id="" class="button deleteButton">Delete</div>
-
-			<input id="" class="inputNumber fontSizeLarge fontSizeBold " type="text">
-			<div id="" class="button deleteButton">Delete</div>
+			<input class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow4Std" type="password">
+			<div class="button deleteButton boxShadowI3Std fontNormal borderNormal">Delete</div>
 		</div>
+	<div class="inputNumberBox">
+			<input class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow4Std" type="text">
+			<div class="button deleteButton boxShadowI3Std fontNormal borderNormal">Delete</div>
+		</div>
+		
 
-		<div class="">
-			<input id="" class="submit" type="submit" value="submit">
+		<div >
+			<input class="submit" type="submit" value="submit">
 		</div>
 
 	</form> <!---->
