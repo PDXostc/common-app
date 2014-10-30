@@ -371,3 +371,4 @@ width:270px;
 	height: 42px;
 	z-index: 1;
 }
+.addedNote {position: relative;left: -18px;top:28px;}
