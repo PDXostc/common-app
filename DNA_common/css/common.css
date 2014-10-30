@@ -138,9 +138,14 @@
 }
 
 /* BACKGROUND COLOR */
-.bgColorNormal {
+.bgColorDark {
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 1.0);
+}
+
+.bgColorNormal {
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 .bgColorNormalTransparent {
@@ -148,55 +153,7 @@
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
-.bgColorTheme {
-	background-color: rgb(58, 174, 255);
-	background-color: rgba(58, 174, 255, 1.0);
-}
 
-.bgColorThemeTransparent {
-	background-color: rgb(58, 174, 255);
-	background-color: rgba(58, 174, 255, 0.5);
-}
-
-.bgColorLight {
-	background-color: rgb(65, 183, 255);
-	background-color: rgba(65, 183, 255, 1.0);
-}
-
-.bgColorLightTransparent {
-	background-color: rgb(65, 183, 255);
-	background-color: rgba(65, 183, 255, 0.5);
-}
-
-.bgColorDark {
-	background-color: rgb(6, 36, 55);
-	background-color: rgba(6, 36, 55, 1.0);
-}
-
-.bgColorDarkTransparent {
-	background-color: rgb(6, 36, 55);
-	background-color: rgba(6, 36, 55, 0.5);
-}
-
-.bgColorSelected {
-	background-color: rgb(0, 171, 255);
-	background-color: rgba(0, 171, 255, 1.0);
-}
-
-.bgColorSelectedTransparent {
-	background-color: rgb(0, 171, 255);
-	background-color: rgba(0, 171, 255, 0.5);
-}
-
-.bgColorDimmed {
-	background-color: rgb(145, 149, 153);
-	background-color: rgba(145, 149, 153, 1.0);
-}
-
-.bgColorDimmedTransparent {
-	background-color: rgb(145, 149, 153);
-	background-color: rgba(145, 149, 153, 0.5);
-}
 
 /* BOX SHADOW INSET 
  * 1=Blue
@@ -207,6 +164,46 @@
  * Std=Normal for use in boxes, text fields and block level elements
  * Med=Wider For use with buttons
  * LG= widest, for use in special cases*/
+ .boxShadowI1Lt {
+	box-shadow: inset 0 0 13px rgba(178, 240, 255, 0.8);
+}
+
+.boxShadowI1LtActive:active,.boxShadowI1LtActive:focus {
+	box-shadow: inset 0 0 20px rgb(83, 181, 206);
+}
+
+.boxShadowI2Lt {
+	box-shadow: inset 0 0 13px rgba(205, 255, 178, 0.8);
+}
+
+.boxShadowI2LtActive:active,.boxShadowI2LtActive:focus {
+	box-shadow: inset 0 0 20px rgb(89, 255, 0);
+}
+
+.boxShadowI3Lt {
+	box-shadow: inset 0 0 13px rgba(255, 211, 140, 0.8);
+}
+
+.boxShadowI3LtActive:active,.boxShadowI3LtActive:focus {
+	box-shadow: inset 0 0 20px rgb(254, 156, 0);
+}
+
+.boxShadowI4Lt {
+	box-shadow: inset 0 0 13px rgba(255, 255, 178, 0.8);
+}
+
+.boxShadowI4LtActive:active,.boxShadowI4LtActive:focus {
+	box-shadow: inset 0 0 20px rgb(255, 255, 0);
+}
+
+.boxShadowI5Std {
+	box-shadow: inset 0 0 13px rgba(255, 255, 255, 0.8);
+}
+
+.boxShadowI5LtActive:active,.boxShadowI5LtActive:focus {
+	box-shadow: inset 0 0 20px rgb(255, 255, 255,);
+}
+
 .boxShadowI1Std {
 	box-shadow: inset 0 0 30px rgba(178, 240, 255, 0.8);
 }
@@ -382,6 +379,190 @@
 	border-color: rgba(0, 0, 0, 1.0); /*#000000*/
 }
 
+/* BOX SHADOW 
+ * 1=Blue
+ * 2=Green
+ * 3=Orange
+ * 4=Yellow
+ * 5=White
+ * Std=Normal for use in boxes, text fields and block level elements
+ * Med=Wider For use with buttons
+ * LG= widest, for use in special cases*/
+.boxShadow1Std {
+	box-shadow: 0 0 30px rgba(83, 181, 206, 0.8);
+}
+
+.boxShadow1StdActive:active,.boxShadow1StdActive:focus {
+	box-shadow: 0 0 50px rgb(178, 240, 255);
+}
+
+.boxShadow2Std {
+	box-shadow: 0 0 30px rgba(89, 255, 0, 0.8);
+}
+
+.boxShadow2StdActive:active,.boxShadow2StdActive:focus {
+	box-shadow: 0 0 50px rgb(205, 255, 178);
+}
+
+.boxShadow3Std {
+	box-shadow: 0 0 30px rgba(254, 156, 0, 0.8);
+}
+
+.boxShadow3StdActive:active,.boxShadow3StdActive:focus {
+	box-shadow: 0 0 50px rgb(255, 211, 140);
+}
+
+.boxShadow4Std {
+	box-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
+}
+
+.boxShadow4StdActive:active,.boxShadow4StdActive:focus {
+	box-shadow: 0 0 50px rgb(255, 255, 178);
+}
+
+.boxShadow5Std {
+	box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.boxShadow5StdActive:active,.boxShadow5StdActive:focus {
+	box-shadow: 0 0 50px rgb(255, 255, 255,);
+}
+
+.boxShadow1Med {
+	box-shadow:  0 0 50px rgba(83, 181, 206, 0.8);
+}
+
+.boxShadow1MedActive:active,.boxShadow1MedActive:focus {
+	box-shadow: 0 0 70px rgb(178, 240, 255);
+}
+
+.boxShadow2Med {
+	box-shadow:  0 0 50px rgba(89, 255, 0, 0.8);
+}
+
+.boxShadow2MedActive:active,.boxShadow2MedActive:focus {
+	box-shadow: 0 0 70px rgb(205, 255, 178);
+}
+
+.boxShadow3Med {
+	box-shadow: 0 0 50px rgba(254, 156, 0, 0.8);
+}
+
+.boxShadow3MedActive:active,.boxShadow3MedActive:focus {
+	box-shadow: 0 0 70px rgb(255, 211, 140);
+}
+
+.boxShadow4Med {
+	box-shadow: 0 0 50px rgba(255, 255, 0, 0.8);
+}
+
+.boxShadow4MedActive:active,.boxShadow4MedActive:focus {
+	box-shadow: 0 0 70px rgb(255, 255, 178);
+}
+
+.boxShadow5Med {
+	box-shadow:  0 0 50px rgba(255, 255, 255, 0.8);
+}
+
+.boxShadow5MedActive:active,.boxShadow5MedActive:focus {
+	box-shadow:  0 0 70px rgb(255, 255, 255,);
+}
+
+.boxShadow1Lg {
+	box-shadow:  0 0 70px rgba(83, 181, 206, 0.8);
+}
+
+.boxShadow1LgActive:active,.boxShadow1LgActive:focus {
+	box-shadow:  0 0 90px rgb(178, 240, 255);
+}
+
+.boxShadow2Lg {
+	box-shadow: 0 0 70px rgba(89, 255, 0, 0.8);
+}
+
+.boxShadow2LgActive:active,.boxShadow2LgActive:focus {
+	box-shadow: 0 0 90px rgb(205, 255, 178);
+}
+
+.boxShadow3Lg {
+	box-shadow:  0 0 70px rgba(254, 156, 0, 0.8);
+}
+
+.boxShadow3LgActive:active,.boxShadow3LgActive:focus {
+	box-shadow:  0 0 90px rgb(255, 211, 140);
+}
+
+.boxShadow4Lg {
+	box-shadow:  0 0 70px rgba(255, 255, 0, 0.8);
+}
+
+.boxShadow4LgActive:active,.boxShadow4LgActive:focus {
+	box-shadow:  0 0 90px rgb(255, 255, 178);
+}
+
+.boxShadow5Lg {
+	box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+}
+
+.boxShadow5LgActive:active,.boxShadow5LgActive:focus {
+	box-shadow: 0 0 70px rgb(255, 255, 255,);
+}
+
+/* BORDER COLOR */
+.borderWhite {
+	border-color: rgb(255, 255, 255);
+	border-color: rgba(255, 255, 255, 1.0); /*#ffffff*/
+}
+
+.borderLtBlue {
+	border-color: rgb(178, 240, 255);
+	border-color: rgba(178, 240, 255, 1.0); /*#b2f0ff*/
+}
+
+.borderVividBlue {
+	border-color: rgb(83, 181, 206);
+	border-color: rgba(83, 181, 206, 1.0); /*#53b5ce*/
+}
+
+.borderLtYellow {
+	border-color: rgb(255, 255, 178);
+	border-color: rgba(255, 255, 178, 1.0); /*#ffffb2*/
+}
+
+.borderVividYellow {
+	border-color: rgb(255, 255, 0);
+	border-color: rgba(255, 255, 0, 1.0); /*#ffff00*/
+}
+
+.borderLtOrange {
+	border-color: rgb(255, 211, 140);
+	border-color: rgba(255, 211, 140, 1.0); /*#ffd38c*/
+}
+
+.borderVividOrange {
+	border-color: rgb(254, 156, 0);
+	border-color: rgba(254, 156, 0, 1.0); /*#fe9c00*/
+}
+
+.borderLtGreen{
+	border-color: rgb(205, 255, 178);
+	border-color: rgba(205, 255, 178, 1.0); /*#cdffb2*/
+}
+
+.borderVividGreen {
+	border-color: rgb(89, 255, 0);
+	border-color: rgba(89, 255, 0, 1.0); /*#59ff00*/
+}
+.borderNormal {
+	border-color: rgb(196, 196, 196);
+	border-color: rgba(196, 196, 196, 1.0); /*#c4c4c4*/
+}
+
+.borderDark {
+	border-color: rgb(0, 0, 0); /*#000000*/
+	border-color: rgba(0, 0, 0, 1.0); /*#000000*/
+}
+
 /* TEXT BACKGROUND COLOR */
 .textBgColorNormal {
 	background-color: rgb(0, 0, 0);
@@ -393,55 +574,6 @@
 	background-color: rgba(0, 0, 0, 0.8);
 }
 
-.textBgColorTheme {
-	background-color: rgb(29, 162, 255);
-	background-color: rgba(29, 162, 255, 1.0);
-}
-
-.textBgColorThemeTransparent {
-	background-color: rgb(29, 162, 255);
-	background-color: rgba(29, 162, 255, 0.4);
-}
-
-.textBgColorLight {
-	background-color: rgb(128, 203, 255);
-	background-color: rgba(128, 203, 255, 1.0);
-}
-
-.textBgColorLightTransparent {
-	background-color: rgb(128, 203, 255);
-	background-color: rgba(128, 203, 255, 0.4);
-}
-
-.textBgColorDark {
-	background-color: rgb(0, 89, 151);
-	background-color: rgba(0, 89, 151, 1.0);
-}
-
-.textBgColorDarkTransparent {
-	background-color: rgb(0, 89, 151);
-	background-color: rgba(0, 89, 151, 0.4);
-}
-
-.textBgColorSelected {
-	background-color: rgb(29, 162, 255);
-	background-color: rgba(29, 162, 255, 1.0);
-}
-
-.textBgColorSelectedTransparent {
-	background-color: rgb(29, 162, 255);
-	background-color: rgba(29, 162, 255, 0.4);
-}
-
-.textBgColorDimmed {
-	background-color: rgb(199, 199, 199);
-	background-color: rgba(199, 199, 199, 1.0);
-}
-
-.textBgColorDimmedTransparent {
-	background-color: rgb(199, 199, 199);
-	background-color: rgba(199, 199, 199, 0.4);
-}
 
 /* OPACITY */
 .opacityFull {
