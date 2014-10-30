@@ -23,8 +23,11 @@
 var options = [];
 var songs = [];
 
-//Containers where allAll and PlayAll should be shown
+//Containers where addAll and PlayAll should be shown
 var addAllAllowed = ["Albums","Playlists"];
+
+//Containers that should not be shown on the root level.
+var rootHide = ["Genres","/"];
 
 var Indexer;
 var Browser;
@@ -85,6 +88,15 @@ function setRootContainer(){
 
         //getChildren(manager.Path);
 
+        $.when(getRootItems(manager))
+        .then(function(res){ 
+            return getGenresForRoot(res); })
+        .then(function(res2){ 
+            console.log("test");
+            console.log(res2);
+            listItems(res2);
+        });
+/*
         
 		Browser.listContainers(manager,0,100,["DisplayName","Path","Type"],
 			function(obj,err){
@@ -92,9 +104,50 @@ function setRootContainer(){
 				options = obj;
 				listItems(options);
 		});
-        
+  */      
 	});
 }
+
+function getRootItems(pathObj){
+    var rootPromise = new $.Deferred();
+
+    Browser.listContainers(pathObj,0,100,["DisplayName","Path","Type"],
+        function(obj,err){
+            rootPromise.resolve(obj);
+    });
+
+    return rootPromise;
+}
+
+//Requires root list input
+function getGenresForRoot(rootItemsList){
+    var genresPromise = new $.Deferred();
+    for(container in rootItemsList){
+        if(rootItemsList[container].DisplayName == 'Genres'){
+
+            Browser.listContainers(rootItemsList[container],0,100,["*"],
+                function(obj,err){
+                    for(cont in obj){
+                        rootItemsList.push(obj[cont]);
+                    }
+
+                    for(it in rootItemsList){
+                        if(rootHide.indexOf(rootItemsList[i].Display) > -1){
+                            rootItemsList.splice(it,1);
+                        }
+
+                    }
+
+
+                    genresPromise.resolve(rootItemsList);
+                });
+        }
+    }
+    return genresPromise;
+}
+
+
+
 
 function listItems(itemSet){
 	$(".musicContentListedItems").empty();
