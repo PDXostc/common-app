@@ -87,15 +87,8 @@ function setRootContainer(){
         $("#libraryCloseSubPanelButton").data("root",JSON.stringify([manager.Path]));
 
         //getChildren(manager.Path);
+        generateRootListing(manager);
 
-        $.when(getRootItems(manager))
-        .then(function(res){ 
-            return getGenresForRoot(res); })
-        .then(function(res2){ 
-            console.log("test");
-            console.log(res2);
-            listItems(res2);
-        });
 /*
         
 		Browser.listContainers(manager,0,100,["DisplayName","Path","Type"],
@@ -107,6 +100,18 @@ function setRootContainer(){
   */      
 	});
 }
+
+function generateRootListing(path){
+    $.when(getRootItems(path))
+        .then(function(res){ 
+            console.log("rootItems resolved");
+            return addGenresForRoot(res); })
+        .then(function(res2){ 
+            console.log("addGenresForRoot resolved");
+            listItems(res2);
+        });
+}
+
 
 function getRootItems(pathObj){
     var rootPromise = new $.Deferred();
@@ -120,7 +125,7 @@ function getRootItems(pathObj){
 }
 
 //Requires root list input
-function getGenresForRoot(rootItemsList){
+function addGenresForRoot(rootItemsList){
     var genresPromise = new $.Deferred();
     for(container in rootItemsList){
         if(rootItemsList[container].DisplayName == 'Genres'){
@@ -130,14 +135,6 @@ function getGenresForRoot(rootItemsList){
                     for(cont in obj){
                         rootItemsList.push(obj[cont]);
                     }
-
-                    for(it in rootItemsList){
-                        if(rootHide.indexOf(rootItemsList[i].Display) > -1){
-                            rootItemsList.splice(it,1);
-                        }
-
-                    }
-
 
                     genresPromise.resolve(rootItemsList);
                 });
@@ -163,9 +160,13 @@ function listItems(itemSet){
 		//t.content.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
 		
 		var clone = document.importNode(t.content,true);
-		
+
         if(itemSet[item].Type == "container"){
-            
+        
+            if(rootHide.indexOf(itemSet[item].DisplayName) != -1){
+                continue;
+            }
+
             if(!showImages){
                 $(clone.querySelector(".content-listing")).addClass("no-images");    
             }
@@ -205,17 +206,20 @@ function listItems(itemSet){
 
 function addPlayPromiseCall(ev){
     var song_data = $(ev.target).closest("li.content-listing").data();
+    song_data.callingElement = ev.target;
 
     //A variable to pass down on whether or not we should empty and play this.
     song_data.playNow = ($(ev.target).hasClass("play-now-btn"))? true:false;
 
-//show user a note of an item added to queue
-$(event.target).click(function() {
-    if (!$(this).hasClass("play-now-btn")) {
-        $(this).addClass("hideMe");
-        $(this).siblings(".addedNote").removeClass("hideMe");
-    }
-});
+    /*
+    //show user a note of an item added to queue
+    $(event.target).click(function() {
+        if (!$(this).hasClass("play-now-btn")) {
+            $(this).addClass("hideMe");
+            $(this).siblings(".addedNote").removeClass("hideMe");
+        }
+    });
+    */
 
     $.when(cleanQueuePromise(song_data))
     .then(function(res){return queueItemsFromElement(res)})
@@ -266,6 +270,9 @@ function queueItemsFromElement(song_data){
         });
     }else{
         Player.enqueueUri(song_data.item_path,function(r,e){
+            $(song_data.callingElement).addClass("hideMe");
+            $(song_data.callingElement).siblings(".addedNote").removeClass("hideMe");
+
             queuePromise.resolve(song_data);
         });        
     }
@@ -509,13 +516,18 @@ function goToPreviousList(){
         $('#musicLibrary').removeClass('toShow');
         //$(".musicContentListedItems").empty();
     }else{
-        popCrumb()
-        Browser.listContainers({"Path":path},0,1000,["*"],function(obj,err){
-            if(obj.length > 0){
-                var newScreen = path;
-                listItems(obj);
-            }
-        });
+        
+        if(path == JSON.parse($("#libraryCloseSubPanelButton").data("nested"))[0]){
+            generateRootListing({"Path":path});
+        }else{
+            popCrumb()
+            Browser.listContainers({"Path":path},0,1000,["*"],function(obj,err){
+                if(obj.length > 0){
+                    var newScreen = path;
+                    listItems(obj);
+                }
+            });            
+        }
     }
 }
 
