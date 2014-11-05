@@ -7,8 +7,8 @@ var ScreenScale=1.5;
 	ScreenWidth = 720*ScreenScale,
 	ScreenHeight = 1280*ScreenScale, /*1920 or 1800, 1220 for testing*/
 	VerticalOffset = -200, /*-200, 200 for testing */
-	ClickSensitivity = 10,
-	DragSensitivity = 20,
+	ClickSensitivity = 50,
+	DragSensitivity = 200,
 	Edges = true,
 	Fading = false,
 	Scaling = true,
@@ -240,8 +240,6 @@ DNA.prototype = {
 
 		//Side Images
 		var SideImg={};
-		//Center Image
-        var CenterImg = IconLinks[0][0];
 
 // --------------------------------------
 		//Increment through the icons
@@ -269,10 +267,7 @@ DNA.prototype = {
 				//Assign icon images
 				SideImg[i] = IconLinks[G.Icon][0];
 
-				if(ImageCenter===2){}
-				else if(ImageCenter)
-					a.drawImage(CenterImg, this.x-(G.HexScale[0]/2), this.y-(G.HexScale[0]/2))
-				else{
+				if(ImageCenter!==2){
 					//scale the images according to the cosine
 					if(Scaling){
 						G.HexScale[i]=rescale(G.HexScale[i],G.Strand[i]);
@@ -596,16 +591,30 @@ function rescale(scale,cos){
 //Input functions
 function getMousePos(canvas, evt){
 	var rect = canvas[0].getBoundingClientRect();
-	return {
-		x: evt.clientX - rect.left,
-		y: evt.clientY - rect.top
-	};
+	if(typeof(evt.clientX) == typeof(undefined) && typeof(evt.touches[0].clientX) == typeof(undefined)){
+		return {
+			x: evt.changedTouches[0].clientX - rect.left,
+			y: evt.changedTouches[0].clientY - rect.top
+		};
+	}else if(typeof(evt.clientX) == typeof(undefined)){
+		return {
+			x: evt.touches[0].clientX - rect.left,
+			y: evt.touches[0].clientY - rect.top
+		};
+	}else{
+		return {
+			x: evt.clientX - rect.left,
+			y: evt.clientY - rect.top
+		};
+	}
 }
 function setMousedown(down){
-	if(G.Mousedown===true && down===false && G.Timer<ClickSensitivity)
+	if(G.Mousedown===true && down===false && G.Timer<ClickSensitivity){
 		G.Mouseclick=true;
-	else
+		console.log("Click");
+	}else{
 		G.Mouseclick=false;
+	}
 	G.Mousedown=down;
 }
 function getMouseloc(evt){
@@ -623,7 +632,7 @@ function initDrag(){
 	}
 	if(G.Mousedown){
 		var dist=getDistance(G.DragStartX,G.DragStartY,G.MouseX,G.MouseY);
-		if(dist>20){
+		if(dist>DragSensitivity){
 				G.LHDist=Math.round(getDistance(G.LastMouseX,0,G.MouseX,0)); //Last Horizontal Distance
 				if(G.LHDist>MaxSpeed){ G.LHDist=MaxSpeed; }
 				if(G.MouseX>G.LastMouseX){
@@ -652,18 +661,31 @@ function initDrag(){
 	G.LastMouseY=G.MouseY;
 }
 
+var JagAPI = {
+	Listen: function(canvas, event, callback, useCapture) { //useCapture not supported
+		//click order of events:
+		//touchstart touchmove touchend mouseover mousemove mousedown mouseup click dblclick
+		switch(event){
+			case "mousedown":
+				canvas.addEventListener('touchstart', callback);
+			break;
+			case "mousemove":
+				canvas.addEventListener('touchmove', callback);
+			break;
+			case "mouseup":
+				canvas.addEventListener('touchend', callback);
+			break;
+		}
+		canvas.addEventListener(event, callback);
+	}
+}
+
 //Misc functions
 function initListeners(){
-	console.log('DNA Canvas Listeners Initialized!');
-
-	var b = document.body;
-	b.addEventListener('mousedown', function (evt) {	console.log("Clicked at "+evt.pageX +","+evt.pageY);	console.log("Body mouse event registered!");	}, false);
-	b.addEventListener('mouseup', function (evt) {		console.log("Released at "+evt.pageX +","+evt.pageY);	}, false);
-
-	canvas[0].addEventListener('mousedown', function (evt) {	setMousedown(true);	console.log("Canvas mouse event registered!");	}, false);
-	canvas[0].addEventListener('mouseup', function (evt) {	setMousedown(false);	}, false);
-	canvas[0].addEventListener('mouseout', function (evt) {	setMousedown(false);	}, false);
-	canvas[0].addEventListener('mousemove', function (evt) {	getMouseloc(evt);		}, false);
+	JagAPI.Listen(canvas[0],'mousedown',	function (evt) {	setMousedown(true);							});
+	JagAPI.Listen(canvas[0],'mouseup',		function (evt) {	setMousedown(false);						});
+	JagAPI.Listen(canvas[0],'mouseout',		function (evt) {	setMousedown(false);console.log("out");		});
+	JagAPI.Listen(canvas[0],'mousemove',	function (evt) {	getMouseloc(evt);	console.log("move");	});
 }
 
 //App Icon functions
@@ -679,12 +701,11 @@ function onAppRecallSuccess(list) {
 						   "pkgmgr-install":"./DNA_common/images/pkgmgr-install_inactive.png",
 						   "syspopup-app":"./DNA_common/images/syspopup-app_inactive.png",
 						   ApplicationVisibility:"./DNA_common/images/app_visibility_inactive.png",
-						   Boilerplate:"./DNA_common/images/boilerplate_icon.png",
+						   Boilerplate:"./DNA_common/images/grid_inactive.png",
 						   Browser:"./DNA_common/images/browser_inactive.png", 
 						   Dashboard:"./DNA_common/images/dashboard_inactive.png",
 						   Dialer:"./DNA_common/images/dialer_inactive.png",
 						   Email:"./DNA_common/images/email_inactive.png",
-						   Grid:"./DNA_common/images/grid_inactive.png",
 						   HVAC:"./DNA_common/images/hvac_inactive.png",
 						   Handwriting:"./DNA_common/images/handwriting_inactive.png",
 						   Keyboard:"./DNA_common/images/keyboard_inactive.png",
@@ -733,7 +754,7 @@ function getInstalledApps(callback){
 	G.Callback = callback;
 	//Add defaults until app pulls icons properly
 	/*for(i=0;i<SkipRows*StrandCount;i++){
-		addIcon('Dashboard',	function (){ tizen.application.launch("intelPoc12.Dashboard");			});
+		addIcon('Dashboard',	function (){ tizen.application.launch("JLRPOCX012.Dashboard");			});
 	}*/
 	"use strict";
 	if (typeof tizen !== 'undefined') {
@@ -752,14 +773,14 @@ function getInstalledApps(callback){
 	}else{
 		//Add some defaults for the Web Simulator
 		//addIcon syntax: Image Name, Callback Function
-		addIcon('dashboard_inactive',	function (){ tizen.application.launch("intelPoc12.Dashboard");			});
-		addIcon('fingerprint_inactive',	function (){ tizen.application.launch("intelPoc32.FingerPrint");			});
-		addIcon('hvac_inactive',			function (){ tizen.application.launch("intelPoc16.HVAC");				});
-		addIcon('mediaplayer_inactive',		function (){ tizen.application.launch("intelPoc14.MultimediaPlayer");	});
-		addIcon('navigation_inactive',	function (){ tizen.application.launch("intelPoc11.navigation");			});
-		addIcon('news_inactive',			function (){ tizen.application.launch("intelPoc30.News");				});
-		addIcon('phone_inactive',		function (){ tizen.application.launch("intelPoc15.phone");				});
-		addIcon('weather_inactive',		function (){ tizen.application.launch("intelPoc31.Weather");				});
+		addIcon('dashboard_inactive',	function (){ tizen.application.launch("JLRPOCX012.Dashboard");			});
+		addIcon('fingerprint_inactive',	function (){ tizen.application.launch("JLRPOCX032.FingerPrint");			});
+		addIcon('hvac_inactive',		function (){ tizen.application.launch("JLRPOCX016.HVAC");				});
+		addIcon('mediaplayer_inactive',	function (){ tizen.application.launch("JLRPOCX014.MultimediaPlayer");	});
+		addIcon('navigation_inactive',	function (){ tizen.application.launch("JLRPOCX011.navigation");			});
+		addIcon('news_inactive',		function (){ tizen.application.launch("JLRPOCX030.News");				});
+		addIcon('phone_inactive',		function (){ tizen.application.launch("JLRPOCX015.phone");				});
+		addIcon('weather_inactive',		function (){ tizen.application.launch("JLRPOCX031.Weather");				});
 		//IconCount=30; //for testing purposes
 		callback();
 	}
