@@ -5,7 +5,10 @@ RA.handlers.mouseMoveHandler=function(event)
 		console.log("mouseMoveHandler ",RA.input_state.clicking);
 	if (RA.input_state.clicking)
 		{
-		RA.launcher.setLauncherPosition(event.clientX, event.clientY);
+			if(typeof(event.clientX) == typeof(undefined))
+				RA.launcher.setLauncherPosition(event.touches[0].clientX, event.touches[0].clientY);
+			else
+				RA.launcher.setLauncherPosition(event.clientX, event.clientY);
 		}
 	//RA.ui.goalCompleted(1);
 	};
@@ -28,7 +31,10 @@ RA.handlers.mouseUpHandler=function(event)
 		RA.input_state.clicking = false;
 		RA.launcher.setLauncherPosition(RA.canvas.width / 2, RA.canvas.height * (7 / 8)+84);
 
-		RA.launcher.launchProjectile(event.clientX, event.clientY-84);
+		if(typeof(event.clientX) == typeof(undefined))
+			RA.launcher.launchProjectile(event.changedTouches[0].clientX, event.changedTouches[0].clientY-84);
+		else
+			RA.launcher.launchProjectile(event.clientX, event.clientY-84);
 		}
 	//RA.ui.goalCompleted(0);
 	};

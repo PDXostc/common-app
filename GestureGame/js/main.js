@@ -17,9 +17,15 @@ function init_game()
 
 	$("body").mousemove(RA.handlers.mouseMoveHandler);
 
+	document.body.addEventListener('touchmove', RA.handlers.mouseMoveHandler, false);
+
 	$("body").mousedown(RA.handlers.mouseDownHandler);
 
+	document.body.addEventListener('touchstart', RA.handlers.mouseDownHandler, false);
+
 	$("body").mouseup(RA.handlers.mouseUpHandler);
+
+	document.body.addEventListener('touchend', RA.handlers.mouseUpHandler, false);
 
 	$("body").keypress(RA.handlers.keyPressHandler);//*/
 	
@@ -158,10 +164,14 @@ function update()
 		window.requestAnimationFrame(update);
 		}
 	}; // update()
-	
+function exit(){
+	if (typeof tizen !== "undefined") {
+		tizen.application.getCurrentApplication().exit();
+	}
+}
 $(document).ready(function()
 	{
-	//waitUtility.wait(true, init_game, true);
-	init_game();
+	if(typeof(waitUtility) != typeof(undefined))
+		waitUtility.wait(true, init_game, true);
 	//waitUtility.wait(true, init);
 	});
