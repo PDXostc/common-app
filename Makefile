@@ -1,4 +1,4 @@
-app_list = HomeScreen Browser Boilerplate Dashboard News Weather GestureGame Phone Handwriting
+app_list = DNA_HomeScreen DNA_HelloTizen
 extension_list = extension_common wkb_client_ext most
 TIZEN_IP=TizenNuc
 #TIZEN_IP=192.168.6.11
