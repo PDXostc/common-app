@@ -1,4 +1,4 @@
-PROJECT = DNA
+PROJECT = DNA_HomeScreen
 INSTALL_FILES = images js icon.png index.html
 WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json
 VERSION := 0.0.1
@@ -7,10 +7,10 @@ PACKAGE = $(PROJECT)-$(VERSION)
 SEND := ~/send
 
 ifndef TIZEN_IP
-TIZEN_IP=KellyNuc
+TIZEN_IP=TizenNuc
 endif
 
-wgtPkg:
+wgtPkg: clean
 	cp -rf ../DNA_common .
 	zip -r $(PROJECT).wgt config.xml css icon.png index.html js images DNA_common
 	
@@ -23,11 +23,11 @@ wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 run: install
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d "
 
 install: deploy
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/DNA.wgt"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/DNA_HomeScreen.wgt"
 
 $(PROJECT).wgt : wgt
 
@@ -39,5 +39,5 @@ all:
 
 
 clean:
-	rm $(PROJECT).wgt
-	rm -rf DNA_common
+	-rm $(PROJECT).wgt
+	-rm -rf DNA_common
