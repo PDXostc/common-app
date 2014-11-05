@@ -49,6 +49,7 @@ function mminit(){
 
     $("#libraryCloseSubPanelButton").data("breadcrumb_trail",JSON.stringify(["root"]));
 
+
 	setRootContainer();
     //generatePlaylistElements();
     generatePlaylistElementsPromise({}); 
@@ -84,7 +85,11 @@ function setRootContainer(){
 	manager = {"DisplayName":"Root"};
 	Browser.discoverMediaManagers(function(obj,err){ 
 		manager.Path = obj[0];
-        $("#libraryCloseSubPanelButton").data("root",JSON.stringify([manager.Path]));
+
+        var rootVal = JSON.stringify([manager.Path]);
+
+        $("#libraryCloseSubPanelButton").data("root",rootVal);
+        $("#libraryCloseSubPanelButton").data("nested",rootVal);
 
         //getChildren(manager.Path);
         generateRootListing(manager);
@@ -152,7 +157,6 @@ function listItems(itemSet){
     var trail = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
 
     var showImages = (addAllAllowed.indexOf(trail[trail.length-1]) >= 0)? true: false;
-    
 
 	for(item in itemSet){
 
@@ -171,12 +175,22 @@ function listItems(itemSet){
                 $(clone.querySelector(".content-listing")).addClass("no-images");    
             }
             
-            
             clone.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
-
+/*
             var artwork = getAlbumImage(itemSet[item].Artist);
             clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);
+*/            
+            var nested = $("#libraryCloseSubPanelButton").data("nested");
+            var root = $("#libraryCloseSubPanelButton").data("root");
+            
 
+            if(root == nested){
+                clone.querySelector(".content-listing img.albumArt").style.visibility = "hidden";
+            }else{
+                var artwork = getAlbumImage(itemSet[item].Artist);
+                clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);                
+            }
+            
             clone.querySelector(".content-listing").addEventListener("tap",function(ev){
                 console.log("displayChildren");
                 displayChildren(ev);
@@ -303,26 +317,6 @@ function generatePlaylistElementsPromise(input_data){
     }); 
     return playlistElementsOb;
 }
-/*
-function generatePlaylistElements(){
-    Player.getCurrentPlayQueue(function(r,e){
-        $("#media-carousel-content").empty();
-        for(song in r){
-            song_object = {
-                "item_url":r[song].URLs[0],
-                "item_path":r[song].Path,
-                "artwork":r[song].AlbumArtURL,
-                "song_title":r[song].DisplayName,
-                "artist_name":r[song].Artist,
-                "album_title":r[song].AlbumTitle
-            }
-
-            addElementToCarousel(song_object);
-        }
-        coverScroll.refresh();
-    });
-}
-*/
 
 //Returns a local webserver 
 function getAlbumImage(filepath){
@@ -375,9 +369,6 @@ function populateCurrentlyPlaying(song_data){
         });
     },700);
     
-
-
-    //$("#songProgress").data("track_length",song_data.song_duration);
 }
 
 
@@ -388,7 +379,27 @@ function searchAndDisplay(searchTerm){
     //var searchPath = lastContainer[lastContainer.length-1];
     var searchPath = lastContainer[0];
 
-    searchString = "DisplayName contains \""+searchTerm+"\"";
+    var searchCategories = ["Artist","Album"];
+    
+    var set = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
+    var cat = searchCategories.indexOf(searchCategories);
+    
+    searchString = "";
+    
+    console.log(cat);
+
+    switch(cat){
+        case 0:
+            searchString = "Artist contains \""+searchTerm+"\"";                
+        break;
+        case 1:
+            searchString = "Album contains \""+searchTerm+"\"";    
+        break;        
+        case -1:
+            searchString = "DisplayName contains \""+searchTerm+"\"";    
+        break;
+    }    
+
 	console.log("Path:"+searchPath+"String:"+searchString);
     Browser.searchObjects({"Path":searchPath},0,1000,["*"],searchString,function(re,err){
         if(re.length > 0){
@@ -399,49 +410,7 @@ function searchAndDisplay(searchTerm){
         }
     });
 }
-/*
-function playSongElementPromiseCall(ev){
-    generatePlaylistElements();
-    populateCurrentlyPlaying(songInfo);
-    //next();
-    play();
-}
 
-function playSongFromElement(playEvent){
-//    playEvent.stopPropogation();
-
-    songInfo = $(playEvent.target).closest("li.content-listing").data();
-    playPromise = new $.Deferred();
-    
-
-    Player.emptyPlayQueue(function(r){
-
-        if(song_data.item_type =="container"){
-            Browser.listItems({"Path":song_data.item_path},0,1000,["*"],function(r,e){
-                for(song in r){
-                    Player.enqueueUri(r[song].Path,function(x,err){
-                        //if this is the last item, resolve the deferred object
-                        if(song == r.length-1){
-                            queuePromise.resolve();
-                        } 
-                        
-                    });
-                }
-            });
-        }else{
-            Player.enqueueUri(song_data.item_path,function(r,e){
-                //generatePlaylistElements();
-                queuePromise.resolve();
-            });        
-        }
-        Player.enqueueUri(songInfo.item_path,function(re,err){
-
-
-        })
-    });
-    playEvent.cancelBubble == true;
-}
-*/
 
 //Adds the supplied path to the stack stored in the back button for navigation.
 function pushPath(path){
@@ -865,4 +834,7 @@ function emptyPlayQueue() {
 }
 function closeLibraryWindow() {
 		$("#musicLibrary").removeClass("toShow");
+
+        var rootVal = $("#libraryCloseSubPanelButton").data("root");
+        $("#libraryCloseSubPanelButton").data("nested",rootVal);
 }
