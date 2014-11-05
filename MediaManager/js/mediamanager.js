@@ -379,20 +379,41 @@ function searchAndDisplay(searchTerm){
     //var searchPath = lastContainer[lastContainer.length-1];
     var searchPath = lastContainer[0];
 
-    var searchCategories = ["Artist","Album"];
-    
+    var searchCategories = ["Artist","Artists","Album","Albums"];
     var set = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
+
+    var c = set.length+1;
+    var cat = -1;
+    while(c >= 0){
+        categoryIndex = searchCategories.indexOf(set[c]);
+        if(categoryIndex > -1){
+            cat = categoryIndex;
+            break;
+        }
+        c--;
+    }
+
+
+  /*  
+    var i = set.length+1;
+    while(i >= 0){
+
+        i--;
+    }
+
     var cat = searchCategories.indexOf(searchCategories);
     
     searchString = "";
-    
+    */
     console.log(cat);
 
     switch(cat){
         case 0:
+        case 1:
             searchString = "Artist contains \""+searchTerm+"\"";                
         break;
-        case 1:
+        case 2:
+        case 3:
             searchString = "Album contains \""+searchTerm+"\"";    
         break;        
         case -1:
@@ -485,11 +506,12 @@ function goToPreviousList(){
         $('#musicLibrary').removeClass('toShow');
         //$(".musicContentListedItems").empty();
     }else{
-        
+        popCrumb();
+
         if(path == JSON.parse($("#libraryCloseSubPanelButton").data("nested"))[0]){
             generateRootListing({"Path":path});
         }else{
-            popCrumb()
+            
             Browser.listContainers({"Path":path},0,1000,["*"],function(obj,err){
                 if(obj.length > 0){
                     var newScreen = path;
