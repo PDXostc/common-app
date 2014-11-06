@@ -87,6 +87,29 @@ div#footer
 	top: 1098px;
 	}
 
+#topBarIcons {
+	width: 1078px;
+	height:84px;
+	position: fixed;
+	top: 0px;
+	left: 0;
+	z-index:100;
+}
+#bottomPanel {
+	width: 1078px;
+	height: 182px;
+	position: fixed;
+	bottom: 0px;
+	left: 0;
+	z-index:100;
+}
+#logo {
+	height:128px;
+	width:330px;
+	margin-left:-350px;
+	margin-top:30px;
+}
+
 /* ---------------------------------- */
 /* - THINGS for during game play    - */
 /* ---------------------------------- */

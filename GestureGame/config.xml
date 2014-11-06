@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/gestureGame" version="1.0.0" height="1280" width="720" viewmodes="fullscreen">
-    <tizen:application id="GL63hVfUoH.gestureGame" package="GL63hVfUoH" required_version="2.1"/>
+    <tizen:application id="jaglrPoc01.gestureGame" package="jaglrPoc01" required_version="2.1"/>
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.all"/>
     <icon src="icon.png"/>
