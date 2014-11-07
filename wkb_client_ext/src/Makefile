@@ -17,7 +17,10 @@ LIBS=-lecore -leldbus -Wl,--whole-archive -lextension-common -Wl,--no-whole-arch
 
 CFLAGS:=$(CFLAGS) $(LIB_DIRS) $(LIBS) `pkg-config --cflags glib-2.0`
 
-all: $(TARGET)
+all: $(TARGET) wkb_inst
+
+wkb_inst: wkb_inst.o $(TARGET)
+	$(CC) $(CFLAGS) -lwkb_client -lecore -leldbus $^ -o $@
 
 $(TARGET): prepare $(OBJS) 
 	$(CC) $(CFLAGS) -fPIC -shared -o $@ -I./ $(OBJS)
@@ -39,7 +42,11 @@ prepare:
 install: $(TARGET)
 	install -D $(TARGET_DIR)/$(TARGET) \
 		$(DESTDIR)$(PREFIX)/lib/tizen-extensions-crosswalk/$(TARGET)
-	ls -l $(DESTDIR)$(PREFIX)/lib/tizen-extensions-crosswalk/
+	install -D wkb_inst \
+		$(DESTDIR)$(PREFIX)/local/sbin/wkb_inst
+	install -D kb_inst \
+		$(DESTDIR)$(PREFIX)/local/sbin/kb_inst
+
 
 clean:
 	rm -f *.o *.so
