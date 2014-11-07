@@ -24,7 +24,7 @@ var options = [];
 var songs = [];
 
 //Containers where addAll and PlayAll should be shown
-var addAllAllowed = ["Albums","Playlists"];
+var addAllAllowed = ["album"]; //,"person","genre"
 
 //Containers that should not be shown on the root level.
 var rootHide = ["Genres","/"];
@@ -92,17 +92,7 @@ function setRootContainer(){
         $("#libraryCloseSubPanelButton").data("nested",rootVal);
 
         //getChildren(manager.Path);
-        generateRootListing(manager);
-
-/*
-        
-		Browser.listContainers(manager,0,100,["DisplayName","Path","Type"],
-			function(obj,err){
-
-				options = obj;
-				listItems(options);
-		});
-  */      
+        generateRootListing(manager); 
 	});
 }
 
@@ -121,7 +111,7 @@ function generateRootListing(path){
 function getRootItems(pathObj){
     var rootPromise = new $.Deferred();
 
-    Browser.listContainers(pathObj,0,100,["DisplayName","Path","Type"],
+    Browser.listContainers(pathObj,0,100,["DisplayName","Path","Type","TypeEx"],
         function(obj,err){
             rootPromise.resolve(obj);
     });
@@ -138,6 +128,7 @@ function addGenresForRoot(rootItemsList){
             Browser.listContainers(rootItemsList[container],0,100,["*"],
                 function(obj,err){
                     for(cont in obj){
+                        obj[cont].TypeEx = "genre";
                         rootItemsList.push(obj[cont]);
                     }
 
@@ -156,14 +147,27 @@ function listItems(itemSet){
 	var t = document.querySelector("#media-content-list");	
     var trail = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
 
-    var showImages = (addAllAllowed.indexOf(trail[trail.length-1]) >= 0)? true: false;
+    //var showImages = (addAllAllowed.indexOf(trail[trail.length-1]) >= 0)? true: false;
+
+
 
 	for(item in itemSet){
+
+        //console.log(itemSet[item].TypeEx);
+
+        if(itemSet[item].TypeEx.indexOf(".") != -1){
+            var typeEx = itemSet[item].TypeEx.split(".")[1];    
+        }else{
+            var typeEx = itemSet[item].TypeEx;
+        }
+        
 
 		t.content.querySelector(".artist-track-title").innerHTML = itemSet[item].DisplayName;
 		//t.content.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
 		
 		var clone = document.importNode(t.content,true);
+
+        clone.querySelector(".content-listing").setAttribute("data-item_typeex",typeEx);
 
         if(itemSet[item].Type == "container"){
         
@@ -171,7 +175,7 @@ function listItems(itemSet){
                 continue;
             }
 
-            if(!showImages){
+            if(addAllAllowed.indexOf(typeEx) == -1){ //!showImages
                 $(clone.querySelector(".content-listing")).addClass("no-images");    
             }
             
@@ -480,18 +484,18 @@ function displayChildren(tapEvent){
 
 function getChildren(path){
 
-	Browser.listContainers({"Path":path},0,1000,['DisplayName','Type','Path','AlbumArtURL'],function(obj,err){
+	Browser.listContainers({"Path":path},0,1000,['DisplayName','Type','Path','AlbumArtURL','TypeEx'],function(obj,err){
 		if(obj.length > 0){
             var nestedPath = pushPath(path); //pushes path to items
 			listItems(obj);
 		}else{
             
-            Browser.listItems({"Path":path},0,1000,['*'],function(obj,err){
+            Browser.listItems({"Path":path},0,1000,['*'],function(tracks,err){
                 //var nestedPath = pushPath(path); //pushes path to items
                 
-                if(obj.length > 0){
+                if(tracks.length > 0){
                     var nestedPath = pushPath(path); //pushes path to items
-                    listItems(obj);
+                    listItems(tracks);
                 }
             });
         }
