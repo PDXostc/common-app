@@ -1,5 +1,22 @@
 @import url("./tabs.css");
-
+body {
+	font-family: "Droid Sans", sans-serif;
+	background-color: rgb(0,0,0);
+}
+html {
+overflow: hidden;
+}
+.clearBoth {
+	clear:both;
+}
+.wrapper {
+	height:1920px;
+	width: 1080px;
+	margin-top: 125px;
+	overflow: hidden;
+	background-image: url("/DNA_common/images/Hex-Background.jpg");
+	
+}
 .bottomPanelLogoImg {
 	background: url('../images/AMG_Linux_White.png') no-repeat center !important;
 }
