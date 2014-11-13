@@ -63,6 +63,7 @@ function loadSettings(){
 							'<img id="settingBlu" src="./DNA_common/images/BluTooth_On.png" onclick="launchApplication(\'http://com.intel.tizen/settings\');Settings.openSetting({id:\'bluetooth\'});">' +
 							'<img id="settingNet" src="./DNA_common/images/WiFi_On.png" onclick="launchApplication(\'http://com.intel.tizen/settings\');Settings.openSetting({id:\'wifinetworks\'});">' +
 							'<img id="settingTet" src="./DNA_common/images/Tether_Off.png" onclick="launchApplication(\'http://com.intel.tizen/settings\');Settings.openSetting({id:\'wifitethering\'});">' +
+							'<img id="settingRvi" src="./DNA_common/images/RVI_Icon.png" onclick="launchApplication(\'http://com.intel.tizen/settings\');Settings.openSetting({id:\'rvi\'});">' +
 							CloseButton +
 						'</div>');
 						this.append('<img id="settingsicon" onclick="loadSettings();" src="./DNA_common/images/icongear.png" width="87px" height="89px">');
