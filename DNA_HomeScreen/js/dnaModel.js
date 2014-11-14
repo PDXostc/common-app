@@ -241,7 +241,7 @@ DNA.prototype = {
 		//Side Images
 		var SideImg={};
 		//Center Image
-        var CenterImg = IconLinks[StrandCount][0];
+        var CenterImg = IconLinks[0][0];
 
 // --------------------------------------
 		//Increment through the icons
