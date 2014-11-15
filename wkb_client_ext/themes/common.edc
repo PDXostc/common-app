@@ -39,53 +39,6 @@ data {
    file: "ignore-keys" "../ignorekeys.txt";
 }
 
-collections {
-
-   group {
-      name: "main";
-
-      min: MIN_WIDTH MIN_HEIGHT;
-      max: MAX_WIDTH MAX_HEIGHT;
-
-      parts {
-         part {
-            name: "rect_bg";
-            mouse_events: 0;
-            type: RECT;
-            description {
-               state: "default" 0.0;
-               color: 0 0 0 0; /* Changes color of bottom keyboard background */
-               rel1 {
-                  relative: 0.0 0.0;
-                  offset: 0 0;
-               }
-               rel2 {
-                  relative: 1.0 1.0;
-                  offset: -1 -1;
-               }
-            }
-         }
-
-         part {
-            name: "background";
-            mouse_events: 1;
-            pointer_mode: NOGRAB;
-            type: RECT;
-            description {
-               state: "default" 0.0;
-               color: BG_COLOR; /* Changes color of top keyboard background */
-               rel1 {
-                  relative: 0.0 0.0;
-                  offset: 0 (150*SCALE);
-               }
-               rel2 {
-                  relative: 1.0 1.0;
-                  offset: -1 -1;
-               }
-            }
-         }
-      }
-
 #define KEY_GROUP(_name)                                               \
       parts {                                                          \
          part {                                                        \
@@ -141,93 +94,6 @@ collections {
          }                                                             \
       }
 
-      KEY_GROUP("alphanum")
-      KEY_GROUP("numeric")
-      KEY_GROUP("special-1")
-      KEY_GROUP("special-2")
-      KEY_GROUP("fixed")
-
-      programs {
-         program {
-            name: "alphanum_show";
-            signal: "show,alphanumeric";
-            after: "show-alphanum";
-            after: "hide-numeric";
-            after: "hide-special-1";
-            after: "hide-special-2";
-            after: "show-fixed";
-         }
-
-         program {
-            name: "numeric_show";
-            signal: "show,numeric";
-            after: "show-numeric";
-            after: "hide-alphanum";
-            after: "hide-special-1";
-            after: "hide-special-2";
-            after: "hide-fixed";
-         }
-
-         program {
-            name: "special-1_show";
-            signal: "show,special,1";
-            after: "show-special-1";
-            after: "hide-numeric";
-            after: "hide-alphanum";
-            after: "hide-special-2";
-            after: "show-fixed";
-         }
-
-         program {
-            name: "special-2_show";
-            signal: "show,special,2";
-            after: "show-special-2";
-            after: "hide-numeric";
-            after: "hide-alphanum";
-            after: "hide-special-1";
-            after: "show-fixed";
-         }
-
-         program {
-            name: "?123_clicked";
-            signal: "key_down";
-            source: "alphanum:?123";
-            after: "special-1_show";
-         }
-         program {
-            name: "special-1_abc_clicked";
-            signal: "key_down";
-            source: "special-1:abc";
-            after: "alphanum_show";
-         }
-         program {
-            name: "special-2_abc_clicked";
-            signal: "key_down";
-            source: "special-2:abc";
-            after: "alphanum_show";
-         }
-         program {
-            name: "1/2_clicked";
-            signal: "key_down";
-            source: "special-1:1/2";
-            after: "special-2_show";
-         }
-         program {
-            name: "2/2_clicked";
-            signal: "key_down";
-            source: "special-2:2/2";
-            after: "special-1_show";
-         }
-         program {
-            name: "init";
-            signal: "show";
-            after: "alphanum_show";
-         }
-      }
-   }
-
-   group {
-      name: "alphanum";
 
 #define MOUSE_DOWN_UP_PROGRAMS                                         \
           public shift_pressed = 0;                                    \
@@ -314,18 +180,6 @@ collections {
          }                                                             \
       }
 
-      script {
-      MOUSE_DOWN_UP_PROGRAMS
-      parts {
-#undef INIT_HSPACE
-#define INIT_HSPACE (15*SCALE)
-#define KEY_WIDTH (65*SCALE)
-#define KEY_HEIGHT (90*SCALE)
-#define COL_SPACE 5
-#define KEY_OFFSET(index) ((COL_SPACE+KEY_WIDTH)*index)+INIT_HSPACE
-
-#define FIRST_ROW 0
-#define ROW_SPACE (20*SCALE)
 
 #define SKEY_FULL(key_low, key_up, key_name, key_alt, x, y)            \
          part {                                                        \
@@ -382,7 +236,7 @@ collections {
            effect: SHADOW BOTTOM_LEFT;                                 \
            description {                                               \
               state: "default" 0.0;                                    \
-              color: LABEL_COLOR; /*Changes color of key labels*/  \
+              color: LABEL_COLOR; /*Changes color of key labels*/      \
               color2: 0 0 0 255;                                       \
               color3: 0 0 0 0;                                         \
               rel1 {                                                   \
@@ -419,7 +273,7 @@ collections {
                  relative: 1.0 0.4;                                    \
               }                                                        \
               text {                                                   \
-                 font: "Regular";                                    \
+                 font: "Regular";                                      \
                  size: (20*SCALE); /*Size of secondary key labels*/    \
                  align: 0.8 0.0;                                       \
                  text: key_alt;                                        \
@@ -578,56 +432,130 @@ collections {
                }                                                       \
             }                                                          \
          }
-#define KEY_FULL(low, up, alt, x, y) SKEY_FULL(low, up, low, alt, x, y)
-#define SKEY(name, text, alt, x, y) SKEY_FULL(name, name, text, alt, x, y)
-#define KEY(v, alt, x, y) SKEY(v, v, alt, x, y)
 
-         KEY_FULL("q", "Q", "1", KEY_OFFSET(0), FIRST_ROW)
-         KEY_FULL("w", "W", "2", KEY_OFFSET(1), FIRST_ROW)
-         KEY_FULL("e", "E", "3", KEY_OFFSET(2), FIRST_ROW)
-         KEY_FULL("r", "R", "4", KEY_OFFSET(3), FIRST_ROW)
-         KEY_FULL("t", "T", "5", KEY_OFFSET(4), FIRST_ROW)
-         KEY_FULL("y", "Y", "6", KEY_OFFSET(5), FIRST_ROW)
-         KEY_FULL("u", "U", "7", KEY_OFFSET(6), FIRST_ROW)
-         KEY_FULL("i", "I", "8", KEY_OFFSET(7), FIRST_ROW)
-         KEY_FULL("o", "O", "9", KEY_OFFSET(8), FIRST_ROW)
-         KEY_FULL("p", "P", "0", KEY_OFFSET(9), FIRST_ROW)
+#define REPEAT_KEY_SCRIPTS(key_name)                                   \
+   public repeat_key;                                                  \
+   public repeat_timer;                                                \
+   public repeat_pressed = 0;                                          \
+                                                                       \
+   public _repeat_key(val) {                                           \
+       new _cur[20];                                                   \
+       new _timer;                                                     \
+       set_int(repeat_pressed, val);                                   \
+       if (!val)                                                       \
+           return;                                                     \
+       get_str(repeat_key, _cur, 20);                                  \
+       if (strlen(_cur) > 0) {                                         \
+           emit("key_down", _cur);                                     \
+                                                                       \
+           _timer = timer(0.1, "_repeat_key", 1);                      \
+           set_int(repeat_timer, _timer);                              \
+       }                                                               \
+   }                                                                   \
+                                                                       \
+   public _repeat_key_pressed(_key[]) {                                \
+       new _cur[20];                                                   \
+       new _timer;                                                     \
+       get_str(repeat_key, _cur, 20);                                  \
+       if (strlen(_cur) > 0 ) {                                        \
+           _repeat_key_released(_cur);                                 \
+       }                                                               \
+       set_str(repeat_key, _key);                                      \
+       _timer = timer(0.5, "_repeat_key", 1);                          \
+       set_int(repeat_timer, _timer);                                  \
+       emit("key_down", _key);                                         \
+   }                                                                   \
+                                                                       \
+   public _repeat_key_released(_key[]) {                               \
+       new _prg[30];                                                   \
+       new _timer;                                                     \
+       set_str(repeat_key, "");                                        \
+       _timer = get_int(repeat_timer);                                 \
+       if (_timer) {                                                   \
+           cancel_timer(_timer);                                       \
+           set_int(repeat_timer, 0);                                   \
+       }                                                               \
+       else {                                                          \
+           emit("key_down", _key);                                     \
+           snprintf(_prg, 30, "key-release-%s", _key);                 \
+           run_program(get_program_id(_prg));                          \
+       }                                                               \
+   }
 
-#undef INIT_HSPACE
-#define INIT_HSPACE (45*SCALE)
-#define SECOND_ROW FIRST_ROW+KEY_HEIGHT+ROW_SPACE
 
-         KEY_FULL("a", "A", "(", KEY_OFFSET(0), SECOND_ROW)
-         KEY_FULL("s", "S", ")", KEY_OFFSET(1), SECOND_ROW)
-         KEY_FULL("d", "D", "-", KEY_OFFSET(2), SECOND_ROW)
-         KEY_FULL("f", "F", "@", KEY_OFFSET(3), SECOND_ROW)
-         KEY_FULL("g", "G", "*", KEY_OFFSET(4), SECOND_ROW)
-         KEY_FULL("h", "H", "^", KEY_OFFSET(5), SECOND_ROW)
-         KEY_FULL("j", "J", ":", KEY_OFFSET(6), SECOND_ROW)
-         KEY_FULL("k", "K", ";", KEY_OFFSET(7), SECOND_ROW)
-         KEY_FULL("l", "L", "~", KEY_OFFSET(8), SECOND_ROW)
+#define KEY_REPEAT_PROGRAMS(val)                                       \
+         programs {                                                    \
+            program {                                                  \
+               name: "key-mouse-in-"val;                               \
+               signal: "mouse,in";                                     \
+               source: "key-bg-"val;                                   \
+               script {                                                \
+                  if (get_int(mouse_down) == 0)                        \
+                     return;                                           \
+                  _repeat_key_pressed(val);                            \
+               }                                                       \
+            }                                                          \
+            program {                                                  \
+               name: "key-mouse-out-"val;                              \
+               signal: "mouse,out";                                    \
+               source: "key-bg-"val;                                   \
+               script {                                                \
+                  if (get_int(mouse_down) == 0)                        \
+                     return;                                           \
+                  _repeat_key_released(val);                           \
+               }                                                       \
+            }                                                          \
+            program {                                                  \
+               name: "key-mouse-down-"val;                             \
+               signal: "mouse,down,1";                                 \
+               source: "key-bg-"val;                                   \
+               script {                                                \
+                 _repeat_key_pressed(val);                             \
+               }                                                       \
+            }                                                          \
+            program {                                                  \
+               name: "key-mouse-up-"val;                               \
+               signal: "mouse,up,1";                                   \
+               source: "key-bg-"val;                                   \
+               script {                                                \
+                 _repeat_key_released(val);                            \
+               }                                                       \
+            }                                                          \
+            program {                                                  \
+               name: "key-down-"val;                                   \
+               signal: "mouse,up,1";                                   \
+               source: "key-bg-"val;                                   \
+               script {                                                \
+                   emit("key_down", val);                              \
+                   run_program(PROGRAM:"key-release-"val);             \
+               }                                                       \
+            }                                                          \
+            program {                                                  \
+               name: "key-press-"val;                                  \
+               signal: "mouse,down,1";                                 \
+               source: "key-bg-"val;                                   \
+               action: STATE_SET "down" 0.0;                           \
+               target: "key-img-"val;                                  \
+               target: "key-lbl-"val;                                  \
+            }                                                          \
+            program {                                                  \
+               name: "key-release-"val;                                \
+               action: STATE_SET "default" 0.0;                        \
+               transition: LINEAR 0.2;                                 \
+               target: "key-img-"val;                                  \
+               target: "key-lbl-"val;                                  \
+            }                                                          \
+         }
 
-#undef INIT_HSPACE
-#define INIT_HSPACE (110*SCALE)
-#define THIRD_ROW SECOND_ROW+KEY_HEIGHT+ROW_SPACE
-
-         KEY_FULL("z", "Z", "/",  KEY_OFFSET(0), THIRD_ROW)
-         KEY_FULL("x", "X", "'",  KEY_OFFSET(1), THIRD_ROW)
-         KEY_FULL("c", "C", "\"", KEY_OFFSET(2), THIRD_ROW)
-         KEY_FULL("v", "V", ".",  KEY_OFFSET(3), THIRD_ROW)
-         KEY_FULL("b", "B", ",",  KEY_OFFSET(4), THIRD_ROW)
-         KEY_FULL("n", "N", "?",  KEY_OFFSET(5), THIRD_ROW)
-         KEY_FULL("m", "M", "!",  KEY_OFFSET(6), THIRD_ROW)
-
-#define KEY_SPECIAL(val, x, y, w)                                      \
+#define KEY_SPECIAL_GEN(val, x, y, w, h, image_nm, image_pressed_nm)   \
          part {                                                        \
             name: "key-img-"val;                                       \
             type: IMAGE;                                               \
             mouse_events: 0;                                           \
             description {                                              \
                state: "default" 0.0;                                   \
-               min: w KEY_HEIGHT;                                      \
-               max: w KEY_HEIGHT;                                      \
+               min: w h;                                               \
+               max: w h;                                               \
                fixed: 1 1;                                             \
                rel1 {                                                  \
                   relative: 0.0 0.0;                                   \
@@ -635,17 +563,17 @@ collections {
                }                                                       \
                rel2 {                                                  \
                   relative: 0.0 0.0;                                   \
-                  offset: (x+w-1) (y+KEY_HEIGHT-1);                    \
+                  offset: (x+w-1) (y+h-1);                             \
                }                                                       \
                image {                                                 \
-                  normal: "key-special.png";                           \
+                  normal: image_nm;                                    \
                   border: 8 8 10 10;                                   \
                }                                                       \
             }                                                          \
             description {                                              \
                state: "down" 0.0;                                      \
                inherit: "default" 0.0;                                 \
-               image.normal: "key-special-pressed.png";                \
+               image.normal: image_pressed_nm;                         \
             }                                                          \
          }                                                             \
          part {                                                        \
@@ -668,6 +596,9 @@ collections {
             }                                                          \
          }
 
+#define KEY_SPECIAL(val, x, y, w)                                      \
+             KEY_SPECIAL_GEN(val, x, y, w, KEY_HEIGHT, "key-special.png", "key-special-pressed.png")
+             
 #define KEY_SPECIAL_PROGRAMS(val)                                      \
          programs {                                                    \
             program {                                                  \
@@ -745,6 +676,8 @@ collections {
             }                                                          \
          }
 
+
+
 #define KEY_SPECIAL_ICON_PART(val, icon_size)                          \
          part {                                                        \
            name: "key-lbl-"val;                                        \
@@ -773,7 +706,228 @@ collections {
          KEY_SPECIAL_PROGRAMS(val)                                     \
          KEY_SPECIAL_ICON_PART(val, icon_size)
 
+#define KEY_SPECIAL_GENERIC(val, x, y, w, h, image_nm, image_pressed_nm)      \
+        KEY_SPECIAL_GEN(val, x, y, w, h, image_nm, image_pressed_nm)   \
+        KEY_SPECIAL_PROGRAMS(val)                                      \
+         part {                                                        \
+           name: "key-lbl-"val;                                        \
+           type: RECT;                                                 \
+           mouse_events: 0;                                            \
+           description {                                               \
+              state: "default" 0.0;                                    \
+              fixed: 1 1;                                              \
+              rel1 {                                                   \
+                 to: "key-bg-"val;                                     \
+                 relative: 0.5 0.4;                                    \
+              }                                                        \
+              rel2 {                                                   \
+                 to: "key-bg-"val;                                     \
+                 relative: 0.5 0.8;                                    \
+              }                                                        \
+            }                                                          \
+         }                                                             \
+
+
+#define KEY_REPEAT_ICON(val, x, y, w, icon_size)                       \
+         KEY_SPECIAL(val, x, y, w)                                     \
+         KEY_REPEAT_PROGRAMS(val)                                      \
+         KEY_SPECIAL_ICON_PART(val, icon_size)
+
+#define KB_START_HEIGHT (150*SCALE)
+
+collections {
+   group {
+      name: "main";
+
+      min: MIN_WIDTH MIN_HEIGHT;
+      max: MAX_WIDTH MAX_HEIGHT;
+
+      parts {
+         part {
+            name: "rect_bg";
+            mouse_events: 0;
+            type: RECT;
+            description {
+               state: "default" 0.0;
+               color: 0 0 0 0; /* Changes color of bottom keyboard background */
+               rel1 {
+                  relative: 0.0 0.0;
+                  offset: 0 0;
+               }
+               rel2 {
+                  relative: 1.0 1.0;
+                  offset: -1 -1;
+               }
+            }
+         }
+
+         part {
+            name: "background";
+            mouse_events: 1;
+            pointer_mode: NOGRAB;
+            type: RECT;
+            description {
+               state: "default" 0.0;
+               color: BG_COLOR; /* Changes color of top keyboard background */
+               rel1 {
+                  relative: 0.0 0.0;
+                  offset: 0 KB_START_HEIGHT;
+               }
+               rel2 {
+                  relative: 1.0 1.0;
+                  offset: -1 -1;
+               }
+            }
+         }
+      }
+
+      KEY_GROUP("alphanum")
+      KEY_GROUP("numeric")
+      KEY_GROUP("special-1")
+      KEY_GROUP("special-2")
+      KEY_GROUP("fixed")
+
+      programs {
+         program {
+            name: "alphanum_show";
+            signal: "show,alphanumeric";
+            after: "show-alphanum";
+            after: "hide-numeric";
+            after: "hide-special-1";
+            after: "hide-special-2";
+            after: "show-fixed";
+         }
+
+         program {
+            name: "numeric_show";
+            signal: "show,numeric";
+            after: "show-numeric";
+            after: "hide-alphanum";
+            after: "hide-special-1";
+            after: "hide-special-2";
+            after: "hide-fixed";
+         }
+
+         program {
+            name: "special-1_show";
+            signal: "show,special,1";
+            after: "show-special-1";
+            after: "hide-numeric";
+            after: "hide-alphanum";
+            after: "hide-special-2";
+            after: "show-fixed";
+         }
+
+         program {
+            name: "special-2_show";
+            signal: "show,special,2";
+            after: "show-special-2";
+            after: "hide-numeric";
+            after: "hide-alphanum";
+            after: "hide-special-1";
+            after: "show-fixed";
+         }
+
+         program {
+            name: "?123_clicked";
+            signal: "key_down";
+            source: "alphanum:?123";
+            after: "special-1_show";
+         }
+         program {
+            name: "special-1_abc_clicked";
+            signal: "key_down";
+            source: "special-1:abc";
+            after: "alphanum_show";
+         }
+         program {
+            name: "special-2_abc_clicked";
+            signal: "key_down";
+            source: "special-2:abc";
+            after: "alphanum_show";
+         }
+         program {
+            name: "1/2_clicked";
+            signal: "key_down";
+            source: "special-1:1/2";
+            after: "special-2_show";
+         }
+         program {
+            name: "2/2_clicked";
+            signal: "key_down";
+            source: "special-2:2/2";
+            after: "special-1_show";
+         }
+         program {
+            name: "init";
+            signal: "show";
+            after: "alphanum_show";
+         }
+      }
+   }
+   
+   group {
+     name: "alphanum";
+
+
+      script {
+      MOUSE_DOWN_UP_PROGRAMS
+
+      parts {
+#undef INIT_HSPACE
+#define INIT_HSPACE (15*SCALE)
+#define KEY_WIDTH (65*SCALE)
+#define KEY_HEIGHT (90*SCALE)
+#define COL_SPACE 5
+#define KEY_OFFSET(index) ((COL_SPACE+KEY_WIDTH)*index)+INIT_HSPACE
+
+#define FIRST_ROW 0
+#define ROW_SPACE (20*SCALE)
+
+#define KEY_FULL(low, up, alt, x, y) SKEY_FULL(low, up, low, alt, x, y)
+#define SKEY(name, text, alt, x, y) SKEY_FULL(name, name, text, alt, x, y)
+#define KEY(v, alt, x, y) SKEY(v, v, alt, x, y)
+
+         KEY_FULL("q", "Q", "1", KEY_OFFSET(0), FIRST_ROW)
+         KEY_FULL("w", "W", "2", KEY_OFFSET(1), FIRST_ROW)
+         KEY_FULL("e", "E", "3", KEY_OFFSET(2), FIRST_ROW)
+         KEY_FULL("r", "R", "4", KEY_OFFSET(3), FIRST_ROW)
+         KEY_FULL("t", "T", "5", KEY_OFFSET(4), FIRST_ROW)
+         KEY_FULL("y", "Y", "6", KEY_OFFSET(5), FIRST_ROW)
+         KEY_FULL("u", "U", "7", KEY_OFFSET(6), FIRST_ROW)
+         KEY_FULL("i", "I", "8", KEY_OFFSET(7), FIRST_ROW)
+         KEY_FULL("o", "O", "9", KEY_OFFSET(8), FIRST_ROW)
+         KEY_FULL("p", "P", "0", KEY_OFFSET(9), FIRST_ROW)
+
+#undef INIT_HSPACE
+#define INIT_HSPACE (45*SCALE)
+#define SECOND_ROW FIRST_ROW+KEY_HEIGHT+ROW_SPACE
+
+         KEY_FULL("a", "A", "(", KEY_OFFSET(0), SECOND_ROW)
+         KEY_FULL("s", "S", ")", KEY_OFFSET(1), SECOND_ROW)
+         KEY_FULL("d", "D", "-", KEY_OFFSET(2), SECOND_ROW)
+         KEY_FULL("f", "F", "@", KEY_OFFSET(3), SECOND_ROW)
+         KEY_FULL("g", "G", "*", KEY_OFFSET(4), SECOND_ROW)
+         KEY_FULL("h", "H", "^", KEY_OFFSET(5), SECOND_ROW)
+         KEY_FULL("j", "J", ":", KEY_OFFSET(6), SECOND_ROW)
+         KEY_FULL("k", "K", ";", KEY_OFFSET(7), SECOND_ROW)
+         KEY_FULL("l", "L", "~", KEY_OFFSET(8), SECOND_ROW)
+
+#undef INIT_HSPACE
+#define INIT_HSPACE (110*SCALE)
+#define THIRD_ROW SECOND_ROW+KEY_HEIGHT+ROW_SPACE
+
+         KEY_FULL("z", "Z", "/",  KEY_OFFSET(0), THIRD_ROW)
+         KEY_FULL("x", "X", "'",  KEY_OFFSET(1), THIRD_ROW)
+         KEY_FULL("c", "C", "\"", KEY_OFFSET(2), THIRD_ROW)
+         KEY_FULL("v", "V", ".",  KEY_OFFSET(3), THIRD_ROW)
+         KEY_FULL("b", "B", ",",  KEY_OFFSET(4), THIRD_ROW)
+         KEY_FULL("n", "N", "?",  KEY_OFFSET(5), THIRD_ROW)
+         KEY_FULL("m", "M", "!",  KEY_OFFSET(6), THIRD_ROW)
+
+
 #define FOURTH_ROW THIRD_ROW+KEY_HEIGHT+ROW_SPACE
+
          KEY_SPECIAL_TEXT("?123", (5*SCALE), FOURTH_ROW, (95*SCALE))
 
          part {
@@ -1001,132 +1155,6 @@ collections {
       }
    }
 
-#define REPEAT_KEY_SCRIPTS(key_name)                                   \
-   public repeat_key;                                                  \
-   public repeat_timer;                                                \
-   public repeat_pressed = 0;                                          \
-                                                                       \
-   public _repeat_key(val) {                                           \
-       new _cur[20];                                                   \
-       new _prg[30];                                                   \
-       new _timer;                                                     \
-       set_int(repeat_pressed, val);                                   \
-       if (!val)                                                       \
-           return;                                                     \
-       get_str(repeat_key, _cur, 20);                                  \
-       if (strlen(_cur) > 0) {                                         \
-           snprintf(_prg, 30, "key-release-%s", _cur);                 \
-           run_program(get_program_id(_prg));                          \
-                                                                       \
-           _timer = timer(0.1, "_repeat_key", 1);                      \
-           set_int(repeat_timer, _timer);                              \
-       }                                                               \
-   }                                                                   \
-                                                                       \
-   public _repeat_key_pressed(_key[]) {                                \
-       new _cur[20];                                                   \
-       new _prg[30];                                                   \
-       new _timer;                                                     \
-       get_str(repeat_key, _cur, 20);                                  \
-       if (strlen(_cur) > 0 ) {                                        \
-           _repeat_key_released(_cur);                                 \
-       }                                                               \
-       set_str(repeat_key, _key);                                      \
-       _timer = timer(0.5, "_repeat_key", 1);                          \
-       set_int(repeat_timer, _timer);                                  \
-       snprintf(_prg, 30, "key-pressed-%s", _key);                     \
-       run_program(get_program_id(_prg));                              \
-   }                                                                   \
-                                                                       \
-   public _repeat_key_released(_key[]) {                               \
-       new _prg[30];                                                   \
-       new _timer;                                                     \
-       set_str(repeat_key, "");                                        \
-       _timer = get_int(repeat_timer);                                 \
-       if (_timer) {                                                   \
-           cancel_timer(_timer);                                       \
-           set_int(repeat_timer, 0);                                   \
-       }                                                               \
-       else {                                                          \
-           snprintf(_prg, 30, "key-release-%s", _key);                 \
-           run_program(get_program_id(_prg));                          \
-       }                                                               \
-   }
-
-
-#define KEY_REPEAT_PROGRAMS(val)                                       \
-         programs {                                                    \
-            program {                                                  \
-               name: "key-mouse-in-"val;                               \
-               signal: "mouse,in";                                     \
-               source: "key-bg-"val;                                   \
-               script {                                                \
-                  if (get_int(mouse_down) == 0)                        \
-                     return;                                           \
-                  _repeat_key_pressed(val);                            \
-               }                                                       \
-            }                                                          \
-            program {                                                  \
-               name: "key-mouse-out-"val;                              \
-               signal: "mouse,out";                                    \
-               source: "key-bg-"val;                                   \
-               script {                                                \
-                  if (get_int(mouse_down) == 0)                        \
-                     return;                                           \
-                  _repeat_key_released(val);                           \
-               }                                                       \
-            }                                                          \
-            program {                                                  \
-               name: "key-mouse-down-"val;                             \
-               signal: "mouse,down,1";                                 \
-               source: "key-bg-"val;                                   \
-               script {                                                \
-                 _repeat_key_pressed(val);                             \
-               }                                                       \
-            }                                                          \
-            program {                                                  \
-               name: "key-mouse-up-"val;                               \
-               signal: "mouse,up,1";                                   \
-               source: "key-bg-"val;                                   \
-               script {                                                \
-                 _repeat_key_released(val);                            \
-               }                                                       \
-            }                                                          \
-            program {                                                  \
-               name: "key-down-"val;                                   \
-               signal: "mouse,up,1";                                   \
-               source: "key-bg-"val;                                   \
-               script {                                                \
-                  run_program(PROGRAM:"key-release-"val);              \
-               }                                                       \
-            }                                                          \
-            program {                                                  \
-               name: "key-press-"val;                                  \
-               signal: "mouse,down,1";                                 \
-               source: "key-bg-"val;                                   \
-               action: STATE_SET "down" 0.0;                           \
-               target: "key-img-"val;                                  \
-               target: "key-lbl-"val;                                  \
-            }                                                          \
-            program {                                                  \
-               name: "key-release-"val;                                \
-               action: STATE_SET "default" 0.0;                        \
-               transition: LINEAR 0.2;                                 \
-               target: "key-img-"val;                                  \
-               target: "key-lbl-"val;                                  \
-                script {                                               \
-                  emit("key_down", val);                               \
-                }                                                      \
-            }                                                          \
-         }
-
-#define KEY_REPEAT_ICON(val, x, y, w, icon_size)                       \
-         KEY_SPECIAL(val, x, y, w)                                     \
-         KEY_REPEAT_PROGRAMS(val)                                      \
-         KEY_SPECIAL_ICON_PART(val, icon_size)
-
-
-
    group {
       name: "fixed";
 
@@ -1160,7 +1188,6 @@ collections {
 
 #undef INIT_HSPACE
 #define INIT_HSPACE (120*SCALE)
-         /*KEY_SPECIAL_ICON("space", (KEY_OFFSET(0)), FOURTH_ROW, (KEY_OFFSET(5)), 82);*/
          KEY_SPECIAL_ICON("space", KEY_OFFSET(0), FOURTH_ROW, KEY_OFFSET(5), (64*SCALE));
       }
    }

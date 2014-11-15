@@ -24,7 +24,7 @@ var options = [];
 var songs = [];
 
 //Containers where addAll and PlayAll should be shown
-var addAllAllowed = ["Albums","Playlists"];
+var addAllAllowed = ["album"]; //,"person","genre"
 
 //Containers that should not be shown on the root level.
 var rootHide = ["Genres","/"];
@@ -48,6 +48,7 @@ function mminit(){
 	playQueue = [];
 
     $("#libraryCloseSubPanelButton").data("breadcrumb_trail",JSON.stringify(["root"]));
+
 
 	setRootContainer();
     //generatePlaylistElements();
@@ -84,20 +85,14 @@ function setRootContainer(){
 	manager = {"DisplayName":"Root"};
 	Browser.discoverMediaManagers(function(obj,err){ 
 		manager.Path = obj[0];
-        $("#libraryCloseSubPanelButton").data("root",JSON.stringify([manager.Path]));
+
+        var rootVal = JSON.stringify([manager.Path]);
+
+        $("#libraryCloseSubPanelButton").data("root",rootVal);
+        $("#libraryCloseSubPanelButton").data("nested",rootVal);
 
         //getChildren(manager.Path);
-        generateRootListing(manager);
-
-/*
-        
-		Browser.listContainers(manager,0,100,["DisplayName","Path","Type"],
-			function(obj,err){
-
-				options = obj;
-				listItems(options);
-		});
-  */      
+        generateRootListing(manager); 
 	});
 }
 
@@ -116,7 +111,7 @@ function generateRootListing(path){
 function getRootItems(pathObj){
     var rootPromise = new $.Deferred();
 
-    Browser.listContainers(pathObj,0,100,["DisplayName","Path","Type"],
+    Browser.listContainers(pathObj,0,100,["DisplayName","Path","Type","TypeEx"],
         function(obj,err){
             rootPromise.resolve(obj);
     });
@@ -133,6 +128,7 @@ function addGenresForRoot(rootItemsList){
             Browser.listContainers(rootItemsList[container],0,100,["*"],
                 function(obj,err){
                     for(cont in obj){
+                        obj[cont].TypeEx = "genre";
                         rootItemsList.push(obj[cont]);
                     }
 
@@ -151,15 +147,27 @@ function listItems(itemSet){
 	var t = document.querySelector("#media-content-list");	
     var trail = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
 
-    var showImages = (addAllAllowed.indexOf(trail[trail.length-1]) >= 0)? true: false;
-    
+    //var showImages = (addAllAllowed.indexOf(trail[trail.length-1]) >= 0)? true: false;
+
+
 
 	for(item in itemSet){
+
+        //console.log(itemSet[item].TypeEx);
+
+        if(itemSet[item].TypeEx.indexOf(".") != -1){
+            var typeEx = itemSet[item].TypeEx.split(".")[1];    
+        }else{
+            var typeEx = itemSet[item].TypeEx;
+        }
+        
 
 		t.content.querySelector(".artist-track-title").innerHTML = itemSet[item].DisplayName;
 		//t.content.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
 		
 		var clone = document.importNode(t.content,true);
+
+        clone.querySelector(".content-listing").setAttribute("data-item_typeex",typeEx);
 
         if(itemSet[item].Type == "container"){
         
@@ -167,16 +175,26 @@ function listItems(itemSet){
                 continue;
             }
 
-            if(!showImages){
+            if(addAllAllowed.indexOf(typeEx) == -1){ //!showImages
                 $(clone.querySelector(".content-listing")).addClass("no-images");    
             }
             
-            
             clone.querySelector(".content-listing").setAttribute("data-item_path",itemSet[item].Path);
-
+/*
             var artwork = getAlbumImage(itemSet[item].Artist);
             clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);
+*/            
+            var nested = $("#libraryCloseSubPanelButton").data("nested");
+            var root = $("#libraryCloseSubPanelButton").data("root");
+            
 
+            if(root == nested){
+                clone.querySelector(".content-listing img.albumArt").style.visibility = "hidden";
+            }else{
+                var artwork = getAlbumImage(itemSet[item].Artist);
+                clone.querySelector(".content-listing img.albumArt").setAttribute("src",artwork);                
+            }
+            
             clone.querySelector(".content-listing").addEventListener("tap",function(ev){
                 console.log("displayChildren");
                 displayChildren(ev);
@@ -303,26 +321,6 @@ function generatePlaylistElementsPromise(input_data){
     }); 
     return playlistElementsOb;
 }
-/*
-function generatePlaylistElements(){
-    Player.getCurrentPlayQueue(function(r,e){
-        $("#media-carousel-content").empty();
-        for(song in r){
-            song_object = {
-                "item_url":r[song].URLs[0],
-                "item_path":r[song].Path,
-                "artwork":r[song].AlbumArtURL,
-                "song_title":r[song].DisplayName,
-                "artist_name":r[song].Artist,
-                "album_title":r[song].AlbumTitle
-            }
-
-            addElementToCarousel(song_object);
-        }
-        coverScroll.refresh();
-    });
-}
-*/
 
 //Returns a local webserver 
 function getAlbumImage(filepath){
@@ -375,9 +373,6 @@ function populateCurrentlyPlaying(song_data){
         });
     },700);
     
-
-
-    //$("#songProgress").data("track_length",song_data.song_duration);
 }
 
 
@@ -388,7 +383,48 @@ function searchAndDisplay(searchTerm){
     //var searchPath = lastContainer[lastContainer.length-1];
     var searchPath = lastContainer[0];
 
-    searchString = "DisplayName contains \""+searchTerm+"\"";
+    var searchCategories = ["Artist","Artists","Album","Albums"];
+    var set = JSON.parse($("#libraryCloseSubPanelButton").data("breadcrumb_trail"));
+
+    var c = set.length+1;
+    var cat = -1;
+    while(c >= 0){
+        categoryIndex = searchCategories.indexOf(set[c]);
+        if(categoryIndex > -1){
+            cat = categoryIndex;
+            break;
+        }
+        c--;
+    }
+
+
+  /*  
+    var i = set.length+1;
+    while(i >= 0){
+
+        i--;
+    }
+
+    var cat = searchCategories.indexOf(searchCategories);
+    
+    searchString = "";
+    */
+    console.log(cat);
+
+    switch(cat){
+        case 0:
+        case 1:
+            searchString = "Artist contains \""+searchTerm+"\"";                
+        break;
+        case 2:
+        case 3:
+            searchString = "Album contains \""+searchTerm+"\"";    
+        break;        
+        case -1:
+            searchString = "DisplayName contains \""+searchTerm+"\"";    
+        break;
+    }    
+
 	console.log("Path:"+searchPath+"String:"+searchString);
     Browser.searchObjects({"Path":searchPath},0,1000,["*"],searchString,function(re,err){
         if(re.length > 0){
@@ -399,49 +435,7 @@ function searchAndDisplay(searchTerm){
         }
     });
 }
-/*
-function playSongElementPromiseCall(ev){
-    generatePlaylistElements();
-    populateCurrentlyPlaying(songInfo);
-    //next();
-    play();
-}
 
-function playSongFromElement(playEvent){
-//    playEvent.stopPropogation();
-
-    songInfo = $(playEvent.target).closest("li.content-listing").data();
-    playPromise = new $.Deferred();
-    
-
-    Player.emptyPlayQueue(function(r){
-
-        if(song_data.item_type =="container"){
-            Browser.listItems({"Path":song_data.item_path},0,1000,["*"],function(r,e){
-                for(song in r){
-                    Player.enqueueUri(r[song].Path,function(x,err){
-                        //if this is the last item, resolve the deferred object
-                        if(song == r.length-1){
-                            queuePromise.resolve();
-                        } 
-                        
-                    });
-                }
-            });
-        }else{
-            Player.enqueueUri(song_data.item_path,function(r,e){
-                //generatePlaylistElements();
-                queuePromise.resolve();
-            });        
-        }
-        Player.enqueueUri(songInfo.item_path,function(re,err){
-
-
-        })
-    });
-    playEvent.cancelBubble == true;
-}
-*/
 
 //Adds the supplied path to the stack stored in the back button for navigation.
 function pushPath(path){
@@ -490,18 +484,18 @@ function displayChildren(tapEvent){
 
 function getChildren(path){
 
-	Browser.listContainers({"Path":path},0,1000,['DisplayName','Type','Path','AlbumArtURL'],function(obj,err){
+	Browser.listContainers({"Path":path},0,1000,['DisplayName','Type','Path','AlbumArtURL','TypeEx'],function(obj,err){
 		if(obj.length > 0){
             var nestedPath = pushPath(path); //pushes path to items
 			listItems(obj);
 		}else{
             
-            Browser.listItems({"Path":path},0,1000,['*'],function(obj,err){
+            Browser.listItems({"Path":path},0,1000,['*'],function(tracks,err){
                 //var nestedPath = pushPath(path); //pushes path to items
                 
-                if(obj.length > 0){
+                if(tracks.length > 0){
                     var nestedPath = pushPath(path); //pushes path to items
-                    listItems(obj);
+                    listItems(tracks);
                 }
             });
         }
@@ -516,11 +510,12 @@ function goToPreviousList(){
         $('#musicLibrary').removeClass('toShow');
         //$(".musicContentListedItems").empty();
     }else{
-        
+        popCrumb();
+
         if(path == JSON.parse($("#libraryCloseSubPanelButton").data("nested"))[0]){
             generateRootListing({"Path":path});
         }else{
-            popCrumb()
+            
             Browser.listContainers({"Path":path},0,1000,["*"],function(obj,err){
                 if(obj.length > 0){
                     var newScreen = path;
@@ -865,4 +860,7 @@ function emptyPlayQueue() {
 }
 function closeLibraryWindow() {
 		$("#musicLibrary").removeClass("toShow");
+
+        var rootVal = $("#libraryCloseSubPanelButton").data("root");
+        $("#libraryCloseSubPanelButton").data("nested",rootVal);
 }

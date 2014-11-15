@@ -49,21 +49,17 @@
 				libClose.data("nested",libClose.data("root"));
 
 				var path = JSON.parse(libClose.data("root"));
-            	generateRootListing({"Path":path});
-				/*
-			    Browser.listContainers({"Path":path[0]},0,1000,["DisplayName","Path","Type"],function(obj,err){
-            		if(obj.length > 0){
-                		var newScreen = path;
-                		listItems(obj);
-            		}
-        		});
-        		*/
+            	generateRootListing({"Path":path[0]});
 
 			    $(".searchingBox").val("");
 			});
 
 			$('#libraryCloseSubPanelButton').click(function(){
 				goToPreviousList();
+			});
+
+			$("#closeLibrary").click(function(){
+				closeLibraryWindow();
 			});
 
 			$("#playButton").click(function(ev){
@@ -219,7 +215,7 @@
 </div>
 <div class="libraryTabClear"></div>
 <div id="libraryTopSubPanel" class="libraryTopSubPanel bgColorDark" style="display: block; ">
-    <div id="closeLibrary" class="closeLibraryButton" onclick="closeLibraryWindow()"></div>
+    <div id="closeLibrary" class="closeLibraryButton" ></div>
 	<div id="libraryCloseSubPanelButton" class="fontSizeSmall fontWeightBold fontColorNormal closeLibrarySubPanelButton">BACK</div>
 	<div id="subPanelArea" class="subPanelArea">
 		<div id="libraryTopSubPanelTitle">

@@ -98,20 +98,43 @@ function themeErrorCB (msg) {
     console.log("Theme Error Callback: " + msg);
 }
 
-function smallClick(item) {
-    console.log('smallClick()');
-
-    var jsonenc = {api:"setTheme", theme:"/usr/share/weekeyboard/blue_600.edj"};
-    console.log("RE: setTheme stringify: "+JSON.stringify(jsonenc));
+function setKeyboardTheme(themeName) {
+    console.log("Keyboard: theme = " + themeName);
+    
+    var themeSize = 1080;
+    if (screen.width >= 1080)
+    {
+	themeSize = 1080;
+    }
+    else if (screen.width >= 720)
+    {
+	themeSize = 720;
+    }
+    else // if (screen.width >= 600)
+    {
+	themeSize = 600;
+    }
+    
+    console.log("Keyboard: screensize = " + screen.width + ", themeSize = " + themeSize);
+    
+    var themePath = "/usr/share/weekeyboard/" + themeName + "_" + themeSize + ".edj";
+    
+    console.log("Keyboard: themePath = " + themePath);
+    
+    var jsonenc = {api:"setTheme", theme:themePath};
     wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
 }
 
-function bigClick(item) {
-    console.log('bigClick()');
+function blueClick(item) {
+    setKeyboardTheme("blue");
+}
 
-    var jsonenc = {api:"setTheme", theme:"/usr/share/weekeyboard/blue_1080.edj"};
-    console.log("RE: setTheme stringify: "+JSON.stringify(jsonenc));
-    wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
+function greenClick(item) {
+    setKeyboardTheme("green");
+}
+
+function amberClick(item) {
+    setKeyboardTheme("amber");
 }
 
 /**
@@ -139,8 +162,9 @@ var init = function () {
 	});
     });
     $("input[name='add_item_button']").click(addItemClick);
-    $("input[name='small_button']").click(smallClick);
-    $("input[name='big_button']").click(bigClick);
+    $("input[name='blue_button']").click(blueClick);
+    $("input[name='green_button']").click(greenClick);
+    $("input[name='amber_button']").click(amberClick);
 };
 
 /**
