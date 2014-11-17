@@ -8,5 +8,14 @@
 	},
 	"icons": {
 	  "128": "icon.png"
-	}
+	},
+	"permissions": [
+		"Browser",
+		"MediaStorage",
+		"NetworkInterface",
+		"MediaStream",
+		"MediaRecording",
+		"NetworkInformation",
+		"NetworkServiceDiscovery",
+		]
 }

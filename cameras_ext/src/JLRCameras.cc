@@ -116,27 +116,25 @@ bool JLRCameras::stopCameraStreamingServer(int cameraID)
 	return true;
 }
 
-int JLRCameras::getCameraStatus(int cameraID)
+int JLRCameras::getCameraProperty(const char *method_name, int cameraID)
 {
 	GDBusProxy* managerProxy = getJLRCamerasManager();
 
 	GError *error = nullptr;
 	
-        // Invoke com.jlr.JLRCameras.CamerasInterface.getCameraStatus method of JLRCMSS
-	GVariant* objectPath = g_dbus_proxy_call_sync(managerProxy, "getCameraStatus", g_variant_new("(i)", cameraID), G_DBUS_CALL_FLAGS_NONE, -1, NULL, &error);
+	GVariant* objectPath = g_dbus_proxy_call_sync(managerProxy, method_name, g_variant_new("(i)", cameraID), G_DBUS_CALL_FLAGS_NONE, -1, NULL, &error);
 
 	if(error)
 	{
-		LOGD("error calling getCameraStatus %s", error->message);
+		LOGD("error calling %s %s", method_name, error->message);
 		g_error_free(error);
 		return -1;
 	}
 
 	gint result;
-	// Get result of com.jlr.JLRCameras.CamerasInterface.getCameraStatus invocation
 	g_variant_get(objectPath,"(i)", &result);
 
-	LOGD("getCameraStatus() returned: %d", result);
+	LOGD("%s returned: %d", method_name, result);
 
 	g_variant_unref(objectPath);	
 

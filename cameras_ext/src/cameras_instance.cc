@@ -24,6 +24,7 @@ CamerasInstance::CamerasInstance() : mCams()
 
 void CamerasInstance::HandleMessage(const char *msg)
 {
+	mError=false;
 	picojson::value v;
 	picojson::value::object resp;
 	std::string err;
@@ -34,8 +35,7 @@ void CamerasInstance::HandleMessage(const char *msg)
 		return;
 	}
 
-	std::string cmd=v.get("cmd").to_str();
-	resp["reply_id"]=picojson::value(v.get("reply_id").get<double>());
+	const std::string cmd=v.get("cmd").to_str();
 	if(cmd=="subscribe")
 		Subscribe(v);
 	else if(cmd=="start_camera_streaming_server")
@@ -46,16 +46,20 @@ void CamerasInstance::HandleMessage(const char *msg)
 	else if(cmd=="stop_camera_streaming_server")
 		StopCamerasStreamingServer(v);
 	else
-		mError["error"]=picojson::value("an unknown command string had been sent");
+	{
+		LOGE("Unknown command received.");
+		mError=true;
+	}
 
 	resp["error"]=picojson::value(mError);
-	LOGD("Posting async message");
+	resp["reply_id"]=picojson::value(v.get("reply_id").get<double>());
 	picojson::value re(resp);
 	PostMessage(re.serialize().c_str());
 }
 
 void CamerasInstance::HandleSyncMessage(const char *msg)
 {
+	mError=false;
 	picojson::value v;
 	picojson::value::object resp;
 	std::string err;
@@ -66,12 +70,11 @@ void CamerasInstance::HandleSyncMessage(const char *msg)
 		return;
 	}
 
-	std::string cmd=v.get("cmd").to_str();
-	resp["reply_id"]=picojson::value(v.get("reply_id").to_str());
-	resp["error"]=picojson::value(mError);
-	if(cmd=="getCameraStatus")
+	const std::string cmd=v.get("cmd").to_str();
+	if(cmd=="getCameraStatus" || cmd=="getCameraStreamType")
 	{
-		resp["value"]=picojson::value(static_cast<double>(GetCameraStatus(v)));
+		resp["value"]=picojson::value(static_cast<double>(GetCameraProperty(cmd.c_str(),v)));
+		resp["error"]=picojson::value(mError);
 		picojson::value re(resp);
 		SendSyncReply(re.serialize().c_str());
 	}
@@ -83,7 +86,7 @@ void CamerasInstance::Subscribe(const picojson::value& msg)
 {
 	std::string name=msg.get("name").to_str();
 	if(!mCams.subscribe(name,this))
-		mError["error"]=picojson::value(true);
+		mError=true;
 }
 
 int CamerasInstance::StartCamerasStreamingServer(const picojson::value& msg)
@@ -97,13 +100,14 @@ void CamerasInstance::StopCamerasStreamingServer(const picojson::value& msg)
 {
 	double camID=msg.get("cam_id").get<double>();
 	if(!mCams.stopCameraStreamingServer((int)camID))
-		mError["error"]=picojson::value(true);
+		mError=true;
 }
 
-int CamerasInstance::GetCameraStatus(const picojson::value& msg)
+int CamerasInstance::GetCameraProperty(const char *method_name, const picojson::value& msg)
 {
-	int camID=msg.get("cam_id").get<double>();
-	return mCams.getCameraStatus(camID);
+	LOGD("GetCameraStatus entered");
+	double camID=msg.get("cam_id").get<double>();
+	return mCams.getCameraProperty(method_name,(int)camID);
 }
 
 void CamerasInstance::SendSignal(const std::string &signal_name, const picojson::value& msg)

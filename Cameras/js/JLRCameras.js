@@ -361,6 +361,7 @@ JLRCameras = {
          * @param status {number} status from Cameras Server states events list.
          */
         function cameraServerEventHandler(cameraNum, status) {
+	    console.log("cameraServerEventHandler called");
             var uiElement = getTargetElement(cameraNum);
             var isStateChanged = onReceivedServerEvent(uiElement, status);
             if (isStateChanged){
@@ -375,6 +376,7 @@ JLRCameras = {
          * @param status {number} status from Camera signal status events list.
          */
         function cameraSignalEventHandler(cameraNum, status) {
+	    console.log("cameraSignalEventHandler called");
             var uiElement = getTargetElement(cameraNum);
             var isStateChanged = onReceivedSignalEvent(uiElement, status);
             if (isStateChanged){
@@ -400,12 +402,24 @@ JLRCameras = {
          * @method requestVideoStream
          * @param uiElement {object} UI element assigned to camera feed.
          */
+	var screenshot_timeout=0;
+
         function requestVideoStream(uiElement) {
             var videoObj = getVideoObj(uiElement.cameraNumber);
             videoObj.portNumber = randomPortNumber();
             JLRCameras.api.enableCamera(uiElement.cameraNumber,videoObj.portNumber);
+	    
+	    if(videoObj.is_screenshot_stream)
+	    {
+	    	function refreshImage(){
+	        	videoObj.src='../tmp/' + videoObj.cameraNumber + '.jpg?' + Math.random();
+			//console.log("img src: " + videoObj.src);
+			screenshot_timeout=setTimeout(refreshImage, 100);
+	    	}
+	    	refreshImage();
+	    }
         }
-        
+
         /** 
          * This method is used to request disable video stream for camera UI element
          * @method requestVideoDisable
@@ -414,6 +428,9 @@ JLRCameras = {
         function requestVideoDisable(cameraNum) {
             var uiElement = getTargetElement(cameraNum);
             JLRCameras.api.disableCamera(uiElement.cameraNumber);
+
+	    if(uiElement.is_screenshot_stream)
+	    	clearTimeout(screenshot_timeout);
         }
 
         /** 
@@ -602,6 +619,8 @@ JLRCameras = {
             for (var i = 0; i < arg.array.length; i++) {
                 var listItem = document.createElement('div');
                 listItem.index = i;
+
+		var is_screenshot_stream=JLRCameras.api.getCameraStreamType(arg.array[i]['camera-number']);
                 listItem.cameraType = arg.array[i]['camera-type'];
                 listItem.cameraNumber = arg.array[i]['camera-number'];
                 listItem.cameraName = listItem.cameraType + listItem.index;
@@ -623,15 +642,21 @@ JLRCameras = {
                 disabledTxt.setAttribute('style', 'color: #ffffff');
                 liDiv.appendChild(disabledTxt);
     
-                var videoSmall = document.createElement('video');
+                var videoSmall = document.createElement(is_screenshot_stream?'img':'video');
                 videoSmall.setAttribute('id', 'itemVideo' + listItem.cameraType + i);
                 videoSmall.setAttribute('class', 'itemVideo');
-                videoSmall.setAttribute('preload', 'none');
-                // videoSmall.setAttribute('controls', 'true');
-                videoSmall.setAttribute('muted', true);
+		if(!is_screenshot_stream)
+		{
+                	videoSmall.setAttribute('preload', 'none');
+                	// videoSmall.setAttribute('controls', 'true');
+                	videoSmall.setAttribute('muted', true);
+		}
     
                 videoSmall.portNumber = randomPortNumber();
                 videoSmall.cameraNumber = arg.array[i]['camera-number'];
+		videoSmall.cameraType=listItem.cameraType;
+		videoSmall.is_screenshot_stream=is_screenshot_stream;
+		console.log("ZP: isss " + is_screenshot_stream);
     
                 var divControlsSmall = document.createElement('div');
                 divControlsSmall.setAttribute('class', 'divControlsSmall');
@@ -950,6 +975,9 @@ JLRCameras.api = {
      */
     getCameraStatus : function(cameraID) {
         return tizen.cameras.getCameraStatus(cameraID);
+    },
+
+    getCameraStreamType : function(cameraID) {
+	return tizen.cameras.getCameraStreamType(cameraID);
     }
-    
 }

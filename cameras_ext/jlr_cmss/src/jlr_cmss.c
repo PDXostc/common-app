@@ -114,6 +114,10 @@ static const gchar camera_xml[] =
   "      <arg type='i' name='cameraID' direction='in'/>"
   "      <arg type='i' name='response' direction='out'/>"
   "    </method>"
+  "    <method name='getCameraStreamType'>"
+  "      <arg type='i' name='cameraID' direction='in'/>"
+  "      <arg type='i' name='response' direction='out'/>"
+  "    </method>"
   "    <method name='findSignal'>"
   "      <arg type='s' name='searchstring' direction='in'/>"
   "      <arg type='b' name='response' direction='out'/>"
@@ -130,6 +134,9 @@ pthread_t analog_cameras_status_thread;
 
 pthread_mutex_t set_status_lock;
 pthread_mutex_t get_attribute_lock;
+
+pthread_cond_t ready = PTHREAD_COND_INITIALIZER;
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
 // Success HTTP response.
 char http_response[] = "HTTP/1.1 200 Connection established";
@@ -223,6 +230,9 @@ struct stream_server {
 
     // PID of GStreamer instance
     int gst_pid;
+
+    // screenshot_stream
+    int is_screenshot_stream;
 
     // Flag, indicated if request for stopping of the server 
     // was received.
@@ -497,6 +507,20 @@ static void handleMethodCall(GDBusConnection       *connection,
 
             g_dbus_method_invocation_return_value (invocation, g_variant_new("(i)", ret));
         }
+	else if(g_strcmp0(method_name, "getCameraStreamType")==0)
+	{
+            gint cameraID;
+            gint ret;
+
+            g_variant_get (parameters, "(i)", &cameraID);
+
+            LOG(APP_PREFIX "getCameraStreamType method was requested for camera %d. \n", cameraID);
+
+            ret = servers[cameraID].is_screenshot_stream;
+            LOG(APP_PREFIX "Return value is %d\n", ret);
+
+            g_dbus_method_invocation_return_value (invocation, g_variant_new("(i)", ret));
+	}
         else if(g_strcmp0 (method_name, "findSignal") == 0)
         {
             // Request for execution of findSignal method was received on
@@ -759,6 +783,7 @@ static int start_camera_stream_server(int cameraID, int port)
     int i;
     char buffer[128];
     xmlChar *value;
+    xmlChar *screenshot_stream;
 
     LOG(APP_PREFIX "start_camera_stream_server Entered\n");
 
@@ -783,6 +808,11 @@ static int start_camera_stream_server(int cameraID, int port)
         // Unable to get camera name from the system.
         return -1; 
     }
+
+    screenshot_stream = getCameraAttributeValue(cameraID, "screenshot_stream"); 
+    servers[cameraID].is_screenshot_stream=(screenshot_stream && (strcmp(screenshot_stream, "1")==0))?1:0;
+    LOG(APP_PREFIX "is_screenshot_stream=%d\n", servers[cameraID].is_screenshot_stream);
+    xmlFree(screenshot_stream);
 
     // Get camera's type from the config.xml
     if((value = getCameraAttributeValue(cameraID, "type")) != NULL)
@@ -903,8 +933,10 @@ static void stop_camera_stream_server(int cameraID)
         }
         else if(servers[cameraID].status == STREAMING)
         {
-            // Just set exit_flag. Thread will terminate itself.
+	    pthread_mutex_lock(&lock);
             servers[cameraID].exit_flag = 1;
+	    pthread_mutex_unlock(&lock);
+	    pthread_cond_signal(&ready);
         }
     }
     return;
@@ -1789,14 +1821,12 @@ static void *start_camera_stream_thread(void *args)
     else if (pid == 0) 
     {
         // New process. GStreamer instance will replace it.
-        char fd_outp[10];
         char location[128];
         char launch_path[512];
         int count = 0;
         char *ptr;
         int i = 0;
 
-        sprintf(fd_outp, "fd=%d\n", filedes[1]);
 
         // GStreamer parameters will be provided as one string. Parameters will be separated 
         // by one space. So, calculate the number of GStreamer parameters.
@@ -1839,21 +1869,27 @@ static void *start_camera_stream_thread(void *args)
            }           
         }
 
-        // It is required to add pipe's file descriptor as a GStreamer sink,
-        // so we can receive media data from GStreamer.
-        args[count] = (char *)malloc(50 * sizeof(char));
-        strncpy(args[count], "!", sizeof("!"));
-        args[count][strlen("!")] = '\0';
+	if(!params->is_screenshot_stream)
+	{
+		char fd_outp[10];
+		sprintf(fd_outp, "fd=%d\n", filedes[1]);
 
-        count++;
-        args[count] = (char *)malloc(50 * sizeof(char));
-        strncpy(args[count], "fdsink", sizeof("fdsink"));
-        args[count][strlen("fdsink")] = '\0';
+		// It is required to add pipe's file descriptor as a GStreamer sink,
+		// so we can receive media data from GStreamer.
+		args[count] = (char *)malloc(50 * sizeof(char));
+		strncpy(args[count], "!", sizeof("!"));
+		args[count][strlen("!")] = '\0';
 
-        count++;
-        args[count] = (char *)malloc(50 * sizeof(char));
-        strncpy(args[count], fd_outp, strlen(fd_outp));
-        args[count][strlen(fd_outp)] = '\0';
+		count++;
+		args[count] = (char *)malloc(50 * sizeof(char));
+		strncpy(args[count], "fdsink", sizeof("fdsink"));
+		args[count][strlen("fdsink")] = '\0';
+
+		count++;
+		args[count] = (char *)malloc(50 * sizeof(char));
+		strncpy(args[count], fd_outp, strlen(fd_outp));
+		args[count][strlen(fd_outp)] = '\0';
+	}
 
         // Arguments array should be NULL-terminated.
         count++;
@@ -1871,67 +1907,85 @@ static void *start_camera_stream_thread(void *args)
        while(1)
        {
 
-           FD_ZERO(&rfds);
-           FD_SET(filedes[0], &rfds);
+	   if(!params->is_screenshot_stream)
+	   {
+		   FD_ZERO(&rfds);
+		   FD_SET(filedes[0], &rfds);
 
-           tv.tv_sec = 5;
-           tv.tv_usec = 0;
+		   tv.tv_sec = 5;
+		   tv.tv_usec = 0;
 
-           // Waiting for data from the GStreamer. Timeout value is 5 seconds.
-           retval = select(filedes[0] + 1, &rfds, NULL, NULL, &tv);
+		   // Waiting for data from the GStreamer. Timeout value is 5 seconds.
+		   retval = select(filedes[0] + 1, &rfds, NULL, NULL, &tv);
 
-           if (retval == -1)
-           {
-               // Just ignore Interrupted system call error.
-               if (errno != EINTR)
-               {
-                   server_set_status(cameraID, EMERGENCY_SHUTDOWN);
-                   break;                   
-               }
-           }
-           else if (retval)
-           {
-               // Read chunk of media data from the GStreamer 
-               ssize_t count = read(filedes[0], buffer, sizeof(buffer));
+		   if (retval == -1)
+		   {
+		       // Just ignore Interrupted system call error.
+		       if (errno != EINTR)
+		       {
+			   server_set_status(cameraID, EMERGENCY_SHUTDOWN);
+			   break;                   
+		       }
+		   }
+		   else if (retval)
+		   {
+		       // Read chunk of media data from the GStreamer 
+		       ssize_t count = read(filedes[0], buffer, sizeof(buffer));
 
-               if(count > 0)
-               {
-                  ssize_t sent;
+		       if(count > 0)
+		       {
+			  ssize_t sent;
 
-                  if(params->status == WAITING_FOR_CONNECTION)
-                  {
-                      server_set_status(cameraID, STREAMING);
-                  }
+			  if(params->status == WAITING_FOR_CONNECTION)
+			  {
+			      server_set_status(cameraID, STREAMING);
+			  }
 
-                  // Send media data to the HTTP client 
-                  sent = send(sock, buffer, count, 0);
-                  if(sent < 0)
-                  {
-                      LOG(APP_PREFIX "Camera #%d: Send error: %s\n", cameraID, strerror(errno));
-                      server_set_status(cameraID, EMERGENCY_SHUTDOWN);
-                      break;
-                  }
+			  // Send media data to the HTTP client 
+			  sent = send(sock, buffer, count, 0);
+			  if(sent < 0)
+			  {
+			      LOG(APP_PREFIX "Camera #%d: Send error: %s\n", cameraID, strerror(errno));
+			      server_set_status(cameraID, EMERGENCY_SHUTDOWN);
+			      break;
+			  }
 
-                  if(params->exit_flag)
-                  {
-                      server_set_status(cameraID, SHUTDOWN);
-                      break; 
-                  }                 
-               }
-               else // Unable to read data from the GStreamer
-               {
-                   LOG(APP_PREFIX "Exiting...\n");
-                   server_set_status(cameraID, EMERGENCY_SHUTDOWN);
-                   break;
-               }
-           }
-           else  // Timeout for waiting of GStreamer data
-           {
-               LOG(APP_PREFIX "No data within 5 seconds.\n");
-               setCameraStatus(cameraID, CAMERA_SIGNAL_OFF);
-               server_set_status(cameraID, EMERGENCY_SHUTDOWN);
-               break;
-           }
+			  if(params->exit_flag)
+			  {
+			      server_set_status(cameraID, SHUTDOWN);
+			      break; 
+			  }                 
+		       }
+		       else // Unable to read data from the GStreamer
+		       {
+			   LOG(APP_PREFIX "Exiting...\n");
+			   server_set_status(cameraID, EMERGENCY_SHUTDOWN);
+			   break;
+		       }
+		   }
+		   else  // Timeout for waiting of GStreamer data
+		   {
+		       LOG(APP_PREFIX "No data within 5 seconds.\n");
+		       setCameraStatus(cameraID, CAMERA_SIGNAL_OFF);
+		       server_set_status(cameraID, EMERGENCY_SHUTDOWN);
+		       break;
+		   }
+	   }
+	   else
+	   {
+		  if(params->status == WAITING_FOR_CONNECTION)
+		  {
+		      LOG(APP_PREFIX "setting screenshot camera to streaming...");
+		      server_set_status(cameraID, STREAMING);
+		  }
+		
+		  pthread_mutex_lock(&lock);	
+		  while(!params->exit_flag)
+			  pthread_cond_wait(&ready, &lock);
+		  pthread_mutex_unlock(&lock);
+		  server_set_status(cameraID, SHUTDOWN);
+		  break;                 
+	   }
        }                   
 
     LOG(APP_PREFIX "Camera stream is closed\n");
