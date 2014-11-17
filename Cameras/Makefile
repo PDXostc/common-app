@@ -1,6 +1,6 @@
 PROJECT = Cameras
 INSTALL_FILES = images js icon.png index.html
-WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json
+WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json tmp
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
