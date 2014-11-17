@@ -1,6 +1,6 @@
 PROJECT = DNA_HomeScreen
 INSTALL_FILES = images js icon.png index.html
-WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json
+WRT_FILES = DNA_common css icon.png index.html setup config.xml images js manifest.json
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 

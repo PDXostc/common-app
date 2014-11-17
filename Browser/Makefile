@@ -1,7 +1,7 @@
 PROJECT = Browser
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
-WRT_FILES = common setup config.xml css dev-common error.html icon.png images index.html js search.html  templates warning.html
+WRT_FILES = DNA_common config.xml css error.html icon.png images index.html js search.html  templates warning.html
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
@@ -21,32 +21,32 @@ deploy: $(PROJECT).wgt
 
 all:
 	@echo "Nothing to build"
-
-wgtPkg: common
-	zip -r $(PROJECT).wgt $(WRT_FILES)
+	
+wgtPkg: DNA_common
+	zip -r $(PROJECT).wgt config.xml css icon.png index.html js image DNA_common
 
 clean:
 	rm -rf js/services
-	rm -rf common
+	rm -rf DNA_common
 	rm -rf css/car
 	rm -rf css/user
 	rm -f $(PROJECT).wgt
 	git clean -f
 
-common: /opt/usr/apps/common
-	cp -r /opt/usr/apps/common/js/* js/
-	cp -r /opt/usr/apps/common/css/* css/
+DNA_common: /opt/usr/apps/DNA_common
+	cp -r /opt/usr/apps/DNA_common/js/* js/
+	cp -r /opt/usr/apps/DNA_common/css/* css/
 
-/opt/usr/apps/common:
+/opt/usr/apps/DNA_common:
 	@echo "Please install Common Assets"
 	exit 1
 
-dev-common: ../common
+dev-common: ../DNA_common
 	#cp -r ../common/js/* js/
 	#cp -r ../common/css/* css/
-	cp -rf ../common common
+	cp -rf ../DNA_common DNA_common
 
-../common:
+../DNA_common:
 	@echo "Please checkout Common Assets"
 	exit 1
 
