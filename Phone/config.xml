@@ -4,6 +4,11 @@
     <icon src="icon.png"/>
     <content src="index.html"/>
     <name>Phone</name>
+    <tizen:privilege name="http://tizen.org/privilege/lockmanager"/>
+    <tizen:privilege name="http://tizen.org/privilege/inputmanager"/>
+    <tizen:privilege name="http://tizen.org/privilege/ime"/>
+    <tizen:privilege name="http://tizen.org/privilege/imemanager"/>
+    <tizen:privilege name="http://tizen.org/privilege/fullscreen"/>
     <tizen:privilege name="http://tizen.org/privilege/tizen"/>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
@@ -12,7 +17,10 @@
     <tizen:privilege name="http://tizen.org/privilege/contact.write"/>
     <tizen:privilege name="http://tizen.org/privilege/content.read" />
     <tizen:privilege name="http://tizen.org/privilege/speech" />
+    <tizen:privilege name="http://tizen.org/privilege/bluetoothmanager" />
     <tizen:privilege name="http://tizen.org/privilege/bluetooth.admin" />
     <tizen:privilege name="http://tizen.org/privilege/bluetooth.spp" />
     <tizen:privilege name="http://tizen.org/privilege/bluetooth.gap" /> 
+    <tizen:privilege name="http://tizen.org/privilege/bluetooth.opp" />
+    <tizen:privilege name="http://tizen.org/privilege/bluetooth.health" />
 </widget>
