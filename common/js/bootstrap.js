@@ -163,9 +163,11 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 					try {
 						self.incomingCall = new IncomingCall();
 						if (typeof(tizen) !== 'undefined' && tizen.phone) {
+							console.log("tizen defined");
 							tizen.phone.addCallChangedListener(function(result) {
+								console.log("tizen.phone.addCallChangedListener callback");
 								/* global getAppByID */
-								var appId = getAppByID('intelPoc15.phone');
+								var appId = getAppByID('intelPoc15.Phone');
 
 								var contact;
 								if (!!result.contact.name) {
@@ -181,7 +183,7 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 									};
 								}
 
-								console.log("result.state " + result.state);
+								console.log("result.state=" + result);
 								switch (result.state.toLowerCase()) {
 									case "DISCONNECTED".toLowerCase():
 										self.incomingCall.denyCall();
@@ -196,7 +198,7 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 									case "DIALING".toLowerCase():
 										if (!appId.running) {
 											/*global launchApplication*/
-											launchApplication('intelPoc15.phone');
+											launchApplication('intelPoc15.Phone');
 										}
 										break;
 									case "INCOMING".toLowerCase():
@@ -205,6 +207,7 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 								}
 							});
 						}
+                        console.log("tizen.phone.addCallChangedListener called");
 						callback();
 					} catch (ex) {
 						console.error("Error occured during IncomingCall initialization", ex);

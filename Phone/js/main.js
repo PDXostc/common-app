@@ -380,7 +380,7 @@ var CallDuration = {
         CallDuration.min = 0;
         CallDuration.hour = 0;
         window.clearTimeout(CallDuration.timeout);
-        var callStatus = tizen.phone.activeCall.state.toLowerCase();
+        var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus === "DIALING".toLowerCase()) {
             $("#callDuration").html("DIALING");
         } else if (callStatus === "DISCONNECTED".toLowerCase()) {
@@ -399,7 +399,7 @@ var CallDuration = {
     stopwatch: function() {
         "use strict";
 
-        var callStatus = tizen.phone.activeCall.state.toLowerCase();
+        var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus === "DIALING".toLowerCase()) {
             $("#callDuration").html("DIALING");
         } else if (callStatus === "DISCONNECTED".toLowerCase()) {
@@ -475,7 +475,7 @@ function acceptCall(contact) {
         CallDuration.resetIt();
 
         initializeCallInfo(contact);
-        var callStatus = tizen.phone.activeCall.state.toLowerCase();
+        var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus !== "ACTIVE".toLowerCase() && callStatus !== "DIALING".toLowerCase()) {
 
             if (callStatus === "INCOMING".toLowerCase()) {
@@ -538,13 +538,13 @@ $(document).ready(
                 });
                 /* initialize phone widget by active call status */
                 var callStatus='DISCONNECTED'
-                if (typeof(tizen.phone.activeCall.state)!=='undefined') {
-					callStatus = tizen.phone.activeCall.state.toLowerCase();
+                if (typeof(tizen.phone.activeCall().state)!=='undefined') {
+					callStatus = tizen.phone.activeCall().state.toLowerCase();
 				}
                 if (callStatus === "INCOMING".toLowerCase() || callStatus === "DIALING".toLowerCase() || callStatus === "ACTIVE".toLowerCase()) {
                     var contact;
                     if (tizen.phone.callState) {
-                        contact = tizen.phone.activeCall.contact;
+                        contact = tizen.phone.activeCall().contact;
                     }
                     acceptPhoneCallFromOtherWidget = true;
                     acceptCall(contact);
@@ -720,7 +720,7 @@ $(document).ready(
                             contact = {
                                 phoneNumbers: [{
                                     /* jshint camelcase: false */
-                                    number: tizen.phone.activeCall.line_id
+                                    number: tizen.phone.activeCall().line_id
                                     /* jshint camelcase: true */
                                 }]
 

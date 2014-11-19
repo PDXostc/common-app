@@ -1,7 +1,7 @@
 PROJECT = Phone
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
-WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json
+WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json templates
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
@@ -14,14 +14,16 @@ endif
 
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
-	
+
 $(PROJECT).wgt : dev
 
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 run: install
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'P' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+	ssh root@$(TIZEN_IP) "systemctl stop bluetooth"
+	ssh root@$(TIZEN_IP) "systemctl start bluetooth"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Phone' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
 
 install: deploy
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Phone' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
@@ -55,8 +57,6 @@ common: /opt/usr/apps/common
 	exit 1
 
 dev-common: ../common
-	#cp -r ../common/js/* js/
-	#cp -r ../common/css/* css/
 	cp -rf ../common .
 
 ../common:
