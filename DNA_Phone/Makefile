@@ -1,4 +1,4 @@
-PROJECT = Phone
+PROJECT = JLRPOCX031.Phone
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
 WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json
@@ -21,11 +21,11 @@ wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 run: install
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'P' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Phone' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
 
 install: deploy
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Phone' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/Phone.wgt"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/JLRPOCX031.Phone.wgt"
 
 $(PROJECT).wgt : wgt
 
@@ -55,8 +55,8 @@ common: /opt/usr/apps/common
 	exit 1
 
 dev-common: ../common
-	#cp -r ../common/js/* js/
-	#cp -r ../common/css/* css/
+	cp -r ../common/js/* js/
+	cp -r ../common/css/* css/
 	cp -rf ../common .
 
 ../common:
