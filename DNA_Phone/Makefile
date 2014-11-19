@@ -56,12 +56,10 @@ common: /opt/usr/apps/common
 	@echo "Please install Common Assets"
 	exit 1
 
-dev-common: ../common
-	cp -r ../common/js/* js/
-	cp -r ../common/css/* css/
-	cp -rf ../common .
+dev-common: ../DNA_common
+	cp -rf ../DNA_common .
 
-../common:
+../DNA_common:
 	@echo "Please checkout Common Assets"
 	exit 1
 
