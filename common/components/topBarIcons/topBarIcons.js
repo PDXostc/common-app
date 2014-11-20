@@ -257,10 +257,11 @@ function launchApplication(id) {
 								homeScreenApp = newApp;
 							} else {
 								//app filter to block adding some apps into topbar
-								if (app.id === 'intelPoc18.AMBSimulator') {
-									extraAppsModel.push(newApp);
-								} else if (modelData.length < 7) {
+								if (modelData.length < 7) {
 									modelData.push(newApp);
+								}
+								else {
+									extraAppsModel.push(newApp);
 								}
 							}
 						}

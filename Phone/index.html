@@ -40,7 +40,8 @@
 	<div class="inputPhoneNumberBox">
 		<input id="inputPhoneNumber"
 			class="inputPhoneNumber fontSizeLarge fontSizeBold fontColorTheme boxShadow4 boxShadow4Active"
-			type="text" />
+			type="text"
+            onkeydown="if (event.keyCode === 13) { contact = { phoneNumbers: [{number: this.value}]}; acceptCall(contact); }"/>
 		<div id="deleteButton" class="button deleteButton"></div>
 	</div>
 

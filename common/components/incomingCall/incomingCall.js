@@ -91,18 +91,18 @@ IncomingCall.prototype.hide = function() {
 	}
 };
 /** 
- * Method accepts incoming call. If application where call is accepted isn't Phone application (`intelPoc15.phone`), then launches Phone application. 
- * If apllication where call is accepted is Phone application (`intelPoc15.phone`), call {{#crossLink "Phone/acceptCall:method"}}{{/crossLink}} method.
+ * Method accepts incoming call. If application where call is accepted isn't Phone application (`intelPoc15.Phone`), then launches Phone application. 
+ * If apllication where call is accepted is Phone application (`intelPoc15.Phone`), call {{#crossLink "Phone/acceptCall:method"}}{{/crossLink}} method.
  * @method acceptIncommingCall
  */
 IncomingCall.prototype.acceptIncommingCall = function() {
 	"use strict";
 	/* todo add call to phone application */
 	this.hide();
-	var appId = getAppByID('intelPoc15.phone');
+	var appId = getAppByID('intelPoc15.Phone');
 	/* if app isn't phone */
-	if (!appId.running) {
-		launchApplication('intelPoc15.phone');
+	if (!appId || !appId.running) {
+		launchApplication('intelPoc15.Phone');
 		/* if app is phone */
 	} else {
 		if (typeof(tizen) !== 'undefined' && tizen.phone) {

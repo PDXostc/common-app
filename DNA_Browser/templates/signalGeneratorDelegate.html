@@ -1,0 +1,107 @@
+<div
+	class="propertyDetail fontSizeSmall fontColorNormal textBgColorNormalTransparent">
+	<div class="marginBtm20 fontSizeLarge fontColorTheme">{{:name}}</div>
+	<table class="marginBtm20" style="width: 100%;">
+		<tr>
+			<td>Source</td>
+			<td>Value</td>
+			<td>Zone </td>
+		</tr>
+		<tr>
+			<td>
+				<div class="inputBox">
+					<input id="propertySourceInput"
+						class="fontSizeSmall input fontSizeBold fontColorNormal boxShadow4 boxShadow4Active userSelectable"
+						type="text" size="10" value="vcan0" />
+				</div>
+			</td>
+			<td>
+				<div class="inputBox">
+					<input id="propertyValueInput"
+						class="fontSizeSmall input fontSizeBold fontColorNormal boxShadow4 boxShadow4Active userSelectable"
+						type="text" placeholder="new value" />
+				</div>
+			</td>
+			<td>
+				<table id="propertyZonesContainer" class="zonesContainer">
+					<tr>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="0">N</td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="8">L</td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="32">C</td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="4">Ri</td>
+					</tr>
+					<tr>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="1">F</td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="9"></td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="33"></td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="5"></td>
+					</tr>
+					<tr>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="2">M</td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="10"></td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="34"></td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="6"></td>
+					</tr>
+					<tr>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="16">Re</td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="24"></td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="48"></td>
+						<td class="zone bgColorThemeTransparent boxShadowInset"
+							data-value="20"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td><span class="fontSizeSmaller"><b class="fontColorTheme">N</b>one, <b
+					class="fontColorTheme">L</b>eft, <b class="fontColorTheme">C</b>enter,
+					<b class="fontColorTheme">Ri</b>ght, <b class="fontColorTheme">F</b>ront,
+					<b class="fontColorTheme">M</b>iddle, <b class="fontColorTheme">Re</b>ar
+			</span></td>
+		</tr>
+	</table>
+	<div style="width: 100%;">
+		<div class="fontColorNormal fontSizeSmall fontColorTheme marginBtm20">Generated
+			signal:</div>
+		<div id="signalText"
+			class="fontColorNormal fontSizeSmaller marginBtm20">
+			Simulator.set( <span id="source"></span>, <span id="property"></span>,
+			<span id="value">0</span>, <span id="zone">0</span>);
+		</div>
+		<div class="button propertyDetailTwoBtnWrapper">
+			<div id="addScriptBtn" class="button propertyDetailBtn"
+				style="right: 0;">
+				<div
+					class="bgColorThemeTransparent boxShadowInset button buttonOpacity">
+				</div>
+				<div
+					class="buttonText fontColorNormal fontSizeSmaller fontWeightBold">Add
+					script</div>
+			</div>
+			<div id="backBtn" class="button propertyDetailBtn">
+				<div
+					class="bgColorThemeTransparent boxShadowInset button buttonOpacity">
+				</div>
+				<div
+					class="buttonText fontColorNormal fontSizeSmaller fontWeightBold">Back</div>
+			</div>
+		</div>
+	</div>
+</div>
