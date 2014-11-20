@@ -404,7 +404,7 @@ var CallDuration = {
     stopwatch: function() {
         "use strict";
 
-        var callStatus = tizen.phone.activeCall.state.toLowerCase();
+        var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus === "DIALING".toLowerCase()) {
             $("#callDuration").html("DIALING");
         } else if (callStatus === "DISCONNECTED".toLowerCase()) {
@@ -480,7 +480,7 @@ function acceptCall(contact) {
         CallDuration.resetIt();
 
         initializeCallInfo(contact);
-        var callStatus = tizen.phone.activeCall.state.toLowerCase();
+        var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus !== "ACTIVE".toLowerCase() && callStatus !== "DIALING".toLowerCase()) {
 
             if (callStatus === "INCOMING".toLowerCase()) {
