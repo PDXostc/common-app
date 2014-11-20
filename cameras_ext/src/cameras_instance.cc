@@ -105,7 +105,7 @@ void CamerasInstance::StopCamerasStreamingServer(const picojson::value& msg)
 
 int CamerasInstance::GetCameraProperty(const char *method_name, const picojson::value& msg)
 {
-	LOGD("GetCameraStatus entered");
+	LOGD("GetCameraProperty entered with %s", method_name);
 	double camID=msg.get("cam_id").get<double>();
 	return mCams.getCameraProperty(method_name,(int)camID);
 }
