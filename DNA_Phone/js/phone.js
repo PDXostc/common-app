@@ -42,9 +42,8 @@
  * @module PhoneApplication
  * @constructor
  */
-var Phone = (function() {
+var	Phone = (function() {
 	"use strict";
-
 	function Phone() {
 		var self = this;
 		if (typeof(tizen.phone) !== 'undefined') {
@@ -52,6 +51,7 @@ var Phone = (function() {
 		} else {
 			this.phone = null;
 		}
+
 		this.contacts = ko.observableArray([]);
 		this.callHistory = ko.observableArray([]);
 
@@ -368,3 +368,4 @@ var Phone = (function() {
 	window.__phone = undefined === window.__phone ? new Phone() : window.__phone;
 	return window.__phone;
 })();
+

@@ -1,7 +1,7 @@
 PROJECT = JLRPOCX031.Phone
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
-WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json templates
+WRT_FILES = DNA_common css data icon.png index.html setup config.xml images js manifest.json templates
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 

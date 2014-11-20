@@ -8,6 +8,11 @@
  */
 
 /*global disconnectCall, Bootstrap, Carousel, ContactsLibrary, getAppByID, disconnectCall, Configuration, Speech, Phone, changeCssBgImageColor, ThemeKeyColorSelected */
+//includeJs("./js/main.js");
+//includeJs("./js/callhistorycarousel.js");
+//includeJs("./js/phone.js");
+//includeJs("./js/contacts_library.js");
+//includeJs("./DNA_common/components/jQuery/jquery.nouisliderix.js");
 
 /** 
  * This application provides voice call from paired Bluetooth phone. Application uses following APIs:
