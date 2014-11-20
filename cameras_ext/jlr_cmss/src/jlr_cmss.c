@@ -1507,7 +1507,6 @@ static xmlChar *getCameraAttributeValue(int camera_id, char *attr_name)
     // These functions are not re-enterable.
     // Need to lock on mutex while using them.
     xmlFreeDoc(document);
-    xmlCleanupParser();
 
     pthread_mutex_unlock(&get_attribute_lock);
 
@@ -2569,11 +2568,14 @@ int main(int argc, char *argv[]) {
     LOG(APP_PREFIX "Launched\n");
 
     // Become a daemon application.
+    // zoltan: don't become a daemon. systemd launches this app and we need it to launch for dbus services and not fork
     /*if ( daemon(0, 0) < 0 )
     {
         LOG(APP_PREFIX "Failed to became a background app. Error: %s\n", strerror(errno));
         return -1;
     }*/
+
+    xmlInitParser();
 
     if (pthread_mutex_init(&set_status_lock, NULL) != 0)
     {
@@ -2638,4 +2640,8 @@ int main(int argc, char *argv[]) {
    
     // Enter the main loop of the application.
     g_main_loop_run (main_loop);
+
+    xmlCleanupParser();
+
+    return 0;
 }
