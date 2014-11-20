@@ -51,6 +51,7 @@ includeJs("DNA_common/components/progressBar/progressBar.js");
 includeJs("DNA_common/components/keyboard/keyboard.js");
 includeJs("DNA_common/components/knockout/knockout.js");
 includeJs("DNA_common/components/knockout/knockout.min.js");
+includeJs("DNA_common/components/settings/js/wifi.js");
 
 //includeJs("DNA_common/components/buttonControls/buttonControls.js");
 //includeJs("DNA_common/components/uri/uri.js");

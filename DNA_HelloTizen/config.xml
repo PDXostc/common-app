@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/DNAHelloTizen" version="1.0.0" viewmodes="fullscreen">
-    <tizen:application id="intelPoc43.DNAHelloTizen" package="intelPoc43" required_version="2.1"/>
+    <tizen:application id="JLRPOCX000.HelloTizen" package="JLRPOCX000" required_version="2.1"/>
     <content src="index.html"/>
     <icon src="icon.png"/>
     <name>Hello Tizen</name>
