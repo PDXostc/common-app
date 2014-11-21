@@ -744,6 +744,7 @@ static void server_set_status(int cameraID, int status)
       
                 if(servers[cameraID].gst_pid != 0)
                 {
+                    LOG(APP_PREFIX "killing gstreamer...\n");
                     // Send SIGTERM to the GStreamer process.
                     kill(servers[cameraID].gst_pid, SIGTERM);
                 }
@@ -935,8 +936,9 @@ static void stop_camera_stream_server(int cameraID)
         {
             pthread_mutex_lock(&lock);
             servers[cameraID].exit_flag = 1;
-            pthread_mutex_unlock(&lock);
             pthread_cond_signal(&ready);
+            pthread_mutex_unlock(&lock);
+            LOG(APP_PREFIX "signaling waiting thread...\n");
         }
     }
     return;
@@ -1843,7 +1845,6 @@ static void *start_camera_stream_thread(void *args)
             if(params->gst_launch_command[i] == ' ') count++;
         } 
 
-        //LOG(APP_PREFIX "launch_path: %s\n", params->gst_launch_command);
         // Get GStreamer's binary path.
         ptr = strtok (params->gst_launch_command, " ");
 
@@ -1913,31 +1914,30 @@ static void *start_camera_stream_thread(void *args)
 
     params->gst_pid = pid;
 
-    while(1)
+    if(!params->is_screenshot_stream)
     {
+        while(1)
+        {
+            FD_ZERO(&rfds);
+            FD_SET(filedes[0], &rfds);
 
-       if(!params->is_screenshot_stream)
-       {
-           FD_ZERO(&rfds);
-           FD_SET(filedes[0], &rfds);
+            tv.tv_sec = 5;
+            tv.tv_usec = 0;
 
-           tv.tv_sec = 5;
-           tv.tv_usec = 0;
+            // Waiting for data from the GStreamer. Timeout value is 5 seconds.
+            retval = select(filedes[0] + 1, &rfds, NULL, NULL, &tv);
 
-           // Waiting for data from the GStreamer. Timeout value is 5 seconds.
-           retval = select(filedes[0] + 1, &rfds, NULL, NULL, &tv);
-
-           if (retval == -1)
-           {
+            if (retval == -1)
+            {
                // Just ignore Interrupted system call error.
                if (errno != EINTR)
                {
                    server_set_status(cameraID, EMERGENCY_SHUTDOWN);
                    break;                   
                }
-           }
-           else if (retval)
-           {
+            }
+            else if (retval)
+            {
                // Read chunk of media data from the GStreamer 
                ssize_t count = read(filedes[0], buffer, sizeof(buffer));
 
@@ -1971,30 +1971,29 @@ static void *start_camera_stream_thread(void *args)
                    server_set_status(cameraID, EMERGENCY_SHUTDOWN);
                    break;
                }
-           }
-           else  // Timeout for waiting of GStreamer data
-           {
+            }
+            else  // Timeout for waiting of GStreamer data
+            {
                LOG(APP_PREFIX "No data within 5 seconds.\n");
                setCameraStatus(cameraID, CAMERA_SIGNAL_OFF);
                server_set_status(cameraID, EMERGENCY_SHUTDOWN);
                break;
-           }
-       }
-       else
-       {
-          server_set_status(cameraID, WAITING_FOR_CONNECTION);
-          LOG(APP_PREFIX "setting screenshot camera to streaming...");
-          server_set_status(cameraID, STREAMING);
+            }
+        }
+    }
+    else
+    {
+        server_set_status(cameraID, WAITING_FOR_CONNECTION);
+        LOG(APP_PREFIX "setting screenshot camera to streaming...");
+        server_set_status(cameraID, STREAMING);
 
-          pthread_mutex_lock(&lock);
-          while(!params->exit_flag)
-              pthread_cond_wait(&ready, &lock);
-          pthread_mutex_unlock(&lock);
-          LOG(APP_PREFIX "Shutting down screenshot stream.\n");
-          server_set_status(cameraID, SHUTDOWN);
-          break;                 
-       }
-    }                   
+        pthread_mutex_lock(&lock);
+        while(!params->exit_flag)
+          pthread_cond_wait(&ready, &lock);
+        pthread_mutex_unlock(&lock);
+        LOG(APP_PREFIX "Shutting down screenshot stream for gst with pid=%d.\n", params->gst_pid);
+        server_set_status(cameraID, SHUTDOWN);
+    }
 
     LOG(APP_PREFIX "Camera stream is closed\n");
     return NULL;

@@ -215,15 +215,15 @@ JLRCameras = {
             {
             case USER_EVENT.SET_LIVE:
             if(uiElement.state != CAMERA_UI_STATE.VIDEO_LIVE) {
-                 requestVideoStream(uiElement);
-                 // if(err != -1) {
+                  var err=requestVideoStream(uiElement);
+                  if(err != -1) {
                       setUiElementState(uiElement, CAMERA_UI_STATE.WAITING);
                       setButtonEventHandlers(uiElement, CAMERA_UI_STATE.WAITING);
-                 /* } else {
+                  } else {
                       setWarning(uiElement.cameraNumber);
                       setUiElementState(uiElement, CAMERA_UI_STATE.WARNING);
                       setButtonEventHandlers(uiElement, CAMERA_UI_STATE.WARNING);
-                  }*/
+                  }
               }
               break;
             case USER_EVENT.SET_OFF:
@@ -269,16 +269,16 @@ JLRCameras = {
                     setButtonImgs(uiElement,"video_disabled");
                 } else if(uiElement.state == CAMERA_UI_STATE.READY_FOR_REQUEST_CONNECTION){
                 if (cameraArray[uiElement.cameraNumber].active == true){
-                    requestVideoStream(uiElement);
-                    //if(err != -1) {
+                    var err=requestVideoStream(uiElement);
+                    if(err != -1) {
                         setUiElementState(uiElement, CAMERA_UI_STATE.WAITING);
                         setButtonEventHandlers(uiElement, CAMERA_UI_STATE.WAITING);
-                    /*} else {
+                    } else {
                         setWarning(uiElement.cameraNumber);
                         setUiElementState(uiElement, CAMERA_UI_STATE.WARNING);
                         setButtonEventHandlers(uiElement, CAMERA_UI_STATE.WARNING);
                         setButtonImgs(uiElement,"empty");
-                    }*/
+                    }
                 } else {
                     setVideoOff(uiElement.cameraNumber);
                     setUiElementState(uiElement, CAMERA_UI_STATE.VIDEO_DISABLED);
@@ -471,10 +471,6 @@ JLRCameras = {
                 {
                     videoObj.setAttribute('autoplay', true);
                     videoObj.setAttribute('src', 'http://localhost:' + videoObj.portNumber);
-                }
-                else
-                {
-                    videoObj.src='../tmp/' + videoObj.cameraNumber + '.jpg';
                 }
                 messageObj.innerText = "";
             }
