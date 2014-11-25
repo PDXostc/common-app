@@ -9,6 +9,44 @@ body {
 	background-image: url("/DNA_common/images/Hex-Background.jpg");
 	display: flex;
 }
+*:focus {
+	outline: none;
+}
+.oneLineEllipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+}
+.oneLineEllipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+}
+
+.twoLinesEllipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.threeLinesEllipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+}
+
 /* FONT SIZE */
 .fontSizeXXSmall {
 	font-size: 14px;
@@ -628,4 +666,19 @@ body {
 	margin-top: 117px;
 	background-color: rgb(138, 255, 0);
 	background-color: rgba(138, 255, 0, 0.54);
+}
+
+/* Flexbox modal */
+.modalFlexbox {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 5;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	justify-content: center;
 }

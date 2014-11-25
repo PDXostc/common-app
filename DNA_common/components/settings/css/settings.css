@@ -1,3 +1,8 @@
+.componentHeader {
+	font-size: 62px;
+	color: #fff;
+	font-weight: bold;
+}
 .settingsContent .settingElement {
 	padding: 20px 0;
 	border-bottom-style: solid;
@@ -46,7 +51,7 @@
 }
 
 .wifiElement {
-	padding: 20px 0;
+	padding: 20px 20px 20px 0;
 	border-bottom-style: solid;
 	border-bottom-width: 2px;
 	overflow: hidden;
@@ -63,17 +68,36 @@
 
 .wifiElement .wifiElementSubtitle {
 	margin-top: 5px;
+	color: rgb(83, 181, 206);
+	font-weight: normal;
 }
-
+.wifiElement .wifiElementDescription {
+	color: rgb(83, 181, 206);
+	font-weight: normal;
+}
+.wifiElement .wifiElementMore {
+	color: rgb(83, 181, 206);
+	font-weight: normal;
+}
 .wifiElement .wifiElementButton {
 	display: block;
 	float: right;
 	width: 180px;
 	top: 26px;
 }
+/* green button color indicates connected, dark green per Richard */
+.connectGreen {
+	box-shadow: 0 0 2px 2px rgba(102, 210, 45, 1.0) inset;
+	border: 1px solid rgba(89, 255, 0, 1.0);
+}
+/* pale tone 'white' indicated not connected, white per Richard */
+.connectWhite {
+	box-shadow: inset 0 0 70px rgba(178, 240, 255, 0.8);
+	border: 1px solid rgba(255, 255, 255, 1.0);
+}
 
 .toggleButton {
-	width: 90px;
+	width: 89px;
 	height: 43px;
 }
 
@@ -91,8 +115,11 @@
 }
 
 .subPanelToggleButton {
-	position: absolute;
-	right: 20px;
+	/* position: absolute;*/
+	margin-right: 50px;
+	float: right;
+	display:inline-block;
+	height: 100px;
 }
 
 .subPanelToggleButtonWide {
@@ -100,19 +127,27 @@
 }
 
 .buttonsArea {
-	width: 680px;
+	width: 100%;
 	margin-top: 20px;
 	min-height: 43px;
 }
 
 .wifiRefreshButton {
-	width: 180px;
+	width: 80px;
+	height: 80px;
 	float: left;
+	background-image: url('/DNA_common/components/settings/images/refresh.png');
+	margin-left: 50px;
+	background-size: 80px 80px;
 }
 
 .addNetworkButton {
-	width: 180px;
+	width: 80px;
+	height: 80px;
 	float: right;
+	background-image: url('/DNA_common/components/settings/images/plus.png');
+	margin-right: 60px;
+	background-size: 80px 80px;
 }
 
 .bluetoothRefreshButton {

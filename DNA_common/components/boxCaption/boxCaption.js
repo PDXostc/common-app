@@ -60,7 +60,7 @@
             initSmall: function (caption) {
                 this.empty();
                 var appendText = '<div class="boxIconRectangleSmall bgColorTheme"></div>';
-                appendText += '<div class="boxIconCaptionSmall fontSizeXXSmall fontWeightBold fontColorLight">';
+                appendText += '<div class="boxIconCaptionSmall boxCaptionText">';
                 appendText += caption.toUpperCase();
                 appendText += '</div>';
                 this.append(appendText);
