@@ -1,13 +1,14 @@
-<img id="settingsIcon" onclick="loadSettings();" src="./DNA_common/images/Settings_carot.png" width="120px" height="90px">
+<img id="settingsCarot" onclick="loadSettings();" src="./DNA_common/images/Settings_carot.png" width="120px" height="90px">
 <div id="settingsMenu">
-	<img id="settingsIconX" onclick="$('settingsTabs').toggel();" src="./DNA_common/images/icongear.png" width="117px" height="117px">
+	<img id="settingsIconTabs" onclick="$('#settingsTabs').toggle();" src="./DNA_common/images/icongear.png" width="117px" height="117px">
+	<img id="settingsIconPage" onclick="$('#settingsPage').toggle();" src="./DNA_common/images/icongear.png" width="117px" height="117px">
 	<img id="settingBlu" src="./DNA_common/images/BluTooth_On.png" onclick="launchApplication('http://com.intel.tizen/settings');Settings.openSetting({id:'bluetooth'});">
-	<img id="settingNet" src="./DNA_common/images/WiFi_On.png" onclick="launchApplication('http://com.intel.tizen/settings');Settings.openSetting({id:'wifinetworks'});">
+	<img id="settingNet" src="./DNA_common/images/WiFi_On.png" onclick="$('#settingsWifi').toggle();;">
 	<img id="settingTet" src="./DNA_common/images/Tether_Off.png" onclick="launchApplication('http://com.intel.tizen/settings');Settings.openSetting({id:'wifitethering'});">
 	<img id="settingRvi" src="./DNA_common/images/RVI_Icon.png" onclick="launchApplication('http://com.intel.tizen/settings');Settings.openSetting({id:'rvi'});">
 </div>
 
-<div id="settingsTabs" class="tabs pageBgColorNormalTransparent" style="display: block;"><!--may need to be display:flex-->
+<div id="settingsTabs" class="tabs pageBgColorNormalTransparent" style="display: none;"><!--may need to be display:flex-->
 	<div id="tabsTopPanel" class="tabsTopPanel">
 		<div class="tabsTopPanelTitle">
 			<div class="boxIconRectangleSmall bgColorTheme"></div>
@@ -71,7 +72,7 @@
 	<div class="settingElement fontSizeLarge fontWeightBold fontColorNormal borderColorTheme" data-bind='click: Settings.openSetting, text: name'></div>
 </script>--><!-- component template include/insert here -->
 
-<ul id="settingsPage"></ul>
+<ul id="settingsPage" style="display: none;"></ul>
 <div id="settingsPageItem"><li><a>Name X</a></li></div>
 
 <div id="loadingSpinnerWrapper" class="loadingSpinnerWrapper" style="display: none;">
