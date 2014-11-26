@@ -29,13 +29,13 @@ rm -rf %{buildroot}
 
 %post
 if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
-    wrt-installer -i /opt/usr/apps/.preinstallWidgets/JLRPOCX001.DNA.wgt;
+    wrt-installer -i /opt/usr/apps/.preinstallWidgets/gydCqwLJKz.DNA.wgt;
 fi
 
 %postun
-    wrt-installer -un JLRPOCX001.DNA
+    wrt-installer -un gydCqwLJKz.DNA
 
 %files
 %defattr(-,root,root,-)
-/opt/usr/apps/.preinstallWidgets/JLRPOCX001.DNA.wgt
+/opt/usr/apps/.preinstallWidgets/gydCqwLJKz.DNA.wgt
 
