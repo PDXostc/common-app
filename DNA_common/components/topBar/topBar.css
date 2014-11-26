@@ -102,24 +102,25 @@
 	background-size:87px 87px !important;
 	margin-top:12px;
 }
-	.homeScrAppGridImg{
-		position:absolute;
-		left:0px;
-		top:-20px;
-	}
-	.homeScrAppGridTitle{
-		position:relative;
-		top:40px;
-	}
-	.homeScrAppGridCategory{
-		display:none;
-	}
-	#closeApp{
-		bottom:0px;
-		border:0px !important;
-		position:absolute;
-	}
-	.tabs{
+.homeScrAppGridImg{
+	position:absolute;
+	left:0px;
+	top:-20px;
+}
+.homeScrAppGridTitle{
+	position:relative;
+	top:40px;
+}
+.homeScrAppGridCategory{
+	display:none;
+}
+#closeApp{
+	bottom:0px;
+	border:0px !important;
+	position:absolute;
+}
+/* move to components/tabs.css, delete once image path is changed */
+	/* .tabs{
 		width:1080px !important;
 		height:1920px;
 	}
@@ -136,7 +137,7 @@
 		position:absolute;
 		top:0px;
 		right:0px;
-	}
+	} */
 	.tabsCloseButton{
 		margin-top:32px;
 		margin-right:72px;
@@ -144,6 +145,13 @@
 		height:42px !important;
 		background-image: url('../../../DNA_common/images/bt_close.png') !important;
 	}
+/* end of styles moved to components/tabs.css */	
+.exitButton {
+	position:absolute;
+	top:0px;
+	right:0px;
+} 
+	
 .shadowStd{	
 	border: 1px solid white;
 	background: rgba(0, 0, 0, 0.8);

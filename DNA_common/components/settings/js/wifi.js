@@ -129,7 +129,7 @@ var Wifi = function() {
 					var button = "";
 					button += '<div id="wifiAutoConnectButton" class="toggleButton subPanelToggleButton subPanelToggleButtonWide" data-bind="with: Settings.Wifi.selectedNetwork, click: Settings.Wifi.toggleSelectedNetworkAutoConnect">';
 					button += '<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>';
-					button += '<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText" data-bind="text: \'AUTO CONNECT\', css: { fontColorSelected: Settings.Wifi.isAutoConnect(prop) }"></div>';
+					button += '<div class="fontColorNormal fontSizeMedium fontWeightBold" data-bind="text: \'AUTO CONNECT\', css: { fontColorSelected: Settings.Wifi.isAutoConnect(prop) }"></div>';
 					button += '</div>';
 					$(button).appendTo($('.tabsTopSubPanel'));
 
@@ -931,22 +931,17 @@ Wifi.prototype.showNetworks = function() {
 
 			button += '<div class="buttonsArea">';
 
-			button += '<div id="wifiRefreshButton" class="toggleButton wifiRefreshButton" data-bind="click: Settings.Wifi.scanNetwork, style: { display: Settings.Wifi.isPowered() && !Settings.Wifi.isTethering() ? \'block\' : \'none\' }">';
-			button += '<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>';
-			button += '<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">REFRESH</div>';
+			button += '<div id="wifiRefreshButton" class="wifiRefreshButton" data-bind="click: Settings.Wifi.scanNetwork, style: { display: Settings.Wifi.isPowered() && !Settings.Wifi.isTethering() ? \'block\' : \'none\' }">';
 			button += '</div>';
 
-			button += '<div id="addNetworkButton" class="toggleButton addNetworkButton" data-bind="click: Settings.Wifi.showAddNetwork, style: { display: Settings.Wifi.isPowered() && !Settings.Wifi.isTethering() ? \'block\' : \'none\' }">';
-			button += '<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>';
-			button += '<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">ADD</div>';
+			button += '<div id="addNetworkButton" class="addNetworkButton" data-bind="click: Settings.Wifi.showAddNetwork, style: { display: Settings.Wifi.isPowered() && !Settings.Wifi.isTethering() ? \'block\' : \'none\' }">';
 			button += '</div>';
 
 			button += '</div>';
 
 			$(button).appendTo($('.' + wifiContent));
 
-			button = '<div id="wifiPowerButton" class="toggleButton subPanelToggleButton subPanelToggleButtonWide" data-bind="with: Settings.Wifi.adapter, click: Settings.Wifi.togglePower">';
-			button += '<div class="bgColorThemeTransparent boxShadowInset toggleButtonBackground"></div>';
+			button = '<div id="wifiPowerButton" class="subPanelToggleButton subPanelToggleButtonWide" data-bind="with: Settings.Wifi.adapter, click: Settings.Wifi.togglePower">';
 			button += '<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText" data-bind="text: Settings.Wifi.isPowered() ? \'TURN OFF\' : \'TURN ON\'"></div>';
 			button += '</div>';
 			$(button).appendTo($('.tabsTopSubPanel'));

@@ -114,7 +114,7 @@ var TABS_SUB_PANEL_DELEGATE_DEFAULT = "./DNA_common/components/tabs/templates/su
 				str += "<div class='tabsCloseButton' onClick=\'$(\"#" + this.attr('id') + "\").tabs(\"hidePage\")\'></div>";
 				str += "<div id='tabsTabsID' class='tabsTabs'></div>";
 				str += "</div>";
-				str += "<div id='tabsTopSubPanel' class='tabsTopSubPanel bgColorDark'></div>";
+				str += "<div id='tabsTopSubPanel' class='tabsTopSubPanel'></div>";
 				str += "<div id='tabsContent' class='tabsContent'></div>";
 				str += "<div class='tabsTopPanelTitleHint fontSizeXXSmall fontWeightBold fontColorTheme'>" + Tabs.sectionHint + "</div>";
 				this.append(str);
