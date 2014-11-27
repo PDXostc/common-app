@@ -6,7 +6,7 @@
 .settingsContent .settingElement {
 	padding: 20px 0;
 	border-bottom-style: solid;
-	border-bottom-width: 2px;
+	border-bottom-width: 1px;
 	overflow: hidden;
 	white-space: nowrap;
 	cursor: pointer;
