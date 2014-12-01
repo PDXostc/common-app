@@ -1,0 +1,820 @@
+/******** global ********/
+@font-face {
+	font-family: 'Droid Sans';
+	src: url("../../car/fonts/DroidSans.ttf") format('truetype'),
+			 url("../../car/fonts/DroidSans-Bold.ttf") format('truetype')
+}
+
+body {
+	font-family: 'Droid Sans', sans-serif;
+}
+
+h3 {
+	font-size: 1.5em;
+	color: inherit;
+}
+
+h4 {
+	font-size: 1.17em;
+}
+
+button,
+input[type="button"] {
+  -webkit-appearance: none;
+  border: none;
+  padding: 2%;
+  margin: 1.5%;
+  font-size: 1.25em;
+  font-family: inherit;
+  font-weight: bold;
+  color: white;
+  min-width: 100px;
+}
+
+.button-group {
+	text-align: center;
+	margin: 5%;
+}
+
+.left {
+	left: 0;
+	display: inline-block;
+}
+
+/* Overrides audiocontrols.css */
+div.right:hover { 
+	background: none;
+}
+
+.right:active, .left:active {
+	background-size: auto;
+}
+
+.right {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.content {
+	background-color: white;
+	position: absolute;
+	bottom: 0;
+	top: 6%;
+	width: 100%;
+}
+
+ul {
+	position: relative;
+}
+
+/******** Form Styles ********/
+
+textarea {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+textarea,
+input[type="checkbox"],
+input[type=text],
+input[type=email],
+input[type=password] {
+	-webkit-appearance: none;
+}
+
+textarea,
+input[type=text],
+input[type=email],
+input[type=password] {
+	border: 1px solid rgb(135, 206, 235);
+	background: white;
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+	position: absolute;
+	right: 0;
+	width: 67%;
+}
+
+textarea,
+input[type=text],
+input[type=email],
+input[type=password],
+textarea:focus,
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+  padding: 3px 0px 3px 3px;
+}
+
+textarea:focus,
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  -webkit-transition: all 0.30s ease-in-out;
+}
+
+input[type="checkbox"] {
+  height: 1.2em;
+  width: 1.2em;
+  vertical-align: middle;
+  margin: 0 0.4em 0.4em 0;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: white;
+  -webkit-transition: box-shadow 200ms;
+   box-shadow:inset 1px 1px 0 #fff, 0 1px 1px rgba(0,0,0,0.1);
+  -webkit-border-radius:2px;
+}
+
+input[type="checkbox"]:checked {
+  border-color:rgba(0, 0, 0, 0.5);
+	background-image: url(images/email/input_checkbox_checkmark_black.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.input-group {
+	border: none;
+	position: relative;
+	/*padding: 1%;*/
+}
+
+/******** End Form Style ********/
+
+.template {
+	display: none;
+}
+
+
+/****** Icons ********/
+
+.icon {
+	width: 48px;
+	height: 48px;
+	background-repeat: no-repeat;
+	background-size: auto;
+	background-position: top center;
+	margin: 10px;
+}
+
+.icon .label {
+	color: white;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	font-size: 0.6em;
+	width: inherit;
+}
+
+#addHome.icon {
+	background-image: url(./images/email/home_icon_white.png);
+}
+
+#changeAccountButton.icon {
+	background-image: url(./images/email/users_icon_white.png);
+	width: 128px;
+}
+
+#Sync.icon {
+	background-image: url(./images/email/refresh_icon_white.png);
+}
+
+#InboxButton.icon {
+	background-image: url(./images/email/inbox_icon_white.png);
+}
+
+#searchMail.icon {
+	width: 175px;
+	line-height: 48px;
+	background-image: url(./images/email/search_icon_white.png);
+	background-position-x: 106%;
+	background-position-y: center;
+	background-size: 36px 36px;
+}
+
+#draftButton.icon {
+	background-image: url(./images/email/draft_icon_white.png);
+}
+
+#composeButton.icon {
+	background-image: url(./images/email/new_icon_white.png);
+	background-size: 32px;
+}
+
+#trash.icon {
+	background-image: url(./images/email/trash_icon_white.png);
+}
+
+/* Inbox Screen */
+
+aside {
+	float: left;
+	width: 8%;
+	height: 100%;
+}
+
+.controls {
+	display: block;
+}
+
+.main > .controls {
+	height: 6%;
+}
+
+.main > .content, {
+	position: absolute;
+	bottom: 0;
+	height: 94%;
+	width: 100%;
+}
+
+.controls li {
+	display: inline-block;
+	margin: 0;
+}
+
+aside .controls li {
+	display: block;
+}
+
+#searchMail input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 16px 5% 16px 0;
+	padding: 0 10px;
+	width: 150px;
+	box-sizing: border-box;
+	box-shadow: none;
+	border: none;
+	border-radius: 16px;
+	outline: none;
+	font-weight: normal;
+}
+
+section, h1 {
+	position: relative;
+	}	
+
+.inner-content ul, .modal {
+	/*position: relative;*/
+	/*top:25%;*/
+	/*margin-top: -12.5%;*/
+}
+
+h1 {
+	font-size: 2.5em;
+	color: white;
+	text-align: center;
+	padding: 2% 0;
+	}
+
+h2 {
+	font-weight: bold;
+	font-size: 2em;
+	text-align: center;
+	color: rgb(100, 149, 237);
+	/*margin-bottom: 10%;*/
+}
+
+.themeColor {
+	background-position: right;
+	background-color: rgb(100, 149, 237);
+}
+
+.modal {
+	position: absolute;
+	left: 10%;
+	right: 10%;
+	top: 30%;
+	min-height: 10%;
+	margin: auto;
+	padding: 5%;
+	box-sizing: border-box;
+	background-color: white;
+	border: 1px solid rgb(100, 149, 237)
+}
+
+.inner-content {
+	background-color: white;
+	height: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/******** Add Email Account Styles ********/
+
+.inner-content header {
+	position: relative;
+}
+
+.inner-content header,
+.inner-content footer {
+	background-color: #6495ed;
+	height: 8%;
+	}
+
+.account-logo {
+	display: block;
+	position:relative;
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+.account-logo img {
+	margin: auto;
+}
+
+#addOther {
+	font-size: 2em;
+	font-weight: 600;
+}
+
+.inner {
+	padding: 4%;
+	position: absolute;
+	top: 0;
+	bottom: 175px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/******** Add Account Details Screen ********/
+
+#addAccountDetailsDiv.inner {
+  padding: 0;
+}
+
+#emailAccountsHeader {
+	top: 8%;
+	left: 18%;
+	width: 64%;
+	height: 4%;
+	background-image: url('./images/email/SelectEmailtouseordelete.png');
+	background-size: auto 100%;
+}
+
+.chooseEmailAccountBgImg {
+	background-image: url('./images/email/chooseAccountScreen.png');
+	background-size: auto 100%;
+	height: 100%;
+	width: 100%;
+}
+
+/******** Select Account Screen ********/
+
+#emailAccounts {
+	list-style: inside;
+	padding: 0;
+	margin: 0;
+}
+
+.account {
+	list-style-image: url('images/email/email_icon_small_black.png');
+	background-color: rgba(255,255,255, 0.5);
+  background-repeat: no-repeat;
+  background-position: 5% center; 
+  padding: 5%;
+  padding-left: 10%; 
+	overflow: visible;
+	border: 1px solid rgba(125,125,125, 0.25);
+}
+
+.account p {
+	display: inline-block;
+}
+
+.account input[type="checkbox"] {
+	float: right;
+}
+
+/******** Inbox Screen ********/
+
+.mass-selection {
+	height: 5%;
+}
+
+#inboxScreen .inner-content,
+#mailView .inner-content,
+#composeView .inner-content,
+#draftScreen .inner-content {
+	background: none;
+	top: 2%;
+}
+
+#inboxScreen .main,
+#mailView .main,
+#composeView .main,
+#draftScreen .main {
+	float: right;
+	margin: 0;
+	width: 92%;
+	height: inherit;
+	top: 0;
+	background: none;
+}
+
+.inboxBgImg {
+	background-image: url('./images/email/Inbox.png');
+	background-size: auto 100%;
+	height: 100%;
+	width: 100%;
+}
+
+label {
+	font-weight: bold;
+}
+
+.details {
+	padding: 5%;
+	margin: 5%;
+	background-color: rgb(218,255,255);
+	min-height: 50%;
+}
+
+.details div {
+	margin-bottom: 4%;
+}
+
+.compose .details {
+	margin: 0;
+	min-height: 0;
+}
+
+.description {
+	position: absolute;
+	width: 67%;
+	right: 0;
+	padding: 3px;
+}
+
+#SaveAccountCtrl {
+	display: block;
+	margin: auto;
+}
+
+#progressDiv {
+	position: absolute;
+	font-size: 150%;
+	display: block;
+	padding: 4% 0;
+	width: 100%;
+	bottom: 0;
+	background-color: rgba(200, 200, 200, 0.85);
+	text-align: center;
+}
+
+.attachments {
+	top: 8%;
+	height: 77%;
+	background-color: #eee;
+}
+
+#composeAttach {
+	position: absolute;
+	bottom: 0;
+	padding: 10px; 
+	max-height: 100px;
+	overflow-y: scroll;
+	background-color: #eee;
+}
+
+#composeAttach li {
+	display: inline-block;
+	background-size: 24px;
+	padding: 10px 10px 10px 28px;
+	font-size: .75em;
+}
+
+.attachments li {
+	height: 48px;
+	line-height: 48px;
+	padding: 10px 0 10px 48px;
+}
+
+.attachments li,
+#composeAttach li {
+	background-repeat: no-repeat;
+	margin: 0 10px;
+}
+
+#composeAttach li {
+	background-position: 4px center;
+	border: 1px solid lightgrey;
+	margin: 0 10px 10px 0;
+}
+
+.pdf-file {
+	background-image: url(./images/email/pdf_file_icon_black.png);
+}
+
+.jpeg-file {
+	background-image: url(./images/email/jpg_file_icon_black.png);
+}
+
+.text-file {
+	background-image: url(./images/email/text_file_icon_black.png);
+}
+
+#gif-file {
+	background-image: url(./images/email/gif_file_icon_black.png);
+}
+
+.mailDivPart {
+	position: absolute;
+	left: 10%;
+	width: 10%;
+	height: 10%;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+
+#emailAccounts {
+	overflow: auto;
+}
+
+.chooseEmailCheckBox {
+	position: absolute;
+	width: 40%;
+	height: 40%;
+}
+
+
+.status {
+	left: 3%;
+	width: 3%;
+	height: 23%;
+	border-radius: 16px;
+	background-color: lightblue;
+	display: inline-block;
+	visibility: hidden;
+}
+
+.unread {
+	visibility: visible;
+}
+
+h3 {
+	font-size: 1em;
+	color: darkSlateGray;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.content header .icon {
+	background-position: center center;
+	height: inherit;
+}
+
+.content header .icon.right {
+	margin-right: 4%;
+}
+
+.content header ul {
+	height: 100%;
+}
+
+.content header h3 {
+	color: white;
+	margin-left: 4%;
+	padding: 4% 0;
+	width: 56%;
+}
+
+.content header .controls {
+	width: 40%;
+}
+
+header h3,
+header .controls {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
+h4 {
+	width: 80%;
+	font-size: .85em;
+	color: lightSlateGray;
+	overflow: hidden;
+}
+
+.MessageItemBodyCheckBox {
+	position: absolute;
+	top: 32%;
+	left: 80%;
+	width: 25%;
+	height: 25%;
+}
+
+#replyAll.icon {
+	background-image: url(./images/email/replyall_icon_white.png);
+}
+
+#reply.icon {
+	background-image: url(./images/email/reply_icon_white.png);
+}
+
+#forward.icon {
+	background-image: url(./images/email/forward_icon_white.png);
+}
+
+#next.icon {
+	background-image: url(./images/email/next_icon_white.png);
+}
+
+#send.icon, #sendDraft.icon {
+	background-image: url(./images/email/send_icon_white.png);
+}
+
+#attachmentButton.icon {
+	background-image: url(./images/email/attachment_icon_white.png);
+	background-position: center center;
+}
+
+
+.MailHandler {
+	background-color: white;
+	width: 86%;
+	height: 75%;
+}
+
+.ViewMailLabelCtrl {
+	position: absolute;
+	font-weight: bold;
+	font-size: 8px;
+	color: white;
+}
+
+.MailCtrl {
+	font-size: 150%;
+	font-weight: bold;
+	white-space: nowrap;
+	line-height: 150%;
+	overflow: hidden;
+	width: 95%;
+}
+
+.MailCtrlValue {
+	font-size: 100%;
+}
+
+.MailBodyValue {
+	font-size: 100%;
+	height: 45%;
+	width: 95%;
+	overflow-y: visible;
+	overflow-x: visible;
+}
+
+.MailAttachmentDiv {
+	position: absolute;
+	top: 72%;
+	left: 2%;
+	width: 25%;
+	height: 15%;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+
+#structureMail {
+	position: absolute;
+	top: 15%;
+	left: 10%;
+	width: 85%;
+	height: 20%;
+	background-image: url(./images/email/add_account_box_bg.png);
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+
+.attachName {
+	font-size: 60%;
+}
+
+.attachDivClass {
+	position: absolute;
+	width: 25%;
+	height: 77%;
+	overflow: hidden;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+
+#bodyDetails {
+	position: absolute;
+	top: 36%;
+	left: 10%;
+	width: 85%;
+	height: 40%;
+	resize: none;
+	font-size: 200%;
+	border: none ! important;
+	box-shadow: none ! important;
+	outline: none ! important;
+	background-color: transparent;
+}
+
+#inboxItemTemplate,
+#draftItemTemplate {
+	display: none;
+}
+
+.email {
+	height: 92%;
+}
+
+.inbox, .email, .draftbox, .attachments {
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.inbox {
+	position: absolute;
+	top: 13%;
+	bottom: 8%;
+}
+
+.draftbox {
+	position: absolute;
+	bottom: 8%;
+	top: 13%;
+}
+
+#draftScreen .button-group {
+	/*position: absolute;*/
+	/*bottom: 0;*/
+	/*top: 87%;*/
+	/*width: 100%;*/
+	/*background-color: #eee;*/
+	margin: 0;
+	line-height: 72px;
+	text-align: left;
+}
+
+#draftScreen .button-group button {
+	color: cornFlowerBlue;
+	background-color: white;
+	font-size: 1.25em; 
+}
+
+.email {
+	height: 92%;
+	width: 100%;
+}
+
+.email header, .email .body {
+	background-color: transparent;
+	margin: 2%;
+	padding-bottom: 2%;
+	height: auto;
+}
+
+.inbox-item, .draft-item, .email header, .attachments li {
+	border-bottom: 1px solid lightgrey;
+}
+
+.inbox-item, .draft-item {
+	padding: 10px 0;
+	margin: 0 10px;
+	min-height: 20px;
+}
+
+.inbox-item .checkbox,
+.attachments .checkbox,
+.draft-item .checkbox {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.name {
+	position: absolute;
+	top: 5%;
+	left: 15%;
+}
+
+.sendDiv {
+	position: absolute;
+	top: 7%;
+	left: 80%;
+	width: 5%;
+	height: 5%;
+	background-image: url(./images/email/send_icon.png);
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+
+#trash {
+	z-index: 1;
+}

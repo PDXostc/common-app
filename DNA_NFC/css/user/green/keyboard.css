@@ -1,0 +1,47 @@
+.keyboard
+    {
+        background-color:#0e2501;
+    }
+
+.key_button
+    {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(18%,#3ca107), color-stop(100%,#66d22d));
+  border-color: #47ac12;
+  box-shadow: 1px -4px 6px 0 rgba(77, 160, 34, 0.38);
+    }
+
+.key_special_spacebar
+    {
+        background: url(/css/car/images/space_bar_icon.png) no-repeat 50% 50%, -webkit-linear-gradient(bottom, rgb(60,161,7) 0%, rgb(47,132,1) 100%);
+    }
+
+.key_special_capslock .key_shift_off, .key_special_capslock
+    {
+	    background: url(/css/car/images/shift_off_icon.png) no-repeat 50% 50%, -webkit-linear-gradient(bottom, rgb(60,161,7) 0%, rgb(47,132,1) 100%); 
+	}
+
+.key_special_capslock .key_shift_on, .key_special_capslock .key_shifted
+    {
+    background: url(/css/car/images/shift_on_icon.png) no-repeat 50% 50%, -webkit-linear-gradient(bottom, rgb(60,161,7) 0%, rgb(47,132,1) 100%);
+    }
+	
+.key_special_symlock .key_special_symlock_off
+    {
+    background: url(/css/car/images/symbols_off_icon.png) no-repeat 50% 50%, -webkit-linear-gradient(bottom, rgb(60,161,7) 0%, rgb(47,132,1) 100%);
+    }
+
+.key_special_symlock .key_special_symlock_on
+    {
+    background: url(/css/car/images/symbols_icon.png) no-repeat 50% 50%, -webkit-linear-gradient(bottom, rgb(60,161,7) 0%, rgb(47,132,1) 100%);
+    }
+	
+	
+.key_special_bksp
+    {
+    background: url(/css/car/images/backspace_icon.png) no-repeat 50% 50%, -webkit-linear-gradient(bottom, rgb(60,161,7) 0%, rgb(47,132,1) 100%);
+    }
+
+.key_special_return
+    {
+	background: url(/css/car/images/white_return.png) no-repeat 50% 50%, -webkit-linear-gradient(bottom, rgb(60,161,7) 0%, rgb(47,132,1) 100%);
+    }

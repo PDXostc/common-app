@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<!--
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
+ *
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>NFC</title>
+<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+<link rel="stylesheet" href="./DNA_common/css/style.css"/>
+<link rel="stylesheet" href="./css/style.css"/>
+<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="./DNA_common/js/init.js"></script>
+<script type="text/javascript" src="./DNA_common/components/knockout/knockout.js"></script>
+<script type="text/javascript" src="./js/ndefrecordtextviewmodel.js"></script>
+<script type="text/javascript" src="./js/nfcviewmodel.js"></script>
+<script type="text/javascript" src="./js/main.js"></script>
+
+<!--<script type="text/javascript">
+	includeJs("./DNA_common/js/predefAppModel.js");
+	includeJs("./DNA_common/js/installedApps.js");
+	includeJs("./DNA_common/js/keyControl.js");
+	includeJs("./DNA_common/js/actionCatcher.js");
+	includeJs("./DNA_common/js/HomeScreenMain.js");
+
+</script>
+-->
+</head>
+
+
+
+<!--
+
+<meta name="viewport" content="width=720, height=1280, user-scalable=no" />
+<meta name="description" content="NFC application" />
+
+<script type="text/javascript"
+    src="./css/car/components/jQuery/jquery-1.8.2.js"></script>
+<script type="text/javascript"
+    src="./css/car/components/knockout/knockout.js"></script>
+<script type="text/javascript"
+    src="./css/car/components/jsViews/jsrender.js"></script>
+<script type="text/javascript"
+    src="./css/car/components/jsViews/template.js"></script>
+<link rel="stylesheet" href="./css/car/car.css" />
+<script type="text/javascript" src='./css/car/car.js'></script>
+<link rel="stylesheet"
+    href="./css/car/components/incomingCall/incomingCall.css" />
+<script type="text/javascript"
+    src="./css/car/components/configuration/configuration.js"></script>
+<script type='text/javascript' src='./js/services/bootstrap.js'></script>
+<script type='text/javascript'
+    src='./css/car/components/boxCaption/boxCaption.js'></script>
+<link rel="stylesheet"
+    href="./css/car/components/boxCaption/boxCaption.css" />
+<script type='text/javascript'
+    src='./css/car/components/topBarIcons/topBarIcons.js'></script>
+<link rel="stylesheet"
+    href="./css/car/components/topBarIcons/topBarIcons.css" />
+<script type='text/javascript'
+    src='./css/car/components/dateTime/dateTime.js'></script>
+<link rel="stylesheet" href="./css/car/components/dateTime/dateTime.css" />
+<script type="text/javascript"
+    src="./css/car/components/bottomPanel/bottomPanel.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+
+<!-- Contains the creation of the tizen.most object, which is the API to the MOST hardware. 
+<script type="text/javascript" src="./css/car/components/audioPlayer/most.js"></script>
+
+<link rel="stylesheet" href="./css/car/components/bottomPanel/volumeSlider.css" />
+<script type="text/javascript" src="./css/car/components/bottomPanel/jquery.nouislider.js"></script>
+
+<script type="text/javascript" src="./js/ndefrecordtextviewmodel.js"></script>
+<script type="text/javascript" src="./js/nfcviewmodel.js"></script>
+<script type="text/javascript" src="./js/main.js"></script>
+
+<title>NFC</title>
+</head>
+-->
+
+<body>
+    <div class="nfcBackground">
+        <div id="topBarIcons"></div>
+        <div id="clockElement"></div>
+
+        <div id="nfcBody" data-bind="if: nfc"
+            class="nfcBody fontSizeMedium fontWeightBold fontColorNormal">
+
+            <div data-bind="if: nfc" class="nfcWrapper">
+                <div data-bind="ifnot: nfc.powered"
+                    class="nfcPowerText fontSizeLarger fontWeightBold fontColorNormal">TO
+                    READ NFC TAG, NFC READER MUST BE ON.</div>
+
+                <div class="nfcPowerToggleButton"
+                    data-bind="css: { nfcPowerToggleButtonOnBg: nfc.powered, nfcPowerToggleButtonOffBg: !nfc.powered }">
+                    <div class="nfcPowerToggleButtonOff fontSizeMedium fontWeightBold"
+                        data-bind="css: { fontColorNormal: !nfc.powered, fontColorDimmed: nfc.powered }, click: nfc.setNFCPowered.bind($data, false)">OFF</div>
+                    <div class="nfcPowerToggleButtonOn fontSizeMedium fontWeightBold"
+                        data-bind="css: { fontColorNormal: nfc.powered, fontColorDimmed: !nfc.powered }, click: nfc.setNFCPowered.bind($data, true)">ON</div>
+                </div>
+
+                <div class="nfcAdapterPoweredWrapper"
+                    data-bind="if: nfc.powered">
+
+                    <div class="inputBox nfcNDEFRecordTextInputBox">
+                        <input id="inputNDEFRecordText"
+                            data-bind="value: nfc.ndefRecordText().text, event: { 'keypress': nfc.writeNFCDataOnEnter }, valueUpdate: 'afterkeydown', enable: !!nfc.tag()"
+                            class="input nfcNDEFRecordTextInput fontSizeLarge fontWeightBold fontColorDimmed boxShadow4 boxShadow4Active"
+                            type="text" />
+                    </div>
+
+                    <div
+                        data-bind="style: { display: !nfc.tag() ? 'block' : 'none' }"
+                        class="nfcPlaceTagText fontSizeLarger fontWeightBold fontColorDimmed">PLEASE,
+                        PLACE NFC TAG ON NFC READER.</div>
+<!--
+                    <div
+                        data-bind="style: { display: nfc.tag() ? 'block' : 'none' }"
+                        class="nfcNDEFMessageText fontSizeLarger fontWeightBold fontColorLightRed">NFC
+                        TAG DOES NOT SUPPORT NDEF FORMAT.</div>
+-->
+                    <div
+                        data-bind="style: { display: nfc.tag() ? 'block' : 'none' }"
+                        class="nfcWriteDataWrapper">
+                        <div
+                            class="nfcEditDataText fontSizeLarger fontWeightBold fontColorDimmed">EDIT
+                            DATA AND PRESS WRITE DATA BUTTON.</div>
+
+                        <div id="writeDataButton" class="shadowButton nfcWriteDataButton"
+                            data-bind="click: nfc.writeNFCData">
+                            <div
+                                class="bgColorThemeTransparent boxShadowInset shadowButtonBackground"></div>
+                            <div
+                                class="fontColorNormal fontSizeMedium fontWeightBold shadowButtonText">WRITE
+                                DATA</div>
+                        </div>
+                    </div>
+
+                    <div class="nfcPlaceTag"
+                        data-bind="css: { nfcTagDetected: nfc.tag(), nfcTagNotDetected: !nfc.tag() }"></div>
+                </div>
+            </div>
+            <div
+                data-bind="ifnot: nfc, style: { display: nfc ? 'none' : 'block' }"
+                class="nfcWrapper">
+                <div
+                    class="nfcPowerText fontSizeLarger fontWeightBold fontColorNormal">NFC
+                    ADAPTER IS DISCONNECTED. PLEASE, PLUG IN NFC ADAPTER TO THE DEVICE</div>
+            </div>
+        </div>
+
+        <div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>
+    </div>
+</body>
+
+</html>

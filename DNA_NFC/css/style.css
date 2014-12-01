@@ -1,0 +1,179 @@
+.nfcBackground {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 720px;
+	height: 1280px;
+}
+
+.nfcBody {
+	position: absolute;
+	top: 140px;
+	left: 0;
+	width: 700px;
+	height: 955px;
+	padding: 10px;
+	overflow: hidden;
+	display: none;
+}
+
+.nfcWrapper {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+
+.nfcPowerText {
+	position: absolute;
+	top: 30px;
+	width: 100%;
+	text-align: center;
+}
+
+.nfcPowerToggleButton {
+	position: absolute;
+	top: 94px;
+	left: 256px;
+	width: 180px;
+	height: 52px;
+	padding: 14px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-align: center;
+}
+
+.nfcPowerToggleButtonOff {
+	float: left;
+	width: 90px;
+	padding: 12px 0;
+}
+
+.nfcPowerToggleButtonOn {
+	float: left;
+	width: 90px;
+	padding: 12px 0;
+}
+
+.nfcAdapterPoweredWrapper {
+	position: absolute;
+	width: 100%;
+	height: 720px;
+	top: 204px;
+}
+
+.nfcNDEFRecordTextInputBox {
+	width: 380px;
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 170px;
+}
+
+.inputBox input.nfcNDEFRecordTextInput {
+	text-align: center;
+	width: 330px;
+	padding-right: 25px;
+}
+
+.inputBox input.nfcNDEFRecordTextInput:focus {
+	color: rgb(255, 255, 255);
+	color: rgba(255, 255, 255, 1.0);
+	font-size: 34px;
+	line-height: 34px;
+}
+
+.nfcNDEFMessageText {
+	text-align: center;
+	position: absolute;
+	top: 105px;
+	width: 100%;
+}
+
+.nfcPlaceTagText {
+	text-align: center;
+	position: absolute;
+	top: 105px;
+	width: 100%;
+}
+
+.nfcWriteDataWrapper {
+	position: absolute;
+	top: 105px;
+	width: 100%;
+	height: 119px;
+}
+
+.nfcEditDataText {
+	text-align: center;
+}
+
+.nfcWriteDataButton {
+	width: 220px;
+	margin: 30px auto 0 auto;
+}
+
+.nfcPlaceTag {
+	width: 412px;
+	height: 412px;
+	top: 244px;
+	left: 154px;
+	position: absolute;
+}
+
+.nfcTagDetected {
+	background-position: -3296px 0;
+}
+
+.nfcTagNotDetected {
+	background-position: 0 0;
+	-webkit-animation-duration: 0.75s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: step-start;
+    -webkit-animation-name: animate-detecting;
+	-webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes animate-detecting {
+  0% {
+    background-position: 0 0;
+  }
+
+  12.5% {
+    background-position: 0 0;
+  }
+
+  25% {
+    background-position: -412px 0;
+  }
+
+  37.5% {
+    background-position: -824px 0;
+  }
+
+  50% {
+    background-position: -1236px 0;
+  }
+
+  62.5% {
+    background-position: -1648px 0;
+  }
+
+  75% {
+    background-position: -2060px 0;
+  }
+
+  87.5% {
+    background-position: -2472px 0;
+  }
+
+  100% {
+    background-position: -2884px 0;
+  }
+}
+
+.bottomPanelLogoImg {
+	background: url('../images/AMG_Linux_White.png') no-repeat center !important;
+}

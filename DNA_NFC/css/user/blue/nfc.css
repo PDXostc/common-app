@@ -1,0 +1,22 @@
+/* Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
+   3  *
+   4  * This program is licensed under the terms and conditions of the
+   5  * Apache License, version 2.0.  The full text of the Apache License is at
+   6  * http://www.apache.org/licenses/LICENSE-2.0
+*/
+
+.nfcBackground {
+	background-image: url("images/nfc/bg_blue.png");
+}
+
+.nfcPowerToggleButtonOnBg {
+	background-image: url("images/nfc/icon_toggle_on_blue.png");
+}
+
+.nfcPowerToggleButtonOffBg {
+	background-image: url("images/nfc/icon_toggle_off_blue.png");
+}
+
+.nfcPlaceTag {
+	background-image: url("images/nfc/img_tag_detection_sequence_blue.png");
+}

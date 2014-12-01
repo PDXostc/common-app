@@ -1,0 +1,825 @@
+.themeColor {
+	background-position: right;
+	background-color: #3ca107;
+}
+
+.addAccountsHeader {
+	top: 8%;
+	left: 35%;
+	width: 35%;
+	height: 4%;
+	background-image: url('./images/email/AddEmailAccount.png');
+	background-size: 100% 100%;
+}
+
+.homeScreenBgImg {
+	background-image: url('./images/email/chooseAccountScreen.png');
+	background-size: 100% 100%;
+	height: 100%;
+	width: 100%;
+}
+
+#emailAccountsHeader {
+	top: 8%;
+	left: 18%;
+	width: 64%;
+	height: 4%;
+	background-image: url('./images/email/SelectEmailtouseordelete.png');
+	background-size: 100% 100%;
+}
+
+.chooseEmailAccountBgImg {
+	background-image: url('./images/email/chooseAccountScreen.png');
+	background-size: 100% 100%;
+	height: 100%;
+	width: 100%;
+}
+
+.inboxBgImg {
+	background-image: url('./images/email/Inbox.png');
+	background-size: 100% 100%;
+	height: 100%;
+	width: 100%;
+}
+
+#addHome {
+	position: absolute;
+	top: 0%;
+	left: 88%;
+	width: 8%;
+	height: 7%;
+	background-image: url(./images/email/home_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#addMsExchange {
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	width: 40%;
+	height: 40px;
+	background-image: url(./images/email/microsoft_exchange_logo.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#addGmail {
+	position: absolute;
+	top: 37%;
+	left: 30%;
+	width: 40%;
+	height: 40px;
+	background-image: url(./images/email/gmail_logo.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#addMobileMe {
+	position: absolute;
+	top: 44%;
+	left: 30%;
+	width: 40%;
+	height: 40px;
+	background-image: url(./images/email/mobile_me_logo.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#addYahoo {
+	position: absolute;
+	top: 51%;
+	left: 30%;
+	width: 40%;
+	height: 40px;
+	background-image: url(./images/email/yahoo_logo.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#addAol {
+	position: absolute;
+	top: 58%;
+	left: 30%;
+	width: 40%;
+	height: 40px;
+	background-image: url(./images/email/Aol_logo.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#addOther {
+	position: absolute;
+	top: 65%;
+	left: 30%;
+	width: 40%;
+	height: 40px;
+	background-image: url(./images/email/other_or_just_use_type.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.AddEmailContact {
+	position: absolute;
+	top: 15%;
+	left: 8%;
+	background-image: url(./images/email/add_account_box_bg.png);
+	background-size: 100% 100%;
+	width: 85%;
+	height: 50%;
+}
+
+.AddAccountLabelCtrl {
+	position: absolute;
+	font-weight: bold;
+	font-size: 150%;
+}
+
+.TextBox {
+	position: absolute;
+	width: 67%;
+	height: 5%;
+	border: 1px solid #BCF5A9;
+	background: white;
+	left: 27%;
+}
+
+.Description {
+	position: absolute;
+	width: 67%;
+	height: 5%;
+	left: 27%;
+}
+
+#EmailAddressTextbox {
+	top: 5%;
+	left: 27%;
+}
+
+#UsernameTextbox {
+	top: 25%;
+}
+
+#PasswordTextbox {
+	top: 45%;
+}
+
+#DescriptionTextbox {
+	top: 65%;
+}
+
+#AddAccountUserNameDescription {
+	top: 31%;
+}
+
+#AddAccountPasswordDescription {
+	top: 51%;
+}
+
+#AddAccountDescription {
+	top: 71%;
+}
+
+#SaveAccountCtrl {
+	position: absolute;
+	top: 70%;
+	left: 40%;
+	width: 18%;
+	height: 5%;
+	background-image: url(./images/email/SaveAccount.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#progressDiv {
+	position: absolute;
+	top: 78%;
+	left: 45%;
+	height: 5%;
+	font-size: 150%;
+}
+
+.LabelCtrl {
+	position: absolute;
+	width: 10%;
+	height: 10%;
+	font-weight: bold;
+	font-size: 150%;
+}
+
+.MessagIcon {
+	position: absolute;
+	width: 30%;
+	height: 30%;
+	background-image: url(./images/email/envelope_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#pdfIcon {
+	background-image: url(./images/email/pdf.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#jpegIcon {
+	background-image: url(./images/email/jpeg.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#textIcon {
+	background-image: url(./images/email/text.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#gifIcon {
+	background-image: url(./images/email/gif.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.mailDivPart {
+	position: absolute;
+	left: 10%;
+	width: 10%;
+	height: 10%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#emailAccounts {
+	overflow: auto;
+}
+
+.chooseEmailCheckBox {
+	position: absolute;
+	width: 40%;
+	height: 40%;
+}
+
+#useThisAccount {
+	position: absolute;
+	top: 70%;
+	left: 8%;
+	width: 35%;
+	height: 5%;
+	background-image: url(./images/email/use_this_account.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#deleteThisAccount {
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	width: 43%;
+	height: 5%;
+	background-image: url(./images/email/delete_this_account.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.ChangeAccountButton {
+	position: absolute;
+	top: 1%;
+	left: 20%;
+	width: 10%;
+	height: 5%;
+	background-image: url(./images/email/change_account_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#AddAccount {
+	position: absolute;
+	bottom: 19%;
+	left: 30%;
+	width: 42%;
+	height: 4%;
+	padding: 0.5% 1%;
+	color: white;
+	font-size : 230%;
+	font-weight: bolder;
+	background-size: 100% 100%;
+	font-size: 220%;
+}
+
+.Trash {
+	position: absolute;
+	top: 90%;
+	left: 88%;
+	width: 8%;
+	height: 7%;
+	background-image: url(./images/email/trash_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.Sync {
+	position: absolute;
+	top: 1%;
+	left: 78%;
+	width: 9%;
+	height: 5%;
+	background-image: url(./images/email/refresh_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#syncDiv {
+	position: absolute;
+	top: 91%;
+	left: 42%;
+	height: 4%;
+	font-size: 300%;
+	font-weight:bold;
+	color: white;
+	padding :1%;
+	border: 1px solid white;
+}
+
+#searchMail {
+	position: absolute;
+	top: 1.2%;
+	left: 42%;
+	width: 35%;
+	height: 5%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-image: url(./images/email/search_box_bg.png);
+}
+
+#searchMailText {
+	position: absolute;
+	top: 1%;
+	left: 43.4%;
+	width: 28%;
+	height: 3%;
+	background: transparent;
+	border: 0;
+	border: none ! important;
+	box-shadow: none ! important;
+	outline: none ! important;
+	background-color: transparent;
+}
+
+#searchMailButton {
+	position: absolute;
+	top: 1.5%;
+	left: 71%;
+	width: 5%;
+	height: 2.1%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-image: url(./images/email/search_button.png);
+}
+
+.InboxButton {
+	position: absolute;
+	top: 1%;
+	left: 10%;
+	width: 9%;
+	height: 5%;
+	background-image: url(./images/email/mail_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.ComposeButton {
+	position: absolute;
+	top: 7%;
+	left: 0%;
+	width: 8%;
+	height: 7%;
+	background-image: url(./images/email/new_compose_message_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.CheckBoxSelectAll {
+	position: absolute;
+	top: 8.5%;
+	left: 89%;
+	width: 3%;
+	height: 3%;
+}
+
+.InboxLabelCtrl {
+	position: absolute;
+	font-weight: bold;
+	font-size: 120%;
+	left: 10%;
+	top: 9%;
+	color: white;
+}
+
+.InboxHandler {
+	position: absolute;
+	top: 13%;
+	left: 9%;
+	background-color: white;
+	width: 88%;
+	height: 76%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.MsgItemBody {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 10%;
+	border-style: solid;
+	border: 1px solid grey;
+	border-style: hidden hidden solid hidden;
+}
+
+.MsgItemBodyIsRead {
+	position: absolute;
+	top: 16%;
+	left: 3%;
+	width: 3%;
+	height: 23%;
+	background-image: url(./images/email/readableIcon.png);
+	background-size: 100% 100%;
+}
+
+.MsgItemBodySubject {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	width: 77%;
+	height: 40%;
+	font-size: 150%;
+	font-weight: bold;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.MsgItemBodyBody {
+	position: absolute;
+	top: 50%;
+	left: 10%;
+	width: 80%;
+	height: 45%;
+	font-size: 120%;
+	overflow: hidden;
+	text-wrap: none;
+}
+
+.MessageItemBodyCheckBox {
+	position: absolute;
+	top: 32%;
+	left: 80%;
+	width: 25%;
+	height: 25%;
+}
+
+.ReplyAll {
+	position: absolute;
+	top: 8%;
+	left: 57%;
+	width: 6%;
+	height: 4%;
+	background-image: url(./images/email/reply_all_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.Reply {
+	position: absolute;
+	top: 8%;
+	left: 65%;
+	width: 6%;
+	height: 4%;
+	background-image: url(./images/email/reply_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.Forward {
+	position: absolute;
+	top: 8%;
+	left: 72%;
+	width: 6%;
+	height: 4%;
+	background-image: url(./images/email/forward_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.Next {
+	position: absolute;
+	top: 8%;
+	left: 92%;
+	width: 6%;
+	height: 4%;
+	background-image: url(./images/email/next_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.MailHandler {
+	position: absolute;
+	top: 14%;
+	left: 10%;
+	background-color: white;
+	width: 86%;
+	height: 75%;
+}
+
+.ViewMailLabelCtrl {
+	position: absolute;
+	font-weight: bold;
+	font-size: 8px;
+	left: 10%;
+	top: 9%;
+	color: white;
+}
+
+.MailCtrl {
+	position: absolute;
+	font-size: 150%;
+	font-weight: bold;
+	white-space: nowrap;
+	line-height: 150%;
+	overflow: hidden;
+	width: 95%;
+}
+
+.MailCtrlValue {
+	position: absolute;
+	font-size: 100%;
+	left: 2%;
+}
+
+.MailBodyValue {
+	position: absolute;
+	font-size: 100%;
+	left: 2%;
+	top: 25%;
+	height: 45%;
+	width: 95%;
+	overflow-y: visible;
+	overflow-x: visible;
+}
+
+.MailAttachmentDiv {
+	position: absolute;
+	top: 72%;
+	left: 2%;
+	width: 25%;
+	height: 15%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#attachments {
+	position: absolute;
+	top: 22%;
+	left: 2%;
+	width: 3%;
+	height: 5%;
+	background-image: url(./images/email/paperclip_attachment_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	font-size: 250%;
+	color: #3ca107;
+}
+
+#structureMail {
+	position: absolute;
+	top: 15%;
+	left: 10%;
+	width: 85%;
+	height: 20%;
+	background-image: url(./images/email/add_account_box_bg.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.attachName {
+	font-size: 60%;
+}
+
+.attachDivClass {
+	position: absolute;
+	width: 25%;
+	height: 77%;
+	overflow: hidden;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#bodyDetails {
+	position: absolute;
+	top: 36%;
+	left: 10%;
+	width: 85%;
+	height: 40%;
+	resize: none;
+	font-size: 200%;
+	border: none ! important;
+	box-shadow: none ! important;
+	outline: none ! important;
+	background-color: transparent;
+}
+
+#bodyswer {
+	position: absolute;
+	top: 36%;
+	left: 10%;
+	width: 85%;
+	height: 40%;
+	resize: none;
+	font-size: 200%;
+	border: 1px solid black;
+	background-color: white;
+	z-index: 10;
+}
+
+#composeAttach {
+	position: absolute;
+	top: 78%;
+	left: 10%;
+	width: 85%;
+	height: 12%;
+	resize: none;
+	font-size: 200%;
+	overflow-y: auto;
+}
+
+#viewAttachment {
+	position: absolute;
+	top: 85%;
+	left: 0%;
+	width: 100%;
+	height: 18%;
+	resize: none;
+	font-size: 200%;
+	overflow-y: auto;
+}
+
+.inbox {
+	position: absolute;
+	top: 5%;
+	left: 5%;
+}
+
+.name {
+	position: absolute;
+	top: 5%;
+	left: 15%;
+}
+
+.sendDiv {
+	position: absolute;
+	top: 7%;
+	left: 80%;
+	width: 5%;
+	height: 5%;
+	background-image: url(./images/email/send_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.draftIcon {
+	position: absolute;
+	top: 15%;
+	left: 1%;
+	width: 6%;
+	height: 5%;
+	background-image: url(./images/email/drafts_icon.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	font-size: 250%;
+	text-align: center;
+	vertical-align: bottom;
+	color: #3ca107;
+}
+
+#DraftDiv {
+	position: absolute;
+	top: 13%;
+	left: 9%;
+	background-color: white;
+	width: 88%;
+	height: 66%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#editContinue {
+	position: absolute;
+	top: 80%;
+	left: 15%;
+	background-image: url(./images/email/edit_continue.png);
+	background-size: 100% 100%;
+	width: 35%;
+	height: 4%;
+}
+
+#cancel {
+	position: absolute;
+	top: 80%;
+	left: 55%;
+	background-image: url(./images/email/cancel.png);
+	background-size: 100% 100%;
+	width: 25%;
+	height: 4%;
+}
+/**** Delete Account confirmation CSS ******/
+.deleteAccountPop {
+	position: absolute;
+	top: 20%;
+	left: 10%;
+	width: 80%;
+	height: 30%;
+	background-image: url(./images/email/alert_screen_bg.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.DeleteAccountLabelCtrl {
+	position: absolute;
+	font-weight: bold;
+	font-size: 150%;
+	top: 10%;
+	left: 10%;
+	color: #3ca107;
+}
+
+.deleteYesDiv {
+	position: absolute;
+	top: 60%;
+	left: 20%;
+	width: 15%;
+	height: 12%;
+	background-image: url(./images/email/yesButton.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.deleteNoDiv {
+	position: absolute;
+	top: 60%;
+	left: 60%;
+	width: 15%;
+	height: 12%;
+	background-image: url(./images/email/NoButton.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+/****Attachment Screen CSS********/
+#fileAttachmentHeader {
+	top: 8%;
+	left: 30%;
+	width: 40%;
+	height: 4%;
+	background-image: url('./images/email/SelectFileToAttach.png');
+	background-size: 100% 100%;
+}
+
+.attachFileScreenImg {
+	background-image: url('./images/email/chooseAccountScreen.png');
+	background-size: 100% 100%;
+	height: 100%;
+	width: 100%;
+}
+
+.attachFile {
+	position: absolute;
+	top: 20%;
+	left: 10%;
+	width: 80%;
+	height: 50%;
+	background-image: url(./images/email/attachInnerPop.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	overflow-x: auto;
+}
+
+#attachFileButton {
+	position: absolute;
+	top: 75%;
+	left: 20%;
+	width: 20%;
+	height: 5%;
+	background-image: url(./images/email/AttachFile.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#cancelButton {
+	position: absolute;
+	top: 75%;
+	left: 55%;
+	width: 20%;
+	height: 5%;
+	background-image: url(./images/email/cancel.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
