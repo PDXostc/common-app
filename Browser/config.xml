@@ -6,7 +6,9 @@
     <content src="index.html"/>
     <icon src="icon.png"/>
     <name>Browser</name>
-    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+	<tizen:allow-navigation>*</tizen:allow-navigation>
+	<access origin="*" subdomains="true"></access>
+	<tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
     <tizen:privilege name="http://tizen.org/privilege/content.read"/>
