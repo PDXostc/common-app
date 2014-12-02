@@ -215,7 +215,7 @@ JLRCameras = {
             {
             case USER_EVENT.SET_LIVE:
             if(uiElement.state != CAMERA_UI_STATE.VIDEO_LIVE) {
-                  var err = requestVideoStream(uiElement);
+                  var err=requestVideoStream(uiElement);
                   if(err != -1) {
                       setUiElementState(uiElement, CAMERA_UI_STATE.WAITING);
                       setButtonEventHandlers(uiElement, CAMERA_UI_STATE.WAITING);
@@ -269,7 +269,7 @@ JLRCameras = {
                     setButtonImgs(uiElement,"video_disabled");
                 } else if(uiElement.state == CAMERA_UI_STATE.READY_FOR_REQUEST_CONNECTION){
                 if (cameraArray[uiElement.cameraNumber].active == true){
-                    var err = requestVideoStream(uiElement);
+                    var err=requestVideoStream(uiElement);
                     if(err != -1) {
                         setUiElementState(uiElement, CAMERA_UI_STATE.WAITING);
                         setButtonEventHandlers(uiElement, CAMERA_UI_STATE.WAITING);
@@ -345,9 +345,17 @@ JLRCameras = {
             }
             $('.swipeContainer').css('left', camerasViewport[typeName]);
         }
-        
+
+        function is_screenshot_video(cameraNum) {
+            return JLRCameras.api.getCameraStreamType(cameraNum);
+       	}
+	 
         function getVideoObj(cameraNum) {
-            return document.getElementById('itemVideo' + cameraArray[cameraNum].name);
+            var is_sv=is_screenshot_video(cameraNum);
+            var prefix=is_sv?'itemVideo_img':'itemVideo';
+            var vo=document.getElementById(prefix + cameraArray[cameraNum].name);
+            vo.is_screenshot_video=is_sv;
+            return vo;
         }
         
         function getMessageObj(cameraNum) {
@@ -361,6 +369,7 @@ JLRCameras = {
          * @param status {number} status from Cameras Server states events list.
          */
         function cameraServerEventHandler(cameraNum, status) {
+            console.log("cameraServerEventHandler called");
             var uiElement = getTargetElement(cameraNum);
             var isStateChanged = onReceivedServerEvent(uiElement, status);
             if (isStateChanged){
@@ -375,6 +384,7 @@ JLRCameras = {
          * @param status {number} status from Camera signal status events list.
          */
         function cameraSignalEventHandler(cameraNum, status) {
+            console.log("cameraSignalEventHandler called");
             var uiElement = getTargetElement(cameraNum);
             var isStateChanged = onReceivedSignalEvent(uiElement, status);
             if (isStateChanged){
@@ -400,12 +410,24 @@ JLRCameras = {
          * @method requestVideoStream
          * @param uiElement {object} UI element assigned to camera feed.
          */
+        var screenshot_timeout=0;
+
         function requestVideoStream(uiElement) {
             var videoObj = getVideoObj(uiElement.cameraNumber);
             videoObj.portNumber = randomPortNumber();
             JLRCameras.api.enableCamera(uiElement.cameraNumber,videoObj.portNumber);
+
+            if(videoObj.is_screenshot_video)
+            {
+                function refreshImage(){
+                    videoObj.src='../tmp/' + videoObj.cameraNumber + '.jpg?' + Math.random();
+                    //console.log("img src: " + videoObj.src);
+                    screenshot_timeout=setTimeout(refreshImage, 100);
+                }
+                refreshImage();
+            }
         }
-        
+
         /** 
          * This method is used to request disable video stream for camera UI element
          * @method requestVideoDisable
@@ -414,6 +436,10 @@ JLRCameras = {
         function requestVideoDisable(cameraNum) {
             var uiElement = getTargetElement(cameraNum);
             JLRCameras.api.disableCamera(uiElement.cameraNumber);
+            var videoObj=getVideoObj(uiElement.cameraNumber);
+
+	        if(videoObj.is_screenshot_video)
+	    	    clearTimeout(screenshot_timeout);
         }
 
         /** 
@@ -424,9 +450,10 @@ JLRCameras = {
         function setVideoOff(cameraNum) {
             var videoObj = getVideoObj(cameraNum);
             var messageObj = getMessageObj(cameraNum);
-             if (videoObj != undefined) {
+            if (videoObj != undefined) {
                 videoObj.setAttribute('src', '');
-                videoObj.removeAttribute('autoplay');
+                if(!videoObj.is_screenshot_video) 
+                    videoObj.removeAttribute('autoplay');
                 messageObj.innerText = "VIEW DISABLED!";
             }
         }
@@ -439,10 +466,12 @@ JLRCameras = {
         function setVideoOn(cameraNum) {
             var videoObj = getVideoObj(cameraNum);
             var messageObj = getMessageObj(cameraNum);
-            if (videoObj != undefined ) {
-                videoObj.setAttribute('autoplay', true);
-                videoObj.setAttribute('src', 'http://localhost:' + videoObj.portNumber);
-                videoObj.setAttribute('autoplay', true);
+            if (videoObj != undefined) {
+                if(!videoObj.is_screenshot_video)
+                {
+                    videoObj.setAttribute('autoplay', true);
+                    videoObj.setAttribute('src', 'http://localhost:' + videoObj.portNumber);
+                }
                 messageObj.innerText = "";
             }
         }
@@ -457,9 +486,10 @@ JLRCameras = {
             var messageObj = getMessageObj(cameraNum);
              if (videoObj != undefined) {
                 videoObj.setAttribute('src', '');
-                videoObj.removeAttribute('autoplay');
-                messageObj.innerText = "WARNING! NO INPUT DETECTED!";
+		        if(!videoObj.is_screenshot_video)
+                	videoObj.removeAttribute('autoplay');
                 }
+                messageObj.innerText = "WARNING! NO INPUT DETECTED!";
             }
 
         /** 
@@ -602,6 +632,7 @@ JLRCameras = {
             for (var i = 0; i < arg.array.length; i++) {
                 var listItem = document.createElement('div');
                 listItem.index = i;
+
                 listItem.cameraType = arg.array[i]['camera-type'];
                 listItem.cameraNumber = arg.array[i]['camera-number'];
                 listItem.cameraName = listItem.cameraType + listItem.index;
@@ -626,12 +657,15 @@ JLRCameras = {
                 var videoSmall = document.createElement('video');
                 videoSmall.setAttribute('id', 'itemVideo' + listItem.cameraType + i);
                 videoSmall.setAttribute('class', 'itemVideo');
-                videoSmall.setAttribute('preload', 'none');
-                // videoSmall.setAttribute('controls', 'true');
-                videoSmall.setAttribute('muted', true);
-    
-                videoSmall.portNumber = randomPortNumber();
+		        videoSmall.setAttribute('preload', 'none');
+		        // videoSmall.setAttribute('controls', 'true');
+		        videoSmall.setAttribute('muted', true);
                 videoSmall.cameraNumber = arg.array[i]['camera-number'];
+
+                var videoSmall_img = document.createElement('img');
+                videoSmall_img.setAttribute('id', 'itemVideo_img' + listItem.cameraType + i);
+                videoSmall_img.setAttribute('class', 'itemVideo');
+                videoSmall_img.cameraNumber = arg.array[i]['camera-number'];
     
                 var divControlsSmall = document.createElement('div');
                 divControlsSmall.setAttribute('class', 'divControlsSmall');
@@ -657,6 +691,7 @@ JLRCameras = {
                 divControl4.setAttribute('class', 'controlTitle inputLabelBg');
     
                 liDiv.appendChild(videoSmall);
+		liDiv.appendChild(videoSmall_img);
     
                 divControls.appendChild(divControl1);
                 divControls.appendChild(divEmpty1);
@@ -950,6 +985,9 @@ JLRCameras.api = {
      */
     getCameraStatus : function(cameraID) {
         return tizen.cameras.getCameraStatus(cameraID);
+    },
+
+    getCameraStreamType : function(cameraID) {
+	return tizen.cameras.getCameraStreamType(cameraID);
     }
-    
 }

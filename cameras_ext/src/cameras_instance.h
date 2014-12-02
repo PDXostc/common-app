@@ -34,10 +34,10 @@ private:
 	void Subscribe(const picojson::value& msg);
 	int  StartCamerasStreamingServer(const picojson::value& msg);
 	void StopCamerasStreamingServer(const picojson::value& msg);	
-	int  GetCameraStatus(const picojson::value& msg);
+	int  GetCameraProperty(const char *method_name,const picojson::value& msg);
 
 	JLRCameras mCams;
-	picojson::value::object mError;
+	bool mError;
 };
 
 #endif

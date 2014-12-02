@@ -47,6 +47,7 @@ make install DESTDIR=%{buildroot}
 %config
 %{_sysconfdir}/jlr_cmss/config.xml
 %{_datarootdir}/dbus-1/system-services/com.jlr.JLRCameras.service
+%{_prefix}/lib/systemd/system/jlr_cmss.service
 
 %changelog
 * Mon Apr 07 2014 Alexander Nosov <Alexander.Nosov@symphonyteleca.com> - 1.0.2

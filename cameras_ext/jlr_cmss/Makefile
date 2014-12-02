@@ -18,3 +18,4 @@ install:
 	install -m 755 ${MODULE} -D ${DESTDIR}/sbin/${MODULE}
 	install -m 644 config/config.xml -D ${DESTDIR}/etc/${MODULE}/config.xml
 	install -m 644 service/com.jlr.JLRCameras.service -D ${DESTDIR}/usr/share/dbus-1/system-services/com.jlr.JLRCameras.service
+	install -m 644 service/jlr_cmss.service -D ${DESTDIR}/usr/lib/systemd/system/jlr_cmss.service

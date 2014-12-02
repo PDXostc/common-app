@@ -36,7 +36,7 @@
   * @module BoilerplateApplication
   * @main BoilerplateApplication
  **/
-
+var bootstrap;
 /**
  * Reference to instance of  class object this class is inherited from dataModel {@link CarIndicator}
 @property carInd {Object}
@@ -64,25 +64,19 @@ var carIndicatorSignals =  [
  */
 
 var init = function () {
-    var bootstrap = new Bootstrap(function (status) {
-        $("#topBarIcons").topBarIconsPlugin('init', 'news');
-	$("#clockElement").ClockPlugin('init', 5);
+     "use strict";
+     bootstrap = new Bootstrap(function (status) {
+	$("#clockElement").ClockPlugin('init', 60);
 	$("#clockElement").ClockPlugin('startTimer');
+
+        $("#topBarIcons").topBarIconsPlugin('init');
 	$('#bottomPanel').bottomPanel('init');
-
-	if (tizen.speech) {
-	    setupSpeechRecognition();
-	} else {
-	    console.log("Store: Speech Recognition not running, voice control will be unavailable");
-	}
-		
-
-	bootstrap.themeEngine.addStatusListener(function (eData) {
-		// setThemeImageColor();
-	});
+	
+	window.setTimeout(function() {
+		JLRCameras.startApp();
+	}, 2000);
     });
-    JLRCameras.startApp();
-};
+}
 
 /**
  * Calls initialization fuction after document is loaded.

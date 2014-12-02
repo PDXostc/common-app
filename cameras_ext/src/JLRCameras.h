@@ -59,11 +59,7 @@ public:
 	 */
 	bool stopCameraStreamingServer(int cameraID);
 
-	/**
-	 * Exposes com.jlr.JLRCameras.CamerasInterface.getCameraStatus D-Bus interface 
-         * of JLR Camera Media Streaming Server to the Web Runtime.
-	 */
-	int getCameraStatus(int cameraID);
+	int getCameraProperty(const char *method_name, int cameraID);
 };
 
 #endif // JLRCAMERAS_H

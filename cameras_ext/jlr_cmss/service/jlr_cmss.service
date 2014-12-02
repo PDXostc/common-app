@@ -1,0 +1,8 @@
+[Unit]
+Description=jlr_cmsss for JLRCameras app
+
+[Service]
+Type=dbus
+BusName=com.jlr.JLRCameras
+ExecStart=/usr/sbin/jlr_cmss
+SmackExecLabel=User
