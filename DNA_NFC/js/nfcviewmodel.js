@@ -25,16 +25,16 @@ var NFCViewModel = function() {
     navigator.nfc.addEventListener('tagfound', function(event) {
         console.log("Tag found");
         if (!!event.tag) {
-            self.tag(event.tag);
+            self.setTag(event.tag);
             self.readNFCData();
         }
     } );
 
     navigator.nfc.addEventListener('taglost', function (event) {
         console.log("Tag lost");
-        self.tag(NULL);
-        if (!! self.ndefRecordText()) {
-            self.ndefRecordText().reset();
+        self.tag(null);
+        if (!! self.RecordText()) {
+            self.SetRecordText(null);
         }
         hideLoadingSpinner();
     });
@@ -154,18 +154,38 @@ var NFCViewModel = function() {
  * @type ko.observable
  * @default null
  */
-NFCViewModel.prototype.tag = ko.observable(null);
+
+
+var _tag = null;
+
+NFCViewModel.prototype.tag = function() {
+    return _tag;
+}
+
+NFCViewModel.prototype.setTag = function(newTag) {
+    _tag = newTag;
+}
+
 /**
  * Represents NDEF text record of attached NFC tag.
  *
- * @property ndefRecordText
+ * @property RecordText
  * @public
  * @type ko.observable
  * @default NDEFRecordTextViewModel
  */
-NFCViewModel.prototype.ndefRecordText = ko.observable(new NDEFRecordTextViewModel());
+var _recordView = new NDEFRecordTextViewModel();
 
-NFCViewModel.prototype.powered = ko.observable(false);
+NFCViewModel.prototype.RecordView = function () {
+    return _recordView;
+}
+
+var _powered = false;
+
+NFCViewModel.prototype.powered = function() {
+    return _powered;
+}
+
 
 /**
  * Sets the power of an NFC adapter to either a on state or a off state.
@@ -224,7 +244,7 @@ NFCViewModel.prototype.setPowered = function(state, successCallback, errorCallba
 
 
 /**
- * Reads the NDEF data from the detected/attached NFC tag and sets it to {{#crossLink "NFCApplication.NFCViewModel/ndefRecordText:property"}}{{/crossLink}} property.
+ * Reads the NDEF data from the detected/attached NFC tag and sets it to {{#crossLink "NFCApplication.NFCViewModel/ndefRecordView:property"}}{{/crossLink}} property.
  *
  * @method readNDEF
  * @param readCallback {Function} The method invoked in case of successfully reading the NDEF Data.
@@ -236,12 +256,8 @@ NFCViewModel.prototype.readNDEF = function(readCallback, errorCallback) {
     var self = this;
     var error = null;
 
-    if (!!self.ndefRecordText()) {
-        self.ndefRecordText().reset();
-    }
-
-    if (!self.tag()) {
-        self.ndefRecordText().reset();
+    if (! self.tag()) {
+        self.SetRecordView().reset;
         return ;
     }
 
@@ -250,7 +266,7 @@ NFCViewModel.prototype.readNDEF = function(readCallback, errorCallback) {
             function(ndefMessage) {
                 console.log("NFC tag.readNDEF succeed: ", ndefMessage);
                 
-                self.ndefRecordText().set(ndefMessage).then(
+                self.RecordView().set(ndefMessage).then(
                     function(message) {
                         console.log("NFC tag is text, message: ", message);
                         if (!! readCallback) {
@@ -280,7 +296,7 @@ NFCViewModel.prototype.readNDEF = function(readCallback, errorCallback) {
 };
 
 /**
- * Writes the NDEF record text {{#crossLink "NFCApplication.NFCViewModel/ndefRecordText:property"}}{{/crossLink}} to the detected/attached NFC tag.
+ * Writes the NDEF record text {{#crossLink "NFCApplication.NFCViewModel/ndefRecordView:property"}}{{/crossLink}} to the detected/attached NFC tag.
  *
  * @method writeNDEF
  * @param writeCallback {Function} The method invoked in case of successfully writing the NDEF Data.
@@ -295,8 +311,8 @@ NFCViewModel.prototype.writeNDEF = function(writeCallback, errorCallback) {
     if (!self.tag()) {
         error = "NFC tag is not detected/attached.";
     }
-    if (!self.ndefRecordText()) {
-        error = "NFC NDEFRecordText is undefined.";
+    if (!self.RecordView()) {
+        error = "NFC NDEFRecordView is undefined.";
     }
     if (typeof (self.tag().writeNDEF) === 'undefined') {
         error = "NFC tag.writeNDEF is not available.";
@@ -311,11 +327,11 @@ NFCViewModel.prototype.writeNDEF = function(writeCallback, errorCallback) {
     }
     
     try {
-        var textRecord = self.ndefRecordText().get();
+        var textRecord = self.RecordView().get();
 /* From the demo app:
         var tag = self.tag();
 
-        var text = new NDEFRecordText("hello world", "en-US", "UTF-8");
+        var text = new NDEFRecordView("hello world", "en-US", "UTF-8");
         tag.writeNDEF(new NDEFMessage([text])).then(function(){ console.log("writeTextNDEF Succeeded"); },
                                                     function(){ console.log("writeTextNDEF Failed"); });
 

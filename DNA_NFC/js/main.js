@@ -52,7 +52,6 @@ function init() {
 	$('#bottomPanel').bottomPanel('init',false);
 
 	nfc = new NFCViewModel();
-	ko.applyBindings(nfc, document.getElementById("nfcBody"));
 	$(".nfcBody").show();
 }
 

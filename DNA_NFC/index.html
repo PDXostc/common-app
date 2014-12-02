@@ -8,8 +8,8 @@
 
 <script type="text/javascript"
     src="./css/car/components/jQuery/jquery-1.8.2.js"></script>
-<script type="text/javascript"
-    src="./css/car/components/knockout/knockout.js"></script>
+<!--<script type="text/javascript"
+    src="./css/car/components/knockout/knockout.js"></script> -->
 <script type="text/javascript"
     src="./css/car/components/jsViews/jsrender.js"></script>
 <script type="text/javascript"
@@ -50,6 +50,7 @@
 </head>
 
 <body>
+<!--
     <div class="nfcBackground">
         <div id="topBarIcons"></div>
         <div id="clockElement"></div>
@@ -84,12 +85,6 @@
                         data-bind="style: { display: !nfc.tag() ? 'block' : 'none' }"
                         class="nfcPlaceTagText fontSizeLarger fontWeightBold fontColorDimmed">PLEASE,
                         PLACE NFC TAG ON NFC READER.</div>
-<!--
-                    <div
-                        data-bind="style: { display: nfc.tag() ? 'block' : 'none' }"
-                        class="nfcNDEFMessageText fontSizeLarger fontWeightBold fontColorLightRed">NFC
-                        TAG DOES NOT SUPPORT NDEF FORMAT.</div>
--->
                     <div
                         data-bind="style: { display: nfc.tag() ? 'block' : 'none' }"
                         class="nfcWriteDataWrapper">
@@ -122,6 +117,7 @@
 
         <div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>
     </div>
+-->
 </body>
 
 </html>
