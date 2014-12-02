@@ -16,12 +16,18 @@ body{
 	-ms-user-select: none;
 	user-select: none;
 	display: flex;
+    margin: 0px auto;
+	height:1920px !important;
+	width:1080px !important;
+	overflow:hidden;
 } 
 
 body, select, input, textarea {   color: #444; }
 
 html, #viewPort { overflow-y: hidden; }
-
+#nucleotide{
+	display:none;
+}
 #head{
 margin-top:18px;
 }
@@ -193,10 +199,6 @@ margin-top:18px;
 .title h2, .title h4
 {
 	margin:2px 0px;
-}
-
-body {
-    margin: 0px auto;
 }
 
 header h1 {
