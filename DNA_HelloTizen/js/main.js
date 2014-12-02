@@ -114,6 +114,10 @@ function bigClick(item) {
     wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
 }
 
+function toggelModel() {
+	console.log("toggel model");
+	$('#overlay').toggle();
+}
 /**
  * Initialize application components and register button events.
  * 
@@ -123,25 +127,11 @@ function bigClick(item) {
 
 
 var init = function () {
-    var bootstrap = new Bootstrap(function (status) {
-	$("#topBarIcons").topBarIconsPlugin('init', 'news');
-	$("#clockElement").ClockPlugin('init', 5);
-	$("#clockElement").ClockPlugin('startTimer');
-	$('#bottomPanel').bottomPanel('init');
-
-	if (tizen.speech) {
-	    setupSpeechRecognition();
-	} else {
-	    console.log("Store: Speech Recognition not running, voice control will be unavailable");
-	}
-		
-	bootstrap.themeEngine.addStatusListener(function (eData) {
-		// setThemeImageColor();
-	});
-    });
+	console.log("init()");
     $("input[name='add_item_button']").click(addItemClick);
     $("input[name='small_button']").click(smallClick);
     $("input[name='big_button']").click(bigClick);
+    //$("div[id='overlay']").click(toggelModel);
 };
 
 
