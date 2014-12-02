@@ -38,9 +38,9 @@ var entScroll;
 var sportsScroll;
 function loaded() {
     setTimeout(function () {
-        topScroll = new iScroll('topArticleList', { hScrollbar: false, vScrollbar: false });
-        entScroll = new iScroll('entertainArticleList', { hScrollbar: false, vScrollbar: false });
-        sportsScroll = new iScroll('sportsArticleList', { hScrollbar: false, vScrollbar: false });
+        topScroll = new iScroll('#topArticleList', { hScrollbar: false, vScrollbar: false });
+        entScroll = new iScroll('#entertainArticleList', { hScrollbar: false, vScrollbar: false });
+        sportsScroll = new iScroll('#sportsArticleList', { hScrollbar: false, vScrollbar: false });
         }, 1000);
 }
 window.addEventListener('load', loaded, false);
@@ -65,22 +65,22 @@ function BuildItemHTML(itemPhoto,itemTitle,itemDesc){
  * @static
  **/
 var init = function () {
-    var bootstrap = new Bootstrap(function (status) {
-        $("#topBarIcons").topBarIconsPlugin('init', 'news');
-	$("#clockElement").ClockPlugin('init', 5);
-	$("#clockElement").ClockPlugin('startTimer');
-	$('#bottomPanel').bottomPanel('init',false,false);
+    //var bootstrap = new Bootstrap(function (status) {
+        //$("#topBarIcons").topBarIconsPlugin('init', 'news');
+	//$("#clockElement").ClockPlugin('init', 5);
+	//$("#clockElement").ClockPlugin('startTimer');
+	//$('#bottomPanel').bottomPanel('init',false,false);
 
-	if (tizen.speech) {
-	    setupSpeechRecognition();
-	} else {
-	    console.log("Store: Speech Recognition not running, voice control will be unavailable");
-	}
+	//if (tizen.speech) {
+	//    setupSpeechRecognition();
+	//} else {
+	//    console.log("Store: Speech Recognition not running, voice control will be unavailable");
+	//}
 		
-	bootstrap.themeEngine.addStatusListener(function (eData) {
+	//bootstrap.themeEngine.addStatusListener(function (eData) {
 		// setThemeImageColor();
-	});
-    });
+	//});
+    //});
 };
 
 /**
@@ -151,7 +151,9 @@ $(document).ready(function () {
 */
 
     // Top News
+    console.log("get News");
     $.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e8", function(xml) {
+		console.log("got News");
         myHTMLOutput = '';
         myHTMLOutput = '<ul id=\"topArticleListInner\">';
 	$('item',xml).each(function(i) {
@@ -173,7 +175,9 @@ $(document).ready(function () {
     });
 
     // Entertainment
+    console.log("get Entertainment");
     $.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3eb", function(xml) {
+		console.log("got Entertainment");
         myHTMLOutput = '';
         myHTMLOutput = '<ul id=\"entertainArticleListInner\">';
 	$('item',xml).each(function(i) {
@@ -195,7 +199,10 @@ $(document).ready(function () {
     });
 
     // Sports
-    $.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e9", function(xml) {
+    console.log("get Sports");
+    var gotSports = function(xml) {
+		console.log("got Sports");
+		console.log(xml);
         myHTMLOutput = '';
         myHTMLOutput = '<ul id=\"sportsArticleListInner\">';
 	$('item',xml).each(function(i) {
@@ -214,7 +221,10 @@ $(document).ready(function () {
         });
         myHTMLOutput += '</ul>';
         $("#sportsArticleList").append(myHTMLOutput);
-    });
+        showSports();
+    };
+    //$.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e9",gotSports);
+    $.get("./sports.xml",gotSports);
  
 });
 
