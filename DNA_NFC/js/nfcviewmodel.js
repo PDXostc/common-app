@@ -123,10 +123,7 @@ var NFCViewModel = function() {
                 }
             }
         );
-        if ($("#inputNDEFRecordText").length) {
-            $("#inputNDEFRecordText").blur();
-        }
-    };
+   };
 
     /**
      * Calls {{#crossLink "NFCApplication.NFCViewModel/writeNFCData:method"}}{{/crossLink}} method in case the pressed key is enter (keyCode is 13).
@@ -162,8 +159,8 @@ NFCViewModel.prototype.tag = function() {
     return _tag;
 }
 
-NFCViewModel.prototype.setTag = function(newTag) {
-    _tag = newTag;
+NFCViewModel.prototype.haveTag = function() {
+    return _tag != null;
 }
 
 /**
