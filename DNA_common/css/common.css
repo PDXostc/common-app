@@ -1,3 +1,5 @@
+/* Fonts **************************************************/
+
 /* Adobe Source Sans */
 /* SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007 */
 /* http://scripts.sil.org/OFL */
@@ -52,9 +54,13 @@
   font-weight: 900;
 }
 
-* {
-  font-family: SourceSansPro, sans-serif;
+/* Root Elements ******************************************/
+
+html {
+  font-size: 10px;
 }
+
+/* Body */
 
 body {
 	font-family: SourceSansPro, sans-serif;
@@ -65,18 +71,176 @@ body {
 	display: flex;
 }
 
-*:focus {
+/*Typography **********************************************/
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  color: #fe9c00;
+  margin: .5em 0;
+}
+
+h1 {
+  font-size: 7rem;
+}
+
+h2 {
+  font-size: 6rem;
+}
+
+h3 {
+  font-size: 5rem;
+}
+
+h4 {
+  font-size: 4rem;
+}
+
+h5 {
+  font-size: 3.6rem;
+}
+
+h6, label {
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+/* Text */
+
+p {
+  margin-bottom: 1em;
+}
+
+p, ul, li {
+  color: white;
+  font-size: 3rem;
+}
+
+p.large-text {
+  font-size: 4.5rem;
+  font-weight: 300;
+}
+
+/* Anchors */
+
+a {
+  color: inherit;
+}
+
+/* Lists */
+
+ul {
+  font-size: 3rem;
+  list-style-position: inside;
+}
+
+/* Sectioning Content and Div *****************************/
+
+div, 
+nav,
+aside,
+article,
+section {
+  font-size: 3rem;
+}
+
+/* Colors *************************************************/
+
+.orange-lt {
+  color: #ffd38c;
+}
+
+.orange-lt-bg {
+  background-color: #ffd38c;
+}
+
+.orange-viv {
+  color: #fe9c00;
+}
+
+.orange-viv-bg {
+  background-color: #fe9c00;
+}
+
+.blue-lt {
+  color: #b2f0ff;
+}
+
+.blue-lt-bg {
+  background-color: #b2f0ff;
+}
+
+.blue-viv {
+  color: #53b5ce;
+}
+
+.blue-viv-bg {
+  background-color: #53b5ce;
+}
+
+.yellow-lt {
+  color: #ffffb2;
+}
+
+.yellow-lt-bg {
+  background-color: #ffffb2;
+}
+
+.yellow-viv {
+  color: #ffff00;
+}
+
+.yellow-viv-bg {
+  background-color: #ffff00;
+}
+
+.green-lt {
+  color: #cdffb2;
+}
+
+.green-lt-bg {
+  background-color: #cdffb2;
+}
+
+.green-viv {
+  color: #59ff00;
+}
+
+.green-viv-bg {
+  background-color: #59ff00;
+}
+
+.grey {
+  color: #c4c4c4;
+}
+
+.grey-bg {
+  background-color: #c4c4c4;
+}
+
+.white {
+  color: white;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.black {
+  color: black;
+}
+
+.black-bg {
+  background-color: black;
+}
+
+/**********************************************************/
+
+:focus {
 	outline: none;
 }
 
-.oneLineEllipsis {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 1;
-}
 .oneLineEllipsis {
 	overflow: hidden;
 	text-overflow: ellipsis;
