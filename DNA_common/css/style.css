@@ -4,6 +4,8 @@
 @import url("../components/progressBar/progressBar.css");
 @import url("../components/incomingCall/incomingCall.css");
 @import url("../components/boxCaption/boxCaption.css");
+@import url("../components/tabs/tabs.css");
+@import url("../components/settings/css/settings.css");
 @import url("./common.css");
 @import url("./tabs.css");
 @import url("./settings.css");

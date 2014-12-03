@@ -15,8 +15,8 @@ Settings.includeHTMLSucess = function(linkobj) {
    Settings.settingsMenuHTML = Settings.import.getElementById('settingsMenu');
 
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
-   $("body").append(Settings.import.getElementById('settingsTabs'));
    $("body").append(Settings.import.getElementById('settingsPage'));
+   $("body").append(Settings.import.getElementById('settingsTabs'));
    Settings.addUpdateSettingsPage('name','page','clickevent');
    Settings.addUpdateSettingsPage('name','page','clickevent');
 };

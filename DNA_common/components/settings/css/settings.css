@@ -3,10 +3,16 @@
 	color: #fff;
 	font-weight: bold;
 }
+ul.settingElement {
+	text-transform: uppercase;
+	list-style-type: none;
+	border-bottom: 1px solid rgba(178, 240, 255, 1.0);
+	padding-bottom: 50px;	
+}
 .settingsContent .settingElement {
 	padding: 20px 0;
 	border-bottom-style: solid;
-	border-bottom-width: 2px;
+	border-bottom-width: 1px;
 	overflow: hidden;
 	white-space: nowrap;
 	cursor: pointer;
