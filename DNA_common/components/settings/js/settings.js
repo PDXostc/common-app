@@ -13,7 +13,7 @@ Settings.includeHTMLSucess = function(linkobj) {
    Settings.settingsIconHTML = Settings.import.getElementById('settingsIcon');
    Settings.settingsCarotHTML = Settings.import.getElementById('settingsCarot');
    Settings.settingsMenuHTML = Settings.import.getElementById('settingsMenu');
-
+   Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
    $("body").append(Settings.import.getElementById('settingsPage'));
    $("body").append(Settings.import.getElementById('settingsTabs'));
