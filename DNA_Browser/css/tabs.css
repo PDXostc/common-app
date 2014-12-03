@@ -35,7 +35,7 @@
 	height: 16px;
 	background-repeat: no-repeat;
 	background-size: 16px 16px;
-	background-image: url('./images/default.png');
+	background-image: url('../images/default.png');
 }
 
 .tabBar .tab .text { /* max-width: 100%;
@@ -57,7 +57,7 @@
 	width: 42px;
 	height: 42px;
 	border-radius: 21px;
-	background-image: url("car/images/bt_close.png");
+	background-image: url("../images/bt_close.png");
 }
 
 .tabBar .closeTabBtn:active {
