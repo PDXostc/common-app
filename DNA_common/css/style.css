@@ -1,6 +1,6 @@
 @import url("../components/dateTime/dateTime.css");
-@import url("../components/topBar/topBar.css");
-@import url("../components/bottomBar/bottomBar.css");
+@import url("../components/topBar/css/topBar.css");
+@import url("../components/bottomBar/css/bottomBar.css");
 @import url("../components/progressBar/progressBar.css");
 @import url("../components/incomingCall/incomingCall.css");
 @import url("../components/boxCaption/boxCaption.css");
