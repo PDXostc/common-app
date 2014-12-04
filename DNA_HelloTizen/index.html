@@ -15,6 +15,7 @@
 
 <link rel="stylesheet" href="./css/dna-hello-tizen.css"/>
 <link rel="stylesheet" href="./DNA_common/css/style.css"/>
+<link rel="stylesheet" href="./css/style.css"/>
 <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
 <script type="text/javascript" src="./DNA_common/js/init.js"></script>
 
@@ -49,10 +50,6 @@
 	</div>
 		
 	<form name="add_item_form" class="input_form boxShadowI1Lt bgColorNormal">
-	<div class="title borderLtBlue">
-		<input type="button" value="Small" class="button right" name="small_button">
-		<input type="button" value="Big" class="button right" name="big_button">
-	</div>
 
 		<!--input information -->		 
 		<label>Title</label>
@@ -80,7 +77,12 @@
 				</template>
 			</tbody>
 		</table>	
-	</div>			
+	</div>	
+	
+	<!-- centered button sample	-->	
+	<div class="buttonsArea" onclick="$('#overlay').toggle();">
+		<div id="bluetoothRefreshButton" class="fontSizeMedium fontWeightBold lgBtnRnd">Model</div>
+	</div>		
 
 	<!-- Sample form, remove commenting to display -->		
 	<form name="" class="boxShadowI2Lt bgColorNormalTransparent">
@@ -91,18 +93,22 @@
 	<form class="form_narrow bgColorDark boxShadowI4Lt">
 
 		<div class="labelBox">
-			<div class="text fontSizeLarge"><strong>PASSWORD</strong></div>
-		<!--	<div class="text fontSizeLarge fontWeightBold ">Some ID</div> -->
+			<div class="text fontSizeLarge fontWeightBold ">PASSWORD</div>
+			<div class="text fontSizeLarge fontWeightBold ">User</div>
 		</div>
 
-		<div class="inputNumberBox">
-			<input class="inputNumber fontSizeLarge bgColorNormal box-shadow-inset-5 font-white" type="password">
-<button type="button" class="button deleteButton box-shadow-inset-7 borderNormal font-white">Delete</button>
-		</div>
 		<!-- <div class="inputNumberBox">
+			<input class="inputNumber fontSizeLarge bgColorNormal box-shadow-inset-5 font-white" type="password">
+          <button type="button" class="button deleteButton box-shadow-inset-7 borderNormal font-white">Delete</button>
+		</div>-->
+		<div class="inputNumberBox">
 			<input class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow4Std" type="text">
 			<div class="button deleteButton boxShadowI3Std fontNormal borderNormal">Delete</div>
-		</div> -->
+		</div>
+		<div class="inputNumberBox">
+			<input class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow4Std" type="password">
+			<div class="button deleteButton boxShadowI3Std fontNormal borderNormal">Delete</div>
+		</div>
 		<div >
 			<input class="submit" type="button" value="submit">
 		</div>
@@ -129,7 +135,7 @@
 
 <!-- END HTML ELEMENTS -->
 
-<div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>
+<div id="bottomBar"></div>
 
 </body>
 
