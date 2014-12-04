@@ -5,6 +5,10 @@ Settings.TemplateHTML = "DNA_common/components/settings/settings.html";
 
 Settings.addUpdateSettingsPage = function(name,page,onclick) {
 	$("#settingsPageList").append(Settings.settingsPageItemHTML);
+	var item = document.querySelector('#settingsPageList li:nth-last-child(1)');
+	item.innerText=name+' '+page;
+	item.onclick=onclick;
+	console.log(item);
 }
 
 Settings.includeHTMLSucess = function(linkobj) {
@@ -15,16 +19,17 @@ Settings.includeHTMLSucess = function(linkobj) {
    Settings.settingsMenuHTML = Settings.import.getElementById('settingsMenu');
    Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
-   $("body").append(Settings.import.getElementById('settingsTabs'));
    $("body").append(Settings.import.getElementById('settingsPage'));
-   Settings.addUpdateSettingsPage('name','page','clickevent');
+   $("#settingsPage").append(Settings.import.getElementById('WifiPage'));
+   Settings.addUpdateSettingsPage('name','page',function(){ console.log('page click();');$('#WifiPage').toggle();});
    Settings.addUpdateSettingsPage('name','page','clickevent');
    Settings.pageUpdate();
 };
 		
 Settings.pageUpdate = function() {
+	console.log("pageUpdate()");
 	if (!$('#settingsIcon').length) {
-		setTimeout(Settings.pageUpdate(),1000)
+		setTimeout(Settings.pageUpdate,1000);
 	}
 	else {
 		$('#settingsIcon').replaceWith(Settings.settingsIconHTML);
