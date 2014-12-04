@@ -76,6 +76,9 @@ NDEFRecordTextViewModel.prototype.SetEncoding = function(newE) {
  * Return a NDFEFRecord that can be written back to the tag.
  */
 NDEFRecordTextViewModel.prototype.get = function() {
+    "use strict";
+    self = this;
+
     var ndefTextRecord = new NDEFRecordText(encodeURIComponent(self.text()), 
                                             self.LanguageCode(), 
                                             self.Encoding());

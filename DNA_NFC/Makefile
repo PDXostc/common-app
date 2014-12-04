@@ -1,42 +1,37 @@
 PROJECT = DNA_NFC
-INSTALL_FILES = images js icon.png index.html
+APPNAME = NFC
 WRT_FILES = DNA_common css icon.png index.html setup config.xml js manifest.json images
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
-
-SEND := ~/send
 
 ifndef TIZEN_IP
 TIZEN_IP=TizenNuc
 endif
 
-wgtPkg: clean
-	cp -rf ../DNA_common .
-	zip -r $(PROJECT).wgt $(WRT_FILES)
-	
-config:
-	scp setup/weston.ini root@$(TIZEN_IP):/etc/xdg/weston/
+wgtPkg: clean common $(PROJECT).wgt
 
-$(PROJECT).wgt : dev
-
-wgt:
-	zip -r $(PROJECT).wgt $(WRT_FILES)
+wgt: $(PROJECT).wgt
 
 run: install
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'NFC' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
+	@echo "================ Run ======================="
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e $(APPNAME) | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
 
 install: deploy
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'NFC' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/DNA_NFC.wgt"
-
-$(PROJECT).wgt : wgt
+	@echo "================ Uninstall ================="
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e $(APPNAME) | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
+	@echo "================ Install ==================="
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i $(PROJECT).wgt"
 
 deploy: wgtPkg
-	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
+	scp $(PROJECT).wgt app@$(TIZEN_IP):
 
-all:
-	@echo "Nothing to build"
+common: ../DNA_common
+	cp -rf ../DNA_common .
 
+$(PROJECT).wgt : 
+	zip -r $(PROJECT).wgt $(WRT_FILES)
+
+all: wgt
 
 clean:
 	-rm $(PROJECT).wgt

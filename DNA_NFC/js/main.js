@@ -42,25 +42,31 @@ var nfc = null;
  * @method init
  * @static
  */
-function init() {
+function nfc_init() {
 	"use strict";
+
 	console.log("NFC application init() called");
 
-	$("#topBarIcons").topBarIconsPlugin('init');
-	$("#clockElement").ClockPlugin('init', 5);
-	$("#clockElement").ClockPlugin('startTimer');
-	$('#bottomPanel').bottomPanel('init',false);
+	//$("#topBarIcons").topBarIconsPlugin('init');
+	//$("#clockElement").ClockPlugin('init', 5);
+	//$("#clockElement").ClockPlugin('startTimer');
+	//$('#bottomPanel').bottomPanel('init',false);
 
 	nfc = new NFCViewModel();
-	$(".nfcBody").show();
+	//$(".nfcBody").show();
 }
 
-$(document).ready(function() {
-	"use strict";
+function writeData() {
+    nfc.writeNFCData();
+}
 
-	var bootstrap = new Bootstrap(function(status) {
-		setTimeout(function() {
-			init();
-		}, 0);
-	});
+//$(function() {
+$(document).ready(function() {
+    "use strict";
+ 
+	console.log("NFC application startup");
+
+	nfc_init();
+
+    $('#writeDataButton').click(writeData)
 });

@@ -18,14 +18,25 @@
  * @class NFCViewModel
  * @constructor
  */
+
+var _nfcTag = null;
+
 var NFCViewModel = function() {
     "use strict";
     var self = this;
 
+    $('#msgAddTag').show();
+    $('#msgTagPresent').hide();
+    $('#nfcText').val("");
+
     navigator.nfc.addEventListener('tagfound', function(event) {
-        console.log("Tag found");
+        console.log("Tag found:", event);
+       
+        $('#msgAddTag').hide();
+        $('#msgTagPresent').show();
+
         if (!!event.tag) {
-            self.setTag(event.tag);
+            _nfcTag = event.tag;
             self.readNFCData();
         }
     } );
@@ -33,8 +44,12 @@ var NFCViewModel = function() {
     navigator.nfc.addEventListener('taglost', function (event) {
         console.log("Tag lost");
         self.tag(null);
+        $('#nfcText').val("");
+        $('#msgAddTag').show();
+        $('#msgTagPresent').hide();
+
         if (!! self.RecordText()) {
-            self.SetRecordText(null);
+            self.RecordText().reset();
         }
         hideLoadingSpinner();
     });
@@ -89,6 +104,7 @@ var NFCViewModel = function() {
         self.readNDEF(
             function() {
                 hideLoadingSpinner("READING");
+                $('#nfcText').val(self.RecordView().text());
             }, 
             function(error) {
                 hideLoadingSpinner("READING");
@@ -112,6 +128,8 @@ var NFCViewModel = function() {
         console.log("writeNFCData called");
         showLoadingSpinner("WRITING");
         
+        self.RecordView().SetText($('#nfcText').val());
+
         self.writeNDEF(
             function() {
                 hideLoadingSpinner("WRITING");
@@ -133,6 +151,7 @@ var NFCViewModel = function() {
      * @method writeNFCDataOnEnter
      */
     self.writeNFCDataOnEnter = function(data, event) {
+        "use strict";
         console.log("writeNFCDataOnEnter called");
         if (event.keyCode === 13) {
             self.writeNFCData();
@@ -153,14 +172,14 @@ var NFCViewModel = function() {
  */
 
 
-var _tag = null;
-
 NFCViewModel.prototype.tag = function() {
-    return _tag;
+    "use strict";
+    return _nfcTag;
 }
 
-NFCViewModel.prototype.haveTag = function() {
-    return _tag != null;
+NFCViewModel.prototype.hasTag = function() {
+    "use strict";
+    return _nfcTag != null;
 }
 
 /**
@@ -174,12 +193,14 @@ NFCViewModel.prototype.haveTag = function() {
 var _recordView = new NDEFRecordTextViewModel();
 
 NFCViewModel.prototype.RecordView = function () {
+    "use strict";
     return _recordView;
 }
 
 var _powered = false;
 
 NFCViewModel.prototype.powered = function() {
+    "use strict";
     return _powered;
 }
 
@@ -254,11 +275,13 @@ NFCViewModel.prototype.readNDEF = function(readCallback, errorCallback) {
     var error = null;
 
     if (! self.tag()) {
+        console.log("no tag, exiting");
         self.SetRecordView().reset;
         return ;
     }
 
     try {
+        console.log("Reading NDEF");
         self.tag().readNDEF().then(
             function(ndefMessage) {
                 console.log("NFC tag.readNDEF succeed: ", ndefMessage);
@@ -325,15 +348,9 @@ NFCViewModel.prototype.writeNDEF = function(writeCallback, errorCallback) {
     
     try {
         var textRecord = self.RecordView().get();
-/* From the demo app:
-        var tag = self.tag();
-
-        var text = new NDEFRecordView("hello world", "en-US", "UTF-8");
-        tag.writeNDEF(new NDEFMessage([text])).then(function(){ console.log("writeTextNDEF Succeeded"); },
-                                                    function(){ console.log("writeTextNDEF Failed"); });
-
-currently, the write operation succeeds, but does not invoke the callbacks.
-*/
+/*
+Currently, the write operation succeeds, but does not invoke the callbacks.
+It should read:
         self.tag().writeNDEF(new NDEFMessage([textRecord])).then(
             function() {
                 console.log("NFC tag.writeNDEF succeed.");
@@ -349,6 +366,14 @@ currently, the write operation succeeds, but does not invoke the callbacks.
                 }
             }
         );
+*/
+
+        self.tag().writeNDEF(new NDEFMessage([textRecord]));
+        console.log("NFC tag.writeNDEF succeed.");
+        if (!!writeCallback) {
+            writeCallback();
+        }
+
     } 
     catch (err) {
         error = err.message;
