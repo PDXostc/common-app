@@ -59,7 +59,7 @@ function loadSettings(){
                     CloseButton='<img id="closeApp" src="./DNA_common/images/Kill_App_Off.png" onclick="$(\'#' + this.attr('id') + '\').bottomBar(\'onBackButtonClick\');">';
                 }
                	this.append('<div id="settingsMenu"></div>');
-						this.append('<img id="settingsCarot">');
+						this.append('<img id="settingsIcon">');
 						Settings.pageUpdate();
 						this.append('<img id="bottomBarLogoImg" src="./DNA_common/images/JLR-Logo.png" onclick="launchApplication(\'intelPoc10.HomeScreen\')">');
                 
