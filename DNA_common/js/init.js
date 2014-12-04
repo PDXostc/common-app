@@ -68,10 +68,8 @@ includeJs("DNA_common/components/car/js/car.js");
 includeJs("DNA_common/js/user.js");
 includeJs("DNA_common/js/bootstrap.js");
 includeJs("DNA_common/components/bottomBar/jquery.nouislider.js");
-includeJs("DNA_common/components/bottomBar/bottomBar.js");
 includeJs("DNA_common/components/settings/js/settings.js");
 includeJs("DNA_common/components/wifi/js/wifi.js");
-includeJs("DNA_common/components/topBar/topBar.js");
 includeJs("DNA_common/components/dateTime/dateTime.js");
 
 includeJs("DNA_common/components/audioPlayer/most.js");
