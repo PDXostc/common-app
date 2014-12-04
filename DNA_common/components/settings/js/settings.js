@@ -4,7 +4,7 @@ var Settings={};
 Settings.TemplateHTML = "DNA_common/components/settings/settings.html";
 
 Settings.addUpdateSettingsPage = function(name,page,onclick) {
-	$("#settingsPage").append(Settings.settingsPageItemHTML);
+	$("#settingsPageList").append(Settings.settingsPageItemHTML);
 }
 
 Settings.includeHTMLSucess = function(linkobj) {
@@ -15,15 +15,21 @@ Settings.includeHTMLSucess = function(linkobj) {
    Settings.settingsMenuHTML = Settings.import.getElementById('settingsMenu');
    Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
-   $("body").append(Settings.import.getElementById('settingsPage'));
    $("body").append(Settings.import.getElementById('settingsTabs'));
+   $("body").append(Settings.import.getElementById('settingsPage'));
    Settings.addUpdateSettingsPage('name','page','clickevent');
    Settings.addUpdateSettingsPage('name','page','clickevent');
+   Settings.pageUpdate();
 };
 		
 Settings.pageUpdate = function() {
-	$('#settingsCarot').replaceWith(Settings.settingsCarotHTML);
-	$('#settingsMenu').replaceWith(Settings.settingsMenuHTML);
+	if (!$('#settingsIcon').length) {
+		setTimeout(Settings.pageUpdate(),1000)
+	}
+	else {
+		$('#settingsIcon').replaceWith(Settings.settingsIconHTML);
+		$('#settingsMenu').replaceWith(Settings.settingsMenuHTML);
+	}
 };
 
 
