@@ -65,10 +65,10 @@ var carIndicatorSignals =  [
 
 var init = function () {
     var bootstrap = new Bootstrap(function (status) {
-        $("#topBar").topBar('init', 'news');
+        //$("#topBar").topBar('init', 'news');
 		$("#clockElement").ClockPlugin('init', 5);
 		$("#clockElement").ClockPlugin('startTimer');
-		$('#bottomBar').bottomBar('init');
+		//$('#bottomBar').bottomBar('init');
 
 	if (tizen.speech) {
 	    setupSpeechRecognition();
