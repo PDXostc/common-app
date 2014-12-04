@@ -59,5 +59,4 @@ done
 %{_prefix}/share/weekeyboard/amber_1080.edj
 %{_prefix}/share/weekeyboard/amber_720.edj
 %{_prefix}/share/weekeyboard/amber_600.edj
-%{_prefix}/share/X11/xkb/symbols/wkb
 
