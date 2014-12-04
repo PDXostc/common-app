@@ -1,28 +1,54 @@
+#bottomBar{
+	width: 1078px;
+	height: 139px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index:10;
+	/* padding-left:25px;*/
+}
+#topBar {
+	position: static;
+	display: block;
+	width: 1078px;
+	height: 114px;
+	left: 0;
+	top: 0;
+	z-index: 4;
+	border: 1px solid white;
+	background: rgba(0, 0, 0, 0.8);
+   -webkit-box-shadow: inset 0 0 43px rgb(179, 227, 255);
+   box-shadow:         inset 0 0 43px rgb(179, 227, 255);
+}
 .phoneBody {
-	width: 720px;
-	margin: 0;
-	min-height: 1280px;
-	height: auto !important;
-	height: 100%;
+	display: flex;
+/*
+	width: 100%;
+	max-height: 1052px;
+	top: 0;
 	background-position: center top;
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	overflow:hidden;
+	flex-direction:row;
+	flex-grow:1;
+	margin:10% 0;
+	padding-bottom:5%
+*/
 }
-
+#clockElement {position:relative;padding:30px;height:342px;}
+.phone-interface-wrapper{position:relative; width:334px;margin:auto;}
 .inputPhoneNumberBox {
-	padding-top: 195px;
-	padding-left: 190px;
+	position: relative;
 }
 
 .inputPhoneNumber {
-	width: 215px;
 	height: 75px;
-	line-height: 75px;
-	padding-right: 90px;
-	padding-left: 30px;
 	border: none;
-	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.2);
+	/* box-shadow: 0px 0px 15px 0px rgba(255, 156, 0, 0.75), 0px 0px 40px 0px rgba(255, 156, 0, 0.75);*/
+	color:rgb(196,196,196);
+	padding:0 12px;
+	width:calc(100% - 24px);
 }
 
 .inputPhoneNumber:focus {
@@ -30,20 +56,25 @@
 }
 
 .inputPhoneNumberBox .deleteButton {
-	display: inline-block;
-	vertical-align: top;
-	margin: 18px 0 0 -73px;
+
+	position: absolute;
+	top: 13px;
+	right: 13px;
 	padding: 0;
 	width: 55px;
-	height: 36px;
+	height: 47px;
 	background-position: center center;
 	background-repeat: no-repeat;
 	cursor: pointer;
+	background-color: #53b5ce;
+	font-size: 30px;
+	line-height:1.6;
+	text-align: center;
 }
 .noPairedDevice{
 	top:130px;
 	left: 200px;
-	margin-top: 20px;
+	margin: 20px 0 60px 0;
 	width:100%;
 	height:100%;
 }
@@ -58,6 +89,7 @@
 	width: 430px;
 	font-size: 0;
 	margin-bottom: 44px;
+	position: relative;
 }
 
 .numberButton {
@@ -68,9 +100,9 @@
 	height: 80px;
 	margin-right: 10px;
 	margin-bottom: 10px;
-	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.2);
 	text-transform: uppercase;
+	text-align: center;
 }
 
 .numberButtonLetters {
@@ -87,6 +119,17 @@
 	padding: 0;
 	list-style: none;
 	display: block;
+	text-align: left;
+float: none;
+position: absolute;
+top: 0px;
+right: auto;
+bottom: auto;
+left: -2px;
+margin: 0px;
+/* width: 15149px;
+height: 337px; */
+z-index: auto;
 }
 
 .contactsCarousel li {
@@ -94,23 +137,35 @@
 	float: left;
 }
 
+.caroufredsel_wrapper {
+display: block;
+text-align: start;
+position: relative;
+z-index: auto;
+width: 100%;
+height: 337px;
+margin: 0px;
+overflow: hidden;
+cursor: move;
+-webkit-linear-gradient(top, rgba(178,240,255,.5) 0%,rgba(178,240,255,.4) 30%,rgba(0,0,0,.1) 95%);
+padding: 10px 0;
+} 
+
 .carouselBox {
 	width: 240px;
 	height: 315px;
 	margin: 0 15px 20px 0;
 	white-space: normal;
-	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.2);
-	box-shadow: 0 2px 30px rgba(0, 0, 0, .7);
-	border-width: 1px;
-	border-style: solid;
+	border-right: 1px solid white;
+	padding-right:20px;
 	text-transform: uppercase;
+	color:#fff;
 }
 
 .carouselEdgeBox {
-	width: 240px;
+	width: 140px;/*240px;*/
 	height: 315px;
-	margin: 0 15px 20px 0;
+	/* margin: 0 15px 20px 0; */
 	white-space: normal;
 	visibility: hidden;
 }
@@ -142,7 +197,9 @@
 	text-align: left;
 	white-space: nowrap;
 	overflow: hidden;
-	margin: 0 auto;
+	text-overflow: ellipsis;
+	font-size: 34;
+	line-height: 1.8;
 }
 
 .carouselCallContact {
@@ -163,14 +220,23 @@
 	line-height: 38px;
 	cursor: pointer;
 }
-
+.callButton {
+	border:none;
+	width: 84px;
+	height:163px;
+	position:absolute;
+	top: -44px;
+	left: -96px;
+	margin:0;
+	
+}
 .callBox {
 	position: absolute;
 	margin: 0;
-	margin-left: 61px;
+	/* margin-left: 61px; */
 	top: 770px;
-	width: 720px;
-	height: 160px;
+	/* width: 720px;
+	height: 160px; */
 	z-index: 100;
 	-webkit-transition-timing-function: linear;
 	-webkit-transition: left 1s;
@@ -187,7 +253,8 @@
 }
 
 .callBoxHidden {
-	left: 720px;
+	/* left: 720px; */
+	display:none;
 }
 
 .callInfoBox {
@@ -218,7 +285,11 @@
 	vertical-align: top;
 	padding-top: 46px;
 }
-
+.callingFalse {
+	margin-top: 117px;
+	background-color: rgb(138, 255, 0);
+	background-color: rgba(89, 255, 0, .8);
+}
 .inCallWith {
 	margin-top: 11px;
 }
@@ -257,13 +328,13 @@
 }
 
 .contactsCarouselBox {
-	width: 765px;
-	position: absolute;
+	/* width: 95%; or in 765px; */
 	top: 770px;
-	left: -16px;
+    left: -16px; 
 	padding: 0;
 	margin: 0;
 	display: block;
+	text-align: center;
 	transition: left 1s;
 	-webkit-transition: left 1s;
 }
@@ -274,4 +345,188 @@
 
 .contactsCarouselBoxHide {
 	left: -765px;
+}
+
+
+/* NEW STYLES FOR KEY PAD NUMBERS BASED ON FLEX BOX */
+#keypadContainer {
+	width:445px;
+	height:540px;
+	flex-direction: column;
+	flex-wrap:wrap;
+	justify-content: space-between;
+	font-weight:bold;
+	font-size:2em;
+	}
+.flex-container {
+  display: flex; /* or inline-flex */
+  justify-content: space-between;
+  flex-basis:22%;
+}
+.digits {
+	display:flex;
+	justify-content:center;
+	flex-basis:30%;
+	background-color:#03C;
+box-shadow:0px 0px 15px 0px rgba(255, 156, 0, 0.75), 0px 0px 40px 0px rgba(255, 156, 0, 0.75);
+
+}
+.contentFlexed {
+	flex: 1;
+	align-self: center;
+	text-align: center;
+}
+.contentFlexed span{font-size:.5em;display:block;}
+
+.first_position{order:1;}
+.second_position{order:2;}
+.third_position{order:3;}
+
+.keypad-background{
+	width:445px;height:540px;
+background:radial-gradient(ellipse at center, rgba(254,156,0,1) 0%,rgba(142,87,4,0) 70%,rgba(10,5,8,0) 100%);
+}
+
+/*eventually this needs to be removed via init.js that's calling it */
+.keyboard {display:none;}
+
+
+/*\\\\\\\\\\\\\\\images only \\\\\\\\\\\\\\\\\\\\\\\*/
+
+
+.phoneBody {
+	background-image: url("../images/bg_with_glow_blue.png");
+}
+
+/* .deleteButton {
+	background-image: url("../images/bt_delete_blue.png");
+} */
+
+.callingTrue {
+	background-image: url("../images/icon_endcall_blue.png");
+}
+
+.callingFalse {
+	background-image: url("../images/icon_call_blue.png");
+}
+
+.carouselNumber {
+	background-image: url("../images/icon_number_blue.png");
+}
+
+.speakerButton {
+	background-image: url("../images/icon_speaker_blue.png");
+}
+
+.muteButton {
+	background-image: url("../images/icon_mute_blue.png");
+}
+
+.holdButton {
+	background-image: url("../images/icon_hold_blue.png");
+}
+
+.addCallButton {
+	background-image: url("../images/icon_addcall_blue.png");
+}
+
+.isFavoriteTrue {
+	background-image: url("../images/icon_favorite_true_blue.png");
+}
+
+.isFavoriteFalse {
+	background-image: url("../images/icon_favorite_false_blue.png");
+}
+
+.phoneIcon {
+	background: url("../images/icon_mobile_blue.png");
+}
+
+.emailIcon {
+	background-image: url("../images/icon_email_blue.png");
+}
+
+.addressIcon {
+	background-image: url("../images/icon_address_blue.png");
+}
+
+.missedCallIcon {
+	background: url("../images/icon_missed_blue.png") no-repeat 0 0;
+	width: 37px;
+	height: 43px;
+}
+
+.missedNewCallIcon {
+	background-image: url("../images/icon_missed_new_blue.png");
+}
+
+.receivedCallIcon {
+	background-image: url("../images/icon_received_blue.png");
+}
+
+.dialedCallIcon {
+	background-image: url("../images/icon_dialed_blue.png");
+}
+
+.noContactPhoto {
+	background-image: url("../images/contact_picture_blue.png");
+}
+.contactDetailBox3:hover .phoneIcon {
+	background-image: url("../images/icon_mobile_blue_hover.png");
+}
+
+.contactDetailBox3 .phoneIcon:hover {
+	background-image: url("../images/icon_mobile_blue_hover.png");
+}
+.libraryButton {	
+	background-image: url("../images/bt_library_blue.png");
+}
+
+.backButton {	
+	background-image: url("../images/bt_back_blue.png");
+}
+
+.previousButton {
+	background-image: url("../images/bt_previous_blue.png");
+}
+
+.nextButton {
+	background-image: url("../images/bt_next_blue.png");
+}
+.libraryButton {
+	position: absolute;
+	height: 60px;
+	line-height: 47px !important;
+	top: -90px;
+	right: 0;
+	background-repeat: no-repeat;
+	background-position: left center;
+	text-align: right;
+	padding: 0 33px 0 40px;
+	text-transform: uppercase;
+}
+
+.libraryButton:active {
+	position: absolute;
+	top: 153px;
+}
+
+.backButton {
+	height: 43px;
+	line-height: 43px !important;
+	background-repeat: no-repeat;
+	background-position: left center;
+	text-align: right;
+	padding: 0 15px 0 35px;
+	display: inline-block;
+	margin-left: 20px;
+	vertical-align: top;
+	cursor: pointer;
+}
+.box-shadow-4 {
+	box-shadow: 0 0 30px 2px rgba(83, 181, 206, 0.8);
+}
+.box-shadow-4Active:active, .box-shadow-4Active:focus {
+color:#53bce;
+box-shadow: 0 0 30px 2px rgba(178, 240, 255, 0.8);
 }

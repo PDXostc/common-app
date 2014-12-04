@@ -189,17 +189,17 @@ Carousel.prototype.createSwipeItem = function(callHistoryEntry, index) {
 		}
 
 		carouselItem = '<li>';
-		carouselItem += '<div id="carouselBox_' + index + '" class="carouselBox borderColorTheme" data-id="' + id + '">';
-		carouselItem += '<div class="carouselPhotoArea borderColorTheme">';
+		carouselItem += '<div id="carouselBox_' + index + '" class="carouselBox" data-id="' + id + '">';
+		carouselItem += '<div class="carouselPhotoArea">';
 		carouselItem += '<div class="carouselPhotoBox noContactPhoto">';
 		carouselItem += '<img class="carouselPhoto" src="' + photoURI + '" /></div></div>';
-		carouselItem += '<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">' + name + '</div>';
-		carouselItem += '<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold fontColorTheme">' + phoneNumber + '</div>';
-		carouselItem += '<div class="callHistoryElement borderColorTheme">';
+		carouselItem += '<div class="carouselInfoBox carouselName fontSizeLarger">' + '<strong>' + name + '</strong>' + '</div>';
+		carouselItem += '<div class="carouselInfoBox carouselNumber fontSizeSmall">' + '<strong>' + phoneNumber + '</strong>' + '</div>';
+		carouselItem += '<div class="callHistoryElement">';
 		carouselItem += '<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>';
 		carouselItem += '<div class="callHistoryDetails">';
-		carouselItem += '<div class="fontSizeXXSmall fontColorNormal">' + startTime + '</div>';
-		carouselItem += '<div class="fontSizeXXSmall fontWeightBold fontColorTheme">' + direction + '</div></div></div></div>';
+		carouselItem += '<div class="fontSizeXXSmall">' + startTime + '</div>';
+		carouselItem += '<div class="fontSizeXXSmall">' + '<strong>' + direction + '</strong>' + '</div></div></div></div>';
 		carouselItem += '</li>';
 
 		carouselItem = $(carouselItem);
