@@ -203,16 +203,14 @@ function onAppInfoSuccess(list) {
 
 	$(list).each(function(index){
 		var name = list[index].name;
-		var position = 2;
 		if( name != "Home Screen" ){
 			var icon = list[index].iconPath;
 			var id = list[index].id;
 			if(registeredApps[name]){
 				icon = registeredApps[name];
 			}
-			$("#topBar .topTask:nth-of-type("+position+") img").attr("src", icon);
-			$("#topBar .topTask:nth-of-type("+position+") img").on('click', function(){launchApplication(id)});
-			position++;
+			$("#topTask"+index+" img").attr("src", icon);
+			$("#topTask"+index+" img").on('click', function(){launchApplication(id)});
 		}
 	});
 	
@@ -336,7 +334,7 @@ function onTaskInfoSuccess(list){
 
 		for (i = 0; i < 7; i++) {
 			var taskDiv = $("<div><img /></div>").addClass("topTask");
-			if(i==0) $(taskDiv).attr('id','firstTask');
+			$(taskDiv).attr('id','topTask'+i);
 			$("#topBar").append(taskDiv);
 		}
 	} catch (exc) {
