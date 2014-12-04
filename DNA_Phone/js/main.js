@@ -8,6 +8,11 @@
  */
 
 /*global disconnectCall, Bootstrap, Carousel, ContactsLibrary, getAppByID, disconnectCall, Configuration, Speech, Phone, changeCssBgImageColor, ThemeKeyColorSelected */
+//includeJs("./js/main.js");
+//includeJs("./js/callhistorycarousel.js");
+//includeJs("./js/phone.js");
+//includeJs("./js/contacts_library.js");
+//includeJs("./DNA_common/components/jQuery/jquery.nouisliderix.js");
 
 /** 
  * This application provides voice call from paired Bluetooth phone. Application uses following APIs:
@@ -399,7 +404,7 @@ var CallDuration = {
     stopwatch: function() {
         "use strict";
 
-        var callStatus = tizen.phone.activeCall.state.toLowerCase();
+        var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus === "DIALING".toLowerCase()) {
             $("#callDuration").html("DIALING");
         } else if (callStatus === "DISCONNECTED".toLowerCase()) {
@@ -475,7 +480,7 @@ function acceptCall(contact) {
         CallDuration.resetIt();
 
         initializeCallInfo(contact);
-        var callStatus = tizen.phone.activeCall.state.toLowerCase();
+        var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus !== "ACTIVE".toLowerCase() && callStatus !== "DIALING".toLowerCase()) {
 
             if (callStatus === "INCOMING".toLowerCase()) {

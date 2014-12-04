@@ -1,7 +1,7 @@
 PROJECT = JLRPOCX031.Phone
 PROJECT_SIG = gnipnignbkkkjeglidcdnedabpekbiah
 INSTALL_FILES = images js icon.png index.html
-WRT_FILES = common css icon.png index.html setup config.xml images js manifest.json templates
+WRT_FILES = DNA_common css data icon.png index.html setup config.xml images js manifest.json templates
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
@@ -56,12 +56,10 @@ common: /opt/usr/apps/common
 	@echo "Please install Common Assets"
 	exit 1
 
-dev-common: ../common
-	cp -r ../common/js/* js/
-	cp -r ../common/css/* css/
-	cp -rf ../common .
+dev-common: ../DNA_common
+	cp -rf ../DNA_common .
 
-../common:
+../DNA_common:
 	@echo "Please checkout Common Assets"
 	exit 1
 

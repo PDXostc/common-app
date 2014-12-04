@@ -11,28 +11,27 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Phone application</title>
-<meta name="viewport" content="width=720, height=1280, user-scalable=no" />
-<link rel="stylesheet" href="./css/style.css"/>
-<link rel="stylesheet" href="./common/css/style.css"/>
-<script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script>
-<script type="text/javascript" src="./common/js/init.js"></script>
+<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="DNA_common/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="./css/phone_style.css" />
+<link rel="stylesheet" type="text/css" href="./css/contacts_library.css" />
+<script type="text/javascript" src="DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="DNA_common/components/knockout/knockout.js"></script>
+<script type="text/javascript" src="DNA_common/js/init.js"></script>
 
 <script type="text/javascript">
 	includeJs("./js/main.js");
 	includeJs("./js/callhistorycarousel.js");
 	includeJs("./js/phone.js");
 	includeJs("./js/contacts_library.js");
-	includeJs("./common/components/jquery/jquery.nouisliderix.js");
+	includeJs("./DNA_common/components/jQuery/jquery.nouisliderix.js");
 </script>
-
-<link rel="stylesheet" type="text/css" href="./css/phone_style.css" />
-<link rel="stylesheet" type="text/css" href="./css/style.css" />
-<link rel="stylesheet" type="text/css" href="./css/contacts_library.css" />
 
 </head>
 
 <body class="phoneBody">
-	<div id="topBarIcons"></div>
+	<div id="topBar"></div>
 	<div id="contactsLibraryButton"
 		class="button libraryButton fontSizeSmaller fontWeightBold fontColorNormal">A-Z</div>
 	<div id="clockElement"></div>

@@ -1,8 +1,13 @@
+var init = {};
+
+
 
 function includeJs(jsFilePath) {
-	console.log("includeJs "+jsFilePath);
+	//console.log("includeJs "+jsFilePath);
     var js = document.createElement("script");
 
+	js.onload = function() {console.log("loaded "+jsFilePath);};
+	js.onerror = function() {console.log("error loading "+jsFilePath);};
     js.type = "text/javascript";
     js.src = jsFilePath;
     //js.defer = true;
@@ -33,6 +38,12 @@ function includeHTML(htmlFilePath,onload,onerror) {
 	}
 }
 
+//includeJs("DNA_common/components/knockout/knockout.js");
+includeJs("DNA_common/components/bottomBar/jquery.nouislider.js");
+includeJs("DNA_common/components/incomingCall/incomingCall.js");
+
+includeJs("DNA_common/components/jsViews/jsrender.js");
+includeJs("DNA_common/components/jsViews/template.js");
 includeJs("DNA_common/components/boxCaption/boxCaption.js");
 includeJs("DNA_common/components/car/js/car.js");
 includeJs("DNA_common/js/user.js");
@@ -51,7 +62,6 @@ includeJs("DNA_common/components/progressBar/progressBar.js");
 includeJs("DNA_common/components/keyboard/keyboard.js");
 includeJs("DNA_common/components/knockout/knockout.js");
 includeJs("DNA_common/components/knockout/knockout.min.js");
-includeJs("DNA_common/components/settings/js/wifi.js");
 
 //includeJs("DNA_common/components/buttonControls/buttonControls.js");
 //includeJs("DNA_common/components/uri/uri.js");
