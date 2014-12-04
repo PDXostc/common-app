@@ -20,9 +20,7 @@ Settings.includeHTMLSucess = function(linkobj) {
    Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
    $("body").append(Settings.import.getElementById('settingsPage'));
-   $("#settingsPage").append(Settings.import.getElementById('WifiPage'));
-   Settings.addUpdateSettingsPage('name','page',function(){ console.log('page click();');$('#WifiPage').toggle();});
-   Settings.addUpdateSettingsPage('name','page','clickevent');
+   Settings.addUpdateSettingsPage('settingsX','page',function(){console.log('SettingsX click');});
    Settings.pageUpdate();
 };
 		
