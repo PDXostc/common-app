@@ -47,20 +47,23 @@ function nfc_init() {
 
 	console.log("NFC application init() called");
 
-	//$("#topBarIcons").topBarIconsPlugin('init');
-	//$("#clockElement").ClockPlugin('init', 5);
-	//$("#clockElement").ClockPlugin('startTimer');
-	//$('#bottomPanel').bottomPanel('init',false);
-
 	nfc = new NFCViewModel();
-	//$(".nfcBody").show();
 }
 
 function writeData() {
     nfc.writeNFCData();
 }
 
-//$(function() {
+function togglePower() {
+    var toggleOn = $('#powerToggle').hasClass('on');
+
+    nfc.setNFCPowered(! toggleOn);
+}
+
+function onNFCTextKeyUp(event) {
+    nfc.writeNFCDataOnEnter(event);
+}
+
 $(document).ready(function() {
     "use strict";
  
@@ -68,5 +71,7 @@ $(document).ready(function() {
 
 	nfc_init();
 
-    $('#writeDataButton').click(writeData)
+    $('#writeDataButton').click(writeData);
+    $('#powerToggle').click(togglePower);
+    $('#nfcText').keypress(onNFCTextKeyUp);
 });

@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
- 3  *
- 4  * This program is licensed under the terms and conditions of the
- 5  * Apache License, version 2.0.  The full text of the Apache License is at
- 6  * http://www.apache.org/licenses/LICENSE-2.0
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
+ *
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
 
  * global showMessage, showLoadingSpinner, hideLoadingSpinner, ko, NDEFRecordTextViewModel, showPopupMessage  */
 
@@ -28,6 +28,7 @@ var NFCViewModel = function() {
     $('#msgAddTag').show();
     $('#msgTagPresent').hide();
     $('#nfcText').val("");
+    $('#nfcText').prop('disabled', true);
 
     navigator.nfc.addEventListener('tagfound', function(event) {
         console.log("Tag found:", event);
@@ -44,9 +45,10 @@ var NFCViewModel = function() {
     navigator.nfc.addEventListener('taglost', function (event) {
         console.log("Tag lost");
         self.tag(null);
-        $('#nfcText').val("");
         $('#msgAddTag').show();
         $('#msgTagPresent').hide();
+        $('#nfcText').val("");
+        $('#nfcText').prop('disabled', true);
 
         if (!! self.RecordText()) {
             self.RecordText().reset();
@@ -54,7 +56,25 @@ var NFCViewModel = function() {
         hideLoadingSpinner();
     });
 
-    self.powered = navigator.nfc.powered;
+    _powered = navigator.nfc.powered;
+
+    var toggleOn = $('#powerToggle').hasClass('on');
+    if (self.powered()) {
+        $('#msgOn').hide();
+        $('#msgAddTag').show();
+        $('#msgTagPresent').hide();
+        if (!toggleOn) {
+            $('#powerToggle').toggleClass('off on')
+        }
+    }
+    else {
+        $('#msgOn').show();
+        $('#msgAddTag').hide();
+        $('#msgTagPresent').hide();
+        if (toggleOn) {
+            $('#powerToggle').toggleClass('off on')
+        }
+    }
 
     // currently, we are only set up to read/write tags. 
     // TODO: add peers
@@ -77,16 +97,42 @@ var NFCViewModel = function() {
      */
     self.setNFCPowered = function(powered) {
         console.log("togglePower called: " + powered);
-        if (self.powered !== powered) {
+        var toggleOn = $('#powerToggle').hasClass('on');
+
+        if (self.powered() !== powered) {
             showLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
             self.setPowered(powered, function() {
                 console.log("NFC setNFCPowered succeed.");
+                if (powered !== toggleOn) {
+                    console.log("Toggling power switch");
+                    $('#powerToggle').toggleClass('off on')
+                }
+                
+                if (powered) {
+                    $('#msgOn').hide();
+                    $('#msgAddTag').show();
+                    $('#msgTagPresent').hide();
+                }
+                else {
+                    $('#msgOn').show();
+                    $('#msgAddTag').hide();
+                    $('#msgTagPresent').hide();
+                }         
+                $('#nfcText').val("");
+                $('#nfcText').prop('disabled', true);
+
                 hideLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
-            }, function(error) {
+            }, 
+            function(error) {
                 console.log("NFC setNFCPowered failed: ", error);
                 hideLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
                 showMessage("THERE WAS AN ERROR WHILE TURNING NFC ADAPTER " + (powered ? "ON" : "OFF") + ". </ br>PLEASE TRY AGAIN...", "ERROR");
             });
+        }
+        else {
+            if (powered != toggleOn) {
+                $('#powerToggle').toggleClass('off on')
+            }
         }
     };
 
@@ -105,6 +151,7 @@ var NFCViewModel = function() {
             function() {
                 hideLoadingSpinner("READING");
                 $('#nfcText').val(self.RecordView().text());
+                $('#nfcText').prop('disabled', false);
             }, 
             function(error) {
                 hideLoadingSpinner("READING");
@@ -133,11 +180,11 @@ var NFCViewModel = function() {
         self.writeNDEF(
             function() {
                 hideLoadingSpinner("WRITING");
-                showPopupMessage("OPERATION COMPLETED SUCCESSFULLY!");
+                //showPopupMessage("OPERATION COMPLETED SUCCESSFULLY!");
             }, function(error) {
                 hideLoadingSpinner("WRITING");
                 if (!!error) {
-                    showMessage("THERE WAS AN ERROR WHILE WRITING.</ br>WRITING NOT COMPLETE.</ br>PLEASE TRY AGAIN...", "ERROR");
+                    //showMessage("THERE WAS AN ERROR WHILE WRITING.</ br>WRITING NOT COMPLETE.</ br>PLEASE TRY AGAIN...", "ERROR");
                 }
             }
         );
@@ -150,7 +197,7 @@ var NFCViewModel = function() {
      *
      * @method writeNFCDataOnEnter
      */
-    self.writeNFCDataOnEnter = function(data, event) {
+    self.writeNFCDataOnEnter = function(event) {
         "use strict";
         console.log("writeNFCDataOnEnter called");
         if (event.keyCode === 13) {
@@ -219,9 +266,9 @@ NFCViewModel.prototype.setPowered = function(state, successCallback, errorCallba
     var self = this;
     var error = null;
     
-    self.powered = navigator.nfc.powered;
+    _powered = navigator.nfc.powered;
 
-    if (self.powered === state) {
+    if (self.powered() === state) {
         return ;
     }
 
@@ -235,29 +282,37 @@ NFCViewModel.prototype.setPowered = function(state, successCallback, errorCallba
     }
 
     if (state) {
+/* the promise isn't coming back. This should read:
         navigator.nfc.powerOn().then( 
             function() { 
-                self.powered = navigator.nfc.powered; 
+                _powered = navigator.nfc.powered; 
                 if (!! successCallback) { successCallback(); } 
             },
             function() { 
-                self.powered = navigator.nfc.powered; 
+                _powered = navigator.nfc.powered; 
                 if (!! errorCallback) { errorCallback("NFC Power On failed"); } 
             });
+*/
+        navigator.nfc.powerOn();
+        _powered = true;
     } 
     else {
+/* the promise isn't coming back. This should read:
         navigator.nfc.powerOff().then( 
             function() { 
-                self.powered = navigator.nfc.powered; 
+                _powered = navigator.nfc.powered; 
                 if (!! successCallback) { successCallback(); } 
             },
             function() { 
-                self.powered = navigator.nfc.powered; 
+                _powered = navigator.nfc.powered; 
                 if (!! errorCallback) { errorCallback("NFC Power Off failed"); } 
             });
+*/
         navigator.nfc.powerOff();
-        self.powered = false;
+        _powered = false;
     }
+/* remove when promis works: */
+    if (!! successCallback) { successCallback(); }
 };
 
 
@@ -369,6 +424,7 @@ It should read:
 */
 
         self.tag().writeNDEF(new NDEFMessage([textRecord]));
+
         console.log("NFC tag.writeNDEF succeed.");
         if (!!writeCallback) {
             writeCallback();
