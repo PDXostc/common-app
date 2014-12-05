@@ -87,9 +87,9 @@
 .tabsTabs{
 	width:1080px !important; */
 
-.tabsTab, .tabsTabClear {
+/*.tabsTab, .tabsTabClear {
 	background-image: url('../images/tabs/bg_top_navi_unselect1px_blue.png');
-}
+}*/
 .tabsTabs {
 	position: absolute;
 	left: 15px;
@@ -186,11 +186,11 @@
 }
 
 .tabsContent {
-	margin-left: 20px;
+	/*margin-left: 20px;*/
 	margin-right: 20px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	padding-right: 10px;
+	padding-right: 20px;
 }
 
 .tabsTopPanelTitleHint {
