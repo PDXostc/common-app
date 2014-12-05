@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<manifest xmlns="http://tizen.org/ns/packages" package="JLRPOCX001" type="wgt" version="1.0.0">
+ <label>Hello Tizen</label>
+ <description></description>
+ <ui-application appid="JLRPOCX001.RVITest" exec="/home/app/.config/xwalk-service/applications/JLRPOCX001.RVITest/bin/JLRPOCX001.RVITest" type="
+webapp" taskmanage="true">
+  <label>Hello Tizen</label>
+  <icon>xwalk-service.JLRPOCX001.RVITest.png</icon>
+ </ui-application>
+</manifest>
+
