@@ -1,26 +1,29 @@
 /* 80px = 5% */
 .tabBar {
-	position: absolute;
+	/*/position: absolute;*/
 	/*top: 80px; */
-	top: 5%;
+	/* top: 200px; */
 	left: 0;
-	width: 100%;
-	height: 5%;
+	width: 1080px;
+	height: 115px;
+	display: inline-block;
 }
 
 .tabBar div {
 	float: left;
-	line-height: 5%;
-	height: 5%;
+	line-height: 115px;
+	height: 115px;
 	cursor: pointer;
 }
 
+div#addTabBtn {}
+
 .tabBar .addTabBtn {
 	float: right;
-	width: 5%;
+	width: 116px;
 	text-align: center;
-	font-size: 70px;
-	line-height: 65px;
+	font-size: 132px;
+	line-height: 110px;
 }
 
 .tabBar .tab {
@@ -29,18 +32,18 @@
 
 .tabBar .tab .tabIcon {
 	position: absolute;
-	top: 33px;
-	left: 5px;
-	width: 16px;
-	height: 16px;
+	top: 48px;
+	left: 8px;
+	width: 23px;
+	height: 23px;
 	background-repeat: no-repeat;
-	background-size: 16px 16px;
+	background-size: 23px 23px;
 	background-image: url('../images/default.png');
 }
 
 .tabBar .tab .text { /* max-width: 100%;
 	margin-right: 10px; */
-	margin-left: 26px;
+	margin-left: 37px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-wrap: break-word;
@@ -52,11 +55,11 @@
 .tabBar .tab .closeTabBtn {
 	display: none;
 	position: absolute;
-	top: 19px;
-	right: 5px;
-	width: 42px;
-	height: 42px;
-	border-radius: 21px;
+	top: 27px;
+	right: 7px;
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
 	background-image: url("../images/bt_close.png");
 }
 
@@ -66,39 +69,49 @@
 }
 
 .browserContent {
-	position: absolute;
+/*	position: absolute;
 	top: 160px;
-	left: 0;
+	left: 0;*/
 	width: 100%;
-	height: 80%;
+	
+
+	height: 1435px;
 	overflow: auto;
 	z-index: 1; /* for visible scrollbars  */
+	display: block;
+	display: flex;  align-items: center;  justify-content: center;
+
 }
 
 .actionBlocker {
-	position: absolute;
+/*	position: absolute;
 	top: 10%;
-	left: 0;
+	left: 0;*/
 	width: 100%;
-	height: 80%;
+	
+
+height: 1435px;
 	z-index: 0;
-	-webkit-box-pack: center;
-	-webkit-box-align: center;
-	display: -webkit-box;
+/*	-webkit-box-pack: center;
+	-webkit-box-align: center;*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .actionBlockerBg {
-	position: absolute;
+/*	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 100%;*/
+	max-width: 50%;
 }
 
 .loadingDots {
 	display: inline-block;
-	margin-left: 5px;
-	width: 40px;
+	margin-left: 10px;
+	width: 100px;
 }
 
 .jlrIFrame {

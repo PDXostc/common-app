@@ -17,9 +17,7 @@
 <link rel="stylesheet" href="./css/browser.css"/>
 
 <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
-<!-- <script type="text/javascript" src="./common/components/jQuery/jquery-1.8.2.js"></script> -->
-<!-- <script type="text/javascript" src="./DNA_common/js/init.js"></script> -->
-<!-- <script type="text/javascript" src="./common/js/init.js"></script> -->
+<script type="text/javascript" src="./DNA_common/js/init.js"></script>
 <script type="text/javascript">
   /*  includeJs("./js/main.js");
 	includeJs("./js/tab.js");
@@ -37,7 +35,7 @@
 </head>
 
 <body>
-    <div id="topBarIcons"></div>
+    <div id="topBar"></div>
     <div class="wrapper">
 		<div class="browserBody">
 			<div class="browserToolbar bgColorDark">
@@ -85,16 +83,17 @@
 				<div id="addTabBtn" class="addTabBtn boxShadowInset fontColorTheme">+</div>
 			</div>
 			<div id="actionBlocker" class="actionBlocker">
-				<div class="actionBlockerBg pageBgColorNormalTransparent"></div>
-				<div class="actionBlockerText fontSizeLarger fontWeightBold fontColorNormal">
-					LOADING
-					<div id="loadingDots" class="loadingDots"></div>
+				<div class="actionBlockerBg pageBgColorNormalTransparent">
+					<div class="actionBlockerText fontSizeLarger fontWeightBold fontColorNormal">
+						LOADING
+						<div id="loadingDots" class="loadingDots"></div>
+					</div>
 				</div>
 			</div>
 			<div id="browserContent" class="browserContent"></div>
 		</div>
     </div>
 
-    <div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>
+    <div id="bottomBar"></div>
 </body>
 </html>
