@@ -29,12 +29,17 @@ var NFCViewModel = function() {
     $('#msgTagPresent').hide();
     $('#nfcText').val("");
     $('#nfcText').prop('disabled', true);
+    $('#writeDataButton').prop('disabled', true);
+    $('#writeDataButton').hide();
 
     navigator.nfc.addEventListener('tagfound', function(event) {
         console.log("Tag found:", event);
        
         $('#msgAddTag').hide();
         $('#msgTagPresent').show();
+        $('#nfcText').prop('disabled', false);
+        $('#writeDataButton').prop('disabled', false);
+        $('#writeDataButton').show();
 
         if (!!event.tag) {
             _nfcTag = event.tag;
@@ -49,6 +54,8 @@ var NFCViewModel = function() {
         $('#msgTagPresent').hide();
         $('#nfcText').val("");
         $('#nfcText').prop('disabled', true);
+        $('#writeDataButton').prop('disabled', true);
+        $('#writeDataButton').hide();
 
         if (!! self.RecordText()) {
             self.RecordText().reset();
@@ -56,17 +63,26 @@ var NFCViewModel = function() {
         hideLoadingSpinner();
     });
 
+    var toggleOn = $('#powerToggle').hasClass('on');
     _powered = navigator.nfc.powered;
 
     if (self.powered()) {
         $('#msgOn').hide();
         $('#msgAddTag').show();
         $('#msgTagPresent').hide();
+        if (!toggleOn) {
+console.log("toggling");
+            $('#powerToggle').toggleClass('on off')
+        }
     }
     else {
         $('#msgOn').show();
         $('#msgAddTag').hide();
         $('#msgTagPresent').hide();
+        if (toggleOn) {
+console.log("toggling");
+            $('#powerToggle').toggleClass('on off')
+        }
     }
 
     // currently, we are only set up to read/write tags. 
@@ -77,7 +93,6 @@ var NFCViewModel = function() {
     navigator.nfc.startPoll().then(
         function() { console.log("startPoll succeeded"); },
         function() { console.log("startPoll failed"); } );
-
 
     /**
      * In case power state of plugged in/connected NFC adapter is not the same as a given state it calls {{#crossLink "NFCApplication.NFCViewModel/setPowered:method"}}{{/crossLink}} method
@@ -91,37 +106,39 @@ var NFCViewModel = function() {
     self.setNFCPowered = function(powered) {
         console.log("togglePower called: " + powered);
 
+        var toggleOn = $('#powerToggle').hasClass('on');
         if (self.powered() !== powered) {
             showLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
             self.setPowered(powered, function() {
                 console.log("NFC setNFCPowered succeed.");
-                
-                if (powered) {
-                    $('#msgOn').hide();
-                    $('#msgAddTag').show();
-                    $('#msgTagPresent').hide();
-                }
-                else {
-                    $('#msgOn').show();
-                    $('#msgAddTag').hide();
-                    $('#msgTagPresent').hide();
-                }         
-                $('#nfcText').val("");
-                $('#nfcText').prop('disabled', true);
-
                 hideLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
             }, 
             function(error) {
                 console.log("NFC setNFCPowered failed: ", error);
                 hideLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
-                showMessage("THERE WAS AN ERROR WHILE TURNING NFC ADAPTER " + (powered ? "ON" : "OFF") + ". </ br>PLEASE TRY AGAIN...", "ERROR");
+                //showMessage("THERE WAS AN ERROR WHILE TURNING NFC ADAPTER " + (powered ? "ON" : "OFF") + ". </ br>PLEASE TRY AGAIN...", "ERROR");
             });
         }
-        else {
-            if (powered != toggleOn) {
-                $('#powerToggle').toggleClass('off on')
-            }
+
+        var toggleOn = $('#powerToggle').hasClass('on');
+        if (self.powered() !== toggleOn) {
+            console.log("toggling");
+            $('#powerToggle').toggleClass('on off');
         }
+        if (self.powered()) {
+            $('#msgOn').hide();
+            $('#msgAddTag').show();
+            $('#msgTagPresent').hide();
+        }
+        else {
+            $('#msgOn').show();
+            $('#msgAddTag').hide();
+            $('#msgTagPresent').hide();
+        }         
+        $('#nfcText').val("");
+        $('#nfcText').prop('disabled', true);
+        $('#writeDataButton').prop('disabled', true);
+        $('#writeDataButton').hide();
     };
 
     /**
@@ -134,16 +151,20 @@ var NFCViewModel = function() {
      */
     self.readNFCData = function() {
         console.log("readNFCData called");
+
         showLoadingSpinner("READING");
+
         self.readNDEF(
             function() {
                 hideLoadingSpinner("READING");
                 $('#nfcText').val(self.RecordView().text());
                 $('#nfcText').prop('disabled', false);
             }, 
-            function(error) {
+            function(msg) {
                 hideLoadingSpinner("READING");
-                if (!!error) {
+                $('#nfcText').val("");
+                $('#nfcText').prop('disabled', true);
+                if (!!msg) {
                     showMessage("THERE WAS AN ERROR WHILE READING.</ br>READING NOT COMPLETE.</ br>PLEASE TRY AGAIN...", 
                                 "ERROR");
                 }

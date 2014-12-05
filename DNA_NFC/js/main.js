@@ -75,3 +75,10 @@ $(document).ready(function() {
     $('#powerToggle').click(togglePower);
     $('#nfcText').keypress(onNFCTextKeyUp);
 });
+
+/*
+$(document).on("click", ".switch-plate", function() {
+    $(this).closest(".switch").toggleClass("on off");
+})
+
+*/

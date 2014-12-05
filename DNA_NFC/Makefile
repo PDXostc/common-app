@@ -1,6 +1,6 @@
 PROJECT = DNA_NFC
 APPNAME = NFC
-WRT_FILES = DNA_common css icon.png index.html setup config.xml js manifest.json images
+WRT_FILES = DNA_common css icon.png index.html config.xml js images
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 

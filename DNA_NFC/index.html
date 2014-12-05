@@ -49,35 +49,42 @@
   <div id="clockElement"></div>
 
 
-  <!-- BEGIN HTML ELEMENTS -->
+  <!-- BEGIN HTML ELEMENTS    -->
   <div class="nfcwrapper">	
-    <div id="powerToggle" class="hexToggle off">
-      <div class="toggleSwitch">
-      </div>
-      
-    </div>
 
-    <div id="msgOn" class="nfcPowerText fontSizeLarger fontWeightBold fontColorNormal">TO READ NFC TAG, NFC READER MUST BE ON.
+    <div id="powerToggle" class="switch off switch-small">
+      <div class="switch-plate">
+	<div class="switch-control"></div>
+      </div>
+    </div>
+  
+    <div id="msgOn" class="nfcPowerText fontSizeLarger fontWeightBold fontColorNormal"
+	 >TO READ NFC TAG, NFC READER MUST BE ON. 
     </div>
     <div class="toggleLabel">
       <div class="toggleLabelOff">OFF</div>
       <div class="toggleLabelOn">ON</div>
     </div>
-
-    <div class="inputBar"><input id="nfcText" class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow1Std" type="text">
+    
+    <div class="inputBar">
+      <input id="nfcText" 
+	     class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow1Std" 
+	     type="text">
     </div>
 
     <div class="nfcAdapterPoweredWrapper">
-      <div id="msgAddTag" class="nfcPlaceTagText fontSizeLarger fontWeightBold fontColorDimmed" 
+      <div id="msgAddTag" 
+	   class="nfcPlaceTagText fontSizeLarger fontWeightBold fontColorDimmed" 
            >PLEASE, PLACE NFC TAG ON NFC READER.</div>
       <div class="nfcWriteDataWrapper">
-        <div id="msgTagPresent" class="nfcEditDataText fontSizeLarger fontWeightBold fontColorDimmed"
+        <div id="msgTagPresent" 
+	     class="nfcEditDataText fontSizeLarger fontWeightBold fontColorDimmed"
            >EDIT DATA AND PRESS WRITE DATA BUTTON.</div>
-        <div id="writeDataButton" class="shadowButton nfcWriteDataButton">
-          <div
-             class="bgColorThemeTransparent boxShadowInset shadowButtonBackground"></div>
-          <div
-             class="fontColorNormal fontSizeMedium fontWeightBold shadowButtonText">WRITE DATA</div>
+        <div id="writeDataButton" 
+	     class="shadowButton nfcWriteDataButton">
+          <div class="bgColorThemeTransparent boxShadowInset shadowButtonBackground"></div>
+          <div class="fontColorNormal fontSizeMedium fontWeightBold shadowButtonText"
+	       >WRITE DATA</div>
         </div>
       </div>
       <div class="nfcPlaceTag"></div>
