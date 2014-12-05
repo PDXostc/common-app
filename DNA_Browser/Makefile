@@ -1,6 +1,6 @@
 PROJECT = DNA_Browser
-INSTALL_FILES = images js icon.png index.html
-WRT_FILES = DNA_common css icon.png index.html setup config.xml js manifest.json images
+INSTALL_FILES = images css js icon.png index.html templates
+WRT_FILES = DNA_common css icon.png setup images js templates config.xml error.html index.html search.html warning.html manifest.json
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
@@ -12,7 +12,7 @@ endif
 
 wgtPkg: clean
 	cp -rf ../DNA_common .
-	zip -r $(PROJECT).wgt config.xml css icon.png index.html js DNA_common
+	zip -r $(PROJECT).wgt $(WRT_FILES)
 	
 config:
 	scp setup/weston.ini root@$(TIZEN_IP):/etc/xdg/weston/

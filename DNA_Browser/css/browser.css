@@ -1,8 +1,5 @@
-/***********************************************************************
-PLEASE NOTE: if you use any styles from this page for DNA please don't copy
-the browser.css file into DNA_common or DNA AGL_App_Suite; the file now lives 
-in DNA_Browser/css/browser.css. 
-************************************************************************/
+/* file copied from ../common/css/browser.css */
+
 .iconBackBrowser {
 	background-image: url("../images/icon_back_blue.png");
 }
@@ -69,4 +66,13 @@ in DNA_Browser/css/browser.css.
 .browserContent::-webkit-scrollbar-thumb:hover {
 	background-color: rgb(0, 171, 255);
 	border: 2px solid #C7C7C7;
+}
+/*overwrite common.css,in which this style has been changed to pure black*/
+.bgColorDark {
+	background-color: #062437;
+	background-color: rgba(6, 36, 55, 1.0);
+}
+
+.boxShadowInset { 
+	box-shadow: 0 0 2px 2px #1DA2FF inset;
 }
