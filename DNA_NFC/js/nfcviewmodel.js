@@ -5,36 +5,51 @@
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
 
- * global showMessage, showLoadingSpinner, hideLoadingSpinner, ko, NDEFRecordTextViewModel, showPopupMessage  */
+ * global showLoadingSpinner, hideLoadingSpinner, NDEFRecordTextViewModel  */
 
 /**
- * Provides access to the NFC functionalities such as set the power of a default device NFC adapter to either a on state or a off state,
- * register a callback functions to be invoked when a NFC tag is attached or detached,
- * read the NDEF text data from the attached NFC tag,
- * write the NDEF text data to the attached NFC Tag through the [navigator.nfc](https://developer.tizen.org/dev-guide/2.2.0/org.tizen.web.device.apireference/tizen/nfc.html) interface.
+ * Provides access to the NFC functionalities such as set the power of a default device NFC
+ * adapter to either a on state or a off state,
  *
- * @module NFCApplication
- * @namespace NFCApplication
- * @class NFCViewModel
- * @constructor
+ * Registers a callback functions to be invoked when a NFC tag is attached or detached,
+ * and reads the NDEF text data from the attached NFC tag.
+ *
+ * Writes the NDEF text data to the attached NFC Tag
+ *
+ * Throughout uses the W3C interface for NFC as implemented by Crosswalk:
+ *          http://www.w3.org/TR/nfc/
  */
 
+
+// The tag, if present
 var _nfcTag = null;
 
 var NFCViewModel = function() {
     "use strict";
     var self = this;
 
+    ////////////////////////////////////////////////////////////////////
+    // set up the tag state
+
+    // two messages: one asks for a tag, the other says it is present
+    // throughout lines like these will manage which is shown
     $('#msgAddTag').show();
     $('#msgTagPresent').hide();
+
+    // manage the edit box - only when a tag is discovered should it
+    // be available
     $('#nfcText').val("");
     $('#nfcText').prop('disabled', true);
+
+    // manage the write data button - only when a tag is discoverd should
+    // it be presetn
     $('#writeDataButton').prop('disabled', true);
     $('#writeDataButton').hide();
 
     navigator.nfc.addEventListener('tagfound', function(event) {
         console.log("Tag found:", event);
        
+        // switch UI state to "tag present"
         $('#msgAddTag').hide();
         $('#msgTagPresent').show();
         $('#nfcText').prop('disabled', false);
@@ -49,7 +64,10 @@ var NFCViewModel = function() {
 
     navigator.nfc.addEventListener('taglost', function (event) {
         console.log("Tag lost");
+        
         self.tag(null);
+
+        // switch UI state to "no tag"
         $('#msgAddTag').show();
         $('#msgTagPresent').hide();
         $('#nfcText').val("");
@@ -63,15 +81,14 @@ var NFCViewModel = function() {
         hideLoadingSpinner();
     });
 
+    ////////////////////////////////////////////////////////////////////////
+    // set up the power switch 
     var toggleOn = $('#powerToggle').hasClass('on');
     _powered = navigator.nfc.powered;
 
     if (self.powered()) {
         $('#msgOn').hide();
-        $('#msgAddTag').show();
-        $('#msgTagPresent').hide();
         if (!toggleOn) {
-console.log("toggling");
             $('#powerToggle').toggleClass('on off')
         }
     }
@@ -80,33 +97,31 @@ console.log("toggling");
         $('#msgAddTag').hide();
         $('#msgTagPresent').hide();
         if (toggleOn) {
-console.log("toggling");
             $('#powerToggle').toggleClass('on off')
         }
     }
 
     // currently, we are only set up to read/write tags. 
     // TODO: add peers
-    // navigator.nfc.addEventListener('peerfound', peerFound);
-    // navigator.nfc.addEventListener('peerlost', peerLost);
 
     navigator.nfc.startPoll().then(
         function() { console.log("startPoll succeeded"); },
         function() { console.log("startPoll failed"); } );
 
-    /**
-     * In case power state of plugged in/connected NFC adapter is not the same as a given state it calls {{#crossLink "NFCApplication.NFCViewModel/setPowered:method"}}{{/crossLink}} method
-     * in order to change the power state of adapter. Additionally it shows a loading spinner and message dialog when an error occurs during setting a new power state.
-     *
-     * Function is intended to be called/binded to the UI.
-     *
-     * @method setNFCPowered
-     * @param powered {Boolean} Power state to be set.
-     */
-    self.setNFCPowered = function(powered) {
-        console.log("togglePower called: " + powered);
+    //////////////////////////////////////////////////////////////////////
+    // Methods to interact with the UI
 
+    // Power:
+    //
+    // Interact with the UI elements for power - change the power
+    // state of the NFC adapter to match the UI toggle switch and 
+    // update the current state of the UI elements.
+    self.setNFCPowered = function(powered) {
+
+        // current UI state
         var toggleOn = $('#powerToggle').hasClass('on');
+
+        // sync the device state with the UI
         if (self.powered() !== powered) {
             showLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
             self.setPowered(powered, function() {
@@ -116,15 +131,21 @@ console.log("toggling");
             function(error) {
                 console.log("NFC setNFCPowered failed: ", error);
                 hideLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
-                //showMessage("THERE WAS AN ERROR WHILE TURNING NFC ADAPTER " + (powered ? "ON" : "OFF") + ". </ br>PLEASE TRY AGAIN...", "ERROR");
+                
+                //showMessage("THERE WAS AN ERROR WHILE TURNING NFC ADAPTER " + 
+                //            (powered ? "ON" : "OFF") + 
+                //            ". </ br>PLEASE TRY AGAIN...", "ERROR");
             });
         }
 
-        var toggleOn = $('#powerToggle').hasClass('on');
+        // Update the UI elements to the new state
+
         if (self.powered() !== toggleOn) {
             console.log("toggling");
             $('#powerToggle').toggleClass('on off');
         }
+
+        // set the UI state to on, but no tag present
         if (self.powered()) {
             $('#msgOn').hide();
             $('#msgAddTag').show();
@@ -141,16 +162,11 @@ console.log("toggling");
         $('#writeDataButton').hide();
     };
 
-    /**
-     * Starts reading of NDEF record text from attached NFC tag by calling {{#crossLink "NFCApplication.NFCViewModel/readNDEF:method"}}{{/crossLink}} method.
-     * Additionally it shows a loading spinner and message dialog when an error occurs during reading.
-     *
-     * Function is intended to be called/binded to the UI.
-     *
-     * @method readNFCData
-     */
+    // Read data from the NFC Tag
+    //
+    // Reads the data and updates the UI elements appropriately - including populating
+    // the edit box and enabling the controls for changing the data.
     self.readNFCData = function() {
-        console.log("readNFCData called");
 
         showLoadingSpinner("READING");
 
@@ -172,18 +188,14 @@ console.log("toggling");
         );
     };
 
-    /**
-     * Starts writing the NDEF record text to attached NFC tag by calling {{#crossLink "NFCApplication.NFCViewModel/writeNDEF:method"}}{{/crossLink}} method.
-     * Additionally it shows a loading spinner and message dialog when an error occurs during writing.
-     *
-     * Function is intended to be called/binded to the UI.
-     *
-     * @method writeNFCData
-     */
+    // Write data to the NFC Tag
+    // 
+    // Takes the string from the UI element and writes it to the NFC tag
     self.writeNFCData = function() {
-        console.log("writeNFCData called");
+
         showLoadingSpinner("WRITING");
-        
+
+        // get the text from the UI
         self.RecordView().SetText($('#nfcText').val());
 
         self.writeNDEF(
@@ -199,13 +211,7 @@ console.log("toggling");
         );
    };
 
-    /**
-     * Calls {{#crossLink "NFCApplication.NFCViewModel/writeNFCData:method"}}{{/crossLink}} method in case the pressed key is enter (keyCode is 13).
-     *
-     * Function is intended to be called/binded to the UI on a key press event.
-     *
-     * @method writeNFCDataOnEnter
-     */
+    // Capture the enter key to do a "write" operation
     self.writeNFCDataOnEnter = function(event) {
         "use strict";
         console.log("writeNFCDataOnEnter called");
@@ -216,36 +222,26 @@ console.log("toggling");
     };
 };
 
-
-/**
- * Represents NFC tag attached to the device's default NFC adapter. Provides information about the NFC tag, such as type, size of NDEF message stored in the tag and methods
- * to read and write NDEF message.
- *
- * @property tag
- * @public
- * @type ko.observable
- * @default null
- */
+//////////////////////////////////////////////////////////////////////////////
+// Internal methods - the following methods have no interaction with the UI
 
 
+// Interface to the NFC Tag
 NFCViewModel.prototype.tag = function() {
     "use strict";
     return _nfcTag;
 }
 
+// Is the tag present?
 NFCViewModel.prototype.hasTag = function() {
     "use strict";
     return _nfcTag != null;
 }
 
-/**
- * Represents NDEF text record of attached NFC tag.
- *
- * @property RecordText
- * @public
- * @type ko.observable
- * @default NDEFRecordTextViewModel
- */
+// The RecordText view encapsolates a NDEF Record as defined
+// by the NFC spec - this is what is read/writen from the tag.
+
+// Interface to the NDEF Record View
 var _recordView = new NDEFRecordTextViewModel();
 
 NFCViewModel.prototype.RecordView = function () {
@@ -253,10 +249,12 @@ NFCViewModel.prototype.RecordView = function () {
     return _recordView;
 }
 
+// Power state of the NFC reader
 var _powered = false;
 
 NFCViewModel.prototype.powered = function() {
     "use strict";
+
     return _powered;
 }
 
@@ -306,7 +304,7 @@ NFCViewModel.prototype.setPowered = function(state, successCallback, errorCallba
         _powered = true;
     } 
     else {
-/* the promise isn't coming back. This should read:
+/* the promise does not return. This should read:
         navigator.nfc.powerOff().then( 
             function() { 
                 _powered = navigator.nfc.powered; 
@@ -320,13 +318,14 @@ NFCViewModel.prototype.setPowered = function(state, successCallback, errorCallba
         navigator.nfc.powerOff();
         _powered = false;
     }
-/* remove when promis works: */
+
+/* remove when promise works: */
     if (!! successCallback) { successCallback(); }
 };
 
 
 /**
- * Reads the NDEF data from the detected/attached NFC tag and sets it to {{#crossLink "NFCApplication.NFCViewModel/ndefRecordView:property"}}{{/crossLink}} property.
+ * Reads the NDEF data from the detected/attached NFC tag and puts it into the RecordView
  *
  * @method readNDEF
  * @param readCallback {Function} The method invoked in case of successfully reading the NDEF Data.
@@ -352,7 +351,6 @@ NFCViewModel.prototype.readNDEF = function(readCallback, errorCallback) {
                 
                 self.RecordView().set(ndefMessage).then(
                     function(message) {
-                        console.log("NFC tag is text, message: ", message);
                         if (!! readCallback) {
                             readCallback();
                         }
@@ -380,7 +378,7 @@ NFCViewModel.prototype.readNDEF = function(readCallback, errorCallback) {
 };
 
 /**
- * Writes the NDEF record text {{#crossLink "NFCApplication.NFCViewModel/ndefRecordView:property"}}{{/crossLink}} to the detected/attached NFC tag.
+ * Writes the NDEF record text from the RecordView to the NFC tag.
  *
  * @method writeNDEF
  * @param writeCallback {Function} The method invoked in case of successfully writing the NDEF Data.

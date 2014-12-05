@@ -76,9 +76,3 @@ $(document).ready(function() {
     $('#nfcText').keypress(onNFCTextKeyUp);
 });
 
-/*
-$(document).on("click", ".switch-plate", function() {
-    $(this).closest(".switch").toggleClass("on off");
-})
-
-*/
