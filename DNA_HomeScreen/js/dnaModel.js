@@ -731,15 +731,17 @@ function onAppRecallSuccess(list) {
 
 		for (i = 0; i < list.length; i++) {
 			var app = list[i];
-			if (registeredApps[app.name]) {
-				addIcon(app.name, null, registeredApps[app.name], app.id);
-			}else{
-				if(app.iconPath.substr(app.iconPath.length - 4) != ".png"){
-					var path="./DNA_common/images/tizen_inactive.png";
+			if(app.name != "Home Screen"){
+				if (registeredApps[app.name]) {
+					addIcon(app.name, null, registeredApps[app.name], app.id);
 				}else{
-					var path=app.iconPath;
+					if(app.iconPath.substr(app.iconPath.length - 4) != ".png"){
+						var path="./DNA_common/images/tizen_inactive.png";
+					}else{
+						var path=app.iconPath;
+					}
+					addIcon(app.name, null, path, app.id);
 				}
-				addIcon(app.name, null, path, app.id);
 			}
 		}
 	} catch (exc) {
