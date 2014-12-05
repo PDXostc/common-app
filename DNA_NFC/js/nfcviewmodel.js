@@ -58,22 +58,15 @@ var NFCViewModel = function() {
 
     _powered = navigator.nfc.powered;
 
-    var toggleOn = $('#powerToggle').hasClass('on');
     if (self.powered()) {
         $('#msgOn').hide();
         $('#msgAddTag').show();
         $('#msgTagPresent').hide();
-        if (!toggleOn) {
-            $('#powerToggle').toggleClass('off on')
-        }
     }
     else {
         $('#msgOn').show();
         $('#msgAddTag').hide();
         $('#msgTagPresent').hide();
-        if (toggleOn) {
-            $('#powerToggle').toggleClass('off on')
-        }
     }
 
     // currently, we are only set up to read/write tags. 
@@ -97,16 +90,11 @@ var NFCViewModel = function() {
      */
     self.setNFCPowered = function(powered) {
         console.log("togglePower called: " + powered);
-        var toggleOn = $('#powerToggle').hasClass('on');
 
         if (self.powered() !== powered) {
             showLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
             self.setPowered(powered, function() {
                 console.log("NFC setNFCPowered succeed.");
-                if (powered !== toggleOn) {
-                    console.log("Toggling power switch");
-                    $('#powerToggle').toggleClass('off on')
-                }
                 
                 if (powered) {
                     $('#msgOn').hide();
