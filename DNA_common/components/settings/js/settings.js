@@ -20,6 +20,7 @@ Settings.includeHTMLSucess = function(linkobj) {
    Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
    $("body").append(Settings.import.getElementById('settingsPage'));
+   //$("#settingsPage").toggle();
    Settings.addUpdateSettingsPage('settingsX','page',function(){console.log('SettingsX click');});
    Settings.pageUpdate();
 };
@@ -31,7 +32,6 @@ Settings.pageUpdate = function() {
 	}
 	else {
 		$('#settingsIcon').replaceWith(Settings.settingsIconHTML);
-		$('#settingsMenu').replaceWith(Settings.settingsMenuHTML);
 	}
 };
 

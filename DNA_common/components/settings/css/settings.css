@@ -1,9 +1,6 @@
 /*putting all styles for settings and components in settings.css for now, to be 
 sorted when there is time to organize all the components and make decisions*/
 
-.hidden	{
-	display: none;
-}
 .WifiPage {
 	display:inline-block;
 }
@@ -332,4 +329,7 @@ ul.settingElement {
 	z-index: 100;
 	position: absolute;
 	text-transform: uppercase;
+}
+.hidden	{
+	display: none;
 }
