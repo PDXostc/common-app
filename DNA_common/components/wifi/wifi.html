@@ -12,9 +12,9 @@
 			<div class="tabsTabClear">
 			</div>
 		</div>
-		<div id="wifiPowerButton" class="subPanelToggleButton subPanelToggleButtonWide" data-bind="with: Settings.Wifi.adapter, click: Settings.Wifi.togglePower">
+		<div id="wifiPowerButton" class="subPanelToggleButton subPanelToggleButtonWide">
 			<!-- wifi on/off button style here, hexagon slider instead of text -->
-			<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText" data-bind="text: Settings.Wifi.isPowered() ? 'TURN OFF' : 'TURN ON'">TURN ON</div>
+			<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">TURN ON</div>
 		</div>
 		<div id="loadingSpinnerWifi" class="loadingSpinnerWifi loading-container loading-container-small" style="display: none;">
 			<div class="loading loading-small"></div>
@@ -22,26 +22,23 @@
 	</div>
 	<div id="tabsTopSubPanel" class="tabsTopSubPanel" style="display: block;">
 
-			<!-- start of wifi tabsContent portion-->
-			<div id="tabsContent" class="tabsContent wifiContent">
-				<div id="wifiNetworksList" data-bind="template: { name: 'template-wifi', foreach: Settings.Wifi.networks }, style: { display: Settings.Wifi.isPowered() &amp;&amp; !Settings.Wifi.isTethering() ? 'block' : 'none' }" style="display: none;"></div>
-				<div style="text-align: center; display: none;" data-bind="style: { display: Settings.Wifi.isPowered() &amp;&amp; Settings.Wifi.isTethering() ? 'block' : 'none' }" class="fontColorNormal fontSizeMedium fontWeightBold">TETHERING IS ON</div>
-				<div class="buttonsArea">
-					<div id="wifiRefreshButton" class="wifiRefreshButton" data-bind="click: Settings.Wifi.scanNetwork, style: { display: Settings.Wifi.isPowered() &amp;&amp; !Settings.Wifi.isTethering() ? 'block' : 'none' }" style="display: block;">
-					</div>
-					<div id="addNetworkButton" class="addNetworkButton" data-bind="click: Settings.Wifi.showAddNetwork, style: { display: Settings.Wifi.isPowered() &amp;&amp; !Settings.Wifi.isTethering() ? 'block' : 'none' }" style="display: block;">
-					</div>
+		<!-- start of wifi tabsContent portion-->
+		<div id="tabsContent" class="tabsContent wifiContent">
+			<div id="wifiNetworksList"><!-- name --></div>
+			<div style="text-align: center; display: none;" class="fontColorNormal fontSizeMedium fontWeightBold">TETHERING IS ON</div>
+			<div class="buttonsArea">
+				<div id="wifiRefreshButton" class="wifiRefreshButton" style="display: block;">
+				</div>
+				<div id="addNetworkButton" class="addNetworkButton" style="display: block;">
 				</div>
 			</div>
-
-
+		</div>
 	</div>
-
 </div>
 
 <div id="WifiDeviceTemplate" class="wifiElement borderColorTheme">
 	<div class="wifiElementInfoBox">
-		<div class="wifiElementTitle fontSizeLarge fontWeightBold fontColorNormal fontWeightBold"></div>
+		<div class="wifiElementTitle fontSizeLarge fontColorNormal fontWeightBold"><!-- name --></div>
 		<div class="wifiElementSubtitle fontSizeSmaller fontColorNormal"></div>
 		<div class="wifiElementDescription fontSizeSmaller fontColorNormal"></div>
 		<div class="wifiElementMore fontSizeSmaller fontColorNormal"></div>
