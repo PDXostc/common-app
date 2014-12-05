@@ -18,7 +18,7 @@ settings template file.
 </div>
 
 <!-- settings Page:  this is used as a page for all settings components appended to  body-->
-<div id="settingsPage" class="tabs pageBgColorNormalTransparent" style="display: none;">
+<div id="settingsPage" class="tabs pageBgColorNormalTransparent settingsPage">
 	<div id="tabsTopPanel" class="tabsTopPanel">
 		<div class="tabsTopPanelTitle">
 			<div class="boxIconRectangleSmall bgColorTheme"></div>
@@ -32,9 +32,10 @@ settings template file.
 			<div class="tabsTabClear"></div>
 		</div>
 	</div>
+	<!-- add class 'hidden' to this id tabsTopSubPanel, when component is displayed -->
 	<div id="tabsTopSubPanel" class="tabsTopSubPanel" style="display: block;">
 		<div id="tabsContent" class="tabsContent settingsContent" style="max-height: 1170px;">
-			<ul id="settingsPageList" class="settingElement fontSizeLarge fontWeightBold fontColorNormal borderColorTheme">
+			<ul id="settingsPageList" class="fontSizeLarge fontWeightBold fontColorNormal">
 			</ul>
 		</div>
 	</div>
@@ -42,7 +43,7 @@ settings template file.
 
 <!-- settings Page Item:  This is a templated to append new setting componets in settings menu-->
 <div id="settingsPageItem">
-	<li class="settingElement fontSizeLarge fontWeightBold fontColorNormal borderColorTheme"><a>Name X</a></li>
+	<li class="settingElement"><a>Name X</a></li>
 </div>
 
 <!-- loadingSpinnerWrapper:  This is used to represent busy but is not used-->
