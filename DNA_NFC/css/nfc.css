@@ -42,8 +42,8 @@ body {
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-   /* transition: padding .25s ease-in-out;
-    -webkit-transition: padding .25s ease-in-out;*/
+/* transition: padding .25s ease-in-out;
+   -webkit-transition: padding .25s ease-in-out;*/
 }
 
 .switch-control {
@@ -147,8 +147,6 @@ body {
     border: none;
     line-height: 1.25em;
     color: rgb(196,196,196);
-    
-
 }
 
 .inputNumber:active {
@@ -197,10 +195,10 @@ body {
 }
 
 .nfcPlaceTagText {
-	text-align: center;
-	position: absolute;
-	top: 105px;
-	width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 105px;
+    width: 100%;
 }
 
 .nfcWriteDataWrapper {
@@ -236,39 +234,48 @@ body {
 
 .nfcPlaceTag {
     height: 412px;
-width: 412px;
-top: 10em;
-left: 20.4em;
-margin: 20em 0 0 20.7em;
-color: rgb(197,197,197);
-background-image: url('../images/detectorHexOff.png');
-background-repeat: no-repeat;
+    width: 412px;
+    top: 10em;
+    left: 20.4em;
+    margin: 20em 0 0 20.7em;
+    color: rgb(197,197,197);
+    background-image: url('../images/detectorHexOff.png');
+    background-repeat: no-repeat;
 }
 
 .on.nfcPlaceTag {
-background-image: url('../images/detectorHexOn.png');
+    background-image: url('../images/detectorHexOn.png');
 
 }
 .off.nfcPlaceTag {
-background-image: url('../images/detectorHexOff.png');
+    background-image: url('../images/detectorHexOff.png');
 
 }
 .hexText {
-top: 15em;
-height: 412px;
-width: 412px;
+    text-align: center;
+    position: absolute;
+    top: 15em;
+    height: 412px;
+    width: 412px;
+}
+
+
+.dummy {
+    top: 15em;
+    height: 412px;
+    width: 412px;
 }
 
 .nfcTagDetected {
     height: 412px;
-width: 412px;
-top: 10em;
-left: 20.4em;
-margin: 20em 0 0 20.7em;
-color: rgb(197,197,197);
-background-image: url('../images/detectorHexOn.png');
-background-repeat: no-repeat;
-   /* background-position: -3296px 0;*/
+    width: 412px;
+    top: 10em;
+    left: 20.4em;
+    margin: 20em 0 0 20.7em;
+    color: rgb(197,197,197);
+    background-image: url('../images/detectorHexOn.png');
+    background-repeat: no-repeat;
+/* background-position: -3296px 0;*/
 }
 
 .nfcTagNotDetected {

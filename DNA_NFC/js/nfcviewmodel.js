@@ -24,37 +24,86 @@
 // The tag, if present
 var _nfcTag = null;
 
+
+
+
 var NFCViewModel = function() {
     "use strict";
     var self = this;
 
     ////////////////////////////////////////////////////////////////////
-    // set up the tag state
+    // show the current state in the UI
+    self.setState = function(state) {
 
-    // two messages: one asks for a tag, the other says it is present
-    // throughout lines like these will manage which is shown
-    $('#msgAddTag').show();
-    $('#msgTagPresent').hide();
+        var placeTagOn = $('#tagNotifyHex').hasClass('on');
+    
+        console.log("setting state:", state);
 
-    // manage the edit box - only when a tag is discovered should it
-    // be available
-    $('#nfcText').val("");
-    $('#nfcText').prop('disabled', true);
+        switch(state) {
+        case "off":
+            $('#msgOn').show();
+            
+            $('#msgAddTag').hide();
+            $('#msgTagPresent').hide();
+            
+            $('#nfcText').val("");
+            $('#nfcText').prop('disabled', true);
+            
+            $('#writeDataButton').prop('disabled', true);
+            $('#writeDataButton').hide();
 
-    // manage the write data button - only when a tag is discoverd should
-    // it be presetn
-    $('#writeDataButton').prop('disabled', true);
-    $('#writeDataButton').hide();
+            $('#tagFoundMsg').text("");
+            $('#tagNotifyHex').hide();
+            break;
+        case "on - no tag":
+            $('#msgOn').hide();
+            
+            $('#msgAddTag').show();
+            $('#msgTagPresent').hide();
+            
+            $('#nfcText').val("");
+            $('#nfcText').prop('disabled', true);
+            
+            $('#writeDataButton').prop('disabled', true);
+            $('#writeDataButton').hide();
+            
+            $('#tagFoundMsg').text("TAG NOT FOUND");            
+            $('#tagNotifyHex').show();
+            if (placeTagOn) {
+                $('#tagNotifyHex').toggleClass('on off');
+            }
+            break;
+        case "on - tag":
+            $('#msgOn').hide();
+            
+            $('#msgAddTag').hide();
+            $('#msgTagPresent').show();
+            
+            $('#nfcText').val(self.RecordView().Text());
+            $('#nfcText').prop('disabled', false);
+            
+            $('#writeDataButton').prop('disabled', false);
+            $('#writeDataButton').show();
+
+            $('#tagFoundMsg').text("TAG FOUND");
+            $('#tagNotifyHex').show();
+            if (!placeTagOn) {
+                console.log("toggling notify hex");
+                $('#tagNotifyHex').toggleClass('on off');
+            }
+            break;
+        }
+        
+        var toggleOn = $('#powerToggle').hasClass('on');
+        if (toggleOn != self.powered()) {
+            $('#powerToggle').toggleClass('on off')
+        }
+    }
 
     navigator.nfc.addEventListener('tagfound', function(event) {
         console.log("Tag found:", event);
        
-        // switch UI state to "tag present"
-        $('#msgAddTag').hide();
-        $('#msgTagPresent').show();
-        $('#nfcText').prop('disabled', false);
-        $('#writeDataButton').prop('disabled', false);
-        $('#writeDataButton').show();
+        self.setState("on - tag");
 
         if (!!event.tag) {
             _nfcTag = event.tag;
@@ -67,46 +116,13 @@ var NFCViewModel = function() {
         
         self.tag(null);
 
-        // switch UI state to "no tag"
-        $('#msgAddTag').show();
-        $('#msgTagPresent').hide();
-        $('#nfcText').val("");
-        $('#nfcText').prop('disabled', true);
-        $('#writeDataButton').prop('disabled', true);
-        $('#writeDataButton').hide();
+        self.setState("on - no tag");
 
         if (!! self.RecordText()) {
             self.RecordText().reset();
         }
         hideLoadingSpinner();
     });
-
-    ////////////////////////////////////////////////////////////////////////
-    // set up the power switch 
-    var toggleOn = $('#powerToggle').hasClass('on');
-    _powered = navigator.nfc.powered;
-
-    if (self.powered()) {
-        $('#msgOn').hide();
-        if (!toggleOn) {
-            $('#powerToggle').toggleClass('on off')
-        }
-    }
-    else {
-        $('#msgOn').show();
-        $('#msgAddTag').hide();
-        $('#msgTagPresent').hide();
-        if (toggleOn) {
-            $('#powerToggle').toggleClass('on off')
-        }
-    }
-
-    // currently, we are only set up to read/write tags. 
-    // TODO: add peers
-
-    navigator.nfc.startPoll().then(
-        function() { console.log("startPoll succeeded"); },
-        function() { console.log("startPoll failed"); } );
 
     //////////////////////////////////////////////////////////////////////
     // Methods to interact with the UI
@@ -141,25 +157,16 @@ var NFCViewModel = function() {
         // Update the UI elements to the new state
 
         if (self.powered() !== toggleOn) {
-            console.log("toggling");
             $('#powerToggle').toggleClass('on off');
         }
 
         // set the UI state to on, but no tag present
         if (self.powered()) {
-            $('#msgOn').hide();
-            $('#msgAddTag').show();
-            $('#msgTagPresent').hide();
+            self.setState("on - no tag");
         }
         else {
-            $('#msgOn').show();
-            $('#msgAddTag').hide();
-            $('#msgTagPresent').hide();
+           self. setState("off");
         }         
-        $('#nfcText').val("");
-        $('#nfcText').prop('disabled', true);
-        $('#writeDataButton').prop('disabled', true);
-        $('#writeDataButton').hide();
     };
 
     // Read data from the NFC Tag
@@ -173,13 +180,14 @@ var NFCViewModel = function() {
         self.readNDEF(
             function() {
                 hideLoadingSpinner("READING");
-                $('#nfcText').val(self.RecordView().text());
-                $('#nfcText').prop('disabled', false);
+                
+                self.setState("on - tag");
             }, 
             function(msg) {
                 hideLoadingSpinner("READING");
-                $('#nfcText').val("");
-                $('#nfcText').prop('disabled', true);
+
+                self.setState("on - no tag");
+
                 if (!!msg) {
                     showMessage("THERE WAS AN ERROR WHILE READING.</ br>READING NOT COMPLETE.</ br>PLEASE TRY AGAIN...", 
                                 "ERROR");
@@ -192,7 +200,6 @@ var NFCViewModel = function() {
     // 
     // Takes the string from the UI element and writes it to the NFC tag
     self.writeNFCData = function() {
-
         showLoadingSpinner("WRITING");
 
         // get the text from the UI
@@ -213,13 +220,35 @@ var NFCViewModel = function() {
 
     // Capture the enter key to do a "write" operation
     self.writeNFCDataOnEnter = function(event) {
-        "use strict";
-        console.log("writeNFCDataOnEnter called");
         if (event.keyCode === 13) {
             self.writeNFCData();
         }
         return true;
     };
+
+    ////////////////////////////////////////////////////////////////////////
+    // set up the power switch and state 
+    _powered = navigator.nfc.powered;
+    var toggleOn = $('#powerToggle').hasClass('on');
+
+    if (toggleOn !== self.powered()) {
+        $('#powerToggle').toggleClass('on off')
+    }
+
+    if (self.powered()) {
+        self.setState("on - no tag");
+    }
+    else {
+        self.setState("off");
+    }
+
+    // currently, we are only set up to read/write tags. 
+    // TODO: add peers
+
+    navigator.nfc.startPoll().then(
+        function() { console.log("startPoll succeeded"); },
+        function() { console.log("startPoll failed"); } );
+
 };
 
 //////////////////////////////////////////////////////////////////////////////

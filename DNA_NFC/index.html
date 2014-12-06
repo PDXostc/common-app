@@ -31,11 +31,6 @@
       includeJs("./js/nfcviewmodel.js");
       includeJs("./js/main.js");
     </script>
-<!--
-<script type="text/javascript" src="./js/ndefrecordtextviewmodel.js"></script>
-<script type="text/javascript" src="./js/nfcviewmodel.js"></script>
-<script type="text/javascript" src="./js/main.js"></script>
--->
   </head>
 
   <title>NFC</title>
@@ -48,8 +43,6 @@
 
   <div id="clockElement"></div>
 
-
-  <!-- BEGIN HTML ELEMENTS    -->
   <div class="nfcwrapper">	
 
     <div id="powerToggle" class="switch off switch-xsmall">
@@ -87,10 +80,9 @@
 	       >WRITE DATA</div>
         </div>
       </div>
-      <div class="nfcPlaceTag off">
-		  <h4 id="tagFoundMsg" class="hexText">
-		  </h4>
-	   </div>
+      <div id="tagNotifyHex" class="nfcPlaceTag off">
+	<div id="tagFoundMsg" class="hexText fontSizeLarger fontWeightBold fontColorDimmed">message</div>
+      </div>
     </div>
   </div>        
   <div id="bottomBar" ></div>
