@@ -145,8 +145,8 @@ WifiSettings = function(){
 
 	//Lists networks on the settings wifi panel 
 	this.displayNetworks = function(){
-		var template = document.querySelector("#WifiDeviceTemplate").content;
-
+		//var template = document.querySelector("#WifiDeviceTemplate").content;
+		var template = WifiSettingsPage.import.getElementById("WifiDeviceTemplate");
 
 		for (network in self.networks){
 			template.querySelector(".wifiElementTitle").innerHTML = self.networks[network].prop.Name;
