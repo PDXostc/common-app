@@ -167,12 +167,12 @@ WifiSettings = function(){
 
 	//Lists networks on the settings wifi panel 
 	this.displayNetworks = function(){
-		//var template = document.querySelector("#WifiDeviceTemplate").content;
-		var template = WifiSettingsPage.import.getElementById("WifiDeviceTemplate");
+		var template = WifiSettingsPage.import.querySelector("#WifiDeviceTemplate");
+		//var template = WifiSettingsPage.import.getElementById("WifiDeviceTemplate");
 
 		for (network in self.networks){
 			template.querySelector(".wifiElementTitle").innerHTML = self.networks[network].prop.Name;
-			var clone =  document.importNode(template.content);
+			var clone =  document.importNode(template.content,true);
 
 			document.querySelector("#wifiNetworksList").appendChild(clone);
 		}
