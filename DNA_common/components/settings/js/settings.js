@@ -4,7 +4,11 @@ var Settings={};
 Settings.TemplateHTML = "DNA_common/components/settings/settings.html";
 
 Settings.addUpdateSettingsPage = function(name,page,onclick) {
-	$("#settingsPage").append(Settings.settingsPageItemHTML);
+	$("#settingsPageList").append(Settings.settingsPageItemHTML);
+	var item = document.querySelector('#settingsPageList li:nth-last-child(1)');
+	item.innerText=name+' '+page;
+	item.onclick=onclick;
+	console.log(item);
 }
 
 Settings.includeHTMLSucess = function(linkobj) {
@@ -16,14 +20,19 @@ Settings.includeHTMLSucess = function(linkobj) {
    Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
    $("body").append(Settings.import.getElementById('settingsPage'));
-   $("body").append(Settings.import.getElementById('settingsTabs'));
-   Settings.addUpdateSettingsPage('name','page','clickevent');
-   Settings.addUpdateSettingsPage('name','page','clickevent');
+   //$("#settingsPage").toggle();
+   Settings.addUpdateSettingsPage('settingsX','page',function(){console.log('SettingsX click');});
+   Settings.pageUpdate();
 };
 		
 Settings.pageUpdate = function() {
-	$('#settingsCarot').replaceWith(Settings.settingsCarotHTML);
-	$('#settingsMenu').replaceWith(Settings.settingsMenuHTML);
+	console.log("pageUpdate()");
+	if (!$('#settingsIcon').length) {
+		setTimeout(Settings.pageUpdate,1000);
+	}
+	else {
+		$('#settingsIcon').replaceWith(Settings.settingsIconHTML);
+	}
 };
 
 

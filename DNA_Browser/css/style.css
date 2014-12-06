@@ -9,13 +9,13 @@ overflow: hidden;
 .clearBoth {
 	clear:both;
 }
+/* the wrapper style needs to be in DNA_common css for all apps */
 .wrapper {
-	height:100%;
-	width: 100%;
-	/*margin-top: 125px;*/
 	overflow: hidden;
-	background-image: url("/DNA_common/images/Hex-Background.jpg");
-	position:absolute;	
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	/* background-image: url("/DNA_common/images/Hex-Background.jpg"); */
 }
 .bottomPanelLogoImg {
 	background: url('../images/AMG_Linux_White.png') no-repeat center !important;
@@ -31,7 +31,7 @@ overflow: hidden;
 
 .browserBody {
 	position: absolute;
-	top: 6%;
+	/*top: 6%;*/
 	left: 0;
 	width: 100%;
 	height: 87%; /* based on calculation that the bottom bar is 7% height */
@@ -39,59 +39,59 @@ overflow: hidden;
 
 .iconBrowser {
 	position: absolute;
-	top: 10px;
-	left: 10px;
-	width: 52px;
-	height: 51px;
+	top: 15px;
+	left: 15px;
+	width: 75px;
+	height: 75px;
 }
 .iconReloadBrowser {
 	position: absolute;
-	top: 10px;
-	left: 10px;
-	width: 50px;
-	height: 51px;
+	top: 15px;
+	left: 15px;
+	width: 72px;
+	height: 73px;
 }
 
 .iconHomeBrowser {
 	position: absolute;
-	top: 6px;
-	left: 5px;
-	width: 60px;
-	height: 59px;
+	top: 9px;
+	left: 8px;
+	width: 86px;
+	height: 85px;
 }
 
 .iconSearchBrowser {
 	position: absolute;
-	top: 0;
-	left: 5px;
-	width: 47px;
-	height: 47px;
+	/* top: 2px; */
+	left: 7px;
+	width: 72px;
+	height: 72px;
 }
 
 .backButtonBrowser {
 	position: absolute;
-	left: 4px;
-	top: 4px;
+	left: 11px;
+	top: 11px;
 }
 
 .forwardButtonBrowser {
 	position: absolute;
-	left: 78px;
-	top: 4px;
+	left: 116px;
+	top: 11px;
 }
 
 .reloadButtonBrowser {
 	position: absolute;
-	left: 570px;
-	top: 4px;
+	left: 860px;
+	top: 11px;
 }
 
 .browserToolbar {
-	position: absolute;
+	/*position: absolute;*/
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 5%;
+	height: 115px;
 }
 
 .toolbarBrowserBackground {
@@ -100,18 +100,18 @@ overflow: hidden;
 
 .inputBrowserBox {
 	position: absolute;
-	left: 150px;
-	top: 1px;
-	width: 400px;
-	height: 78px;
+	left: 220px;
+	top: 2px;
+	width: 650px;
+	height: 112px;
 }
 
 .inputBrowser {
 	position: absolute;
-	top: 15px;
-	left: 10px;
-	width: 400px;
-	height: 50px;
+	top: 22px;
+	left: 14px;
+	width: 615px;
+	height: 72px;
 	background: transparent;
 	border: none;
 	outline: none;
@@ -126,31 +126,31 @@ overflow: hidden;
 
 .searchButtonBrowser {
 	position: absolute;
-	top: 15px;
-	left: 365px;
-	width: 50px;
-	height: 50px;
+	top: 23px;
+	left: 554px;
+	width: 72px;
+	height: 72px;
 }
 
 .homeButtonBrowser {
 	position: absolute;
-	left: 645px;
-	top: 4px;
+	left: 970px;
+	top: 8px;
 	width: 80px;
 	height: 80px;
 }
 
 .historyBox {
 	position: absolute;
-	top: 79px;
-	left: 10px;
-	width: 405px;
+	top: 114px;
+	left: 15px;
+	width: 583px;
 	z-index: 10;
 	overflow: hidden;
-	transition: height 1s;
-	-moz-transition: height 1s; /* Firefox 4 */
+	/* transition: height 1s; */
+	/*-moz-transition: height 1s; /* Firefox 4 */
 	-webkit-transition: height 1s; /* Safari and Chrome */
-	-o-transition: height 1s; /* Opera */
+	/*-o-transition: height 1s; /* Opera */
 }
 
 .historyBoxShadow {
@@ -160,15 +160,15 @@ overflow: hidden;
 }
 
 .historyBoxElementBackground {
-	height: 40px;
+	height: 58px;
 	z-index: 20;
 }
 
 .historyBoxElement {
-	height: 20px;
-	margin-left: 5px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	height: 29px;
+	margin-left: 7px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .historyBoxElementDevider {
@@ -191,8 +191,8 @@ overflow: hidden;
 }
 
 .browserButton {
-	width: 70px;
-	height: 70px;
+	width: 100px;
+	height: 100px;
 }
 
 .browserButtonOpacity {
@@ -208,13 +208,13 @@ overflow: hidden;
 
 .onLineIndicator {
 	position: absolute;
-	top: 62px;
-	left: 703px;
+	top: 89px;
+	left: 1055px;
 	border-style: solid;
-	border-width: 2px;
-	width: 5px;
-	height: 5px;
-	border-radius: 10px;
+	border-width: 3px;
+	width: 8px;
+	height: 7px;
+	border-radius: 14px;
 }
 
 .onLineIndicatorTrue {

@@ -101,27 +101,7 @@ function themeErrorCB (msg) {
 function setKeyboardTheme(themeName) {
     console.log("Keyboard: theme = " + themeName);
     
-    var themeSize = 1080;
-    if (screen.width >= 1080)
-    {
-	themeSize = 1080;
-    }
-    else if (screen.width >= 720)
-    {
-	themeSize = 720;
-    }
-    else // if (screen.width >= 600)
-    {
-	themeSize = 600;
-    }
-    
-    console.log("Keyboard: screensize = " + screen.width + ", themeSize = " + themeSize);
-    
-    var themePath = "/usr/share/weekeyboard/" + themeName + "_" + themeSize + ".edj";
-    
-    console.log("Keyboard: themePath = " + themePath);
-    
-    var jsonenc = {api:"setTheme", theme:themePath};
+    var jsonenc = {api:"setTheme", theme:themeName};
     wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
 }
 

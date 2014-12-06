@@ -268,7 +268,7 @@ WeekeyboardConfigClient::SetTheme(std::string theme)
 
     // add the first two strings - section and name of the setting
     Eldbus_Message_Iter* iter = eldbus_message_iter_get(msg);
-    eldbus_message_iter_arguments_append(iter, "ss", "panel", "theme");
+    eldbus_message_iter_arguments_append(iter, "ss", "weekeyboard", "theme");
 
     // add the value of the setting as a variant
     Eldbus_Message_Iter* variant = eldbus_message_iter_container_new(iter, 'v', "s");

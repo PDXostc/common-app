@@ -13,6 +13,7 @@
 <title>HelloTizen application 42</title>
 <meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
 
+<link rel="stylesheet" href="./css/dna-hello-tizen.css"/>
 <link rel="stylesheet" href="./DNA_common/css/style.css"/>
 <link rel="stylesheet" href="./css/style.css"/>
 <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
@@ -40,21 +41,19 @@
 <div class="wrapper">	
 
 	<div class="title borderWhite fontNormal">
-		<div class="titleInfoBox">
-			<div class="title fontSizeLarge fontColorNormal fontWeightBold">Hello Tizen ivi</div>
-			<div class="titleSubtitle fontSizeSmaller fontColorNormal fontWeightBold">subtitle</div>
-			<div class="titleDescription fontSizeSmaller fontColorNormal fontWeightBold">description</div>
-			<div class="titleMore fontSizeSmaller fontColorSelected fontWeightBold">more</div>
-		</div>
-		
-		<div class="lgBtn titleButton fontSizeMedium fontWeightBold ">Button</div>
+			<h1>Hello Tizen ivi: H1 example</h1>
+			<h2>Subtitle: H2 example</h2>
+			<h3>Description: H3 example</h3>
+			<h4>Last header style: H4 example</h4>
+			<br>		
+		<button type="button" class="lrg-btn box-shadow-inset-1 font-white"><strong>Button</strong></button>
 	</div>
 		
 	<form name="add_item_form" class="input_form boxShadowI1Lt bgColorNormal">
 
 		<!--input information -->		 
 		<label>Title</label>
-		<input name="item_title" class="inputs boxShadow1Std">
+		<input name="item_title" class="inputs box-shadow-inset-7">
 		<input type="button" value="Add Item" class="formButton" name="add_item_button">
 
 		<label>Description</label>
@@ -94,10 +93,14 @@
 	<form class="form_narrow bgColorDark boxShadowI4Lt">
 
 		<div class="labelBox">
-			<div class="text fontSizeLarge fontWeightBold ">ID</div>
+			<div class="text fontSizeLarge fontWeightBold ">PASSWORD</div>
 			<div class="text fontSizeLarge fontWeightBold ">User</div>
 		</div>
 
+		<!-- <div class="inputNumberBox">
+			<input class="inputNumber fontSizeLarge bgColorNormal box-shadow-inset-5 font-white" type="password">
+          <button type="button" class="button deleteButton box-shadow-inset-7 borderNormal font-white">Delete</button>
+		</div>-->
 		<div class="inputNumberBox">
 			<input class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow4Std" type="text">
 			<div class="button deleteButton boxShadowI3Std fontNormal borderNormal">Delete</div>
@@ -132,7 +135,7 @@
 
 <!-- END HTML ELEMENTS -->
 
-<div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>
+<div id="bottomBar"></div>
 
 </body>
 

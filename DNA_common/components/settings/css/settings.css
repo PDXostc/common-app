@@ -1,3 +1,12 @@
+/*putting all styles for settings and components in settings.css for now, to be 
+sorted when there is time to organize all the components and make decisions*/
+
+.WifiPage {
+	display:inline-block;
+}
+.settingsPage {
+	display: inline-block;
+}
 .componentHeader {
 	font-size: 62px;
 	color: #fff;
@@ -10,7 +19,7 @@ ul.settingElement {
 	padding-bottom: 50px;	
 }
 .settingsContent .settingElement {
-	padding: 20px 0;
+	padding: 40px 0;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 	overflow: hidden;
@@ -143,8 +152,9 @@ ul.settingElement {
 	height: 80px;
 	float: left;
 	background-image: url('/DNA_common/components/settings/images/refresh.png');
-	margin-left: 50px;
+	margin-left: 100px;
 	background-size: 80px 80px;
+	background-repeat: no-repeat;
 }
 
 .addNetworkButton {
@@ -154,6 +164,7 @@ ul.settingElement {
 	background-image: url('/DNA_common/components/settings/images/plus.png');
 	margin-right: 60px;
 	background-size: 80px 80px;
+	background-repeat: no-repeat;
 }
 
 .bluetoothRefreshButton {
@@ -318,4 +329,7 @@ ul.settingElement {
 	z-index: 100;
 	position: absolute;
 	text-transform: uppercase;
+}
+.hidden	{
+	display: none;
 }

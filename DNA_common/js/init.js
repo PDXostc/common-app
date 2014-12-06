@@ -1,34 +1,43 @@
 var init = {};
 
-
-
-function includeJs(jsFilePath) {
+function includeJs(jsFilePath, callback, async) {
 	//console.log("includeJs "+jsFilePath);
     var js = document.createElement("script");
 
-	js.onload = function() {console.log("loaded "+jsFilePath);};
+    js.onload = function(e) {
+		if(typeof(callback) !== typeof undefined)
+		callback();
+	}
 	js.onerror = function() {console.log("error loading "+jsFilePath);};
     js.type = "text/javascript";
     js.src = jsFilePath;
-    //js.defer = true;
-    //js.async = true;
+    if(async == 1){
+		js.defer = true;
+		js.async = true;
+	}
 
 	try {
 		document.head.appendChild(js);
 	}
 	catch (err){
-		console.log("includeJs: "+err.message);
+		console.error("init.js error in loadScript: "+err.message);
 	}
 }
 
-function includeHTML(htmlFilePath,onload,onerror) {
+function includeHTML(htmlFilePath,onload,onerror,id,name) {
 	console.log("includeHTML "+htmlFilePath);
     var html = document.createElement("link");
 
     html.rel = "import";
     html.href = htmlFilePath;
-    html.onload = onload;
+    html.onload = function(e) {
+		if(typeof(name) !== typeof undefined)
+			$("#"+name).append($(document.querySelector('#'+id).import.querySelector("#"+name)).children());
+		if(typeof(onload) !== typeof undefined)
+			onload(e);
+	};
     html.onerror = onerror;
+	html.id = id;
 
 	try {
 		document.head.appendChild(html);
@@ -37,6 +46,16 @@ function includeHTML(htmlFilePath,onload,onerror) {
 		console.log("includeHTML: "+err.message);
 	}
 }
+
+includeJs("DNA_common/components/jQuery/jquery-1.8.2.js", function(){
+	//Import common libraries
+		//includeJs("DNA_common/jQuery/jquery-ui.js", function(){});
+		//includeJs("DNA_common/jQuery/jquery.mobile-1.4.5.js", function(){});
+
+	//Import the topBar and bottomBar
+		includeJs("DNA_common/components/topBar/js/topBar.js", function(){});
+		includeJs("DNA_common/components/bottomBar/js/bottomBar.js", function(){});
+});
 
 //includeJs("DNA_common/components/knockout/knockout.js");
 includeJs("DNA_common/components/bottomBar/jquery.nouislider.js");
@@ -48,10 +67,12 @@ includeJs("DNA_common/components/boxCaption/boxCaption.js");
 includeJs("DNA_common/components/car/js/car.js");
 includeJs("DNA_common/js/user.js");
 includeJs("DNA_common/js/bootstrap.js");
+includeJs("DNA_common/components/rvi/js/ej.js");
+includeJs("DNA_common/components/rvi/js/wse.js");
+includeJs("DNA_common/components/rvi/js/rvi.js");
 includeJs("DNA_common/components/bottomBar/jquery.nouislider.js");
-includeJs("DNA_common/components/bottomBar/bottomBar.js");
 includeJs("DNA_common/components/settings/js/settings.js");
-includeJs("DNA_common/components/topBar/topBar.js");
+includeJs("DNA_common/components/wifi/js/wifi.js");
 includeJs("DNA_common/components/dateTime/dateTime.js");
 
 includeJs("DNA_common/components/audioPlayer/most.js");
@@ -60,8 +81,7 @@ includeJs("DNA_common/components/jsViews/jsrender.js");
 includeJs("DNA_common/components/jsViews/template.js");
 includeJs("DNA_common/components/progressBar/progressBar.js");
 includeJs("DNA_common/components/keyboard/keyboard.js");
-includeJs("DNA_common/components/knockout/knockout.js");
-includeJs("DNA_common/components/knockout/knockout.min.js");
+includeJs("DNA_common/components/settings/js/wifi.js");
 
 //includeJs("DNA_common/components/buttonControls/buttonControls.js");
 //includeJs("DNA_common/components/uri/uri.js");
