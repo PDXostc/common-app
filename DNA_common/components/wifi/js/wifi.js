@@ -2,9 +2,17 @@ console.log("start of wifi.js");
 var WifiSettingsPage={};
 WifiSettingsPage.TemplateHTML = "DNA_common/components/wifi/wifi.html";
 
-WifiSettingsPage.ShowPage = function() { console.log('wifi page show_click();');$('#WifiPage').removeClass('hidden');};
+WifiSettingsPage.ShowPage = function() { 
+		console.log('wifi page show_click();');
+		$('#settingsPageList').addClass('hidden');
+		$('#WifiPage').removeClass('hidden');
+	};
 
-WifiSettingsPage.ShowPage = function() { console.log('wifi page hide_click();');$('#WifiPage').addClass('hidden');};
+WifiSettingsPage.HidePage = function() { 
+		console.log('wifi page hide_click();');
+		$('#settingsPageList').removeClass('hidden');
+		$('#WifiPage').addClass('hidden');
+	};
 
 WifiSettingsPage.pageUpdate = function() {
 	console.log("wifi pageUpdate()");
@@ -24,6 +32,7 @@ WifiSettingsPage.includeHTMLSucess = function(linkobj) {
    WifiSettingsPage.wifiPageHTML = WifiSettingsPage.import.getElementById('WifiPage');
    WifiSettingsPage.WifiDeviceHTML = WifiSettingsPage.import.getElementById('WifiDeviceTemplate');
    $("#settingsPage").append(WifiSettingsPage.import.getElementById('WifiPage'));
+   //$("body").append(WifiSettingsPage.import.getElementById('WifiPage'));
    var close_button = document.getElementById('tabsCloseSubPanelButton').onclick = WifiSettingsPage.HidePage;
    
    WifiSettingsPage.pageUpdate();
