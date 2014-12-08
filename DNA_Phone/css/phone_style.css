@@ -7,6 +7,7 @@
 	z-index:10;
 	/* padding-left:25px;*/
 }
+.body {display:block;}
 #topBar {
 	position: static;
 	display: block;
@@ -35,8 +36,8 @@
 	padding-bottom:5%
 */
 }
-#clockElement {position:relative;padding:30px;height:342px;}
-.phone-interface-wrapper{position:relative; width:334px;margin:auto;}
+#clockElement {position:relative;padding:30px;height:145px;}
+.phone-interface-wrapper{position:relative; width:334px;margin:auto;padding-top:20px;}
 .inputPhoneNumberBox {
 	position: relative;
 }
