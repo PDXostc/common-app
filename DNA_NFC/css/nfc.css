@@ -10,10 +10,9 @@ body {
 /* Switches ***********************************************/
 
 .switch {
-    position: absolute;
-    top: 14em;
-    left: 28em;
-    margin: 20px;
+    margin-top: 14em;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 /* Sizes for varying switches */
@@ -120,22 +119,21 @@ body {
 }
 
 .toggleLabel {
-    position: absolute;
-    top: 19em;
-    left: 30.2em;
-    width: 89px;
+    margin-top: 1em;
+    margin-left:auto;
+    margin-right:auto;
+    width: 155px;
     height: 38px;
-    margin: 0 .5em 0 .5em;
     color: rgb(196, 196, 196);
     text-align: center;
 }
 
 .inputBar {
-    position: absolute;
-    left: 15.4em;
-    top: 25em;
-    width: 37.0em;
+    margin-top: 2em;
+    width: 28.0em;
     height: 80px;
+    margin-left:auto;
+    margin-right:auto;
     border: none;
 }
 
@@ -162,7 +160,7 @@ body {
     position: absolute;
     width: 100%;
     height: 720px;
-    top: 32.5em;
+    top: 25em;
     color: rgb(196,196,196);
 }
 
@@ -197,7 +195,7 @@ body {
 .nfcPlaceTagText {
     text-align: center;
     position: absolute;
-    top: 105px;
+    top: 0em;
     width: 100%;
 }
 
@@ -233,11 +231,11 @@ body {
 }
 
 .nfcPlaceTag {
+    position:absolute;
+    top: 9em;
     height: 412px;
     width: 412px;
-    top: 10em;
-    left: 20.4em;
-    margin: 20em 0 0 20.7em;
+    left:11.0em;
     color: rgb(197,197,197);
     background-image: url('../images/detectorHexOff.png');
     background-repeat: no-repeat;
@@ -254,7 +252,7 @@ body {
 .hexText {
     text-align: center;
     position: absolute;
-    top: 15em;
+    top: 5em;
     height: 412px;
     width: 412px;
 }
