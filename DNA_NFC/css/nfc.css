@@ -229,6 +229,10 @@ body {
     box-shadow: inset 0 0 36px rgb(89, 255, 0);
     color: rgb(205, 255, 178);
 }
+@-webkit-keyframes wink {
+    from { background-position: 0; }
+    to { background-position: -5356px; }
+}
 
 .nfcPlaceTag {
     position:absolute;
@@ -237,12 +241,13 @@ body {
     width: 412px;
     left:11.0em;
     color: rgb(197,197,197);
-    background-image: url('../images/detectorHexOff.png');
-    background-repeat: no-repeat;
+	background-image:url(../images/tag_detection_img.png);
+	-webkit-animation: wink 1.5s steps(13) infinite;
 }
 
 .on.nfcPlaceTag {
-    background-image: url('../images/detectorHexOn.png');
+	background-image:url(../images/tag_detection_img.png);
+	-webkit-animation: wink 1.5s steps(13) infinite;
 
 }
 .off.nfcPlaceTag {
