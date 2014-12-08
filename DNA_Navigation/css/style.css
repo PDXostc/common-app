@@ -1,0 +1,140 @@
+.placesLibraryContentList .placesElement {
+	padding: 10px 0 10px 0;
+	height: 70px;
+	box-shadow: none;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	line-height: 0;
+	text-align: left;
+	cursor: pointer;
+}
+
+.placesLibraryContentList .placesBox {
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 20px;
+	background-color: transparent !important;
+}
+
+#upNextRectangle {
+	position: absolute;
+	left: 35px;
+	top: 100px;
+}
+
+#turnArrow {
+	position: absolute;
+	top: 135px;
+	left: 45px;
+	width: 50px;
+	height: 37px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.navigationPanel {
+	position: absolute;
+	top: 128px;
+	left: 106px;
+	width: 970px;
+	text-transform: uppercase;
+}
+
+#distanceTo {
+	position: absolute;
+	top: 180px;
+	left: 35px;
+	width: 70px;
+	text-align: center;
+}
+
+#destinationProgress {
+	position: absolute;
+	left: 9px;
+	top: 189px;
+	width: 1060px;
+	height: 62px;
+}
+
+#destinationItem {
+	position: absolute;
+	left: 35px;
+	top: 233px;
+	width: 750px;
+}
+
+#destinationAddress {
+	margin-top: 2px;
+}
+
+#destinationAddressTown {
+	margin-top: 2px;
+	display: none;
+}
+
+#stillToGoItem {
+	position: absolute;
+	left: 800px;
+	top: 232px;
+	max-width: 260px;
+}
+
+#stillToGoTimeAndDistance {
+	margin-top: 2px;
+}
+
+#arrivalText {
+	margin-top: 6px;
+}
+
+.mapPanel {
+	position: absolute;
+	top: 330px;
+	width: 1060px; /*720px;*/
+	height: 1460px;
+}
+
+.iconBbox {
+	left: 920px;
+	top: 1660px;
+	border-style: solid;
+	border-width: 2px;
+	position: absolute;
+	width: 110px;
+	height: 80px;
+}
+
+.iconBbox:active {
+	top: 1661px;
+}
+
+.satelliteIcon {
+	background-image: url('../images/icon_satellite_blue.png');
+	width: 56px;
+	height: 54px;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: none;
+	background-repeat: no-repeat;
+}
+
+.mapIcon {
+	background-image: url('../images/icon_map_blue.png');
+	margin: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 56px;
+	height: 40px;
+	background-repeat: no-repeat;
+}
+
+.bottomPanelLogoImg {
+	background: url('../images/AMG_Linux_White.png') no-repeat center !important;
+}
