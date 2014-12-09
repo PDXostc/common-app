@@ -67,7 +67,7 @@ var NFCViewModel = function() {
             $('#writeDataButton').prop('disabled', true);
             $('#writeDataButton').hide();
             
-            $('#tagFoundMsg').text("TAG NOT FOUND");            
+            $('#tagFoundMsg').text("SEARCHING");            
             $('#tagNotifyHex').show();
             if (placeTagOn) {
                 $('#tagNotifyHex').toggleClass('on off');
@@ -87,7 +87,7 @@ var NFCViewModel = function() {
 
             $('#tagFoundMsg').text("TAG FOUND");
             $('#tagNotifyHex').show();
-            if (!placeTagOn) {
+            if (! placeTagOn) {
                 console.log("toggling notify hex");
                 $('#tagNotifyHex').toggleClass('on off');
             }
