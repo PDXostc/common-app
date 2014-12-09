@@ -56,21 +56,23 @@ console.log("end of wifi.js");
 
 //wifi.js
 
-Wifi = {};
-self = {};
+wifiInit = function(){
+	Wifi = {};
 
-Wifi.TemplateHTML = "DNA_common/components/wifi/wifi.html";
-Wifi.connman = "DNA_common/components/settings/js/api-connman.js";
-Wifi.ws = "DNA_common/components/settings/js/websocket.js";
+	Wifi.TemplateHTML = "DNA_common/components/wifi/wifi.html";
+	Wifi.connman = "DNA_common/components/settings/js/api-connman.js";
+	Wifi.ws = "DNA_common/components/settings/js/websocket.js";
 
-includeJs(Wifi.connman); //include connman
-includeJs(Wifi.ws); //include websocket
+	includeJs(Wifi.connman); //include connman
+	includeJs(Wifi.ws); //include websocket	
 
+	w = new WifiSettings();
+	connect = w.connect();
+	connect.then(function(r){
+		console.log(r);
+	})
 
-//w = new WifiSettings();
-//w.connect();
-//w.loadDefaultAdapter(test)
-//w.wifi.setPowered(true)
+}
 
 WifiSettings = function(){
 
@@ -79,8 +81,11 @@ WifiSettings = function(){
 	self.networks = [];
 
 	this.connect = function(){
+		var promise = $.Deferred();
+
 		wsAPI.connect('ws://localhost:16000/', 'http-only', function() {
 				console.log('Settings daemon connected');
+				/*
 				wsAPI.subscribeEvents(function(event) {
 					self.connmanEventReceived(event);
 				});
@@ -91,6 +96,9 @@ WifiSettings = function(){
 						callback(error);
 					}
 				});
+				*/
+				promise.resolve();
+
 			}, function(err) {
 				console.log('Settings daemon disconnected...', err);
 				if (err === null || err === undefined) {
@@ -103,7 +111,9 @@ WifiSettings = function(){
 				if (!!callback) {
 					callback(error);
 				}
+				promise.fail(err);
 			});
+		return promise;
 	}
 
 	this.scan = function(event){
@@ -122,10 +132,7 @@ WifiSettings = function(){
 
 	this.togglePoweredOn = function(){
 		this.wifi.setPowered(false,function(r){
-			this.setPowered(true,function(r2){
-/*				$(document).on("click", ".switch-plate", function() {
-					  $(this).closest(".switch").toggleClass("on off");
-					})*/
+			this.wifi.setPowered(true,function(r2){
 				console.log("Set powered on after toggle.");
 			});
 		});
@@ -135,7 +142,8 @@ WifiSettings = function(){
 		console.log(event);
 	}
 
-	this.loadDefaultAdapter = function(callback){
+	this.loadDefaultAdapter = function(){
+		var promise = $.Deferred();
 
 		settings.connman.getTechnologies(function(technologies) {
 			for ( var i = 0; i < technologies.length; i++) {
@@ -146,8 +154,9 @@ WifiSettings = function(){
 					break;
 				}
 			}
-			callback();
+			promise.resolve();
 		});
+		return promise;
 	}
 
 	this.updateNetworks = function(newServices){
@@ -167,12 +176,20 @@ WifiSettings = function(){
 
 	//Lists networks on the settings wifi panel 
 	this.displayNetworks = function(){
+		
+		if($("#wifiNetworksList div.wifiElement").length > 0){
+			$("#wifiNetworksList div.wifiElement")
+		}
+
+
 		var template = WifiSettingsPage.import.querySelector("#WifiDeviceTemplate");
 		//var template = WifiSettingsPage.import.getElementById("WifiDeviceTemplate");
 
 		for (network in self.networks){
-			template.querySelector(".wifiElementTitle").innerHTML = self.networks[network].prop.Name;
-			var clone =  document.importNode(template.content,true);
+			//template.querySelector(".wifiElementTitle").innerHTML = self.networks[network].prop.Name;
+			var clone =  template.cloneNode(true);
+			clone.setAttribute("id",undefined);
+			clone.querySelector(".wifiElementTitle").innerHTML = self.networks[network].prop.Name;
 
 			document.querySelector("#wifiNetworksList").appendChild(clone);
 		}
