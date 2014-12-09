@@ -246,14 +246,16 @@ body {
 }
 
 .on.nfcPlaceTag {
-	background-image:url(../images/tag_detection_img.png);
+    background-image: url('../images/detectorHexOn.png');
+
+}
+
+.off.nfcPlaceTag {
+    background-image:url(../images/tag_detection_img.png);
 	-webkit-animation: wink 1.5s steps(13) infinite;
 
 }
-.off.nfcPlaceTag {
-    background-image: url('../images/detectorHexOff.png');
 
-}
 .hexText {
     text-align: center;
     position: absolute;
@@ -278,7 +280,7 @@ body {
     color: rgb(197,197,197);
     background-image: url('../images/detectorHexOn.png');
     background-repeat: no-repeat;
-/* background-position: -3296px 0;*/
+/* background-position: -3296px 0;
 }
 
 .nfcTagNotDetected {
@@ -326,7 +328,7 @@ body {
     100% {
 	background-position: -2884px 0;
     }
-}
+}*/
 
 .bottomPanelLogoImg {
     background: url('../images/AMG_Linux_White.png') no-repeat center !important;
