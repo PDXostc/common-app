@@ -4,7 +4,7 @@ sorted when there is time to organize all the components and make decisions*/
 .WifiPage {
 	display:inline-block;
 }
-.settingsPage {
+.settingsPage, .settingsPages {
 	display: inline-block;
 }
 .componentHeader {
