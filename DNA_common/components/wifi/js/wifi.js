@@ -1,4 +1,8 @@
 console.log("start of wifi.js");
+$(document).on("click", ".switch-plate", function() {
+	  $(this).closest(".switch").toggleClass("on off");
+	})
+					
 var WifiSettingsPage={};
 WifiSettingsPage.TemplateHTML = "DNA_common/components/wifi/wifi.html";
 
@@ -119,6 +123,9 @@ WifiSettings = function(){
 	this.togglePoweredOn = function(){
 		this.wifi.setPowered(false,function(r){
 			this.setPowered(true,function(r2){
+/*				$(document).on("click", ".switch-plate", function() {
+					  $(this).closest(".switch").toggleClass("on off");
+					})*/
 				console.log("Set powered on after toggle.");
 			});
 		});
