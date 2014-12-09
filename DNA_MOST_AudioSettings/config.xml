@@ -2,7 +2,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/DNAMOSTAudio" version="1.0.0" viewmodes="fullscreen">
     <tizen:application id="JLRPOCX016.MOSTAudio" package="JLRPOCX016" required_version="2.1"/>
     <content src="index.html"/>
-    <icon src=""/>
+    <icon src="icon.png"/>
     <name>MOST AUDIO</name>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>

@@ -120,7 +120,7 @@ Bootstrap.prototype.initCarIndicators = function(callback) {
 	var self = this;
 
 	console.log("Loading CarIndicators object");
-
+/*
 	loadScript('./DNA_common/js/carIndicator.js', function(path, status) {
 		if (status === "ok") {
 			try {
@@ -143,7 +143,8 @@ Bootstrap.prototype.initCarIndicators = function(callback) {
 			console.log("Error occured during loading of Configuration", status);
 			callback(status);
 		}
-	});
+	});*/
+	self.initSpeech(callback);
 };
 /** 
  * This method initialize incoming call component and attaches to incoming call signal.
@@ -226,11 +227,13 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 Bootstrap.prototype.initSpeech = function(callback) {
 	"use strict";
 	var self = this;
+	/*
 	loadScript('./DNA_common/js/speech.js', function(path, status) {
 		Speech.readCurrentAppName();
 		self.reload();
 		self.initIncomingCall(callback);
-	});
+	});*/
+	self.initIncomingCall(callback);
 };
 
 /** 

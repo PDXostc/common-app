@@ -36,7 +36,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 
 
 #audiosettings div.static_parts_bg{
-	background:url("images/audiocontrols/static_elements_720_585.svg") no-repeat;
+	background:url("/images/static_elements_720_585.svg") no-repeat;
 	height:58.4%;/*584/1000*/
 	width:100%;/*720/720*/
 	position:absolute;
@@ -44,7 +44,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	background-size:100%;
 }
 #audiosettings .surround_header{
-	background:url("images/audiocontrols/surround_header_484_28.svg") no-repeat;
+	background:url("/images/surround_header_484_28.svg") no-repeat;
 	width:66.6666666666667%; /*484/720*/
 	height:2.8%; /*28/1000*/
 	top:11.5%;
@@ -53,11 +53,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 }
 
 #audiosettings div.surround_header.only2D{
-	/* background:url("images/audiocontrols/surround_header_no3d_484_28.svg") no-repeat; */
+	/* background:url("/images/surround_header_no3d_484_28.svg") no-repeat; */
 }
 
 #audiosettings div.surround_sound_3D{
-	background:url("images/audiocontrols/surround_sound_3d_header_423_56.svg") no-repeat;
+	background:url("/images/surround_sound_3d_header_423_56.svg") no-repeat;
 	width:58.75%; /*423/720*/
 	height:5.7%; /*56/1000*/
 	top:2.5%;
@@ -78,7 +78,7 @@ div.on_off_btns, div.surround_btn_sets, div.dimension_2D, div.dimension_3D {
 div.on_btn{
 	height:5.7%;/*56/1000*/
 	width:14.444444444444%;/*104/720*/
-	background:url("images/audiocontrols/on_button_104_56.svg") no-repeat;
+	background:url("/images/on_button_104_56.svg") no-repeat;
 	position:absolute;
 	top:2.5%; /*25/1000*/
 	left:81.944444444444%; /*590/720*/	
@@ -86,21 +86,21 @@ div.on_btn{
 }
 
 div.on_btn.on{
-	background:url("images/audiocontrols/on_button_hover_104_56.svg") no-repeat;
+	background:url("/images/on_button_hover_104_56.svg") no-repeat;
 	background-size:100%;
 }
 
 div.off_btn{
 	height:5.7%;/*56/1000*/
 	width:14.444444444444%;/*104/720*/
-	background:url("images/audiocontrols/off_button_104_56.svg") no-repeat;
+	background:url("/images/off_button_104_56.svg") no-repeat;
 	position:absolute;
 	top:2.5%; /*25/1000*/
 	left:65.694444444444%; /*473/720*/
 	background-size:100%;
 }
 div.off_btn.on{
-	background:url("images/audiocontrols/off_button_hover_104_56.svg") no-repeat;
+	background:url("/images/off_button_hover_104_56.svg") no-repeat;
 	background-size:100%;
 }
 
@@ -111,7 +111,7 @@ div.on_btn.only2D, .off_btn.only2D{
 }
 
 div.audioDimensionTxt{
-	background:url("images/audiocontrols/2d_txt_26_15.svg") no-repeat;
+	background:url("/images/2d_txt_26_15.svg") no-repeat;
 	width:3.61111111111111%; /*26/720*/
 	height:1.5%; /*15/1000*/
 	position:absolute;
@@ -123,7 +123,7 @@ div.audioDimensionTxt.only2D{
 	/* display:none; */
 }
 div.audioDimensionTxt.on{
-	background:url("images/audiocontrols/3d_txt_26_15.svg") no-repeat;
+	background:url("/images/3d_txt_26_15.svg") no-repeat;
 	background-size:100%;
 }
 
@@ -142,49 +142,49 @@ div.surround_btn{
 }
 
 div.meridian2D{
-	background:url("images/audiocontrols/meridian2D_147_80.svg") no-repeat;
+	background:url("/images/meridian2D_147_80.svg") no-repeat;
 	left:4.166666666667%; /*30/720*/
 	background-size:100%;
 }
 div.meridian2D.on{
-	background:url("images/audiocontrols/meridian2D_hover_147_80.svg") no-repeat;
+	background:url("/images/meridian2D_hover_147_80.svg") no-repeat;
 	background-size:100%;
 }
 div.meridian3D{
-	background:url("images/audiocontrols/meridian_147_80.svg") no-repeat;
+	background:url("/images/meridian_147_80.svg") no-repeat;
 	left:4.166666666667%; /*30/720*/
 	background-size:100%;
 }
 div.meridian3D.on{
-	background:url("images/audiocontrols/meridian_hover_147_80.svg") no-repeat;
+	background:url("/images/meridian_hover_147_80.svg") no-repeat;
 	background-size:100%;
 }
 div.dolby{
-	background:url("images/audiocontrols/dolby_147_80.svg") no-repeat;
+	background:url("/images/dolby_147_80.svg") no-repeat;
 	left:27.222222222222%; /*196/720*/
 	background-size:100%;
 }
 div.dolby.on{
-	background:url("images/audiocontrols/dolby_hover_147_80.svg") no-repeat;
+	background:url("/images/dolby_hover_147_80.svg") no-repeat;
 	background-size:100%;
 }
 
 div.dts{
-	background:url("images/audiocontrols/dts_147_80.svg") no-repeat;
+	background:url("/images/dts_147_80.svg") no-repeat;
 	left:50.833333333333%; /*366/720*/
 	background-size:100%;
 }
 div.dts.on{
-	background:url("images/audiocontrols/dts_hover_147_80.svg") no-repeat;
+	background:url("/images/dts_hover_147_80.svg") no-repeat;
 	background-size:100%;
 }
 div.stereo{
-	background:url("images/audiocontrols/stereo_147_80.svg") no-repeat;
+	background:url("/images/stereo_147_80.svg") no-repeat;
 	left:76.3888888888889%; /*550/720*/
 	background-size:100%;
 }
 div.stereo.on{
-	background:url("images/audiocontrols/stereo_hover_147_80.svg") no-repeat;
+	background:url("/images/stereo_hover_147_80.svg") no-repeat;
 	background-size:100%;
 }
 
@@ -199,12 +199,12 @@ div.incremental_btn{
 
 /******PLUS*******/
 div.plus{
-	background:url("images/audiocontrols/plus_54_58.svg") no-repeat;
+	background:url("/images/plus_54_58.svg") no-repeat;
 	background-size:100%;
 }
 
 div.plus:active, .plus:hover{
-	background:url("images/audiocontrols/plus_hover_54_58.svg") no-repeat;
+	background:url("/images/plus_hover_54_58.svg") no-repeat;
 	background-size:100%;
 }
 
@@ -220,12 +220,12 @@ div.vol.incremental_btn.plus{
 
 /******MINUS*******/
 div.minus{
-	background:url("images/audiocontrols/minus_54_58.svg") no-repeat;
+	background:url("/images/minus_54_58.svg") no-repeat;
 	background-size:100%;
 }
 
 div.minus:active, .minus:hover{
-	background:url("images/audiocontrols/minus_hover_54_58.svg") no-repeat;
+	background:url("/images/minus_hover_54_58.svg") no-repeat;
 	background-size:100%;
 }
 
@@ -271,7 +271,7 @@ div.sub_display{
 /********VOLUME*******/
 
 div.noUiSliderVolumeBack{
-	background:url("images/audiocontrols/most_bar_off.svg") no-repeat;
+	background:url("/images/most_bar_off.svg") no-repeat;
 	position:absolute;
 	width: 68.5%;
 	height:7.5%;
@@ -282,7 +282,7 @@ div.noUiSliderVolumeBack{
 /*****FADE BALANCE****/
 
 div.land_rover_top_view{
-	background:url("images/audiocontrols/car_top_view_215_478.png") no-repeat;
+	background:url("/images/car_top_view_215_478.png") no-repeat;
 	background-size:100%;
 	width:29.8611111111111%;/*215/720*/
 	height:47.8%;/*478/1000*/
@@ -309,43 +309,43 @@ div.fadeBtn{
 }
 
 /*#audiosettings div.right{
-	background:url("images/audiocontrols/move_right_58_194.svg") no-repeat;
+	background:url("/images/move_right_58_194.svg") no-repeat;
 	left:88.8888888888889%;/*640/720
 	background-size:100%;
 }
 div.right:hover, .right:active{
-	background:url("images/audiocontrols/move_right_hover_58_194.svg") no-repeat;
+	background:url("/images/move_right_hover_58_194.svg") no-repeat;
 	background-size:100%;*/
 }
 #audiosettings div.left{
-	background:url("images/audiocontrols/left_move_58_194.svg") no-repeat;
+	background:url("/images/left_move_58_194.svg") no-repeat;
 	left:50.8333333333333%;/*366/720*/
 	background-size:100%;
 }
 div.left:hover, .left:active{
-	background:url("images/audiocontrols/left_move_hover_58_194.svg") no-repeat;
+	background:url("/images/left_move_hover_58_194.svg") no-repeat;
 	background-size:100%;
 }
 
 div.up{
-	background:url("images/audiocontrols/up_move_194_58.svg") no-repeat;
+	background:url("/images/up_move_194_58.svg") no-repeat;
 	top:33.4%;/*334/1000*/
 	background-size:100%;
 }
 
 div.up:hover, .up:active{
-	background:url("images/audiocontrols/up_move_hover_194_58.svg") no-repeat;
+	background:url("/images/up_move_hover_194_58.svg") no-repeat;
 	background-size:100%;
 }
 
 div.down{
-	background:url("images/audiocontrols/down_move_58_194.svg") no-repeat;
+	background:url("/images/down_move_58_194.svg") no-repeat;
 	top:90.2%;/*902/1000*/
 	background-size:100%;
 }
 
 div.down:hover, .down:active{
-	background:url("images/audiocontrols/down_move_hover_58_194.svg") no-repeat;
+	background:url("/images/down_move_hover_58_194.svg") no-repeat;
 	background-size:100%;
 }
 
@@ -358,7 +358,7 @@ div.crossHairContainer{
 	overflow:hidden;
 }
 div.crosshair{
-	background:url("images/audiocontrols/crosshair_430_952.svg") no-repeat;
+	background:url("/images/crosshair_430_952.svg") no-repeat;
 	width:200%;/*(100*430)/215*/
 	height:200%;/*(100*952)/478*/
 	left:-50%;/*200/4*/

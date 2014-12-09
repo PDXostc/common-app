@@ -1,23 +1,23 @@
 
 /* these image styles copied from tabs.css DNA_common/css, need to move images and adjust file paths */
 .tabsCloseButton {
-	background-image: url('../images/tabs/bt_close_blue.png');
+	background-image: url('bt_close_blue.png');
 }
 
-/* .tabsTopPanel {
-	background-image: url('../images/tabs/bg_top_navi_blue.png');
-} */
+ .tabsTopPanel {
+	background-image: url('bg_top_navi_blue.png');
+}
 
 .tabsTab, .tabsTabClear {
-	background-image: url('../images/tabs/bg_top_navi_unselect1px_blue.png');
+	background-image: url('bg_top_navi_unselect1px_blue.png');
 }
 
 .tabsTabSelected {
-	background-image: url('../images/tabs/bg_top_navi_select_blue.png');
+	background-image: url('bg_top_navi_select_blue.png');
 }
 
 .tabsCloseSubPanelButton {
-	background-image: url('../images/tabs/bt_back_blue.png');
+	background-image: url('bt_back_blue.png');
 }
 /* end of styles copied from tabs.css in DNA_common/css */
 
@@ -64,7 +64,7 @@
 	font-size: 0;
 }
 .tabsCloseButton {
-	background-image: url('../images/tabs/bt_close_blue.png');
+	background-image: url('bt_close_blue.png');
 }
 /* style copied from components/topBar/topBar.css; delete once image style path is changed */
 .tabsCloseButton {
@@ -88,7 +88,7 @@
 	width:1080px !important; */
 
 /*.tabsTab, .tabsTabClear {
-	background-image: url('../images/tabs/bg_top_navi_unselect1px_blue.png');
+	background-image: url('bg_top_navi_unselect1px_blue.png');
 }*/
 .tabsTabs {
 	position: absolute;

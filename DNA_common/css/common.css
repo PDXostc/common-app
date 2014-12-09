@@ -969,7 +969,7 @@ section {
 	margin-top: 279px;
 	background-color: rgb(255, 3, 3);
 	background-color: rgba(255, 3, 3, 0.8);
-	background-image: url("../images/phone/icon_endcall_blue.png");
+	/*background-image: url("../images/phone/icon_endcall_blue.png");*/
 }
 
 .callingFalse {

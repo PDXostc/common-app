@@ -53,20 +53,22 @@ var carIndicatorSignals =  [
 
 var init = function () {
     var bootstrap = new Bootstrap(function (status) {
+		/*
         $("#topBarIcons").topBarIconsPlugin('init', 'news');
 	$("#clockElement").ClockPlugin('init', 5);
 	$("#clockElement").ClockPlugin('startTimer');
-	$('#bottomPanel').bottomPanel('init');
+	$('#bottomPanel').bottomPanel('init');*/
 
+/*
 	if (tizen.speech) {
 	    setupSpeechRecognition();
 	} else {
 	    console.log("Store: Speech Recognition not running, voice control will be unavailable");
 	}
-		
 	bootstrap.themeEngine.addStatusListener(function (eData) {
 		// setThemeImageColor();
 	});
+	*/		
     });
 };
 
@@ -130,3 +132,6 @@ function setupSpeechRecognition() {
 
 	});
 }
+
+function loggIt(string) {
+};
