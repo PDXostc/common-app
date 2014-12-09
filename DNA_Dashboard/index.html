@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
+ *
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+-->
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>HelloTizen application 42</title>
+	<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+
+	<link rel="stylesheet" href="./DNA_common/css/style.css"/>
+	<link rel="stylesheet" href="./css/style.css"/>
+	<link rel="stylesheet" href="./css/dashboard.css"/> <!--Dashboard specific-->
+	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
+
+	<script type="text/javascript">
+		includeJs("./DNA_common/js/predefAppModel.js");
+		includeJs("./DNA_common/js/installedApps.js");
+		includeJs("./DNA_common/js/keyControl.js");
+		includeJs("./DNA_common/js/actionCatcher.js");
+		includeJs("./DNA_common/js/HomeScreenMain.js");
+		includeJs("./js/main.js");
+	</script>
+
+</head>
+
+<body>
+
+	<div id="topBar"></div>
+
+	<div id="clockElement"></div>
+
+	<div class="wrapper">
+
+		<!-- BEGIN CUSTOM HTML ELEMENTS -->
+
+		<!-- Speed -->
+
+		<div id="speedContainer">
+				<h5>SPEED</h5>
+				<div id="speedIcon"></div>
+				<div id="speedGauge"></div>
+				<div id="fullSpeedGauge"></div>
+				<p id="bigSpeed">90 <span id="littleMPH">MPH</span></p>
+		</div>
+
+		<!-- Fuel and Temperature -->
+
+		<div id="fuelTempContainer">
+			<div id="fuelContainer">
+				<h5 class="yellow-lt">FUEL</h5>
+				<div id="fuelIcon"></div>
+				<div id="fuelGauge"></div>
+				<div id="fullFuelGauge"></div>
+				<ul>
+					<li><strong>ODO:</strong> 5224.3 mi</li>
+					<li><strong>RANGE:</strong> 355 mi</li>
+					<li><strong>AVG:</strong> 20.7 mpg</li>
+				</ul>
+			</div>
+
+			<div id="temperatureContainer">
+				<h5 class="green-lt">TEMPERATURE</h5>
+				<div id="temperatureIcon"></div>
+				<ul>
+					<li><strong>OUTDOOR:</strong> 80&deg;</li>
+					<li><strong>INDOOR:</strong> 72&deg;</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Tire Pressure -->
+
+		<div id="tirePressureContainer">
+			
+			<div class="frontTireData tirePressureData leftPSI">
+				<div class="PSI_statusPosition PSI_statusOK"></div>
+				<h6>Left Front Tire</h6>
+				<p class="psiText">26.00 PSI</p>
+			</div>
+
+			<div class="frontTireData tirePressureData rightPSI">
+				<div class="PSI_statusPosition PSI_statusOK"></div>
+				<h6>Right Front Tire</h6>
+				<p class="psiText">26.00 PSI</p>
+			</div>
+
+			<div class="rearTireData tirePressureData leftPSI">
+				<div class="PSI_statusPosition PSI_statusOK"></div>
+				<h6>Left Rear Tire</h6>
+				<p class="psiText">26.00 PSI</p>
+			</div>
+
+			<div class="rearTireData tirePressureData rightPSI">
+				<div class="PSI_statusPosition PSI_statusOK"></div>
+				<h6>Right Rear Tire</h6>
+				<p class="psiText">26.00 PSI</p>
+			</div>
+
+			<div id="carImage"></div>
+
+		</div>
+
+		<hr>
+
+		<div id="miscData">
+	<!--<section id="childLock">
+		<h5>CHILD LOCK</h5>
+		<p>Activated</p>
+	</section>-->
+
+	<!--<section id="speedOdometer">
+	<h5>ENGINE STATUS</h5>
+		<p>0 MPH</p>
+		<p>0 MI</p>
+	</section>-->
+
+	<!--<section id="currentGear">
+		<h2>N</h2>
+	</section>-->
+</div>
+
+<!-- END CUSTOM ELEMENTS -->
+
+</div><!--end of wrapper -->
+
+<div id="bottomBar" class="bottomPanel bottomPanelImg"></div>
+
+</body>
+
+</html>
