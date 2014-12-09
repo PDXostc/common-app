@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets"
-	id="http://yourdomain/NFC" version="1.0.0" viewmodes="fullscreen">
-	<tizen:application id="intelPoc22.NFC" package="intelPoc22"
+	id="http://jaguarlandrover.com/NFC" version="1.0.0" viewmodes="fullscreen">
+	<tizen:application id="JLRPOCX034.NFC" package="JLRPOCX034"
 		required_version="2.1" />
 	<content src="index.html" />
 	<icon src="icon.png" />
