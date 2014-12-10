@@ -66,10 +66,14 @@ body {
 	font-family: SourceSansPro, sans-serif;
 	width: 100%;
 	height: 100%;
+  margin: 0;
+  padding: 0;
 	background-color: rgb(0,0,0);
 	background-image: url("../images/Hex-Background.jpg");
+	position: relative;
 	display: flex;
 }
+
 .wrapper {
 	overflow: hidden;
 	display: flex;
@@ -86,6 +90,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   color: #fe9c00;
   margin: .5em 0;
+  line-height: 1em;
 }
 
 h1 {
@@ -115,7 +120,7 @@ h6, label {
 
 /* Text */
 
-p {
+p, ul {
   margin-bottom: 1em;
 }
 
@@ -124,7 +129,15 @@ p, ul, li {
   font-size: 3rem;
 }
 
-p.large-text {
+.text-large {
+  font-size: 3.4rem;
+}
+
+.text-medium {
+  font-size: 3.2rem;
+}
+
+p.lead {
   font-size: 4.5rem;
   font-weight: 300;
 }
@@ -139,7 +152,10 @@ a {
 
 ul {
   font-size: 3rem;
-  list-style-position: inside;
+}
+
+li {
+  margin-left: 1em;
 }
 
 /* Sectioning Content and Div *****************************/
@@ -150,6 +166,114 @@ aside,
 article,
 section {
   font-size: 3rem;
+}
+
+/* Structural Elements ************************************/
+
+/*
+	These styles can only be used with
+	the HTML structure suggested in the Style Guide
+*/
+
+#base {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  height: inherit;
+}
+
+#modal,
+#settings {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  display: flex;
+}
+
+#modal {
+  align-items: center;
+}
+
+#settings {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: height .25s ease-out;
+}
+
+#settings.collapsed {
+  overflow: hidden;
+  height: 0%;
+}
+
+#app .content,
+#modal .content,
+#settings .content {
+  flex: 1;
+  padding: 20px;
+}
+
+#app .content,
+#settings .content {
+  margin: 20px;
+}
+
+#modal .content {
+  background-color: #333;
+}
+
+#top-bar {
+  height: 114px;
+  background-color: black;
+}
+
+#app {
+  display: flex;
+  flex: 1;
+  background-color: transparent;
+}
+
+#bottom-bar {
+  height: 139px;
+  background-color: black;
+  display: flex;
+}
+
+#top-bar,
+#bottom-bar {
+  text-align: center;
+  box-shadow: inset 0 0 40px 2px rgba(255, 255, 255, 0.85);
+  align-items: center;
+}
+
+#top-bar ul {
+  display: flex;
+  margin: 0;
+  padding: 0; 
+}
+
+#top-bar .grid-space {
+  display: inline;
+  padding: 10px; 
+  flex: 1;
+  height: 100%;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+#top-bar .grid-space:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+#volume,
+#settings-button {
+  flex: 1;
+}
+
+#agl-logo {
+  flex: 3;
 }
 
 /* Colors *************************************************/
@@ -244,6 +368,44 @@ section {
 
 /* Controls ***********************************************/
 
+/* Buttons ************************************************/
+
+.button, button {
+  content: "button";
+  color: white;
+  position: relative;
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 8px 20px 12px;
+  margin: 20px;
+  border-width: 1px;
+  border-style: solid;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.9);
+}
+
+.button-orange {
+  border-color: #fe9c00;
+  box-shadow: inset 0 0 20px rgba(254, 156, 0, 0.9);
+}
+
+.button-blue {
+  border-color: #b2f0ff;
+  box-shadow: inset 0 0 20px rgba(178, 240, 255, 0.9);
+}
+
+.button-green {
+  border-color: #59ff00;
+  box-shadow: inset 0 0 20px rgba(89, 255, 0, 0.9);
+}
+
+.button-yellow {
+  border-color: #ffff00;
+  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.9);
+}
+
 /* Switches ***********************************************/
 
 .switch {
@@ -312,6 +474,49 @@ section {
   padding-right: 3%;
 }
 
+/* Modifiers **********************************************/
+
+.hidden,
+#modal.hidden,
+#settings.hidden {
+  display: none;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Flex Modifiers */
+
+.flex-parent {
+  display: flex;
+}
+
+.flex-item {
+  flex: 1;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  align-items: center;
+}
+
+.flex-column-center {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
 /**********************************************************/
 
 :focus {
@@ -346,6 +551,9 @@ section {
 }
 
 /* FONT SIZE */
+/* The styles in this section wil be eventually removed */
+/* Refer to the style guide for alternate font styles */
+
 .fontSizeXXSmall {
 	font-size: 14px;
 	line-height: 14px;
@@ -400,6 +608,8 @@ section {
 	font-size: 80px;
 	line-height: 80px;
 }
+
+/* Font Weights */
 
 .fontWeightNormal {
 	font-weight: normal;
