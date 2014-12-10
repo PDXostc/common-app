@@ -12,6 +12,57 @@
  * @module Services
  */
 
+console.log("start of rvi settings template");
+var rviSettingsPage={};
+rviSettingsPage.TemplateHTML = "DNA_common/components/rvi/rvi.html";
+
+rviSettingsPage.ShowPage = function() { 
+		console.log('rvi page show_click();');
+		$('#settingsPageList').addClass('hidden');
+		$('#rviPage').removeClass('hidden');
+	};
+
+rviSettingsPage.HidePage = function() { 
+		console.log('rvi page hide_click();');
+		$('#settingsPageList').removeClass('hidden');
+		$('#rviPage').addClass('hidden');
+	};
+
+rviSettingsPage.pageUpdate = function() {
+	console.log("rvi pageUpdate()");
+
+	if (!$('#settingsPage').length) {
+		setTimeout(rviSettingsPage.pageUpdate,1000);
+	}
+	else {
+		$("#settingsPage").append(rviSettingsPage.import.getElementById('rviPage'));
+		var close_button = document.getElementById('tabsCloseSubPanelRviButton').onclick = rviSettingsPage.HidePage;
+		Settings.addUpdateSettingsPage('rvi','settings',rviSettingsPage.ShowPage);
+	}
+};
+
+rviSettingsPage.includeHTMLSucess = function(linkobj) {
+   console.log("loaded rvi.html");
+   rviSettingsPage.import = linkobj.path[0].import;
+   rviSettingsPage.rviPageHTML = rviSettingsPage.import.getElementById('rviPage');
+   rviSettingsPage.rviDeviceHTML = rviSettingsPage.import.getElementById('rviDeviceTemplate');
+   //$("#settingsPage").append(rviSettingsPage.import.getElementById('rviPage'));
+   //$("body").append(rviSettingsPage.import.getElementById('rviPage'));
+   
+   rviSettingsPage.pageUpdate();
+};
+
+rviSettingsPage.includeHTMLFailed = function(linkobj) {
+	console.log("load rvi.html failed");
+	console.log(linkobj);
+};
+
+
+includeHTML(rviSettingsPage.TemplateHTML, rviSettingsPage.includeHTMLSucess, rviSettingsPage.includeHTMLFailed);
+
+console.log("end of rvi settings template");
+
+
 // Singleton
 function RVI() {
     if (typeof RVI.instance === 'object') {
