@@ -5,17 +5,17 @@ body {
 }
 
 .newsChannels {
-  position: absolute;
-  display: block;
-  top: 152px;
-  left: 0px;
-  height: 47px;
-  line-height: 47px !important;
-  width: 670px;
+  position: relative;
+  display: inline-block;
+  margin-top: 50px;
+  /* left: 0px; */
+  height: 100px;
+  /* line-height: 47px !important; */
+  width: 100%;
   z-index: -500;
-  // text-align: justify;
+  text-align: center;
   letter-spacing: 2px;
-  padding: 0px 25px 0px 25px;
+  /*padding: 0 36px;*/
 }
 
 #topArticleList {
@@ -37,12 +37,12 @@ body {
 }
 
 .articleList {
-  position: absolute;
-  display: block;
-  top: 210px;
+  position: relative;
+  display: inline-block;
+  top: 5px;
   left: 0px;
-  height: 890px;
-  width: 716px;
+  /*height: 1282px;*/
+  width: 1076px;
   border-style: solid;
   border-width: 2px;
   overflow-y: scroll;
@@ -52,9 +52,9 @@ body {
 
 .articleListItem {
   display: block;
-  width: 708px;
-  height: 130px;
-  margin: 0px 4px 8px 4px;
+  width: 1056px;
+  height: 187px;
+  margin: 10px 10px 0 10px;
 }
 
 .itemDate {
@@ -62,34 +62,33 @@ body {
 }
 
 .article {
-  visibility: hidden;
   position: absolute;
-  top: 220px;
-  left: 10px;
-  height: 870px;
-  width: 695px;
-  border-width: 1px;
-  border-style: solid;
-  outline: 18px solid black;
-  z-index: 10;
+  top: 225px;
+  left: 0px;
+  /* height: 870px; */
+  width: 1078px;
+  border: 1px solid #fff;
+  /* outline: 18px solid black; */
+  z-index: 5;
   background: #000000;
-  overflow: hidden;
+  overflow: hidden;     
+  bottom: 131px;     
 }
 
 #articleClose {
   display: none;
   position: absolute;
-  top: 221px;
-  left: 655px;
-  width: 40px;
-  height: 40px;
+  top: 318px;
+  left: 958px;
+  width: 58px;
+  height: 58px;
   border-width: 1px;
   border-style: solid;
   text-align: center;
   vertical-align: middle;
-  line-height: 40px;
+  line-height: 58px;
   z-index: 11;
-  padding: 5px;
+  padding: 7px;
 }
 
 .articleHead {
@@ -113,29 +112,31 @@ body {
   display: block;
   padding: 22px 31px 31px 31px;
   letter-spacing: 3px;
+  line-height: 120%;
 }
 
 .thumbnail {
   display: inline-block;
-  width: 180px;
-  height: 120px;
-  padding: 4px 4px 2px 4px;
+  width: 260px;
+  height: 173px;
+  padding: 6px;
   vertical-align: middle;
 }
 
 .itemTitle {
   font-weight: bold;
   font-size: 188%;
-  line-height: 95%;
+  line-height: 120%;
 }
 
 .itemText {
   display: inline-block;
-  width: 490px;
-  height: 117px;
-  padding: 2px 2px 2px 8px;
+  width: 750px;
+  height: 168px;
+  padding: 3px 3px 3px 12px;
   vertical-align: middle;
   overflow: hidden;
+  font-size: 1.5rem;
 }
 
 .itemTextGradFade {
@@ -148,13 +149,14 @@ body {
 }
 
 .articleListGradFade {
-  display: block;
-  width: 712px;
-  height: 55px;
+  /* display: block; */
+  width: 1076px;
+  height: 80px;
   z-index: 1;
   left: 2px;
-  margin-top: 1032px;
+  bottom: 132px;
   background: -webkit-linear-gradient(top, rgba(2,46,73,0) 0%,rgba(2,46,73,0.59) 25%,rgba(1,14,22,1) 85%,rgba(0,0,0,1) 100%);
+  position: absolute;
 }
 
 .scrollIndicator {
@@ -168,10 +170,33 @@ body {
 }
 
 .bottomPanelLogoImg {
-	background: url('../images/logo_icon.png') no-repeat center !important;
+  background: url('../images/logo_icon.png') no-repeat center !important;
 }
 
 .bottomPanelLogoImg {
   background-repeat: no-repeat;
   width: 234px !important;
+}
+
+body {
+  width: 1080px;
+  height: 1920px;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+}
+.wrapper {
+  height: 1673px;
+  width: 100%;
 }

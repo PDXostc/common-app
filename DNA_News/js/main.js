@@ -51,8 +51,8 @@ function BuildItemHTML(itemPhoto,itemTitle,itemDesc){
     output = '';
     output += '<li id=\"'+ itemGuid +'\">';
     output += '<div class=\"articleListItem textBgColorThemeTransparent\">';
-    output += '<div class=\"thumbnail\" ontouchend=\"showArticle(\''+ itemFeed +'/did='+ itemGuid +'\')\"><img src=\"'+ itemPhoto +'\" width=\"180px\" \/></div>';
-    output += '<div class=\"itemText\"><span class=\"itemDate fontSizeXXSmall fontColorTheme\">'+ d + m + y +'</span><br/><span ontouchend=\"showArticle(\''+ itemFeed +'/did='+ itemGuid +'\')\" class=\"itemTitle fontSizeSmall fontColorNormal\">'+ itemTitle +'</span><br/>';
+    output += '<div class=\"thumbnail\" ontouchend=\"showArticle(\''+ itemFeed +'/did='+ itemGuid +'\')\"><img src=\"'+ itemPhoto +'\" width=\"260px\" \/></div>';
+    output += '<div class=\"itemText\"><span class=\"itemDate fontSizeSmall fontColorTheme\">'+ d + m + y +'</span><br/><span ontouchend=\"showArticle(\''+ itemFeed +'/did='+ itemGuid +'\')\" class=\"itemTitle fontSizeSmall fontColorNormal\">'+ itemTitle +'</span><br/>';
     output += '<span class=\"itemDesc fontSizeXSmall fontColorNormal\">'+ itemDesc +'</span>';
     output += '</div><div class=\"itemTextGradFade\"></div></div>';
     output += '</li>';
@@ -223,8 +223,8 @@ $(document).ready(function () {
         $("#sportsArticleList").append(myHTMLOutput);
         showSports();
     };
-    //$.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e9",gotSports);
-    $.get("./sports.xml",gotSports);
+    $.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e9",gotSports);
+    //$.get("./sports.xml",gotSports);
  
 });
 
@@ -317,6 +317,7 @@ function showArticle(url) {
     */
 
     $.get(url, function(xml) {
+        console.log("fire function to get article");
 
         myHTMLOutput = '';
 	$('item',xml).each(function(i) {
@@ -324,12 +325,14 @@ function showArticle(url) {
             articleBody = $(this).find("body").text();
             articleBody = articleBody.replace(/(?:^|[^"'])((ftp|http|https|file):\/\/[\S]+(\b|$))/gi, "<p><img width=\"627px\" class=\"articlePhoto\" src=\"$1\" />");
             itemId = $(this).find("id").text();
+            console.log("each loop for article items");
         });
 
-        myHTMLOutput = '<li class=\"articleItem\"><div class=\"articleBody fontSizeLarge fontColorNormal\">';
-        myHTMLOutput += '<span class=\"articleHead fontSizeLarger fontColorNormal\">'+ articleHead +'</span>'+ articleBody +'</div></li>';
+        myHTMLOutput = '<li class=\"articleItem\"><div class=\"articleBody fontSizeMedium fontColorNormal\">';
+        myHTMLOutput += '<span class=\"articleHead fontSizeXLarge fontColorNormal\">'+ articleHead +'</span>'+ articleBody +'</div></li>';
 
         $("#articleScroller").append(myHTMLOutput);
+        console.log("article html sent");
 
         articleScroll = null;
         articleScroll = new iScroll('articleContainer', { hScrollbar: false, vScrollbar: false });
