@@ -30,12 +30,12 @@ rm -rf %{buildroot}
 
 %post
 if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
-    wrt-installer -i /opt/usr/apps/.preinstallWidgets/News.wgt;
+    wrt-installer -i /opt/usr/apps/.preinstallWidgets/DNA_News.wgt;
 fi
 
 %postun
-    wrt-installer -un intelPoc30.News
+    wrt-installer -un JLRPOCX007.News
 
 %files
 %defattr(-,root,root,-)
-/opt/usr/apps/.preinstallWidgets/News.wgt
+/opt/usr/apps/.preinstallWidgets/DNA_News.wgt
