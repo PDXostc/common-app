@@ -54,24 +54,51 @@ console.log("end of wifi.js");
 
 
 
-//wifi.js
-
-wifiInit = function(){
-	Wifi = {};
+function loadComponents(){
+	var promise = $.Deferred();
 
 	Wifi.TemplateHTML = "DNA_common/components/wifi/wifi.html";
 	Wifi.connman = "DNA_common/components/settings/js/api-connman.js";
 	Wifi.ws = "DNA_common/components/settings/js/websocket.js";
 
-	includeJs(Wifi.connman); //include connman
-	includeJs(Wifi.ws); //include websocket	
+	includeJs(Wifi.ws,function(){ //include websocket		
+		includeJs(Wifi.connman,function(){
+			promise.resolve();
+		}); //include connman	
+	}); 
+
+	
+	
+
+	return promise
+}
+
+wifiInit = function(){
+	Wifi = {};
 
 	w = new WifiSettings();
 	connect = w.connect();
+
+	$.when(connect).then(function(res){
+		console.log(res);
+		console.log("websocket connected.");
+
+		return w.loadDefaultAdapter();
+	}).then(function(input){
+		
+	}).then(function(){
+
+	});
+
+
+
+
+
+	/*
 	connect.then(function(r){
 		console.log(r);
 	})
-
+	*/
 }
 
 WifiSettings = function(){
@@ -127,6 +154,14 @@ WifiSettings = function(){
 			return true;
 		}else{
 			return false;
+		}
+	}
+
+	this.displayPowered = function(){
+		if(self.wifi.prop.Powered != undefined){
+			
+		}else{
+			
 		}
 	}
 
