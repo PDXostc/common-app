@@ -75,6 +75,7 @@ includeJs("DNA_common/components/rvi/js/rvi.js");
 includeJs("DNA_common/components/bottomBar/jquery.nouislider.js");
 includeJs("DNA_common/components/settings/js/settings.js");
 includeJs("DNA_common/components/wifi/js/wifi.js");
+includeJs("DNA_common/components/bluetooth/js/bluetooth.js");
 includeJs("DNA_common/components/dateTime/dateTime.js");
 
 includeJs("DNA_common/components/audioPlayer/most.js");
