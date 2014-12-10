@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
+ * Copyright (c) 2013, Intel Corporation, Jaguar Land Rover
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
@@ -12,7 +12,6 @@
  * @module Services
  */
 
-console.log("loading of bootstrap.js has started");
 /** 
  * This class provides unified way to boot up the HTML applications by loading shared components in proper order:
  * 
@@ -48,7 +47,7 @@ var Bootstrap = function(callback) {
 
 	console.log("Loading Configuration object");
 
-	loadScript('./DNA_common/components/configuration/configuration.js', function(path, status) {
+	loadScript('./css/car/components/configuration/configuration.js', function(path, status) {
 		if (status === "ok") {
 			Configuration.reload(function() {
 				self.loadThemeEngine(callback);
@@ -89,25 +88,24 @@ Bootstrap.prototype.incomingCall = null;
 Bootstrap.prototype.loadThemeEngine = function(callback) {
 	"use strict";
 	var self = this;
-	self.initCarIndicators(callback);
 
-	//console.log("Loading ThemeEngine object");
+	console.log("Loading ThemeEngine object");
 
-	//loadScript('./DNA_common/js/themeengine.js', function(path, status) {
-		//if (status === "ok") {
-			//self.themeEngine = ThemeEngine;
-			//self.themeEngine.init(function(themeStatus) {
-				//if (!themeStatus) {
-					//self.initCarIndicators(callback);
-				//} else {
-					//callback(themeStatus);
-				//}
-			//});
-		//} else {
-			//console.log("Error occured during loading of Configuration", status);
-			//callback(status);
-		//}
-	//});
+	loadScript('./js/services/themeengine.js', function(path, status) {
+		if (status === "ok") {
+			self.themeEngine = ThemeEngine;
+			self.themeEngine.init(function(themeStatus) {
+				if (!themeStatus) {
+					self.initCarIndicators(callback);
+				} else {
+					callback(themeStatus);
+				}
+			});
+		} else {
+			console.log("Error occured during loading of Configuration", status);
+			callback(status);
+		}
+	});
 };
 
 /** 
@@ -120,31 +118,27 @@ Bootstrap.prototype.initCarIndicators = function(callback) {
 	var self = this;
 
 	console.log("Loading CarIndicators object");
-/*
-	loadScript('./DNA_common/js/carIndicator.js', function(path, status) {
+
+	loadScript('./js/services/carIndicator.js', function(path, status) {
 		if (status === "ok") {
 			try {
 				self.carIndicator = new CarIndicator();
-				console.log(self.carIndicator);
 
 				self.carIndicator.addListener({
 					onNightModeChanged: function(nightMode) {
-						//self.themeEngine.setUserTheme("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
-						cosole.log("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
+						self.themeEngine.setUserTheme("http://com.intel.tizen/" + (nightMode ? "blue" : "green"));
 					}
 				});
-				console.log(self);
 				self.initSpeech(callback);
 			} catch (ex) {
-				console.error("Error occured during CarIndicator initialization", self.CarIndicator, path, status, ex);
+				console.error("Error occured during CarIndicator initialization", ex);
 				callback(ex);
 			}
 		} else {
 			console.log("Error occured during loading of Configuration", status);
 			callback(status);
 		}
-	});*/
-	self.initSpeech(callback);
+	});
 };
 /** 
  * This method initialize incoming call component and attaches to incoming call signal.
@@ -156,10 +150,10 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 	var self = this;
 
 	console.log("Loading IncomingCall object");
-	loadScript('./DNA_common/components/boxCaption/boxCaption.js', function(path, status) {
+	loadScript('./css/car/components/boxCaption/boxCaption.js', function(path, status) {
 		if (status === "ok") {
 
-			loadScript('./DNA_common/components/incomingCall/incomingCall.js', function(path, status) {
+			loadScript('./css/car/components/incomingCall/incomingCall.js', function(path, status) {
 				if (status === "ok") {
 					try {
 						self.incomingCall = new IncomingCall();
@@ -227,13 +221,11 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 Bootstrap.prototype.initSpeech = function(callback) {
 	"use strict";
 	var self = this;
-	/*
-	loadScript('./DNA_common/js/speech.js', function(path, status) {
+	loadScript('./js/services/speech.js', function(path, status) {
 		Speech.readCurrentAppName();
 		self.reload();
 		self.initIncomingCall(callback);
-	});*/
-	self.initIncomingCall(callback);
+	});
 };
 
 /** 
@@ -251,5 +243,3 @@ Bootstrap.prototype.reload = function() {
 		Configuration.reload();
 	}, 1000);
 };
-
-console.log("loading of bootstrap.js has ended");

@@ -55,7 +55,7 @@
 	}
 	.noUiSliderBass.connect a, .noUiSliderTreble.connect a, .noUiSliderSub.connect a,
 	.noUiSliderBass.connect.lower, .noUiSliderTreble.connect.lower, .noUiSliderSub.connect.lower {
-		background:url("images/audiocontrols/temp_bar_on_left_52_407.svg") no-repeat left bottom;
+		background:url("/images/temp_bar_on_left_52_407.svg") no-repeat left bottom;
 		background-size:100%;	
 		/*background: #b2a98f;*/	
 	}
@@ -75,7 +75,7 @@
 
 		border-radius: 3px;
 		background: #efefe7;
-		background:url("images/audiocontrols/drag_knob.svg") no-repeat left center;
+		background:url("/images/drag_knob.svg") no-repeat left center;
 		background-size:26%;
 		width: 180%;
 	}
@@ -277,7 +277,7 @@
 	}
 	
 	#audioSettings .noUiSliderRight.connect a{
-		background:url("images/audiocontrols/temp_bar_on_right.svg") no-repeat right bottom;
+		background:url("/images/temp_bar_on_right.svg") no-repeat right bottom;
 		background-size:85.9%;
 	}
 	
@@ -296,7 +296,7 @@
 		height: 100px;
 		border-radius: 3px;
 		background: #efefe7;
-		background:url("images/audiocontrols/drag_knob.svg") no-repeat left center;
+		background:url("/images/drag_knob.svg") no-repeat left center;
 		background-size:26%;						
 	}
 	.noUiSliderRight.disabled div {
@@ -377,7 +377,7 @@
 	.noUiSliderFan.connect a,
 	.noUiSliderFan.connect.lower {
 		/*background: #b2a98f;*/
-		/*background:url("images/audiocontrols/temp_bar_on_right.svg") no-repeat right bottom;	*/
+		/*background:url("/images/temp_bar_on_right.svg") no-repeat right bottom;	*/
 		background-size:85.9%;
 	}
 	.noUiSliderFan,
@@ -396,7 +396,7 @@
 		height: 100%;
 		border-radius: 3px;
 		background: #efefe7;
-		background:url("images/audiocontrols/drag_knob.svg") no-repeat center bottom;
+		background:url("/images/drag_knob.svg") no-repeat center bottom;
 		background-size:26%;						
 	}
 	.noUiSliderFan.disabled div {
