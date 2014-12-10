@@ -44,8 +44,8 @@ ul {
 }
 
 li {
-	font-size: 2.2rem;
-	margin-bottom: 4px;
+	font-size: 2.4rem;
+	margin: 0px 0px 5px 0px;
 	list-style: square;
 }
 
@@ -83,7 +83,7 @@ li {
 #bigSpeed {
 	position: absolute;
 	font-size: 19rem;
-	top: -88px;
+	top: -82px;
 	left: 42px;
 }
 
@@ -92,6 +92,14 @@ li {
 	font-size: 5rem;
 	top: 130px;
 	left: 210px;
+}
+
+#odometer {
+	position: absolute;
+	top: 277px;
+	left: 58px;
+	font-size: 4rem;
+	color: #C4C4C4;
 }
 
 /*//////////// Fuel and Temperature Data ////////////*/ 
@@ -132,7 +140,7 @@ li {
 
 #temperatureContainer {
 	position: absolute;
-	top: 252px;
+	top: 236px;
 }
 
 #temperatureIcon {
@@ -158,7 +166,7 @@ li {
 #tirePressureContainer {
 	position: absolute;
 	width: 1080px;
-	top: 92px;
+	top: 105px;
 }
 
 .tirePressureData {
@@ -168,12 +176,12 @@ li {
 
 .frontTireData {
 	position: absolute;
-	top: 932px;
+	top: 930px;
 }
 
 .rearTireData {
 	position: absolute;
-	top: 1228px;
+	top: 1223px;
 }
 
 .PSI_statusPosition {
@@ -194,5 +202,5 @@ li {
 	top: 669px;
 	width: 809px;
 	height: 901px;
-	background-image: url('../images/LR4_Outline_Tire_Pressure.png');
+	background-image: url('../images/LR4_Outline_Call_Outs.png');
 } 
