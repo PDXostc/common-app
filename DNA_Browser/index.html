@@ -17,21 +17,9 @@
 <link rel="stylesheet" href="./css/browser.css"/>
 
 <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="./DNA_common/components/knockout/knockout.js"></script>
 <script type="text/javascript" src="./DNA_common/js/init.js"></script>
-<script type="text/javascript">
-  /*  includeJs("./js/main.js");
-	includeJs("./js/tab.js");
-	includeJs("./js/tabController.js");
-	includeJs("./js/browser.js");
-	includeJs("./js/historyModel.js");*/
-</script>
-<!--<script type="text/javascript">
-	includeJs("./js/main.js");
-	includeJs("./js/tab.js");
-	includeJs("./js/tabController.js");
-	includeJs("./js/browser.js");
-	includeJs("./js/historyModel.js");
-</script> -->
+<script type="text/javascript" src="./js/main.js"></script>
 </head>
 
 <body>
@@ -58,7 +46,7 @@
 				<div class="inputBrowserBox">
 					<input id="inputBrowser" type="text" data-bind="value: inputValue, valueUpdate: ['afterkeydown' , 'blur']" class="inputBrowser fontSizeSmaller fontSizeBold fontColorDimmedLight boxShadow4 boxShadow4Active" onkeypress="browser.goByEnter(event)" onclick="browser.showHistory(); this.select();"
 					onkeydown="browser.showHistory(true);" onblur="browser.showHistory(false);" />
-					<div id="searchButton" class="searchButtonBrowser bgColorDark" onClick="browser.goToUrl();">
+					<div id="searchButton" class="searchButtonBrowser bgColorDark">
 						<div class="iconSearchBrowser"></div>
 					</div>
 					<div id="historyBox" class="historyBox bgColorDark historyBoxHidden">

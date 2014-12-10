@@ -18,6 +18,16 @@
  * @param {String} [defaultHomePage] default home page. The home page is open on first application launch.
  * @param {String} [inputBrowserSelector] input element selector. This is selector for input element where url address is entered.
  */
+console.log('Browser.js start');
+
+
+function validateURL(value){
+      return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
+    }
+    
+String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
 
 var Browser = function(defaultHomePage, inputBrowserSelector) {
 	"use strict";
@@ -100,6 +110,9 @@ var Browser = function(defaultHomePage, inputBrowserSelector) {
 			self.addHistory(url);
 		}
 	});
+	document.getElementById("searchButton").onclick =function(event, object) {
+		browser.goToUrl();
+	};
 
 	this.historyModel.filteredItemsUnique.subscribe(function(history) {
 		self.updateHistoryBoxHeight();
@@ -570,8 +583,9 @@ Browser.prototype.goToUrl = function() {
 	"use strict";
 	var i;
 	var inputValue = this.historyModel.inputValue();
+	inputValue = document.getElementById('inputBrowser').value;
 	var inputValueLowerCase = inputValue.toString().trim().toLowerCase();
-	//console.log(inputValue);
+	console.log("goToUrl "+inputValue);
 	try {
 		if (inputValue !== "" && inputValue !== TabController.EMPTY_URL) {
 			if (inputValueLowerCase.indexOf("http") === -1 && inputValueLowerCase.indexOf("www") !== -1) {
@@ -653,10 +667,11 @@ Browser.prototype.checkOnlineWifiNetwork = function() {
 	var self = this;
 	$.ajax({
 		type : 'HEAD',
-		url : "http://www.google.com",
+		url : "http://www.bing.com",
 		timeout : 10000,
 		//dataType: "html",
 		success : function(data, textStatus, jqXHR) {
+			console.log("online Check successful");
 			$("#messageWrapper").hide();
 			self.isOnline = true;
 			if ($("#onLineIndicator").hasClass("onLineIndicatorFalse")) {
@@ -665,6 +680,7 @@ Browser.prototype.checkOnlineWifiNetwork = function() {
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
+			console.log("online Check failed");
 			if (self.isOnline) {
 				showMessage("Unable to connect to internet", "Network conection error");
 				
@@ -685,3 +701,4 @@ Browser.prototype.checkOnlineWifiNetwork = function() {
 		}
 	});
 };
+console.log('Browser.js end');
