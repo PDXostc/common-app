@@ -57,6 +57,30 @@ rviSettingsPage.includeHTMLFailed = function(linkobj) {
 	console.log(linkobj);
 };
 
+$(".setup").click(function(ev){
+
+  $("#resultMessage").hide();
+  $("#setupForm").show();
+
+  $("#vinNumber").val(localStorage["com.jlr.rvi.vin"]);
+
+  $("#overlay").css("display","block");
+  $("#inputBox").css("display","inline-block");
+});
+
+$("#cancel").click(function(ev){
+  $("#overlay").css("display","none");
+  $("#inputBox").css("display","none");
+});
+
+$("#submit").click(function(ev){
+  submitSettings();
+});
+
+$("#resultMessage").click(function(ev){
+  $("#overlay").css("display","none");
+  $("#inputBox").css("display","none");
+});
 
 includeHTML(rviSettingsPage.TemplateHTML, rviSettingsPage.includeHTMLSucess, rviSettingsPage.includeHTMLFailed);
 
