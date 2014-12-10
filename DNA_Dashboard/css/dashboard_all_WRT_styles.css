@@ -1,0 +1,1039 @@
+/* Copyright (C) Jaguar Land Rover - All Rights Reserved
+*
+* Proprietary and confidential
+* Unauthorized copying of this file, via any medium, is strictly prohibited
+*
+* THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+* PARTICULAR PURPOSE.
+*
+* Filename:	 header.txt
+* Version:              1.0
+* Date:                 December 2014
+* Project:              DNA Dashboard
+* Contributors:         Joel Mertz
+*
+* Incoming Code:        GStreamer 0.93, <link>
+*
+*/body {
+	font-family: "Droid Sans", sans-serif;
+	background-color: rgb(0,0,0);
+	background-image: url("/DNA_common/images/Hex-Background.jpg");
+	display: flex;
+}
+html {
+overflow: hidden;
+}
+.clearBoth {
+	clear:both;
+}
+.borderColorTheme {
+	border-color: rgb(196, 196, 196);
+	border-color: rgba(196, 196, 196, 0.5);
+}
+.wrapper {
+	overflow: hidden;		
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	margin: 114px 0;
+	color: rgb(196,196,196);
+}
+form {
+	padding: 4%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 5%;
+	border: none;
+	/* width: 100%; */	
+}
+.input_form {
+	color: rgb(83, 181, 206);
+	font-weight: bold;
+	display: inline-block;
+	width: 92%;
+}
+.input_form label {
+	float: left;
+	text-align: right;
+	text-transform: uppercase;
+	display: inline;
+	width: 25%;
+	margin-right: 2%;
+	margin-top: 2%;
+	font-size: 1.25em;
+}
+.form_narrow {
+	width:80%;
+	padding: 4%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 5%;
+	border: none;
+}
+.text {
+	padding: 30px 0;
+	text-align: right;
+	text-transform: uppercase;
+	color: rgba(196,196,196, 1.0);
+	
+}
+.textBox {
+	padding-left: 1%;
+	margin: 1% 0 4% 2%;
+	border: none;
+	background-color: #000;
+	color: #000;
+	font-weight: bold;
+	font-family: sans-serif, "Arial";
+	font-size: 1.5rem;
+}
+.settingsIcon	{
+	background: url('../images/settings_icon.png') no-repeat;
+	position: absolute;
+	left: 84%;
+	top: 1.5%;
+	width: 67px;
+	height: 67px;
+}
+.labelBox	{
+	float: left;
+	padding: 15px 20px;
+}
+.inputNumberBox	{
+	padding: 1%;
+	margin: 1% 0 4% 2%;
+	border: none;
+	font-weight: bold;
+	font-family: sans-serif, "Arial";
+	font-size: 1.5rem;
+}
+.inputNumber	{
+	padding: 2% 4%;
+	display:inline;
+	margin: 5px;
+	float: left;
+	width: 42%;
+	border: none;
+	line-height: 1.25em;
+	color: white;
+}
+.inputNumber:focus {
+	border: 1px solid #ffffb2;
+	outline: none;
+}
+.inputNumberBox .deleteButton {
+	display: inline-block;
+	vertical-align: top;
+	margin: 18px 0 0 -73px;
+	padding: 0;
+	border: 1px solid;
+	width: 95px;
+	height: 36px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	
+}
+
+.inputNumberBox .deleteButton:active {
+	display: inline-block;
+	vertical-align: top;
+	margin: 18px 0 0 -73px;
+	padding: 0;
+	border: 1px solid;
+	width: 95px;
+	height: 36px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	
+}
+.loadingSpinnerHistory {
+	top:130px;
+	width:100%;
+	height:100%;
+}
+.submitButton {
+	width: 100px;
+	height: 43px;
+	margin: 20px auto 20px auto;
+	background-color: rgba(58, 174, 255, 0.3);
+	box-shadow: 0 0 2px rgb(89, 255, 0) inset;
+	display: inline-block;
+	text-align: center;
+	padding: 0 20px;
+}
+.submit {
+	width: 200px;
+	height: 43px;
+	margin: 20px auto 20px auto;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 10px rgb(205, 255, 178) inset;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 28px;
+	color: rgba(196,196,196, 1.0);	
+	line-height: 43px;
+}
+.submit:active {
+	color: rgb(205, 255, 178);
+	border: 1px solid rgb(89, 255, 0);
+	background-color: rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 30px rgb(89, 255, 0) inset;
+}
+.right {
+	float: right;
+}
+table {
+	text-align:left;
+	width:100%;
+
+	/* table-layout: fixed; */
+	white-space: normal;
+}
+th {
+	text-transform: uppercase;
+	font-size: 20px;
+	padding-right: 1%;
+}
+.input_form > th {
+	text-align: right;
+}	
+td {
+	word-wrap: break-word;
+}
+.td_description	{
+	width: 50%;
+	text-transform: none;
+}
+.td_name	{
+	width: 28%;
+}
+.max {
+	width:100%;
+}
+.inputs {
+	padding: 2% 4%;
+	display:inline;
+	float: left;
+	width: 42%;
+	border: none;
+	line-height: 1.25em;
+	background-color: rgb(0, 0, 0);
+	color:#fff;
+	box-shadow: 0 0 19px rgb(83, 181, 206);
+	
+}
+input.formButton {
+	width: 120px;
+	height: 40px;
+	float: right;
+	border: 1px solid rgb(196, 196, 196);
+	background: rgba(0, 0, 0, 0.9);
+	color: rgb(196, 196, 196);
+	text-transform: uppercase;
+	font-size: 1.15em;
+	margin-left: 2%;
+	margin-bottom: 8%;
+	box-shadow: inset 0 0 19px rgb(205, 255, 178);
+}
+input.formButton:visited {
+	border: none;
+}
+input.formButton:active {
+	color: rgba(205, 255, 178, 1.0);
+	background-color: rgb(0,0,0,0.8);
+	box-shadow: inset 0 0 36px rgb(89, 255, 0);
+	border: 1px solid white;
+}
+
+input.formButton2 {
+	width: 120px;
+	height: 40px;
+	border: 1px solid rgb(196, 196, 196);
+	background: rgba(0, 0, 0, 0.9);
+	color: rgb(196, 196, 196);
+	text-transform: uppercase;
+	font-size: 1.15em;
+	margin-left: 2%;
+	margin-bottom: 8%;
+	box-shadow: inset 0 0 19px rgb(255, 211, 140);
+}
+input.formButton2:active {
+	color: rgba(255, 211, 140, 1.0);
+	background-color: rgb(0,0,0,0.8);
+	box-shadow: inset 0 0 36px rgb(254, 156, 0);
+	border: 1px solid rgb(255, 211, 140);
+}
+
+.action_buttons_color {
+	background-color: rgb(0,0,0);
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+textarea {
+	margin-top: 2%;
+	color: #fff;
+}
+textarea > input[type=text] {
+	width: 100%;
+	height: 100%;
+	border: none;
+	color:#fff;
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+/*.input_form textarea {
+	height: 100%;
+	font-weight: bold;
+	font-size: 1.25rem;
+}*/
+/*.input_form input {
+	font-size: 1.25rem;
+	padding-left: 5%;
+	padding-right: 5%;
+	border: none;
+}*/
+.font {
+	font-weight: bold;
+	font-size: 2em;
+	line-height: 2em;
+	color: rgb(196, 196, 196);
+	padding: 10px;
+}
+
+/* modal css */
+#overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.8;
+    z-index: 4;
+}
+.modal	{
+	position: absolute;
+	top: 38%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+	width: 35%;
+	margin: 0 auto;
+}
+.modal > form {
+	position: absolute;
+	padding: 4% 4% 15% 4%;
+	margin: 0 auto;
+	color: rgb(255, 211, 140);
+	background-color: rgba(0,0,0,0.8);
+	box-shadow: 0 0 69px rgba(254, 156, 0,0.8);
+	text-align: center;
+}
+p {
+	font-size:1.25em;
+	color: rgb(255, 211, 140);
+	text-align: left;
+	margin-left: 5%;
+	padding: 8%;
+}
+.x_graphic_modal {
+	float: right;
+	background: url("/images/X_graphic.png") no-repeat right top;
+	width: 35px;
+	height: 24px;
+
+}
+.x_graphic_modal:active {
+	background: url("/images/X_graphic_rollover.png") no-repeat right top;
+}
+.submit_button {
+	height: 41%;
+	width: 70%;
+	background-color: rgb(0, 0, 0);
+	color: rgb(196, 196, 196);
+	text-transform: uppercase;
+	box-shadow: inset 0 0 20px rgba(255, 211, 140,0.8);
+	border: 1px solid rgb(255, 211, 140);
+	padding: 2%;
+}
+.submit_button:active {
+	color: rgb(255, 211, 140);
+	border: 2px solid rgb(255,255,255);
+	box-shadow: inset 0 0 42px rgba(254, 156, 0,0.8);
+	background-color: #000;
+}
+/* end of modal css */
+
+
+/* from settings.css  pull out of settings and put in common? */
+.button {
+	display: block;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	background: rgba(0, 0, 0, 0.9);
+	z-index: 3;
+}
+
+.button:hover {
+	text-decoration: none;
+}
+
+.button2 {
+	display: block;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	background: rgba(0, 0, 0, 0.9);
+	z-index: 3;
+}
+
+.button2:hover {
+	text-decoration: none;
+}
+.title {
+	padding: 20px 0;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	white-space: nowrap;
+	cursor: pointer;
+	text-transform: uppercase;
+
+}
+
+
+.title .titleInfoBox {
+	width: 50%;
+	display: block;
+	float: left;
+	margin-top:2%;
+}
+
+.title .titleSubtitle {
+	margin-top: 5px;
+}
+
+.fontSizeMedium {
+	line-height: 1.5;
+}
+
+.title .titleButton {
+	display: block;
+	float: right;
+	width: 180px;
+	top: 26px;
+	line-height: 1.5;
+}
+
+.lgBtn {
+	width: 180px;
+	height: 43px;
+	border: 1px solid rgb(196, 196, 196);
+	background: rgba(0, 0, 0, 0.9);
+	box-shadow: inset 0 0 20px rgb(255, 255, 178);
+	color: rgb(255, 255, 255);
+	list-style: none;
+	position: relative;
+	text-align: center;
+	top: -43px;
+	line-height: 43px;
+}
+.lgBtn:active {
+	border: 1px solid rgb(255, 255, 178);
+	background: rgba(0, 0, 0, 0.9);
+	box-shadow: inset 0 0 36px rgb(255, 255, 0);
+	color: rgb(255, 255, 178);
+
+}
+
+
+.lgBtnRnd {
+	width: 180px;
+	height: 43px;
+	border: 1px solid rgb(196, 196, 196);
+	border-radius: 25px;
+	background: rgba(0, 0, 0, 0.9);
+	box-shadow: inset 0 0 20px rgb(178, 240, 255);
+	color: rgb(255, 255, 255);
+	list-style: none;
+	position: relative;
+	text-align: center;
+	top: -43px;
+	line-height: 43px;
+}
+.lgBtnRnd:active {
+	border: 1px solid rgb(178, 240, 255);
+	border-radius: 25px;
+	background: rgba(0, 0, 0, 0.9);
+	box-shadow: inset 0 0 36px rgb(83, 181, 206);
+	color: rgb(178, 240, 255);
+
+}
+.subPanelLgBtn {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+.subPanelLgBtnWide {
+	width: 200px;
+}
+
+.buttonsArea {
+	width: 100%;
+	margin-top: 20px;
+	padding: 40px;
+
+
+}
+
+.wifiRefreshButton {
+	width: 180px;
+	float: left;
+}
+
+.addNetworkButton {
+	width: 180px;
+	float: right;
+}
+
+/*////////////////////////////////// style.css //////////////////////////////////*/
+
+.randomizer {
+	position: absolute;
+	left: 396px;
+	top: 564px;
+	opacity: 0.0;
+	width: 110px;
+	height: 110px;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+.dashboardCircleAll {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 720px;
+	height: 1280px;
+}
+.whelImage{
+	width: 65px;
+	height: 105px;
+	-webkit-transition-timing-function: linear;	
+}
+.leftWheel{
+	position: absolute;
+	left: 225px;
+	top: 430px;
+}
+.rightWheel{
+	position: absolute;
+	left: 430px;
+	top: 430px;
+}
+.carImage {
+	position: absolute;
+	left: 240px;
+	top: 360px;
+	width: 600px;
+	height: 1200px;
+	background-image: url('/images/car_with__inactive_lights_blue.png');
+}
+.batteryLevelCaption {
+	position: absolute;
+	left: 15px;
+	top: 200px;
+}
+.weatherCaption {
+	position: absolute;
+	left: 545px;
+	top: 200px;
+}
+.dashboardLineLong {
+	width: 120px;
+	height: 10px;
+}
+.leftFrontPressure {
+	position: absolute;
+	left: 30px;
+	top: 370px;
+}
+.leftFrontLine {
+	position: absolute;
+	left: 130px;
+	top: 462px;
+	-webkit-transform: rotate(20deg);
+	transform: rotate(20deg);
+}
+.rightFrontPressure {
+	position: absolute;
+	left: 500px;
+	top: 340px;
+}
+.rightFrontLine {
+	position: absolute;
+	left: 470px;
+	top: 445px;
+	-webkit-transform: rotate(150deg);
+	transform: rotate(150deg);
+}
+.engineStatus {
+	position: absolute;
+	left: 520px;
+	top: 540px;
+}
+.engineStatus .gearboxStatus {
+	position: absolute;
+	left: 110px;
+	top: 22px;
+}
+.engineStatus .textIndicator {
+	position: absolute;
+	top: 32px;
+	right: 92px;
+	white-space: nowrap;
+	text-align: right;
+}
+.engineStatus .statusIndicator {
+	position: absolute;
+	top: 62px;
+	right: 92px;
+	white-space: nowrap;
+	text-align: right;
+}
+.leftRearPressure {
+	position: absolute;
+	left: 20px;
+	top: 750px;
+}
+.leftRearLine {
+	position: absolute;
+	left: 115px;
+	top: 842px;
+	-webkit-transform: rotate(15deg);
+	transform: rotate(15deg);
+}
+.rightRearPressure {
+	position: absolute;
+	left: 510px;
+	top: 750px;
+}
+.rightRearLine {
+	position: absolute;
+	left: 480px;
+	top: 842px;
+	-webkit-transform: rotate(165deg);
+	transform: rotate(165deg);
+}
+.avgEConsumption {
+	position: absolute;
+	left: 15px;
+	top: 960px;
+}
+.rearLDisplay {
+	position: absolute;
+	left: 280px;
+	top: 960px;
+}
+.rearRDisplay {
+	position: absolute;
+	left: 500px;
+	top: 960px;
+}
+.batteryImage {
+	width: 37px;
+	height: 23px;
+}
+.batteryProgressBar{
+	position: absolute;
+	left: -9px;
+	top: 205px;
+	width: 395px;
+	height: 50px;
+}
+.exteriorBrightnessElement{
+	position: absolute;
+	right: 30px;
+	top: 150px;
+}
+.exteriorBrightnessProgressBar{
+	position: absolute;
+	left: -25px;
+	top: 0;
+	width: 280px;
+	height: 50px;
+}
+.dayNightElement{
+	position: absolute;
+	top: 150px;
+	left: 30px;
+	width: 65px;
+	height: 65px;
+}
+.batteryElement{
+	position: absolute;
+	left: 15px;
+	top: 25px;
+	width: 300px;
+	height: 200px;
+}
+.batteryElement .batteryImage {
+	position: absolute;
+	left: 15px;
+	top: 260px;
+}
+.batteryElement	.batteryStatus {
+	position: absolute;
+	left: 65px;
+	top: 253px;
+}
+.batteryElement	.batteryRange {
+	position: absolute;
+	left: 150px;
+	top: 253px;
+}
+.weatherElement .weatherStatus {
+	position: absolute;
+	right: 30px;
+	top: 227px;
+}
+.weatherElement .weatherCity {
+	position: absolute;
+	right: 30px;
+	top: 275px;
+}
+.avgConsumptionElement .batteryImage {
+	position: absolute;
+	left: 15px;
+	top: 990px;
+}
+.avgConsumptionElement .avgConsumptionCaption {
+	position: absolute;
+	left: 65px;
+	top: 990px;
+}
+.avgConsumptionElement .avgConsumptionStatus {
+	position: absolute;
+	left: 15px;
+	top: 1020px;
+}
+.dashboardButton {
+	width: 90px;
+	height: 55px;
+}
+.dashboardButtonOpacity {
+	opacity: 0.5;
+}
+.dashboardButton .dashboardButtonText {
+	position: relative;
+	text-align: center;
+	top: -45px
+}
+.rearLButton {
+	position: absolute;
+	left: 280px;
+	top: 990px;
+}
+.rearRButton {
+	position: absolute;
+	left: 500px;
+	top: 990px;
+}
+.padlocInactive {
+	width: 45px;
+	height: 45px;
+}
+.padlocActive {
+	width: 45px;
+	height: 45px;
+}
+.leftPadlock {
+	position: absolute;
+	left: 200px;
+	top: 700px;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 2s;
+	transition: 2s;
+}
+.rightPadlock {
+	position: absolute;
+	left: 480px;
+	top: 700px;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 2s;
+	transition: 2s;
+}
+.childLock {
+	position: absolute;
+	left: 45px;
+	top: 625px;
+	width: 150px;
+	height: 70px;
+}
+.childLockText {
+	position: absolute;
+	left: 0;
+	top: 10px;
+	width: 150px;
+	height: 80px;
+	text-align: center;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+.dashboardLineShort {
+	width: 95px;
+	height: 11px;
+}
+.childLockLine {
+	position: absolute;
+	left: 75px;
+	top: 80px;
+	-webkit-transform: rotate(15deg);
+	transform: rotate(15deg);
+}
+.dashboardCircle {
+	width: 110px;
+	height: 110px;
+}
+.frontLightsButton {
+	position: absolute;
+	left: 254px;
+	top: 313px;
+	opacity: 0.0;
+	width: 110px;
+	height: 110px;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 1s;
+	transition:1s;
+}
+.rearLightsButton {
+	position: absolute;
+	left: 230px;
+	top: 880px;
+	opacity: 0.0;
+	width: 110px;
+	height: 110px;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+.dashboardFrontLightsActive {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 720px;
+	height: 1280px;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 1s;
+	transition: 1s;	
+}
+.dashboardRearLightsActive {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 720px;
+	height: 1280px;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 1s;
+	transition: 1s;
+	}
+.dashboardBreakLightsActive {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 720px;
+	height: 1280px;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 1s;
+	transition: 1s;
+	}	
+.rearLightsImage {
+	opacity: 0;
+}
+.frontLightsImage {
+	opacity: 0;
+}
+.dashBoardWeatherSun{
+	width: 110px;
+	height: 110px;
+}
+.dashBoardWeatherCloudy{
+	width: 110px;
+	height: 110px;
+}
+.dashBoardWeatherThunder{
+	width: 110px;
+	height: 110px;
+}
+.dashBoardWeatherIcon{
+	position: absolute;
+	left: 425px;
+	top: 165px;
+}
+.dayNight{
+	width:100%;
+	height: 100%;
+	-webkit-transition-timing-function: linear;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+
+/* Styles specific to HVAC widget app */
+
+.bottomPanelLogoImg {
+	background: url('../images/intel_logo_blue.png') no-repeat center !important;
+}
+
+.bottomPanelLogo {
+	position: absolute;
+	left: 205px !important;
+	top: 49px;
+	width: 300px !important;
+	height: 150px;
+}
+
+/*////////////////////////////////// dashboard.css //////////////////////////////////*/
+
+.dashboardBackGround {
+	background-image: url('images/dashboard/bg_blue.png');
+}
+.whelImage{
+	background-image:
+		url('images/dashboard/wheel_blue.png');
+}
+.dashboardSunElement{
+	background-image:
+		url('images/dashboard/sun_blue.png');
+}
+.dashboardMoonElement{
+	background-image:
+		url('images/dashboard/moon_blue.png');
+}
+.batteryImage {
+	background-image: url('images/dashboard/icon_battery_blue.png');
+}
+.dashboardLineLong {
+	background-image:
+		url('images/dashboard/line_with_pointer_long_blue.png')
+}
+.dashboardLineShort {
+	background-image:
+		url('images/dashboard/line_with_pointer_short_blue.png')
+}
+
+.corner {
+	background-image:
+		url('images/dashboard/corner_blue.png')
+}
+
+.dashboardCircle{
+	background-image:
+		url('images/dashboard/circle_blue.png')
+}
+
+.padlocInactive{
+	background-image:
+		url('images/dashboard/icon_padlock_inactive_blue.png')
+}
+.padlocActive{
+	background-image:
+		url('images/dashboard/icon_padlock_active_blue.png')
+}
+.dashboardFrontLightsActive{
+	background-image:
+		url('images/dashboard/lights_front_active_blue.png')
+}
+.dashboardRearLightsActive{
+	background-image:
+		url('images/dashboard/lights_rear_active_blue.png')
+}
+.dashboardBreakLightsActive{
+	background-image:
+		url('images/dashboard/lights_break_active.png');
+}
+.dashBoardWeatherSun{
+	background-image:
+		url('images/dashboard/icon_sun.png')
+}
+.dashBoardWeatherCloudy{
+	background-image:
+		url('images/dashboard/icon_cloudy.png')
+}
+.dashBoardWeatherThunder{
+	background-image:
+		url('images/dashboard/icon_thunder.png')
+}
+
+/*////////////////////////////////// stausBox.css //////////////////////////////////*/
+
+.statusIndicatorClass{
+	width:180px;
+	height:85px;
+}
+.statusIndicatorClass .boxIconText{
+	position: absolute;
+	top: 8px;
+	left: 15px;
+}
+.statusBox .textIndicator{
+	position: absolute;
+	left:15px;	
+	top:30px
+}
+.statusBox .statusIndicator{
+	position: absolute;
+	left:15px;
+	top:60px; 
+}
+.corner{
+	width:7px;
+	height:7px;
+}
+.leftTopCorner{
+	position: absolute;
+	left:0;
+	top:0; 
+}
+.leftBottomCorner{
+	position: absolute;
+	left:0;
+	bottom:0; 
+	-webkit-transform:rotate(270deg);
+	-moz-transform:rotate(270deg);
+	-ms-transform:rotate(270deg);
+	-o-transform:rotate(270deg);
+	transform:rotate(270deg);
+}
+.rightTopCorner{
+	position: absolute;
+	right:0;
+	top:0; 
+	-webkit-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	transform:rotate(90deg);
+	
+}
+.rightBottomCorner{
+	position: absolute;
+	right:0;
+	bottom:0; 
+	-webkit-transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-ms-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+	transform:rotate(180deg);
+}

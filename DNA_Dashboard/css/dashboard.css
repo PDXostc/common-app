@@ -1,0 +1,206 @@
+/* Copyright (C) Jaguar Land Rover - All Rights Reserved
+*
+* Proprietary and confidential
+* Unauthorized copying of this file, via any medium, is strictly prohibited
+*
+* THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+* PARTICULAR PURPOSE.
+*
+* Filename:	 dashboard.css
+* Version:              1.0
+* Date:                 December 2014
+* Project:              DNA Dashboard
+* Contributors:         Joel Mertz
+*
+* Incoming Code:        GStreamer 0.93, <link>
+*
+*/
+
+/*//////////// Primary Containers ////////////*/ 
+
+/* Use left and right push for adjusting the amount of space between the edge of the screen and the graphics on either the left or right side of Dashboard.*/
+
+/*//////////// Text ////////////*/ 
+
+h5 {
+	margin-left: 50px;
+}
+
+h6 {
+	font-size: 2.4rem;
+	color: #B2F0FF;
+	text-transform: initial;
+}
+.psiText {
+	font-size: 2.3rem;
+}
+
+/*//////////// Lists ////////////*/ 
+
+ul {
+	margin: 18px 0px 0px 31px;
+}
+
+li {
+	font-size: 2.4rem;
+	margin: 0px 0px 5px 0px;
+	list-style: square;
+}
+
+/*//////////// Speed ////////////*/ 
+
+#speedContainer {
+	position: absolute;
+	top: 300px;
+	left: 50px;
+}
+
+#speedIcon {
+	position: absolute;
+	left: -9px;
+	top: 13px;
+	width: 50px;
+	height: 50px;
+	background-image: url('../images/Speed_Icon.png');
+}
+
+#speedGauge {
+	margin: 20px 0px 0px 54px;
+	width: 225px;
+	height: 10px;
+	background-color: #FE9C00;
+}
+
+#fullSpeedGauge {
+	margin: 8px 0px 0px 44px;
+	width: 322px;
+	height: 29px;
+	background-image: url('../images/Full_Speed_Gauge.png');
+}
+
+#bigSpeed {
+	position: absolute;
+	font-size: 19rem;
+	top: -82px;
+	left: 42px;
+}
+
+#littleMPH {
+	position: absolute;
+	font-size: 5rem;
+	top: 130px;
+	left: 210px;
+}
+
+#odometer {
+	position: absolute;
+	top: 277px;
+	left: 58px;
+	font-size: 4rem;
+	color: #C4C4C4;
+}
+
+/*//////////// Fuel and Temperature Data ////////////*/ 
+
+#fuelTempContainer {
+	position: absolute;
+	top: 300px;
+	right: 50px;
+	text-align: left;
+}
+
+#fuelContainer {
+
+}
+
+#fuelIcon {
+	position: absolute;
+	left: 4px;
+	top: 16px;
+	width: 35px;
+	height: 40px;
+	background-image: url('../images/Fuel_Icon.png');
+}
+
+#fuelGauge {
+	margin: 20px 0px 0px 54px;
+	width: 260px;
+	height: 10px;
+	background-color: #FFFF00;
+}
+
+#fullFuelGauge {
+	margin: 8px 0px 0px 44px;
+	width: 322px;
+	height: 29px;
+	background-image: url('../images/Full_Fuel_Gauge.png');
+}
+
+#temperatureContainer {
+	position: absolute;
+	top: 236px;
+}
+
+#temperatureIcon {
+	position: absolute;
+	left: 15px;
+	top: 17px;
+	width: 20px;
+	height: 45px;
+	background-image: url('../images/Temperature_Icon.png');
+}
+
+/*//////////// Tire Pressure Data ////////////*/ 
+
+.rightPSI {
+	right: 87px;
+}
+
+.leftPSI {
+	left: 126px;
+}
+
+
+#tirePressureContainer {
+	position: absolute;
+	width: 1080px;
+	top: 105px;
+}
+
+.tirePressureData {
+	line-height: 0.3;
+	text-align: left;
+}
+
+.frontTireData {
+	position: absolute;
+	top: 930px;
+}
+
+.rearTireData {
+	position: absolute;
+	top: 1223px;
+}
+
+.PSI_statusPosition {
+	position: absolute;
+	left: -43px;
+	top: 0px;
+}
+
+.PSI_statusOK {
+	background-image: url('../images/Status_OK.png');
+	width: 35px;
+	height: 35px;
+}
+
+#carImage {
+	position: absolute;
+	left: 135px;
+	top: 669px;
+	width: 809px;
+	height: 901px;
+	background-image: url('../images/LR4_Outline_Call_Outs.png');
+} 
