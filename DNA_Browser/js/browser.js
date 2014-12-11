@@ -664,13 +664,7 @@ Browser.prototype.getValidInput = function(newUrl) {
  */
 Browser.prototype.checkOnlineWifiNetwork = function() {
 	"use strict";
-	var self = this;
-	$.ajax({
-		type : 'HEAD',
-		url : "http://www.bing.com",
-		timeout : 10000,
-		//dataType: "html",
-		success : function(data, textStatus, jqXHR) {
+	var success = function(data, textStatus, jqXHR) {
 			console.log("online Check successful");
 			$("#messageWrapper").hide();
 			self.isOnline = true;
@@ -678,8 +672,8 @@ Browser.prototype.checkOnlineWifiNetwork = function() {
 				$("#onLineIndicator").removeClass("onLineIndicatorFalse");
 				$("#onLineIndicator").addClass("onLineIndicatorTrue");
 			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
+		};
+	var errror = function(jqXHR, textStatus, errorThrown) {
 			console.log("online Check failed");
 			if (self.isOnline) {
 				showMessage("Unable to connect to internet", "Network conection error");
@@ -698,7 +692,15 @@ Browser.prototype.checkOnlineWifiNetwork = function() {
 					$("#onLineIndicator").addClass("onLineIndicatorFalse");
 				}
 			}
-		}
+		};
+	var self = this;
+	$.ajax({
+		type : 'HEAD',
+		url : "http://www.bing.com",
+		timeout : 10000,
+		//dataType: "html",
+		success : success,
+		error : success
 	});
 };
 console.log('Browser.js end');

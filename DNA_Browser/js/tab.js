@@ -333,6 +333,7 @@ Tab.prototype.checkPage = function(url) {
 Tab.prototype.changeUrl = function(url, keepContent) {
 	"use strict";
 	this.url = url;
+	/*
 	if (!keepContent) {
 		this.contentView.attr('src', 'about:blank');
 	}
@@ -347,7 +348,11 @@ Tab.prototype.changeUrl = function(url, keepContent) {
 		this.tabView.find('.tabIcon').css('background-image', 'url(\'./css/images/load.gif\')');
 		this.tabView.find('.text').text(this.url.replace('http://', ''));
 		this.checkPage(url);
-	}
+	}*/
+	this.contentView[0].src = url;
+	this.tabView.find('.text').text(this.url.replace('http://', ''));
+	console.log("contentView Src = "+url);
+	console.log(this.contentView);
 };
 
 /**
