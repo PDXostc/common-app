@@ -1,4 +1,4 @@
-app_list = DNA_HomeScreen DNA_HelloTizen DNA_News
+app_list = DNA_HomeScreen DNA_HelloTizen DNA_RVITest DNA_News
 extension_list = extension_common wkb_client_ext most
 TIZEN_IP=TizenNuc
 #TIZEN_IP=192.168.6.11
