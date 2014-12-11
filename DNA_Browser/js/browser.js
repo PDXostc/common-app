@@ -110,8 +110,42 @@ var Browser = function(defaultHomePage, inputBrowserSelector) {
 			self.addHistory(url);
 		}
 	});
+
 	document.getElementById("searchButton").onclick =function(event, object) {
 		browser.goToUrl();
+	};
+
+	document.getElementById("back").onclick =function(event, object) {
+		browser.backButtonClick();
+	};
+
+	document.getElementById("forward").onclick =function(event, object) {
+		browser.nextButtonClick();
+	};
+
+	document.getElementById("reload").onclick =function(event, object) {
+		browser.refresh();
+	};
+
+	document.getElementById("inputBrowser").onclick =function(event, object) {
+		browser.showHistory();
+		this.select();
+	};
+
+	document.getElementById("inputBrowser").onkeypress =function(event, object) {
+		browser.goByEnter(event);
+	};
+
+	document.getElementById("inputBrowser").onkeydown =function(event, object) {
+		browser.showHistory(true);
+	};
+
+	document.getElementById("inputBrowser").onblur =function(event, object) {
+		browser.showHistory(false);
+	};
+
+	document.getElementById("home").onclick =function(event, object) {
+		browser.goToHomePage();
 	};
 
 	this.historyModel.filteredItemsUnique.subscribe(function(history) {
@@ -514,7 +548,7 @@ Browser.prototype.removeTabHistory = function(index) {
  */
 Browser.prototype.backButtonClick = function() {
 	"use strict";
-
+	console.log('backButtonClick');
 	var theTabHistory = this.tabsHistory[this.activeTabIndex];
 	var currentHistoryPosition = this.tabsHistoryCurrentPosition[this.activeTabIndex];
 	currentHistoryPosition = currentHistoryPosition - 1;
@@ -534,6 +568,7 @@ Browser.prototype.backButtonClick = function() {
  */
 Browser.prototype.nextButtonClick = function() {
 	"use strict";
+	console.log('nextButtonClick');
 	var theTabHistory = this.tabsHistory[this.activeTabIndex];
 	var currentHistoryPosition = this.tabsHistoryCurrentPosition[this.activeTabIndex];
 	currentHistoryPosition = currentHistoryPosition + 1;

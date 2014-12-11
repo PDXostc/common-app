@@ -349,6 +349,9 @@ Tab.prototype.changeUrl = function(url, keepContent) {
 		this.tabView.find('.text').text(this.url.replace('http://', ''));
 		this.checkPage(url);
 	}*/
+	//this.isLoading = true;
+	//$('#actionBlocker').css('z-index', '10000');
+	//this.checkPage(url);
 	this.contentView[0].src = url;
 	this.tabView.find('.text').text(this.url.replace('http://', ''));
 	console.log("contentView Src = "+url);

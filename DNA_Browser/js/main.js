@@ -134,9 +134,12 @@ function init() {
 		}
 	}, 300);
 	browser = new Browser();
-	ko.applyBindings(browser.historyModel);
+	console.log('initialize');
 	TabController.initialize();
+	console.log('localStorage');
 	window.localStorage.setItem("browserExitedNormally", "false");
+	console.log('applyBindings');
+	ko.applyBindings(browser.historyModel);
 }
 
 //$(document).ready(init());
