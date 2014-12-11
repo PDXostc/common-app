@@ -7,9 +7,10 @@
 @import url("../components/boxCaption/boxCaption.css");
 @import url("../components/tabs/tabs.css");
 @import url("../components/settings/css/settings.css");
+@import url("../components/rvi/css/rvi.css");
 @import url("./common.css");
-@import url("./tabs.css");
-@import url("./settings.css");
+/*@import url("./tabs.css");*/
+/*@import url("./settings.css");*/
 
 /* @import url("../components/keyboard/keyboard.css"); non-native keyboard */
 /*
