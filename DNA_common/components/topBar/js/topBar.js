@@ -32,6 +32,7 @@ function noop(){}
 
 var extras = 0, index = 0, i = 0;
 var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [];
+var HomeScreenName = "Home Screen";
 var registeredApps = {"Home Screen":"/DNA_common/images/return_arrow_inactive.png",
 						"Hello Tizen":"/DNA_common/images/tizen_inactive.png",
 						"GestureGame":"/DNA_common/images/gesture_game_inactive.png",
@@ -179,7 +180,6 @@ function insertAppFrame(appFrame) {
 	var rootDiv = $("<div></div>").addClass("homeScrAppGridFrame").data("app-data", appFrame).click(function() {
 		onFrameClick($(this).data("app-data"));
 	});
-	//var hexDivs = $("<div></div><div></div>").appendTo(rootDiv);
 	var innerDiv = $("<span></span>").addClass("homeScrAppGridImg").appendTo(rootDiv);
 	$("<img />").data("src", appFrame.iconPath).appendTo(innerDiv);
 	$("<br />").appendTo(innerDiv);
@@ -237,7 +237,7 @@ function onAppInfoSuccess(list) {
 
 	$(list).each(function(index){
 		var name = list[index].name;
-		if( name != "Home Screen" ){
+		if( name != HomeScreenName ){
 			var icon = list[index].iconPath;
 			var id = list[index].id;
 			if(registeredApps[name]){
@@ -268,7 +268,7 @@ function onAppInfoSuccess(list) {
 		}
 
 		var length = applications.length + extras;
-		var equals = parseInt(length) == parseInt(appList.length);
+		var equals = parseInt(length) == parseInt(appList.length)+1;
 
 		if (equals) {
 			for (var j = 0; j < applications.length; j++) {
@@ -279,16 +279,21 @@ function onAppInfoSuccess(list) {
 			}
 		} else {
 			appList = [];
+			var offset = 0;
 			for (i = 0; i < applications.length; i++) {
-				if(Divisible(i,5)){
-					$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+				if(applications[i].appName !== HomeScreenName){
+					if(Divisible(i+offset,5)){
+						$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+					}
+					insertAppFrame(applications[i]);
+				}else{
+					offset=offset+1;
 				}
-				insertAppFrame(applications[i]);
 			}
-			if(Divisible(applications.length,5))
+			if(Divisible(applications.length-offset,5))
 				$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
 			if(true){
-				for (j=0;j<5-applications.length%5;j++){
+				for (j=0;j<5-(applications.length-offset)%5;j++){
 					insertAppFrame({iconPath:'',appName:'',id:0});
 					extras++;
 				}
