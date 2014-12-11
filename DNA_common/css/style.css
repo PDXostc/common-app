@@ -9,6 +9,7 @@
 @import url("../components/settings/css/settings.css");
 @import url("../components/rvi/css/rvi.css");
 @import url("./common.css");
+@import url("../components/library/css/library.css");
 /*@import url("./tabs.css");*/
 /*@import url("./settings.css");*/
 
@@ -17,6 +18,5 @@
 @import url("../css/car.css");
 @import url("../css/user.css");
 @import url("../components/alphabetBookmark/alphabetBookmark.css");
-@import url("../components/library/library.css");
 @import url("../components/weather/weather.css");
 */
