@@ -21,7 +21,7 @@ Settings.includeHTMLSucess = function(linkobj) {
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
    $("body").append(Settings.import.getElementById('settingsPage'));
    //$("#settingsPage").toggle();
-   Settings.addUpdateSettingsPage('settingsX','page',function(){console.log('SettingsX click');});
+   //Settings.addUpdateSettingsPage('settingsX','page',function(){console.log('SettingsX click');});
    Settings.pageUpdate();
 };
 		
@@ -32,6 +32,8 @@ Settings.pageUpdate = function() {
 	}
 	else {
 		$('#settingsIcon').replaceWith(Settings.settingsIconHTML);
+		document.getElementById('settingsIcon').onclick=function(){$('#settingsPage').toggleClass('hidden');};
+		console.log("icon update ");
 	}
 };
 
