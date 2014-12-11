@@ -30,8 +30,8 @@ backbuttonTimeout = setTimeout(function() {
 
 function noop(){}
 
-var extras = 0, index = 0, i = 0;
-var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [];
+var extras = 0, index = 0, i = 0, icon = 0, id = 0;
+var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [], toptasks = [];
 var HomeScreenName = "Home Screen";
 var registeredApps = {"Home Screen":"/DNA_common/images/return_arrow_inactive.png",
 						"Hello Tizen":"/DNA_common/images/tizen_inactive.png",
@@ -235,17 +235,24 @@ function onAppInfoSuccess(list) {
 			return x.appName > y.appName ? 1 : -1;
 		});
 
+	//empty the topbar array
+	toptasks=[];
+	//enumerate the topbar array
 	$(list).each(function(index){
 		var name = list[index].name;
 		if( name != HomeScreenName ){
-			var icon = list[index].iconPath;
-			var id = list[index].id;
+			icon = list[index].iconPath;
+			id = list[index].id;
 			if(registeredApps[name]){
 				icon = registeredApps[name];
 			}
-			$("#topTask"+index+" img").attr("src", icon);
-			$("#topTask"+index+" img").on('click', function(){launchApplication(id)});
+			toptasks.push({"icon":icon,"id":id});
 		}
+	});
+	//populate the topbar using the topbar tasks array
+	$(toptasks).each(function(index){
+		$("#topTask"+index+" img").attr("src", toptasks[index].icon);
+		$("#topTask"+index+" img").on('click', function(){launchApplication(toptasks[index].id)});
 	});
 	
 	//console.log(appList); //for grid
