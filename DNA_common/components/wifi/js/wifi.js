@@ -37,7 +37,7 @@ WifiSettingsPage.includeHTMLSucess = function(linkobj) {
    WifiSettingsPage.WifiDeviceHTML = WifiSettingsPage.import.getElementById('WifiDeviceTemplate');
    $("#settingsPage").append(WifiSettingsPage.import.getElementById('WifiPage'));
    //$("body").append(WifiSettingsPage.import.getElementById('WifiPage'));
-   var close_button = document.getElementById('tabsCloseSubPanelButton').onclick = WifiSettingsPage.HidePage;
+   var close_button = document.getElementById('tabsCloseSubPanelWifiButton').onclick = WifiSettingsPage.HidePage;
    
    WifiSettingsPage.pageUpdate();
 };
