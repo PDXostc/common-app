@@ -37,6 +37,11 @@ h6 {
 	font-size: 2.3rem;
 }
 
+.unitDescription {
+	font-size: 2rem;
+	margin: 0px 0px 0px -3px;
+}
+
 /*//////////// Lists ////////////*/ 
 
 ul {
@@ -55,6 +60,10 @@ li {
 	position: absolute;
 	top: 300px;
 	left: 50px;
+}
+
+#unitMPH {
+	color: rgba(255,211,140,.8);
 }
 
 #speedIcon {
@@ -83,7 +92,7 @@ li {
 #bigSpeed {
 	position: absolute;
 	font-size: 19rem;
-	top: -82px;
+	top: -74px;
 	left: 42px;
 }
 
@@ -96,9 +105,8 @@ li {
 
 #odometer {
 	position: absolute;
-	top: 277px;
+	top: 296px;
 	left: 58px;
-	font-size: 4rem;
 	color: #C4C4C4;
 }
 
@@ -109,6 +117,10 @@ li {
 	top: 300px;
 	right: 50px;
 	text-align: left;
+}
+
+#unitGALLONS {
+	color: rgba(255,255,178,.8);
 }
 
 #fuelContainer {
@@ -126,7 +138,7 @@ li {
 
 #fuelGauge {
 	margin: 20px 0px 0px 54px;
-	width: 260px;
+	width: 180px;
 	height: 10px;
 	background-color: #FFFF00;
 }
@@ -181,7 +193,7 @@ li {
 
 .rearTireData {
 	position: absolute;
-	top: 1223px;
+	top: 1196px;
 }
 
 .PSI_statusPosition {
@@ -202,5 +214,5 @@ li {
 	top: 669px;
 	width: 809px;
 	height: 901px;
-	background-image: url('../images/LR4_Outline_Call_Outs.png');
+	background-image: url('../images/Range_Rover_Outline_Call_Outs.png');
 } 
