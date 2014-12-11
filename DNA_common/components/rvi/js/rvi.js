@@ -64,12 +64,12 @@ $(".setup").click(function(ev){
 
   $("#vinNumber").val(localStorage["com.jlr.rvi.vin"]);
 
-  $("#overlay").css("display","block");
+  $("#messageOverlay").css("display","block");
   $("#inputBox").css("display","inline-block");
 });
 
 $("#cancel").click(function(ev){
-  $("#overlay").css("display","none");
+  $("#messageOverlay").css("display","none");
   $("#inputBox").css("display","none");
 });
 
@@ -78,7 +78,7 @@ $("#submit").click(function(ev){
 });
 
 $("#resultMessage").click(function(ev){
-  $("#overlay").css("display","none");
+  $("#messageOverlay").css("display","none");
   $("#inputBox").css("display","none");
 });
 

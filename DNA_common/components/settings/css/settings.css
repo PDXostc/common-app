@@ -26,6 +26,7 @@ ul.settingElement {
 	white-space: nowrap;
 	cursor: pointer;
 	text-transform: uppercase;
+	margin-left: 0;
 }
 
 .themesContent {
