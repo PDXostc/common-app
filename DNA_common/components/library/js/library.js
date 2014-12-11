@@ -236,6 +236,13 @@ var LIBRARY_SUB_PANEL_DELEGATE_DEFAULT = basePath + "subpanelDelegate.html", LIB
 		 */
 		init : function() {
 			this.empty();
+
+			// A template has been created for the below HTML assigned to var str
+			// The template can be found at: ../templates/libraryPanel.html
+			// In the template:
+			// -- class evaluations have been set to a disabled default
+			// -- onclick events have been removed
+
 			var str;
 
 			str = "<div class='libraryLeftPanel'>";
