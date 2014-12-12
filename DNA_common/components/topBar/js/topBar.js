@@ -288,8 +288,10 @@ function onAppInfoSuccess(list) {
 			appList = [];
 			var offset = 0;
 			for (i = 0; i < applications.length; i++) {
+				console.log('i: '+i+' offset:'+offset+' appname: '+applications[i].appName);
 				if(applications[i].appName !== HomeScreenName){
-					if(Divisible(i+offset,5)){
+				console.log('Divisible: '+(i>1 && Divisible(i-offset,5)));
+					if(Divisible(i-offset,5)){
 						$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
 					}
 					insertAppFrame(applications[i]);
@@ -297,8 +299,9 @@ function onAppInfoSuccess(list) {
 					offset=offset+1;
 				}
 			}
-			if(Divisible(applications.length-offset,5))
+			if(Divisible(applications.length-offset,5)){
 				$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+			}
 			if(true){
 				for (j=0;j<5-(applications.length-offset)%5;j++){
 					insertAppFrame({iconPath:'',appName:'',id:0});
