@@ -1,61 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
-]>
-<svg version="1.1"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="52px" height="407px" viewBox="0 0 52 407" overflow="visible" enable-background="new 0 0 52 407"
-	 xml:space="preserve">
-<defs>
-</defs>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,401.376 51.662,406.717 19.789,406.717 19.789,392.829 51.662,392.829 51.662,401.376 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,384.313 51.662,389.654 19.789,389.654 19.789,375.767 51.662,375.767 51.662,384.313 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,367.251 51.662,372.592 19.789,372.592 19.789,358.704 51.662,358.704 51.662,367.251 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,350.188 51.662,355.529 19.789,355.529 19.789,341.642 51.662,341.642 51.662,350.188 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,333.125 51.662,338.468 19.789,338.468 19.789,324.579 51.662,324.579 51.662,333.125 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,316.063 51.662,321.406 19.789,321.406 19.789,307.518 51.662,307.518 51.662,316.063 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,299.001 51.662,304.343 19.789,304.343 19.789,290.454 51.662,290.454 51.662,299.001 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,281.939 51.662,287.281 19.789,287.281 19.789,273.393 51.662,273.393 51.662,281.939 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,264.877 51.662,270.218 19.789,270.218 19.789,256.33 51.662,256.33 51.662,264.877 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,247.814 51.662,253.155 19.789,253.155 19.789,239.268 51.662,239.268 51.662,247.814 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,230.752 51.662,236.094 19.789,236.094 19.789,222.205 51.662,222.205 51.662,230.752 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,213.69 51.662,219.032 19.789,219.032 19.789,205.145 51.662,205.145 51.662,213.69 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,196.626 51.662,201.97 19.789,201.97 19.789,188.08 51.662,188.08 51.662,196.626 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,179.564 51.662,184.906 19.789,184.906 19.789,171.019 51.662,171.019 51.662,179.564 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,162.504 51.662,167.845 19.789,167.845 19.789,153.957 51.662,153.957 51.662,162.504 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,145.44 51.662,150.782 19.789,150.782 19.789,136.894 51.662,136.894 51.662,145.44 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,128.38 51.662,133.72 19.789,133.72 19.789,119.832 51.662,119.832 51.662,128.38 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,111.315 51.662,116.657 19.789,116.657 19.789,102.77 51.662,102.77 51.662,111.315 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,94.254 51.662,99.597 19.789,99.597 19.789,85.706 51.662,85.706 51.662,94.254 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,77.19 51.662,82.534 19.789,82.534 19.789,68.646 51.662,68.646 51.662,77.19 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,60.131 51.662,65.471 19.789,65.471 19.789,51.583 51.662,51.583 51.662,60.131 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,43.068 51.662,48.408 19.789,48.408 19.789,34.521 51.662,34.521 51.662,43.068 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,26.006 51.662,31.346 19.789,31.346 19.789,17.457 51.662,17.457 51.662,26.006 "/>
-<polyline fill="#31ABFF" stroke="#31ABFF" stroke-width="0.7906" stroke-miterlimit="10" stroke-opacity="0.64" points="
-	51.662,8.942 51.662,14.283 19.789,14.283 19.789,0.396 51.662,0.396 51.662,8.942 "/>
-<line fill="#31ABFF" stroke="#31ABFF" stroke-width="2" stroke-miterlimit="10" x1="1" y1="0.396" x2="1" y2="406.396"/>
-</svg>
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   width="52"
+   height="455"
+   viewBox="0 0 52 455"
+   overflow="visible"
+   enable-background="new 0 0 52 407"
+   xml:space="preserve"
+   id="svg2"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="temp_bar_on_left_52_407.svg"
+   style="overflow:visible"><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1000"
+     id="namedview56"
+     showgrid="false"
+     inkscape:zoom="13.120566"
+     inkscape:cx="27.30403"
+     inkscape:cy="237.60616"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="0"><sodipodi:guide
+       id="guide4725"
+       position="-4.6886916,6.4132679"
+       orientation="0,1" /><sodipodi:guide
+       id="guide5432"
+       position="48.288135,433.24589"
+       orientation="0,1" /><sodipodi:guide
+       id="guide5434"
+       position="70.330375,412.06593"
+       orientation="0,1" /><sodipodi:guide
+       id="guide5436"
+       position="61.006884,426.2398"
+       orientation="0,1" /><sodipodi:guide
+       id="guide5438"
+       position="73.62487,440.37733"
+       orientation="0,1" /><sodipodi:guide
+       orientation="1,0"
+       position="21.569191,234.4411"
+       id="guide5656" /></sodipodi:namedview><metadata
+     id="metadata58"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs4" /><polyline
+     transform="matrix(1.0211436,0,0,32.253831,-0.83158197,-12.388544)"
+     style="opacity:0.5;fill:#fe9c00;fill-opacity:1;stroke:#fe9cff;stroke-width:0.7906;stroke-miterlimit:10;stroke-opacity:0"
+     id="polyline52"
+     points="  51.662,8.942 51.662,14.283 19.789,14.283 19.789,0.396 51.662,0.396 51.662,8.942 "
+     stroke-miterlimit="10" /><line
+     style="opacity:0.5;fill:#31abff;stroke:#fe9c00;stroke-width:2.10233235;stroke-miterlimit:10;stroke-opacity:1"
+     id="line54"
+     y2="448.57895"
+     x2="1"
+     y1="-0.030874653"
+     x1="1"
+     stroke-miterlimit="10" /></svg>
