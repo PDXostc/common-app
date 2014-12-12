@@ -127,16 +127,6 @@
 						</div>
 						<p class="closeLibraryButton"></p>
 					</div>
-					<!-- libraryTabsID and tabsWrapperID not being utilized -->
-					<!-- <div id='libraryTabsID' class='libraryTabs'> -->
-						<!-- <div id='tabsWrapperID' class='tabsWrapper'></div> -->
-					<!-- </div> -->
-					<!-- Uncertain what libraryTabClear does -->
-					<!-- <div class='libraryTabClear'></div> -->
-					<!-- alphabetBookmarkList is not getting loaded -->
-					<!-- <div id='alphabetBookmarkList'></div> -->
-					<!-- libraryTopSubPanel is not getting loaded -->
-					<!-- <div id='libraryTopSubPanel' class='libraryTopSubPanel bgColorDark'></div> -->
 					<ul id='libraryContent' class='flex-item content'>
 						<li class="placesElement borderColorTheme">
 							<div class="placesBox">
@@ -156,16 +146,15 @@
 					</ul>
 				</div>
 			</div>
-
-			<!-- Old Places Library -->
-			<!-- <div id="placesLibrary" class="library pageBgColorNormalTransparent"></div> -->
 		</div>
+
+		<div id="placesLibrary" class="library pageBgColorNormalTransparent"></div>
 		<div id="bottomBar"></div>
 	</body>
 
 	<script type="text/javascript">
 	$(document).ready( function() {
-		$("#placesButton, .closeLibraryButton").on("click", function() {
+		$("#placesButton, .closeLibraryButton, .placesElement").on("click", function() {
 			$("#places-library").toggleClass("expanded");
 		});
 	});
