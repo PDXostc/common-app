@@ -43,8 +43,8 @@ var bootstrap;
  */
 var init = function () {
 	bootstrap = new Bootstrap(function(status) {
-		$("#topBarIcons").topBarIconsPlugin('init', 'smartdevicelink');
-		$('#bottomPanel').bottomPanel('init');
+		$("#topBar").topBarIconsPlugin("init", "smartdevicelink");
+		$("#bottomBar").bottomPanel("init");
 	});
 };
 

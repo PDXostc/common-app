@@ -1,73 +1,43 @@
 PROJECT = DNA_SDL
 INSTALL_FILES = images js icon.png index.html
-WRT_FILES = app audio common css ffw icon.png index.html lib locale config.xml images js manifest.json
-VERSION := 0.3.8
+WRT_FILES = app audio DNA_common css ffw icon.png index.html lib locale config.xml images js manifest.json
+VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
-INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
+SEND := ~/send
 
 ifndef TIZEN_IP
 TIZEN_IP=TizenNuc
-#TIZEN_IP=192.168.6.36
 endif
 
-dev: clean dev-common
-	zip -r $(PROJECT).wgt $(WRT_FILES)
+wgtPkg: clean
+	cp -rf ../DNA_common .
+	zip -r $(PROJECT).wgt config.xml css icon.png index.html js DNA_common app audio ffw lib locale images
 	
+config:
+	scp setup/weston.ini root@$(TIZEN_IP):/etc/xdg/weston/
+
 $(PROJECT).wgt : dev
 
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 run: install
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'DNA_SDL' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'SDL' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
 
 install: deploy
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'DNA_SDL' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'SDL' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/DNA_SDL.wgt"
 
 $(PROJECT).wgt : wgt
 
-deploy: dev
+deploy: wgtPkg
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
 
 all:
 	@echo "Nothing to build"
 
-wgtPkg: common
-	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 clean:
-	rm -rf js/services
-	rm -rf common
-	rm -rf css/car
-	rm -rf css/user
-	rm -f $(PROJECT).wgt
-
-common: /opt/usr/apps/common
-	cp -r /opt/usr/apps/common/js/* js/
-	cp -r /opt/usr/apps/common/css/* css/
-
-/opt/usr/apps/common:
-	@echo "Please install Common Assets"
-	exit 1
-
-dev-common: ../common
-	cp -rf ../common .
-
-../common:
-	@echo "Please checkout Common Assets"
-	exit 1
-
-$(INSTALL_DIR) :
-	mkdir -p $(INSTALL_DIR)/
-
-install_xwalk: $(INSTALL_DIR)
-	@echo "Installing $(PROJECT), stand by..."
-	cp $(PROJECT).wgt $(INSTALL_DIR)/
-	export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
-	su app -c"xwalk -i $(INSTALL_DIR)/$(PROJECT).wgt"
-
-dist:
-	tar czf ../$(PROJECT).tar.bz2 .
-
+	-rm $(PROJECT).wgt
+	-rm -rf DNA_common
