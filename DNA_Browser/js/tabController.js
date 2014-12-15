@@ -163,7 +163,9 @@ TabController.getTabIndex = function(tab) {
  */
 TabController.initialize = function() {
 	"use strict";
+	console.info('TabController.initialize');
 	$('#tabBar #addTabBtn').on('click', function(e) {
+		console.info('Add Tab');
 		TabController.addTab(TabController.EMPTY_URL);
 	});
 };

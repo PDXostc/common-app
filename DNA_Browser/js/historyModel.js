@@ -74,6 +74,8 @@ HistoryModel.prototype.filteredItemsUnique = null;
  */
 HistoryModel.prototype.renderBrowserHistory = function(newBrowserHistory) {
 	"use strict";
+	console.log('renderBrowserHistory');
+	console.log(newBrowserHistory);
 	this.searchHistory = newBrowserHistory;
 };
 

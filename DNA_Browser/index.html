@@ -17,21 +17,9 @@
 <link rel="stylesheet" href="./css/browser.css"/>
 
 <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="./DNA_common/components/knockout/knockout.js"></script>
 <script type="text/javascript" src="./DNA_common/js/init.js"></script>
-<script type="text/javascript">
-  /*  includeJs("./js/main.js");
-	includeJs("./js/tab.js");
-	includeJs("./js/tabController.js");
-	includeJs("./js/browser.js");
-	includeJs("./js/historyModel.js");*/
-</script>
-<!--<script type="text/javascript">
-	includeJs("./js/main.js");
-	includeJs("./js/tab.js");
-	includeJs("./js/tabController.js");
-	includeJs("./js/browser.js");
-	includeJs("./js/historyModel.js");
-</script> -->
+<script type="text/javascript" src="./js/main.js"></script>
 </head>
 
 <body>
@@ -39,26 +27,25 @@
     <div class="wrapper">
 		<div class="browserBody">
 			<div class="browserToolbar bgColorDark">
-				<div id="back" class="browserButton backButtonBrowser" onClick="browser.backButtonClick();">
+				<div id="back" class="browserButton backButtonBrowser">
 					<div class="iconBackBrowser iconBrowser"></div>
 					<div class="boxShadowInset browserButton browserButtonOpacity"></div>
-					<div class="bgColorDarkTransparent browserButton disableBox" onClick="return"></div>
+					<div class="bgColorDarkTransparent browserButton disableBox"></div>
 				</div>
 
-				<div id="forward" class="browserButton forwardButtonBrowser" onClick="browser.nextButtonClick();">
+				<div id="forward" class="browserButton forwardButtonBrowser">
 					<div class="iconForwardBrowser iconBrowser"></div>
 					<div class="boxShadowInset browserButton browserButtonOpacity"></div>
-					<div class="bgColorDarkTransparent browserButton disableBox" onClick="return"></div>
+					<div class="bgColorDarkTransparent browserButton disableBox"></div>
 				</div>
 
-				<div id="reload" class="browserButton reloadButtonBrowser" onClick="browser.refresh();">
+				<div id="reload" class="browserButton reloadButtonBrowser">
 					<div class="iconReloadBrowser"></div>
 				</div>
 
 				<div class="inputBrowserBox">
-					<input id="inputBrowser" type="text" data-bind="value: inputValue, valueUpdate: ['afterkeydown' , 'blur']" class="inputBrowser fontSizeSmaller fontSizeBold fontColorDimmedLight boxShadow4 boxShadow4Active" onkeypress="browser.goByEnter(event)" onclick="browser.showHistory(); this.select();"
-					onkeydown="browser.showHistory(true);" onblur="browser.showHistory(false);" />
-					<div id="searchButton" class="searchButtonBrowser bgColorDark" onClick="browser.goToUrl();">
+					<input id="inputBrowser" type="text" data-bind="value: inputValue, valueUpdate: ['afterkeydown' , 'blur']" class="inputBrowser fontSizeSmaller fontSizeBold fontColorDimmedLight boxShadow4 boxShadow4Active" />
+					<div id="searchButton" class="searchButtonBrowser bgColorDark">
 						<div class="iconSearchBrowser"></div>
 					</div>
 					<div id="historyBox" class="historyBox bgColorDark historyBoxHidden">
@@ -72,7 +59,7 @@
 					</div>
 				</div>
 
-				<div id="home" class="browserButton homeButtonBrowser" onClick="browser.goToHomePage();">
+				<div id="home" class="browserButton homeButtonBrowser">
 					<div class="iconHomeBrowser"></div>
 				</div>
 
@@ -82,14 +69,14 @@
 			<div id="tabBar" class="tabBar bgColorDark fontSizeXSmall fontColorNormal">
 				<div id="addTabBtn" class="addTabBtn boxShadowInset fontColorTheme">+</div>
 			</div>
-			<div id="actionBlocker" class="actionBlocker">
+			<!--<div id="actionBlocker" class="actionBlocker">
 				<div class="actionBlockerBg pageBgColorNormalTransparent">
 					<div class="actionBlockerText fontSizeLarger fontWeightBold fontColorNormal">
 						LOADING
 						<div id="loadingDots" class="loadingDots"></div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<div id="browserContent" class="browserContent"></div>
 		</div>
     </div>
