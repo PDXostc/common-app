@@ -1,20 +1,20 @@
 .library {
 	position: absolute;
-	left: 720px;
+	left: 100%;
 	top: 0;
-	width: 720px;
-	min-height: 1280px;
-	z-index: 100;
+	width: 100%;
+	height: 100%;
+	/*z-index: 100;*/
 	-webkit-transition: 1s;
 }
 
 .libraryLeftPanel {
-	position: absolute;
-	top: 0;
-	left: 0;
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*left: 0;*/
 	width: 100px;
-	min-height: 1280px;
-	height: 100%;
+	/*min-height: 1280px;*/
+	/*height: 100%;*/
 	background-repeat: no-repeat;
 	background-position: left top;
 }
@@ -46,16 +46,28 @@
 	background-position: left top;
 }
 
+#library-right-panel-top {
+	padding: 20px;
+}
+
+.libraryLeftPanel {
+	border-right: 1px solid rgba(178, 240, 255, .5);
+} 
+
+#library-right-panel-top,
+#libraryContent li:not(:last-child) {
+	border-bottom: 1px solid rgba(178, 240, 255, .5);
+}
 
 .libraryTopPanel {
-	margin: 0;
+/*	margin: 0;
 	padding: 0;
 	margin-left: 50px;
 	height: 110px;
 	background-repeat: no-repeat;
 	background-position: left top;
 	z-index: 1;
-	overflow: hidden;
+	overflow: hidden;*/
 }
 
 .libraryTopPanel .libraryTopPanelTitle {
@@ -66,20 +78,24 @@
 }
 
 .closeLibraryButton {
-	position: absolute;
+/*	position: absolute;
 	top: 25px;
-	right: 25px;
+	right: 25px;*/
 	background-repeat: no-repeat;
 	background-position: left top;
 	width: 42px;
 	height: 42px;
-	z-index: 1;
+	/*z-index: 1;*/
 }
 
-.closeLibraryButton:active {
+.closeLibraryButton:before {
+	content: "\2715";
+}
+
+/*.closeLibraryButton:active {
 	position: absolute;
 	top: 26px;
-}
+}*/
 
 .libraryTabs {
 	position: absolute;
@@ -179,6 +195,11 @@
 	max-width: 470px;
 	overflow: hidden;
 	position: absolute;
+}
+
+ul#libraryContent {
+	list-style-type: none;
+	margin: 0; 
 }
 
 .libraryContent {

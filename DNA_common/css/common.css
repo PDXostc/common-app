@@ -113,7 +113,7 @@ h5 {
   font-size: 3.6rem;
 }
 
-h6, label {
+h6, .label {
   font-size: 3rem;
   text-transform: uppercase;
 }
