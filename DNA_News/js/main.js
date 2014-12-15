@@ -47,7 +47,9 @@ window.addEventListener('load', loaded, false);
 
 // build the HTML for each list item in a given feed's article list
 
-function BuildItemHTML(itemPhoto,itemTitle,itemDesc){
+/* Rebuilding into HTML template.
+
+    function BuildItemHTML(itemPhoto,itemTitle,itemDesc){
     output = '';
     output += '<li id=\"'+ itemGuid +'\">';
     output += '<div class=\"articleListItem textBgColorThemeTransparent\">';
@@ -57,7 +59,7 @@ function BuildItemHTML(itemPhoto,itemTitle,itemDesc){
     output += '</div><div class=\"itemTextGradFade\"></div></div>';
     output += '</li>';
     return output;
-}
+}*/
 
 /**
  * Initialize plugins, register events for Store app.
