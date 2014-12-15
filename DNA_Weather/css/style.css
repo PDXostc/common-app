@@ -1,0 +1,341 @@
+/* Styles specific to Weather app */
+weatherIcon {
+	width: 75px;
+}
+body {
+  overflow: hidden;
+  margin: 0;
+}
+h2 {
+  color: #FFF;
+  padding: 10px 0 0 20px;
+}
+#locList {
+  visibility: visible;
+  z-index: -800;
+  overflow: hidden;
+}
+.itemList {
+  position: absolute;
+  display: block;
+  top: 147px;
+  left: 0px;
+  height: 956px;
+  border-style: solid;
+  border-width: 2px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+#locListInner {
+  position: relative;
+  display: block;
+  visibility: visible;
+  height: 5000px;
+  width: 716px;
+}
+.locListItemInner {
+  position: relative;
+  overflow: hidden;
+}
+.locListItem {
+  width: 2160px;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 128, 191, 1.0);
+  border-bottom: 1px solid rgba(0, 128, 191, 1.0);
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.forecastGrid {
+  display: inline-block;
+  vertical-align: middle;
+}
+.forecastGrid_load {
+  display: inline-block;
+  vertical-align: middle;
+  width: 716px;
+  height: 120px;
+  background: #b3ceee;
+  font-family: verdana,arial,sans-serif;
+  font-size: 16px;
+  z-index: -3;
+  margin-right: -3px;
+  padding-left: 4px;
+}
+.listItem_load {
+  display: inline-block;
+  vertical-align: middle;
+  width: 716px;
+  padding-top: 40px;
+  background: -webkit-linear-gradient(left, #000000 0%,transparent 20%,transparent 80%,#000000 100%);
+  margin-top: 0;
+}
+.listItem {
+  display: inline-block;
+  vertical-align: middle;
+  width: 716px;
+  background-color: rgba(29, 162, 255, 0.4);
+  margin-top: 0;
+}
+div.awxCurrentConditions {  
+  background: -webkit-linear-gradient(left, #000000 0%,transparent 20%,transparent 80%,#000000 100%);
+	height: 120px;
+}
+.hourly {
+  /*background: #b3ceee; eventually this should pull from the javascript and 
+  discern whether or not it's a day or night background color (#1d274f) */
+  float: left;
+  text-align: center;
+  width: 118px;  
+  border-left:none;
+  padding-top: 2px;
+  padding-bottom: 6px;
+}
+.fiveDay {
+  float: left;
+  text-align: center;
+  width: 142px;
+  padding-top: 2px;
+  padding-bottom: 11px;
+}
+.locName {
+  text-transform: uppercase;
+  font-weight: bold; 
+  text-align: center;
+}
+.currentDetails {
+  margin-top: -3px;
+}
+.condImage {
+  display: inline-block;
+  vertical-align: middle;
+  float: left;
+  margin-top: 15px;
+}
+img.icon {
+  width: 100px;
+}
+.fiveDay > img.icon {
+  width: 150px;
+  position: relative;
+  margin-top: -10px;
+  left: 0px;
+  z-index: -1;
+}
+.iconPhrase {
+  height: 15px;
+  margin-top: -5px;
+  line-height: 15px;
+  margin-bottom: 13px;
+}
+.fiveDay > .iconPhrase  {
+  margin-top: -75px;
+  margin-bottom: 25px;
+}
+.tempBox {
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+}
+.temp {
+  font-size: 8.25em;
+  color: white;
+  font-weight: lighter;
+  letter-spacing: -5px;
+}
+.cityName {
+  font-weight: bold;
+  font-size: 188%;
+  line-height: 95%;
+}
+.itemText {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  margin-top: 8px;
+}
+.moreInfo {
+  width: 415px;
+  vertical-align: middle;
+  overflow: hidden;
+  font-weight: bold;
+  /*text-transform: uppercase; can't use this and have RealFeel camelcased */
+  color: white;
+  align: justify;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
+}
+.itemTextGradFade {
+  display: block;
+  width: 490px;
+  height: 35px;
+  z-index: 0;
+  left: 195px;
+  bottom: 36px;
+}
+.articleListGradFade {
+  display: block;
+  width: 712px;
+  height: 55px;
+  z-index: 1;
+  left: 2px;
+  top: 1032px;
+}
+.bottomPanelLogoImg {
+  background-repeat: no-repeat;
+  margin-top: 35px;
+  margin-left: -35px;
+  width: 285px !important;
+}
+.temp {
+  font-size: 5em;
+  color: white;
+  font-weight: normal;
+  letter-spacing: -2px;
+}
+sup {
+  font-size: 50%;
+}
+.L_indicator {
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.R_indicator {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#search > p {
+  color: #FFF;
+  padding: 10px 0 0 20px;
+}
+#search > form  {
+  margin-top:5px;
+}
+#search > label {
+  color: #fff;
+  padding-left: 20px;
+  font-weight: bold;
+  font-size: 16px;
+}
+#searchResults > li {
+  color: #fff;
+  font-size: 2em;
+  font-family: Arial, sans-serif;
+  margin: 10px 0;
+  padding: 5px 15px;
+  background-color: #245f88;
+  border: 1px solid rgb(128, 203, 255);
+}
+#awxSearchButton {
+  height: 50px;
+  width: 130px;
+  background-color: #245f88;
+  color: rgb(128, 203, 255);
+  text-transform: uppercase;
+  border: 1px solid rgba(128, 203, 255, 1);
+  margin-left: 5px;
+}
+#awxSearchTextBox {
+  padding-left: 10px;
+  margin: 5px 5px 10px 0;
+  border: none;
+  background-color: #fff;
+  width: 400px;
+  height: 50px;
+  color: #404040;
+  font-family: sans-serif, "Arial";
+}
+.hour_temp  {
+  font-weight: bold;
+  font-size: 16px;
+}
+.hourly > p {
+  color: #333;
+}
+.hour {
+  font-weight: bold;
+}
+.weekday {
+  font-weight: bold;
+  padding-top: 2px;
+}
+.articleClose {
+  display: block;
+  position: absolute;
+  top: 1051px;
+  left: 667px;
+  width: 40px;
+  height: 40px;
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 22px;
+  z-index: 11;
+  padding: 5px 5px 5px 5px;
+  letter-spacing:  5px;
+}
+span.fontSizeSmall {
+  padding: 10px;
+}
+
+#locationModal{
+	display:none;
+  width: 550px;
+  margin: 0 auto;
+  top:40%;
+  background-color: rgba(0,0,0,0.8);
+  -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
+  padding: 10px;
+}
+h2  {
+  color: #FFF;
+  font-size: 3em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px 0 0 20px;
+  margin-top: -45px;
+  margin-bottom: 5px;
+}
+.removeLocationControl{
+	display: none;
+  border: 1px solid rgb(128, 203, 255);
+  width: 35px;
+  height: 35px;
+  background-color: rgba(58, 174, 255, 0.5);
+  color: rgba(255, 255, 255, 1.0);
+  font-size: 30px;
+  line-height: 35px;
+  float: left;
+  margin-top: 65px;
+  margin-left: -105px;
+}
+div#addLocation {
+  display: inline-block;
+  float:right;
+  top:1024px;
+  width: 80px;
+  height: 80px;
+  line-height: 70px;
+  text-align: center;
+  border: 1px solid rgb(128, 203, 255);
+}
+div#removeLocation {
+  display: inline-block;
+  float:left;
+  top:1024px;
+  width: 80px;
+  height: 80px;
+  line-height: 70px;
+  text-align: center;
+  border: 1px solid rgb(128, 203, 255);
+}
+
+.bottomPanelLogo.bottomPanelLogoImg {
+	background-image:url('../images/accuweather_icon.png');
+	background-repeat: no-repeat;
+	margin-top: 35px;
+	margin-left: -35px;
+	width: 285px !important;
+}
