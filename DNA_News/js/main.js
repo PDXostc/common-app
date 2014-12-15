@@ -53,7 +53,7 @@ function BuildItemHTML(itemPhoto,itemTitle,itemDesc){
     output += '<div class=\"articleListItem textBgColorThemeTransparent\">';
     output += '<div class=\"thumbnail\" ontouchend=\"showArticle(\''+ itemFeed +'/did='+ itemGuid +'\')\"><img src=\"'+ itemPhoto +'\" width=\"260px\" \/></div>';
     output += '<div class=\"itemText\"><span class=\"itemDate fontSizeSmall fontColorTheme\">'+ d + m + y +'</span><br/><span ontouchend=\"showArticle(\''+ itemFeed +'/did='+ itemGuid +'\')\" class=\"itemTitle fontSizeSmall fontColorNormal\">'+ itemTitle +'</span><br/>';
-    output += '<span class=\"itemDesc fontSizeXSmall fontColorNormal\">'+ itemDesc +'</span>';
+    output += '<span class=\"itemDesc fontSizeSmall fontColorNormal\">'+ itemDesc +'</span>';
     output += '</div><div class=\"itemTextGradFade\"></div></div>';
     output += '</li>';
     return output;

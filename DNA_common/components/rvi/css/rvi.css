@@ -1,0 +1,182 @@
+#settings {
+  background: rgba(0,0,0,0.5);
+	width: 100%;
+	/*height: 100%;*/
+  z-index: 20;
+  display:none;
+}
+
+#messageOverlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    opacity: 0.8;
+    z-index: 2;
+    display: block;
+}
+
+#inputBox	{
+	left: 12%;
+	top: 70px; /*needs to be at least this high for the keyboard*/
+	width: 550px;
+  	background: rgba(0,0,0,0.8);
+  	
+	z-index: 1;
+  	display: flex;
+  	text-align: center;
+  	align-items:center;
+  	padding-bottom: 5%;
+  	justify-content: center;
+}
+
+form	{
+	position: relative;
+	top:15%;
+	margin: 0 auto;
+	width: 50%;
+	background-color: rgba(0,0,0,0.8);
+	padding: 2%;
+	padding-bottom: 4%;
+}
+
+.text {
+	padding: 30px 0;
+	text-align: right;
+}
+
+.textBox {
+	padding-left: 1%;
+	margin: 1% 0 4% 2%;
+	border: none;
+	background-color: #fff;
+	color: #606060;
+	font-weight: bold;
+	font-family: sans-serif, "Arial";
+	font-size: 1.5rem;
+}
+
+#setupForm	{
+	display:block;
+}
+
+#resultMessage	{
+	display: flex;
+}
+
+.resultMessage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.message {
+	max-width: 50%;
+	z-index: 3;
+	background-color: #333;
+	text-align: center;
+}
+
+.resultMessage h2 {
+	text-transform: uppercase;
+}
+
+.resultMessage p {
+	margin:0 auto;
+	width: 80%;
+	text-align: left;
+}
+
+.settingsIcon	{
+	background: url('../images/settings_icon.png') no-repeat;
+	position: absolute;
+	left: 84%;
+	top: 1.5%;
+	width: 67px;
+	height: 67px;
+}
+
+.labelBox	{
+	float: left;
+	padding: 15px 20px;
+}
+
+.inputNumberBox	{
+	float: left;
+	margin-top: 25px;
+	width: 350px;
+}
+
+.inputNumber	{
+	margin-bottom: 20px;
+	width: 215px;
+	height: 75px;
+	line-height: 75px;
+	padding-right: 90px;
+	padding-left: 30px;
+	border: none;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.inputNumber:focus {
+	outline: none;
+}
+
+.inputNumberBox .deleteButton {
+	display: inline-block;
+	vertical-align: top;
+	margin: 18px 0 0 -73px;
+	padding: 0;
+	width: 55px;
+	height: 36px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.loadingSpinnerHistory {
+	top:130px;
+	width:100%;
+	height:100%;
+}
+.submitButton {
+	height: 43px;
+	margin: 5%;
+	background-color: rgba(58, 174, 255, 0.3);
+	box-shadow: 0 0 2px 2px #1DA2FF inset;
+	display: inline-block;
+	text-align: center;
+	padding: 0 20px;
+}
+#submit, #cancel {
+	background: none;
+	border: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 28px;
+	color: rgba(255, 255, 255, 1.0);	
+	line-height: 43px;
+}
+
+.setup {
+	position: absolute;
+	left: 82%;
+	top: 115px;
+	width: 13%;
+	background-color: rgba(58, 174, 255, 0.3);
+	box-shadow: 0 0 2px 2px #1DA2FF inset;
+	text-align: center;
+	padding: 0 20px;
+}
+#setup {
+	background: none;
+	border: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 22px;
+	color: rgba(255, 255, 255, 1.0);
+	line-height: 38px;
+}

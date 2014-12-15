@@ -23,13 +23,46 @@
 			<div class="wifiElement borderColorTheme">
 				<div class="wifiElementInfoBox">
 					<div class="wifiElementTitle fontSizeLarge fontColorNormal fontWeightBold">Remote Vehicle Interaction</div>
-					<div class="wifiElementSubtitle fontSizeSmaller fontColorNormal"></div>
-					<div class="wifiElementDescription fontSizeSmaller fontColorNormal"></div>
-					<div class="wifiElementMore fontSizeSmaller fontColorNormal"></div>
-					<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold"></div>
-					<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold"></div>
 				</div>	
 			</div>
+		</div>
+	</div>
+
+	<!-- RVI setup button, previously if tapped would display inputBox -->
+<!-- 	<div class="setup">
+		<input id="setup" value="RVI Set Up">
+	</div> -->
+	<div class="tabContent">
+		<div id="inputBox" class="boxShadow3">
+			<div id="setupForm">
+				<div class="labelBox">
+					<div class="text fontSizeLarge fontWeightBold fontColorTheme">VIN NUMBER</div>
+				</div>
+
+				<div class="inputNumberBox">	
+					<div>
+						<input id="vinNumber" class="inputNumber fontSizeLarge fontSizeBold fontColorNormal boxShadow4 boxShadow4Active" type="text">
+						<div class="button deleteButton"></div>
+					</div>
+				</div>
+
+				<div class="submitButton">
+					<input id="submit" type="submit" value="submit">
+				</div>
+				<div class="submitButton">
+					<input id="cancel" type="submit" value="cancel">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="resultMessage" class="resultMessage hidden">
+		<div id="messageOverlay"></div>
+		<div class="message">
+			<h2>Success!</h2>
+			<p>You have saved information on this device that will enable up 
+			to 4 mobile devices to connect to and operate the HVAC system remotely.</p>
+			<a class="button button-orange">Close<a>
 		</div>
 	</div>
 </div>

@@ -30,8 +30,9 @@ backbuttonTimeout = setTimeout(function() {
 
 function noop(){}
 
-var extras = 0, index = 0, i = 0;
-var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [];
+var extras = 0, index = 0, i = 0, icon = 0, id = 0;
+var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [], toptasks = [];
+var HomeScreenName = "Home Screen";
 var registeredApps = {"Home Screen":"/DNA_common/images/return_arrow_inactive.png",
 						"Hello Tizen":"/DNA_common/images/tizen_inactive.png",
 						"GestureGame":"/DNA_common/images/gesture_game_inactive.png",
@@ -179,7 +180,6 @@ function insertAppFrame(appFrame) {
 	var rootDiv = $("<div></div>").addClass("homeScrAppGridFrame").data("app-data", appFrame).click(function() {
 		onFrameClick($(this).data("app-data"));
 	});
-	//var hexDivs = $("<div></div><div></div>").appendTo(rootDiv);
 	var innerDiv = $("<span></span>").addClass("homeScrAppGridImg").appendTo(rootDiv);
 	$("<img />").data("src", appFrame.iconPath).appendTo(innerDiv);
 	$("<br />").appendTo(innerDiv);
@@ -235,17 +235,24 @@ function onAppInfoSuccess(list) {
 			return x.appName > y.appName ? 1 : -1;
 		});
 
+	//empty the topbar array
+	toptasks=[];
+	//enumerate the topbar array
 	$(list).each(function(index){
 		var name = list[index].name;
-		if( name != "Home Screen" ){
-			var icon = list[index].iconPath;
-			var id = list[index].id;
+		if( name != HomeScreenName ){
+			icon = list[index].iconPath;
+			id = list[index].id;
 			if(registeredApps[name]){
 				icon = registeredApps[name];
 			}
-			$("#topTask"+index+" img").attr("src", icon);
-			$("#topTask"+index+" img").on('click', function(){launchApplication(id)});
+			toptasks.push({"icon":icon,"id":id});
 		}
+	});
+	//populate the topbar using the topbar tasks array
+	$(toptasks).each(function(index){
+		$("#topTask"+index+" img").attr("src", toptasks[index].icon);
+		$("#topTask"+index+" img").on('click', function(){launchApplication(toptasks[index].id)});
 	});
 	
 	//console.log(appList); //for grid
@@ -268,7 +275,7 @@ function onAppInfoSuccess(list) {
 		}
 
 		var length = applications.length + extras;
-		var equals = parseInt(length) == parseInt(appList.length);
+		var equals = parseInt(length) == parseInt(appList.length)+1;
 
 		if (equals) {
 			for (var j = 0; j < applications.length; j++) {
@@ -279,16 +286,21 @@ function onAppInfoSuccess(list) {
 			}
 		} else {
 			appList = [];
+			var offset = 0;
 			for (i = 0; i < applications.length; i++) {
-				if(Divisible(i,5)){
-					$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+				if(applications[i].appName !== HomeScreenName){
+					if(Divisible(i+offset,5)){
+						$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+					}
+					insertAppFrame(applications[i]);
+				}else{
+					offset=offset+1;
 				}
-				insertAppFrame(applications[i]);
 			}
-			if(Divisible(applications.length,5))
+			if(Divisible(applications.length-offset,5))
 				$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
 			if(true){
-				for (j=0;j<5-applications.length%5;j++){
+				for (j=0;j<5-(applications.length-offset)%5;j++){
 					insertAppFrame({iconPath:'',appName:'',id:0});
 					extras++;
 				}

@@ -90,5 +90,5 @@ includeJs("DNA_common/components/settings/js/wifi.js");
 //includeJs("DNA_common/components/uri/uri.js");
 //includeJs("DNA_common/components/weather/weather.js");
 //includeJs("DNA_common/components/audioPlayer/audioPlayer.js");
-//includeJs("DNA_common/components/alphabetBookmark/alphabetBookmark.js");
-//includeJs("DNA_common/components/library/library.js");
+includeJs("DNA_common/components/alphabetBookmark/alphabetBookmark.js");
+includeJs("DNA_common/components/library/js/library.js");

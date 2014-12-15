@@ -1,13 +1,14 @@
 html, body, iframe  {
-	margin:0;
-	padding:0;
+	/*margin:0;
+	padding:0; *******this style in common.css*******/ 
+	background-color:black;
 	border:0;
 	outline:0;
 	font-size:100%;
 	vertical-align:baseline;
 }                  
 body{
-	font-family: "Droid Sans", sans-serif;
+	/*font-family: "Droid Sans", sans-serif; *******this style in common.css*******/ 
 	background-color:black;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;

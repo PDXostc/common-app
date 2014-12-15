@@ -1,24 +1,24 @@
 
 /* these image styles copied from tabs.css DNA_common/css, need to move images and adjust file paths */
-.tabsCloseButton {
+/*.tabsCloseButton {
 	background-image: url('bt_close_blue.png');
 }
 
  .tabsTopPanel {
-	background-image: url('bg_top_navi_blue.png');
+	 background-image: url('bg_top_navi_blue.png'); 
 }
 
 .tabsTab, .tabsTabClear {
-	background-image: url('bg_top_navi_unselect1px_blue.png');
+	 background-image: url('bg_top_navi_unselect1px_blue.png'); 
 }
 
 .tabsTabSelected {
-	background-image: url('bg_top_navi_select_blue.png');
+	 background-image: url('bg_top_navi_select_blue.png'); 
 }
 
 .tabsCloseSubPanelButton {
 	background-image: url('bt_back_blue.png');
-}
+}*/
 /* end of styles copied from tabs.css in DNA_common/css */
 
 
@@ -137,10 +137,10 @@
 }
 
 .tabsTopSubPanel {
-	margin-top: -20px;
+/*	margin-top: -20px;
 	margin-bottom: 20px;
 	padding-top: 20px;
-	height: 100px;
+	height: 100px;*/
 	z-index: 0;	
 }
 
@@ -148,18 +148,8 @@
 	background-image: url('../images/tabs/bt_back_blue.png');
 } */
 .tabsCloseSubPanelButton {
-	/*height: 43px;
-	background-repeat: no-repeat;
-	background-position: left top;
-	text-align: right;
-	padding: 0 15px 0 35px;
-	line-height: 43px !important; 
-	display: block;
-	margin-left: 20px;
-	/*vertical-align: top;*/
 	cursor: pointer;
 	text-transform: uppercase;
-	/*position: absolute;	*/	
 	width: 100px;
 	height: 100px;
 	float: left;
@@ -186,11 +176,12 @@
 }
 
 .tabsContent {
-	/*margin-left: 20px;*/
-	margin-right: 20px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding-right: 20px;
+	padding-top: 20px;
+	margin: 20px;
+	margin-right: 40px;
 }
 
 .tabsTopPanelTitleHint {
