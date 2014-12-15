@@ -22,6 +22,9 @@ $(PROJECT).wgt : dev
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
+kill.xwalk:
+	ssh root@$(TIZEN_IP) "pkill xwalk"
+
 run: install
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d "
 
