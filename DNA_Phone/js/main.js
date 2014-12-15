@@ -14,6 +14,21 @@
 //includeJs("./js/contacts_library.js");
 //includeJs("./DNA_common/components/jQuery/jquery.nouisliderix.js");
 
+includeJs("./DNA_common/js/predefAppModel.js");
+includeJs("./DNA_common/js/installedApps.js");
+includeJs("./DNA_common/js/keyControl.js");
+includeJs("./DNA_common/js/actionCatcher.js");
+includeJs("./DNA_common/js/HomeScreenMain.js");
+includeJs("js/contacts_library.js");
+includeJs("js/callhistorycarousel.js",function(){
+			if (!callHistoryCarousel) {
+
+				callHistoryCarousel = new Carousel();
+			}
+	});
+includeJs("js/phone.js");
+
+
 /** 
  * This application provides voice call from paired Bluetooth phone. Application uses following APIs:
  *
@@ -556,88 +571,247 @@ $(document).ready(
                 } else if (callStatus === "DISCONNECTED".toLowerCase()) {
                     disconnectCall();
                 }
-            }
+            } else {
+				console.log("tizen.phone not defined");
+			}
             /* start keyboard timer */
             keyboard.startTimer();
+            telInput = $("#inputPhoneNumber");
+			/*
+			if (!callHistoryCarousel) {
+
+				callHistoryCarousel = new Carousel();
+			}
+			*/
+			if (typeof Phone == "undefined") {
+				console.log("Phone is undefined");
+			}
+			if (typeof Phone !== "undefined") {
+				/* add listener to selected remote device */
+				tizen.phone.addRemoteDeviceSelectedListener(function(returnID) {
+					if ((!!returnID && !!returnID.error) || (!!returnID && !!returnID.value && returnID.value === "")) {
+						$("#loadingHistorySpinnerWrapper").hide();
+						$(".caroufredsel_wrapper").hide();
+						$("#noPairedDevice").show();
+					} else {
+						$("#noPairedDevice").hide();
+						$("#loadingHistorySpinnerWrapper").show();
+						$(".caroufredsel_wrapper").show();
+					}
+				});
+				/* initialize contacts and call history, if not accept phone call from another widget */
+				if (acceptPhoneCallFromOtherWidget !== true) {
+					window.setTimeout(function() {
+						Phone.loadContacts(function(err) {
+							if (!err) {
+								ContactsLibrary.init();
+								Phone.loadCallHistory(function(err) {
+									if (!err) {
+										$("#loadingHistorySpinnerWrapper").hide();
+										callHistoryCarousel.loadCallHistory(Phone.callHistory(), 0);
+									}
+								});
+							}
+						});
+
+					}, 2000);
+				}
+				/* add listener to change contacts list  */
+				tizen.phone.addContactsChangedListener(function() {
+					if (acceptPhoneCallFromOtherWidget !== true) {
+						window.setTimeout(function() {
+							Phone.loadContacts(function(err) {
+								if (!err) {
+									ContactsLibrary.init();
+								}
+							});
+						}, 1000);
+					}
+				});
+				/* add listener to change call history  */
+				tizen.phone.addCallHistoryChangedListener(function() {
+					$("#loadingHistorySpinnerWrapper").show();
+					if (acceptPhoneCallFromOtherWidget !== true) {
+						window.setTimeout(function() {
+							Phone.loadCallHistory(function(err) {
+								if (!err) {
+									$("#loadingHistorySpinnerWrapper").hide();
+									callHistoryCarousel.loadCallHistory(Phone.callHistory(), 0);
+
+								}
+							});
+						}, 1000);
+					}
+
+				});
+			}
+			$("#contactsLibraryButton").bind('click', function() {
+
+				ContactsLibrary.show();
+
+			});
+			console.log("Added click event for numbers");
+			$(".numbersBox").delegate("#numberButton", "click", function() {
+				console.log("Number button "+$(this).data("id"));
+				var pressTime = new Date(),
+					number, oneCharPX = 32;
+				if (keyboard.intervalExpired(pressTime)) {
+					number = telInput.attr("value") + $(this).data("id");
+					telInput.attr("value", number);
+					$('#inputPhoneNumber').scrollLeft(number.length * oneCharPX);
+					keyboard.pressedKey = $(this).data("id").toString();
+
+				} else {
+					if (keyboard.pressedKey === "-1" || keyboard.pressedKey !== $(this).data("id").toString()) {
+						number = telInput.attr("value") + $(this).data("id");
+						telInput.attr("value", number);
+						$('#inputPhoneNumber').scrollLeft(number.length * oneCharPX);
+						keyboard.pressedKey = $(this).data("id").toString();
+					} else {
+						var phoneNumText = telInput.attr("value");
+						if (keyboard.pressedKey === $(this).data("id").toString() && keyboard.selectedInput !== null && keyboard.selectedInput.values.length === 1) {
+							number = telInput.attr("value") + $(this).data("id");
+							telInput.attr("value", number);
+							$('#inputPhoneNumber').scrollLeft(number.length * oneCharPX);
+						} else {
+							var numToUpdate = phoneNumText.slice(0, phoneNumText.length - 1);
+							numToUpdate += keyboard.nextKey();
+							telInput.attr("value", numToUpdate);
+
+						}
+					}
+				}
+				keyboard.selectInput();
+				keyboard.startTimer();
+				return false;
+			});
+
+			$(".inputPhoneNumberBox").delegate("#deleteButton", "click", function() {
+				var number = telInput.attr("value");
+				number = number.slice(0, number.length - 1);
+				telInput.attr("value", number);
+				return false;
+			});
+			console.log("Call buttion Click added");
+			$('#callButton').bind('click', function() {
+				console.log("Call Button Click "+$("#inputPhoneNumber").val());
+				var phoneNumber = $("#inputPhoneNumber").val();
+				if ($("#callBox").hasClass("callBoxShow")) {
+					disconnectCall();
+				} else if (phoneNumber !== "") {
+					
+					/*
+					tizen.phone.invokeCall(phoneNumber, function(result) {
+						console.log(result.message);
+					});
+					var contact = Phone.getContactByPhoneNumber(phoneNumber);
+					if (contact === null) {
+
+						contact = {
+							phoneNumbers: [{
+								number: phoneNumber
+							}]
+						};
+
+					}
+					acceptCall(contact);
+					*/
+					acceptCall({
+							phoneNumbers: [{
+								number: phoneNumber
+							}]
+						});
+				}
+			});
+			$('.muteButton').bind('click', function() {
+				muteCall();
+			});
+			if (tizen.phone) {
+				/* add listener to change call history entry, because if call is ended tizen.phone give back only last history object */
+				tizen.phone.addCallHistoryEntryAddedListener(function(contact) {
+					if (acceptPhoneCallFromOtherWidget !== true) {
+
+
+						var tmpCallHistory = Phone.callHistory();
+						var tmpContact = [];
+						tmpContact.push(contact);
+						tmpContact = Phone.formatCallHistory(tmpContact);
+						tmpCallHistory.unshift(tmpContact[0]);
+						Phone.callHistory(tmpCallHistory);
+
+						callHistoryCarousel.loadCallHistory(Phone.callHistory(), 0);
+
+					}
+				});
+				/* add listener to change call state */
+				tizen.phone.addCallChangedListener(function(result) {
+					var contact;
+					if ( !! result.contact.name) {
+						contact = result.contact;
+					} else {
+						contact = {
+							phoneNumbers: [{
+								/* jshint camelcase: false */
+								number: tizen.phone.activeCall().line_id
+								/* jshint camelcase: true */
+							}]
+
+						};
+					}
+
+					console.log("result.state " + result.state);
+
+					switch (result.state.toLowerCase()) {
+						case "DISCONNECTED".toLowerCase():
+
+							disconnectCall(contact);
+
+							if (acceptPhoneCallFromOtherWidget === true) {
+
+								window.setTimeout(function() {
+									if (typeof tizen !== "undefined") {
+										tizen.application.getCurrentApplication().exit();
+									}
+								}, 1000);
+							}
+
+							Configuration.set("acceptedCall", "false");
+
+							break;
+						case "ACTIVE".toLowerCase():
+							if (Configuration._values.acceptedCall !== "true") {
+								/* global self */
+								self.incomingCall.acceptIncommingCall();
+								CallDuration.startWatch();
+								console.log("phone active");
+								Configuration.set("acceptedCall", "true");
+							}
+							break;
+						case "DIALING".toLowerCase():
+							acceptCall(contact);
+							break;
+					}
+				});
+			}
+
             /* initialize bootstrap */
+/*           
             bootstrap = new Bootstrap(function(status) {
-                telInput = $("#inputPhoneNumber");
-                $("#clockElement").ClockPlugin('init', 5);
-                $("#clockElement").ClockPlugin('startTimer');
-                $("#topBarIcons").topBarIconsPlugin('init', 'phone');
-                $('#bottomPanel').bottomPanel('init',false,false);
-                if (!callHistoryCarousel) {
+                //telInput = $("#inputPhoneNumber");
+                //$("#clockElement").ClockPlugin('init', 5);
+                //$("#clockElement").ClockPlugin('startTimer');
+                //$("#topBarIcons").topBarIconsPlugin('init', 'phone');
+                //$('#bottomPanel').bottomPanel('init',false,false);
 
-                    callHistoryCarousel = new Carousel();
-                }
-
-                if (typeof Phone !== "undefined") {
-                    /* add listener to selected remote device */
-                    tizen.phone.addRemoteDeviceSelectedListener(function(returnID) {
-                        if ((!!returnID && !!returnID.error) || (!!returnID && !!returnID.value && returnID.value === "")) {
-                            $("#loadingHistorySpinnerWrapper").hide();
-                            $(".caroufredsel_wrapper").hide();
-                            $("#noPairedDevice").show();
-                        } else {
-                            $("#noPairedDevice").hide();
-                            $("#loadingHistorySpinnerWrapper").show();
-                            $(".caroufredsel_wrapper").show();
-                        }
-                    });
-                    /* initialize contacts and call history, if not accept phone call from another widget */
-                    if (acceptPhoneCallFromOtherWidget !== true) {
-                        window.setTimeout(function() {
-                            Phone.loadContacts(function(err) {
-                                if (!err) {
-                                    ContactsLibrary.init();
-                                    Phone.loadCallHistory(function(err) {
-                                        if (!err) {
-                                            $("#loadingHistorySpinnerWrapper").hide();
-                                            callHistoryCarousel.loadCallHistory(Phone.callHistory(), 0);
-                                        }
-                                    });
-                                }
-                            });
-
-                        }, 2000);
-                    }
-                    /* add listener to change contacts list  */
-                    tizen.phone.addContactsChangedListener(function() {
-                        if (acceptPhoneCallFromOtherWidget !== true) {
-                            window.setTimeout(function() {
-                                Phone.loadContacts(function(err) {
-                                    if (!err) {
-                                        ContactsLibrary.init();
-                                    }
-                                });
-                            }, 1000);
-                        }
-                    });
-                    /* add listener to change call history  */
-                    tizen.phone.addCallHistoryChangedListener(function() {
-                        $("#loadingHistorySpinnerWrapper").show();
-                        if (acceptPhoneCallFromOtherWidget !== true) {
-                            window.setTimeout(function() {
-                                Phone.loadCallHistory(function(err) {
-                                    if (!err) {
-                                        $("#loadingHistorySpinnerWrapper").hide();
-                                        callHistoryCarousel.loadCallHistory(Phone.callHistory(), 0);
-
-                                    }
-                                });
-                            }, 1000);
-                        }
-
-                    });
-                }
 
                 $("#contactsLibraryButton").bind('click', function() {
 
                     ContactsLibrary.show();
 
                 });
-
+				
                 $(".numbersBox").delegate("#numberButton", "click", function() {
+					console.log("Number button "+$(this).data("id"));
                     var pressTime = new Date(),
                         number, oneCharPX = 32;
                     if (keyboard.intervalExpired(pressTime)) {
@@ -679,6 +853,7 @@ $(document).ready(
                 });
 
                 $('#callButton').bind('click', function() {
+					console.log("Call Button Click"+$("#inputPhoneNumber").val());
                     var phoneNumber = $("#inputPhoneNumber").val();
                     if ($("#callBox").hasClass("callBoxShow")) {
                         disconnectCall();
@@ -700,7 +875,7 @@ $(document).ready(
                     muteCall();
                 });
                 if (tizen.phone) {
-                    /* add listener to change call history entry, because if call is ended tizen.phone give back only last history object */
+                    // add listener to change call history entry, because if call is ended tizen.phone give back only last history object 
                     tizen.phone.addCallHistoryEntryAddedListener(function(contact) {
                         if (acceptPhoneCallFromOtherWidget !== true) {
 
@@ -716,7 +891,7 @@ $(document).ready(
 
                         }
                     });
-                    /* add listener to change call state */
+                    // add listener to change call state 
                     tizen.phone.addCallChangedListener(function(result) {
                         var contact;
                         if ( !! result.contact.name) {
@@ -724,9 +899,9 @@ $(document).ready(
                         } else {
                             contact = {
                                 phoneNumbers: [{
-                                    /* jshint camelcase: false */
+                                    // jshint camelcase: false
                                     number: tizen.phone.activeCall().line_id
-                                    /* jshint camelcase: true */
+                                    //jshint camelcase: true
                                 }]
 
                             };
@@ -753,7 +928,7 @@ $(document).ready(
                                 break;
                             case "ACTIVE".toLowerCase():
                                 if (Configuration._values.acceptedCall !== "true") {
-                                    /* global self */
+                                    // global self 
                                     self.incomingCall.acceptIncommingCall();
                                     CallDuration.startWatch();
                                     console.log("phone active");
@@ -768,7 +943,7 @@ $(document).ready(
                 }
 
             if (typeof(Speech) !== 'undefined') {
-                /* add listener to voice recognition */
+                // add listener to voice recognition 
                 Speech.addVoiceRecognitionListener({
                     oncall: function() {
                         if (ContactsLibrary.currentSelectedContact !== "" && $('#library').library("isVisible")) {
@@ -779,8 +954,8 @@ $(document).ready(
             } else {
                 console.warn("Speech API is not available.");
             }
-
             });
+*/
         }, 0);
 
     });
