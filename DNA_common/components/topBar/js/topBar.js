@@ -30,7 +30,7 @@ backbuttonTimeout = setTimeout(function() {
 
 function noop(){}
 
-var extras = 0, index = 0, i = 0, icon = 0, id = 0;
+var extras = 0, index = 0, i = 0, icon = 0, id = 0, installed=0;
 var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [], toptasks = [];
 var HomeScreenName = "Home Screen";
 var registeredApps = {"Home Screen":"/DNA_common/images/return_arrow_inactive.png",
@@ -53,6 +53,7 @@ var registeredApps = {"Home Screen":"/DNA_common/images/return_arrow_inactive.pn
 						"News":"/DNA_common/images/news_inactive.png",
 						"AMB Simulator":"/DNA_common/images/amb_simulator_inactive.png",
 						"Audio Settings":"/DNA_common/images/audio_settings_inactive.png",
+					    "MOST AUDIO":"./DNA_common/images/audio_settings_inactive.png",
 						"Finger Print":"/DNA_common/images/fingerprint_inactive.png",
 						"Multimedia Player":"/DNA_common/images/mediaplayer_inactive.png",
 						"SmartDeviceLink":"/DNA_common/images/sdl_inactive.png",
@@ -277,6 +278,12 @@ function onAppInfoSuccess(list) {
 		var length = applications.length + extras;
 		var equals = parseInt(length) == parseInt(appList.length)+1;
 
+		if(installed>0 && applications.length!=installed){
+			 location.reload();
+		}
+		
+		installed = applications.length;
+		
 		if (equals) {
 			for (var j = 0; j < applications.length; j++) {
 				equals = applications[j].id === appList[j].id ? equals : false;
