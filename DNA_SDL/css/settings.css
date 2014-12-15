@@ -142,11 +142,11 @@ f
 .backButton {
 	width: 48px;
 	height: 48px;
-	border: 1px solid #333;
-	border-radius: 2px;
-	float: left;
-	margin-left: 5px;
-	z-index: 1;
+	/*border: 1px solid #333;*/
+	/*border-radius: 2px;*/
+	/*float: left;*/
+	/*margin-left: 5px;*/
+	/*z-index: 1;*/
 }
 
 .backButton .ico {

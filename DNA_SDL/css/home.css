@@ -8,10 +8,12 @@
 
 
 #home {
-	background: url(../images/home/home_main_image.png) no-repeat;
-	width: 800px;
+	background-image: url(../images/home/home_main_image.png);
+	background-repeat: no-repeat;
+	background-position: center;
+/*	width: 800px;
 	height: 369px;
-	top: 56px;
+	top: 56px;*/
 }
 
 #home.help {

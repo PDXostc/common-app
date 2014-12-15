@@ -32,15 +32,21 @@
 * Incoming Code:        GStreamer 0.93, <link>
 *
 */
-body {
-	font-family: "Droid Sans", sans-serif;
+
+#app {
+	flex-direction: column;
+	margin-top: 116px;
+	margin-bottom: 132px;
+	padding: 40px;
 }
+
 .wrapper {
 	margin-top: 125px;
 	height: 980px;
 	overflow: hidden;
 	padding: 3%;
 }
+
 form {
 	padding: 4%;
 	margin: 0 auto;
