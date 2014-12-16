@@ -1,6 +1,6 @@
 <!-- RVI html template page for settings -->
 
-<div id="rviPage" class="tabs pageBgColorNormalTransparent rviPage hidden">
+<div id="rviPage" class="tabs rviPage hidden">
 
 	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
  
@@ -16,15 +16,9 @@
 		</div>
 
 	</div>
-	<div id="" class="tabsTopSubPanel" style="display: block;">
-
-		<!-- start of tabsContent portion-->
-		<div id="" class="tabsContent wifiContent">	
-			<div class="wifiElement borderColorTheme">
-				<div class="wifiElementInfoBox">
-					<div class="wifiElementTitle fontSizeLarge fontColorNormal fontWeightBold">Remote Vehicle Interaction</div>
-				</div>	
-			</div>
+	<div class="tabsTopSubPanel" style="display: block;">
+		<div class="componentSubheader">
+			<h2>Remote Vehicle Interaction</h2>		
 		</div>
 	</div>
 
@@ -32,27 +26,36 @@
 <!-- 	<div class="setup">
 		<input id="setup" value="RVI Set Up">
 	</div> -->
-	<div class="tabContent">
-		<div id="inputBox" class="boxShadow3">
-			<div id="setupForm">
+	<div class="tabsContent">
+		<div id="inputBox">
+			<form id="setupForm">
+
+				<div class="close-button" type="reset"></div>
+
 				<div class="labelBox">
-					<div class="text fontSizeLarge fontWeightBold fontColorTheme">VIN NUMBER</div>
+					<h4>VIN Number</h4>
 				</div>
 
 				<div class="inputNumberBox">	
-					<div>
-						<input id="vinNumber" class="inputNumber fontSizeLarge fontSizeBold fontColorNormal boxShadow4 boxShadow4Active" type="text">
-						<div class="button deleteButton"></div>
+						<input type="text" name="focus" class="inputNumber" id="vinNumber" placeholder="Enter new number">
+						<div class="delete-button" type="reset"></div>
+				</div>
+
+				<div class="button-area">
+					<div class="button button-blue">
+						<input id="submit" type="submit" value="submit">
 					</div>
 				</div>
 
-				<div class="submitButton">
-					<input id="submit" type="submit" value="submit">
-				</div>
-				<div class="submitButton">
-					<input id="cancel" type="submit" value="cancel">
-				</div>
-			</div>
+<!-- 				<div class="button-area">
+					<div class="button left">
+						<input id="submit" type="submit" value="submit">
+					</div>
+					<div class="button button-blue right">
+						<input id="cancel" type="submit" value="cancel">
+					</div>
+				</div> -->
+			</form>
 		</div>
 	</div>
 

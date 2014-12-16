@@ -18,7 +18,7 @@ settings template file.
 </div>
 
 <!-- settings Page:  this is used as a page for all settings components appended to  body-->
-<div id="settingsPage" class="tabs pageBgColorNormalTransparent settingsPage hidden">
+<div id="settingsPage" class="settingsPage hidden">
 	<div id="tabsTopPanel" class="tabsTopPanel">
 		<div class="tabsTopPanelTitle">
 			<div class="boxIconRectangleSmall bgColorTheme"></div>
@@ -28,14 +28,14 @@ settings template file.
 		<div class="tabsCloseButton" onclick="$('#settingsPage').toggle();"></div>
 
 		<div id="tabsTabsID" class="tabsTabs">	
-			<div onclick="$('#settingsTabs').tabs('tabsTabClick',0);" id="tabsTab0" class="tabsTab tabsTabSelected fontSizeLarger fontWeightBold fontColorNormal fontColorSelected">SETTINGS</div>
-			<div class="tabsTabClear"></div>
+			<div onclick="$('#settingsTabs').tabs('tabsTabClick',0);" id="tabsTab0" class="tabsTab">SETTINGS</div>
+			<!-- <div class="tabsTabClear"></div> -->
 		</div>
 	</div>
 	<!-- add class 'hidden' to this id tabsTopSubPanel, when component is displayed -->
 	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
-		<div id="tabsContent" class="tabsContent settingsContent">
-			<ul id="settingsPageList" class="fontSizeLarge fontWeightBold fontColorNormal">
+		<div id="tabsContent" class="settingsContent">
+			<ul id="settingsPageList">
 			</ul>
 		</div>
 	</div>
