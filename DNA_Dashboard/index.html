@@ -10,12 +10,11 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>HelloTizen application 42</title>
+	<title>DNA Dashboard</title>
 	<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
 
 	<link rel="stylesheet" href="./DNA_common/css/style.css"/>
-	<link rel="stylesheet" href="./css/style.css"/>
-	<link rel="stylesheet" href="./css/dashboard.css"/> <!--Dashboard specific-->
+	<link rel="stylesheet" href="./css/dashboard.css"/>
 	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
 	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
 
@@ -33,104 +32,88 @@
 <body>
 
 	<div id="topBar"></div>
+		<div id="clockElement">
+			<div id="clock" class="clockElemnt fontSizeXLarge fontColorDark grey">3:19 PM</div>
+			<div id="date" class="dateElemnt fontSizeXLarge fontColorDark grey">DEC 15</div>
+		</div>
 
-	<div id="clockElement"></div>
-
+	<!-- BEGIN HTML ELEMENTS -->
 	<div>
+			<div id="speedFuelTemp">
 
-		<!-- BEGIN CUSTOM HTML ELEMENTS -->
+				<!-- Speed -->
 
-		<!-- Speed -->
+				<div id="speedContainer">
+					<h5>SPEED <span id="unitMPH" class="unitDescription">MPH</span></h5>
+					<div id="speedIcon"></div>
+					<div id="speedGauge"></div>
+					<div id="fullSpeedGauge"></div>
+					<p id="bigSpeed">45 <span id="littleMPH">MPH</span></p>
+					<p id="odometer" class="label">100,000.5 mi</p>
+				</div>
 
-		<div id="speedContainer">
-				<h5>SPEED <span id="unitMPH" class="unitDescription">MPH</span></h5>
-				<div id="speedIcon"></div>
-				<div id="speedGauge"></div>
-				<div id="fullSpeedGauge"></div>
-				<p id="bigSpeed">45 <span id="littleMPH">MPH</span></p>
-				<p id="odometer" class="label"></strong> 100,000.5 mi</p>
-		</div>
+				<!-- Fuel and Temperature -->s
 
-		<!-- Fuel and Temperature -->
+				<div id="fuelTempContainer">
+					<div id="fuelContainer">
+						<h5 class="yellow-viv">FUEL <span id="unitGALLONS" class="unitDescription">GALLONS</span></h5>
+						<div id="fuelIcon"></div>
+						<div id="fuelGauge"></div>
+						<div id="fullFuelGauge"></div>
+						<ul>
+							<li><strong>RANGE:</strong> 355 mi</li>
+							<li><strong>AVG:</strong> 20.7 mpg</li>
+						</ul>
+					</div>
 
-		<div id="fuelTempContainer">
-			<div id="fuelContainer">
-				<h5 class="yellow-viv">FUEL <span id="unitGALLONS" class="unitDescription">GALLONS</span></h5>
-				<div id="fuelIcon"></div>
-				<div id="fuelGauge"></div>
-				<div id="fullFuelGauge"></div>
-				<ul>
-					<li><strong>RANGE:</strong> 355 mi</li>
-					<li><strong>AVG:</strong> 20.7 mpg</li>
-				</ul>
+					<div id="temperatureContainer">
+						<h5 class="green-lt">TEMPERATURE</h5>
+						<div id="temperatureIcon"></div>
+						<ul>
+							<li><strong>OUTDOOR:</strong> 80&deg;</li>
+							<li><strong>INDOOR:</strong> 72&deg;</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 
-			<div id="temperatureContainer">
-				<h5 class="green-lt">TEMPERATURE</h5>
-				<div id="temperatureIcon"></div>
-				<ul>
-					<li><strong>OUTDOOR:</strong> 80&deg;</li>
-					<li><strong>INDOOR:</strong> 72&deg;</li>
-				</ul>
-			</div>
-		</div>
+			<!-- Tire Pressure -->
 
-		<!-- Tire Pressure -->
+			<div id="tirePressureContainer">
 
-		<div id="tirePressureContainer">
-			
-			<div class="frontTireData tirePressureData leftPSI">
-				<div class="PSI_statusPosition PSI_statusOK"></div>
-				<h6>Left Front Tire</h6>
-				<p class="psiText">26.0 PSI</p>
-			</div>
+				<div class="frontTireData tirePressureData leftPSI">
+					<div class="PSI_statusPosition PSI_statusOK"></div>
+					<h6>Left Front Tire</h6>
+					<p class="psiText">26.0 PSI</p>
+				</div>
 
-			<div class="frontTireData tirePressureData rightPSI">
-				<div class="PSI_statusPosition PSI_statusOK"></div>
-				<h6>Right Front Tire</h6>
-				<p class="psiText">26.0 PSI</p>
-			</div>
+				<div class="frontTireData tirePressureData rightPSI">
+					<div class="PSI_statusPosition PSI_statusOK"></div>
+					<h6>Right Front Tire</h6>
+					<p class="psiText">26.0 PSI</p>
+				</div>
 
-			<div class="rearTireData tirePressureData leftPSI">
-				<div class="PSI_statusPosition PSI_statusOK"></div>
-				<h6>Left Rear Tire</h6>
-				<p class="psiText">26.0 PSI</p>
-			</div>
+				<div class="rearTireData tirePressureData leftPSI">
+					<div class="PSI_statusPosition PSI_statusOK"></div>
+					<h6>Left Rear Tire</h6>
+					<p class="psiText">26.0 PSI</p>
+				</div>
 
-			<div class="rearTireData tirePressureData rightPSI">
-				<div class="PSI_statusPosition PSI_statusOK"></div>
-				<h6>Right Rear Tire</h6>
-				<p class="psiText">26.0 PSI</p>
+				<div class="rearTireData tirePressureData rightPSI">
+					<div class="PSI_statusPosition PSI_statusOK"></div>
+					<h6>Right Rear Tire</h6>
+					<p class="psiText">26.0 PSI</p>
+				</div>
+
+				<div id="carImage"></div>
+				
 			</div>
 
-			<div id="carImage"></div>
+		<!-- END CUSTOM ELEMENTS -->
 
-		</div>
+	</div><!--end of wrapper -->
 
-		<hr>
-
-		<div id="miscData">
-	<!--<section id="childLock">
-		<h5>CHILD LOCK</h5>
-		<p>Activated</p>
-	</section>-->
-
-	<!--<section id="speedOdometer">
-	<h5>ENGINE STATUS</h5>
-		<p>0 MPH</p>
-		<p>0 MI</p>
-	</section>-->
-
-	<!--<section id="currentGear">
-		<h2>N</h2>
-	</section>-->
-</div>
-
-<!-- END CUSTOM ELEMENTS -->
-
-</div><!--end of wrapper -->
-
-<div id="bottomBar" class="bottomPanel bottomPanelImg"></div>
+	<div id="bottomBar" class="bottomPanel bottomPanelImg"></div>
 
 </body>
 
