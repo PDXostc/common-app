@@ -406,7 +406,7 @@ function formatTimeToHHMM(seconds) {
 	if (hours > 0 || minutes > 0) {
 		formatedTime = addLeading0ToTime(hours) + ":" + addLeading0ToTime(minutes);
 	} else {
-		formatedTime = seconds;
+		formatedTime = ":" + seconds;
 	}
 	return formatedTime;
 }
