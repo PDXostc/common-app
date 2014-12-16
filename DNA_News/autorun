@@ -1,0 +1,23 @@
+#!/usr/bin/expect -f
+
+set timeout -1
+
+spawn make run
+
+expect {
+  "Password: " {
+    send "tizen\r"
+    exp_continue
+  }
+
+  "(yes/no)? " {
+    send "yes\r"
+    exp_continue
+  }
+
+  "event 'AE_RESET'" {
+    interact {
+      \003 { send \003 }
+    }
+  }
+}

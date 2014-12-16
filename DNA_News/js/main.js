@@ -7,7 +7,7 @@
  *
  */
 
-/** 
+/**
  * @module Store
  */
 /**
@@ -22,215 +22,169 @@ var carInd;
 var te;
 
 /**
- * Array of signals who want subscribe in carInd 
+ * Array of signals who want subscribe in carInd
  * @property carIndicatorSignals {string[]}
  */
-var carIndicatorSignals =  [
-                            "IviPoC_NightMode"
-                            ];
+var carIndicatorSignals = [
+    "IviPoC_NightMode"
+];
 
-/* initialize iScroll scrollers for one-finger touch scrolling 
+/* initialize iScroll scrollers for one-finger touch scrolling
    of articles and article lists
 */
 
 var topScroll;
 var entScroll;
 var sportsScroll;
+
 function loaded() {
     setTimeout(function () {
-        topScroll = new iScroll('#topArticleList', { hScrollbar: false, vScrollbar: false });
-        entScroll = new iScroll('#entertainArticleList', { hScrollbar: false, vScrollbar: false });
-        sportsScroll = new iScroll('#sportsArticleList', { hScrollbar: false, vScrollbar: false });
-        }, 1000);
+        topScroll = new iScroll('#topArticleList', {
+            hScrollbar: false,
+            vScrollbar: false
+        });
+        entScroll = new iScroll('#entertainArticleList', {
+            hScrollbar: false,
+            vScrollbar: false
+        });
+        sportsScroll = new iScroll('#sportsArticleList', {
+            hScrollbar: false,
+            vScrollbar: false
+        });
+    }, 1000);
 }
+
 window.addEventListener('load', loaded, false);
 
-// build the HTML for each list item in a given feed's article list
-
-/* Rebuilding into HTML template.
-
-    function BuildItemHTML(itemPhoto,itemTitle,itemDesc){
-    output = '';
-    output += '<li id=\"'+ itemGuid +'\">';
-    output += '<div class=\"articleListItem textBgColorThemeTransparent\">';
-    output += '<div class=\"thumbnail\" ontouchend=\"showArticle(\''+ itemFeed +'/did='+ itemGuid +'\')\"><img src=\"'+ itemPhoto +'\" width=\"260px\" \/></div>';
-    output += '<div class=\"itemText\"><span class=\"itemDate fontSizeSmall fontColorTheme\">'+ d + m + y +'</span><br/><span ontouchend=\"showArticle(\''+ itemFeed +'/did='+ itemGuid +'\')\" class=\"itemTitle fontSizeSmall fontColorNormal\">'+ itemTitle +'</span><br/>';
-    output += '<span class=\"itemDesc fontSizeSmall fontColorNormal\">'+ itemDesc +'</span>';
-    output += '</div><div class=\"itemTextGradFade\"></div></div>';
-    output += '</li>';
-    return output;
-}*/
-
 /**
- * Initialize plugins, register events for Store app.
- * @method init
- * @static
- **/
-var init = function () {
-    //var bootstrap = new Bootstrap(function (status) {
-        //$("#topBarIcons").topBarIconsPlugin('init', 'news');
-	//$("#clockElement").ClockPlugin('init', 5);
-	//$("#clockElement").ClockPlugin('startTimer');
-	//$('#bottomPanel').bottomPanel('init',false,false);
-
-	//if (tizen.speech) {
-	//    setupSpeechRecognition();
-	//} else {
-	//    console.log("Store: Speech Recognition not running, voice control will be unavailable");
-	//}
-		
-	//bootstrap.themeEngine.addStatusListener(function (eData) {
-		// setThemeImageColor();
-	//});
-    //});
-};
-
-/**
- * Calls initialization fuction after document is loaded.
- * @method $(document).ready
- * @param init {function} Callback function for initialize Store.
- * @static
- **/
-$(document).ready(init);
-
-/**
- * Applies selected theme to application icons 
+ * Applies selected theme to application icons
  * @method setThemeImageColor
  * @static
  **/
 function setThemeImageColor() {
-	var imageSource;
-	$('body').find('img').each(function() {
-		var self = this;
-		imageSource = $(this).attr('src');
+    var imageSource;
 
-	    if (typeof(imageSource) !== 'undefined' && $(this.parentElement).hasClass('themeImage') == false) {
-	        console.log(imageSource);
+    $('body').find('img').each(function() {
+        var self = this;
 
-	        var img = new Image();
-	        var ctx = document.createElement('canvas').getContext('2d');
+        imageSource = $(this).attr('src');
 
-	        img.onload = function () {
-	            var w = ctx.canvas.width = img.width;
-	            var h = ctx.canvas.height = img.height;
-	            ctx.fillStyle = ThemeKeyColor;
-	            ctx.fillRect(0, 0, w, h);
-	            ctx.globalCompositeOperation = 'destination-in';
-	            ctx.drawImage(img, 0, 0);
+        if (typeof(imageSource) !== 'undefined' && $(this.parentElement).hasClass('themeImage') == false) {
+            console.log(imageSource);
 
-	            $(self).attr('src', ctx.canvas.toDataURL());
-	            $(self).hide(0, function() { $(self).show();});
-	        };
+            var img = new Image();
+            var ctx = document.createElement('canvas').getContext('2d');
 
-	        img.src = imageSource;
-	    }
-	});
+            img.onload = function () {
+                var w = ctx.canvas.width = img.width;
+                var h = ctx.canvas.height = img.height;
+                ctx.fillStyle = ThemeKeyColor;
+                ctx.fillRect(0, 0, w, h);
+                ctx.globalCompositeOperation = 'destination-in';
+                ctx.drawImage(img, 0, 0);
+
+                $(self).attr('src', ctx.canvas.toDataURL());
+                $(self).hide(0, function() { $(self).show();});
+            };
+
+            img.src = imageSource;
+        }
+    });
 }
 
 function setupSpeechRecognition() {
-	console.log("Store setupSpeechRecognition");
-	Speech.addVoiceRecognitionListener({
-		onapplicationinstall : function() {
-			console.log("Speech application install invoked");
-			if (_applicationDetail.id !== undefined) {
-				StoreLibrary.installApp(_applicationDetail.id);
-			}
-		},
-		onapplicationuninstall : function() {
-			console.log("Speech application uninstall invoked");
-			if (_applicationDetail.id !== undefined) {
-				StoreLibrary.uninstallApp(_applicationDetail.id);
-			}
-		}
-
-	});
+    console.log("Store setupSpeechRecognition");
+    Speech.addVoiceRecognitionListener({
+        onapplicationinstall: function() {
+            console.log("Speech application install invoked");
+            if (_applicationDetail.id !== undefined) {
+                StoreLibrary.installApp(_applicationDetail.id);
+            }
+        },
+        onapplicationuninstall: function() {
+            console.log("Speech application uninstall invoked");
+            if (_applicationDetail.id !== undefined) {
+                StoreLibrary.uninstallApp(_applicationDetail.id);
+            }
+        }
+    });
 }
 
-$(document).ready(function () {
+document.onreadystatechange = function() {
+    if (document.readyState == "complete") {
+        init();
+    }
+};
 
-/* retrieve via ajax and parse XML from feeds to create article list views
-   for each category (currently Top News, Entertainment and Sports)
-*/
+function init() {
+    ['top', 'entertainment', 'sports'].forEach(generate);
+}
 
-    // Top News
-    console.log("get News");
-    $.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e8", function(xml) {
-		console.log("got News");
-        myHTMLOutput = '';
-        myHTMLOutput = '<ul id=\"topArticleListInner\">';
-	$('item',xml).each(function(i) {
-                itemFeed = "http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e8";
-                itemPhoto = $(this).find("enclosure").attr('url');
-                itemDate = $(this).find("pubDate").text();
-		itemTitle = $(this).find("title").text();
-                itemDesc = $(this).find("description").text();
-                itemGuid = $(this).find("guid").text();
-                y = itemDate.substr(11,5);
-                m = itemDate.substr(7,4);
-                d = itemDate.substr(0,8);
-                newDate = new Date(y, m, d);
-                mydata = BuildItemHTML(itemPhoto,itemTitle,itemDesc);
-                myHTMLOutput = myHTMLOutput + mydata;
-        });
-        myHTMLOutput += '</ul>';
-        $("#topArticleList").append(myHTMLOutput);
-    });
+function generate(section) {
+    var request = new XMLHttpRequest();
 
-    // Entertainment
-    console.log("get Entertainment");
-    $.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3eb", function(xml) {
-		console.log("got Entertainment");
-        myHTMLOutput = '';
-        myHTMLOutput = '<ul id=\"entertainArticleListInner\">';
-	$('item',xml).each(function(i) {
-                itemFeed = "http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3eb";
-                itemPhoto = $(this).find("enclosure").attr('url');
-                itemDate = $(this).find("pubDate").text();
-		itemTitle = $(this).find("title").text();
-                itemDesc = $(this).find("description").text();
-                itemGuid = $(this).find("guid").text();
-                y = itemDate.substr(11,5);
-                m = itemDate.substr(7,4);
-                d = itemDate.substr(0,8);
-                newDate = new Date(y, m, d);
-                mydata = BuildItemHTML(itemPhoto,itemTitle,itemDesc);
-                myHTMLOutput = myHTMLOutput + mydata;
-        });
-        myHTMLOutput += '</ul>';
-        $("#entertainArticleList").append(myHTMLOutput);
-    });
-
-    // Sports
-    console.log("get Sports");
-    var gotSports = function(xml) {
-		console.log("got Sports");
-		console.log(xml);
-        myHTMLOutput = '';
-        myHTMLOutput = '<ul id=\"sportsArticleListInner\">';
-	$('item',xml).each(function(i) {
-                itemFeed = "http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e9";
-                itemPhoto = $(this).find("enclosure").attr('url');
-                itemDate = $(this).find("pubDate").text();
-		itemTitle = $(this).find("title").text();
-                itemDesc = $(this).find("description").text();
-                itemGuid = $(this).find("guid").text();
-                y = itemDate.substr(11,5);
-                m = itemDate.substr(7,4);
-                d = itemDate.substr(0,8);
-                newDate = new Date(y, m, d);
-                mydata = BuildItemHTML(itemPhoto,itemTitle,itemDesc);
-                myHTMLOutput = myHTMLOutput + mydata;
-        });
-        myHTMLOutput += '</ul>';
-        $("#sportsArticleList").append(myHTMLOutput);
-        showSports();
+    var mapping = {
+        top: {
+            url: 'http://mycricket.clearmode.com/FeedServiceBP/docs/fid=3e8',
+            elem: '#topArticleListInner'
+        },
+        entertainment: {
+            url: 'http://mycricket.clearmode.com/FeedServiceSP/docs/fid=3eb',
+            elem: '#entertainArticleListInner'
+        },
+        sports: {
+            url: 'http://mycricket.clearmode.com/FeedServiceSP/docs/fid=3e9',
+            elem: '#sportsArticleListInner'
+        }
     };
-    $.get("http://wmodefeeds.wmpda.com/FeedServiceSP/docs/fid=3e9",gotSports);
-    //$.get("./sports.xml",gotSports);
- 
-});
 
-/* close all function to hide (as opposed to display:none) all 
+    var readyStateChanged = function(map) {
+        return function() {
+            if (request.readyState === 4 && request.status === 200) {
+                var xml = request.responseXML.documentElement;
+                var nodes = xml.querySelectorAll('item');
+                var items = Array.prototype.slice.call(nodes);
+                items.map(xml2html(mapping[map].url)).forEach(function(elem) {
+                    var list = document.querySelector(mapping[map].elem);
+                    list.appendChild(elem);
+                });
+            }
+        };
+    };
+
+    request.onreadystatechange = readyStateChanged(section);
+    request.open('GET', mapping[section].url, true);
+    request.send(null);
+}
+
+function xml2html(url) {
+    return function(xml) {
+        var content = document.querySelector('#newsItem').content;
+
+        var guid = xml.querySelector('guid').innerHTML;
+        var enclosure = xml.querySelector('enclosure');
+        var image = enclosure ? enclosure.attributes['url'].value : '//:0';
+        var date = xml.querySelector('pubDate').innerHTML;
+        var title = xml.querySelector('title').innerHTML;
+        var desc = xml.querySelector('description').innerHTML;
+
+        var href = "javascript:showArticle('";
+        href += url;
+        href += '/did=';
+        href += guid;
+        href += "');";
+
+        content.querySelector('a').href = href;
+        content.querySelector('img').src = image;
+        content.querySelector('.itemDate').textContent = date;
+        content.querySelector('.itemTitle').textContent = title;
+        content.querySelector('.itemDesc').textContent = desc;
+
+        return content.cloneNode(true);
+    };
+}
+
+/* close all function to hide (as opposed to display:none) all
    items of a given class, usually used to dismiss article div.
    Visibility:hidden used because iScroll scrollers don't react
    well to having parent elements' display property set to 'none'.
@@ -239,7 +193,7 @@ $(document).ready(function () {
 function closeAll(className) {
     var elements = document.getElementsByClassName(className);
     for(var i = 0, length = elements.length; i < length; i++) {
-          elements[i].style.visibility = 'hidden';
+        elements[i].style.visibility = 'hidden';
     }
     document.getElementById('articleClose').style.display='none';
 
@@ -264,37 +218,37 @@ function closeAll(className) {
 function showTop() {
     closeAll('article');
 
-    document.getElementById('topArticleList').style.visibility='visible';
-    document.getElementById('entertainArticleList').style.visibility='hidden';
-    document.getElementById('sportsArticleList').style.visibility='hidden';
+    document.getElementById('topArticleList').style.display = 'block';
+    document.getElementById('entertainArticleList').style.display = 'none';
+    document.getElementById('sportsArticleList').style.display = 'none';
 
-    document.getElementById('top').className='fontColorNormal';
-    document.getElementById('entertain').className='fontColorTheme';
-    document.getElementById('sports').className='fontColorTheme';
+    document.getElementById('top').className = 'orange-viv selected padRight';
+    document.getElementById('entertain').className = 'orange-lt deselected padRight';
+    document.getElementById('sports').className = 'orange-lt deselected';
 }
 
 function showEntertain() {
     closeAll('article');
 
-    document.getElementById('topArticleList').style.visibility='hidden';
-    document.getElementById('entertainArticleList').style.visibility='visible';
-    document.getElementById('sportsArticleList').style.visibility='hidden';
+    document.getElementById('topArticleList').style.display = 'none';
+    document.getElementById('entertainArticleList').style.display = 'block';
+    document.getElementById('sportsArticleList').style.display = 'none';
 
-    document.getElementById('top').className='fontColorTheme';
-    document.getElementById('entertain').className='fontColorNormal';
-    document.getElementById('sports').className='fontColorTheme';
+    document.getElementById('top').className = 'orange-lt deselected padRight';
+    document.getElementById('entertain').className = 'orange-viv selected padRight';
+    document.getElementById('sports').className = 'orange-lt deselected';
 }
 
 function showSports() {
     closeAll('article');
 
-    document.getElementById('topArticleList').style.visibility='hidden';
-    document.getElementById('entertainArticleList').style.visibility='hidden';
-    document.getElementById('sportsArticleList').style.visibility='visible';
+    document.getElementById('topArticleList').style.display = 'none';
+    document.getElementById('entertainArticleList').style.display = 'none';
+    document.getElementById('sportsArticleList').style.display = 'block';
 
-    document.getElementById('top').className='fontColorTheme';
-    document.getElementById('entertain').className='fontColorTheme';
-    document.getElementById('sports').className='fontColorNormal';
+    document.getElementById('top').className = 'orange-lt deselected padRight';
+    document.getElementById('entertain').className = 'orange-lt deselected padRight';
+    document.getElementById('sports').className = 'orange-viv selected';
 }
 
 
@@ -310,11 +264,11 @@ function showArticle(url) {
 
     if ($('#articleScroller').length == 0) {
         addScr = '<ul id=\"articleScroller\">';
-    	$("#articleContainer").append(addScr);
+        $("#articleContainer").append(addScr);
     } else {
     }
 
-    /* ajax article call, receives 'url' constructed in 
+    /* ajax article call, receives 'url' constructed in
        BuildItemHTML function
     */
 
@@ -322,7 +276,7 @@ function showArticle(url) {
         console.log("fire function to get article");
 
         myHTMLOutput = '';
-	$('item',xml).each(function(i) {
+        $('item',xml).each(function(i) {
             articleHead = $(this).find("title").text();
             articleBody = $(this).find("body").text();
             articleBody = articleBody.replace(/(?:^|[^"'])((ftp|http|https|file):\/\/[\S]+(\b|$))/gi, "<p><img width=\"627px\" class=\"articlePhoto\" src=\"$1\" />");
@@ -330,8 +284,8 @@ function showArticle(url) {
             console.log("each loop for article items");
         });
 
-        myHTMLOutput = '<li class=\"articleItem\"><div class=\"articleBody fontSizeMedium fontColorNormal\">';
-        myHTMLOutput += '<span class=\"articleHead fontSizeXLarge fontColorNormal\">'+ articleHead +'</span>'+ articleBody +'</div></li>';
+        myHTMLOutput = '<li class=\"articleItem\"><div class=\"articleBody fontSizeMedium orange-viv\">';
+        myHTMLOutput += '<span class=\"articleHead fontSizeXLarge orange-viv\">'+ articleHead +'</span>'+ articleBody +'</div></li>';
 
         $("#articleScroller").append(myHTMLOutput);
         console.log("article html sent");
@@ -340,14 +294,18 @@ function showArticle(url) {
         articleScroll = new iScroll('articleContainer', { hScrollbar: false, vScrollbar: false });
 
         setTimeout(function() {
-            var element = document.getElementById("articleScroller"); 
+            var element = document.getElementById("articleScroller");
             element.style.height = document.defaultView.getComputedStyle(element,"").getPropertyValue("height");
-	    articleScroll.refresh();
-	},1000);
+            articleScroll.refresh();
+        }, 1000);
     });
 
     // make article parent div and UI elements visible
 
-    document.getElementById('articleContainer').style.visibility='visible';
-    document.getElementById('articleClose').style.display='block';
+    var container = document.getElementById('articleContainer');
+    var close = document.getElementById('articleClose');
+    container.style.visibility = 'visible';
+    container.style['z-index'] = 1001;
+    close.style.display = 'block';
+    close.style['z-index'] = 1002;
 }

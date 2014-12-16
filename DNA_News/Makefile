@@ -7,7 +7,7 @@ PACKAGE = $(PROJECT)-$(VERSION)
 SEND := ~/send
 
 ifndef TIZEN_IP
-TIZEN_IP=192.168.6.76
+TIZEN_IP=TizenVTC
 endif
 
 wgtPkg: clean

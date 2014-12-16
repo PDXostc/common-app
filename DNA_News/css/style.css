@@ -1,7 +1,17 @@
 /* Styles specific to News app */
 
+/* Settings Overrides */
+#settingsPage,
+#hexGridView {
+  z-index: 1005 !important;
+}
+
 body {
   overflow: hidden;
+}
+
+a {
+  text-decoration: none;
 }
 
 .newsChannels {
@@ -9,11 +19,11 @@ body {
   display: inline-block;
   margin-top: 96px;
   height: 100px;
-  /* line-height: 47px !important; */
   width: 100%;
-  /*z-index: -500;*/
+  z-index: 1000;
   text-align: center;
-  padding-top: 5px;
+  padding-top: 9px;
+  font-size: 5.4rem;
 }
 
 .newsTopics li {
@@ -25,20 +35,23 @@ body {
 
 #topArticleList {
   visibility: visible;
-  /*z-index: -800;*/
-  overflow: hidden;
+  z-index: 1000;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #entertainArticleList {
-  visibility: hidden;
-  /*z-index: -530;*/
-  overflow: hidden;
+  display: none;
+  z-index: 1000;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #sportsArticleList {
-  visibility: hidden;
-  /*z-index: -550;*/
-  overflow: hidden;
+  display: none;
+  z-index: 1000;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .articleList {
@@ -60,10 +73,11 @@ body {
   width: 1056px;
   height: 187px;
   margin: 10px 10px 0 10px;
+  line-height: 1.8;
 }
 
 .textBgColorThemeTransparent_DNA {
-  background-color: #FE9C00;
+  background-color: #444;
 }
 
 .itemDate {
@@ -81,24 +95,23 @@ body {
 }
 
 .article {
-  flex: 1;
-  /*position: absolute;*/
-  /*top: 225px;*/
-  /*left: 0px;*/
-  /* height: 870px; */
-  /*width: 1078px;*/
-  border: 1px solid #fff;
+  position: absolute;
+  top: 185px;
+  left: 0px;
+  width: 1078px;
+  /*border: 1px solid #fff;*/
   /* outline: 18px solid black; */
-  /*z-index: 5;*/
+  z-index: 999;
   background: #000000;
-  overflow: hidden;     
-  /*bottom: 131px;     */
+  overflow: hidden;
+  bottom: -1px;
 }
 
 #articleClose {
   display: none;
+  visibility: hidden;
   position: absolute;
-  top: 318px;
+  top: 228px;
   left: 958px;
   width: 58px;
   height: 58px;
@@ -116,7 +129,6 @@ body {
   padding: -8px;
   vertical-align: middle;
   text-transform: uppercase;
-  letter-spacing: 3px;
   margin-top: 2%;
   margin-bottom: 1%;
 }
@@ -131,7 +143,6 @@ body {
 .articleBody {
   display: block;
   padding: 22px 31px 31px 31px;
-  letter-spacing: 3px;
   line-height: 120%;
 }
 
@@ -153,6 +164,10 @@ body {
   font-size: 1.5rem;
 }
 
+.itemTitle {
+  color: #B2F0FF;
+}
+
 .itemTextGradFade {
   display: block;
   width: 490px;
@@ -165,7 +180,7 @@ body {
 .articleListGradFade {
   width: 1076px;
   height: 80px;
-  /*z-index: 1;*/
+  z-index: 1;
   left: 2px;
   bottom: 0;
   background: -webkit-linear-gradient(top, rgba(2,46,73,0) 0%,rgba(2,46,73,0.59) 25%,rgba(1,14,22,1) 85%,rgba(0,0,0,1) 100%);
@@ -212,4 +227,20 @@ li {
 .wrapper {
   height: 1673px;
   width: 100%;
+}
+
+.borderLtBlue_DNA {
+  border-color: #B2F0FF;
+}
+
+.padRight {
+  padding: 0px 16px 0px 0px;
+}
+
+.deselected {
+  font-weight: normal;
+}
+
+.selected {
+  font-weight: 700;
 }
