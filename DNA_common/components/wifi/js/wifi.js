@@ -1,3 +1,7 @@
+console.log("start of wifi.js");
+$(document).on("click", ".switch-plate", function() {
+	  $(this).closest(".switch").toggleClass("on off");
+	})
 					
 var WifiSettingsPage={};
 WifiSettingsPage.TemplateHTML = "DNA_common/components/wifi/wifi.html";
@@ -6,6 +10,11 @@ WifiSettingsPage.ShowPage = function() {
 		console.log('wifi page show_click();');
 		$('#settingsPageList').addClass('hidden');
 		$('#WifiPage').removeClass('hidden');
+
+
+	   $.when(loadComponents()).then(function(p){
+    		wifiInit();
+	   	});
 	};
 
 WifiSettingsPage.HidePage = function() { 
@@ -54,7 +63,7 @@ console.log("end of wifi.js");
 function loadComponents(){
 	var promise = $.Deferred();
 
-	Wifi.TemplateHTML = "DNA_common/components/wifi/wifi.html";
+	//Wifi.TemplateHTML = "DNA_common/components/wifi/wifi.html";
 	Wifi.connman = "DNA_common/components/settings/js/api-connman.js";
 	Wifi.ws = "DNA_common/components/settings/js/websocket.js";
 
@@ -64,10 +73,7 @@ function loadComponents(){
 		}); //include connman	
 	}); 
 
-	
-	
-
-	return promise
+	return promise;
 }
 
 wifiInit = function(){
@@ -109,11 +115,11 @@ WifiSettings = function(){
 
 		wsAPI.connect('ws://localhost:16000/', 'http-only', function() {
 				console.log('Settings daemon connected');
-				/*
+				
 				wsAPI.subscribeEvents(function(event) {
 					self.connmanEventReceived(event);
 				});
-
+				/*
 				self.loadDefaultAdapter(function(err) {
 					error = err;
 					if (!!callback) {
@@ -146,11 +152,11 @@ WifiSettings = function(){
 		})
 	}
 
-	this.isPowered = function(){
-		if( self.wifi && self.wifi.prop.Powered != undefined){
-			return true;
-		}else{
-			return false;
+	this.displayPoweredState = function(){
+		if(self.wifi.prop.Powered == false){
+			$("#wifiPowerButton .switch").removeClass("on").addClass("off");
+		}else if(self.wifi.prop.Powered == true){
+			$("#wifiPowerButton .switch").removeClass("off").addClass("on");
 		}
 	}
 
@@ -182,7 +188,11 @@ WifiSettings = function(){
 				var technology = technologies[i];
 				if (technology.prop.Type === 'wifi') {
 					console.log('Connman technology found: ', technology);
-					self.wifi = technology;
+					self.wifi = { 
+									id:technology.id,
+									prop:technology.prop,
+									technology:technology
+								}
 					break;
 				}
 			}
