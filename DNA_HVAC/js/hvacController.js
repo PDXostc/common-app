@@ -11,19 +11,19 @@
 
 /**
  * Class provides methods to fill the content of HVAC's UI.
- * @class hvacControler
+ * @class hvacController
  * @module HVACApplication
  */
-var hvacControler = function () {
+var hvacController = function () {
 	"use strict";
 	this.initButtons();
 
 	// todo: This is NOT the proper way to initialize this!
-    if ( tizen && tizen.vehicle ) {
+    /*if ( tizen && tizen.vehicle ) {
 		tizen.vehicle.set( "HeatedSeatRLModeReq", {heatedSeatRLModeReq:3} );
 		tizen.vehicle.set( "HeatedSeatRRModeReq", {heatedSeatRRModeReq:3} );
 		tizen.vehicle.set( "FrontSystemOnCmd", {FrontSystemOnCmd:true} );
-    }
+    }*/
 };
 
 /**
@@ -78,27 +78,27 @@ var hazardLight = {
 	//  TrailerDirectionInd             0..1,
 	//  UB_TrailerDirectionInd          0..1
 	on: function () {
-		bootstrap.carIndicator.setStatus("DirectionIndicationINST",     3 );
-		bootstrap.carIndicator.setStatus("DirectionIndicationMS",       3 );
+		carIndicator.setStatus("DirectionIndicationINST",     3 );
+		carIndicator.setStatus("DirectionIndicationMS",       3 );
 		// TODO: Missing translation for UB_DirectionIndicationINST and UB_DirectionIndicationMS
-		bootstrap.carIndicator.setStatus("UB_DirectionIndicationINST",  1 ); // this fails because no translation is set up...
-		tizen.vehicle.set("UB_DirectionIndicationINST", {uB_DirectionIndicationINST:true} );
-		bootstrap.carIndicator.setStatus("UB_DirectionIndicationMS",    1 ); // this fails because no translation is set up...
-		tizen.vehicle.set("UB_DirectionIndicationMS", {uB_DirectionIndicationMS:true} );
-		// bootstrap.carIndicator.setStatus("TrailerDirectionInd",      1 );
-		// bootstrap.carIndicator.setStatus("UB_TrailerDirectionInd",   1 );
+		carIndicator.setStatus("UB_DirectionIndicationINST",  1 ); // this fails because no translation is set up...
+		//tizen.vehicle.set("UB_DirectionIndicationINST", {uB_DirectionIndicationINST:true} );
+		carIndicator.setStatus("UB_DirectionIndicationMS",    1 ); // this fails because no translation is set up...
+		//tizen.vehicle.set("UB_DirectionIndicationMS", {uB_DirectionIndicationMS:true} );
+		// carIndicator.setStatus("TrailerDirectionInd",      1 );
+		// carIndicator.setStatus("UB_TrailerDirectionInd",   1 );
 	},
 	off: function () {
 		// Lights OFF
-		bootstrap.carIndicator.setStatus("DirectionIndicationINST",     0 );
-		bootstrap.carIndicator.setStatus("DirectionIndicationMS",       0 );
+		carIndicator.setStatus("DirectionIndicationINST",     0 );
+		carIndicator.setStatus("DirectionIndicationMS",       0 );
 		// TODO: Missing translation for UB_DirectionIndicationINST and UB_DirectionIndicationMS
-		bootstrap.carIndicator.setStatus("UB_DirectionIndicationINST",  1 ); // this fails because no translation is set up...
-		tizen.vehicle.set("UB_DirectionIndicationINST", {uB_DirectionIndicationINST:true} );
-		bootstrap.carIndicator.setStatus("UB_DirectionIndicationMS",    1 ); // this fails because no translation is set up...
-		tizen.vehicle.set("UB_DirectionIndicationMS", {uB_DirectionIndicationMS:true} );
-		// bootstrap.carIndicator.setStatus("TrailerDirectionInd",         0 );
-		// bootstrap.carIndicator.setStatus("UB_TrailerDirectionInd",      0 );
+		carIndicator.setStatus("UB_DirectionIndicationINST",  1 ); // this fails because no translation is set up...
+		//tizen.vehicle.set("UB_DirectionIndicationINST", {uB_DirectionIndicationINST:true} );
+		carIndicator.setStatus("UB_DirectionIndicationMS",    1 ); // this fails because no translation is set up...
+		//tizen.vehicle.set("UB_DirectionIndicationMS", {uB_DirectionIndicationMS:true} );
+		// carIndicator.setStatus("TrailerDirectionInd",         0 );
+		// carIndicator.setStatus("UB_TrailerDirectionInd",      0 );
 	}
 };
 
@@ -222,9 +222,9 @@ function getTargetTemperatureSliderValue(temperature) {
  */
 function setAirFlowDirectionStatus(newStatus) {
 	"use strict";
-	bootstrap.carIndicator.setStatus("airflowDirection", newStatus);
-	bootstrap.carIndicator.setStatus("FLHSDistrCmd", newStatus);
-	bootstrap.carIndicator.setStatus("FRHSDistrCmd", newStatus);
+	carIndicator.setStatus("airflowDirection", newStatus);
+	carIndicator.setStatus("FLHSDistrCmd", newStatus);
+	carIndicator.setStatus("FRHSDistrCmd", newStatus);
 }
 
 /**
@@ -236,7 +236,7 @@ function setAirFlowDirectionStatus(newStatus) {
  * @method onAirRecirculationChanged
  * @param newStatus {Boolean} New status of AirRecirculation
  */
-hvacControler.prototype.onAirRecirculationChanged = function (newStatus) {
+hvacController.prototype.onAirRecirculationChanged = function (newStatus) {
 	"use strict";
 	// Actual value of newStatus will be either 0 or 1...
 	if (newStatus == true) {
@@ -256,7 +256,7 @@ hvacControler.prototype.onAirRecirculationChanged = function (newStatus) {
  * @method onFanChanged
  * @param newStatus {Boolean} New status of AirConditioning
  */
-hvacControler.prototype.onFanChanged = function (newStatus) {
+hvacController.prototype.onFanChanged = function (newStatus) {
 	"use strict";
 	if (newStatus === false || newStatus === "false") {
 		$("#fan_control_ac").removeClass("on");
@@ -275,12 +275,12 @@ hvacControler.prototype.onFanChanged = function (newStatus) {
  * @method onFanSpeedChanged
  * @param newStatus {Integer} new status of FanSpeed
  */
-hvacControler.prototype.onFanSpeedChanged = function (newStatus) {
+hvacController.prototype.onFanSpeedChanged = function (newStatus) {
 	"use strict";
 	$("#fanSpeedSlider").val(newStatus);
 	$(".fanSpeedOn").css('width', parseInt($(".noUiSliderFan.horizontal.connect").find("a").css('left'), 10));
 	if (newStatus === 0) {
-		bootstrap.carIndicator.setStatus("airflowDirection", 0);
+		carIndicator.setStatus("airflowDirection", 0);
 	} else if (newStatus > 0) {
 		switchAutoACOff();
 	}
@@ -297,7 +297,7 @@ hvacControler.prototype.onFanSpeedChanged = function (newStatus) {
  * @method onTargetTemperatureRightChanged
  * @param newStatus {Integer} new status of Right TargetTemperature in Celsius degrees
  */
-hvacControler.prototype.onTargetTemperatureRightChanged = function (newStatus) {
+hvacController.prototype.onTargetTemperatureRightChanged = function (newStatus) {
 	"use strict";
 	var value = getTargetTemperatureSliderValue(newStatus);
 	$("#noUiSliderRight").val(value);
@@ -317,7 +317,7 @@ hvacControler.prototype.onTargetTemperatureRightChanged = function (newStatus) {
  * @method onTargetTemperatureLeftChanged
  * @param newStatus {Integer} new status of Left TargetTemperature in Celsius degrees
  */
-hvacControler.prototype.onTargetTemperatureLeftChanged = function (newStatus) {
+hvacController.prototype.onTargetTemperatureLeftChanged = function (newStatus) {
 	"use strict";
 	var value = getTargetTemperatureSliderValue(newStatus);
 	$("#noUiSliderLeft").val(value);
@@ -328,11 +328,11 @@ hvacControler.prototype.onTargetTemperatureLeftChanged = function (newStatus) {
 
 /**
  * Sets the status of Hazard button. Blink interval of hazard light can be configured
- * using [hazardTimerInterval](../classes/hvacControler.html#property_hazardTimerInterval).
+ * using [hazardTimerInterval](../classes/hvacController.html#property_hazardTimerInterval).
  * @method onHazardChanged
  * @param newStatus {Boolean} new status of the Hazard
  */
-hvacControler.prototype.onHazardChanged = function (newStatus) {
+hvacController.prototype.onHazardChanged = function (newStatus) {
 	"use strict";
 	if (newStatus === true || newStatus === "true") {
 		$("#hazard_btn").addClass("on");
@@ -363,7 +363,7 @@ hvacControler.prototype.onHazardChanged = function (newStatus) {
  * @method onSeatHeaterRightChanged
  * @param status {Integer} new status of Right SeatHeater
  */
-hvacControler.prototype.onSeatHeaterRightChanged = function (status) {
+hvacController.prototype.onSeatHeaterRightChanged = function (status) {
 	"use strict";
 	toggleSeatHeaterButton(status, "#right_seat_btn_stage");
 };
@@ -379,7 +379,7 @@ hvacControler.prototype.onSeatHeaterRightChanged = function (status) {
  * @method onSeatHeaterLeftChanged
  * @param status {Integer} new status of Left SeatHeater
  */
-hvacControler.prototype.onSeatHeaterLeftChanged = function (status) {
+hvacController.prototype.onSeatHeaterLeftChanged = function (status) {
 	"use strict";
 	toggleSeatHeaterButton(status, "#left_seat_btn_stage");
 };
@@ -397,7 +397,7 @@ hvacControler.prototype.onSeatHeaterLeftChanged = function (status) {
  * @method onAirflowDirectionChanged
  * @param newStatus {Integer} new status of the AirflowDirection
  */
-hvacControler.prototype.onAirflowDirectionChanged = function (newStatus) {
+hvacController.prototype.onAirflowDirectionChanged = function (newStatus) {
 	"use strict";
 	if ((newStatus >= 0) && (newStatus <= 7)) {
 
@@ -485,7 +485,7 @@ hvacControler.prototype.onAirflowDirectionChanged = function (newStatus) {
  * @method onRearDefrostChanged
  * @param newStatus {Boolean} new status of the Rear Defrost
  */
-hvacControler.prototype.onRearDefrostChanged = function (newStatus) {
+hvacController.prototype.onRearDefrostChanged = function (newStatus) {
 	"use strict";
 	toggleButton(newStatus, "#defrost_rear_btn");
 };
@@ -499,7 +499,7 @@ hvacControler.prototype.onRearDefrostChanged = function (newStatus) {
  * @method onFrontDefrostChanged
  * @param newStatus {Boolean} new status of the Front Defrost
  */
-hvacControler.prototype.onFrontDefrostChanged = function (newStatus) {
+hvacController.prototype.onFrontDefrostChanged = function (newStatus) {
 	"use strict";
 	toggleButton(newStatus, "#defrost_front_btn");
 };
@@ -508,33 +508,31 @@ hvacControler.prototype.onFrontDefrostChanged = function (newStatus) {
  * HVAC buttons initialisation.
  * @method initButtons
  */
-hvacControler.prototype.initButtons = function () {
+hvacController.prototype.initButtons = function () {
 	"use strict";
 	// Hazard
 	$("#hazard_btn").bind('click', function () {
-	    bootstrap.carIndicator.status.hazard = !bootstrap.carIndicator.status.hazard;
-	    console.log("hazard click: "+ bootstrap.carIndicator.status.hazard);
-	    sendRVI("hazard", bootstrap.carIndicator.status.hazard);
+	    carIndicator.status.hazard = !carIndicator.status.hazard;
+	    console.log("hazard click: "+ carIndicator.status.hazard);
 	    
 	    // -- Call onChanged() directly as the Hazard Flasher is really a virtual device.
 	    //    onHazardChanged
-	    hvacControler.prototype.onHazardChanged(bootstrap.carIndicator.status.hazard);
+	    hvacController.prototype.onHazardChanged(carIndicator.status.hazard);
 	});
 	// A/C
 	$("#fan_control_ac").bind('click', function () {
-		bootstrap.carIndicator.setStatus("Fan", !bootstrap.carIndicator.status.fan);
-		bootstrap.carIndicator.setStatus("ACCommand", !bootstrap.carIndicator.status.fan);
+		carIndicator.setStatus("Fan", !carIndicator.status.fan);
+		carIndicator.setStatus("ACCommand", !carIndicator.status.fan);
 	});
 	// AUTO AC
 	$("#fan_control_auto").bind('click', function () {
 		if (!$("#fan_control_auto").hasClass("on")) {
-		    sendRVI("auto", true);
-			autoACStatus.fanSpeed = bootstrap.carIndicator.status.fanSpeed;
-			autoACStatus.airflowDirection = bootstrap.carIndicator.status.airflowDirection;
-			autoACStatus.fan = bootstrap.carIndicator.status.fan;
-			autoACStatus.airRecirculation = bootstrap.carIndicator.status.airRecirculation;
-			autoACStatus.targetTemperatureRight = bootstrap.carIndicator.status.targetTemperatureRight;
-			autoACStatus.targetTemperatureLeft = bootstrap.carIndicator.status.targetTemperatureLeft;
+			autoACStatus.fanSpeed = carIndicator.status.fanSpeed;
+			autoACStatus.airflowDirection = carIndicator.status.airflowDirection;
+			autoACStatus.fan = carIndicator.status.fan;
+			autoACStatus.airRecirculation = carIndicator.status.airRecirculation;
+			autoACStatus.targetTemperatureRight = carIndicator.status.targetTemperatureRight;
+			autoACStatus.targetTemperatureLeft = carIndicator.status.targetTemperatureLeft;
 			autoACStatus.maxDefrost = $("#defrost_max_btn").hasClass("on") ? true : false;
 
 			if (autoACStatus.maxDefrost) {
@@ -543,44 +541,43 @@ hvacControler.prototype.initButtons = function () {
 
 			$("#fan_control_auto").addClass("on");
 
-			bootstrap.carIndicator.setStatus("fanSpeed", 0);
+			carIndicator.setStatus("fanSpeed", 0);
 
 			setAirFlowDirectionStatus(0);
 
-			bootstrap.carIndicator.setStatus("Fan", true);
-			bootstrap.carIndicator.setStatus("ACCommand", true);
+			carIndicator.setStatus("Fan", true);
+			carIndicator.setStatus("ACCommand", true);
 
-			bootstrap.carIndicator.setStatus("airRecirculation", false);
-			bootstrap.carIndicator.setStatus("RecircReq", 0);
+			carIndicator.setStatus("airRecirculation", false);
+			carIndicator.setStatus("RecircReq", 0);
 
 			if (autoACStatus.targetTemperatureRight < 16 || autoACStatus.targetTemperatureRight > 28) {
-				bootstrap.carIndicator.setStatus("targetTemperatureRight", 22);
-				bootstrap.carIndicator.setStatus("FrontTSetRightCmd", 22);
+				carIndicator.setStatus("targetTemperatureRight", 22);
+				carIndicator.setStatus("FrontTSetRightCmd", 22);
 			}
 			if (autoACStatus.targetTemperatureLeft < 16 || autoACStatus.targetTemperatureLeft > 28) {
-				bootstrap.carIndicator.setStatus("targetTemperatureLeft", 22);
-				bootstrap.carIndicator.setStatus("FrontTSetLeftCmd", 22);
+				carIndicator.setStatus("targetTemperatureLeft", 22);
+				carIndicator.setStatus("FrontTSetLeftCmd", 22);
 			}
 		} else {
 			$("#fan_control_auto").removeClass("on");
 
-		        sendRVI( "auto", false);
-   		    bootstrap.carIndicator.setStatus("fanSpeed", autoACStatus.fanSpeed);
-		    bootstrap.carIndicator.setStatus("FrontBlwrSpeedCmd", autoACStatus.fanSpeed);
+   		    carIndicator.setStatus("fanSpeed", autoACStatus.fanSpeed);
+		    carIndicator.setStatus("FrontBlwrSpeedCmd", autoACStatus.fanSpeed);
 
 			setAirFlowDirectionStatus(autoACStatus.airflowDirection);
 
-			bootstrap.carIndicator.setStatus("Fan", autoACStatus.fan);
-			bootstrap.carIndicator.setStatus("ACCommand", autoACStatus.fan);
+			carIndicator.setStatus("Fan", autoACStatus.fan);
+			carIndicator.setStatus("ACCommand", autoACStatus.fan);
 
-			bootstrap.carIndicator.setStatus("airRecirculation", autoACStatus.airRecirculation);
-			bootstrap.carIndicator.setStatus("RecircReq", autoACStatus.airRecirculation ? 1 : 0);
+			carIndicator.setStatus("airRecirculation", autoACStatus.airRecirculation);
+			carIndicator.setStatus("RecircReq", autoACStatus.airRecirculation ? 1 : 0);
 
-			bootstrap.carIndicator.setStatus("targetTemperatureRight", autoACStatus.targetTemperatureRight);
-			bootstrap.carIndicator.setStatus("FrontTSetRightCmd", autoACStatus.targetTemperatureRight);
+			carIndicator.setStatus("targetTemperatureRight", autoACStatus.targetTemperatureRight);
+			carIndicator.setStatus("FrontTSetRightCmd", autoACStatus.targetTemperatureRight);
 
-			bootstrap.carIndicator.setStatus("targetTemperatureLeft", autoACStatus.targetTemperatureLeft);
-			bootstrap.carIndicator.setStatus("FrontTSetLeftCmd", autoACStatus.targetTemperatureRight);
+			carIndicator.setStatus("targetTemperatureLeft", autoACStatus.targetTemperatureLeft);
+			carIndicator.setStatus("FrontTSetLeftCmd", autoACStatus.targetTemperatureRight);
 
 			if (autoACStatus.maxDefrost) {
 				$("#defrost_max_btn").addClass("on");
@@ -589,12 +586,12 @@ hvacControler.prototype.initButtons = function () {
 	});
 	// AirRecirculation
 	$("#fan_control_circ").bind('click', function () {
-		bootstrap.carIndicator.setStatus("airRecirculation", !bootstrap.carIndicator.status.airRecirculation);
-		bootstrap.carIndicator.setStatus("RecircReq", !bootstrap.carIndicator.status.airRecirculation ? 1 : 0);
+		carIndicator.setStatus("airRecirculation", !carIndicator.status.airRecirculation);
+		carIndicator.setStatus("RecircReq", !carIndicator.status.airRecirculation ? 1 : 0);
 	});
 	// SeatHeater - front right
 	$("#right_seat_btn").bind('click', function () {
-		var status = bootstrap.carIndicator.status.seatHeaterRight;
+		var status = carIndicator.status.seatHeaterRight;
 
 		var newStatus = undefined;
 		switch (status) {
@@ -614,15 +611,15 @@ hvacControler.prototype.initButtons = function () {
 		;
 		if (!newStatus) newStatus = 0;
 		status = newStatus;
-		bootstrap.carIndicator.status.seatHeaterRight = status;
+		carIndicator.status.seatHeaterRight = status;
 
-		bootstrap.carIndicator.setStatus("SeatHeaterRight", status);
+		carIndicator.setStatus("SeatHeaterRight", status);
 
 	});
 
 	// SeatHeater - front left
 	$("#left_seat_btn").bind('click', function () {
-		var status = bootstrap.carIndicator.status.seatHeaterLeft;
+		var status = carIndicator.status.seatHeaterLeft;
 
 		var newStatus = undefined;
 		switch (status) {
@@ -642,31 +639,31 @@ hvacControler.prototype.initButtons = function () {
 		;
 		if (!newStatus) newStatus = 0;
 		status = newStatus;
-		bootstrap.carIndicator.status.seatHeaterLeft = status;
+		carIndicator.status.seatHeaterLeft = status;
 
-		bootstrap.carIndicator.setStatus("SeatHeaterLeft", status);
+		carIndicator.setStatus("SeatHeaterLeft", status);
 
 	});
 	// AirflowDirection - FloorDuct - 1 (FOOT)
 	$("#fan_dir_down_btn").bind('click', function () {
-		var currentStatus = bootstrap.carIndicator.status.airflowDirection;
-		if ((currentStatus >= 0) && (currentStatus <= 7) && (bootstrap.carIndicator.status.fanSpeed !== 0)) {
+		var currentStatus = carIndicator.status.airflowDirection;
+		if ((currentStatus >= 0) && (currentStatus <= 7) && (carIndicator.status.fanSpeed !== 0)) {
 			var newStatus = changeAirflowDirectionStatus("#fan_dir_down_btn", currentStatus, 1);
 			setAirFlowDirectionStatus(newStatus);
 		}
 	});
 	// AirflowDirection - Defroster - 4 (SCREEN)
 	$("#fan_dir_up_btn").bind('click', function () {
-		var currentStatus = bootstrap.carIndicator.status.airflowDirection;
-		if ((currentStatus >= 0) && (currentStatus <= 7) && (bootstrap.carIndicator.status.fanSpeed !== 0)) {
+		var currentStatus = carIndicator.status.airflowDirection;
+		if ((currentStatus >= 0) && (currentStatus <= 7) && (carIndicator.status.fanSpeed !== 0)) {
 			var newStatus = changeAirflowDirectionStatus("#fan_dir_up_btn", currentStatus, 4);
 			setAirFlowDirectionStatus(newStatus);
 		}
 	});
 	// AirflowDirection - Front - 2 (FACE)
 	$("#fan_dir_right_btn").bind('click', function () {
-		var currentStatus = bootstrap.carIndicator.status.airflowDirection;
-		if ((currentStatus >= 0) && (currentStatus <= 7) && (bootstrap.carIndicator.status.fanSpeed !== 0)) {
+		var currentStatus = carIndicator.status.airflowDirection;
+		if ((currentStatus >= 0) && (currentStatus <= 7) && (carIndicator.status.fanSpeed !== 0)) {
 			var newStatus = changeAirflowDirectionStatus("#fan_dir_right_btn", currentStatus, 2);
 			setAirFlowDirectionStatus(newStatus);
 		}
@@ -675,21 +672,19 @@ hvacControler.prototype.initButtons = function () {
 	$("#defrost_max_btn").bind('click', function () {
 		if ($("#defrost_max_btn").hasClass("on")) {
 			$("#defrost_max_btn").removeClass("on");
-		    sendRVI("defrost_max", false);
 		} else {
 			$("#defrost_max_btn").addClass("on");
-		    sendRVI("defrost_max", true);
-			if (bootstrap.carIndicator.status.targetTemperatureLeft < 16) {
-				bootstrap.carIndicator.setStatus("targetTemperatureLeft", 16);
-				bootstrap.carIndicator.setStatus("FrontTSetLeftCmd", 16);
+			if (carIndicator.status.targetTemperatureLeft < 16) {
+				carIndicator.setStatus("targetTemperatureLeft", 16);
+				carIndicator.setStatus("FrontTSetLeftCmd", 16);
 			}
-			if (bootstrap.carIndicator.status.targetTemperatureLeft > 28) {
-				bootstrap.carIndicator.setStatus("targetTemperatureLeft", 28);
-				bootstrap.carIndicator.setStatus("FrontTSetLeftCmd", 28);
+			if (carIndicator.status.targetTemperatureLeft > 28) {
+				carIndicator.setStatus("targetTemperatureLeft", 28);
+				carIndicator.setStatus("FrontTSetLeftCmd", 28);
 			}
 
-			bootstrap.carIndicator.setStatus("fanSpeed", 8);
-			bootstrap.carIndicator.setStatus("FrontBlwrSpeedCmd", 15);
+			carIndicator.setStatus("fanSpeed", 8);
+			carIndicator.setStatus("FrontBlwrSpeedCmd", 15);
 
 			setAirFlowDirectionStatus(7);
 
@@ -698,10 +693,10 @@ hvacControler.prototype.initButtons = function () {
 	});
 	// Defrost - Rear
 	$("#defrost_rear_btn").bind('click', function () {
-		bootstrap.carIndicator.setStatus("rearDefrost", !bootstrap.carIndicator.status.rearDefrost);
+		carIndicator.setStatus("rearDefrost", !carIndicator.status.rearDefrost);
 	});
 	// Defrost - Front
 	$("#defrost_front_btn").bind('click', function () {
-		bootstrap.carIndicator.setStatus("frontDefrost", !bootstrap.carIndicator.status.frontDefrost);
+		carIndicator.setStatus("frontDefrost", !carIndicator.status.frontDefrost);
 	});
 };
