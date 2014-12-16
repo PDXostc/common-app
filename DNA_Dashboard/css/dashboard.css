@@ -54,12 +54,40 @@ li {
 	list-style: square;
 }
 
-/*//////////// Speed ////////////*/ 
+/*//////////// Date and Time ////////////*/
+
+#date {
+	position: absolute;
+	width: 400px;
+	left: 65px;
+	top: 192px;
+	font-size: 5rem;
+	text-align: left;
+}
+
+#clock {
+	position: absolute;
+	width: 400px;
+	left: 580px;
+	top: 192px;
+	font-size: 5rem;
+	text-align: right;
+}
+
+/*//////////// Speed, Fuel and Temperature ////////////*/ 
+
+
+#speedFuelTemp {
+	position: absolute;
+	top: 12px;
+}
+
+/*/// Speed ///*/
 
 #speedContainer {
-	position: absolute;
+	position: relative;
 	top: 300px;
-	left: 50px;
+	left: 72px;
 }
 
 #unitMPH {
@@ -110,12 +138,12 @@ li {
 	color: #C4C4C4;
 }
 
-/*//////////// Fuel and Temperature Data ////////////*/ 
+/*/// Fuel ///*/
 
 #fuelTempContainer {
 	position: absolute;
 	top: 300px;
-	right: 50px;
+	right: -621px;
 	text-align: left;
 }
 
@@ -150,6 +178,8 @@ li {
 	background-image: url('../images/Full_Fuel_Gauge.png');
 }
 
+/*/// Temperature ///*/
+
 #temperatureContainer {
 	position: absolute;
 	top: 236px;
@@ -166,29 +196,28 @@ li {
 
 /*//////////// Tire Pressure Data ////////////*/ 
 
-.rightPSI {
-	right: 87px;
-}
-
-.leftPSI {
-	left: 126px;
-}
-
-
 #tirePressureContainer {
-	position: absolute;
-	width: 1080px;
-	top: 105px;
+	position: relative;
+	top: 116px;
 }
 
 .tirePressureData {
+	width: 200px;
 	line-height: 0.3;
 	text-align: left;
 }
 
+.rightPSI {
+	right: -1020px;
+}
+
+.leftPSI {
+	left: 125px;
+}
+
 .frontTireData {
 	position: absolute;
-	top: 930px;
+	top: 932px;
 }
 
 .rearTireData {
