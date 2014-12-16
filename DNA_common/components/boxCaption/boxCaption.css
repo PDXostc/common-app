@@ -17,12 +17,13 @@
 }
 
 .boxIconRectangleSmall {
-	width: 30px;
+	width: 104px;
 	height: 17px;
 	display: inline-block;
 	vertical-align: middle;
 	background-color: rgba(83, 181, 206, 1.0);
-}
+	margin-right: 3px;
+	}
 
 .boxIconCaptionSmall {
 	margin-left: 3px;
