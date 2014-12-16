@@ -538,7 +538,7 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 CarIndicator.prototype.onDataUpdate = function(data, self, lisenersID) {
 	"use strict";
 	if (data !== undefined) {
-		var zone = data.zone.toString(2);
+		var zone = "2";//data.zone.toString(2);
 		var mapping;
 
 		for ( var property in data) {
@@ -717,10 +717,19 @@ CarIndicator.prototype.setStatus = function(indicator, newValue, callback, zone)
 		propertyValue[mappingProperty] = newValue;
 		propertyValue.zone = propertyZone;
 
+        // TODO: remove this code when Xwalk version of AMB becomes available
+        var callbackName = "on" + mappingElement.callBackPropertyName[0].toUpperCase() + mappingElement.callBackPropertyName.substring(1) + "Changed";
+        var listener=this._listeners[this._listenerIDs[0]];
+	    if (typeof (listener[callbackName]) === 'function') 
+        {
+            listener[callbackName](newValue);
+        }
+
 		//tizen.vehicle.set(objectName, propertyValue, function(msg) {
 		//	console.error("Set error: " + msg);
 		//});
 	}
+    
 	if (!!callback) {
 		callback();
 	}
