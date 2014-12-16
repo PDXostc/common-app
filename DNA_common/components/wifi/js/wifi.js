@@ -1,8 +1,10 @@
 console.log("start of wifi.js");
-$(document).on("click", ".switch-plate", function() {
+
+/*
+$(document).on("click", "#wifi-button .switch-plate", function() {
 	  $(this).closest(".switch").toggleClass("on off");
 	})
-					
+*/					
 var WifiSettingsPage={};
 WifiSettingsPage.TemplateHTML = "DNA_common/components/wifi/wifi.html";
 
@@ -88,20 +90,23 @@ wifiInit = function(){
 
 		return w.loadDefaultAdapter();
 	}).then(function(input){
-		
-	}).then(function(){
+	
+		//setup wifi on/off button click event
+		$("#wifiPowerButton .switch").click(function(ev){
+			w.wifi.technology.setPowered(!w.wifi.prop.Powered,function(){
+				console.log("setting wifi powered prop to inverse");
+				w.wifi.prop.Powered = !w.wifi.prop.Powered;
+				w.displayPoweredState();
+			});
+		});
 
 	});
 
+	//Setup Wifi control button
+}
 
-
-
-
-	/*
-	connect.then(function(r){
-		console.log(r);
-	})
-	*/
+handlePropertyChanged = function(event){
+	console.log("Handling property change");
 }
 
 WifiSettings = function(){
@@ -214,13 +219,14 @@ WifiSettings = function(){
 			self.networks = tempServices;
 		}
 		//self.networks = networkSet;
+		this.displayNetworks();
 	}
 
 	//Lists networks on the settings wifi panel 
 	this.displayNetworks = function(){
 		
 		if($("#wifiNetworksList div.wifiElement").length > 0){
-			$("#wifiNetworksList div.wifiElement")
+			$("#wifiNetworksList div.wifiElement").remove();
 		}
 
 

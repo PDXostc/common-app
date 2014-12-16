@@ -66,7 +66,7 @@ includeJs(Wifi.ws); //include websocket
 //w.loadDefaultAdapter(test)
 //w.wifi.setPowered(true)
 
-WifiSettings = function(){
+BluetoothSettings = function(){
 
 	self = this;
 	self.wifi = {};
