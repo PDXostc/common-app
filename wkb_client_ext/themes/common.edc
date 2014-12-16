@@ -463,7 +463,6 @@ data {
        set_str(repeat_key, _key);                                      \
        _timer = timer(0.5, "_repeat_key", 1);                          \
        set_int(repeat_timer, _timer);                                  \
-       emit("key_down", _key);                                         \
    }                                                                   \
                                                                        \
    public _repeat_key_released(_key[]) {                               \
