@@ -78,11 +78,12 @@
 	z-index: 1;
 }
 
+/*
 .tabsCloseButton:active {
 	position: absolute;
 	top: 1px;
 }
-
+*/
 /* styles copied from components/topBar/topBar.css; is over-ridden 
 .tabsTabs{
 	width:1080px !important; */
