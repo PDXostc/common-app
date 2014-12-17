@@ -8,181 +8,178 @@
  *
 -->
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Phone</title>
-<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Phone</title>
+	<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
 
-<link rel="stylesheet" href="./DNA_common/css/style.css"/>
-<link rel="stylesheet" href="./css/phone_style.css"/>
-<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
-<script type="text/javascript" src="./DNA_common/js/init.js"></script>
+	<link rel="stylesheet" href="./DNA_common/css/style.css"/>
+	<link rel="stylesheet" href="./css/phone_style.css"/>
+	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
 
-<script type="text/javascript">
-    includeJs("./DNA_common/js/predefAppModel.js");
-    includeJs("./DNA_common/js/installedApps.js");
-    includeJs("./DNA_common/js/keyControl.js");
-    includeJs("./DNA_common/js/actionCatcher.js");
-    includeJs("./DNA_common/js/HomeScreenMain.js");
-    includeJs("./js/main.js");
-    includeJs("js/phone.js");
-</script>
-<link rel="stylesheet" href="./css/phone_style.css"/>
-</head>
+	<script type="text/javascript">
+	    includeJs("./DNA_common/js/predefAppModel.js");
+	    includeJs("./DNA_common/js/installedApps.js");
+	    includeJs("./DNA_common/js/keyControl.js");
+	    includeJs("./DNA_common/js/actionCatcher.js");
+	    includeJs("./DNA_common/js/HomeScreenMain.js");
+	    includeJs("./js/main.js");
+	    includeJs("js/phone.js");
+	</script>
+	<link rel="stylesheet" href="./css/phone_style.css"/>
+	</head>
 
-<body>
-
-<div id="topBar"></div>
-<!--Removed date and time. To re-implement this component, simply add in the following: <div id="clockElement"></div> -Joel Mertz-->
-
-<!-- BEGIN HTML ELEMENTS -->
-<div class="wrapper">
-	<div id="contactsLibraryButton"
-		class="libraryButton fontSizeSmaller white"><strong>A-Z</strong></div>
-	<div class="phone-interface-wrapper">
-		<div class="inputPhoneNumberBox">
-			<input id="inputPhoneNumber"
-			class="inputPhoneNumber fontSizeLarge fontSizeBold box-shadow-4"
-			type="text"
-            onkeydown="if (event.keyCode === 13) { contact = { phoneNumbers: [{number: this.value}]}; acceptCall(contact); }"/>
-			<div id="deleteButton" class="deleteButton"><strong>X</strong></div>
+	<body>
+		<div id="base">
+			<div id="topBar"></div>
+			<div id="app">
+				<div id="clockElement"></div>
+				<div class="wrapper">
+					<div id="contactsLibraryButton"
+						class="libraryButton fontSizeSmaller white"><strong>A-Z</strong></div>
+					<div class="phone-interface-wrapper">
+						<div class="inputPhoneNumberBox">
+							<input id="inputPhoneNumber"
+							class="inputPhoneNumber fontSizeLarge fontSizeBold box-shadow-4"
+							type="text"
+				            onkeydown="if (event.keyCode === 13) { contact = { phoneNumbers: [{number: this.value}]}; acceptCall(contact); }"/>
+							<div id="deleteButton" class="deleteButton"><strong>X</strong></div>
+						</div>
+						<div class="numbersBox">
+							<div id="callButton" class="callButton box-shadow-4Active"></div>
+							<div id="numberButton" data-id="1"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"><strong>1</strong></div>
+							<div id="numberButton" data-id="2"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>2</strong>
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>ABC</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="3"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>3</strong>
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>DEF</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="4"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>4</strong>
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>GHI</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="5"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>5</strong>
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>JKL</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="6"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>6</strong>
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>MNO</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="7"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>7</strong>
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>PQRS</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="8"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>8</strong>
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>TUV</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="9"
+							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>9</strong>
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>WXYZ</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="*"
+							class="numberButton fontSizeXLarge blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>*</strong></div>
+							<div id="numberButton" data-id="0"
+							class="numberButton fontSizeXLarge fontWeightBold white box-shadow-4 box-shadow-4Active"> 0
+								<div
+								class="numberButtonLetters blue-viv"><strong><small>+</small></strong></div>
+							</div>
+							<div id="numberButton" data-id="#"
+							class="numberButton fontSizeXLarge blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>#</strong></div>
+						</div>
+					</div>	
+					<ul id="contactsCarousel" class="contactsCarousel">
+						<li style="margin-right: 0px; ">
+							<div id="carouselBox_1" class="carouselBox " data-id="">
+								<div class="carouselPhotoArea ">
+									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
+								</div>
+								<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Dasher</div>
+								<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
+								<div class="callHistoryElement ">
+									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+									<div class="callHistoryDetails">
+										<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
+										<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li style="margin-right: 0px; ">
+							<div id="carouselBox_2" class="carouselBox " data-id="">
+								<div class="carouselPhotoArea ">
+									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
+								</div>
+								<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Dancer</div>
+								<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
+								<div class="callHistoryElement ">
+									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+									<div class="callHistoryDetails">
+										<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
+										<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li style="margin-right: 0px; ">
+							<div id="carouselBox_3" class="carouselBox " data-id="">
+								<div class="carouselPhotoArea ">
+									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
+								</div>
+								<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Donner</div>
+								<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
+								<div class="callHistoryElement ">
+									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+									<div class="callHistoryDetails">
+										<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
+										<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="callBox" class="callBox callBoxHidden">
+					<div class="callInfoBox">
+						<div class="callPhotoBox noContactPhoto"> <img id="callPhoto" class="callPhoto" /> </div>
+						<div id="callDuration" class="callDuration fontSizeLarge grey"><strong>00:00</strong></div>
+						<div id="inCallWith" class="inCallWith grey">Santa Claus</div>
+						<div id="callName" class="callName fontSizeXLarge grey"><strong>Call Name</strong></div>
+						<div id="callNumber" class="callNumber blue-viv"><small><strong>xxx-xxxx-xxx</strong></small></div>
+					</div>
+					<div class="callControlsBox">
+						<div
+								class="button controlButton grey bgColorDark boxShadowI1Lt speakerButton"><strong><small>SPEAKER</small></strong></div>
+						<div
+								class="button controlButton grey bgColorDark boxShadowI1Lt muteButton"><strong><small>MUTE</small></strong></div>
+						<div
+								class="button controlButton grey bgColorDark boxShadowI1Lt holdButton"><strong><small>HOLD</small></strong></div>
+						<div
+								class="button controlButton grey bgColorDark boxShadowI1Lt addCallButton"><strong><small>ADD CALL</small></strong></div>
+					</div>
+					<div id="callVolumeControl">
+						<div id = "VCicon"></div>
+						<div class = "sliderStart"></div>
+						<div id = "VCline" class =  "bgColorTheme"></div>
+						<div id = "VCinner" class =  "bgColorTheme boxShadow3"></div>
+						<div class="noVolumeSlider"></div>
+					</div>
+				</div>
+			</div>
+			<div id="bottomBar"></div>
 		</div>
-		<div class="numbersBox">
-			<div id="callButton" class="callButton box-shadow-4Active"></div>
-			<div id="numberButton" data-id="1"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"><strong>1</strong></div>
-			<div id="numberButton" data-id="2"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>2</strong>
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>ABC</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="3"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>3</strong>
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>DEF</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="4"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>4</strong>
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>GHI</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="5"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>5</strong>
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>JKL</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="6"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>6</strong>
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>MNO</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="7"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>7</strong>
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>PQRS</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="8"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>8</strong>
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>TUV</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="9"
-			class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>9</strong>
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>WXYZ</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="*"
-			class="numberButton fontSizeXLarge blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>*</strong></div>
-			<div id="numberButton" data-id="0"
-			class="numberButton fontSizeXLarge fontWeightBold white box-shadow-4 box-shadow-4Active"> 0
-				<div
-				class="numberButtonLetters blue-viv"><strong><small>+</small></strong></div>
-			</div>
-			<div id="numberButton" data-id="#"
-			class="numberButton fontSizeXLarge blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>#</strong></div>
-		</div>
-	</div>	
-	<ul id="contactsCarousel" class="contactsCarousel">
-		<li style="margin-right: 0px; ">
-			<div id="carouselBox_1" class="carouselBox " data-id="">
-				<div class="carouselPhotoArea ">
-					<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
-				</div>
-				<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Dasher</div>
-				<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
-				<div class="callHistoryElement ">
-					<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-					<div class="callHistoryDetails">
-						<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
-						<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
-					</div>
-				</div>
-			</div>
-		</li>
-		<li style="margin-right: 0px; ">
-			<div id="carouselBox_2" class="carouselBox " data-id="">
-				<div class="carouselPhotoArea ">
-					<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
-				</div>
-				<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Dancer</div>
-				<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
-				<div class="callHistoryElement ">
-					<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-					<div class="callHistoryDetails">
-						<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
-						<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
-					</div>
-				</div>
-			</div>
-		</li>
-		<li style="margin-right: 0px; ">
-			<div id="carouselBox_3" class="carouselBox " data-id="">
-				<div class="carouselPhotoArea ">
-					<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
-				</div>
-				<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Donner</div>
-				<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
-				<div class="callHistoryElement ">
-					<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-					<div class="callHistoryDetails">
-						<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
-						<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
-					</div>
-				</div>
-			</div>
-		</li>
-	</ul>
-</div>
-<div id="callBox" class="callBox callBoxHidden">
-	<div class="callInfoBox">
-		<div class="callPhotoBox noContactPhoto"> <img id="callPhoto" class="callPhoto" /> </div>
-		<div id="callDuration" class="callDuration fontSizeLarge grey"><strong>00:00</strong></div>
-		<div id="inCallWith" class="inCallWith grey">Santa Claus</div>
-		<div id="callName" class="callName fontSizeXLarge grey"><strong>Call Name</strong></div>
-		<div id="callNumber" class="callNumber blue-viv"><small><strong>xxx-xxxx-xxx</strong></small></div>
-	</div>
-	<div class="callControlsBox">
-		<div
-				class="button controlButton grey bgColorDark boxShadowI1Lt speakerButton"><strong><small>SPEAKER</small></strong></div>
-		<div
-				class="button controlButton grey bgColorDark boxShadowI1Lt muteButton"><strong><small>MUTE</small></strong></div>
-		<div
-				class="button controlButton grey bgColorDark boxShadowI1Lt holdButton"><strong><small>HOLD</small></strong></div>
-		<div
-				class="button controlButton grey bgColorDark boxShadowI1Lt addCallButton"><strong><small>ADD CALL</small></strong></div>
-	</div>
-	<div id="callVolumeControl">
-		<div id = "VCicon"></div>
-		<div class = "sliderStart"></div>
-		<div id = "VCline" class =  "bgColorTheme"></div>
-		<div id = "VCinner" class =  "bgColorTheme boxShadow3"></div>
-		<div class="noVolumeSlider"></div>
-	</div>
-</div>
-<!-- END HTML ELEMENTS -->
-
-<div id="bottomBar"></div>
-
-</body>
-
+	</body>
 </html>

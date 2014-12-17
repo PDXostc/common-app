@@ -3,24 +3,24 @@ display:none
 }
 
 #topBar,#bottomBar {
-position:absolute
+/*position:absolute;*/
 }
 
 body {
-font-family:SourceSansPro!important
+/*font-family:SourceSansPro!important*/
 }
 
 .audio-hd-borders {
-border-left:240px solid #fe9c00;
-border-right:240px solid;
-padding-left:2%
+	border-left:240px solid #fe9c00;
+	border-right:240px solid;
+	padding-left:2%;
 }
 
 .audio-hd-border-lft {
-border-left:173px solid #fe9c00;
-padding-left:2%;
-height:22%;
-line-height:.7
+	border-left:173px solid #fe9c00;
+	padding-left:2%;
+	height:22%;
+	line-height:.7;
 }
 
 .special-3d-inline {
@@ -28,7 +28,7 @@ font-size:14rem;
 font-weight:700;
 position:relative;
 top:-98px;
-float:right
+float:right;
 }
 
 div.wrapper#audiosettings {

@@ -132,7 +132,7 @@
 	}
 	.noUiSliderLeft a {
 		position: absolute;
-		z-index: 1;
+		/*z-index: 1;*/
 	}
 	.noUiSliderLeft a:nth-child(2) {
 		background: inherit !important;
@@ -334,7 +334,7 @@
 	}
 	.noUiSliderFan a {
 		position: absolute;
-		z-index: 1;
+		/*z-index: 1;*/
 	}
 	.noUiSliderFan a:nth-child(2) {
 		background: inherit !important;

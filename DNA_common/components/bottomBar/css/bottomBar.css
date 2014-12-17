@@ -9,15 +9,16 @@ overflow: hidden;
 	clear:both;
 }
 #bottomBar {
-	width: calc(100% - 2px);
+	/*width: calc(100% - 2px);*/
 	height: 130px;
 	border: 1px solid white;
 	background: rgba(0, 0, 0, 0.9);
-    box-shadow: inset 0 0 20px rgb(179, 227, 255);
-	position: fixed;
-	bottom: 0px;
-	left: 0;
-	z-index: 21;
+  box-shadow: inset 0 0 20px rgb(179, 227, 255);
+	/*position: fixed;*/
+	position: relative;
+	/*bottom: 0px;*/
+	/*left: 0;*/
+	/*z-index: 21;*/
 }
 #settingsIcon {
 	width:89px;

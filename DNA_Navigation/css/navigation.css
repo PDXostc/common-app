@@ -12,9 +12,10 @@ body {
 
 /* Overrides DNA_common/css/common.css*/
 
-#navigation-app .wrapper {
-	margin-bottom: 133px;
+#navigation-app #app {
+	overflow: hidden;
 	position: relative;
+	flex-direction: column;
 }
 
 .content {

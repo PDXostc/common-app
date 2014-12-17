@@ -5,15 +5,18 @@ sorted when there is time to organize all the components and make decisions*/
 	display:inline-block;
 }
 .settingsPage, .settingsPages {
-	display: inline-block;
+	display: flex;
+	position: absolute;
 	width: 100%; 
-	left: 0;  
-	z-index: 20;  
+	height: 100%;  
+	left: 0;
+	top: 0;
+	/*z-index: 20;  */
 	/* display: flex; */  
 	flex-direction: column;  
-	flex-grow: 1;  
-	flex: none;
-	background-color: rgb(0, 0, 0);
+	/*flex-grow: 1;  */
+	/*flex: none;*/
+	background-color: rgba(0, 0, 0, 0.8);
 }
 .componentHeader {
 	font-size: 62px;

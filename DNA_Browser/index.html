@@ -8,79 +8,82 @@
  *
 -->
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>DNA Browser</title>
-<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
-<link rel="stylesheet" href="./DNA_common/css/style.css"/>
-<link rel="stylesheet" href="./css/style.css"/>
-<link rel="stylesheet" href="./css/browser.css"/>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>DNA Browser</title>
+		<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+		<link rel="stylesheet" href="./DNA_common/css/style.css"/>
+		<link rel="stylesheet" href="./css/style.css"/>
+		<link rel="stylesheet" href="./css/browser.css"/>
 
-<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
-<script type="text/javascript" src="./DNA_common/components/knockout/knockout.js"></script>
-<script type="text/javascript" src="./DNA_common/js/init.js"></script>
-<script type="text/javascript" src="./js/main.js"></script>
-</head>
+		<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="./DNA_common/components/knockout/knockout.js"></script>
+		<script type="text/javascript" src="./DNA_common/js/init.js"></script>
+		<script type="text/javascript" src="./js/main.js"></script>
+	</head>
 
-<body>
-    <div id="topBar"></div>
-    <div class="wrapper">
-		<div class="browserBody">
-			<div class="browserToolbar bgColorDark">
-				<div id="back" class="browserButton backButtonBrowser">
-					<div class="iconBackBrowser iconBrowser"></div>
-					<div class="boxShadowInset browserButton browserButtonOpacity"></div>
-					<div class="bgColorDarkTransparent browserButton disableBox"></div>
-				</div>
-
-				<div id="forward" class="browserButton forwardButtonBrowser">
-					<div class="iconForwardBrowser iconBrowser"></div>
-					<div class="boxShadowInset browserButton browserButtonOpacity"></div>
-					<div class="bgColorDarkTransparent browserButton disableBox"></div>
-				</div>
-
-				<div id="reload" class="browserButton reloadButtonBrowser">
-					<div class="iconReloadBrowser"></div>
-				</div>
-
-				<div class="inputBrowserBox">
-					<input id="inputBrowser" type="text" data-bind="value: inputValue, valueUpdate: ['afterkeydown' , 'blur']" class="inputBrowser fontSizeSmaller fontSizeBold fontColorDimmedLight boxShadow4 boxShadow4Active" />
-					<div id="searchButton" class="searchButtonBrowser bgColorDark">
-						<div class="iconSearchBrowser">GO</div>
-					</div>
-					<div id="historyBox" class="historyBox bgColorDark historyBoxHidden">
-						<div class="historyBoxShadow browserButtonOpacity boxShadowInset"></div>
-						<div class="historyBoxData" data-bind="foreach: filteredItemsUnique">
-							<div class="historyBoxElementBackground" data-bind="event: { touchstart: $parent.clickOnBrowserHistory }">
-								<div class="historyBoxElementDevider bgColorThemeTransparent "></div>
-								<div class="historyBoxElement fontWeightBold fontSizeXSmall fontColorDimmedLight oneLineEllipsis" data-bind="text: $data"></div>
+	<body>
+		<div id="base">
+	    <div id="topBar"></div>
+			<div id="app">		
+		    <div class="wrapper">
+					<div class="browserBody">
+						<div class="browserToolbar bgColorDark">
+							<div id="back" class="browserButton backButtonBrowser">
+								<div class="iconBackBrowser iconBrowser"></div>
+								<div class="boxShadowInset browserButton browserButtonOpacity"></div>
+								<div class="bgColorDarkTransparent browserButton disableBox"></div>
 							</div>
+
+							<div id="forward" class="browserButton forwardButtonBrowser">
+								<div class="iconForwardBrowser iconBrowser"></div>
+								<div class="boxShadowInset browserButton browserButtonOpacity"></div>
+								<div class="bgColorDarkTransparent browserButton disableBox"></div>
+							</div>
+
+							<div id="reload" class="browserButton reloadButtonBrowser">
+								<div class="iconReloadBrowser"></div>
+							</div>
+
+							<div class="inputBrowserBox">
+								<input id="inputBrowser" type="text" data-bind="value: inputValue, valueUpdate: ['afterkeydown' , 'blur']" class="inputBrowser fontSizeSmaller fontSizeBold fontColorDimmedLight boxShadow4 boxShadow4Active" />
+								<div id="searchButton" class="searchButtonBrowser bgColorDark">
+									<div class="iconSearchBrowser">GO</div>
+								</div>
+								<div id="historyBox" class="historyBox bgColorDark historyBoxHidden">
+									<div class="historyBoxShadow browserButtonOpacity boxShadowInset"></div>
+									<div class="historyBoxData" data-bind="foreach: filteredItemsUnique">
+										<div class="historyBoxElementBackground" data-bind="event: { touchstart: $parent.clickOnBrowserHistory }">
+											<div class="historyBoxElementDevider bgColorThemeTransparent "></div>
+											<div class="historyBoxElement fontWeightBold fontSizeXSmall fontColorDimmedLight oneLineEllipsis" data-bind="text: $data"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div id="home" class="browserButton homeButtonBrowser">
+								<div class="iconHomeBrowser"></div>
+							</div>
+
+							<div id="onLineIndicator" class="onLineIndicator onLineIndicatorTrue"></div>
 						</div>
+
+						<div id="tabBar" class="tabBar bgColorDark fontSizeXSmall fontColorNormal">
+							<div id="addTabBtn" class="addTabBtn boxShadowInset">+</div>
+						</div>
+						<!--<div id="actionBlocker" class="actionBlocker">
+							<div class="actionBlockerBg pageBgColorNormalTransparent">
+								<div class="actionBlockerText fontSizeLarger fontWeightBold fontColorNormal">
+									LOADING
+									<div id="loadingDots" class="loadingDots"></div>
+								</div>
+							</div>
+						</div>-->
+						<div id="browserContent" class="browserContent"></div>
 					</div>
-				</div>
-
-				<div id="home" class="browserButton homeButtonBrowser">
-					<div class="iconHomeBrowser"></div>
-				</div>
-
-				<div id="onLineIndicator" class="onLineIndicator onLineIndicatorTrue"></div>
+		    </div>
 			</div>
-
-			<div id="tabBar" class="tabBar bgColorDark fontSizeXSmall fontColorNormal">
-				<div id="addTabBtn" class="addTabBtn boxShadowInset">+</div>
-			</div>
-			<!--<div id="actionBlocker" class="actionBlocker">
-				<div class="actionBlockerBg pageBgColorNormalTransparent">
-					<div class="actionBlockerText fontSizeLarger fontWeightBold fontColorNormal">
-						LOADING
-						<div id="loadingDots" class="loadingDots"></div>
-					</div>
-				</div>
-			</div>-->
-			<div id="browserContent" class="browserContent"></div>
+	    <div id="bottomBar"></div>
 		</div>
-    </div>
-
-    <div id="bottomBar"></div>
-</body>
+	</body>
 </html>

@@ -7,86 +7,72 @@
     * http://www.apache.org/licenses/LICENSE-2.0
     *
   -->
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>NFC</title>
-    <meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+  <html>
+    <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <title>NFC</title>
+      <meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
 
-    <link rel="stylesheet" href="./DNA_common/css/style.css"/>
-    <link rel="stylesheet" href="./css/nfc.css"/>
+      <link rel="stylesheet" href="./DNA_common/css/style.css"/>
+      <link rel="stylesheet" href="./css/nfc.css"/>
 
-    <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
-    <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+      <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
 
-    <script type="text/javascript" src="./DNA_common/js/init.js"></script> 
+      <script type="text/javascript" src="./DNA_common/js/init.js"></script> 
 
-    <script type="text/javascript" src="./js/ndefrecordtextviewmodel.js"></script>
-    <script type="text/javascript" src="./js/nfcviewmodel.js"></script>
+      <script type="text/javascript" src="./js/ndefrecordtextviewmodel.js"></script>
+      <script type="text/javascript" src="./js/nfcviewmodel.js"></script>
 
     <script type="text/javascript">
       includeJs("./DNA_common/js/predefAppModel.js");
       includeJs("./DNA_common/js/installedApps.js");
       includeJs("./DNA_common/js/keyControl.js");
       includeJs("./DNA_common/js/actionCatcher.js");
+      includeJs("./DNA_common/js/HomeScreenMain.js");
       includeJs("./js/main.js");
     </script>
   </head>
 
-  <title>NFC</title>
-</head>
+  <body>
+    <div id="base">
+      <div id="topBar"></div>
+      <div id="app">
+        <div id="clockElement"></div>
+        <div class="nfcwrapper">	
+          <div id="powerToggle" class="switch off switch-xsmall">
+            <div class="switch-plate">
+              <div class="switch-control"></div>
+            </div>
+          </div>
 
+          <div id="msgOn" class="nfcPowerText fontSizeLarger fontWeightBold fontColorNormal">TO READ NFC TAG, NFC READER MUST BE ON.</div>
+          <div class="toggleLabel">
+            <div class="toggleLabelOff">OFF</div>
+            <div class="toggleLabelOn">ON</div>
+          </div>
 
-<body>
+          <div class="inputBar">
+            <input id="nfcText" class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow1Std" type="text">
+          </div>
 
-  <div id="topBar"></div>
-
-  <div id="clockElement"></div>
-
-  <div class="nfcwrapper">	
-
-    <div id="powerToggle" class="switch off switch-xsmall">
-      <div class="switch-plate">
-	<div class="switch-control"></div>
+          <div class="nfcAdapterPoweredWrapper">
+            <div id="msgAddTag" class="nfcPlaceTagText fontSizeLarger fontWeightBold fontColorDimmed">PLEASE, PLACE NFC TAG ON NFC READER.</div>
+            <div class="nfcWriteDataWrapper">
+              <div id="msgTagPresent" class="nfcEditDataText fontSizeLarger fontWeightBold fontColorDimmed">EDIT DATA AND PRESS WRITE DATA BUTTON.</div>
+              <div id="writeDataButton" class="shadowButton nfcWriteDataButton">
+                <div class="bgColorThemeTransparent boxShadowInset shadowButtonBackground"></div>
+                <div class="fontColorNormal fontSizeMedium fontWeightBold shadowButtonText">WRITE DATA</div>
+              </div>
+            </div>
+            <div id="tagNotifyHex" class="nfcPlaceTag off">
+            	<div id="tagFoundMsg" class="hexText fontSizeLarger fontWeightBold fontColorDimmed">message</div>
+            </div>
+          </div>
+        </div>        
       </div>
+      <div id="bottomBar" ></div>
     </div>
-  
-    <div id="msgOn" class="nfcPowerText fontSizeLarger fontWeightBold fontColorNormal"
-	 >TO READ NFC TAG, NFC READER MUST BE ON. 
-    </div>
-    <div class="toggleLabel">
-      <div class="toggleLabelOff">OFF</div>
-      <div class="toggleLabelOn">ON</div>
-    </div>
-    
-    <div class="inputBar">
-      <input id="nfcText" 
-	     class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow1Std" 
-	     type="text">
-    </div>
-
-    <div class="nfcAdapterPoweredWrapper">
-      <div id="msgAddTag" 
-	   class="nfcPlaceTagText fontSizeLarger fontWeightBold fontColorDimmed" 
-           >PLEASE, PLACE NFC TAG ON NFC READER.</div>
-      <div class="nfcWriteDataWrapper">
-        <div id="msgTagPresent" 
-	     class="nfcEditDataText fontSizeLarger fontWeightBold fontColorDimmed"
-           >EDIT DATA AND PRESS WRITE DATA BUTTON.</div>
-        <div id="writeDataButton" 
-	     class="shadowButton nfcWriteDataButton">
-          <div class="bgColorThemeTransparent boxShadowInset shadowButtonBackground"></div>
-          <div class="fontColorNormal fontSizeMedium fontWeightBold shadowButtonText"
-	       >WRITE DATA</div>
-        </div>
-      </div>
-      <div id="tagNotifyHex" class="nfcPlaceTag off">
-	<div id="tagFoundMsg" class="hexText fontSizeLarger fontWeightBold fontColorDimmed">message</div>
-      </div>
-    </div>
-  </div>        
-  <div id="bottomBar" ></div>
-</body>
+  </body>
 
 </html>
 

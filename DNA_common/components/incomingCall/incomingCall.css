@@ -19,7 +19,7 @@
 	top:0;
 }
 .incomingCallHide {
-	top:-1280px;
+	display: none;
 }
 .incomingCall .tabsTopPanel {
 	position: inherit;

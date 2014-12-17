@@ -50,11 +50,11 @@
 	margin: 0 0 40px 0;
 	padding: 0;
 	height: 130px;
-	background-color: #000;
-	background-position: left top;
-	z-index: 1;
-	box-shadow: inset 0 0 70px rgba(178, 240, 255, 0.8);
-	border: 1px solid rgba(178, 240, 255, 1.0);
+	/*background-color: #000;*/
+	/*background-position: left top;*/
+	/*z-index: 1;*/
+	/*box-shadow: inset 0 0 70px rgba(178, 240, 255, 0.8);*/
+	/*border: 1px solid rgba(178, 240, 255, 1.0);*/
 }
 
 .tabsTopPanel .tabsTopPanelTitle {

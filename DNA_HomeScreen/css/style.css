@@ -29,18 +29,25 @@ html, #viewPort { overflow-y: hidden; }
 #nucleotide{
 	display:none;
 }
-#head{
-margin-top:18px;
+#head {
+/*margin-top:18px;*/
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
 }
+
 #overlay{
 	position:absolute;
-	top:128px;
-	width:1000px;
-	padding:40px;
-	align:center;
+	top: 50px;
+	width:100%;
+	/*padding:40px;*/
+	/*align:center;*/
 	color:#FFFFFF;
 	font-weight:bold;
 	background:none;
+	height: 100%
 }
 .DNAfence{
 	margin-top:15px;
@@ -60,14 +67,18 @@ margin-top:18px;
 }
 #overlay,#lefties,#righties{
 	height:0px;
-	color: #B2F0FF;
 }
 #lefties{
 	float:left;
+	margin-left: 40px;
 }
 #righties{
 	float:right;
 	text-align:right;
+	margin-right: 40px;
+}
+#speedo,#condition{
+	color:#00BFF3;
 }
 #homeScrSpeed{
 	font-size:75px;

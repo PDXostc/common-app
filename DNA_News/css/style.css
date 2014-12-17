@@ -9,8 +9,9 @@ body {
   display: inline-block;
   margin-top: 96px;
   height: 100px;
+  /* line-height: 47px !important; */
   width: 100%;
-  z-index: -500;
+  /*z-index: -500;*/
   text-align: center;
   padding-top: 5px;
 }
@@ -24,19 +25,19 @@ body {
 
 #topArticleList {
   visibility: visible;
-  z-index: -800;
+  /*z-index: -800;*/
   overflow: hidden;
 }
 
 #entertainArticleList {
   visibility: hidden;
-  z-index: -530;
+  /*z-index: -530;*/
   overflow: hidden;
 }
 
 #sportsArticleList {
   visibility: hidden;
-  z-index: -550;
+  /*z-index: -550;*/
   overflow: hidden;
 }
 
@@ -80,15 +81,18 @@ body {
 }
 
 .article {
-  position: absolute;
-  top: 281px;
-  left: 0px;
-  width: 1078px;
+  flex: 1;
+  /*position: absolute;*/
+  /*top: 225px;*/
+  /*left: 0px;*/
+  /* height: 870px; */
+  /*width: 1078px;*/
   border: 1px solid #fff;
-  z-index: 5;
+  /* outline: 18px solid black; */
+  /*z-index: 5;*/
   background: #000000;
   overflow: hidden;     
-  bottom: 131px;     
+  /*bottom: 131px;     */
 }
 
 #articleClose {
@@ -161,9 +165,9 @@ body {
 .articleListGradFade {
   width: 1076px;
   height: 80px;
-  z-index: 1;
+  /*z-index: 1;*/
   left: 2px;
-  bottom: 132px;
+  bottom: 0;
   background: -webkit-linear-gradient(top, rgba(2,46,73,0) 0%,rgba(2,46,73,0.59) 25%,rgba(1,14,22,1) 85%,rgba(0,0,0,1) 100%);
   position: absolute;
 }
@@ -208,8 +212,4 @@ li {
 .wrapper {
   height: 1673px;
   width: 100%;
-}
-
-.borderLtBlue_DNA {
-  border-color: #B2F0FF;
 }

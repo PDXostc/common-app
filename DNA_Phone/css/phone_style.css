@@ -12,10 +12,6 @@ body {display:block;}
 	display:none;
 }
 
-#clockElement {position:relative;padding:30px;height:145px;color:#c4c4c4;}
-#clockElement #clock, #clockElement #date{font-size:6rem;}
-#clockElement .dateElemnt{float:left;position:static;}
-#clockElement .clockElemnt{float:right;position:static;}
 .phone-interface-wrapper{position:relative; width:334px;margin:auto;padding-top:20px;}
 .inputPhoneNumberBox {
 	position: relative;
@@ -122,7 +118,7 @@ text-align: left;
 position: relative;
 bottom: 0px;
 margin: 148px auto 40px;
-z-index: 20;
+/*z-index: 20;*/
 overflow:hidden;
 box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
 }

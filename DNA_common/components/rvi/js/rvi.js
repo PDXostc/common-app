@@ -31,7 +31,7 @@ rviSettingsPage.HidePage = function() {
 rviSettingsPage.pageUpdate = function() {
 	console.log("rvi pageUpdate()");
 
-	if (!$('#settingsPage').length) {
+	if (!$('#settingsPageList').length) {
 		setTimeout(rviSettingsPage.pageUpdate,1000);
 	}
 	else {
