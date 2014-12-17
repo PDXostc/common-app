@@ -8,7 +8,7 @@ var ScreenScale=1.5;
 	ScreenHeight = 1280*ScreenScale, /*1920 or 1800, 1220 for testing*/
 	VerticalOffset = -200, /*-200, 200 for testing */
 	ClickSensitivity = 50,
-	DragSensitivity = 200,
+	DragSensitivity = 50,
 	Edges = true,
 	Fading = false,
 	Scaling = true,
@@ -384,6 +384,8 @@ Spinner.prototype = {
 				//Capture the start location
 				G.DragStartX=G.MouseX;
 				G.DragStartY=G.MouseY;
+				//console.log("G.DragStartX: "+G.DragStartX);
+				//console.log("G.DragStartY: "+G.DragStartY);
 			}else if(G.Timer>ClickSensitivity){
 				//Sensitivity indicates the click is too long to run a function
 				G.ClickedTooLong=true;
@@ -611,8 +613,10 @@ function getMousePos(canvas, evt){
 function setMousedown(down){
 	if(G.Mousedown===true && down===false && G.Timer<ClickSensitivity)
 		G.Mouseclick=true;
-	else
+	else{
 		G.Mouseclick=false;
+		delete G.LastDir;
+	}
 	G.Mousedown=down;
 }
 function getMouseloc(evt){
@@ -630,7 +634,7 @@ function initDrag(){
 	}
 	if(G.Mousedown){
 		var dist=getDistance(G.DragStartX,G.DragStartY,G.MouseX,G.MouseY);
-		if(dist>DragSensitivity){
+		if(dist>DragSensitivity||typeof(G.LastDir)!=typeof(undefined)){
 				G.LHDist=Math.round(getDistance(G.LastMouseX,0,G.MouseX,0)); //Last Horizontal Distance
 				if(G.LHDist>MaxSpeed){ G.LHDist=MaxSpeed; }
 				if(G.MouseX>G.LastMouseX){
@@ -680,10 +684,10 @@ var JagAPI = {
 
 //Misc functions
 function initListeners(){
-	JagAPI.Listen(canvas[0],'mousedown',	function (evt) {	setMousedown(true);							});
-	JagAPI.Listen(canvas[0],'mouseup',		function (evt) {	setMousedown(false);						});
-	JagAPI.Listen(canvas[0],'mouseout',		function (evt) {	setMousedown(false);console.log("out");		});
-	JagAPI.Listen(canvas[0],'mousemove',	function (evt) {	getMouseloc(evt);	console.log("move");	});
+	JagAPI.Listen(canvas[0],'mousedown',	function (evt) {	getMouseloc(evt);setMousedown(true);});
+	JagAPI.Listen(canvas[0],'mouseup',		function (evt) {	setMousedown(false);});
+	JagAPI.Listen(canvas[0],'mouseout',		function (evt) {	setMousedown(false);});
+	JagAPI.Listen(canvas[0],'mousemove',	function (evt) {	getMouseloc(evt);});
 }
 
 //App Icon functions
