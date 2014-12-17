@@ -5,7 +5,7 @@ settings template file.
 -->
 
 <!-- The following is a template for the settings icon in bottom bar.-->
-<img id="settingsIcon" onclick="$('#settingsPage').toggleClass('hidden');" src="./DNA_common/images/icongear.png" width="117px" height="117px">
+<img id="settingsIcon" src="./DNA_common/images/icongear.png" width="117px" height="117px">
 
 <!-- settings menu is for a bar at the side of bottombar.  This is not used.-->
 <div id="settingsMenu">
@@ -18,7 +18,7 @@ settings template file.
 </div>
 
 <!-- settings Page:  this is used as a page for all settings components appended to  body-->
-<div id="settingsPage" class="tabs pageBgColorNormalTransparent settingsPage hidden">
+<div id="settingsPage" class="settingsPage hidden">
 	<div id="tabsTopPanel" class="tabsTopPanel">
 		<div class="tabsTopPanelTitle">
 			<div class="boxIconRectangleSmall bgColorTheme"></div>
@@ -28,14 +28,14 @@ settings template file.
 		<div class="tabsCloseButton" onclick="$('#settingsPage').toggle();"></div>
 
 		<div id="tabsTabsID" class="tabsTabs">	
-			<div onclick="$('#settingsTabs').tabs('tabsTabClick',0);" id="tabsTab0" class="tabsTab tabsTabSelected fontSizeLarger fontWeightBold fontColorNormal fontColorSelected">SETTINGS</div>
-			<div class="tabsTabClear"></div>
+			<div onclick="$('#settingsTabs').tabs('tabsTabClick',0);" id="tabsTab0" class="tabsTab">SETTINGS</div>
+			<!-- <div class="tabsTabClear"></div> -->
 		</div>
 	</div>
 	<!-- add class 'hidden' to this id tabsTopSubPanel, when component is displayed -->
-	<div id="tabsTopSubPanel" class="tabsTopSubPanel" style="display: block;">
-		<div id="tabsContent" class="tabsContent settingsContent" style="max-height: 1170px;">
-			<ul id="settingsPageList" class="fontSizeLarge fontWeightBold fontColorNormal">
+	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
+		<div id="tabsContent" class="settingsContent">
+			<ul id="settingsPageList">
 			</ul>
 		</div>
 	</div>
@@ -47,7 +47,7 @@ settings template file.
 </div>
 
 <!-- loadingSpinnerWrapper:  This is used to represent busy but is not used-->
-<div id="loadingSpinnerWrapper" class="loadingSpinnerWrapper" style="display: none;">
+<div id="loadingSpinnerWrapper" class="loadingSpinnerWrapper">
 	<div id="loadingSpinner" class="loadingSpinner pageBgColorNormalTransparent">
 		<div id="loadingSpinnerContent" class="loading-container">
 			<div id="loadingSpinnerImg" class="loading"></div>

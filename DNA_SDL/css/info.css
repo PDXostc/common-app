@@ -740,11 +740,14 @@
 
 #info_apps_deviceList_view .list-content{
 	width: 100%;
+	height: 100%;
 	border: none;
 	text-align: center;
 }
 #info_apps_deviceList_view .list-item{
-	border: 1px solid #393939 !important;
+	color: white;
+	line-height: 51px;
+	border: 1px solid rgba(255,255,255,0.8);
 }
 /******************* For Info.Apps menu*******************/
 #info_apps {

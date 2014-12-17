@@ -693,6 +693,7 @@ function onAppRecallSuccess(list) {
 						   "AMB Simulator":"./DNA_common/images/amb_simulator_inactive.png",
 						   "Hello Tizen":"./DNA_common/images/tizen_inactive.png",
 						   "Audio Settings":"./DNA_common/images/audio_settings_inactive.png",
+						   "MOST AUDIO":"./DNA_common/images/audio_settings_inactive.png",
 						   "Finger Print":"./DNA_common/images/fingerprint_inactive.png",
 						   "Multimedia Player":"./DNA_common/images/mediaplayer_inactive.png",
 						   "SmartDeviceLink":"./DNA_common/images/sdl_inactive.png",
@@ -701,6 +702,7 @@ function onAppRecallSuccess(list) {
 						   ApplicationVisibility:"./DNA_common/images/app_visibility_inactive.png",
 						   Boilerplate:"./DNA_common/images/grid_inactive.png",
 						   Browser:"./DNA_common/images/browser_inactive.png", 
+						   "DNA Browser":"./DNA_common/images/browser_inactive.png", 
 						   Dashboard:"./DNA_common/images/dashboard_inactive.png",
 						   Dialer:"./DNA_common/images/dialer_inactive.png",
 						   Email:"./DNA_common/images/email_inactive.png",
@@ -718,6 +720,7 @@ function onAppRecallSuccess(list) {
 						   Voiceprint:"./DNA_common/images/voiceprint_inactive.png",
 						   Weather:"./DNA_common/images/weather_inactive.png",
 						   gestureGame:"./DNA_common/images/gesture_game_inactive.png",
+						   GestureGame:"./DNA_common/images/gesture_game_inactive.png",
 						   saythis:"./DNA_common/images/say_this_inactive.png"};
 	var i = 0;
 	var path="";

@@ -1,42 +1,21 @@
 #bottomBar{
-	width: 1078px;
-	height: 139px;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	z-index:10;
-	/* padding-left:25px;*/
-}
-.body {display:block;}
+	}
+body {display:block;}
 #topBar {
-	position: static;
-	display: block;
-	width: 1078px;
-	height: 114px;
-	left: 0;
-	top: 0;
-	z-index: 4;
-	border: 1px solid white;
-	background: rgba(0, 0, 0, 0.8);
-   -webkit-box-shadow: inset 0 0 43px rgb(179, 227, 255);
-   box-shadow:         inset 0 0 43px rgb(179, 227, 255);
-}
+	position: static !important;
+	}
 .phoneBody {
 	display: flex;
-/*
-	width: 100%;
-	max-height: 1052px;
-	top: 0;
-	background-position: center top;
-	background-repeat: no-repeat;
-	overflow:hidden;
-	flex-direction:row;
-	flex-grow:1;
-	margin:10% 0;
-	padding-bottom:5%
-*/
 }
-#clockElement {position:relative;padding:30px;height:145px;}
+
+.callBoxHidden {
+	display:none;
+}
+
+#clockElement {position:relative;padding:30px;height:145px;color:#c4c4c4;}
+#clockElement #clock, #clockElement #date{font-size:6rem;}
+#clockElement .dateElemnt{float:left;position:static;}
+#clockElement .clockElemnt{float:right;position:static;}
 .phone-interface-wrapper{position:relative; width:334px;margin:auto;padding-top:20px;}
 .inputPhoneNumberBox {
 	position: relative;
@@ -46,10 +25,10 @@
 	height: 75px;
 	border: none;
 	background-color: rgba(0, 0, 0, 0.2);
-	/* box-shadow: 0px 0px 15px 0px rgba(255, 156, 0, 0.75), 0px 0px 40px 0px rgba(255, 156, 0, 0.75);*/
 	color:rgb(196,196,196);
+	position: relative;
 	padding:0 12px;
-	width:calc(100% - 24px);
+	width:311px;
 }
 
 .inputPhoneNumber:focus {
@@ -114,7 +93,7 @@
 	padding-top: 30px;
 	height: 70px;
 }
-
+/* kept original
 .contactsCarousel {
 	margin: 0;
 	padding: 0;
@@ -128,10 +107,26 @@ right: auto;
 bottom: auto;
 left: -2px;
 margin: 0px;
-/* width: 15149px;
-height: 337px; */
 z-index: auto;
 }
+*/
+
+.contactsCarousel {
+margin: 0;
+padding: 0 24px 24px;
+list-style: none;
+display: block;
+height: 350px;
+width: 98%;
+text-align: left;
+position: relative;
+bottom: 0px;
+margin: 148px auto 40px;
+z-index: 20;
+overflow:hidden;
+box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
+}
+
 
 .contactsCarousel li {
 	display: block;
@@ -223,7 +218,7 @@ padding: 10px 0;
 }
 .callButton {
 	border:none;
-	width: 84px;
+	width: 76px;
 	height:163px;
 	position:absolute;
 	top: -44px;
@@ -232,21 +227,14 @@ padding: 10px 0;
 	
 }
 .callBox {
-	position: absolute;
-	margin: 0;
-	/* margin-left: 61px; */
-	top: 770px;
-	/* width: 720px;
-	height: 160px; */
-	z-index: 100;
-	-webkit-transition-timing-function: linear;
-	-webkit-transition: left 1s;
-	-moz-transition-timing-function: linear;
-	-moz-transition: left 1s;
-	-ms-transition-timing-function: linear;
-	-ms-transition: left 1s;
-	-o-transition-timing-function: linear;
-	-o-transition: left 1s
+position: relative;
+margin: 0 auto;
+width: 760px;
+border-top: 10px solid rgb(83, 181, 206);
+padding-top: 30px;
+z-index: 100;
+-webkit-transition-timing-function: linear;
+-webkit-transition: left 1s;
 }
 
 .callBoxShow {
@@ -259,11 +247,11 @@ padding: 10px 0;
 }
 
 .callInfoBox {
-	width: 300px;
-	vertical-align: top;
-	white-space: nowrap;
-	overflow: hidden;
-	display: inline-block;
+width: 40%;
+vertical-align: top;
+white-space: nowrap;
+overflow: hidden;
+display: inline-block;
 }
 
 .callPhotoBox {
@@ -301,12 +289,11 @@ padding: 10px 0;
 }
 
 .callControlsBox {
-	width: 328px;
-	display: inline-block;
-	vertical-align: top;
-	margin-top: 5px;
-	margin-left: 13px;
-	font-size: 0;
+position: absolute;
+width: 292px;
+display: inline-block;
+font-size: 0;
+right: 0;
 }
 
 .controlButton {
@@ -315,9 +302,7 @@ padding: 10px 0;
 	width: 140px;
 	margin-right: 6px;
 	margin-bottom: 8px;
-	background-repeat: no-repeat;
-	background-position: center 15px;
-	box-shadow: 10px 10px 100px rgba(0, 0, 0, .7);
+	text-align: center;
 }
 
 #callVolumeControl {
@@ -416,19 +401,19 @@ background:radial-gradient(ellipse at center, rgba(254,156,0,1) 0%,rgba(142,87,4
 }
 
 .speakerButton {
-	background-image: url("../images/icon_speaker_blue.png");
+	background: url("../images/icon_speaker_blue.png") no-repeat 50% 30%;
 }
 
 .muteButton {
-	background-image: url("../images/icon_mute_blue.png");
+	background: url("../images/icon_mute_blue.png") no-repeat 50% 30%;
 }
 
 .holdButton {
-	background-image: url("../images/icon_hold_blue.png");
+	background: url("../images/icon_hold_blue.png") no-repeat 50% 30%;
 }
 
 .addCallButton {
-	background-image: url("../images/icon_addcall_blue.png");
+	background: url("../images/icon_addcall_blue.png") no-repeat 50% 30%;
 }
 
 .isFavoriteTrue {
@@ -480,36 +465,33 @@ background:radial-gradient(ellipse at center, rgba(254,156,0,1) 0%,rgba(142,87,4
 	background-image: url("../images/icon_mobile_blue_hover.png");
 }
 .libraryButton {	
-	background-image: url("../images/bt_library_blue.png");
+	background: url("../DNA_common/images/VolSlideCtrl.png") no-repeat 0 -10px;
+	background-size:100%;
 }
 
 .backButton {	
-	background-image: url("../images/bt_back_blue.png");
+	background-image: url("DNA_common/images/common/bt_back_blue.png");
 }
 
 .previousButton {
-	background-image: url("../images/bt_previous_blue.png");
+	background-image: url("DNA_common/images/bt_previous_blue.png");
 }
 
 .nextButton {
-	background-image: url("../images/bt_next_blue.png");
+	background-image: url("DNA_common/images/bt_next_blue.png");
 }
 .libraryButton {
-	position: absolute;
-	height: 60px;
-	line-height: 47px !important;
-	top: -90px;
-	right: 0;
-	background-repeat: no-repeat;
-	background-position: left center;
-	text-align: right;
-	padding: 0 33px 0 40px;
-	text-transform: uppercase;
+position: absolute;
+height: 82px;
+line-height: 3.4;
+right: 40px;
+top: 330px;
+text-align: center;
+text-transform: uppercase;
+width: 90px;
 }
 
 .libraryButton:active {
-	position: absolute;
-	top: 153px;
 }
 
 .backButton {

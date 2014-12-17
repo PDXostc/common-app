@@ -8,6 +8,13 @@
  *
  */
 
+includeJs("./js/tab.js",function(){
+	includeJs("./js/tabController.js",function(){
+		includeJs("./js/browser.js",init);
+	});
+});
+includeJs("./js/historyModel.js");
+
 /**
  * Browser application provides simple HTML browsing and implements following functionality: 
  *
@@ -106,14 +113,14 @@ function init() {
 	"use strict";
 	console.log("init() called");
 
-	$('#bottomPanel').bottomPanel('init');
+	//$('#bottomPanel').bottomPanel('init');
 	$('#bottomPanel').on("clickOnBackButton", function() {
 		showLoadingSpinner("SAVING");
 		if (typeof (window.localStorage) !== 'undefined') {
 			window.localStorage.setItem("browserExitedNormally", "true");
 		}
 	});
-	$("#topBarIcons").topBarIconsPlugin('init');
+	//$("#topBarIcons").topBarIconsPlugin('init');
 	$(".disableBox").click(function(event) {
 		event.stopPropagation();
 		return false;
@@ -127,17 +134,12 @@ function init() {
 		}
 	}, 300);
 	browser = new Browser();
-	ko.applyBindings(browser.historyModel);
+	console.log('initialize');
 	TabController.initialize();
+	console.log('localStorage');
 	window.localStorage.setItem("browserExitedNormally", "false");
+	console.log('applyBindings');
+	ko.applyBindings(browser.historyModel);
 }
 
-$(document).ready(function() {
-	"use strict";
-
-	bootstrap = new Bootstrap(function(status) {
-		setTimeout(function() {
-			init();
-		}, 0);
-	});
-});
+//$(document).ready(init());

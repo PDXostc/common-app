@@ -95,6 +95,7 @@
 var CarIndicator = function() {
 	"use strict";
 	console.info("Starting up service CarIndicator");
+    $(document).trigger("carIndicatorReady");
 };
 
 function parseInteger(value) {
@@ -119,7 +120,7 @@ function parseTirePressure(value) {
  */
 CarIndicator.prototype._listeners = {};
 
-/** 
+/*
  * Array of registered listener IDs. 
  * @type Array
  * @property _listenerIDs
@@ -511,7 +512,7 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 						if (typeof (tizen) !== 'undefined') {
 							console.log(tizen);
 							if (!(subscribeName.toString().trim().toLowerCase() === "nightmode" && id === this._listenerIDs[0])) {
-								//TODO: var setUpData = tizen.vehicle.get(subscribeName, zone);
+								var setUpData = 0;//tizen.vehicle.get(subscribeName, zone);
 								self.onDataUpdate(setUpData, self, id);
 							}
 
@@ -537,7 +538,7 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 CarIndicator.prototype.onDataUpdate = function(data, self, lisenersID) {
 	"use strict";
 	if (data !== undefined) {
-		var zone = data.zone.toString(2);
+		var zone = "2";//data.zone.toString(2);
 		var mapping;
 
 		for ( var property in data) {
@@ -716,11 +717,23 @@ CarIndicator.prototype.setStatus = function(indicator, newValue, callback, zone)
 		propertyValue[mappingProperty] = newValue;
 		propertyValue.zone = propertyZone;
 
-		tizen.vehicle.set(objectName, propertyValue, function(msg) {
-			console.error("Set error: " + msg);
-		});
+        // TODO: remove this code when Xwalk version of AMB becomes available
+        var callbackName = "on" + mappingElement.callBackPropertyName[0].toUpperCase() + mappingElement.callBackPropertyName.substring(1) + "Changed";
+        var listener=this._listeners[this._listenerIDs[0]];
+	    if (typeof (listener[callbackName]) === 'function') 
+        {
+            listener[callbackName](newValue);
+        }
+
+		//tizen.vehicle.set(objectName, propertyValue, function(msg) {
+		//	console.error("Set error: " + msg);
+		//});
 	}
+    
 	if (!!callback) {
 		callback();
 	}
 };
+
+var carIndicator = new CarIndicator();
+

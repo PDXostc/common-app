@@ -4,8 +4,6 @@
     <content src="index.html"/>
     <icon src="icon.png"/>
     <name>DNA Browser</name>
-    <tizen:allow-navigation>*</tizen:allow-navigation>
-	<access origin="*" subdomains="true"></access>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
@@ -15,5 +13,6 @@
     <tizen:privilege name="http://tizen.org/privilege/bluetooth.spp"/>
     <tizen:privilege name="http://tizen.org/privilege/bluetooth.gap"/>
     <tizen:setting screen-orientation="portrait" context-menu="enable" background-support="disable" encryption="disable" install-location="auto"/>	
-     	 
+    <tizen:allow-navigation>*</tizen:allow-navigation>
+    <access origin="http://*/" subdomains="true"></access>
 </widget>

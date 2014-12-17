@@ -23,6 +23,7 @@
  */
 var Carousel = function() {
 	"use strict";
+	console.log("init Carousel");
 	this.initializeSwipe();
 };
 /**

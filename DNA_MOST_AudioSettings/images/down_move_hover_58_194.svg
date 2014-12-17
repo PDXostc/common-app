@@ -1,23 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
-]>
-<svg version="1.1"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="194px" height="58px" viewBox="0 0 194 58" overflow="visible" enable-background="new 0 0 194 58"
-	 xml:space="preserve">
-<defs>
-</defs>
-<rect x="0.849" y="0.85" fill="#31ABFF" fill-opacity="0.29" stroke="#31ABFF" stroke-width="0.6866" stroke-miterlimit="10" stroke-opacity="0.64" width="192.838" height="56.473"/>
-<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="97" y1="2.8936" x2="97" y2="55.9068">
-	<stop  offset="0.5092" style="stop-color:#31ABFF;stop-opacity:0"/>
-	<stop  offset="0.9018" style="stop-color:#31ABFF"/>
-	<stop  offset="1" style="stop-color:#63E6FF"/>
-</linearGradient>
-<rect x="0.5" y="0.5" fill="url(#SVGID_1_)" stroke="#31ABFF" stroke-miterlimit="10" width="193" height="57"/>
-<polygon opacity="0.5" fill="#FFFFFF" points="109.321,17 97.223,40.774 85.124,17 "/>
-<path fill="#FFFFFF" d="M97.223,37.968L87.57,19h19.305L97.223,37.968 M97.223,43.246c0.354,0,0.71-0.265,0.979-0.794l12.586-24.63
-	c0.539-1.059,0.008-1.822-1.181-1.822h-24.77c-1.188,0-1.72,0.764-1.181,1.822l12.586,24.682
-	C96.513,43.033,96.868,43.246,97.223,43.246L97.223,43.246z"/>
-</svg>
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   width="194px"
+   height="58px"
+   viewBox="0 0 194 58"
+   overflow="visible"
+   enable-background="new 0 0 194 58"
+   xml:space="preserve"
+   id="svg7715"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="down_move_hover_58_194.svg"><metadata
+     id="metadata7736"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1727"
+     inkscape:window-height="1320"
+     id="namedview7734"
+     showgrid="false"
+     inkscape:zoom="4.2572202"
+     inkscape:cx="97"
+     inkscape:cy="-22.53862"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg7715" /><defs
+     id="defs7717" /><polygon
+     transform="matrix(-1,0,0,-1,193.70516,57.792512)"
+     style="fill:#ffffff"
+     id="polygon7601"
+     points="84.708,41 96.807,17.226 108.905,41 " /><path
+     style="fill:#ffffff"
+     inkscape:connector-curvature="0"
+     id="path7603"
+     d="m 97.632576,37.026936 -9.652,-18.968 19.305004,0 -9.653004,18.968 m 0,5.273996 c 0.355,0 0.71,-0.265 0.979,-0.794 L 111.19858,16.878936 c 0.539,-1.058 0.008,-1.82 -1.181,-1.82 l -24.770001,0 c -1.188,0 -1.72,0.762 -1.181,1.82 l 12.586997,24.679996 c 0.269,0.529 0.624,0.742 0.979,0.742 l 0,0 z" /><linearGradient
+     id="SVGID_1_"
+     gradientUnits="userSpaceOnUse"
+     x1="97"
+     y1="2.8936"
+     x2="97"
+     y2="55.9068"><stop
+       offset="0.5092"
+       style="stop-color:#31ABFF;stop-opacity:0"
+       id="stop7722" /><stop
+       offset="0.9018"
+       style="stop-color:#31ABFF"
+       id="stop7724" /><stop
+       offset="1"
+       style="stop-color:#63E6FF"
+       id="stop7726" /></linearGradient></svg>

@@ -318,12 +318,12 @@ function changeNavigationArrow(instructionText) {
  * @param fontSize {Integer} Font size.
  * @return {String} Distance in meters width changed font format.
  */
-function formatMeters(meters, fontSize) {
+function formatMeters(meters) {
 	"use strict";
 	if (meters > 500) {
-		return (Math.round(meters / 100)) / 10 + "<span class=" + fontSize + ">KM</span>";
+		return [(Math.round(meters / 100)) / 10, "km"];
 	} else {
-		return Math.round(meters) + "<span class=" + fontSize + ">m</span>";
+		return [Math.round(meters), "m"];
 	}
 }
 
@@ -335,14 +335,18 @@ function formatMeters(meters, fontSize) {
  * @param fontSize {Integer} Font size.
  * @return {String} Distance in feets width changed font format.
  */
-function convertMetersToFeetsMiles(meters, fontSize) {
+function convertMetersToFeetsMiles(meters) {
 	"use strict";
 	var feets = meters * 3.280839895;
+	var number, unit;
 	if (feets > 528) {
-		return (Math.round(feets / 528)) / 10 + "<span class=" + fontSize + ">MI</span>";
+		 number = (Math.round(feets / 528)) / 10;
+		 unit = "mi";
 	} else {
-		return Math.round(feets) + "<span class=" + fontSize + ">ft</span>";
+		number = Math.round(feets);
+		unit = "ft";
 	}
+	return [number, unit];
 }
 
 /** 
@@ -402,7 +406,7 @@ function formatTimeToHHMM(seconds) {
 	if (hours > 0 || minutes > 0) {
 		formatedTime = addLeading0ToTime(hours) + ":" + addLeading0ToTime(minutes);
 	} else {
-		formatedTime = seconds + "<span class='fontSizeSmall'>s</span>";
+		formatedTime = ":" + seconds;
 	}
 	return formatedTime;
 }
@@ -476,30 +480,30 @@ function updateNavigationPanel() {
 		console.log("Instruction changed to '" + instruction + "'.");
 		$("#navigationPanel").html(instruction);
 		/* global Speech*/
-		Speech.vocalizeString(instruction);
+		// Speech.vocalizeString(instruction);
 		changeNavigationArrow(instruction);
 		instructionChanged = false;
 	}
 
-	if (useMetricSystem === true) {
-		remainingStepDistance = formatMeters(remainingStepDistance, 'fontSizeSmaller');
-	} else {
-		remainingStepDistance = convertMetersToFeetsMiles(remainingStepDistance, 'fontSizeSmaller');
-	}
-
-	$("#distanceTo").html(remainingStepDistance);
 	$("#destinationProgress").progressBarPlugin('setPosition', (remainingDistance / polDistance) * 100);
-
 	var remainingTime = Math.round(remainingDistance / averageSpeed); //time in seconds
 	remainingTime = formatTimeToHHMM(remainingTime);	//seconds to hh:mm
 
 	if (useMetricSystem === true) {
-		remainingDistance = formatMeters(remainingDistance, 'fontSizeSmall');
+		remainingStepDistance = formatMeters(remainingStepDistance);
+		remainingDistance = formatMeters(remainingDistance);
 	} else {
-		remainingDistance =  convertMetersToFeetsMiles(remainingDistance, 'fontSizeSmall');
+		remainingStepDistance = convertMetersToFeetsMiles(remainingStepDistance);
+		remainingDistance =  convertMetersToFeetsMiles(remainingDistance);
 	}
 
-	$("#stillToGoTimeAndDistance").html(remainingTime + " / " + remainingDistance);
+	$("#distanceTo > span").html(remainingStepDistance[0]);
+	$("#distanceTo > small").html(remainingStepDistance[1]);
+
+
+	$("#stillToGoTimeAndDistance > .time").html(remainingTime);
+	$("#stillToGoTimeAndDistance > .distance").html(remainingDistance[0]);
+	$("#stillToGoTimeAndDistance > small").html(remainingDistance[1]);
 }
 
 /** 
@@ -577,18 +581,22 @@ function startAnimation() {
 
 	/* jshint camelcase: false */
 	$("#destinationAddress").html(destination.formatted_address);
-	$("#destinationAddressTown").html(destination.address_components[2].short_name + ", " + destination.address_components[3].short_name);
+	$("#destinationAddressTown > small").html(destination.address_components[2].short_name + ", " + destination.address_components[3].short_name);
 	/* jshint camelcase: true */
 
 	var averageSpeedText;
+	var speedUnit;
 
 	if (useMetricSystem === true) {
-		averageSpeedText = Math.round(averageSpeed * 3.6) + "<span class='fontSizeXXSmall'> km/h</span>" + ")";
+		averageSpeedText = Math.round(averageSpeed * 3.6);
+		speedUnit = "metric";
 	} else {
-		averageSpeedText = Math.round(averageSpeed * 2.2369362920544) + "<span class='fontSizeXXSmall'> MPH</span>" + ")";
-	}
+		averageSpeedText = Math.round(averageSpeed * 2.2369362920544);
+		speedUnit = "imperial";
+	};
 
-	$("#arrivalText").html("ARRIVAL " + addSecondsToCurrentTime(routeDuration) + " (" + averageSpeedText);
+	$("#arrivalText > span").html(addSecondsToCurrentTime(routeDuration));
+	$("#arrivalText > small").html(averageSpeedText).addClass(speedUnit);
 
 	updateNavigationPanel();
 	window.setTimeout(function(){
@@ -703,10 +711,10 @@ $(document).ready(function () {
 	"use strict";
 	/* global Bootstrap*/
 	bootstrap = new Bootstrap(function (status) {
-		$(".keyboard").css('display', 'none');
+		// $(".keyboard").css('display', 'none');
 		//$("#topBarIcons").topBarIconsPlugin('init', 'navigation');
-		$("#upNextRectangle").boxCaptionPlugin('init', 'up next');
-		$("#destinationProgress").progressBarPlugin('init', 'progressBar');
+		// $("#upNextRectangle").boxCaptionPlugin('init', 'up next');
+		// $("#destinationProgress").progressBarPlugin('init', 'progressBar');
 		$("#destinationRectangle").boxCaptionPlugin('init', 'destination');
 		$("#stillToGoRectangle").boxCaptionPlugin('init', 'still to go');
 		//$('#bottomPanel').bottomPanel('init');
@@ -723,15 +731,18 @@ $(document).ready(function () {
 
 		startNavigation();
 
+		// This isn't working, temporary script written in HTML
+
+		$("#placesButton").on("click", function() {
+			$("#places-library").library("showPage");
+		});
+
 		$("#placesLibrary").library("setSectionTitle", "PLACES LIBRARY");
 		$("#placesLibrary").library("init");
 		$("#placesLibrary").library("hideAlphabet");
 		$("#placesLibrary").library("setGridBtnDisabled", true);
 		$("#placesLibrary").library("setSearchBtnDisabled", true);
 
-		$("#placesButton").on("click", function() {
-			$("#placesLibrary").library("showPage");
-		});
 
 		var tabMenuItems = [ {
 			text : "DESTINATIONS",
