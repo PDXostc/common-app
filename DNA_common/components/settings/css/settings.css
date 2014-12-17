@@ -7,7 +7,6 @@ sorted when there is time to organize all the components and make decisions*/
 .settingsPage, .settingsPages {
 	display: inline-block;
 	width: 100%; 
-	height: 100%;  
 	left: 0;  
 	z-index: 20;  
 	/* display: flex; */  
