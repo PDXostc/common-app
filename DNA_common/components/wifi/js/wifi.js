@@ -1,7 +1,3 @@
-console.log("start of wifi.js");
-$(document).on("click", ".switch-plate", function() {
-	  $(this).closest(".switch").toggleClass("on off");
-	})
 					
 var WifiSettingsPage={};
 WifiSettingsPage.TemplateHTML = "DNA_common/components/wifi/wifi.html";
