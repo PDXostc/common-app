@@ -28,7 +28,7 @@ var myScroll;
  * @static
  **/
 var init = function () {
-    var bootstrap = new Bootstrap(function (status) {
+/*    var bootstrap = new Bootstrap(function (status) {
     $("#topBarIcons").topBarIconsPlugin('init', 'weather');
     $("#clockElement").ClockPlugin('init', 5);  
     $("#clockElement").ClockPlugin('startTimer');
@@ -43,7 +43,7 @@ var init = function () {
     bootstrap.themeEngine.addStatusListener(function (eData) {
         // setThemeImageColor();
     });
-    });
+    });*/
 };
 
 /**

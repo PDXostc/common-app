@@ -2,14 +2,36 @@
 weatherIcon {
 	width: 75px;
 }
-body {
-  overflow: hidden;
-  margin: 0;
+html {
+  height: 1280px !important;   
+  width: 720px !important;   
+  overflow: hidden;   
+  position: absolute !important;   
+  -webkit-user-select: none;   
+  -khtml-user-select: none;
+  user-select: none;
 }
+body {
+  font-size: .775em;
+  width: 720px;
+  height: 1000px;
+  margin: 0;
+  height: 1280px !important;
+  width: 720px !important;
+  overflow: hidden;
+  z-index: 0;
+}
+
 h2 {
   color: #FFF;
   padding: 10px 0 0 20px;
+  font-size: 3em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: -45px;
+  margin-bottom: 5px;
 }
+
 #locList {
   visibility: visible;
   z-index: -800;
@@ -76,6 +98,7 @@ h2 {
   width: 716px;
   background-color: rgba(29, 162, 255, 0.4);
   margin-top: 0;
+  height: 122px;
 }
 div.awxCurrentConditions {  
   background: -webkit-linear-gradient(left, #000000 0%,transparent 20%,transparent 80%,#000000 100%);
@@ -289,15 +312,7 @@ span.fontSizeSmall {
   -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
   padding: 10px;
 }
-h2  {
-  color: #FFF;
-  font-size: 3em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 10px 0 0 20px;
-  margin-top: -45px;
-  margin-bottom: 5px;
-}
+
 .removeLocationControl{
 	display: none;
   border: 1px solid rgb(128, 203, 255);
@@ -338,4 +353,133 @@ div#removeLocation {
 	margin-top: 35px;
 	margin-left: -35px;
 	width: 285px !important;
+}
+
+div {
+    position: relative;
+    font-size: .775em; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-user-select:none;
+}
+p, ul, li {
+  color: #333;
+}
+li {
+    margin-left: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.borderColorLight {
+    border-color: rgb(128, 203, 255);   
+    border-color: rgba(128, 203, 255, 1.0);
+}
+.boxShadow4 {
+  box-shadow: 0 0 70px 2px rgba(29, 162, 255, 0.4);
+}
+
+.boxShadow4Active:active,.boxShadow4Active:focus {
+  box-shadow: 0 0 70px 2px rgb(29, 162, 255);
+}
+
+/*we may want to put these input styles in common.css, were in car.css*/
+input {
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.inputBox .input {
+  width: 280px;
+  height: 75px;
+  padding-right: 75px;
+  padding-left: 25px;
+  border: none;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-user-select: text;
+}
+
+.inputBox .input:focus {
+  border: 0;
+  outline: none;
+}
+
+.inputBox .deleteButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  width: 70px;
+  height: 75px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.inputBox .deleteButton:active {
+  top: 1px;
+  right: 1px;
+}
+
+.inputBox .inputSelection {
+  width: 230px;
+  height: 75px;
+  padding-right: 75px;
+  padding-left: 75px;
+  border: none;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-user-select: text;
+}
+
+.inputBox .inputSelection:focus {
+  border: 0;
+  outline: none;
+}
+
+.inputBox .previousButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 70px;
+  height: 75px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.inputBox .previousButton:active {
+  top: 1px;
+  left: 1px;
+}
+
+.inputBox .nextButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  width: 70px;
+  height: 75px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.inputBox .nextButton:active {
+  top: 1px;
+  right: 1px;
 }
