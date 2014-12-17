@@ -56,22 +56,26 @@ li {
 
 /*//////////// Date and Time ////////////*/
 
-#date {
-	position: absolute;
-	width: 400px;
-	left: 65px;
-	top: 192px;
-	font-size: 5rem;
-	text-align: left;
+#dnaDateTime {
+	position: relative;
+	top: 196px;
+	font-size: 4.3rem;
 }
 
-#clock {
+#dnaDate {
 	position: absolute;
-	width: 400px;
-	left: 580px;
-	top: 192px;
-	font-size: 5rem;
+	left: 678px;
+	width: 300px;
 	text-align: right;
+	font-size: 4.5rem;
+}
+
+#dnaTime {
+	position: absolute;
+	left: 124px;
+	width: 300px;
+	text-align: left;
+	font-size: 4.5rem;
 }
 
 /*//////////// Speed, Fuel and Temperature ////////////*/ 
