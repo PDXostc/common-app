@@ -1,6 +1,6 @@
-app_list = DNA_HomeScreen DNA_HelloTizen DNA_RVITest DNA_News
+app_list = DNA_HomeScreen DNA_HelloTizen DNA_RVITest DNA_News DNA_Phone DNA_HVAC DNA_Dashboard DNA_Navigation DNA_NFC DNA_MOST_AudioSettings DNA_Browser DNA_Weather
 extension_list = extension_common wkb_client_ext most
-TIZEN_IP=TizenNuc
+TIZEN_IP=TizenVTC
 #TIZEN_IP=192.168.6.11
 
 #to avoid typing a password for each scp or ssh command you need to copy
@@ -22,6 +22,9 @@ apps:
 
 extensions:
 	$(foreach extension,$(extension_list), make -C $(extension);)
+
+install_apps:
+	$(foreach app,$(app_list), make -C $(app) install TIZEN_IP=$(TIZEN_IP);)
 
 deploy: deploy_apps 
 
