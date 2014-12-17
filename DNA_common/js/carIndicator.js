@@ -717,13 +717,18 @@ CarIndicator.prototype.setStatus = function(indicator, newValue, callback, zone)
 		propertyValue[mappingProperty] = newValue;
 		propertyValue.zone = propertyZone;
 
-        // TODO: remove this code when Xwalk version of AMB becomes available
-        var callbackName = "on" + mappingElement.callBackPropertyName[0].toUpperCase() + mappingElement.callBackPropertyName.substring(1) + "Changed";
-        var listener=this._listeners[this._listenerIDs[0]];
-	    if (typeof (listener[callbackName]) === 'function') 
-        {
-            listener[callbackName](newValue);
+        // TODO: remove this code when either xwalk version of AMB becomes available or HVAC is made to work with Bluemonkey
+        var oldValue = this.status[mappingElement.callBackPropertyName];
+        if (typeof(oldValue) !== 'undefined' || mappingProperty.toUpperCase() === "nightMode".toUpperCase()) {
+            console.info("AMB property '" + mappingProperty + "' has changed to new value:" + newValue);
+            this.status[mappingElement.callBackPropertyName] = newValue;
+
+            var callbackName = "on" + mappingElement.callBackPropertyName[0].toUpperCase() + mappingElement.callBackPropertyName.substring(1) + "Changed";
+            var listener=this._listeners[this._listenerIDs[0]];
+            if (typeof (listener[callbackName]) === 'function') 
+                listener[callbackName](newValue);
         }
+        // TODO: remove up to here
 
 		//tizen.vehicle.set(objectName, propertyValue, function(msg) {
 		//	console.error("Set error: " + msg);
