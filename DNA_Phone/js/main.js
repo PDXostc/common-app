@@ -12,7 +12,6 @@
 //includeJs("./js/callhistorycarousel.js");
 //includeJs("./js/phone.js");
 //includeJs("./js/contacts_library.js");
-//includeJs("./DNA_common/components/jQuery/jquery.nouisliderix.js");
 
 includeJs("./DNA_common/js/predefAppModel.js");
 includeJs("./DNA_common/js/installedApps.js");
