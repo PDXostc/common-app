@@ -34,7 +34,7 @@ margin-top:18px;
 }
 #overlay{
 	position:absolute;
-	top:80px;
+	top:128px;
 	width:1000px;
 	padding:40px;
 	align:center;
@@ -60,6 +60,7 @@ margin-top:18px;
 }
 #overlay,#lefties,#righties{
 	height:0px;
+	color: #B2F0FF;
 }
 #lefties{
 	float:left;
@@ -67,9 +68,6 @@ margin-top:18px;
 #righties{
 	float:right;
 	text-align:right;
-}
-#speedo,#condition{
-	color:#00BFF3;
 }
 #homeScrSpeed{
 	font-size:75px;
@@ -81,11 +79,7 @@ margin-top:18px;
 	margin-top:45px;
 	margin-left:10px;
 }
-#clock{
-	font-size:62px;
-	line-height:64px;
-}
-#date,#batteryStatus{
+#batteryStatus{
 	font-size:35px;
 	line-height:37px;
 }
