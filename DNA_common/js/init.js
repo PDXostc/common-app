@@ -58,7 +58,7 @@ includeJs("DNA_common/components/jQuery/jquery-1.8.2.js", function(){
 });
 
 //includeJs("DNA_common/components/knockout/knockout.js");
-includeJs("DNA_common/components/bottomBar/jquery.nouislider.js");
+includeJs("DNA_common/components/jQuery/jquery.nouislider.js");
 includeJs("DNA_common/components/incomingCall/incomingCall.js");
 
 includeJs("DNA_common/components/jsViews/jsrender.js");
@@ -72,7 +72,6 @@ includeJs("DNA_common/js/bootstrap.js");
 includeJs("DNA_common/components/rvi/js/ej.js");
 includeJs("DNA_common/components/rvi/js/wse.js");
 includeJs("DNA_common/components/rvi/js/rvi.js");
-includeJs("DNA_common/components/bottomBar/jquery.nouislider.js");
 includeJs("DNA_common/components/settings/js/settings.js");
 includeJs("DNA_common/components/wifi/js/wifi.js");
 includeJs("DNA_common/components/bluetooth/js/bluetooth.js");

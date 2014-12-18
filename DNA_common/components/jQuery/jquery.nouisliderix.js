@@ -208,9 +208,9 @@
 						}
 
 						var bind = '.noUiSlider',
-						onEvent = (EVENT === 1 ? 'mousedown' : EVENT === 2 ? 'MSPointerDown' : EVENT === 3 ? 'mousedown' : 'touchstart') + bind + 'X',//added EVENT === 3 ? 'mousedown' to work on JLR touchscreen
-						moveEvent = (EVENT === 1 ? 'mousemove' : EVENT === 2 ? 'MSPointerMove' : EVENT === 3 ? 'mousemove' : 'touchmove') + bind,//added EVENT === 3 ? 'mousemove' to work on JLR touchscreen
-						offEvent = (EVENT === 1 ? 'mouseup' : EVENT === 2 ? 'MSPointerUp' : EVENT === 3 ? 'mouseup' :'touchend') + bind//added EVENT === 3 ? 'mouseup' to work on JLR touchscreen
+						onEvent = (EVENT === 1 ? 'mousedown' : EVENT === 2 ? 'MSPointerDown' : EVENT === 3 ? 'touchstart' : 'mousedown') + bind + 'X',//added EVENT === 3 ? 'mousedown' to work on JLR touchscreen
+						moveEvent = (EVENT === 1 ? 'mousemove' : EVENT === 2 ? 'MSPointerMove' : EVENT === 3 ? 'touchmove' : 'mousemove') + bind,//added EVENT === 3 ? 'mousemove' to work on JLR touchscreen
+						offEvent = (EVENT === 1 ? 'mouseup' : EVENT === 2 ? 'MSPointerUp' : EVENT === 3 ? 'touchend' :'mouseup') + bind//added EVENT === 3 ? 'mouseup' to work on JLR touchscreen
 
 						handles[i].find('div').on(onEvent, function (e) {
 
