@@ -53,13 +53,13 @@ includeJs("DNA_common/components/jQuery/jquery-1.8.2.js", function(){
 		//includeJs("DNA_common/jQuery/jquery.mobile-1.4.5.js", function(){});
 
 	//Import the topBar and bottomBar
-		includeJs("DNA_common/components/topBar/js/topBar.js", function(){});
-		includeJs("DNA_common/components/bottomBar/js/bottomBar.js", function(){});
+	//	includeJs("DNA_common/components/topBar/js/topBar.js", function(){});
+	//	includeJs("DNA_common/components/bottomBar/js/bottomBar.js", function(){});
 });
 
 //includeJs("DNA_common/components/knockout/knockout.js");
 includeJs("DNA_common/components/jQuery/jquery.nouislider.js");
-includeJs("DNA_common/components/incomingCall/incomingCall.js");
+//includeJs("DNA_common/components/incomingCall/incomingCall.js");
 
 includeJs("DNA_common/components/jsViews/jsrender.js");
 includeJs("DNA_common/components/jsViews/template.js");
@@ -72,6 +72,8 @@ includeJs("DNA_common/js/bootstrap.js");
 includeJs("DNA_common/components/rvi/js/ej.js");
 includeJs("DNA_common/components/rvi/js/wse.js");
 includeJs("DNA_common/components/rvi/js/rvi.js");
+includeJs("DNA_common/components/topBar/js/topBar.js", function(){});
+includeJs("DNA_common/components/bottomBar/js/bottomBar.js", function(){});
 includeJs("DNA_common/components/settings/js/settings.js");
 includeJs("DNA_common/components/wifi/js/wifi.js");
 includeJs("DNA_common/components/bluetooth/js/bluetooth.js");
@@ -89,5 +91,5 @@ includeJs("DNA_common/components/settings/js/wifi.js");
 //includeJs("DNA_common/components/uri/uri.js");
 includeJs("DNA_common/components/weather/weather.js");
 //includeJs("DNA_common/components/audioPlayer/audioPlayer.js");
-includeJs("DNA_common/components/alphabetBookmark/alphabetBookmark.js");
+//includeJs("DNA_common/components/alphabetBookmark/alphabetBookmark.js");
 includeJs("DNA_common/components/library/js/library.js");
