@@ -14,25 +14,27 @@ Settings.addUpdateSettingsPage = function(name,page,onclick) {
 Settings.includeHTMLSucess = function(linkobj) {
    console.log("loaded settings.html");
    Settings.import = linkobj.path[0].import;
+   
    Settings.settingsIconHTML = Settings.import.getElementById('settingsIcon');
-   Settings.settingsCarotHTML = Settings.import.getElementById('settingsCarot');
-   Settings.settingsMenuHTML = Settings.import.getElementById('settingsMenu');
-   Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
+   //Settings.settingsCarotHTML = Settings.import.getElementById('settingsCarot');
+   //Settings.settingsMenuHTML = Settings.import.getElementById('settingsMenu');
+   //Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
-   $("body").append(Settings.import.getElementById('settingsPage'));
    //$("#settingsPage").toggle();
    //Settings.addUpdateSettingsPage('settingsX','page',function(){console.log('SettingsX click');});
-   Settings.pageUpdate();
+   setTimeout(Settings.pageUpdate,20000);
 };
 		
 Settings.pageUpdate = function() {
-	console.log("pageUpdate()");
+	console.log("Settings.pageUpdate()");
 	if (!$('#settingsIcon').length) {
 		setTimeout(Settings.pageUpdate,1000);
 	}
 	else {
-		$('#settingsIcon').replaceWith(Settings.settingsIconHTML);
+		console.log("replace settingsIcon with "+Settings.settingsIconHTML);
+		$('#settingsIcon').replaceWith(Settings.settingsIconHTML.valueOf());
 		document.getElementById('settingsIcon').onclick=function(){$('#settingsPage').toggleClass('hidden');};
+		$("body").append(Settings.import.getElementById('settingsPage'));
 		console.log("icon update ");
 	}
 };

@@ -2,65 +2,65 @@
 
 var Slide=[];
 var homescreenTimeout;
+var BottomBar = {};
 
-includeHTML("DNA_common/components/bottomBar/bottomBar.html", function(){
-	$("#settingsIcon").click(function (e){
-		$("#settingsMenu").toggle();
-	});
 
-	/* ==== ==== ==== init bottom bar touch events ==== ==== ==== */
+BottomBar.TemplateHTML = "DNA_common/components/bottomBar/bottomBar.html";
 
-	$("#bottomBarLogoImg").mousedown(function (e){
-		homescreenTimeout = setTimeout(function() {
+BottomBar.LogoTimeoutMouseDown = function (e){
+		console.log("BottomBar.LogoTimeoutMouseDown()");
+			homescreenTimeout = setTimeout(function() {
+				clearTimeout(homescreenTimeout);
+				if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001"){
+					tizen.application.getCurrentApplication().exit();
+				}
+			}, 2500);
+		}
+		
+BottomBar.LogoTimeoutMouseUp = function (e){
 			clearTimeout(homescreenTimeout);
-			if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001"){
-				tizen.application.getCurrentApplication().exit();
-			}
-		}, 2500);
-	});
-	$("#bottomBarLogoImg").mouseup(function (e){
-		clearTimeout(homescreenTimeout);
-	});
-	$("#volumeIndicator").click(function (e){
-		$("#volumeSlider").toggle();
-	});
+		}
+		
+BottomBar.pageUpdate = function () {
+		$('#bottomBar').replaceWith(BottomBar.bottomBarHTML.valueOf());
+		
+		$("#bottomBarLogoImg").mousedown(BottomBar.LogoTimeoutPress);
+		
+		$("#bottomBarLogoImg").mouseup(BottomBar.LogoTimeoutMouseUp);
 
-	/* ==== ==== ==== init settings panel touch events ==== ==== ==== */
+		$("#volumeIndicator").click(function (e){
+			$("#volumeSlider").toggle();
+		});
+		/* ==== ==== ==== init volume slider touch events ==== ==== ==== */
 
-	$("#settingBlu").click(function (e){
-		launchApplication('http://com.jaguar.tizen/settings');
-		Settings.openSetting({id:'bluetooth'});
-	});
-	$("#settingNet").click(function (e){
-		launchApplication('http://com.jaguar.tizen/settings');
-		Settings.openSetting({id:'wifinetworks'});
-	});
-	$("#settingTet").click(function (e){
-		launchApplication('http://com.jaguar.tizen/settings');
-		Settings.openSetting({id:'wifitethering'});
-	});
-	$("#settingRvi").click(function (e){
-		launchApplication('http://com.jaguar.tizen/settings');
-		Settings.openSetting({id:'rvi'});
-	});
+		$("#volumeSlider").on('mousedown',volDown);
+		$("#volumeSlider").on('mouseout',volOut);
+		$("#volumeSlider").on('mouseover',volOver);
+		$("#volumeSlider").on('mousemove',volMove);
+		$("#volumeSlider").on('touchstart',volDown);
+		$("#volumeSlider").on('touchleave',volOut);
+		$("#volumeSlider").on('touchend',volOut);
+		$("#volumeSlider").on('touchmove',volMove);
 
-	/* ==== ==== ==== init volume slider touch events ==== ==== ==== */
+		$("body").mouseup(function(e){
+			Slide.mousedown=0; Slide.button=0;
+		});
+	}
 
-	$("#volumeSlider").on('mousedown',volDown);
-	$("#volumeSlider").on('mouseout',volOut);
-	$("#volumeSlider").on('mouseover',volOver);
-	$("#volumeSlider").on('mousemove',volMove);
-	$("#volumeSlider").on('touchstart',volDown);
-	$("#volumeSlider").on('touchleave',volOut);
-	$("#volumeSlider").on('touchend',volOut);
-	$("#volumeSlider").on('touchmove',volMove);
+BottomBar.includeHTMLSucess = function(linkobj) {
+		console.log("BottomBar.includeHTMLSucess()");
+		BottomBar.import = linkobj.path[0].import;
+		console.log(BottomBar.import);
+		BottomBar.bottomBarHTML = BottomBar.import.getElementById('bottomBar');
+		setTimeout(BottomBar.pageUpdate,5000);
+	}
 
-	$("body").mouseup(function(e){
-		Slide.mousedown=0; Slide.button=0;
-	});
-
-
-}, function(){}, "importBbar", "bottomBar");
+BottomBar.includeHTMLFailed = function(linkobj) {
+	console.log("load bottomBar.html failed");
+	console.log(linkobj);
+};
+	
+includeHTML(BottomBar.TemplateHTML, BottomBar.includeHTMLSucess, BottomBar.includeHTMLFailed);
 
 /* ==== ==== ==== init volume slider js code ==== ==== ==== */
 
