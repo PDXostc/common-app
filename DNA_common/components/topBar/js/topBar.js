@@ -2,24 +2,48 @@
 
 //$("body").on('touchstart', topbarTouchstart, false); // PREVENT MULTITOUCH ZOOM BUBBLING
 
-includeHTML("DNA_common/components/topBar/topBar.html", function(){
-	$("#homeScreenIcon").click(topbarBack);
-	$("#appGridIcon").click(topbarGrid);
-	$(".exitButton").click(topbarGrid);
-	initAppGrid();
-	initTaskLauncher();
-}, function(){}, "importTbar", "topBar");
+var TopBar = {};
 
-function topbarBack(){
+TopBar.TemplateHTML = "DNA_common/components/topBar/topBar.html";
+
+TopBar.topbarBack = function() {
 	tizen.application.launch('JLRPOCX001.HomeScreen', noop, noop);
 }
-function topbarGrid(){
+
+TopBar.topbarGrid = function(){
 	$("#hexGridView").toggle();
 }
-function topbarTouchstart(){
+
+TopBar.topbarTouchstart = function(){
 	console.log('touch control');
 }
-backbuttonTimeout = setTimeout(function() {
+
+TopBar.pageUpdate = function() {
+	$('#topBar').replaceWith(TopBar.topBarHTML.valueOf());
+	$("#homeScreenIcon").click(TopBar.topbarBack);
+	$("#appGridIcon").click(TopBar.topbarGrid);
+	$(".exitButton").click(TopBar.topbarGrid);
+	initAppGrid();
+	initTaskLauncher();
+}
+
+TopBar.includeHTMLSucess = function(linkobj) {
+		console.log("BottomBar.includeHTMLSucess()");
+		TopBar.import = linkobj.path[0].import;
+		console.log(TopBar.import);
+		TopBar.topBarHTML = TopBar.import.getElementById('topBar');
+		setTimeout(TopBar.pageUpdate,5000);
+}
+
+TopBar.includeHTMLFailed = function(linkobj) {
+	console.log("load topBar.html failed");
+	console.log(linkobj);
+};
+
+
+includeHTML("DNA_common/components/topBar/topBar.html", TopBar.includeHTMLSucess, TopBar.includeHTMLFailed);
+
+TopBar.backbuttonTimeout = setTimeout(function() {
 	if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001")
 		$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
 	else
