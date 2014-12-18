@@ -25,7 +25,6 @@
 		includeJs("./DNA_common/js/actionCatcher.js");
 		includeJs("./DNA_common/js/HomeScreenMain.js");
 		includeJs("./js/main.js");
-		includeJs("./js/dnaTime.js");
 	</script>
 
 </head>
@@ -33,10 +32,8 @@
 <body>
 
 	<div id="topBar"></div>
-		<div id="dnaDateTime">
-			<div class="grey" id="dnaTime"></div>
-			<div class="grey" id="dnaDate"></div>
-		</div>
+	<div id="clockElement">
+	</div>
 
 	<!-- BEGIN HTML ELEMENTS -->
 	<div>
@@ -53,7 +50,7 @@
 					<p id="odometer" class="label">100,000.5 mi</p>
 				</div>
 
-				<!-- Fuel and Temperature -->s
+				<!-- Fuel and Temperature -->
 
 				<div id="fuelTempContainer">
 					<div id="fuelContainer">
@@ -68,11 +65,11 @@
 					</div>
 
 					<div id="temperatureContainer">
-						<h5 class="green-lt">TEMPERATURE</h5>
+						<h5 class="green-viv">TEMPERATURE <span id="unitTemperature" class="unitDescription green-lt">CELSIUS</span></h5>
 						<div id="temperatureIcon"></div>
 						<ul>
-							<li><strong>OUTDOOR:</strong> 80&deg;</li>
-							<li><strong>INDOOR:</strong> 72&deg;</li>
+							<li><strong>OUTDOOR:</strong> 29&deg;</li>
+							<li><strong>INDOOR:</strong> 18&deg;</li>
 						</ul>
 					</div>
 				</div>

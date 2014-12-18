@@ -8,8 +8,7 @@ PACKAGE = $(PROJECT)-$(VERSION)
 INSTALL_DIR = $(DESTDIR)/opt/usr/apps/.preinstallWidgets
 
 ifndef TIZEN_IP
-TIZEN_IP=TizenNuc
-#TIZEN_IP=192.168.6.36
+TIZEN_IP=TizenVTC
 endif
 
 dev: clean dev-common
