@@ -186,10 +186,14 @@ Most.init = function () {
 			$('.dimension2D').addClass('on').siblings()
 					.removeClass('on');
 			$('.audioDimensionTxt').removeClass('on');
+			//kj below
+			$('.audioDimensionTxt').html("2D");
 		} else {
 			$('.dimension3D').addClass('on').siblings()
 					.removeClass('on');
-			$('.audioDimensionTxt').addClass('on');
+					$("#twod-threed-target").html(" ");
+			$('.audioDimensionTxt').addClass('on').html("3D");
+
 		}
 	}
 	var currentFade = 0;
