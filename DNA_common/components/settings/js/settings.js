@@ -20,6 +20,7 @@ Settings.includeHTMLSucess = function(linkobj) {
    //Settings.settingsMenuHTML = Settings.import.getElementById('settingsMenu');
    //Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
+   $("body").append(Settings.import.getElementById('settingsPage'));
    //$("#settingsPage").toggle();
    //Settings.addUpdateSettingsPage('settingsX','page',function(){console.log('SettingsX click');});
    setTimeout(Settings.pageUpdate,20000);
@@ -34,6 +35,7 @@ Settings.pageUpdate = function() {
 		console.log("replace settingsIcon with "+Settings.settingsIconHTML);
 		$('#settingsIcon').replaceWith(Settings.settingsIconHTML.valueOf());
 		document.getElementById('settingsIcon').onclick=function(){$('#settingsPage').toggleClass('hidden');};
+		document.getElementById('SettingsTabsCloseButton').onclick=function(){$('#settingsPage').toggleClass('hidden');};
 		$("body").append(Settings.import.getElementById('settingsPage'));
 		console.log("icon update ");
 	}
