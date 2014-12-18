@@ -66,27 +66,28 @@
 		</div>
 	</li>
 </div>
-<div id="locList" class="itemList borderColorLight">
+<div id="locList" class="itemList border">
 	<div id="locListInner"></div>
 </div>
 
-<div id="locationModal">
-	
-	<div id="search">
-		<span onclick="hideLocationModal()" class="fontSizeLarge fontColorNormal">&times;</span>
-	   <h2>Location Search</h2>
-   		<!-- <label for="Text">Enter location name:</label> -->
-	    <input id="awxSearchTextBox" type="text" placeholder="city, state, or zip" class="inputBrowser fontSizeSmall fontSizeBold fontColorDimmedLight boxShadow4 boxShadow4Active"/>
-	    <input id="awxSearchButton" class="fontSizeSmall" type="submit" value="Search" />
-		<ul id="searchResults">
-			
-		</ul>
+	<div id="locationModal" class="center-modal">	
+		<div id="search" class="location-search">
+			<span onclick="hideLocationModal()" class="fontSizeXXLarge fontColorNormal">&times;</span>
+		   <h2>Location Search</h2>
+	   		<!-- <label for="Text">Enter location name:</label> -->
+		    <input id="awxSearchTextBox" type="text" placeholder="city, state, or zip" class="inputBrowser fontSizeSmall fontSizeBold fontColorDimmedLight boxShadow4 boxShadow4Active"/>
+		    <input id="awxSearchButton" class="fontSizeXLarge" type="submit" value="Search" />
+			<ul id="searchResults">
+				
+			</ul>
+		</div>
 	</div>
+
+<div class="bottom">
+	<div id="removeLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="toggleRemoveControl()">_</div>
+
+	<div id="addLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="showLocationModal()">+</div>
 </div>
-
-<div id="removeLocation" class="fontSizeXXXXLarge fontColorNormal borderColorLight bgColorThemeTransparent" onclick="toggleRemoveControl()">-</div>
-
-<div id="addLocation" class="fontSizeXXXXLarge fontColorNormal borderColorLight bgColorThemeTransparent" onclick="showLocationModal()">+</div>
 
 <div id="bottomBar"></div>
 
