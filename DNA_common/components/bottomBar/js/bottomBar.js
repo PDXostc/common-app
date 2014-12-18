@@ -106,3 +106,47 @@ function volMove(e){
 		most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
 	}
 }
+// Volume control update timer; this keeps the volume control slider synchronized
+// when moving from widget to widget.
+
+var volumeTimer = setInterval(refreshVolume, 2000);
+var previousVolume = -1, curVolume=0;
+
+// This is called by a periodic timer to cause a volumeQuery command to be sent to MOST. This is done so that when
+// navigating from screen to screen, the volume control slider on the visible screen will stay in synch with the
+// current MOST volume setting.
+//
+var volLogCnt=0;
+
+function refreshVolume() {
+								
+	var jsonenc = {api:"setTone", dest:"volumeQuery", level:0, incr:0};
+	
+	volLogCnt++;
+	if(volLogCnt == 5)
+	{
+		console.log("MOSTLOG refreshVolume query");
+		volLogCnt=0;
+	}
+	most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
+	
+}
+// Sets the variable which holds the latest updated volume
+// received from the MOST extension.
+var volLogCntCB=0;
+
+var volumeQueryCB = function(response) {
+
+	volLogCnt++;
+	if(volLogCntCB == 5)
+	{	
+		 console.log("MOSTLOG: volumeQueryCB " + response);
+		 volLogCntCB=0;
+	}
+	curVolume = response;
+	var sl = (curVolume - 159)/4;
+		
+	$(".noVolumeSlider").val(sl);
+};
+
+
