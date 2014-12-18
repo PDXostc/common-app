@@ -1,6 +1,7 @@
 /* Styles specific to Weather app */
-weatherIcon {
-  width: 75px;
+.weatherIcon {
+  width: 153px;
+  float: left;
 }
 
 body {
@@ -9,12 +10,13 @@ body {
 
 h2 {
   /* color: #FFF; */
-  padding: 14px 0 0 28px;
+  /* padding: 14px 0 0 28px; */
   /* font-size: 3em; */
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: -45px;
+  /* text-transform: uppercase; */
+  /* text-align: center; */
+  /* margin-top: -45px; */
   margin-bottom: 7px;
+  float: left;
 }
 
 #locList {
@@ -26,7 +28,7 @@ h2 {
   position: absolute;
   display: block;
   top: 212px;
-  left: 0px;
+  /* left: 0px; */
   height: 1450px;
 /*  border-style: solid;
   border-width: 2px;*/
@@ -38,7 +40,7 @@ h2 {
   position: relative;
   display: block;
   visibility: visible;
-  height: 1573px;
+  height: 1450px;
   width: 1076px;
 }
 .locListItemInner {
@@ -46,11 +48,11 @@ h2 {
   overflow: hidden;
 }
 .locListItem {
-  width: 3110px;
+  width: 3240px;
   overflow: hidden;
   border-top: 1px solid rgba(0, 128, 191, 1.0);
   border-bottom: 1px solid rgba(0, 128, 191, 1.0);
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
   margin-top: 0;
 }
 .forecastGrid {
@@ -61,13 +63,13 @@ h2 {
 .forecastGrid_load {
   display: inline-block;
   vertical-align: middle;
-  width: 1031px;
-  height: 173px;
+  width: 1076px;
+  height: 178px;
   background: #b3ceee;
   font-family: verdana,arial,sans-serif;
   z-index: -3;
-  margin-right: -3px;
-  padding-left: 6px;
+  /* margin-right: -3px; */
+  /* padding-left: 6px; */
 }
 .listItem_load {
   display: inline-block;
@@ -80,32 +82,39 @@ h2 {
 .listItem {
   display: inline-block;
   vertical-align: middle;
-  width: 1031px;
+  width: 1076px;
   background-color: rgba(29, 162, 255, 0.4);
   margin-top: 0;
-  height: 176px;
+  height: 178px;
 }
 div.awxCurrentConditions {  
   background: -webkit-linear-gradient(left, #000000 0%,transparent 20%,transparent 80%,#000000 100%);
   
-  height: 173px;
+  height: 178px;
+  display: flex;        
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 1;
 }
 .hourly {
   /*background: #b3ceee; eventually this should pull from the javascript and 
   discern whether or not it's a day or night background color (#1d274f) */
   float: left;
   text-align: center;
-  width: 170px;  
+  width: 179px;  
   border-left:none;
   padding-top: 3px;
   /* padding-bottom: 9px; */
 }
+.hourly > img {
+    width: 108px;
+}
 .fiveDay {
   float: left;
   text-align: center;
-  width: 204px;
-  padding-top: 3px;
-  padding-bottom: 13px;
+  width: 215px;
+  /* padding-top: 3px; */
+  /* padding-bottom: 13px; */
 }
 .locName {
   text-transform: uppercase;
@@ -113,39 +122,45 @@ div.awxCurrentConditions {
   text-align: center;
 }
 .currentDetails {
-  margin-top: -3px;
+  /* margin-top: -3px; */
+  line-height: 10px;
+  padding-bottom: 20px;
 }
 .condImage {
-  display: inline-block;
-  vertical-align: middle;
-  float: left;
-  margin-top: 22px;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  /* float: left; */
+  /* margin-top: 22px; */
+  margin-left: 10px;
+  margin-bottom: 45px;
 }
 img.icon {
   width: 100px;
+  /* float: left; */
 }
 .fiveDay > img.icon {
-  width: 150px;
+  width: 216px;
   position: relative;
-  /* margin-top: 0px; */
+  margin-top: -9px;
   left: 0px;
   z-index: -1;
 }
 .iconPhrase {
-  height: 15px;
-  margin-top: -5px;
-  line-height: 15px;
+  height: 43px;
+  margin-top: -13px;
+  line-height: 23px;
   margin-bottom: 13px;
   font-size: .75em;
 }
 .fiveDay > .iconPhrase  {
-  margin-top: -67px;
-  margin-bottom: 35px;
+  margin-top: -93px;
+  /* margin-bottom: -9px; */
 }
 .tempBox {
-  display: inline-block;
-  vertical-align: middle;
-  float: right;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  /* float: right; */
+  margin-right: 10px;
 }
 .temp {
   font-size: 8.25em;
@@ -159,14 +174,14 @@ img.icon {
   line-height: 95%;
 }
 .itemText {
-  display: inline-block;
-  vertical-align: middle;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
   text-align: center;
-  margin-top: 8px;
+  /* margin-top: 8px; */
 }
 .moreInfo {
-  width: 415px;
-  vertical-align: middle;
+  width: 600px;
+  /* vertical-align: middle; */
   overflow: hidden;
   font-weight: bold;
   /*text-transform: uppercase; can't use this and have RealFeel camelcased */
@@ -199,21 +214,43 @@ img.icon {
   width: 285px !important;
 }
 .temp {
-  font-size: 5em;
+  font-size: 4em;
   color: white;
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: -2px;
+  line-height: 1.75em;
 }
 sup {
   font-size: 50%;
 }
 .L_indicator {
-  margin-left: 14px;
+  /* margin-left: 60px; */
   margin-right: 7px;
+  height: 50px;
+  width: 50px;
+  float: left;
+  margin-top: 15px;
 }
 .R_indicator {
   margin-left: 10px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  margin-top: 105px;
+  float: right;
+}
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 35px solid transparent;
+  border-bottom: 30px solid transparent;  
+  border-left: 55px solid rgba(255,255,255, 0.65)
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 35px solid transparent;
+  border-bottom: 30px solid transparent;  
+  border-right:55px solid rgba(255,255,255, 0.65)
 }
 #search > p {
   color: #FFF;
@@ -238,27 +275,31 @@ sup {
   border: 1px solid rgb(128, 203, 255);
 }
 #awxSearchButton {
-  height: 72px;
-  width: 187px;
-  background-color: #245f88;
-  color: rgb(128, 203, 255);
-  text-transform: uppercase;
-  border: 1px solid rgba(128, 203, 255, 1);
-  margin-left: 7px;
+  /* height: 72px; */
+  /* width: 187px; */
+  /* background-color: #245f88; */
+  /* color: rgb(128, 203, 255); */
+  /* text-transform: uppercase; */
+  /* border: 1px solid rgba(128, 203, 255, 1); */
+  /* margin-left: 7px; */
+  float: right;
 }
 #awxSearchTextBox {
-  padding-left: 10px;
-  margin: 7px 7px 14px 0;
-  border: none;
-  background-color: #fff;
-  width: 576px;
-  height: 72px;
-  color: #404040;
-  font-family: sans-serif, "Arial";
+  /* padding-left: 10px; */
+  /* margin: 7px 7px 14px 0; */
+  /* border: none; */
+  /* background-color: #fff; */
+  /* width: 576px; */
+  /* height: 72px; */
+  /* color: #404040; */
+  /* font-family: sans-serif, "Arial"; */
+  float: left;
 }
+
+input#awxSearchTextBox {}
 .hour_temp  {
   font-weight: bold;
-  font-size: .75em;
+  /* font-size: .75em; */
 }
 .hourly > p {
   color: #333;
@@ -285,18 +326,14 @@ span.fontSizeSmall {
   padding: 14px;
   text-align: center;*/
 }
-.center-modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modal-bkgrnd{
   background-color: rgba(0,0,0,0.8);
   -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
-  padding: 14px;
-  text-align: center;
+  max-width: 58%;
+  height: 100%;
+  background-color: #222;
 }
-.location-search {
-  max-width: 50%;
-}
+
 .removeLocationControl{
   display: none;
   border: 1px solid rgb(128, 203, 255);
@@ -347,7 +384,6 @@ div {
 * {
     margin: 0;
     padding: 0;
-    -webkit-user-select:none;
 }
 p, ul, li {
   color: #333;

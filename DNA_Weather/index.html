@@ -42,17 +42,17 @@
 	<li class="listItem">
 		<div class="awxCurrentConditions">
 			<div class="condImage">
-				<span class="L_indicator"><img src="images/L_carot.png"></span>
+				<div class="L_indicator arrow-left"></div>
 				<img class="weatherIcon" src="images/Accuweather_icons/14-s.png">
 			</div>
 			<div class="itemText">
 				<span class="locName fontSizeXXXLarge fontColorTheme">Portland</span>
 				<div class="moreInfo" style="opacity: 1; ">
 					<div class="currentDetails">
-						<span class="fontSizeSmall humidityData">Humidity: 63%</span>
-						<span class="fontSizeSmall windData">Wind: SE 10.4mi/h</span><br>
-						<span class="fontSizeSmall rainData">  </span>
-						<span class="fontSizeSmall rfData">RealFeel®: 71F</span>
+						<span class="fontSizeLarge humidityData">Humidity: 63%</span>
+						<span class="fontSizeLargewindData">Wind: SE 10.4mi/h</span><br>
+						<span class="fontSizeLarge rainData">  </span>
+						<span class="fontSizeLarge rfData">RealFeel®: 71F</span>
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 				<span class="temp">
 					<span class="tempVal">73</span><sup>°<span class="tempMeasurement">F</span></sup>
 				</span>
-				<span class="R_indicator"><img src="images/R_carot.png"></span>
+				<div class="R_indicator arrow-right"></div>
 			</div>
 			<div class="removeLocationControl itemText" style=" ">X</div>
 		</div>
@@ -70,18 +70,18 @@
 	<div id="locListInner"></div>
 </div>
 
-	<div id="locationModal" class="center-modal">	
-		<div id="search" class="location-search">
-			<span onclick="hideLocationModal()" class="fontSizeXXLarge fontColorNormal">&times;</span>
+	<form id="locationModal" class="modal-bkgrnd">	
+		<div id="search">
+			<span onclick="hideLocationModal()" class="close-button" type="reset"></span>
 		   <h2>Location Search</h2>
 	   		<!-- <label for="Text">Enter location name:</label> -->
-		    <input id="awxSearchTextBox" type="text" placeholder="city, state, or zip" class="inputBrowser fontSizeSmall fontSizeBold fontColorDimmedLight boxShadow4 boxShadow4Active"/>
-		    <input id="awxSearchButton" class="fontSizeXLarge" type="submit" value="Search" />
+		    <div input id="awxSearchTextBox" type="text" class="inputNumber" placeholder="city, state, or zip"><!-- <div class="delete-button" type="reset"></div> --></div>
+		    <input id="awxSearchButton" class="button button-blue" type="submit" value="Search" >
 			<ul id="searchResults">
 				
 			</ul>
 		</div>
-	</div>
+	</form>
 
 <div class="bottom">
 	<div id="removeLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="toggleRemoveControl()">_</div>
