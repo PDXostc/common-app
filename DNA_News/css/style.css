@@ -7,15 +7,19 @@ body {
 .newsChannels {
   position: relative;
   display: inline-block;
-  margin-top: 50px;
-  /* left: 0px; */
+  margin-top: 96px;
   height: 100px;
-  /* line-height: 47px !important; */
   width: 100%;
   z-index: -500;
   text-align: center;
-  letter-spacing: 2px;
-  /*padding: 0 36px;*/
+  padding-top: 5px;
+}
+
+.newsTopics li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 53px;
+  font-size: 4.8rem;
 }
 
 #topArticleList {
@@ -41,7 +45,6 @@ body {
   display: inline-block;
   top: 5px;
   left: 0px;
-  /*height: 1282px;*/
   width: 1076px;
   border-style: solid;
   border-width: 2px;
@@ -51,24 +54,37 @@ body {
 }
 
 .articleListItem {
+  background-color: rgba(68, 68, 68, .6);
   display: block;
   width: 1056px;
   height: 187px;
   margin: 10px 10px 0 10px;
 }
 
+.textBgColorThemeTransparent_DNA {
+  background-color: #FE9C00;
+}
+
 .itemDate {
   text-transform: uppercase;
+  font-size: 2.6rem;
+}
+
+.itemSubHead {
+  font-size: 2.6rem;
+}
+
+.itemDesc {
+  font-size: 2rem;
+  color: #FFF;
 }
 
 .article {
   position: absolute;
-  top: 225px;
+  top: 281px;
   left: 0px;
-  /* height: 870px; */
   width: 1078px;
   border: 1px solid #fff;
-  /* outline: 18px solid black; */
   z-index: 5;
   background: #000000;
   overflow: hidden;     
@@ -123,12 +139,6 @@ body {
   vertical-align: middle;
 }
 
-.itemTitle {
-  font-weight: bold;
-  font-size: 188%;
-  line-height: 120%;
-}
-
 .itemText {
   display: inline-block;
   width: 750px;
@@ -149,7 +159,6 @@ body {
 }
 
 .articleListGradFade {
-  /* display: block; */
   width: 1076px;
   height: 80px;
   z-index: 1;
@@ -199,4 +208,8 @@ li {
 .wrapper {
   height: 1673px;
   width: 100%;
+}
+
+.borderLtBlue_DNA {
+  border-color: #B2F0FF;
 }

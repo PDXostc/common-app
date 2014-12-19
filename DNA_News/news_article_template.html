@@ -1,13 +1,14 @@
-<div class="articleListItem textBgColorThemeTransparent">
+<li> 
+	<div class="articleListItem">
+		<div class="thumbnail" ontouchend="showArticle('[url for article]')">
+			<img width="260px">
+		</div>
 
-    <div class="thumbnail" ontouchend="showArticle('[url for article]')">
-        <img width="260px">
-    </div>
+		<div class="itemText"><span class="itemDate orange-viv"></span><br>
+			<strong><span ontouchend="showArticle('<!--Link to news article goes here-->')" class="itemSubHead blue-lt"></span></strong><br>
+			<span class="itemDesc"></span>
+		</div>
 
-    <div class="itemText"><span class="itemDate fontSizeSmall fontColorTheme"><!--Date of news article goes here--></span><br>
-        <span ontouchend="showArticle('<!--Link to news article goes here-->')" class="itemTitle fontSizeSmall fontColorNormal"><!--Heading for news article goes here!--></span><br>
-        <span class="itemDesc fontSizeSmall fontColorNormal"><!--News article summary goes herer--></span>
-    </div>
-    
-    <div class="itemTextGradFade"></div>
-</div>
+		<div class="itemTextGradFade"></div>
+	</div>
+</li>
