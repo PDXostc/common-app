@@ -53,7 +53,9 @@ DateTime.includeHTMLSucess = function(linkobj) {
 DateTime.pageUpdate = function() {
 	console.log("dateTime.pageUpdate()");
 	if (!$('#clockElement').length) {
-		setTimeout(DateTime.pageUpdate,1000);
+		// We only want to check at the beginning.  We can call this 
+		// function again if we add the clockElement at a later time.
+		//setTimeout(DateTime.pageUpdate,1000);
 	}
 	else {
 		console.log(document.getElementById('clockElement'));

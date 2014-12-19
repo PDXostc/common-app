@@ -154,7 +154,8 @@ Bootstrap.prototype.initCarIndicators = function(callback) {
 Bootstrap.prototype.initIncomingCall = function(callback) {
 	"use strict";
 	var self = this;
-
+	callback();
+    /*  removed incomming call.
 	console.log("Loading IncomingCall object");
 	loadScript('./DNA_common/components/boxCaption/boxCaption.js', function(path, status) {
 		if (status === "ok") {
@@ -165,7 +166,7 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 						self.incomingCall = new IncomingCall();
 						if (typeof(tizen) !== 'undefined' && tizen.phone) {
 							tizen.phone.addCallChangedListener(function(result) {
-								/* global getAppByID */
+								// global getAppByID 
 								var appId = getAppByID('intelPoc15.phone');
 
 								var contact;
@@ -174,9 +175,9 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 								} else {
 									contact = {
 										phoneNumbers: [{
-											/* jshint camelcase: false */
+											// jshint camelcase: false 
 											number: tizen.phone.activeCall.line_id
-											/* jshint camelcase: true */
+											// jshint camelcase: true
 										}]
 
 									};
@@ -196,7 +197,7 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 										break;
 									case "DIALING".toLowerCase():
 										if (!appId.running) {
-											/*global launchApplication*/
+											//global launchApplication
 											launchApplication('intelPoc15.phone');
 										}
 										break;
@@ -217,7 +218,7 @@ Bootstrap.prototype.initIncomingCall = function(callback) {
 				}
 			});
 		}
-	});
+	});*/
 };
 /** 
  * This method initialize speech functionality.

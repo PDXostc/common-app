@@ -23,6 +23,7 @@ WifiSettingsPage.pageUpdate = function() {
 	else {
 		$("#settingsPage").append(WifiSettingsPage.import.getElementById('WifiPage'));
 		Settings.addUpdateSettingsPage('wifi','settings',WifiSettingsPage.ShowPage);
+		var close_button = document.getElementById('tabsCloseSubPanelWifiButton').onclick = WifiSettingsPage.HidePage;
 	}
 };
 
@@ -31,9 +32,9 @@ WifiSettingsPage.includeHTMLSucess = function(linkobj) {
    WifiSettingsPage.import = linkobj.path[0].import;
    WifiSettingsPage.wifiPageHTML = WifiSettingsPage.import.getElementById('WifiPage');
    WifiSettingsPage.WifiDeviceHTML = WifiSettingsPage.import.getElementById('WifiDeviceTemplate');
-   $("#settingsPage").append(WifiSettingsPage.import.getElementById('WifiPage'));
+   //$("#settingsPage").append(WifiSettingsPage.import.getElementById('WifiPage'));
    //$("body").append(WifiSettingsPage.import.getElementById('WifiPage'));
-   var close_button = document.getElementById('tabsCloseSubPanelWifiButton').onclick = WifiSettingsPage.HidePage;
+   //var close_button = document.getElementById('tabsCloseSubPanelWifiButton').onclick = WifiSettingsPage.HidePage;
    
    WifiSettingsPage.pageUpdate();
 };
