@@ -196,7 +196,7 @@ function generateLocListItem(locationObject,isCurrent){
 	
 	var centerSection = $(document.createElement('div')).addClass('itemText').click(function(ev){showLocationDetails(ev.target)});
 	if(isCurrent != true){
-		var removeControl = $(document.createElement('div')).addClass('removeLocationControl').html('X').click(function(){removeFromStoredLocations(this)});
+		var removeControl = $(document.createElement('div')).addClass('removeLocationControl').click(function(){removeFromStoredLocations(this)});
 	}
 	
 	centerSection.append(removeControl);

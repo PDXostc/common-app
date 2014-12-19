@@ -71,27 +71,29 @@
 	<div id="locListInner"></div>
 </div>
 
-	<form id="locationModal" class="modal-bkgrnd">	
+	<div id="locationModal" class="modal-bkgrnd">	
 		<div id="search">
 			<span onclick="hideLocationModal()" class="close-button" type="reset"></span>
 		   <h2>Location Search</h2>
 	   		<!-- <label for="Text">Enter location name:</label> -->
-		    <div input id="awxSearchTextBox" type="text" class="inputNumber" placeholder="city, state, or zip"><!-- <div class="delete-button" type="reset"></div> --></div>
-		    <input id="awxSearchButton" class="button button-blue" type="submit" value="Search" >
+		    <input id="awxSearchTextBox" type="text" class="inputNumber" placeholder="city, state, or zip"><!-- <div class="delete-button" type="reset"></div> --><!-- </div> -->
+		    <input id="awxSearchButton" class="button button-blue" type="submit" value="Search" />
 			<ul id="searchResults">
 				
 			</ul>
 		</div>
-	</form>
+	</div>
 
 <div class="bottom">
-	<div id="removeLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="toggleRemoveControl()">_</div>
+	<div id="removeLocation" class="fontColorNormal" onclick="toggleRemoveControl()">_</div>
 
-	<div id="addLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="showLocationModal()">+</div>
+	<div id="addLocation" class="fontColorNormal" onclick="showLocationModal()">+</div>
 </div>
 <!-- </div> --><!-- end of app -->
 
 <div id="bottomBar"></div>
+
+
 <!-- </div> --><!-- end of base -->
 </body>
 
