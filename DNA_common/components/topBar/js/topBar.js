@@ -1,13 +1,14 @@
 /* ==== ==== ==== init top bar js code ==== ==== ==== */
 
 //$("body").on('touchstart', topbarTouchstart, false); // PREVENT MULTITOUCH ZOOM BUBBLING
+//WARNING: Also disallows touch-click events, except in the DNA Canvas... Discovery is needed!
 
 var TopBar = {};
 
 TopBar.TemplateHTML = "DNA_common/components/topBar/topBar.html";
 
 TopBar.topbarBack = function() {
-	tizen.application.launch('JLRPOCX001.HomeScreen', noop, noop);
+	tizen.application.launch('JLRPOCX001.HomeScreen', backButtonWin, backButtonFail);
 }
 
 TopBar.topbarGrid = function(){
@@ -52,7 +53,8 @@ TopBar.backbuttonTimeout = setTimeout(function() {
 
 /* ==== ==== ==== init app grid js code ==== ==== ==== */
 
-function noop(){}
+function backButtonWin(x){console.log("1");console.log(x);}
+function backButtonFail(x){console.log("2");console.log(x);}
 
 var extras = 0, index = 0, i = 0, icon = 0, id = 0, installed=0;
 var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [], toptasks = [];
@@ -103,13 +105,9 @@ function launchApplication(id) {
 	var app = getAppByID(id);
 	console.log(app);
 	if ( !! app) {
-		if( app != tizen.application.getCurrentApplication() )
-		{
-			if (app.installed && !app.running) {
-				tizen.application.launch(app.id, onLaunchSuccess, onError);
-			} else if (app.running) {
-				console.log(app);
-			}
+		if( app != tizen.application.getCurrentApplication() ){
+			tizen.application.launch(app.id, onLaunchSuccess, onError);
+			tizen.application.getCurrentApplication().exit();
 		}
 	} else {
 		alert("Application is not installed!");
@@ -277,7 +275,7 @@ function onAppInfoSuccess(list) {
 	//populate the topbar using the topbar tasks array
 	$(toptasks).each(function(index){
 		$("#topTask"+index+" img").attr("src", toptasks[index].icon);
-		$("#topTask"+index+" img").on('click', function(){launchApplication(toptasks[index].id)});
+		$("#topTask"+index+" img").on('click', function(){launchApplication(toptasks[index].id);});
 	});
 	
 	//console.log(appList); //for grid
