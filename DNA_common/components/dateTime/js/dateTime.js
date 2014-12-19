@@ -16,9 +16,7 @@ DateTime.dnaFormatTime = function()
 
 DateTime.dnaTime = function()
 {
-	console.log("DateTime.dnaTime()");
 	var dnaTime = document.getElementById("dnaTime");
-	console.log(dnaTime);
 	dnaTime.innerHTML = "<strong>" + DateTime.dnaFormatTime() + "</strong>";
 }
 

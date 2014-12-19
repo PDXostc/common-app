@@ -17,7 +17,9 @@
 	<tizen:privilege name="http://tizen.org/privilege/bluetooth.admin" />
 	<tizen:privilege name="http://tizen.org/privilege/bluetooth.spp" />
 	<tizen:privilege name="http://tizen.org/privilege/bluetooth.gap" />
+
 	<tizen:setting screen-orientation="portrait"
 		context-menu="enable" background-support="disable" encryption="disable"
 		install-location="auto" />
+        <feature name="http://tizen.org/feature/screen.size.all"/>
 </widget>
