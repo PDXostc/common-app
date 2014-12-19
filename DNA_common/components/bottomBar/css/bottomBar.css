@@ -49,6 +49,11 @@ overflow: hidden;
 	height:100px;
 	margin: 16px 0 0 325px;
 }
+
+.bottomBarLogo {
+	content:url('/DNA_common/components/bottomBar/images/JLR-Logo.png');
+}
+
 #volumeIndicator{
 	float:right;
 	margin:50px 31px 0 0;
