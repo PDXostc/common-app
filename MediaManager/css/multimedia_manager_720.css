@@ -1,6 +1,6 @@
-body { font-family: "Droid Sans"; margin: 0; padding: 0; width: 720px; height: 1280px; color: #fff; background:url(../images/bg_blue.png) no-repeat #000; position: relative; overflow: hidden;}
+body { font-family: "Droid Sans"; margin: 0; padding: 0; width: 720px; height: 1280px; color: #fff; background:url(../images/Hex-Background.jpg) no-repeat #000; position: relative; overflow: hidden;background-size:100%;}
 div, p, ul { margin: 0; padding: 0; }
-.fontThemeColor {color:rgba(58, 174, 255, 1.0);}
+.fontThemeColor {color:rgba(83, 181, 206 1.0);}
 #clock-and-time{width:704px;overflow:hidden;padding:0 15px;margin:20px 0 30px 0;}
 .playerWrapper video { position: absolute; top: 230px; left: 55px; width: 610px; height: 300px; padding: 0; margin: 0; display: none; }
 .carouselWrapper { width: 720px; height: 300px; position: absolute; top: 230px; left: -15px; padding: 0; margin: 0; display: block; border-bottom-style: solid; border-bottom-width: 1px; }
@@ -176,17 +176,17 @@ ul.no-bullets { list-style-type: none }
 
 /* changes to images */
 .listingImageSize{width:5%; margin:0 6px;}
-li.musicLibraryContentList {padding:20px 0 37px 0px;border-bottom: 1px rgba(58, 174, 255, 1.0) solid;}
+li.musicLibraryContentList {padding:20px 0 37px 0px;border-bottom: 1px rgba(83, 181, 206, 1.0) solid;}
 .push-10right{margin-right:10px;}
 .library { position: absolute; left: 720px; top: 0; width: 720px; min-height: 1280px; z-index: 100; -webkit-transition: 1s;}
 
 
 /* repositioned with current css to get border as css instead of multiple graphics */
-.libraryLeftPanel { position: absolute; top: 173px; left: -24px;; width: 100px; min-height: 1280px; height: 100%; border-right: 1px rgba(58, 174, 255, 1.0) solid; background-repeat: no-repeat; background-position: left top; }
+.libraryLeftPanel { position: absolute; top: 173px; left: -24px; width: 100px; min-height: 1280px; height: 100%; border-right: 1px rgba(83, 181, 206, 1.0) solid; background-repeat: no-repeat; background-position: left top; }
 
 /* new as well */
 .content-listing img {position:relative;top:8px;}
-li.content-listing {border-bottom:1px rgba(58, 174, 255, 1.0) solid;height:68px;padding-top:20px;}
+li.content-listing {border-bottom:1px rgba(83, 181, 206, 1.0) solid;height:68px;padding-top:20px;}
 li.content-listing.no-images img.add-to-playlist-btn, li.content-listing.no-images img.play-now-btn {display:none;}
 .add-to-playlist-btn{margin-right:20px;}
 .artist-track-title {display:inline;font-size:large;margin-left:12px;}
@@ -208,7 +208,7 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .one-line-ellipsis-no-block { overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; -webkit-box-orient: vertical; -webkit-line-clamp: 1 }
 
 .libraryTopPanel { margin: 0; padding: 0; margin-left: 50px; height: 110px; background-repeat: no-repeat; background-position: left top; z-index: 1; overflow: hidden; }
-.libraryTopSubPanel {margin-top:-22px;border-top:rgba(58, 174, 255, 1.0) solid;}
+.libraryTopSubPanel {margin-top:-22px;border-top:rgba(83, 181, 206, 1.0) solid;}
 .libraryTopPanel .libraryTopPanelTitle { position: absolute; left: 57px; top: 19px; font-size: 0; }
 .closeLibraryButton { position: absolute; top: 25px; right: 25px; background-repeat: no-repeat; background-position: left top; width: 42px; height: 42px; z-index: 1; }
 .closeLibraryButton:active { position: absolute; top: 16px; }
@@ -218,11 +218,11 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .libraryTabSelected { background-repeat: no-repeat; }
 .libraryTabClear { display: inline-block; height: 110px; width: 130px; background-repeat: repeat-x; background-position: center top; position: absolute; top: 0; left: 640px; }
 .libraryTabInlineClear { display: inline-block; height: 110px; max-width: 630px; background-repeat: repeat-x; background-position: center top; }
-.libraryTopSubPanel { margin-top: -20px; left: 76px; padding-top: 20px; height: 60px; width: 645px; margin-bottom: 20px; z-index: 0; text-transform: uppercase; border-left: 1px rgba(58, 174, 255, 1.0) solid }
+.libraryTopSubPanel { margin-top: -20px; left: 76px; padding-top: 20px; height: 60px; width: 645px; margin-bottom: 20px; z-index: 0; text-transform: uppercase; border-left: 1px rgba(83, 181, 206, 1.0) solid }
 .closeLibrarySubPanelButton { height: 43px; background-repeat: no-repeat; background-position: left top; text-align: right; padding: 0 15px 0 35px; line-height: 43px !important; display: block; margin-left: 20px; /*vertical-align: top;*/ cursor: pointer; text-transform: uppercase; position: absolute; top: 20px; }
 
 /*added css border*/
-.libraryTopSubPanel { margin-top: -20px; left: 76px; padding-top: 20px; height: 60px; width: 645px; margin-bottom: 20px; z-index: 0; text-transform: uppercase;border-left: 1px rgba(58, 174, 255, 1.0) solid }
+.libraryTopSubPanel { margin-top: -20px; left: 76px; padding-top: 20px; height: 60px; width: 645px; margin-bottom: 20px; z-index: 0; text-transform: uppercase;border-left: 1px rgba(83, 181, 206, 1.0) solid }
 
 
 .closeLibrarySubPanelButton { height: 43px; background-repeat: no-repeat; background-position: left top; text-align: right; padding: 0 15px 0 35px; line-height: 43px !important; display: block; margin-left: 20px; /*vertical-align: top;*/ cursor: pointer; text-transform: uppercase; position: absolute;top:20px;}
@@ -266,9 +266,9 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .fontWeightLighter { font-weight: lighter; }
 /* FONT COLOR */
 .fontColorNormal { color: rgb(255, 255, 255); color: rgba(255, 255, 255, 1.0); /*#ffffff*/ }
-.fontColorTheme { color: rgb(58, 174, 255); color: rgba(58, 174, 255, 1.0); /*#3aaeff*/ }
-.fontColorLight { color: rgb(65, 183, 255); color: rgba(65, 183, 255, 1.0); /*#41b7ff*/ }
-.fontColorDark { color: rgb(0, 128, 191); /*#0080bf*/ color: rgba(0, 128, 191, 1.0); /*#0080bf*/ }
+.fontColorTheme { color: rgb(178, 240, 255); color: rgba(83, 181, 206, 1.0); /*#3aaeff*/ }
+.fontColorLight { color: rgb(178, 240, 255); }
+.fontColorDark { color: rgb(83, 181, 206); }
 .fontColorSelected { color: rgb(0, 171, 255); color: rgba(0, 171, 255, 1.0); /*#00abff*/ }
 .fontColorDimmed { color: rgb(145, 149, 153); color: rgba(145, 149, 153, 1.0); /*#919599*/ }
 .fontColorDimmedLight { color: rgb(199, 199, 199); color: rgba(199, 199, 199, 1.0); /*#c7c7c7*/ }
@@ -276,8 +276,8 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 /* PAGE BACKGROUND COLOR */
 .pageBgColorNormal { background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 1.0); }
 .pageBgColorNormalTransparent { background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.8); }
-.pageBgColorTheme { background-color: rgb(58, 174, 255); background-color: rgba(58, 174, 255, 1.0); }
-.pageBgColorThemeTransparent { background-color: rgb(58, 174, 255); background-color: rgba(58, 174, 255, 0.8); }
+.pageBgColorTheme { background-color: rgb(83, 181, 206); background-color: rgba(83, 181, 206, 1.0); }
+.pageBgColorThemeTransparent { background-color: rgb(83, 181, 206); background-color: rgba(83, 181, 206, 0.8); }
 .pageBgColorLight { background-color: rgb(65, 183, 255); background-color: rgba(65, 183, 255, 1.0); }
 .pageBgColorLightTransparent { background-color: rgb(65, 183, 255); background-color: rgba(65, 183, 255, 0.8); }
 .pageBgColorDark { background-color: rgb(0, 128, 191); background-color: rgba(0, 128, 191, 1.0); }
@@ -289,8 +289,8 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 /* BACKGROUND COLOR */
 .bgColorNormal { background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 1.0); }
 .bgColorNormalTransparent { background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.5); }
-.bgColorTheme { background-color: rgb(58, 174, 255); background-color: rgba(58, 174, 255, 1.0); }
-.bgColorThemeTransparent { background-color: rgb(58, 174, 255); background-color: rgba(58, 174, 255, 0.5); }
+.bgColorTheme { background-color: rgb(83, 181, 206);}
+.bgColorThemeTransparent { background-color: rgb(83, 181, 206); background-color: rgba(83, 181, 206, 0.5); }
 .bgColorLight { background-color: rgb(65, 183, 255); background-color: rgba(65, 183, 255, 1.0); }
 .bgColorLightTransparent { background-color: rgb(65, 183, 255); background-color: rgba(65, 183, 255, 0.5); }
 .bgColorDark { background-color: rgb(6, 36, 55); background-color: rgba(6, 36, 55, 1.0); }
@@ -312,7 +312,7 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .boxShadowInset:active, .boxShadowInset:hover { box-shadow: 0 0 2px 2px #124B73 inset; }
 /* BORDER COLOR */
 .borderColorNormal { border-color: rgb(0, 0, 0); border-color: rgba(0, 0, 0, 1.0); }
-.borderColorTheme { border-color: rgb(1, 128, 201); border-color: rgba(1, 128, 201, 0.5); }
+.borderColorTheme { border-color: border-color: rgba(83, 181, 206, 0.5); }
 .borderColorLight { border-color: rgb(128, 203, 255); border-color: rgba(128, 203, 255, 1.0); }
 .borderColorDark { border-color: rgb(0, 89, 151); border-color: rgba(0, 89, 151, 1.0); }
 .borderColorSelected { border-color: rgb(29, 162, 255); border-color: rgba(29, 162, 255, 1.0); }
@@ -341,7 +341,7 @@ img.replace-add-btn {width:5%;background:url(../images/replace_add_button.gif) n
 .callingFalse { margin-top: 117px; background-color: rgb(138, 255, 0); background-color: rgba(138, 255, 0, 0.54); }
 *:focus{outline:none;}
 .searchBoxContainer{margin:20px 0 20px 28px;overflow:auto;width:100%}
-.searchingBox { width: 360px; height: 40px; border: 1px rgba(58, 174, 255, 1.0) solid; color: white; background-color: transparent; margin-right: 20px; padding-left:10px;}
+.searchingBox { width: 360px; height: 40px; border: 1px rgba(83, 181, 206, 1.0) solid; color: white; background-color: transparent; margin-right: 20px; padding-left:10px;}
 
 #geniviBottomPanel {width:720px;height:210px;position:relative;background: url('../images/mm-bottom-panel-bg.png') no-repeat 0 bottom;}
 .logoCenter {
