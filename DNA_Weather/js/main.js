@@ -201,8 +201,8 @@ function generateLocListItem(locationObject,isCurrent){
 	
 	centerSection.append(removeControl);
 	
-	var locationName = $(document.createElement('span')).addClass('locName fontSizeXXXLarge fontColorTheme').html(locationObject.LocalizedName);
-	var moreInfo = 	$(document.createElement('div')).addClass('moreInfo').css("opacity","0");
+	var locationName = $(document.createElement('span')).addClass('locName fontSizeXXXLarge fontLtBlue').html(locationObject.LocalizedName);
+	var moreInfo = 	$(document.createElement('div')).addClass('moreInfo').css("opacity","1");
 	var currentDetails = $(document.createElement('div')).addClass('currentDetails');
 	
 	var humidity = $(document.createElement('span')).addClass('fontSizeSmall humidityData').html("--");

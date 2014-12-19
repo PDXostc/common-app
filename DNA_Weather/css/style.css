@@ -58,8 +58,8 @@ h2 {
 .locListItem {
   width: 3240px;
   overflow: hidden;
-  border-top: 1px solid rgba(0, 128, 191, 1.0);
-  border-bottom: 1px solid rgba(0, 128, 191, 1.0);
+  border-top: 1px solid rgb(83, 181, 206);
+  border-bottom: 1px solid rgb(83, 181, 206);
   /* margin-bottom: 14px; */
   margin-top: 0;
 }
@@ -90,7 +90,7 @@ h2 {
   display: inline-block;
   vertical-align: middle;
   width: 1076px;
-  background-color: rgba(29, 162, 255, 0.4);
+  background-color: rgba(83, 181, 206, 0.4);
   margin-top: 0;
   height: 178px;
 }

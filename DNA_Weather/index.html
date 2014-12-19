@@ -34,63 +34,65 @@
 </head>
 
 <body>
-<div id="base">
-	<div id="topBar"></div>
-	<div id="app">		
-		<div id="clockElement"></div>
-		<div id="listItemTemplate" style="display:none;">
-			<li class="listItem">
-				<div class="awxCurrentConditions">
-					<div class="condImage">
-						<div class="L_indicator arrow-left"></div>
-						<img class="weatherIcon" src="images/Accuweather_icons/14-s.png">
+<!-- <div id="base"> -->
+
+<div id="topBar"></div>
+<!-- <div id="app>"> -->
+<div id="clockElement"></div>
+<div id="listItemTemplate" style="display:none;">
+	<li class="listItem">
+		<div class="awxCurrentConditions">
+			<div class="condImage">
+				<div class="L_indicator arrow-left"></div>
+				<img class="weatherIcon" src="images/Accuweather_icons/14-s.png">
+			</div>
+			<div class="itemText">
+				<span class="locName fontSizeXXXLarge fontLtBlue">Portland</span>
+				<div class="moreInfo" style="opacity: 1; ">
+					<div class="currentDetails">
+						<span class="fontSizeLarge humidityData">Humidity: 63%</span>
+						<span class="fontSizeLargewindData">Wind: SE 10.4mi/h</span><br>
+						<span class="fontSizeLarge rainData">  </span>
+						<span class="fontSizeLarge rfData">RealFeel®: 71F</span>
 					</div>
-					<div class="itemText">
-						<span class="locName fontSizeXXXLarge fontColorTheme">Portland</span>
-						<div class="moreInfo" style="opacity: 1; ">
-							<div class="currentDetails">
-								<span class="fontSizeLarge humidityData">Humidity: 63%</span>
-								<span class="fontSizeLargewindData">Wind: SE 10.4mi/h</span><br>
-								<span class="fontSizeLarge rainData">  </span>
-								<span class="fontSizeLarge rfData">RealFeel®: 71F</span>
-							</div>
-						</div>
-					</div>
-					<div class="tempBox" onclick="event.stopPropagation">
-						<span class="temp">
-							<span class="tempVal">73</span><sup>°<span class="tempMeasurement">F</span></sup>
-						</span>
-						<div class="R_indicator arrow-right"></div>
-					</div>
-					<div class="removeLocationControl itemText" style=" ">X</div>
 				</div>
-			</li>
+			</div>
+			<div class="tempBox" onclick="event.stopPropagation">
+				<span class="temp">
+					<span class="tempVal">73</span><sup>°<span class="tempMeasurement">F</span></sup>
+				</span>
+				<div class="R_indicator arrow-right"></div>
+			</div>
+			<div class="removeLocationControl itemText" style=" ">X</div>
 		</div>
-		<div id="locList" class="itemList border">
-			<div id="locListInner"></div>
-		</div>
-
-			<form id="locationModal" class="modal-bkgrnd">	
-				<div id="search">
-					<span onclick="hideLocationModal()" class="close-button" type="reset"></span>
-				   <h2>Location Search</h2>
-			   		<!-- <label for="Text">Enter location name:</label> -->
-				    <div input id="awxSearchTextBox" type="text" class="inputNumber" placeholder="city, state, or zip"><!-- <div class="delete-button" type="reset"></div> --></div>
-				    <input id="awxSearchButton" class="button button-blue" type="submit" value="Search" >
-					<ul id="searchResults">
-						
-					</ul>
-				</div>
-			</form>
-
-		<div class="bottom">
-			<div id="removeLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="toggleRemoveControl()">_</div>
-
-			<div id="addLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="showLocationModal()">+</div>
-		</div>
-	</div>
-	<div id="bottomBar"></div>
+	</li>
 </div>
+<div id="locList" class="itemList border">
+	<div id="locListInner"></div>
+</div>
+
+	<form id="locationModal" class="modal-bkgrnd">	
+		<div id="search">
+			<span onclick="hideLocationModal()" class="close-button" type="reset"></span>
+		   <h2>Location Search</h2>
+	   		<!-- <label for="Text">Enter location name:</label> -->
+		    <div input id="awxSearchTextBox" type="text" class="inputNumber" placeholder="city, state, or zip"><!-- <div class="delete-button" type="reset"></div> --></div>
+		    <input id="awxSearchButton" class="button button-blue" type="submit" value="Search" >
+			<ul id="searchResults">
+				
+			</ul>
+		</div>
+	</form>
+
+<div class="bottom">
+	<div id="removeLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="toggleRemoveControl()">_</div>
+
+	<div id="addLocation" class="fontColorNormal borderColorLight bgColorThemeTransparent" onclick="showLocationModal()">+</div>
+</div>
+<!-- </div> --><!-- end of app -->
+
+<div id="bottomBar"></div>
+<!-- </div> --><!-- end of base -->
 </body>
 
 </html>
