@@ -8,7 +8,8 @@ var TopBar = {};
 TopBar.TemplateHTML = "DNA_common/components/topBar/topBar.html";
 
 TopBar.topbarBack = function() {
-	tizen.application.launch('JLRPOCX001.HomeScreen', backButtonWin, backButtonFail);
+	if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001")
+		tizen.application.launch('JLRPOCX001.HomeScreen', TopBar.backButtonWin, TopBar.backButtonFail);
 }
 
 TopBar.topbarGrid = function(){
@@ -45,16 +46,16 @@ TopBar.includeHTMLFailed = function(linkobj) {
 includeHTML("DNA_common/components/topBar/topBar.html", TopBar.includeHTMLSucess, TopBar.includeHTMLFailed);
 
 TopBar.backbuttonTimeout = setTimeout(function() {
-	if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001")
-		$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
-	else
+	if(tizen.application.getCurrentApplication().appInfo.packageId == "JLRPOCX001")
 		$("#homeScreenIcon").attr('src', '/DNA_common/images/Tizen.png');
+	else
+		$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
 }, 1000);
 
 /* ==== ==== ==== init app grid js code ==== ==== ==== */
 
-function backButtonWin(x){console.log("1");console.log(x);}
-function backButtonFail(x){console.log("2");console.log(x);}
+TopBar.backButtonWin = function(x){console.log(x);tizen.application.getCurrentApplication().exit();}
+TopBar.backButtonFail = function(x){console.log(x);}
 
 var extras = 0, index = 0, i = 0, icon = 0, id = 0, installed=0;
 var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [], toptasks = [];
