@@ -1,8 +1,5 @@
 /* ==== ==== ==== init top bar js code ==== ==== ==== */
 
-//$("body").on('touchstart', topbarTouchstart, false); // PREVENT MULTITOUCH ZOOM BUBBLING
-//WARNING: Also disallows touch-click events, except in the DNA Canvas... Discovery is needed!
-
 var TopBar = {};
 
 TopBar.TemplateHTML = "DNA_common/components/topBar/topBar.html";
@@ -15,9 +12,12 @@ TopBar.topbarGrid = function(){
 	$("#hexGridView").toggle();
 }
 
-TopBar.topbarTouchstart = function(){
-	console.log('touch control');
+topbarTouchstart = function(event){
+	if(event.originalEvent.targetTouches.length>1){
+		return false;
+	}
 }
+$("body").on('touchstart', topbarTouchstart); // PREVENT MULTITOUCH ZOOM BUBBLING
 
 TopBar.pageUpdate = function() {
 	$('#topBar').replaceWith(TopBar.topBarHTML.valueOf());
@@ -275,7 +275,7 @@ function onAppInfoSuccess(list) {
 	//populate the topbar using the topbar tasks array
 	$(toptasks).each(function(index){
 		$("#topTask"+index+" img").attr("src", toptasks[index].icon);
-		$("#topTask"+index+" img").on('click', function(){launchApplication(toptasks[index].id);});
+		$("#topTask"+index+" img").on('click', function(){launchApplication(toptasks[index].id)});
 	});
 	
 	//console.log(appList); //for grid
