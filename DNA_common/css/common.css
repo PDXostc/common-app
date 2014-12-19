@@ -73,6 +73,7 @@ body {
 	background-image: url("../images/Hex-Background.jpg");
 	position: relative;
 	display: flex;
+	overflow:hidden;
 }
 *{
 	user-select: none;
