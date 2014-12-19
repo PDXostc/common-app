@@ -186,12 +186,12 @@ function generateLocListItem(locationObject,isCurrent){
 	
 	
 	var leftArrow = '<div class="condImage">'+
-					'<span class="L_indicator"><img src="images/L_carot.png"></span><img class="weatherIcon" style="width: 75px" src="" class="icon">'+
+					'<div class="L_indicator arrow-left"></div><img class="weatherIcon" src="">'+
 					'</div>';
 	
 	var rightArrow = '<div class="tempBox" onclick="event.stopPropagation">'+
 						'<span class="temp"><span class="tempVal">--</span><sup>°<span class="tempMeasurement">F</span></sup></span>'+
-						'<span class="R_indicator"><img src="images/R_carot.png"></span>'+
+						'<div class="R_indicator arrow-right"></div>'+
 					'</div>';
 	
 	var centerSection = $(document.createElement('div')).addClass('itemText').click(function(ev){showLocationDetails(ev.target)});

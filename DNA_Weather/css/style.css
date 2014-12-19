@@ -1,35 +1,22 @@
 /* Styles specific to Weather app */
-weatherIcon {
-	width: 75px;
+.weatherIcon {
+  width: 153px;
+  float: left;
 }
-html {
-  height: 1280px !important;   
-  width: 720px !important;   
-  overflow: hidden;   
-  position: absolute !important;   
-  -webkit-user-select: none;   
-  -khtml-user-select: none;
-  user-select: none;
-}
+
 body {
-  font-size: .775em;
-  width: 720px;
-  height: 1000px;
-  margin: 0;
-  height: 1280px !important;
-  width: 720px !important;
-  overflow: hidden;
   z-index: 0;
 }
 
 h2 {
-  color: #FFF;
-  padding: 10px 0 0 20px;
-  font-size: 3em;
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: -45px;
-  margin-bottom: 5px;
+  /* color: #FFF; */
+  /* padding: 14px 0 0 28px; */
+  /* font-size: 3em; */
+  /* text-transform: uppercase; */
+  /* text-align: center; */
+  /* margin-top: -45px; */
+  margin-bottom: 7px;
+  float: left;
 }
 
 #locList {
@@ -40,11 +27,11 @@ h2 {
 .itemList {
   position: absolute;
   display: block;
-  top: 147px;
-  left: 0px;
-  height: 956px;
-  border-style: solid;
-  border-width: 2px;
+  top: 212px;
+  /* left: 0px; */
+  height: 1450px;
+/*  border-style: solid;
+  border-width: 2px;*/
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -53,36 +40,36 @@ h2 {
   position: relative;
   display: block;
   visibility: visible;
-  height: 5000px;
-  width: 716px;
+  height: 1450px;
+  width: 1076px;
 }
 .locListItemInner {
   position: relative;
   overflow: hidden;
 }
 .locListItem {
-  width: 2160px;
+  width: 3240px;
   overflow: hidden;
   border-top: 1px solid rgba(0, 128, 191, 1.0);
   border-bottom: 1px solid rgba(0, 128, 191, 1.0);
-  margin-bottom: 10px;
+  /* margin-bottom: 14px; */
   margin-top: 0;
 }
 .forecastGrid {
   display: inline-block;
   vertical-align: middle;
 }
+/*start here */
 .forecastGrid_load {
   display: inline-block;
   vertical-align: middle;
-  width: 716px;
-  height: 120px;
+  width: 1076px;
+  height: 178px;
   background: #b3ceee;
   font-family: verdana,arial,sans-serif;
-  font-size: 16px;
   z-index: -3;
-  margin-right: -3px;
-  padding-left: 4px;
+  /* margin-right: -3px; */
+  /* padding-left: 6px; */
 }
 .listItem_load {
   display: inline-block;
@@ -95,31 +82,39 @@ h2 {
 .listItem {
   display: inline-block;
   vertical-align: middle;
-  width: 716px;
+  width: 1076px;
   background-color: rgba(29, 162, 255, 0.4);
   margin-top: 0;
-  height: 122px;
+  height: 178px;
 }
 div.awxCurrentConditions {  
   background: -webkit-linear-gradient(left, #000000 0%,transparent 20%,transparent 80%,#000000 100%);
-	height: 120px;
+  
+  height: 178px;
+  display: flex;        
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 1;
 }
 .hourly {
   /*background: #b3ceee; eventually this should pull from the javascript and 
   discern whether or not it's a day or night background color (#1d274f) */
   float: left;
   text-align: center;
-  width: 118px;  
+  width: 179px;  
   border-left:none;
-  padding-top: 2px;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  /* padding-bottom: 9px; */
+}
+.hourly > img {
+    width: 108px;
 }
 .fiveDay {
   float: left;
   text-align: center;
-  width: 142px;
-  padding-top: 2px;
-  padding-bottom: 11px;
+  width: 215px;
+  /* padding-top: 3px; */
+  /* padding-bottom: 13px; */
 }
 .locName {
   text-transform: uppercase;
@@ -127,38 +122,45 @@ div.awxCurrentConditions {
   text-align: center;
 }
 .currentDetails {
-  margin-top: -3px;
+  /* margin-top: -3px; */
+  line-height: 10px;
+  padding-bottom: 20px;
 }
 .condImage {
-  display: inline-block;
-  vertical-align: middle;
-  float: left;
-  margin-top: 15px;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  /* float: left; */
+  /* margin-top: 22px; */
+  margin-left: 10px;
+  margin-bottom: 45px;
 }
 img.icon {
   width: 100px;
+  /* float: left; */
 }
 .fiveDay > img.icon {
-  width: 150px;
+  width: 216px;
   position: relative;
-  margin-top: -10px;
+  margin-top: -9px;
   left: 0px;
   z-index: -1;
 }
 .iconPhrase {
-  height: 15px;
-  margin-top: -5px;
-  line-height: 15px;
+  height: 43px;
+  margin-top: -13px;
+  line-height: 23px;
   margin-bottom: 13px;
+  font-size: .75em;
 }
 .fiveDay > .iconPhrase  {
-  margin-top: -75px;
-  margin-bottom: 25px;
+  margin-top: -93px;
+  /* margin-bottom: -9px; */
 }
 .tempBox {
-  display: inline-block;
-  vertical-align: middle;
-  float: right;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  /* float: right; */
+  margin-right: 10px;
 }
 .temp {
   font-size: 8.25em;
@@ -172,14 +174,14 @@ img.icon {
   line-height: 95%;
 }
 .itemText {
-  display: inline-block;
-  vertical-align: middle;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
   text-align: center;
-  margin-top: 8px;
+  /* margin-top: 8px; */
 }
 .moreInfo {
-  width: 415px;
-  vertical-align: middle;
+  width: 600px;
+  /* vertical-align: middle; */
   overflow: hidden;
   font-weight: bold;
   /*text-transform: uppercase; can't use this and have RealFeel camelcased */
@@ -212,21 +214,43 @@ img.icon {
   width: 285px !important;
 }
 .temp {
-  font-size: 5em;
+  font-size: 4em;
   color: white;
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: -2px;
+  line-height: 1.75em;
 }
 sup {
   font-size: 50%;
 }
 .L_indicator {
-  margin-left: 10px;
-  margin-right: 5px;
+  /* margin-left: 60px; */
+  margin-right: 7px;
+  height: 50px;
+  width: 50px;
+  float: left;
+  margin-top: 15px;
 }
 .R_indicator {
   margin-left: 10px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  margin-top: 105px;
+  float: right;
+}
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 35px solid transparent;
+  border-bottom: 30px solid transparent;  
+  border-left: 55px solid rgba(255,255,255, 0.65)
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 35px solid transparent;
+  border-bottom: 30px solid transparent;  
+  border-right:55px solid rgba(255,255,255, 0.65)
 }
 #search > p {
   color: #FFF;
@@ -251,30 +275,35 @@ sup {
   border: 1px solid rgb(128, 203, 255);
 }
 #awxSearchButton {
-  height: 50px;
-  width: 130px;
-  background-color: #245f88;
-  color: rgb(128, 203, 255);
-  text-transform: uppercase;
-  border: 1px solid rgba(128, 203, 255, 1);
-  margin-left: 5px;
+  /* height: 72px; */
+  /* width: 187px; */
+  /* background-color: #245f88; */
+  /* color: rgb(128, 203, 255); */
+  /* text-transform: uppercase; */
+  /* border: 1px solid rgba(128, 203, 255, 1); */
+  /* margin-left: 7px; */
+  float: right;
 }
 #awxSearchTextBox {
-  padding-left: 10px;
-  margin: 5px 5px 10px 0;
-  border: none;
-  background-color: #fff;
-  width: 400px;
-  height: 50px;
-  color: #404040;
-  font-family: sans-serif, "Arial";
+  /* padding-left: 10px; */
+  /* margin: 7px 7px 14px 0; */
+  /* border: none; */
+  /* background-color: #fff; */
+  /* width: 576px; */
+  /* height: 72px; */
+  /* color: #404040; */
+  /* font-family: sans-serif, "Arial"; */
+  float: left;
 }
+
+input#awxSearchTextBox {}
 .hour_temp  {
   font-weight: bold;
-  font-size: 16px;
+  /* font-size: .75em; */
 }
 .hourly > p {
   color: #333;
+  font-size: .85em;
 }
 .hour {
   font-weight: bold;
@@ -282,39 +311,31 @@ sup {
 .weekday {
   font-weight: bold;
   padding-top: 2px;
+  font-size: .85em;
 }
-.articleClose {
-  display: block;
-  position: absolute;
-  top: 1051px;
-  left: 667px;
-  width: 40px;
-  height: 40px;
-  border-width: 1px;
-  border-style: solid;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 22px;
-  z-index: 11;
-  padding: 5px 5px 5px 5px;
-  letter-spacing:  5px;
-}
+
 span.fontSizeSmall {
   padding: 10px;
 }
 
 #locationModal{
-	display:none;
-  width: 550px;
-  margin: 0 auto;
-  top:40%;
+  display:none;
+/*  max-width: 100%;
   background-color: rgba(0,0,0,0.8);
   -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
-  padding: 10px;
+  padding: 14px;
+  text-align: center;*/
+}
+.modal-bkgrnd{
+  background-color: rgba(0,0,0,0.8);
+  -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
+  max-width: 58%;
+  height: 100%;
+  background-color: #222;
 }
 
 .removeLocationControl{
-	display: none;
+  display: none;
   border: 1px solid rgb(128, 203, 255);
   width: 35px;
   height: 35px;
@@ -327,46 +348,47 @@ span.fontSizeSmall {
   margin-left: -105px;
 }
 div#addLocation {
-  display: inline-block;
-  float:right;
-  top:1024px;
-  width: 80px;
-  height: 80px;
-  line-height: 70px;
+  /* display: block; */
+  /* float:right; */
+  width: 115px;
+  height: 115px;
+  line-height: 110px;
   text-align: center;
   border: 1px solid rgb(128, 203, 255);
+  font-size: 140px;
 }
 div#removeLocation {
-  display: inline-block;
-  float:left;
-  top:1024px;
-  width: 80px;
-  height: 80px;
-  line-height: 70px;
+  /* display: block; */
+  /* float:left; */
+  width: 115px;
+  height: 115px;
+  line-height: 0px;
   text-align: center;
   border: 1px solid rgb(128, 203, 255);
+  font-size: 135px;
 }
 
 .bottomPanelLogo.bottomPanelLogoImg {
-	background-image:url('../images/accuweather_icon.png');
-	background-repeat: no-repeat;
-	margin-top: 35px;
-	margin-left: -35px;
-	width: 285px !important;
+  background-image:url('../images/accuweather_icon.png');
+  background-repeat: no-repeat;
+  margin-top: 35px;
+  margin-left: -35px;
+  width: 285px !important;
 }
 
 div {
     position: relative;
-    font-size: .775em; 
+    /* font-size: 1em; */ 
 }
 
 * {
     margin: 0;
     padding: 0;
-    -webkit-user-select:none;
 }
 p, ul, li {
   color: #333;
+  font-size: .75em;
+  margin-bottom: 0px;
 }
 li {
     margin-left: 0;
@@ -380,10 +402,12 @@ ul {
     list-style: none;
 }
 
-.borderColorLight {
-    border-color: rgb(128, 203, 255);   
-    border-color: rgba(128, 203, 255, 1.0);
+.border {
+    /*border-color: rgb(128, 203, 255);   
+    border-color: rgba(128, 203, 255, 1.0);*/
+    border: 2px solid rgba(255,255,255, 0.5);
 }
+
 .boxShadow4 {
   box-shadow: 0 0 70px 2px rgba(29, 162, 255, 0.4);
 }
@@ -482,4 +506,12 @@ input {
 .inputBox .nextButton:active {
   top: 1px;
   right: 1px;
+}
+.bottom {
+    display: flex;  
+    align-items: flex-end;    
+    justify-content: space-between;
+    margin-bottom: 135px;
+    /* flex: 1; */
+    /* width: 98%; */
 }
