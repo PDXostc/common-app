@@ -1,4 +1,19 @@
-app_list = DNA_HomeScreen DNA_HelloTizen DNA_RVITest DNA_News DNA_Phone DNA_HVAC DNA_Dashboard DNA_Navigation DNA_NFC DNA_MOST_AudioSettings DNA_Browser DNA_Weather
+app_list = \
+           DNA_HomeScreen \
+           DNA_News \
+           DNA_Phone \
+           DNA_HVAC \
+           DNA_Dashboard \
+           DNA_Navigation \
+           DNA_NFC \
+           DNA_MOST_AudioSettings \
+           DNA_Browser \
+           DNA_Weather
+
+not_installed =\
+           DNA_HelloTizen \
+           DNA_RVITest \
+
 extension_list = extension_common wkb_client_ext most
 TIZEN_IP=TizenVTC
 #TIZEN_IP=192.168.6.11
