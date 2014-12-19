@@ -32,7 +32,7 @@ TopBar.includeHTMLSucess = function(linkobj) {
 		TopBar.import = linkobj.path[0].import;
 		console.log(TopBar.import);
 		TopBar.topBarHTML = TopBar.import.getElementById('topBar');
-		setTimeout(TopBar.pageUpdate,5000);
+		setTimeout(TopBar.pageUpdate,2000);
 }
 
 TopBar.includeHTMLFailed = function(linkobj) {

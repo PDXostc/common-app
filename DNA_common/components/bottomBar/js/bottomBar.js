@@ -52,7 +52,7 @@ BottomBar.includeHTMLSucess = function(linkobj) {
 		BottomBar.import = linkobj.path[0].import;
 		console.log(BottomBar.import);
 		BottomBar.bottomBarHTML = BottomBar.import.getElementById('bottomBar');
-		setTimeout(BottomBar.pageUpdate,5000);
+		setTimeout(BottomBar.pageUpdate,2000);
 	}
 
 BottomBar.includeHTMLFailed = function(linkobj) {

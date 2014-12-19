@@ -68,7 +68,7 @@ includeJs("DNA_common/components/car/js/car.js");
 includeJs("DNA_common/components/configuration/js/configuration.js");
 includeJs("DNA_common/js/carIndicator.js");
 includeJs("DNA_common/js/user.js");
-//includeJs("DNA_common/js/bootstrap.js");
+includeJs("DNA_common/js/bootstrap.js");
 includeJs("DNA_common/components/rvi/js/ej.js");
 includeJs("DNA_common/components/rvi/js/wse.js");
 includeJs("DNA_common/components/rvi/js/rvi.js");
