@@ -1,48 +1,5 @@
-/*GENERAL CSS*/
+/* BottomBar and topBar overrides */
 
-* {
-	/*Reset default browser styles*/
-	margin: 0;
-	padding: 0;
-	border: none;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	-webkit-user-select: none;
-}
-
-html, body {
-	/*GLOBAL HTML and BODE Dimansions*/
-	width: 100%;
-	min-height: 100%;
-}
-
-body {
-	/*FONT FAMILY*/
-	font-family: sans-serif;
-	/*Defaul font size*/
-	font-size: 16px;
-	background-color: #000;
-	color: #fff;
-	overflow:hidden;
-}
-
-/*Default style for all images*/
-
-img {
-	border-width: 0px;
-	border-style: none;
-	margin: 0px;
-	padding: 0px;
-	z-index: 1000;
-	pointer-events: none;
-}
-
-/*Default style for all DIVs*/
-
-div {
-	position: absolute;
-	margin: 0;
-	padding: 0;
-}
 
 .windowText {
 	top: 190px;
@@ -51,20 +8,6 @@ div {
 	color: white;
 	text-align: center;
 }
-
-/*FORD CONTAINER  DEFAULT DIMANSIONS */
-
-#app {
-	/*position:relative;*/
-	width: 720px;
-	height: 995px;
-    top: 85px;
-	/*overflow: hidden;
-	 Mac font smoothing */
-	-webkit-font-smoothing: antialiased;
-	/*margin: 25px auto;*/ 
-}
-
 
 /* TTS popUp*/
 
@@ -399,16 +342,18 @@ div {
 /*BOTTOM Control BUTTONS*/
 
 #app_bottom_controlls {
-	z-index: 11000;
-	bottom: 0px;
-	left: 320px;
-	width: 252px;
-	height: 59px;
+	display: flex;
+	justify-content: center;
+	/*z-index: 11000;*/
+	/*bottom: 0px;*/
+	/*left: 320px;*/
+	/*width: 252px;*/
+	/*height: 59px;*/
 	/*background: url(../images/common/bottom_cont_bg.png) no-repeat;*/
-	overflow: hidden;
-	pointer-events: none;
+	/*overflow: hidden;*/
+	/*pointer-events: none;*/
     /* top:650px; */
-    position:absolute;
+    /*position:absolute;*/
 }
 
 #home_active {
@@ -423,13 +368,13 @@ div {
 #home_but {
 	height: 59px;
 	width: 73px;
-	cursor: pointer;
-	z-index: 1000;
+	/*cursor: pointer;*/
+	/*z-index: 1000;*/
 	background: url(../images/home/bottom_controlls_full.png) no-repeat;
 	background-position: -90px -59px;
 	position: relative;
-	float: left;
-	pointer-events: none;
+	/*float: left;*/
+	/*pointer-events: none;*/
 }
 
 #home_but.large {
@@ -450,10 +395,10 @@ div {
 #home_but_click {
 	height: 59px;
 	width: 73px;
-	cursor: pointer;
-	z-index: 1001;
-	position: absolute;
-	pointer-events: all;
+	/*cursor: pointer;*/
+	/*z-index: 1001;*/
+	/*position: absolute;*/
+	/*pointer-events: all;*/
 	
 }
 
@@ -548,13 +493,16 @@ div {
 /*ACTIVE VISIBLE FOR CONTENT BLOCK*/
 
 .inactive_state {
-	-webkit-transform: translateX(-2000px);
-	-moz-transform: translateX(-2000px);
+/*	-webkit-transform: translateX(-2000px);
+	-moz-transform: translateX(-2000px);*/
+	display: none;
 }
 
 .active_state {
-	-webkit-transform: translateX(0px) !important;
-	-moz-transform: translateX(0px) !important;
+/*	-webkit-transform: translateX(0px) !important;
+	-moz-transform: translateX(0px) !important;*/
+	display: flex;
+	flex: 1;
 }
 
 .passive_button_color {
@@ -563,12 +511,12 @@ div {
 
 /*MEDIA BLOCK CONTAINER*/
 
-
+/*
 #media {
 	width: 800px;
 	height: 480px;
     display:block;
-}
+}*/
 
 
 /****************************** FOR MEDIA VIEW************************************************/
@@ -784,11 +732,11 @@ div {
 /* List item */
 .list-item {
 	position: relative;
-	width: 100%;
+	/*width: 100%;*/
 	height: 49px;
 	font-size: 20px;
 	line-height: 50px;
-	border-bottom: 1px solid #393939;
+	/*border-bottom: 1px solid #393939;*/
 }
 
 /* List item background */
@@ -816,9 +764,9 @@ div {
 */
 
 .scrollbar {
-	position: absolute;
-	top: 0px;
-	right: 0px;
+	/*position: absolute;*/
+	/*top: 0px;*/
+	/*right: 0px;*/
 	width: 48px;
 	background: black;
 	border: 1px solid #393939;
@@ -875,9 +823,9 @@ div {
 	height: 48px;
 	width: 48px;
 	border-top: #393939 1px solid;
-	position: absolute;
+	/*position: absolute;*/
 	cursor: pointer;
-	bottom: 0px;
+	/*bottom: 0px;*/
 }
 
 /* Buttons image position */
@@ -1059,15 +1007,6 @@ div {
 
 .button  img{
 	float: left;
-}
-
-/* default style */
-
-* {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	-webkit-user-select: none;
 }
 
 /******************* For FAQ View *******************/

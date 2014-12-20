@@ -3,14 +3,14 @@
  */
  
 .ffw_list_menu {
-	left: 440px;
+	/*left: 440px;*/
 	width: 158px;
 	border: 1px solid #393939;
 	overflow: hidden;
 }
 
 .ffw_list_menu .control {
-	z-index: 2000;
+	/*z-index: 2000;*/
 	text-align: center;
 }
 
@@ -64,10 +64,12 @@
 }
 
 #info_apps_deviceList_view .progress{
-    top: 175px;
-    left: 254px;
-    background: URL('../images/sdl/progress.gif') no-repeat;
-    width: 300px;
+    /*top: 175px;*/
+    /*left: 254px;*/
+    background-image: url(../images/sdl/progress.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 100%;
     height: 200px;
 }
  
@@ -149,7 +151,8 @@
 #info_apps_deviceList_list .list-content span,
 #sdl_view_container .list-content span,
 #sdl_options .list-content span{
-	margin-left: 15px;
+	/*margin-left: 15px;*/
+	line-height: 51px;
 }
 
 #sdl_options .list-content .ico {
@@ -777,7 +780,7 @@
 }
 
 #sdl_view_container{
-	z-index:501;
+	/*z-index:501;*/
 }
 
 #sdl_view_container .title{

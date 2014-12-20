@@ -8,10 +8,10 @@
 
 
 #media_leftmenu {
-	z-index: 301;
-	position: absolute;
-	top: 90px;
-	left: 0px;
+	/*z-index: 301;*/
+	/*position: absolute;*/
+	/*top: 90px;*/
+	/*left: 0px;*/
 	width: 150px;
 	height: 300px;
 	background: #333;
@@ -308,10 +308,10 @@
 }
 
 .ls_border {
-	z-index: 201;
-	position: absolute;
-	top: -3px;
-	left: 0px;
+	/*z-index: 201;*/
+	/*position: absolute;*/
+	/*top: -3px;*/
+	/*left: 0px;*/
 	width: 153px;
 	height: 306px;
 	background:url(../images/common/ls_border.png) no-repeat;
@@ -324,7 +324,7 @@
 }
 
 .media-ls-item {
-	z-index: 201;
+	/*z-index: 201;*/
 	position: relative;
 	height: 50px;
 	cursor: pointer;
@@ -2726,9 +2726,9 @@
 	background: url(../images/media/player_view.png) no-repeat;
 	width: 635px;
 	height: 323px;
-	top: 70px;
-	left: 161px;
-	z-index:501;
+	/*top: 70px;*/
+	/*left: 161px;*/
+	/*z-index:501;*/
 }
 
 #home_widgetMedia_cd {width:399px; height:193px}
@@ -2842,8 +2842,8 @@
 }
 
 #sdl_view_container .ffw_list_menu {
-	top: 90px;
-	left: 650px;
+	/*top: 90px;*/
+	/*left: 650px;*/
 	width: 140px;
     display:none;
 }

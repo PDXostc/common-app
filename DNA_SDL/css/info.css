@@ -25,10 +25,10 @@
 }
 
 #info_view {
-	width: 720px;
+	/*width: 720px;*/
 /* 	height: 480px; */
-	position: absolute;
-	top: 0;
+	/*position: absolute;*/
+	/*top: 0;*/
 }
 
 #info_view.green_bg {
@@ -39,15 +39,15 @@
 	background: #333;
 	width: 150px;
 	height: 300px;
-	top: 90px;
-    display: none;
+	/*top: 90px;*/
+  display: none;
 }
 #info_leftMenu .menu-item.info_active{
 	background: url("../images/info/menu_active.png") repeat-x;
 }
 
 #info_leftMenu .menu-item {
-	z-index: 201;
+	/*z-index: 201;*/
 	position: relative;
 	width: 150px;
 	height: 50px;
@@ -690,7 +690,8 @@
 }
 
 /******************* For Info.DeviceList *******************/
-#info_view .info_apps_deviceList_view{
+#info_view .info_apps_deviceList_view {
+	flex-wrap: wrap;
 /* 	background: black;
 	width: 800px;
 	height: 480px;
@@ -698,57 +699,66 @@
     position: absolute;
     top: -850px;
     left: 50px;   */  
-	width: 720px;
-	height: 480px;
-	z-index: 201;
+	/*width: 720px;*/
+	/*height: 480px;*/
+	/*z-index: 201;*/
 }
 
 
 #info_apps_deviceList_view .backButton {
-	position: absolute;
-	top: 0;
+	/*position: absolute;*/
+	/*top: 0;*/
 	width: 48px;
 	height: 48px;
-	border: 1px solid #333;
-	border-radius: 2px;
-	margin: 0;
+	/*border: 1px solid #333;*/
+	/*border-radius: 2px;*/
+	/*margin: 0;*/
 }
 
 #info_apps_deviceList_view .list{
-	position: absolute;
-	top: 50px;
-	width: 720px;
+	order: 3;
+	/*position: absolute;*/
+	/*top: 50px;*/
+	min-width: 100%;
 	height: 890px;
-	border-radius: 2px;
+	/*border-radius: 2px;*/
 }
 
 #info_apps_deviceList_view .deviceListLabel{
 /* 	top: 80px; */
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 20px;
-	background: #393939;
-	padding: 15px 0 15px 120px;
-	font-size: 16px;
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*width: 100%;*/
+	line-height: 70px;
+	height: 70px;
+	margin: 20px 0;
+	/*background: #393939;*/
+	/*padding: 15px 0 15px 120px;*/
+	font-size: 3rem;
+	color: white;
 }
 
 #info_apps_deviceList_view .list-content{
 	width: 100%;
+	height: 100%;
 	border: none;
 	text-align: center;
 }
 #info_apps_deviceList_view .list-item{
-	border: 1px solid #393939 !important;
+	color: white;
+	line-height: 51px;
+	border: 1px solid rgba(255,255,255,0.8);
 }
 /******************* For Info.Apps menu*******************/
 #info_apps {
-	position: absolute;
-	top: 0;
-	width: 720px;
-	height: 936px;
+	justify-content: center;
+	align-items: flex-end;
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*width: 720px;*/
+	/*height: 936px;*/
 /* 	float: left; */
-	z-index: 1001;
+	/*z-index: 1001;*/
 }
 
 #info_apps .backButton{
@@ -809,16 +819,16 @@
 }
 
 #info_apps .leftButtons {
-	position: absolute;
-	bottom: 0;
-	width: 278px;
+	/*position: absolute;*/
+	/*bottom: 0;*/
+	/*width: 278px;*/
 /* 	float: left; */
-	margin: auto 10px 20px 10px;
+	/*margin: auto 10px 20px 10px;*/
 	height: 51px;
-	font-size: 20px;
-	line-height: 50px;
-	border: 1px solid #393939;
-	cursor: pointer;
+	/*font-size: 20px;*/
+	/*line-height: 50px;*/
+	/*border: 1px solid #393939;*/
+	/*cursor: pointer;*/
 /* 	left: 10px;
     position: absolute; */
 }
@@ -839,7 +849,7 @@
 }
 
 #info_apps .findNewApps{
-    left: 0;
+  /*left: 0;*/
 }
 
 #info_apps .findNewApps img{
@@ -848,7 +858,7 @@
 }
 
 #info_apps .getDeviceList{
-    right: 0;
+  /*right: 0;*/
 }
 
 #info_apps .getDeviceList img{
@@ -857,10 +867,10 @@
 }
 
 #info_apps .list {
-    width: 720px;
-    height: 865px;
-    overflow-x: hidden;
-    overflow-y: auto;
+  /*width: 720px;*/
+  /*height: 865px;*/
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #info_apps_install_Button span{

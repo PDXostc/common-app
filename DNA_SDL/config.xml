@@ -2,7 +2,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.ford.tizen/smartdevicelink" version="14.9.4796" viewmodes="fullscreen">  
 	<icon src="icon.png"/>  
 	<name>SmartDeviceLink</name>  
-    <tizen:application id="intelPoc17.SDL" package="intelPoc17" required_version="2.1"/>
+    <tizen:application id="JLRPOCX014.SDL" package="JLRPOCX014" required_version="2.1"/>
 	<feature name="http://tizen.org/api/bluetooth" required="true"/>
 	<feature name="http://tizen.org/api/bluetooth.admin" required="true"/>
 	<feature name="http://tizen.org/api/bluetooth.gap" required="true"/>
