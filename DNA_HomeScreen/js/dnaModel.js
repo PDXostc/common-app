@@ -583,7 +583,7 @@ function addIcon(Icon, Callback, Path, Id){
 	if(Callback!==null)
 		IconLinks.push([img,Callback]);
 	else
-		IconLinks.push([img,function (){ tizen.application.launch(Id); }])
+		IconLinks.push([img,function (){ tizen.application.launch(Id);tizen.application.getCurrentApplication().exit(); }])
 	IconCount++;
 }
 function rescale(scale,cos){
