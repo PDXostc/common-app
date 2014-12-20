@@ -1,3 +1,9 @@
+/* Settings Overrides */
+
+.settingElement {
+  margin: 0 40px; 
+}
+
 /* Styles specific to Weather app */
 .weatherIcon {
   width: 153px;
