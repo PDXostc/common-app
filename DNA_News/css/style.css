@@ -212,6 +212,11 @@ a {
   width: 234px !important;
 }
 
+#bottomBarLogoImg {
+	content:url('/images/logo_icon.png');
+}
+
+
 body {
   width: 1080px;
   height: 1920px;
