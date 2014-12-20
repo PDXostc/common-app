@@ -5,8 +5,10 @@ var TopBar = {};
 TopBar.TemplateHTML = "DNA_common/components/topBar/topBar.html";
 
 TopBar.topbarBack = function() {
-	if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001")
+	if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001"){
 		tizen.application.launch('JLRPOCX001.HomeScreen', TopBar.backButtonWin, TopBar.backButtonFail);
+		tizen.application.getCurrentApplication().exit();
+	}
 }
 
 TopBar.topbarGrid = function(){
@@ -163,6 +165,7 @@ function onFrameClick(appData) {
 					}
 				} else {
 					tizen.application.launch(appData.id, onLaunchSuccess, onError);
+					tizen.application.getCurrentApplication().exit();
 				}
 				break;
 			}
