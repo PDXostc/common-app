@@ -6,6 +6,12 @@
   z-index: 1005 !important;
 }
 
+.settingElement {
+  margin: 0 40px; 
+}
+
+/* End overrides */
+
 body {
   overflow: hidden;
 }
