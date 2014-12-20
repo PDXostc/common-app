@@ -28,14 +28,14 @@
 	height:1920px;
 }*/
 .tabs {
-	width: 100%;
-	height: 100%;
-	left: 0;
-	z-index: 20;
-	display: flex;
+	/*width: 100%;*/
+	/*height: 100%;*/
+	/*left: 0;*/
+	/*z-index: 20;*/
+	/*display: flex;*/
 	flex-direction: column;
-	flex-grow: 1;
-	flex: none;
+	/*flex-grow: 1;*/
+	/*flex: none;*/
 }
 /* copied from css/tabs.css
 .tabsTopPanel {
