@@ -13,7 +13,7 @@ html {
   user-select: none;
 }
 body {
-  z-index: 0;
+  /* z-index: 0; */
 }
 
 h2 {
@@ -29,15 +29,17 @@ h2 {
 
 #locList {
   visibility: visible;
-  z-index: -800;
+  /* z-index: -800; */
   overflow: hidden;
+  flex: 1;
+  display: flex;
 }
 .itemList {
-  position: absolute;
-  display: block;
-  top: 212px;
+  /* position: absolute; */
+  /* display: block; */
+   margin-top: 116px; 
   /* left: 0px; */
-  height: 1450px;
+  /* height: 1450px; */
 /*  border-style: solid;
   border-width: 2px;*/
   overflow-y: scroll;
@@ -45,14 +47,14 @@ h2 {
   -webkit-overflow-scrolling: touch;
 }
 #locListInner {
-  position: relative;
-  display: block;
+  /* position: relative; */
+  /* display: block; */
   visibility: visible;
-  height: 1450px;
-  width: 1076px;
+  /* height: 1450px; */
+  /* width: 1076px; */
 }
 .locListItemInner {
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
 }
 .locListItem {
@@ -286,13 +288,14 @@ sup {
   /* border: 1px solid rgba(128, 203, 255, 1); */
    margin-top: 0; 
   float: right;
+  margin-bottom: 30px;
 }
 #awxSearchTextBox {
   /* padding-left: 10px; */
   /* margin: 7px 7px 14px 0; */
   /* border: none; */
   /* background-color: #fff; */
-  /* width: 576px; */
+  width: 400px;
    height: 60px; 
   /* color: #404040; */
   /* font-family: sans-serif, "Arial"; */
@@ -327,11 +330,12 @@ span.fontSizeSmall {
   text-align: center;*/
 }
 .modal-bkgrnd{
-  background-color: rgba(0,0,0,0.8);
   -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
-  max-width: 58%;
-  height: 100%;
+  width: 614px;
   background-color: #222;
+  top: 30%;  
+  left: 50%;  position: absolute;  transform: translate(-50%, -50%);
+  padding: 0 20px 20px 30px;
 }
 
 .removeLocationControl{
@@ -386,7 +390,7 @@ div#removeLocation {
 }
 
 div {
-    position: relative;
+    /* position: relative; */
 }
 
 * {
@@ -519,10 +523,24 @@ input {
     display: flex;  
     align-items: flex-end;    
     justify-content: space-between;
-    margin-bottom: 135px;
+    /* margin-bottom: 135px; */
     /* flex: 1; */
     /* width: 98%; */
 }
-.app-icon {
-  background-image: "images/accuweather_icon.png";
+#bottomBarLogoImg {
+  content:url('/images/accuweather_icon.png');
+}
+#app {
+  flex-direction: column;
+  border: 2px solid rgba(255,255,255, 0.5);
+}
+
+.inputNumber {
+  margin-right: 10px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+}
+.close-button {
+  padding-bottom: 0;
+  width: 50px;
 }
