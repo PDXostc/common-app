@@ -196,13 +196,13 @@ function generateLocListItem(locationObject,isCurrent){
 	
 	var centerSection = $(document.createElement('div')).addClass('itemText').click(function(ev){showLocationDetails(ev.target)});
 	if(isCurrent != true){
-		var removeControl = $(document.createElement('div')).addClass('removeLocationControl').html('X').click(function(){removeFromStoredLocations(this)});
+		var removeControl = $(document.createElement('div')).addClass('removeLocationControl').click(function(){removeFromStoredLocations(this)});
 	}
 	
 	centerSection.append(removeControl);
 	
-	var locationName = $(document.createElement('span')).addClass('locName fontSizeXXXLarge fontColorTheme').html(locationObject.LocalizedName);
-	var moreInfo = 	$(document.createElement('div')).addClass('moreInfo').css("opacity","0");
+	var locationName = $(document.createElement('span')).addClass('locName fontSizeXXXLarge fontLtBlue').html(locationObject.LocalizedName);
+	var moreInfo = 	$(document.createElement('div')).addClass('moreInfo').css("opacity","1");
 	var currentDetails = $(document.createElement('div')).addClass('currentDetails');
 	
 	var humidity = $(document.createElement('span')).addClass('fontSizeSmall humidityData').html("--");
