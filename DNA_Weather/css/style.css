@@ -154,7 +154,7 @@ img.icon {
 }
 .fiveDay > img.icon {
   width: 216px;
-  position: relative;
+  /*position: relative;*/
   margin-top: -9px;
   left: 0px;
   z-index: -1;
