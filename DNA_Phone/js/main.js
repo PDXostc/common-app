@@ -13,19 +13,22 @@
 //includeJs("./js/phone.js");
 //includeJs("./js/contacts_library.js");
 
-includeJs("./DNA_common/js/predefAppModel.js");
-includeJs("./DNA_common/js/installedApps.js");
-includeJs("./DNA_common/js/keyControl.js");
-includeJs("./DNA_common/js/actionCatcher.js");
-includeJs("./DNA_common/js/HomeScreenMain.js");
+//includeJs("./DNA_common/js/predefAppModel.js");
+//includeJs("./DNA_common/js/installedApps.js");
+//includeJs("./DNA_common/js/keyControl.js");
+//includeJs("./DNA_common/js/actionCatcher.js");
+//includeJs("./DNA_common/js/HomeScreenMain.js");
 includeJs("js/contacts_library.js");
+
 includeJs("js/callhistorycarousel.js",function(){
 			if (!callHistoryCarousel) {
 
 				callHistoryCarousel = new Carousel();
 			}
 	});
-includeJs("js/phone.js");
+	    onDepenancy("knockout.js",function(){
+				includeJs("js/phone.js");
+			},"phone");
 
 
 /** 
