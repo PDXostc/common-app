@@ -44,10 +44,17 @@ overflow: hidden;
 #closeApp{
 	display:none;
 }
+/*drop in any logo of any size loading the image content to style.css in app; 
+the following style will center the image but not size or stretch it*/
 #bottomBarLogoImg{
-	width:400px;
+/*	width:400px;  this size stretches the logos out of proportion, doesn't work for all
 	height:100px;
-	margin: 16px 0 0 325px;
+	margin: 16px 0 0 325px;*/
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 300px;
+	transform: translate(-50%, -50%);
 }
 
 .bottomBarLogo {
