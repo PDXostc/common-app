@@ -1,8 +1,10 @@
 /*severe weather alert box*/
 div#weather_alert {
-	top: 300px;
-	height: 500px;
-	width: 550px;
+	top: 100px;
+	left: 100px;
+	height: 1450px;
+	width: 880px;
+	position:absolute;
 	margin: auto;
 	background: -webkit-linear-gradient(top, #000 0%, #0b4166 100%);
 	border: 1px solid #FFF;
