@@ -326,25 +326,25 @@ width:27%;
 left:60.77%
 }
 
-#audiosettings div.right {
-background:url(../images/move_right_58_194.svg) no-repeat 0 center;
+div.right {
+background:url(../images/move_right_58_194.svg) no-repeat center center;
 left:89%;
 background-size:100%
 }
 
 div.right:hover,.right:active {
-background:url(../images/move_right_hover_58_194.svg) no-repeat;
+background:url(../images/move_right_hover_58_194.svg) no-repeat 50%;
 background-size:100%
 }
 
-#audiosettings div.left {
-background:url(../images/left_move_58_194.svg) no-repeat 0 center;
+div.left {
+background:url(../images/left_move_58_194.svg) no-repeat center center;
 left:51%;
 background-size:100%
 }
 
 div.left:hover,.left:active {
-background:url(../images/left_move_hover_58_194.svg) no-repeat;
+background:url(../images/left_move_hover_58_194.svg) no-repeat 50%;
 background-size:100%
 }
 
