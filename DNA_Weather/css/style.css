@@ -10,8 +10,8 @@
   float: left;
 }
 html {
-  height: 1280px !important;   
-  width: 720px !important;   
+	height:1920px;
+	width:1080px;
   overflow: hidden;   
   position: absolute !important;   
   -webkit-user-select: none;   

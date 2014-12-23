@@ -22,6 +22,11 @@ var carIndicatorSignals =  [
 
 var myScroll;
 
+function fixscroll(){ console.log("FIX IT!");
+	if(typeof($(".locListItem")[0]) == typeof(undefined)) return;
+	if($(".locListItem")[0].style.cssText.split('translate(')[1].split(', ')[0] == '0px')
+		$(".locListItem").css('transform', 'translate(-1076px, 0px) translateZ(0px)');
+}
 /**
  * Initialize plugins, register events for Store app.
  * @method init
@@ -108,6 +113,7 @@ function setupSpeechRecognition() {
 }
 
 function getLocationKeyFromLatLong(){
+	
 	var coords = getCurrentLatLong();
 	var geoposition = "http://apidev.accuweather.com/locations/v1/cities/geoposition/search.json?q="+coords.lat+","+coords.long+"&apikey="+apiKey;	
 	
@@ -165,7 +171,7 @@ function saveLocationsList(locations){
 }
 
 function getLocations(){
-	
+
 	var locations = JSON.parse(localStorage.getItem("locations"));
 	if(locations == null) locations = [];
 	return locations;
@@ -237,7 +243,7 @@ function generateLocListItem(locationObject,isCurrent){
 }
 
 function addLocationsToDisplay(){
-	
+	fixscroll();
 	var locations = getLocations();
 	//$("#locListInner").empty();
 	$(locations).each(function(i){
@@ -267,12 +273,14 @@ function addLocationsToDisplay(){
 		    	    {
 		    	        scrollX: true, 
 		    	        scrollY: false, 
-		    	        startX: -716,
+		    	        startX: -1076,
 		    	        snap: true, 
+		    	        click: true
 		    	    });
 		}
 	});
 	toggleAddRemoveButtons();
+	fixscroll();
 }
 
 function setupTimers(key){
@@ -337,6 +345,7 @@ function removeFromStoredLocations(element){
 }
 
 function showLocationModal(){
+	$(".removeLocationControl").hide();
 	$("#locationModal").show();
 }
 
@@ -346,10 +355,12 @@ function hideLocationModal(){
 
 function toggleRemoveControl(){
 	$(".removeLocationControl").toggle();
+	if($(".removeLocationControl")[1].style.cssText == "display: block;")
+		$(".locListItem").css('transform', 'translate(-1076px, 0px)');
 }
 
-
 function populateListItem(weatherData,locationKey){
+	fixscroll();
 	detail = weatherData[0];
 //	console.log(weatherData);
 //	console.log(locationKey);
@@ -372,6 +383,7 @@ function populateListItem(weatherData,locationKey){
 	$("#_"+locationKey+" .windData").html("Wind: "+detail.Wind.Direction.Localized+ " " + detail.Wind.Speed.Imperial.Value+detail.Wind.Speed.Imperial.Unit);
 	//$("#_"+locationKey+" .rainData").html("Chance of Rain: "+rain);
 	$("#_"+locationKey+" .rfData").html("RealFeel&#174;: "+detail.RealFeelTemperature.Imperial.Value+detail.RealFeelTemperature.Imperial.Unit);
+	fixscroll();
 }
 
 
@@ -702,5 +714,4 @@ $(document).ready(function() {
       field.val(' ');
     }
   })
-
 });
