@@ -89,23 +89,6 @@ body {display:block;}
 	padding-top: 30px;
 	height: 70px;
 }
-/* kept original
-.contactsCarousel {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	display: block;
-	text-align: left;
-float: none;
-position: absolute;
-top: 0px;
-right: auto;
-bottom: auto;
-left: -2px;
-margin: 0px;
-z-index: auto;
-}
-*/
 
 .contactsCarousel {
 margin: 0;
@@ -118,18 +101,24 @@ text-align: left;
 position: relative;
 bottom: 0px;
 margin: 148px auto 40px;
-/*z-index: 20;*/
-overflow:hidden;
+white-space:nowrap;
+overflow-x:scroll;
+overflow-y:hidden;
 box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
 }
 
 
 .contactsCarousel li {
-	display: block;
-	float: left;
+	display: inline-block;
+	width:276px;
+	height:inherit;
+	white-space:normal;
+}
+.contactsCarousel::-webkit-scrollbar {
+	display:none;
 }
 
-.caroufredsel_wrapper {
+/* .caroufredsel_wrapper {
 display: block;
 text-align: start;
 position: relative;
@@ -142,7 +131,7 @@ cursor: move;
 -webkit-linear-gradient(top, rgba(178,240,255,.5) 0%,rgba(178,240,255,.4) 30%,rgba(0,0,0,.1) 95%);
 padding: 10px 0;
 } 
-
+*/
 .carouselBox {
 	width: 240px;
 	height: 315px;
