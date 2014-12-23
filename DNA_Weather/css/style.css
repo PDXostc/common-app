@@ -1,8 +1,8 @@
 /* Settings Overrides */
 
-.settingElement {
-  margin: 0 40px; 
-}
+/*.settingElement {
+  margin: 0 40px !important; 
+}*/
 
 /* Styles specific to Weather app */
 .weatherIcon {
@@ -10,57 +10,31 @@
   float: left;
 }
 html {
-	height:1920px;
-	width:1080px;
+  /*height: 1920px !important;   
+  width: 1080px !important; */  
   overflow: hidden;   
   position: absolute !important;   
   -webkit-user-select: none;   
   -khtml-user-select: none;
   user-select: none;
 }
-body {
-  /* z-index: 0; */
-}
-
-h2 {
-  /* color: #FFF; */
-  /* padding: 14px 0 0 28px; */
-  /* font-size: 3em; */
-  /* text-transform: uppercase; */
-  /* text-align: center; */
-  /* margin-top: -45px; */
-  /* margin-bottom: 7px; */
-  /* float: left; */
-}
 
 #locList {
   visibility: visible;
-  /* z-index: -800; */
   overflow: hidden;
   flex: 1;
   display: flex;
 }
 .itemList {
-  /* position: absolute; */
-  /* display: block; */
    margin-top: 116px; 
-  /* left: 0px; */
-  /* height: 1450px; */
-/*  border-style: solid;
-  border-width: 2px;*/
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 #locListInner {
-  /* position: relative; */
-  /* display: block; */
   visibility: visible;
-  /* height: 1450px; */
-  /* width: 1076px; */
 }
 .locListItemInner {
-  /* position: relative; */
   overflow: hidden;
 }
 .locListItem {
@@ -83,8 +57,6 @@ h2 {
   background: #b3ceee;
   font-family: verdana,arial,sans-serif;
   z-index: -3;
-  /* margin-right: -3px; */
-  /* padding-left: 6px; */
 }
 .listItem_load {
   display: inline-block;
@@ -119,7 +91,6 @@ div.awxCurrentConditions {
   width: 179px;  
   border-left:none;
   padding-top: 3px;
-  /* padding-bottom: 9px; */
 }
 .hourly > img {
     width: 108px;
@@ -128,24 +99,23 @@ div.awxCurrentConditions {
   float: left;
   text-align: center;
   width: 215px;
-  /* padding-top: 3px; */
-  /* padding-bottom: 13px; */
 }
 .locName {
   text-transform: uppercase;
   font-weight: bold; 
   text-align: center;
+  text-overflow:ellipsis;
+  word-wrap: break-word;
+  display:  -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .currentDetails {
-  /* margin-top: -3px; */
   line-height: 10px;
   padding-bottom: 20px;
 }
 .condImage {
-  /* display: inline-block; */
-  /* vertical-align: middle; */
-  /* float: left; */
-  /* margin-top: 22px; */
   margin-left: 10px;
   margin-bottom: 45px;
 }
@@ -154,7 +124,6 @@ img.icon {
 }
 .fiveDay > img.icon {
   width: 216px;
-  /*position: relative;*/
   margin-top: -9px;
   left: 0px;
   z-index: -1;
@@ -168,12 +137,8 @@ img.icon {
 }
 .fiveDay > .iconPhrase  {
   margin-top: -93px;
-  /* margin-bottom: -9px; */
 }
 .tempBox {
-  /* display: inline-block; */
-  /* vertical-align: middle; */
-  /* float: right; */
   margin-right: 10px;
 }
 .temp {
@@ -189,10 +154,13 @@ img.icon {
 }
 .itemText {
   text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 8px;
+  width: 56%;
 }
 .moreInfo {
   width: 600px;
-  /* vertical-align: middle; */
   overflow: hidden;
   font-weight: bold;
   /*text-transform: uppercase; can't use this and have RealFeel camelcased */
@@ -235,7 +203,6 @@ sup {
   font-size: 50%;
 }
 .L_indicator {
-  /* margin-left: 60px; */
   margin-right: 7px;
   height: 50px;
   width: 50px;
@@ -244,7 +211,6 @@ sup {
 }
 .R_indicator {
   margin-left: 10px;
-  /* margin-right: 10px; */
   margin-top: 105px;
   float: right;
 }
@@ -279,32 +245,19 @@ sup {
 #searchResults > li {
   color: #fff;
   font-size: 1em;
-  /*font-family: Arial, sans-serif;*/
   margin: 10px;
   padding: 5px 15px;
   background-color: rgba(83, 181, 206, .5);
   border: 1px solid rgb(83, 181, 206);
 }
 #awxSearchButton {
-  /* height: 72px; */
-  /* width: 187px; */
-  /* background-color: #245f88; */
-  /* color: rgb(128, 203, 255); */
-  /* text-transform: uppercase; */
-  /* border: 1px solid rgba(128, 203, 255, 1); */
-   margin-top: 0; 
+  margin-top: 0; 
   float: right;
   margin-bottom: 30px;
 }
 #awxSearchTextBox {
-  /* padding-left: 10px; */
-  /* margin: 7px 7px 14px 0; */
-  /* border: none; */
-  /* background-color: #fff; */
   width: 400px;
-   height: 60px; 
-  /* color: #404040; */
-  /* font-family: sans-serif, "Arial"; */
+  height: 60px; 
   float: left;
 }
 
@@ -329,15 +282,10 @@ span.fontSizeSmall {
 
 #locationModal{
   display:none;
-/*  max-width: 100%;
-  background-color: rgba(0,0,0,0.8);
-  -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
-  padding: 14px;
-  text-align: center;*/
 }
 .modal-bkgrnd{
   -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
-  width: 614px;
+  width: 615px;
   background-color: #222;
   top: 30%;  
   left: 50%;  position: absolute;  transform: translate(-50%, -50%);
@@ -350,9 +298,6 @@ span.fontSizeSmall {
   width: 60px;
   height: 60px;
   background-color: rgba(83, 181, 206, .5);
-  /*color: rgba(255, 255, 255, 1.0);*/
-/*  font-size: 30px;
-  line-height: 35px;*/
   float: left;
   margin-top: 55px;
   margin-left: -109px;
@@ -365,8 +310,6 @@ span.fontSizeSmall {
   color: rgba(255, 255, 255, 1.0);
 }
 div#addLocation {
-  /* display: block; */
-  /* float:right; */
   width: 115px;
   height: 115px;
   line-height: 110px;
@@ -376,8 +319,6 @@ div#addLocation {
   background-color: rgba(83, 181, 206, .5);
 }
 div#removeLocation {
-  /* display: block; */
-  /* float:left; */
   width: 115px;
   height: 115px;
   line-height: 0px;
@@ -387,17 +328,17 @@ div#removeLocation {
   background-color: rgba(83, 181, 206, .5);
 }
 
-.bottomPanelLogo.bottomPanelLogoImg {
+/*.bottomPanelLogo.bottomPanelLogoImg {
   background-image:url('../images/accuweather_icon.png');
   background-repeat: no-repeat;
   margin-top: 35px;
   margin-left: -35px;
   width: 285px !important;
-}
+}*/
 
-div {
-    /* position: relative; */
-}
+/*div {
+    position: relative;
+}*/
 
 * {
     margin: 0;
@@ -414,15 +355,13 @@ li {
     position: relative;
 }
 
-ul {
+/*ul {
     padding: 0;
     margin: 0;
     list-style: none;
-}
+}*/
 
 .border {
-    /*border-color: rgb(128, 203, 255);   
-    border-color: rgba(128, 203, 255, 1.0);*/
     border: 2px solid rgba(255,255,255, 0.5);
 }
 
@@ -529,9 +468,6 @@ input {
     display: flex;  
     align-items: flex-end;    
     justify-content: space-between;
-    /* margin-bottom: 135px; */
-    /* flex: 1; */
-    /* width: 98%; */
 }
 #bottomBarLogoImg {
   content:url('/images/accuweather_icon.png');
@@ -549,4 +485,7 @@ input {
 .close-button {
   padding-bottom: 0;
   width: 50px;
+}
+ul .settingElement {
+  margin: 0 40px; 
 }
