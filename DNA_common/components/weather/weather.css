@@ -11,8 +11,9 @@ div#weather_alert {
 	color: #fff;
 	-webkit-opacity: 0.8;	
 	-webkit-box-shadow: 0 0 90px rgba(255,255,255,0.4);
-	overflow: scroll;
+	overflow-y: scroll;
 	overflow-x: hidden;
+	touch-action: pan-y;
 	z-index: 1000;
 }
 /*header text in severe weather alert*/

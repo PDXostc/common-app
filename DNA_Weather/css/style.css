@@ -29,7 +29,7 @@ html {
    margin-top: 116px; 
   overflow-y: scroll;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 #locListInner {
   visibility: visible;

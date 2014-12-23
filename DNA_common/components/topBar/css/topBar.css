@@ -75,21 +75,24 @@ overflow: hidden;
 	top: 0;
 	margin: 10px 20px 0 0;
 }
-	#hexGridView{
-		display:none;
-		position:absolute;
-		top:115px;
-		left:-1px;
-		padding:32px;
-		width:1016px;
-		height:1608px;
-		z-index:5;
-		font-size:20px;
-		background-color:rgba(0,0,0,1);
-		-webkit-mask: -webkit-gradient(linear, 0 1920, 0 1200,  from(rgba(0,0,0,0.5)), to(rgba(0,0,0,1)));
-		overflow-x:hidden;
-		overflow-y:scroll;
-	}
+
+#hexGridView{
+	display:none;
+	position:absolute;
+	top:115px;
+	left:-1px;
+	padding:32px;
+	width:1016px;
+	height:1608px;
+	z-index:5;
+	font-size:20px;
+	background-color:rgba(0,0,0,1);
+	-webkit-mask: -webkit-gradient(linear, 0 1920, 0 1200,  from(rgba(0,0,0,0.5)), to(rgba(0,0,0,1)));
+	overflow-x:hidden;
+	overflow-y:scroll;
+	touch-action: pan-y;
+}
+
 	.HSAGWHeading{
 		text-transform:uppercase;
 		margin:0 0 47px 0;
