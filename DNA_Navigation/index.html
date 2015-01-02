@@ -45,15 +45,15 @@
 						</div>
 						<div id="nav-directions" class="flex-parent">
 							<div id="indicators" class="flex-parent flex-item flex-column">
-								<div id="turnArrow"></div>
-								<p id="distanceTo" class="center flex-item"><span></span><small></small></p>
+								<div id="turn-arrow"></div>
+								<p id="distance-to" class="center flex-item"><span></span><small></small></p>
 							</div>
-							<p id="navigationPanel" class="lead threeLinesEllipsis"></p>
+							<p id="navigation-panel" class="lead threeLinesEllipsis"></p>
 						</div>
 					</div>
 					<!-- Places Button -->
 					<div class="flex-parent flex-center flex-justify-end">
-						<p id="placesButton" class="hex-arrow label center black">
+						<p id="places-button" class="hex-arrow label center black">
 							<small><strong>places</strong></small>
 							<span class="menu-icon"></span>
 						</p>
@@ -61,7 +61,7 @@
 				</div>
 				<!-- Progress line -->
 				<div id="nav-data-progress">
-					<div id="destinationProgress" class="flex-item">
+					<div id="destination-progress" class="flex-item">
 						<div id="VCouter" ontouchmove="VolumeControl.touch(0)" ontouchstart="VolumeControl.touch(1)">
 							<div id="VCbarWrapper">
 								<div id="VCline" class="blue-viv-bg"></div>
@@ -72,40 +72,40 @@
 				</div>
 				<!-- Destination, Still to Go -->
 				<div id="nav-data-bottom" class="content flex-parent">
-					<div id="destinationItem" class="flex-item flex-val-2">
+					<div id="destination-item" class="flex-item flex-val-2">
 						<div id="destination-label" class="flex-parent">
 							<div class="label-lead-line orange-viv-bg"></div>
 							<p class="label orange-viv flex-parent flex-item">
 								<small><strong>destination</strong></small>
 							</p>
 						</div>
-						<p id="destinationAddress" class="twoLinesEllipsis"></p>
-						<p id="destinationAddressTown" class="grey"><small></small></p>
+						<p id="destination-address" class="twoLinesEllipsis"></p>
+						<p id="destination-address-town" class="grey"><small></small></p>
 					</div>
-					<div id="stillToGoItem" class="flex-item">
+					<div id="still-to-go-item" class="flex-item">
 						<div id="still-to-go-label" class="flex-parent">
 							<div class="label-lead-line orange-viv-bg"></div>
 							<p class="label orange-viv flex-parent flex-item">
 								<small><strong>still to go</strong></small>
 							</p>
 						</div>
-						<h2 id="stillToGoTimeAndDistance" class="oneLineEllipsis white"><span class="time"></span><span class="distance"></span><small class="grey"></small></h2>
-						<p id="arrivalText" class="label"><strong><span></span></strong><small class="grey"></small></p>
+						<h2 id="still-to-go-time-and-distance" class="oneLineEllipsis white"><span class="time"></span><span class="distance"></span><small class="grey"></small></h2>
+						<p id="arrival-text" class="label"><strong><span></span></strong><small class="grey"></small></p>
 					</div>
 				</div>
 			</section>
 			<!-- Map Section -->
 			<section id="nav-map" data-role="content" class="flex-parent flex-item">
 				<!-- Map Container-->
-				<div id="map_div" class="mapPanel flex-item"></div>
+				<div id="map-inner" class="flex-item"></div>
 				<!-- Map Icon Container -->
 				<div class="view-switch" onClick="switchMapSatelliteView()">
-					<div id="satelliteButton" class="satelliteIcon"></div>
-					<div id="mapButton" class="mapIcon"></div>
+					<div class="satellite-icon"></div>
+					<div class="map-icon"></div>
 				</div>
 			</section>
 			<!-- New Places Library -->
-			<div id="places-library" class="library flex-parent pageBgColorNormalTransparent">
+			<div id="places-library" class="library flex-parent overlay-bg">
 				<div class="libraryLeftPanel">
 					<div class='libraryLeftControl'>
 						<div id='grid' class='gridIcon gridIconDisabled' onclick=""></div>
@@ -151,12 +151,4 @@
 		<div id="bottomBar"></div>
 	</div>
 	</body>
-
-	<script type="text/javascript">
-	$(document).ready( function() {
-		$("#placesButton, .closeLibraryButton, .placesElement").on("click", function() {
-			$("#places-library").toggleClass("expanded");
-		});
-	});
-	</script>
 </html>

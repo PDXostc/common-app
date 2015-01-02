@@ -276,12 +276,12 @@ function switchMapSatelliteView() {
 	/*global google */
 	if (map.getMapTypeId() === google.maps.MapTypeId.ROADMAP) {
 		map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
-		$(".mapIcon").css('display', 'none');
-		$(".satelliteIcon").css('display', 'inherit');
+		$(".map-icon").css('display', 'none');
+		$(".satellite-icon").css('display', 'inherit');
 	} else if (map.getMapTypeId() === google.maps.MapTypeId.SATELLITE) {
 		map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
-		$(".satelliteIcon").css('display', 'none');
-		$(".mapIcon").css('display', 'inherit');
+		$(".satellite-icon").css('display', 'none');
+		$(".map-icon").css('display', 'inherit');
 	} else {
 		console.log("Other map type is " + map.getMapTypeId());
 	}
@@ -301,12 +301,12 @@ function changeNavigationArrow(instructionText) {
 
 	if (turnRight > 0 && turnRight < 10) {
 		//"left" or "right" is on the beginning of instruction step	
-		$("#turnArrow").css("background-image", "url('images/icon_arrow_right.png')");
+		$("#turn-arrow").css("background-image", "url('images/icon_arrow_right.png')");
 	} else if (turnLeft > 0 && turnLeft < 10) {
 		//"left" or "right" is on the beginning of instruction step	
-		$("#turnArrow").css("background-image", "url('images/icon_arrow_left.png')");
+		$("#turn-arrow").css("background-image", "url('images/icon_arrow_left.png')");
 	} else {
-		$("#turnArrow").css("background-image", "url('images/icon_arrow_straight.png')");
+		$("#turn-arrow").css("background-image", "url('images/icon_arrow_straight.png')");
 	}
 }
 
@@ -478,14 +478,14 @@ function updateNavigationPanel() {
 	if (instructionChanged) {
 		var instruction = strip(instructions[instructionIndex].instruction);
 		console.log("Instruction changed to '" + instruction + "'.");
-		$("#navigationPanel").html(instruction);
+		$("#navigation-panel").html(instruction);
 		/* global Speech*/
 		// Speech.vocalizeString(instruction);
 		changeNavigationArrow(instruction);
 		instructionChanged = false;
 	}
 
-	$("#destinationProgress").progressBarPlugin('setPosition', (remainingDistance / polDistance) * 100);
+	$("#destination-progress").progressBarPlugin('setPosition', (remainingDistance / polDistance) * 100);
 	var remainingTime = Math.round(remainingDistance / averageSpeed); //time in seconds
 	remainingTime = formatTimeToHHMM(remainingTime);	//seconds to hh:mm
 
@@ -497,13 +497,13 @@ function updateNavigationPanel() {
 		remainingDistance =  convertMetersToFeetsMiles(remainingDistance);
 	}
 
-	$("#distanceTo > span").html(remainingStepDistance[0]);
-	$("#distanceTo > small").html(remainingStepDistance[1]);
+	$("#distance-to > span").html(remainingStepDistance[0]);
+	$("#distance-to > small").html(remainingStepDistance[1]);
 
 
-	$("#stillToGoTimeAndDistance > .time").html(remainingTime);
-	$("#stillToGoTimeAndDistance > .distance").html(remainingDistance[0]);
-	$("#stillToGoTimeAndDistance > small").html(remainingDistance[1]);
+	$("#still-to-go-time-and-distance > .time").html(remainingTime);
+	$("#still-to-go-time-and-distance > .distance").html(remainingDistance[0]);
+	$("#still-to-go-time-and-distance > small").html(remainingDistance[1]);
 }
 
 /** 
@@ -580,8 +580,8 @@ function startAnimation() {
 	averageSpeed = (route.distance.value / routeDuration);
 
 	/* jshint camelcase: false */
-	$("#destinationAddress").html(destination.formatted_address);
-	$("#destinationAddressTown > small").html(destination.address_components[2].short_name + ", " + destination.address_components[3].short_name);
+	$("#destination-address").html(destination.formatted_address);
+	$("#destination-address-town > small").html(destination.address_components[2].short_name + ", " + destination.address_components[3].short_name);
 	/* jshint camelcase: true */
 
 	var averageSpeedText;
@@ -595,8 +595,8 @@ function startAnimation() {
 		speedUnit = "imperial";
 	};
 
-	$("#arrivalText > span").html(addSecondsToCurrentTime(routeDuration));
-	$("#arrivalText > small").html(averageSpeedText).addClass(speedUnit);
+	$("#arrival-text > span").html(addSecondsToCurrentTime(routeDuration));
+	$("#arrival-text > small").html(averageSpeedText).addClass(speedUnit);
 
 	updateNavigationPanel();
 	window.setTimeout(function(){
@@ -714,7 +714,6 @@ $(document).ready(function () {
 		// $(".keyboard").css('display', 'none');
 		//$("#topBarIcons").topBarIconsPlugin('init', 'navigation');
 		// $("#upNextRectangle").boxCaptionPlugin('init', 'up next');
-		// $("#destinationProgress").progressBarPlugin('init', 'progressBar');
 		$("#destinationRectangle").boxCaptionPlugin('init', 'destination');
 		$("#stillToGoRectangle").boxCaptionPlugin('init', 'still to go');
 		//$('#bottomPanel').bottomPanel('init');
@@ -727,14 +726,14 @@ $(document).ready(function () {
 			zoom: 18
 		};
 
-		map = new google.maps.Map(document.getElementById("map_div"), options);
+		map = new google.maps.Map(document.getElementById("map-inner"), options);
 
 		startNavigation();
 
 		// This isn't working, temporary script written in HTML
 
-		$("#placesButton").on("click", function() {
-			$("#places-library").library("showPage");
+		$("#places-button, .closeLibraryButton, .placesElement").on("click", function() {
+			$("#places-library").toggleClass("expanded");
 		});
 
 		$("#placesLibrary").library("setSectionTitle", "PLACES LIBRARY");

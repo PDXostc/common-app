@@ -379,6 +379,10 @@ section {
   background-color: black;
 }
 
+.overlay-bg {
+  background-color: rgba(0,0,0,0.8);
+}
+
 /* Controls ***********************************************/
 
 /* Buttons ************************************************/

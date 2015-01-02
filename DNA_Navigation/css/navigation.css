@@ -1,13 +1,3 @@
-html {
-	width: 1080px;
-	height: 1920px;
-}
-
-body {
-	margin: 0;
-	flex-direction: column;
-}
-
 /* Overrides */
 
 /* Overrides DNA_common/css/common.css*/
@@ -48,26 +38,11 @@ body {
 	height: 6px;
 }
 
-/* Overrides for WRT Keyboard */
-
-.keyboard {
-	display: none !important
-}
-
-
 /* Overrides DNA_common/components/bottomBar/css/bottomBar.css 
 	 and DNA_common/components/topBar/css/topBar.css */
 
-#navigation-app body {
-	font-family: SourceSansPro, sans-serif;
-}
-
 #nav-map {
 	position: relative;
-}
-
-#placesButton {
-	/*float:left;*/
 }
 
 .flex-val-2 {
@@ -100,14 +75,14 @@ body {
 	background-color: transparent !important;
 }
 
-#turnArrow {
+#turn-arrow {
 	width: 100%;
 	height: 70px;
 	background-repeat: no-repeat;
 	background-position: center center;
 }
 
-#navigationPanel {
+#navigation-panel {
 	flex: 9;
 }
 
@@ -116,7 +91,7 @@ body {
 }
 
 #nav-directions p,
-#destinationItem p {
+#destination-item p {
 	margin: 0;
 }
 
@@ -128,7 +103,7 @@ body {
 	height: 150px;
 }
 
-#distanceTo > small {
+#distance-to > small {
 	font-size: .8em;
 	color: rgba(196, 196, 196, 0.8);
 	padding-left: 6px;
@@ -155,43 +130,44 @@ body {
 					
 /* Library */
 
+
 #places-library.expanded {
 	left: 0;
 }
 
-#destinationAddress {
+#destination-address {
 	margin-top: 2px;
 }
 
-#destinationAddressTown {
+#destination-address-town {
 	margin-top: 2px;
 }
 
-#stillToGoTimeAndDistance {
+#still-to-go-time-and-distance {
 	margin: 0;
 }
 
-#stillToGoTimeAndDistance > .time:after {
+#still-to-go-time-and-distance > .time:after {
 	content: "/";
 }
 
-#arrivalText:before {
+#arrival-text:before {
 	content: "arrival ";
 }
 
-#arrivalText small:before {
+#arrival-text small:before {
 	content: " (";
 }
 
-#arrivalText small:after {
+#arrival-text small:after {
 	content: ")";
 }
 
-#arrivalText small.metric:after {
+#arrival-text small.metric:after {
 	content: "km/h)";
 }
 
-#arrivalText small.imperial:after {
+#arrival-text small.imperial:after {
 	content: "mph)";
 }
 
@@ -203,17 +179,17 @@ body {
 	height: 180px;
 }
 
-.satelliteIcon {
+.satellite-icon {
 	background-image: url(../images/satellite_hex_icon.png);
 	display: none;
 }
 
-.mapIcon {
+.map-icon {
 	background-image: url(../images/mapview_hex_icon.png);
 }
 
-.mapIcon,
-.satelliteIcon {
+.map-icon,
+.satellite-icon {
 	width: 100%;
 	height: 100%;
 	background-repeat: no-repeat;
