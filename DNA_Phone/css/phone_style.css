@@ -1,9 +1,6 @@
-#bottomBar{
-	}
+
 body {display:block;}
-#topBar {
-	position: static !important;
-	}
+
 .phoneBody {
 	display: flex;
 }
@@ -16,7 +13,20 @@ body {display:block;}
 .inputPhoneNumberBox {
 	position: relative;
 }
+div.numbersBox .numberButton {
+	font-size: 40px;
+	line-height: 40px;
+}
+.hide-element{
+	display:none;
+}
 
+input#inputPhoneNumber {
+	font-size:30px;
+}
+.callHistoryDetails {
+	font-size:14px;
+}
 .inputPhoneNumber {
 	height: 75px;
 	border: none;
@@ -29,6 +39,9 @@ body {display:block;}
 
 .inputPhoneNumber:focus {
 	outline: none;
+}
+.date-of-call-missed {
+font-size:14px;
 }
 
 .inputPhoneNumberBox .deleteButton {
@@ -94,7 +107,7 @@ body {display:block;}
 margin: 0;
 padding: 0 24px 24px;
 list-style: none;
-display: block;
+/* display: block;*/
 height: 350px;
 width: 98%;
 text-align: left;
@@ -118,20 +131,6 @@ box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
 	display:none;
 }
 
-/* .caroufredsel_wrapper {
-display: block;
-text-align: start;
-position: relative;
-z-index: auto;
-width: 100%;
-height: 337px;
-margin: 0px;
-overflow: hidden;
-cursor: move;
--webkit-linear-gradient(top, rgba(178,240,255,.5) 0%,rgba(178,240,255,.4) 30%,rgba(0,0,0,.1) 95%);
-padding: 10px 0;
-} 
-*/
 .carouselBox {
 	width: 240px;
 	height: 315px;
@@ -227,7 +226,6 @@ z-index: 100;
 }
 
 .callBoxHidden {
-	/* left: 720px; */
 	display:none;
 }
 
@@ -358,20 +356,12 @@ box-shadow:0px 0px 15px 0px rgba(255, 156, 0, 0.75), 0px 0px 40px 0px rgba(255, 
 background:radial-gradient(ellipse at center, rgba(254,156,0,1) 0%,rgba(142,87,4,0) 70%,rgba(10,5,8,0) 100%);
 }
 
-/*eventually this needs to be removed via init.js that's calling it */
-.keyboard {display:none;}
-
-
 /*\\\\\\\\\\\\\\\images only \\\\\\\\\\\\\\\\\\\\\\\*/
 
 
 .phoneBody {
 	background-image: url("../images/bg_with_glow_blue.png");
 }
-
-/* .deleteButton {
-	background-image: url("../images/bt_delete_blue.png");
-} */
 
 .callingTrue {
 	background-image: url("../images/icon_endcall_blue.png");
