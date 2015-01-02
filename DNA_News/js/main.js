@@ -33,6 +33,7 @@ var carIndicatorSignals = [
    of articles and article lists
 */
 
+/*
 var topScroll;
 var entScroll;
 var sportsScroll;
@@ -51,10 +52,11 @@ function loaded() {
             hScrollbar: false,
             vScrollbar: false
         });
-    }, 1000);
+    }, 4000);
 }
 
 window.addEventListener('load', loaded, false);
+*/
 
 /**
  * Applies selected theme to application icons
@@ -191,24 +193,22 @@ function xml2html(url) {
 */
 
 function closeAll(className) {
-    var elements = document.getElementsByClassName(className);
-    for(var i = 0, length = elements.length; i < length; i++) {
-        elements[i].style.visibility = 'hidden';
-    }
-    document.getElementById('articleClose').style.display='none';
+
+	$("."+className).hide();
+
+    //$('#articleClose').hide();
 
     /* Terminate jQuery-created DOM elements and iScroll instance
        with maximum predjudice upon closeAll.
     */
 
-    if (typeof articleScroll === 'undefined') {
-    } else {
+    if (typeof articleScroll !== typeof undefined) {
         articleScroll.destroy();
-    }
-    $(".articleBody").empty();
-    $(".articleBody").remove()
-    $(".articleItem").remove();
-    $("#articleScroller").remove();
+		$(".articleBody").empty();
+		$(".articleBody").remove()
+		$(".articleItem").remove();
+		$("#articleScroller").remove();
+	}
 }
 
 /* functions to show scrolling lists of thumbnail images, article
@@ -217,6 +217,7 @@ function closeAll(className) {
 
 function showTop() {
     closeAll('article');
+    //setTimeout(function () {topScroll.refresh();}, 1000);
 
     document.getElementById('topArticleList').style.display = 'block';
     document.getElementById('entertainArticleList').style.display = 'none';
@@ -229,6 +230,7 @@ function showTop() {
 
 function showEntertain() {
     closeAll('article');
+    //setTimeout(function () {entScroll.refresh();}, 1000);
 
     document.getElementById('topArticleList').style.display = 'none';
     document.getElementById('entertainArticleList').style.display = 'block';
@@ -241,6 +243,7 @@ function showEntertain() {
 
 function showSports() {
     closeAll('article');
+    //setTimeout(function () {sportsScroll.refresh();}, 1000);
 
     document.getElementById('topArticleList').style.display = 'none';
     document.getElementById('entertainArticleList').style.display = 'none';
@@ -290,22 +293,22 @@ function showArticle(url) {
         $("#articleScroller").append(myHTMLOutput);
         console.log("article html sent");
 
-        articleScroll = null;
+		
+        //articleScroll = null;
         articleScroll = new iScroll('articleContainer', { hScrollbar: false, vScrollbar: false });
 
         setTimeout(function() {
             var element = document.getElementById("articleScroller");
-            element.style.height = document.defaultView.getComputedStyle(element,"").getPropertyValue("height");
+            //element.style.height = document.defaultView.getComputedStyle(element,"").getPropertyValue("height");
             articleScroll.refresh();
         }, 1000);
+        
     });
 
     // make article parent div and UI elements visible
 
     var container = document.getElementById('articleContainer');
-    var close = document.getElementById('articleClose');
-    container.style.visibility = 'visible';
-    container.style['z-index'] = 1001;
-    close.style.display = 'block';
-    close.style['z-index'] = 1002;
+    $("#articleContainer").show();
+    $("#articleContainer").css('z-index', 1001);
+    //$("#articleClose").show();
 }

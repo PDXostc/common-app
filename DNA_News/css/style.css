@@ -2,7 +2,8 @@
 
 /* Settings Overrides */
 #settingsPage,
-#hexGridView {
+#hexGridView,
+#volumeSlider {
   z-index: 1005 !important;
 }
 
@@ -71,6 +72,7 @@ a {
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  bottom: -1px;
 }
 
 .articleListItem {
@@ -110,7 +112,7 @@ a {
   z-index: 999;
   background: #000000;
   overflow: hidden;
-  bottom: -1px;
+  bottom:0px;
 }
 
 #articleClose {
@@ -236,7 +238,7 @@ li {
   -webkit-user-select: none;
 }
 .wrapper {
-  height: 1673px;
+  height: 1672px;
   width: 100%;
 }
 
