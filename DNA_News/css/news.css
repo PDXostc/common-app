@@ -1,0 +1,254 @@
+body {
+	overflow: hidden;
+	width: 1080px;
+	height: 1920px;
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	height: 1673px;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+.newsChannels {
+	z-index: 0;
+	position: relative;
+	display: inline-block;
+	margin-top: 5px;
+	height: 100px;
+	width: 100%;
+	text-align: center;
+	padding-top: 9px;
+	font-size: 5.4rem;
+}
+
+.newsTopics li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 53px;
+	font-size: 4.8rem;
+}
+
+#topArticleList {
+	z-index: 0;
+	visibility: visible;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#topArticleList ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+#topArticleList li {
+	overflow: hidden;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+#entertainArticleList {
+	z-index: 0;
+	display: none;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#entertainArticleList li {
+	overflow: hidden;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+#entertainArticleList ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+#sportsArticleList {
+	z-index: 0;
+	display: none;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#sportsArticleList li {
+	overflow: hidden;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+#sportsArticleList ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+/*articleScroller class is created dynamically by main.js*/
+#articleScroller li {
+	overflow: hidden;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+ul#articleScroller {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.articleList {
+	position: relative;
+	display: inline-block;
+	top: 5px;
+	left: 0px;
+	width: 1080;
+	border-style: solid;
+	border-width: 2px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+.articleListItem {
+	background-color: rgba(68, 68, 68, .6);
+	display: block;
+	width: 1056px;
+	height: 187px;
+	margin: 10px 10px 0 10px;
+	line-height: 1.4;
+}
+
+.textBgColorThemeTransparent_DNA {
+	background-color: rgb(68, 68, 68);
+}
+
+.itemDate {
+	text-transform: uppercase;
+	font-size: 2.6rem;
+}
+
+.itemSubHead {
+	font-size: 2.6rem;
+}
+
+.itemDesc {
+	font-size: 2rem;
+	color: #FFF;
+}
+
+.article {
+	z-index: -4;
+	position: absolute;
+	top: 185px;
+	left: 0px;
+	width: 1080px;
+	background: #000000;
+	overflow: hidden;
+	bottom: -1px;
+}
+
+.articleHead {
+	display: block;
+	padding: -8px;
+	vertical-align: middle;
+	text-transform: uppercase;
+	margin-top: 2%;
+	margin-bottom: 1%;
+}
+
+.articlePhoto {
+	display: block;
+	text-align: center;
+	border: 4px solid #333333;
+	margin: 10px 0px 10px 0px;
+}
+
+.articleBody {
+	display: block;
+	padding: 22px 31px 31px 31px;
+	line-height: 120%;
+}
+
+.thumbnail {
+	display: inline-block;
+	width: 260px;
+	height: 173px;
+	padding: 6px;
+	vertical-align: middle;
+}
+
+.itemText {
+	display: inline-block;
+	width: 750px;
+	height: 168px;
+	padding: 3px 3px 3px 12px;
+	vertical-align: middle;
+	overflow: hidden;
+	font-size: 1.5rem;
+}
+
+.itemTitle {
+	color: #B2F0FF;
+	font-size: 2.6rem;
+}
+
+.itemTextGradFade {
+	z-index: -6;
+	display: block;
+	width: 490px;
+	height: 35px;
+	left: 195px;
+	bottom: 36px;
+}
+
+.articleListGradFade {
+	z-index: 0;
+	width: 1080px;
+	height: 80px;
+	left: 2px;
+	bottom: 0;
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 3%,rgba(0,0,0,1) 100%);
+	position: absolute;
+}
+
+.scrollIndicator {
+	display: block;
+	width:52px;
+	height: 32px;
+	margin-left: 50%;
+	margin-right: 50%;
+	margin-top: 20px;
+	background-image: url('../images/carron.png');
+}
+
+#bottomBarLogoImg {
+	content:url('/images/logo_icon.png');
+}
+
+.borderLtBlue_DNA {
+	border-color: #B2F0FF;
+}
+
+.padRight {
+	padding: 0px 16px 0px 0px;
+}
+
+.deselected {
+	font-weight: normal;
+}
+
+.selected {
+	font-weight: 700;
+}

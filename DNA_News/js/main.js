@@ -309,6 +309,6 @@ function showArticle(url) {
 
     var container = document.getElementById('articleContainer');
     $("#articleContainer").show();
-    $("#articleContainer").css('z-index', 1001);
+    $("#articleContainer").css('z-index', 0);
     //$("#articleClose").show();
 }

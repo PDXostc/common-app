@@ -12,7 +12,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <link rel="stylesheet" href="./DNA_common/css/style.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/news.css">
   <link rel="import" href="./imports.html">
   <title>News</title>
   <template id="newsItem">
@@ -23,9 +23,9 @@
             <img width="260px">
           </div>
           <div class="itemText">
-            <span class="itemDate fontSizeSmall orange-viv"></span><br>
-            <span class="itemTitle fontSizeSmall orange-viv"></span><br>
-            <span class="itemDesc fontSizeSmall orange-viv"></span>
+            <span class="itemDate orange-viv"></span><br>
+            <span class="itemTitle orange-viv"></span><br>
+            <span class="itemDesc orange-viv"></span>
           </div>
           <div class="itemTextGradFade"></div>
         </div>
@@ -48,13 +48,13 @@
           <ul id="topArticleListInner"></ul>
         </div>
         <div id="entertainArticleList" class="articleList borderLtBlue_DNA">
-          <ul id="entertainArticleListInner"></ul>
+          <ul id="entertainArticleListInner">
+          </ul>
         </div>
         <div id="sportsArticleList" class="articleList borderLtBlue_DNA">
           <ul id="sportsArticleListInner"></ul>
         </div>
         <div class="articleListGradFade"><span class="scrollIndicator"></span></div>
-        <div id="articleClose" class="fontSizeXLarge orange-viv borderLtBlue_DNA bgColorThemeTransparent" ontouchend="closeAll('article')">X</div>
         <div id="articleContainer" class="article borderLtBlue_DNA">
           <ul id="articleScroller"></ul>
         </div>
