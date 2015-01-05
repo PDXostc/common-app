@@ -26,7 +26,6 @@
 	    includeJs("./DNA_common/js/HomeScreenMain.js");*/
 	    includeJs("./js/main.js");
 	</script>
-	<link rel="stylesheet" href="./css/phone_style.css"/>
 	</head>
 
 	<body>
@@ -40,7 +39,7 @@
 					<div class="phone-interface-wrapper">
 						<div class="inputPhoneNumberBox">
 							<input id="inputPhoneNumber"
-							class="inputPhoneNumber fontSizeLarge fontSizeBold box-shadow-4"
+							class="inputPhoneNumber box-shadow-4"
 							type="text"
 				            onkeydown="if (event.keyCode === 13) { contact = { phoneNumbers: [{number: this.value}]}; acceptCall(contact); }"/>
 							<div id="deleteButton" class="deleteButton"><strong>X</strong></div>
@@ -48,71 +47,71 @@
 						<div class="numbersBox">
 							<div id="callButton" class="callButton box-shadow-4Active"></div>
 							<div id="numberButton" data-id="1"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"><strong>1</strong></div>
+							class="numberButton white box-shadow-4 box-shadow-4Active"><strong>1</strong></div>
 							<div id="numberButton" data-id="2"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>2</strong>
+							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>2</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>ABC</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="3"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>3</strong>
+							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>3</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>DEF</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="4"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>4</strong>
+							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>4</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>GHI</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="5"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>5</strong>
+							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>5</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>JKL</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="6"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>6</strong>
+							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>6</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>MNO</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="7"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>7</strong>
+							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>7</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>PQRS</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="8"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>8</strong>
+							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>8</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>TUV</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="9"
-							class="numberButton fontSizeXLarge white box-shadow-4 box-shadow-4Active"> <strong>9</strong>
+							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>9</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>WXYZ</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="*"
-							class="numberButton fontSizeXLarge blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>*</strong></div>
+							class="numberButton blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>*</strong></div>
 							<div id="numberButton" data-id="0"
-							class="numberButton fontSizeXLarge fontWeightBold white box-shadow-4 box-shadow-4Active"> 0
+							class="numberButton white box-shadow-4 box-shadow-4Active"><strong>0</strong>
 								<div
 								class="numberButtonLetters blue-viv"><strong><small>+</small></strong></div>
 							</div>
 							<div id="numberButton" data-id="#"
-							class="numberButton fontSizeXLarge blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>#</strong></div>
+							class="numberButton blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>#</strong></div>
 						</div>
 					</div>	
 					<ul id="contactsCarousel" class="contactsCarousel">
 						<li style="margin-right: 0px; ">
-							<div id="carouselBox_1" class="carouselBox " data-id="">
+							<div id="carouselBox_1" class="carouselBox" data-id="">
 								<div class="carouselPhotoArea ">
 									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
 								</div>
-								<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Dasher</div>
-								<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
+								<h5 class="carouselInfoBox carouselName"><strong>Droopy</strong></h5>
+								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
 								<div class="callHistoryElement ">
 									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
 									<div class="callHistoryDetails">
-										<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
-										<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
+										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
+										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
 									</div>
 								</div>
 							</div>
@@ -122,13 +121,13 @@
 								<div class="carouselPhotoArea ">
 									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
 								</div>
-								<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Dancer</div>
-								<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
+								<h5 class="carouselInfoBox carouselName"><strong>Doc</strong></h5>
+								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
 								<div class="callHistoryElement ">
 									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
 									<div class="callHistoryDetails">
-										<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
-										<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
+										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
+										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
 									</div>
 								</div>
 							</div>
@@ -138,13 +137,13 @@
 								<div class="carouselPhotoArea ">
 									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
 								</div>
-								<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Donner</div>
-								<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
+								<h5 class="carouselInfoBox carouselName"><strong>Grumpy</strong></h5>
+								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
 								<div class="callHistoryElement ">
 									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
 									<div class="callHistoryDetails">
-										<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
-										<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
+										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
+										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
 									</div>
 								</div>
 							</div>
@@ -154,13 +153,13 @@
 								<div class="carouselPhotoArea ">
 									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
 								</div>
-								<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Rudolph</div>
-								<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
+								<h5 class="carouselInfoBox carouselName"><strong>Bashful</strong></h5>
+								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
 								<div class="callHistoryElement ">
 									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
 									<div class="callHistoryDetails">
-										<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
-										<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
+										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
+										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
 									</div>
 								</div>
 							</div>
@@ -170,19 +169,18 @@
 								<div class="carouselPhotoArea ">
 									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
 								</div>
-								<div class="carouselInfoBox carouselName fontSizeLarger fontWeightBold fontColorNormal">Kelly</div>
-								<div class="carouselInfoBox carouselNumber fontSizeSmall fontWeightBold  blue-lt">8882907789</div>
+								<h5 class="carouselInfoBox carouselName"><strong>Sleepy</strong></h5>
+								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
 								<div class="callHistoryElement ">
 									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
 									<div class="callHistoryDetails">
-										<div class="fontSizeXXSmall fontColorNormal">Dec/09/2014 07:15</div>
-										<div class="fontSizeXXSmall fontWeightBold  grey">MC-CALL-DATETIME</div>
+										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
+										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
 									</div>
 								</div>
 							</div>
 						</li>
 					</ul>
-				</div>
 				<div id="callBox" class="callBox callBoxHidden">
 					<div class="callInfoBox">
 						<div class="callPhotoBox noContactPhoto"> <img id="callPhoto" class="callPhoto" /> </div>
@@ -207,7 +205,8 @@
 						<div id = "VCline" class =  "bgColorTheme"></div>
 						<div id = "VCinner" class =  "bgColorTheme boxShadow3"></div>
 						<div class="noVolumeSlider"></div>
-					</div>
+					</div>				
+				</div>
 				</div>
 			</div>
 			<div id="bottomBar"></div>

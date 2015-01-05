@@ -491,6 +491,7 @@ function acceptCall(contact) {
     }
     $("#callBox").removeClass("callBoxHidden");
     $("#callBox").addClass("callBoxShow");
+            $("#contactsCarousel").toggleClass("hide-element"); //kj added
     $('#contactsCarouselBox').removeClass("contactsCarouselBoxShow");
     $('#contactsCarouselBox').addClass("contactsCarouselBoxHide");
     if (tizen.phone) {
@@ -529,6 +530,7 @@ function disconnectCall() {
     "use strict";
     $("#callButton").removeClass("callingTrue");
     $("#callButton").addClass("callingFalse");
+            $("#contactsCarousel").removeClass("hide-element"); //kj added
     if (acceptPhoneCallFromOtherWidget !== true) {
         $("#callBox").removeClass("callBoxShow");
         $("#callBox").addClass("callBoxHidden");
@@ -653,7 +655,8 @@ $(document).ready(
 
 			});
 			console.log("Added click event for numbers");
-			$(".numbersBox").delegate("#numberButton", "click", function() {
+//Changed the ID to class w/in the delegate() method but it isn't  needed as the data-id is used to distinguish anyway
+			$(".numbersBox").delegate(".numberButton", "click", function() {
 				console.log("Number button "+$(this).data("id"));
 				var pressTime = new Date(),
 					number, oneCharPX = 32;
