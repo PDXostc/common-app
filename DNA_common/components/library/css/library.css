@@ -113,7 +113,6 @@
 .tabsWrapper {
 	position: absolute;
 	font-size: 0;
-	/*overflow: auto;*/
 	height: 100%;
 }
 
