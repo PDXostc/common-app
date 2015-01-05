@@ -18,15 +18,15 @@
 * Incoming Code:        GStreamer 0.93, <link>
 *
 */
-body {
-	font-family: "Droid Sans", sans-serif;
-	background-color: rgb(0,0,0);
-	background-image: url("/DNA_common/images/Hex-Background.jpg");
-	display: flex;
-}
-html {
-overflow: hidden;
-}
+/*body {*/
+	/*font-family: "Droid Sans", sans-serif;*/
+	/*background-color: rgb(0,0,0);*/
+	/*background-image: url("/DNA_common/images/Hex-Background.jpg");*/
+	/*display: flex;*/
+/*}*/
+/*html {*/
+/*overflow: hidden;*/
+/*}*/
 .clearBoth {
 	clear:both;
 }
@@ -404,15 +404,14 @@ p {
 	text-decoration: none;
 }
 .title {
-	padding: 20px 0;
+/*	padding: 20px 0;
 	border-bottom-style: solid;
 	border-bottom-width: 2px;
 	white-space: nowrap;
 	cursor: pointer;
 	text-transform: uppercase;
-
+*/
 }
-
 
 .title .titleInfoBox {
 	width: 50%;

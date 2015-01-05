@@ -18,7 +18,7 @@
 * Incoming Code:        GStreamer 0.93, <link>
 *
 */
-body {
+/*body {
 	font-family: "Droid Sans", sans-serif;
 	background-color: rgb(0,0,0);
 	background-image: url("/DNA_common/images/Hex-Background.jpg");
@@ -27,8 +27,8 @@ body {
 }
 html {
 overflow: hidden;
-}
-.keyboard {display:none;}
+}*/
+/*.keyboard {display:none;}*/
 /*  COLOR CODINGS FOR ALL DECLARATIONS:
 *	color-1: Pale Yellow:  HEX: #ffffb2  RGB: 255, 255, 178
 *	color-2: Pale Orange:  HEX: #ffd38c  RGB: 255, 211, 140
@@ -73,13 +73,13 @@ overflow: hidden;
 .rounded{ border-radius: 25px; }
 
 
-strong, th, thead td, h1, h2, h3, h4, h5, h6, dt { font-weight: 700; margin:0 0 .25rem
+/*strong, th, thead td, h1, h2, h3, h4, h5, h6, dt { font-weight: 700; margin:0 0 .25rem
 }
 h1 { font-size: 3rem }
 h2 { font-size: 2.5rem }
 h3 { font-size: 2rem }
 h4 { font-size: 1.5rem }
-h5 { font-size: 1rem }
+h5 { font-size: 1rem }*/
 
 .clearBoth {
 	clear:both;
@@ -458,12 +458,12 @@ p {
 	text-decoration: none;
 }
 .title {
-	padding: 20px 0;
+/*	padding: 20px 0;
 	border-bottom-style: solid;
 	border-bottom-width: 2px;
 	white-space: nowrap;
 	cursor: pointer;
-	text-transform: uppercase;
+	text-transform: uppercase;*/
 
 }
 
