@@ -244,6 +244,7 @@ section {
 #app {
   display: flex;
   flex: 1;
+  flex-direction: column;
   background-color: transparent;
   position: relative;
 }

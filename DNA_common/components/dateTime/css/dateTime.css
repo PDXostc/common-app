@@ -1,22 +1,11 @@
 #clockElement {
-	position: absolute;
-	width: 100%;
-	top: 20px;
 	color: #C4C4C4;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 40px;
 }
 
-#dnaDate {
-	position: absolute;
-	left: 40px;
-	width: 300px;
-	text-align: left;
-	font-size: 4rem;
-}
-
+#dnaDate,
 #dnaTime {
-	position: absolute;
-	right: 40px;
-	width: 300px;
-	text-align: right;
 	font-size: 4rem;
 }

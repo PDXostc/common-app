@@ -58,15 +58,14 @@ li {
 
 
 #speedFuelTemp {
-	position: absolute;
-	top: 0;
+	position: relative;
+	top: 80px;
 }
 
 /*/// Speed ///*/
 
 #speedContainer {
-	position: relative;
-	top: 200px;
+	position: absolute;
 	left: 72px;
 }
 
@@ -122,8 +121,7 @@ li {
 
 #fuelTempContainer {
 	position: absolute;
-	top: 200px;
-	right: -621px;
+	right: 80px;
 	text-align: left;
 }
 
@@ -192,7 +190,7 @@ li {
 }
 
 .rightPSI {
-	right: -1055px;
+	right: 20px;
 }
 
 .leftPSI {
@@ -201,12 +199,12 @@ li {
 
 .frontTireData {
 	position: absolute;
-	top: 932px;
+	top: 832px;
 }
 
 .rearTireData {
 	position: absolute;
-	top: 1196px;
+	top: 1096px;
 }
 
 .PSI_statusPosition {
@@ -224,7 +222,7 @@ li {
 #carImage {
 	position: absolute;
 	left: 135px;
-	top: 669px;
+	top: 569px;
 	width: 809px;
 	height: 901px;
 	background-image: url('../images/Range_Rover_Outline_Call_Outs.png');

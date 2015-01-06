@@ -1,4 +1,9 @@
+/* This rule can be removed once showLoadingSpinner() is removed form JS */
+#loadingSpinnerWrapper.loadingSpinnerWrapper {
+    display: none !important;
+}
 
+/**********************************************************/
 
 body {
     font-family: "Droid Sans", sans-serif;
@@ -9,8 +14,11 @@ body {
 
 /* Switches ***********************************************/
 
+#powerToggle {
+  margin-top: 10em;
+}
+
 .switch {
-    margin-top: 14em;
     margin-left:auto;
     margin-right:auto;
 }
@@ -20,29 +28,21 @@ body {
     height: 38px;
 }
 
-
-
 .nfcBackground {
     position: absolute;
     left: 0;
     top: 0;
     width: 720px;
-    height: 1280px;
-    
+    height: 1280px;    
 }
 
 .nfcwrapper {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-
+  position: relative;
 }
 
 .nfcPowerText {
     position: absolute;
-    top: 9em;
+    top: 6em;
     width: 100%;
     text-align: center;
     color: rgb(196,196,196);
@@ -75,7 +75,7 @@ body {
     border: none;
 }
 
-.inputNumber	{
+.inputNumber {
     width: 100%;
     height: 100%;
     display: inline;
@@ -98,7 +98,7 @@ body {
     position: absolute;
     width: 100%;
     height: 720px;
-    top: 25em;
+    top: 20em;
     color: rgb(196,196,196);
 }
 

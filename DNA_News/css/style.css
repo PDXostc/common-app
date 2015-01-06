@@ -24,7 +24,6 @@ a {
 .newsChannels {
   position: relative;
   display: inline-block;
-  margin-top: 96px;
   height: 100px;
   width: 100%;
   z-index: 1000;

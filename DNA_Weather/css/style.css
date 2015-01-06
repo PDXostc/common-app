@@ -26,7 +26,7 @@ html {
   display: flex;
 }
 .itemList {
-   margin-top: 116px; 
+   margin-top: 26px; 
   overflow-y: scroll;
   overflow-x: hidden;
   touch-action: pan-y;

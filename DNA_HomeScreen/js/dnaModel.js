@@ -357,7 +357,6 @@ Spinner.prototype = {
     frameAction: function (b) {
 		//redraw canvas
         b.canvas.width = b.canvas.width;
-		b.Context.drawImage(img,0,0,ScreenWidth,ScreenHeight);
 		if(ShowFPS)
 			fpsUpdate();
 		//butt,round,square
