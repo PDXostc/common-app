@@ -60,33 +60,42 @@ function deleteItemClick(item) {
 	console.log(item.target);
 	console.log(item.data.html());
 	item.data.remove();
+	displayItemList();
 }
 // Handler function invoked from the Crosswalk extension
 // when  bp.bpAsync is called.
 var callback = function(response) {
-console.log("bp callback js: Async>>> " + response);
+	console.log("bp callback js: Async>>> " + response);
 };
+
+function displayItemList() {
+	var items = $("#item-list").children();
+	var table = $("#item-table");
+	if (items) table.removeClass("hidden");
+	if (items.length == 0) table.addClass("hidden");
+}
 
 function addItemClick(item) {
 	console.log('addItemClick()');
 	console.log(item);
-	console.log($("input[name='item_title']").val());
-	console.log($("textarea[name='item_description']").val());
-	console.log($("[name='item_template']").contents());
+	console.log($("#item-title").val());
+	console.log($("#item_description").val());
+	console.log($("#item-template").contents());
 	
 	// Capture the title and description data to be sent to the extension later.
-	var ti=$("input[name='item_title']").val();
-	var descr=$("textarea[name='item_description']").val();
+	var ti=$("#item-title").val();
+	var descr=$("#item-description").val();
 	
-	var newItemTemplate = $($("[name='item_template']").html());
+	var newItemTemplate = $($("#item-template").html());
 	console.log(newItemTemplate);
-	newItemTemplate.find("td[name='item_title_field']").text($("input[name='item_title']").val());
-	newItemTemplate.find("td[name='item_description_field']").text($("textarea[name='item_description']").val());
+	newItemTemplate.find("#item-title-field").text($("#item-title").val());
+	newItemTemplate.find("#item-description-field").text($("#item-description").val());
 	console.log(newItemTemplate);
 	var newItem = newItemTemplate.clone();
-	newItem.find("input[name='delete_item']").click(newItem,deleteItemClick);
-	$("tbody[name='item_list_body']").append(newItem);
-	$("form[name='add_item_form']")[0].reset();
+	newItem.find(".item-delete-button").click(newItem,deleteItemClick);
+	$("#item-list").append(newItem);
+	displayItemList();
+	$("#add-item-form")[0].reset();
 	
 	// Send the title and description to the extension:
 	var jsonenc = {api:"handleItem", dest:"Item Consumer", title:ti, desc:descr};
@@ -114,10 +123,24 @@ function bigClick(item) {
     wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
 }
 
-function toggelModel() {
-	console.log("toggel model");
-	$('#overlay').toggle();
+function toggleModal() {
+	console.log("Toggling modal...");
+	$("#modal").toggleClass("hidden");
 }
+
+function flexForKeyboard() {
+	$("#keyboard-spacer").removeClass("hidden");
+}
+
+function unflexForKeyboard() {
+	$("#keyboard-spacer").addClass("hidden");
+}
+
+function clearInput() {
+	console.log("clearInput()");
+	$(this).siblings(".text-input").val("");
+}
+
 /**
  * Initialize application components and register button events.
  * 
@@ -128,10 +151,11 @@ function toggelModel() {
 
 var init = function () {
 	console.log("init()");
-    $("input[name='add_item_button']").click(addItemClick);
-    $("input[name='small_button']").click(smallClick);
-    $("input[name='big_button']").click(bigClick);
-    //$("div[id='overlay']").click(toggelModel);
+  $("#add-item-button").click(addItemClick);
+  $("#bluetoothRefreshButton, #modal .close-button, #exit-modal").click(toggleModal);
+  $("input[type='text'], input[type='password'], textarea").focus(flexForKeyboard);
+  $("input[type='text'], textarea").blur(unflexForKeyboard);
+  $(".clear-button").click(clearInput);
 };
 
 
