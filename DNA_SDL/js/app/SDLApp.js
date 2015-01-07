@@ -73,6 +73,8 @@ SDL = Em.Application.create( {
 
         this._super();
     },
+    
+	rootElement: '#app',
 
     /** Application ready event */
     ready: function() {
@@ -83,7 +85,7 @@ SDL = Em.Application.create( {
         SDL.States = StateManager.create();
 
         /** container for all views */
-        SDL.views = SDL.AppViews.create().appendTo('body');
+        SDL.views = SDL.AppViews.create().appendTo('#app');
         SDL.States.goToStates(SDL.InfoController.activeState);
     }
 });

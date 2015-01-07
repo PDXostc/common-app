@@ -72,6 +72,8 @@ body {
   background-image: url("../images/Hex-Background.jpg");
   position: relative;
   display: flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
 *{

@@ -34,7 +34,7 @@
 /** Appending views */
 SDL.AppViews = Em.ContainerView.extend( {
 
-    elementId: 'app',
+    elementId: 'app-content',
 
     childViews: [
         SDL.HomeView,
