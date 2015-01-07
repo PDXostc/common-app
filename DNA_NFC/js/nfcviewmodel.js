@@ -4,8 +4,7 @@
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
-
- * global showLoadingSpinner, hideLoadingSpinner, NDEFRecordTextViewModel  */
+ */
 
 /**
  * Provides access to the NFC functionalities such as set the power of a default device NFC
@@ -121,7 +120,6 @@ var NFCViewModel = function() {
         if (!! self.RecordText()) {
             self.RecordText().reset();
         }
-        hideLoadingSpinner();
     });
 
     //////////////////////////////////////////////////////////////////////
@@ -139,14 +137,11 @@ var NFCViewModel = function() {
 
         // sync the device state with the UI
         if (self.powered() !== powered) {
-            showLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
             self.setPowered(powered, function() {
                 console.log("NFC setNFCPowered succeed.");
-                hideLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
             }, 
             function(error) {
                 console.log("NFC setNFCPowered failed: ", error);
-                hideLoadingSpinner(powered ? "TURNING ON" : "TURNING OFF");
                 
                 //showMessage("THERE WAS AN ERROR WHILE TURNING NFC ADAPTER " + 
                 //            (powered ? "ON" : "OFF") + 
@@ -175,17 +170,11 @@ var NFCViewModel = function() {
     // the edit box and enabling the controls for changing the data.
     self.readNFCData = function() {
 
-        showLoadingSpinner("READING");
-
         self.readNDEF(
             function() {
-                hideLoadingSpinner("READING");
-                
                 self.setState("on - tag");
             }, 
             function(msg) {
-                hideLoadingSpinner("READING");
-
                 self.setState("on - no tag");
 
                 if (!!msg) {
@@ -200,17 +189,13 @@ var NFCViewModel = function() {
     // 
     // Takes the string from the UI element and writes it to the NFC tag
     self.writeNFCData = function() {
-        showLoadingSpinner("WRITING");
-
         // get the text from the UI
         self.RecordView().SetText($('#nfcText').val());
 
         self.writeNDEF(
             function() {
-                hideLoadingSpinner("WRITING");
                 //showPopupMessage("OPERATION COMPLETED SUCCESSFULLY!");
             }, function(error) {
-                hideLoadingSpinner("WRITING");
                 if (!!error) {
                     //showMessage("THERE WAS AN ERROR WHILE WRITING.</ br>WRITING NOT COMPLETE.</ br>PLEASE TRY AGAIN...", "ERROR");
                 }
