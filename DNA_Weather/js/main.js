@@ -27,6 +27,12 @@ function fixscroll(){ console.log("FIX IT!");
 	if($(".locListItem")[0].style.cssText.split('translate(')[1].split(', ')[0] == '0px')
 		$(".locListItem").css('transform', 'translate(-1076px, 0px) translateZ(0px)');
 }
+
+
+console.log("start of weather index.html template");
+
+var WeatherTemplate = document.getElementById("listItemTemplate").cloneNode(true).innerHTML;
+
 /**
  * Initialize plugins, register events for Store app.
  * @method init

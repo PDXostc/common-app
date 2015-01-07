@@ -1,22 +1,10 @@
-/* Settings Overrides */
-
-/*.settingElement {
-  margin: 0 40px !important; 
-}*/
-
 /* Styles specific to Weather app */
 .weatherIcon {
   width: 153px;
   float: left;
 }
 html {
-  /*height: 1920px !important;   
-  width: 1080px !important; */  
-  overflow: hidden;   
   position: absolute !important;   
-  -webkit-user-select: none;   
-  -khtml-user-select: none;
-  user-select: none;
 }
 
 #locList {
@@ -54,7 +42,7 @@ html {
   vertical-align: middle;
   width: 1076px;
   height: 178px;
-  background: #b3ceee;
+  background: rgba(178, 240, 255, .9);
   font-family: verdana,arial,sans-serif;
   z-index: -3;
 }
@@ -76,7 +64,6 @@ html {
 }
 div.awxCurrentConditions {  
   background: -webkit-linear-gradient(left, #000000 0%,transparent 20%,transparent 80%,#000000 100%);
-  
   height: 178px;
   display: flex;        
   justify-content: space-between;
@@ -88,7 +75,7 @@ div.awxCurrentConditions {
   discern whether or not it's a day or night background color (#1d274f) */
   float: left;
   text-align: center;
-  width: 179px;  
+  width: 178px;  
   border-left:none;
   padding-top: 3px;
 }
@@ -163,35 +150,34 @@ img.icon {
   width: 600px;
   overflow: hidden;
   font-weight: bold;
-  /*text-transform: uppercase; can't use this and have RealFeel camelcased */
   color: white;
   align: justify;
   opacity: 0;
   -webkit-transition: opacity 0.6s ease-in-out;
   transition: opacity 0.6s ease-in-out;
 }
-.itemTextGradFade {
+/*.itemTextGradFade {
   display: block;
   width: 490px;
   height: 35px;
   z-index: 0;
   left: 195px;
   bottom: 36px;
-}
-.articleListGradFade {
+}*/
+/*.articleListGradFade {
   display: block;
   width: 712px;
   height: 55px;
   z-index: 1;
   left: 2px;
   top: 1032px;
-}
-.bottomPanelLogoImg {
+}*/
+/*.bottomPanelLogoImg {
   background-repeat: no-repeat;
   margin-top: 35px;
   margin-left: -35px;
   width: 285px !important;
-}
+}*/
 .temp {
   font-size: 4em;
   color: white;
@@ -309,7 +295,7 @@ span.fontSizeSmall {
   line-height: 52px;
   color: rgba(255, 255, 255, 1.0);
 }
-div#addLocation {
+.addLocation {
   width: 115px;
   height: 115px;
   line-height: 110px;
@@ -317,8 +303,9 @@ div#addLocation {
   border: 1px solid rgb(83, 181, 206);
   font-size: 140px;
   background-color: rgba(83, 181, 206, .5);
+  color: rgba(196, 196, 196, 1.0);
 }
-div#removeLocation {
+.removeLocation {
   width: 115px;
   height: 115px;
   line-height: 0px;
@@ -326,19 +313,8 @@ div#removeLocation {
   border: 1px solid rgb(83, 181, 206);
   font-size: 135px;
   background-color: rgba(83, 181, 206, .5);
+  color: rgba(196, 196, 196, 1.0);
 }
-
-/*.bottomPanelLogo.bottomPanelLogoImg {
-  background-image:url('../images/accuweather_icon.png');
-  background-repeat: no-repeat;
-  margin-top: 35px;
-  margin-left: -35px;
-  width: 285px !important;
-}*/
-
-/*div {
-    position: relative;
-}*/
 
 * {
     margin: 0;
@@ -355,12 +331,6 @@ li {
     position: relative;
 }
 
-/*ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}*/
-
 .border {
     border: 2px solid rgba(255,255,255, 0.5);
 }
@@ -373,8 +343,7 @@ li {
   box-shadow: 0 0 70px 2px rgb(29, 162, 255);
 }
 
-/*we may want to put these input styles in common.css, were in car.css*/
-input {
+/*input {
   font-family: inherit;
   font-weight: bold;
 }
@@ -463,11 +432,11 @@ input {
 .inputBox .nextButton:active {
   top: 1px;
   right: 1px;
-}
+}*/
 .bottom {
-    display: flex;  
-    align-items: flex-end;    
-    justify-content: space-between;
+  display: flex;  
+  align-items: flex-end;    
+  justify-content: space-between;
 }
 #bottomBarLogoImg {
   content:url('/images/accuweather_icon.png');

@@ -38,21 +38,32 @@
 <div id="topBar"></div>
 <div id="app">
 <div id="clockElement"></div>
-<div id="locList">
+<div id="locList" class="itemList">
 <div id ="locListInner">
 <template id="listItemTemplate">
 
-<div id="locListItemInner">"
+<div id="locListItemInner">
+<!-- <template id="listItemTemplate"> -->
 <ul class="locListItem">
 
 	<li class="forecastGrid hourlyBlock">
 		<div class="forecastGrid_load"> 
-		<!-- a javascript for loop in main.js makes the call for the hourly information, 6 iterations,
+		<!-- a javascript for loop in main.js makes the call for the hourly information, 6 iterations -->
+		<!--<script type="javascript">
+			/*render the results of the function on line 529 */
+		</script>-->
 		<div class="hourly"><p class="hour">6pm</p><img src="images/Accuweather_icons/34-s.png">
-		<div class="iconPhrase">Mostly clear</div><p class="hour_temp">37°F </p></div> -->
-		<script type="javascript">
-			/*render the results of the function on line 529 here*/
-		</script>
+		<div class="iconPhrase">Mostly clear</div><p class="hour_temp">37°F </p></div> 
+		<div class="hourly"><p class="hour">6pm</p><img src="images/Accuweather_icons/34-s.png">
+		<div class="iconPhrase">Mostly clear</div><p class="hour_temp">37°F </p></div> 
+		<div class="hourly"><p class="hour">6pm</p><img src="images/Accuweather_icons/34-s.png">
+		<div class="iconPhrase">Mostly clear</div><p class="hour_temp">37°F </p></div> 		
+		<div class="hourly"><p class="hour">6pm</p><img src="images/Accuweather_icons/34-s.png">
+		<div class="iconPhrase">Mostly clear</div><p class="hour_temp">37°F </p></div> 		
+		<div class="hourly"><p class="hour">6pm</p><img src="images/Accuweather_icons/34-s.png">
+		<div class="iconPhrase">Mostly clear</div><p class="hour_temp">37°F </p></div> 
+		<div class="hourly"><p class="hour">6pm</p><img src="images/Accuweather_icons/34-s.png">
+		<div class="iconPhrase">Mostly clear</div><p class="hour_temp">37°F </p></div> 
 		</div>
 	</li>
 
@@ -82,21 +93,40 @@
 
 	<li class="forecastGrid fiveDayBlock">
 		<div class="forecastGrid_load">
-			<!-- a javascript for loop in main.js makes the call for the 5-day forecast information, 6 iterations,
+			<!-- a javascript for loop in main.js makes the call for the 5-day forecast information, 6 iterations -->
+			<!--<script src="javascript" text="javascript">
+			/*render the results of the fiveDayForecast variable, line 479*/
+			</script>-->
 			<div class="fiveDay"><p class="weekday">TODAY</p><p>January 5</p><img src="images/Accuweather_icons/4-s.png" 
-			class="icon"><div class="iconPhrase">Intermittent clouds</div><p><span class="hour_temp">41°F</span> Lo 21°F</p></div> -->
-			<script src="javascript" text="javascript">
-			/*render the results of the fiveDayForecast variable here, line 479*/
-			</script>
+			class="icon"><div class="iconPhrase">Intermittent clouds</div><p><span class="hour_temp">41°F</span> Lo 21°F</p></div>
+			<div class="fiveDay"><p class="weekday">TODAY</p><p>January 5</p><img src="images/Accuweather_icons/4-s.png" 
+			class="icon"><div class="iconPhrase">Intermittent clouds</div><p><span class="hour_temp">41°F</span> Lo 21°F</p></div>
+			<div class="fiveDay"><p class="weekday">TODAY</p><p>January 5</p><img src="images/Accuweather_icons/4-s.png" 
+			class="icon"><div class="iconPhrase">Intermittent clouds</div><p><span class="hour_temp">41°F</span> Lo 21°F</p></div>
+			<div class="fiveDay"><p class="weekday">TODAY</p><p>January 5</p><img src="images/Accuweather_icons/4-s.png" 
+			class="icon"><div class="iconPhrase">Intermittent clouds</div><p><span class="hour_temp">41°F</span> Lo 21°F</p></div>
+			<div class="fiveDay"><p class="weekday">TODAY</p><p>January 5</p><img src="images/Accuweather_icons/4-s.png" 
+			class="icon"><div class="iconPhrase">Intermittent clouds</div><p><span class="hour_temp">41°F</span> Lo 21°F</p></div>
+			<div class="fiveDay"><p class="weekday">TODAY</p><p>January 5</p><img src="images/Accuweather_icons/4-s.png" 
+			class="icon"><div class="iconPhrase">Intermittent clouds</div><p><span class="hour_temp">41°F</span> Lo 21°F</p></div>
 		</div>
 	</li>
 	</ul>
-</template>
-</div>
-</div>
-<div id="locList" class="itemList">
+	<!-- </template> -->
+	<div id="locList" class="itemList">
 	<div id="locListInner"></div>
 </div>
+	</div>
+</template>
+
+<!-- the template should render inside "locListItemInner" -->
+<div id="locListItemInner"></div>
+
+</div>
+</div>
+<!-- <div id="locList" class="itemList">
+	<div id="locListInner"></div>
+</div> -->
 
 	<div id="locationModal" class="modal-bkgrnd">	
 		<div id="search">
@@ -110,11 +140,10 @@
 		</div>
 	</div>
 
-<div class="bottom">
-	<div id="removeLocation" class="fontColorNormal" onclick="toggleRemoveControl()">_</div>
-
-	<div id="addLocation" class="fontColorNormal" onclick="showLocationModal()">+</div>
-</div>
+	<div class="bottom">
+		<div id="addLocation" class="addLocation" onclick="showLocationModal()">+</div>
+		<div id="removeLocation" class="removeLocation" onclick="toggleRemoveControl()">_</div>	
+	</div>
 </div> <!-- end of app -->
 
 <div id="bottomBar"></div>
