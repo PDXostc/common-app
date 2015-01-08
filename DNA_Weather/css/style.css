@@ -14,7 +14,7 @@ html {
   display: flex;
 }
 .itemList {
-   margin-top: 26px; 
+  margin-top: 26px; 
   overflow-y: scroll;
   overflow-x: hidden;
   touch-action: pan-y;
@@ -62,7 +62,7 @@ html {
   margin-top: 0;
   height: 178px;
 }
-div.awxCurrentConditions {  
+.awxCurrentConditions {  
   background: -webkit-linear-gradient(left, #000000 0%,transparent 20%,transparent 80%,#000000 100%);
   height: 178px;
   display: flex;        
@@ -71,8 +71,6 @@ div.awxCurrentConditions {
   flex: 1;
 }
 .hourly {
-  /*background: #b3ceee; eventually this should pull from the javascript and 
-  discern whether or not it's a day or night background color (#1d274f) */
   float: left;
   text-align: center;
   width: 178px;  
@@ -80,7 +78,7 @@ div.awxCurrentConditions {
   padding-top: 3px;
 }
 .hourly > img {
-    width: 108px;
+  width: 108px;
 }
 .fiveDay {
   float: left;
@@ -235,6 +233,7 @@ sup {
   padding: 5px 15px;
   background-color: rgba(83, 181, 206, .5);
   border: 1px solid rgb(83, 181, 206);
+  width: 555px;
 }
 #awxSearchButton {
   margin-top: 0; 
@@ -242,9 +241,9 @@ sup {
   margin-bottom: 30px;
 }
 #awxSearchTextBox {
-  width: 400px;
-  height: 60px; 
-  float: left;
+  /* width: 400px; */
+  /* height: 60px; */ 
+  /* float: left; */
 }
 
 .hour_temp  {
@@ -274,10 +273,11 @@ span.fontSizeSmall {
   width: 615px;
   background-color: #222;
   top: 30%;  
-  left: 50%;  position: absolute;  transform: translate(-50%, -50%);
+  left: 50%;  
+  position: absolute;  
+  transform: translate(-50%, -50%);
   padding: 0 20px 20px 30px;
 }
-
 .removeLocationControl{
   display: none;
   border: 1px solid rgb(83, 181, 206);
@@ -288,7 +288,6 @@ span.fontSizeSmall {
   margin-top: 55px;
   margin-left: -109px;
 }
-
 .removeLocationControl::after {
   content:  "\00d7";
   font-size: 80px;
@@ -433,7 +432,7 @@ li {
   top: 1px;
   right: 1px;
 }*/
-.bottom {
+.justify {
   display: flex;  
   align-items: flex-end;    
   justify-content: space-between;
@@ -447,14 +446,14 @@ li {
 }
 
 .inputNumber {
-  margin-right: 10px;
-  margin-bottom: 30px;
-  margin-left: 10px;
+  /* margin-right: 10px; */
+  /* margin-bottom: 30px; */
+  /* margin-left: 10px; */
 }
-.close-button {
+/*.close-button {
   padding-bottom: 0;
   width: 50px;
-}
+}*/
 ul .settingElement {
   margin: 0 40px; 
 }

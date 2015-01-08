@@ -21,14 +21,8 @@
 <script type="text/javascript" src="./DNA_common/js/init.js"></script>
 
 <script type="text/javascript">
-	//$.holdReady( true );
-	//includeJs("./js/predefAppModel.js");
-	//includeJs("./js/installedApps.js");
-	//includeJs("./js/keyControl.js");
-	//includeJs("./js/actionCatcher.js");
 	includeJs("./js/main.js");
 	includeJs("./DNA_common/components/jQuery/jquery.nouislider.js");
-	//$.holdReady( false );
 </script>
 
 </head>
@@ -130,9 +124,9 @@
 
 	<div id="locationModal" class="modal-bkgrnd">	
 		<div id="search">
-			<span onclick="hideLocationModal()" class="close-button" type="reset"></span>
-		   <h2>Location Search</h2>
-		    <input id="awxSearchTextBox" type="text" class="inputNumber" placeholder="city, state, or zip">
+			<h2>Location Search</h2>
+			<span onclick="hideLocationModal()" class="close-button" type="reset"></span>		   
+		    <input id="awxSearchTextBox" type="text" class="inputField" placeholder="city, state, or zip">
 		    <input id="awxSearchButton" class="button button-blue" type="submit" value="Search" />
 			<ul id="searchResults">
 				
@@ -140,7 +134,7 @@
 		</div>
 	</div>
 
-	<div class="bottom">
+	<div class="justify">
 		<div id="addLocation" class="addLocation" onclick="showLocationModal()">+</div>
 		<div id="removeLocation" class="removeLocation" onclick="toggleRemoveControl()">_</div>	
 	</div>

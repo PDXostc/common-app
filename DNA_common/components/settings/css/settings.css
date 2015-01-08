@@ -354,6 +354,7 @@ ul#settingsPageList > :last-child {
 	display: none;
 }
 .componentSubheader {
-	margin: 20px;
+	margin: 20px 20px 0 20px;
 	border-bottom: 1px solid rgba(255,255,255, 0.25);
+	padding-top: 1px;
 }

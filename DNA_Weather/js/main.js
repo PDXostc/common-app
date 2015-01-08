@@ -31,7 +31,7 @@ function fixscroll(){ console.log("FIX IT!");
 
 console.log("start of weather index.html template");
 
-var WeatherTemplate = document.getElementById("listItemTemplate").cloneNode(true).innerHTML;
+var WeatherTemplate = document.getElementById("listItemTemplate").cloneNode(true).innerHTML = document.getElementById("listItemTemplate").cloneNode(true).innerHTML + ("locListItemInner");
 
 /**
  * Initialize plugins, register events for Store app.
