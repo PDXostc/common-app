@@ -10,8 +10,19 @@ body {
 .fm-designation {
   font-size: 7rem;
 }
+.strong-sig {
+	margin:0 auto;
+	width:25px;
+	height:25px;
+	display:block;
+	border-radius:50%;
+	background-color: #000;
+	border-color:#fe9c00;
+}
 
-#keypad-container {
+.strong-sig .on {background-color:green;}
+
+#keypad-container, #presets-container {
   width: 925px;
   height: 312px;
   flex-direction: column;
@@ -26,6 +37,13 @@ body {
  /* or inline-flex */
   justify-content: space-between;
   flex-basis: 22%;
+}
+
+.presets-digits {
+  display: flex;
+  justify-content:center;
+  margin-bottom: 20px;
+  flex-basis: 30%;
 }
 
 .digits {
@@ -61,7 +79,6 @@ body {
 .flex-fm-row {
   font-family: letsGoDigital;
   flex-direction: row;
-  margin-top: 50px;
 }
 
 .fm-radio-box, .cancel-sst {
@@ -92,6 +109,9 @@ body {
   display: block;
   margin: 0 auto 70px;
 }
+
+.hidden {visibility:hidden;}
+.visibile {visibility:visible;}
 
 #seekControls {
   width: 1020px;
@@ -136,23 +156,23 @@ body {
 }
 
 .station-id-reflect {
-  -webkit-box-reflect: below -211px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(58%, transparent), to(white));
+  -webkit-box-reflect: below -175px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(58%, transparent), to(white));
 }
 
 .small-title {
   font-family: letsGoDigital;
-  font-size: 62px;
+  font-size: 6rem;
   color: #c4c4c4;
   text-align: center;
-  margin-top: 50px;
+  margin:10px auto 50px;
+  width:70%
 }
 
 #station-id {
-  font-size: 386px;
+  font-size: 32rem;
   line-height: 1.2;
   text-align: center;
   width: 1079px;
-  margin-bottom: 50px;
 }
 /* SCAN SEEK TUNE BUTTONS*/
 .seek-scan-tune-wrapper {
@@ -201,12 +221,82 @@ button.minus {
   color: #fe9c00;
 }
  
+/* keypad-numbers */
+#keypad-numbers {
+	width:445px;
+	height:540px;
+	flex-direction: column;
+	flex-wrap:wrap;
+	justify-content: space-between;
+	font-weight:bold;
+	font-size:2em;
+	margin:0 auto 20px;
+	}
+	
+#keypad-modal {
+background-color: #333;
+padding: 50px;
+opacity: .7;
+}
+	
+.flex-container {
+  display: flex; /* or inline-flex */
+  justify-content: space-between;
+  flex-basis:22%;
+}
+
+div#keypad-modal {
+background-color: #333;
+padding: 50px;
+opacity: .7;
+}
+
+.digits {
+	display:flex;
+	justify-content:center;
+	flex-basis:30%;
+	background: #656565;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#656565), to(#444));
+    background: linear-gradient(#656565, #444);
+    border: solid 1px #535353;
+    border-bottom: solid 3px #414141;
+    box-shadow: inset 0 0 0 1px #939393;
+    color: #fe9c00;
+    text-shadow: 0 2px 0 #000;
+
+}
+.contentFlexed {
+	flex: 1;
+	align-self: center;
+	text-align: center;
+	font-size: 6rem;
+}
+
+.first_position{order:1;}
+.second_position{order:2;}
+.third_position{order:3;}
+
+    
+.digits:hover {
+    background: #4c4c4c;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#4c4c4c), to(#565656));
+    background: linear-gradient(#4c4c4c, #565656);
+    border: solid 1px #464646;
+    border-bottom: solid 3px #414141;
+    box-shadow: inset 0 0 0 1px #818181; }
+    
+.digits:active {
+    background: #474747;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#474747), to(#444));
+    background: linear-gradient(#474747, #444);
+    border: solid 1px #2f2f2f;
+    box-shadow: inset 0 10px 15px 0 #3e3e3e; }
 
 /* spectrum analyzer */
 .spectrumAnalyzer {
   width: 292px;
   height: 110px;
-  margin: 90px auto;
+  margin: 90px auto 155px;
 }
 
 .barAnalyzer {

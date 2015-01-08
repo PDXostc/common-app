@@ -37,9 +37,46 @@
 				<div id="clockElement"></div>
 				<!-- BEGIN APP SPECIFIC ELEMENTS -->
 	<div class="flex-fm-row">
-		<div class="small-title title-reflect">FM RADIO</div>
 <div id="station-id" class="dna-orange station-id-reflect" data-station-id-number="">103.7<span class="fm-designation">FM</span></div>
-<button type="button" class="cancel-sst">CANCEL...</button><!-- visibility:hidden when not utilized for seek/scan/tune -->
+		<div class="small-title title-reflect">FM RADIO</div>
+		
+		
+		
+<div id="keypad-modal" class="hidden">
+<div id="keypad-numbers" class="flex-container shadowBck"><!-- flex parent for all -->
+
+<div class="keypadRow flex-container"><!-- flex parent for row of 3 numbers -->
+	<div id="num_1" class="digits first_position"><div class="contentFlexed">1</div></div>
+	<div id="num_2" class="digits second_position"><div class="contentFlexed">2</div></div>
+	<div id="num_3" class="digits third_position"><div class="contentFlexed">3</div></div>
+</div>
+
+<div class="keypadRow flex-container"><!-- flex parent for row of 3 numbers -->
+	<div id="num_4" class="digits first_position"><div class="contentFlexed">4</div></div>
+	<div id="num_5" class="digits second_position"><div class="contentFlexed">5</div></div>
+	<div id="num_6" class="digits third_position"><div class="contentFlexed">6</div></div>
+</div>
+
+<div class="keypadRow flex-container"><!-- flex parent for row of 3 numbers -->
+	<div id="num_7" class="digits first_position"><div class="contentFlexed">7</div></div>
+	<div id="num_8" class="digits second_position"><div class="contentFlexed">8</div></div>
+	<div id="num_9" class="digits third_position"><div class="contentFlexed">9</div></div>
+</div>
+
+<div class="keypadRow flex-container"><!-- flex parent for row of 3 numbers -->
+	<div class="digits first_position"><div class="contentFlexed"></div></div>
+	<div id="num_0" class="digits second_position"><div class="contentFlexed">0</div></div>
+	<div class="digits third_position"><div class="contentFlexed"></div></div>
+</div>
+</div>
+
+</div>
+
+
+<button type="button" class="cancel-sst hidden">CANCEL...</button><!-- visibility:hidden when not utilized for seek/scan/tune remove/add class visible to show -->
+
+<div class="strong-sig on"></div><!-- remove class 'on' to make black -->
+
 <div class="seek-scan-tune-wrapper">
 				<button class="minus" type="button">-</button><span>SEEK</span><button type="button">+</button>
 				<button class="minus" type="button">-</button><span>SCAN</span><button type="button">+</button>
@@ -47,24 +84,24 @@
 </div>
 			<div id="spectAnalyzer" class="spectrumAnalyzer"><img src="images/spectrum-fake.png" alt=""></div>
 
-<div id="keypad-container" class="flex-parent shadowBck"><!-- flex parent for all presets-->
+<div id="presets-container" class="flex-parent shadowBck"><!-- flex parent for all presets-->
 <div class="preset-btn-row"><!-- flex parent for row of 3 numbers -->
-	<div id="num_1" class="digits first_position"><div class="contentFlexed fm-radio-box dna-orange" data-preset-1="">107</div></div>
-	<div id="num_2" class="digits second_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-2="">EMPTY</div></div>
-	<div id="num_3" class="digits third_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-3="">EMPTY</div></div>
+	<div id="num_1" class="presets-digits first_position"><div class="contentFlexed fm-radio-box dna-orange" data-preset-1="">107</div></div>
+	<div id="num_2" class="presets-digits second_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-2="">EMPTY</div></div>
+	<div id="num_3" class="presets-digits third_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-3="">EMPTY</div></div>
 </div>
 
 
 <div class="preset-btn-row"><!-- flex parent for row of 3 numbers -->
-	<div id="num_4" class="digits first_position"><div class="contentFlexed fm-radio-box dna-orange" data-preset-4="">98.7</div></div>
-	<div id="num_5" class="digits second_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-5="">EMPTY</div></div>
-	<div id="num_6" class="digits third_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-6="">EMPTY</div></div>
+	<div id="num_4" class="presets-digits first_position"><div class="contentFlexed fm-radio-box dna-orange" data-preset-4="">EMPTY</div></div>
+	<div id="num_5" class="presets-digits second_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-5="">EMPTY</div></div>
+	<div id="num_6" class="presets-digits third_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-6="">EMPTY</div></div>
 </div>
 
 <div class="preset-btn-row"><!-- flex parent for row of 3 numbers -->
-	<div id="num_7" class="digits first_position"><div class="contentFlexed fm-radio-box dna-orange" data-preset-7="">103.7</div></div>
-	<div id="num_8" class="digits second_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-8="">EMPTY</div></div>
-	<div id="num_9" class="digits third_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-9="">EMPTY</div></div>
+	<div id="num_7" class="presets-digits first_position"><div class="contentFlexed fm-radio-box dna-orange" data-preset-7="">EMPTY</div></div>
+	<div id="num_8" class="presets-digits second_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-8="">EMPTY</div></div>
+	<div id="num_9" class="presets-digits third_position"><div class="contentFlexed fm-radio-box fm-gray" data-preset-9="">EMPTY</div></div>
 </div>
 
 </div>
