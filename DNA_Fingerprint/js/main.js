@@ -20,6 +20,10 @@
 */
 
 /*global Bootstrap */
+/**
+ * Show Hide Div function
+**/
+
 
 /**
   * Boilerplate application provides starting point for new applications and provides basic layout and infrastructure:
@@ -151,41 +155,14 @@ var init = function () {
  * @param init {function} Callback function for initialize Store.
  * @static
  **/
+
+
+
+
+ 
 $(document).ready(init);
-
-/**
- * Applies selected theme to application icons 
- * @method setThemeImageColor
- * @static
- **/
-function setThemeImageColor() {
-	var imageSource;
-	$('body').find('img').each(function() {
-		var self = this;
-		imageSource = $(this).attr('src');
-
-	    if (typeof(imageSource) !== 'undefined' && $(this.parentElement).hasClass('themeImage') == false) {
-	        console.log(imageSource);
-
-	        var img = new Image();
-	        var ctx = document.createElement('canvas').getContext('2d');
-
-	        img.onload = function () {
-	            var w = ctx.canvas.width = img.width;
-	            var h = ctx.canvas.height = img.height;
-	            ctx.fillStyle = ThemeKeyColor;
-	            ctx.fillRect(0, 0, w, h);
-	            ctx.globalCompositeOperation = 'destination-in';
-	            ctx.drawImage(img, 0, 0);
-
-	            $(self).attr('src', ctx.canvas.toDataURL());
-	            $(self).hide(0, function() { $(self).show();});
-	        };
-
-	        img.src = imageSource;
-	    }
-	});
 }
+
 
 function setupSpeechRecognition() {
 	console.log("Store setupSpeechRecognition");

@@ -26,6 +26,46 @@
 			includeJs("./DNA_common/js/HomeScreenMain.js");*/
 			includeJs("./js/main.js");
 		</script>
+				<script type="text/javascript">
+		 $( document ).ready(function() {
+  $("#createNew").click(function(){
+   $("#new-profile-screen").show();
+       $('#mainMenu').hide();
+
+ });
+  $("#recallExisting").click(function(){
+   $("#load-profile-screen").show();
+       $('#mainMenu').hide();
+
+ });
+   $("#deleteExisting").click(function(){
+   $("#delete-profile-screen").show();
+       $('#mainMenu').hide();
+
+ });
+ 
+ $(".menu").click(function(){
+   $("#mainMenu").show();
+       $('#new-profile-screen, #load-profile-screen, #delete-profile-screen, #create-profile-screen').hide();
+
+ });
+ 
+ $('.male-avatar').click(function(){ 
+	 $('.female-avatar').addClass('dim');
+	$('.male-avatar').removeClass('dim');
+});
+ $('.female-avatar').click(function(){ 
+	 $('.male-avatar').addClass('dim');
+	$('.female-avatar').removeClass('dim');
+});
+  $("#create-profile").click(function(){
+   $("#create-profile-screen").show();
+       $('#new-profile-screen, #load-profile-screen, #delete-profile-screen').hide();
+
+ });
+
+	});
+		</script>
 	</head>
 	<body>
 		<!-- Begin  #base -->
@@ -35,13 +75,36 @@
 				<div id="clockElement"></div>
 				<!-- BEGIN HTML ELEMENTS -->
 				<div class="flex-item">
-					<div class="mainMenu">
+					<div id="mainMenu">
 					<h2>Fingerprint Options</h2>
-						<div class="menuButtons">
-							<button type="button" id="createNew" class="button-yellow">Create New Record</button>
-							<button type="button" id="recallExisting" class="button-green">Recall Existing Record</button>
-							<button type="button" id="deleteExisting" class="button-orange">Delete Existing Record</button>
+						<div id="menuButtons">
+							<button type="button" id="recallExisting" class="button-green">Open Profile</button>
+							<button type="button" id="createNew" class="button-yellow">Create New Profile</button>
+							<button type="button" id="deleteExisting" class="button-orange">Delete Profile</button>
 						</div>
+					</div>
+					<div id="new-profile-screen">
+						<button type="button" class="menu button-blue">Menu</button>
+						<div id="new-profile-message">
+							<p>Dynamic Message Goes Here</p>
+						</div>
+						<input type="text" maxlength="12" class="male-avatar">
+						<input type="text" maxlength="12" class="female-avatar">
+						<button type="button" id="create-profile" class="create-profile">Create Profile</button>
+					</div>
+					<div id="create-profile-screen">
+					<h2>Continue Creating Record Here</h2>
+					<button type="button" class="menu button-blue">Menu</button>
+					</div>
+					<div id="load-profile-screen">
+					<h2>Recall Existing Record</h2>
+					<button type="button" class="menu button-blue">Menu</button>
+
+					</div>
+					<div id="delete-profile-screen">
+					<h2>Delete Existing Record</h2>
+					<button type="button" class="menu button-blue">Menu</button>
+
 					</div>
 				<!-- END CUSTOM ELEMENTS -->
 			</div>
