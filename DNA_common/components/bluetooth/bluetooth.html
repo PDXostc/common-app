@@ -2,7 +2,7 @@
 
 <div id="bluetoothPage" class="tabs bluetoothPage hidden">
 
-	<div id="tabsTopSubPanel" class="tabsTopSubPanel" style="display: block;">
+	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
 
 		<div id="tabsCloseSubPanelBluetoothButton" class="tabsCloseSubPanelButton"></div>
 		<div class="tabsSubPanelArea">
@@ -15,9 +15,11 @@
 			</div>
 		</div>
 		<div id="bluetoothPowerButton" class="subPanelToggleButton subPanelToggleButtonWide">
-
-			<!-- on/off button style here, hexagon slider instead of text -->
-			<div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">TURN ON</div>
+			<div class="switch off switch-xsmall">
+			  <div class="switch-plate">
+			    <div class="switch-control"></div>
+			  </div>
+			</div>
 		</div>
 
 		<div id="loadingSpinnerWrapper" class="loadingSpinnerWrapper" style="display: none;">
@@ -28,14 +30,13 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
-	<div id="tabsTopSubPanel" class="tabsTopSubPanel" style="display: block;">
+	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
 
 		<!-- start of tabsContent portion-->
 		<div id="tabsContent" class="tabsContent wifiContent">
 			<div id="wifiNetworksList"></div>
-			<div style="text-align: center; display: none;" class="fontColorNormal fontSizeMedium fontWeightBold">SELECTED</div>
+			<div style="text-align: center; display: none;" class="fontNormal fontSizeMedium"><strong>SELECTED</strong></div>
 			<div class="buttonsArea">
 				<div id="wifiRefreshButton" class="wifiRefreshButton" style="display:block"></div>
 				<div id="addNetworkButton" class="addNetworkButton" style="display:block"></div>
@@ -46,15 +47,15 @@
 
 <div id="bluetoothDeviceTemplate" class="wifiElement borderColorTheme">
 	<div class="wifiElementInfoBox">
-		<div class="wifiElementTitle fontSizeLarge fontWeightBold fontColorNormal"><!-- name --></div>
-		<div class="wifiElementSubtitle fontSizeSmaller fontColorNormal"><!-- address --></div>
-		<div class="wifiElementDescription fontSizeSmaller fontColorNormal"><!-- device class --></div>
-		<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold"><!-- paired --></div>
-		<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold"><!-- is selected --></div>
+		<div class="wifiElementTitle fontSizeLarge fontNormal"><strong><!-- name --></strong></div>
+		<div class="wifiElementSubtitle fontSizeSmaller fontNormal"><!-- address --></div>
+		<div class="wifiElementDescription fontSizeSmaller fontNormal"><!-- device class --></div>
+		<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- paired --></strong></div>
+		<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- is selected --></strong></div>
 	</div>
 
 	<div class="toggleButton wifiElementButton">
 		<div class="connectWhite connectGreen toggleButton toggleButtonBackground"></div>
-		<div class="fontColorNormal fontSizeMedium fontWeightBold"></div>
+		<div class="fontNormal fontSizeMedium"><strong> </strong></div>
 	</div>
 </div>
