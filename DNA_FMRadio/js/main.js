@@ -114,6 +114,21 @@ function bigClick(item) {
     wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
 }
 
+/* faked audio visualizer */
+function fluctuate(bar) {
+    var hgt = Math.random() * 40;
+    hgt += 1;
+    var t = hgt * 4;
+
+
+   bar.animate({
+        height: hgt
+    }, t, function() {
+        fluctuate($(this));
+    });
+}
+
+
 /**
  * Initialize application components and register button events.
  * 
@@ -128,7 +143,7 @@ var init = function () {
 	$("#clockElement").ClockPlugin('init', 5);
 	$("#clockElement").ClockPlugin('startTimer');
 	$('#bottomPanel').bottomPanel('init');
-
+	
 	if (tizen.speech) {
 	    setupSpeechRecognition();
 	} else {
@@ -152,6 +167,10 @@ var init = function () {
  * @static
  **/
 $(document).ready(init);
+
+	$(".bar").each(function(i) {
+    fluctuate($(this));
+});
 
 /**
  * Applies selected theme to application icons 
