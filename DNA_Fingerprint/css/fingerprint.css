@@ -1,0 +1,77 @@
+/* Copyright (C) Jaguar Land Rover - All Rights Reserved
+*
+* Proprietary and confidential
+* Unauthorized copying of this file, via any medium, is strictly prohibited
+*
+* THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+* PARTICULAR PURPOSE.
+*
+* Filename:	 dashboard.css
+* Version:              1.0
+* Date:                 December 2014
+* Project:              DNA Dashboard
+* Contributors:         Joel Mertz
+*
+* Incoming Code:        GStreamer 0.93, <link>
+*
+*/
+
+/*//////////// Primary Containers ////////////*/ 
+
+/* Use left and right push for adjusting the amount of space between the edge of the screen and the graphics on either the left or right side of Dashboard.*/
+
+
+/*//////////// Menu Buttons ////////////*/
+
+h2 {
+position: relative;
+margin-left: 4.8em;
+}
+
+.menuButtons {
+position: relative;
+width: 12.5em;
+top: 7em;
+left: 12em;
+}
+
+button.button-yellow {
+position: relative;
+width: 12em;
+height: 2em;
+margin: 2em 0 2em 0;
+}
+
+button.button-yellow:active {
+ border-color: #ffffff;
+  box-shadow: inset 0 0 20px rgba(255, 255, 178, 0.9);
+color: rgb(255, 255, 178);
+}
+
+button.button-green {
+position: relative;
+width: 12em;
+height: 2em;
+margin: 2em 0 2em 0;
+}
+
+button.button-green:active {
+ border-color: #ffffff;
+  box-shadow: inset 0 0 20px rgba(205, 255, 178, 0.9);
+color: rgb(205, 255, 178);
+}
+
+button.button-orange {
+position: relative;
+width: 12em;
+height: 2em;
+margin: 2em 0 2em 0;
+}
+
+button.button-orange:active {
+ border-color: #ffffff;
+  box-shadow: inset 0 0 20px rgba(255, 211, 140, 0.9);
+color: rgb(255, 211, 140);
+}
