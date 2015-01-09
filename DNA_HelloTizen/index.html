@@ -9,134 +9,128 @@
 -->
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>HelloTizen application 42</title>
-<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=1080, height=1920, user-scalable=no">
+	<title>HelloTizen</title>
+	<link rel="stylesheet" href="./DNA_common/css/style.css">
+	<link rel="stylesheet" href="./css/hello_tizen.css">
 
-<link rel="stylesheet" href="./css/dna-hello-tizen.css"/>
-<link rel="stylesheet" href="./DNA_common/css/style.css"/>
-<link rel="stylesheet" href="./css/style.css"/>
-<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
-<script type="text/javascript" src="./DNA_common/js/init.js"></script>
+	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
 
-<script type="text/javascript">
-    includeJs("./DNA_common/js/predefAppModel.js");
-    includeJs("./DNA_common/js/installedApps.js");
-    includeJs("./DNA_common/js/keyControl.js");
-    includeJs("./DNA_common/js/actionCatcher.js");
-    includeJs("./DNA_common/js/HomeScreenMain.js");
-    includeJs("./js/main.js");
-</script>
-
+	<template id="item-template">
+		<tr>
+			<td id="item-title-field" class="cell-label">Name</td>
+			<td id="item-description-field" class="cell-label">Description</td>
+			<td >
+				<button type="button" class="item-delete-button">Delete</button>
+			</td>
+		</tr>
+	</template>
 </head>
-
 <body>
+	<div id="base">
+		<div id="topBar"></div>	
 
-<div id="topBar"></div>
+		<div id="app">
+			<div id="clockElement"></div>
+			<!-- Begin App-Specific Content -->
+			<div id="app-content" class="scrollable-y">
+				<!-- Headings Demo -->
+				<div class="flex-parent space-between">
+					<div id="headings" class="flex-item">
+						<h1>Hello Tizen IVI</h1>
+					</div>
+					<div>
+						<button type="button" id="bluetoothRefreshButton" class="no-margin">Modal</button>
+					</div>
+				</div>
 
-<div id="clockElement"></div>
+				<!-- Form Demo 1: Single Submit Button -->
+				<section id="form-demo-1">
+					<h2>Form Demo 1: <small>Single Submit Button</small></h2>
+					<div class="box-inshadow no-margin">
+						<form id="add-item-form" class="flex-parent">
+							<div class="flex-item">
+								<div class="input-group">
+									<label for="item-title">Title</label>
+									<input type="text" id="item-title" class="text-input input-blue" name="item-title" placeholder="<input type='text'>">
+								</div>
+								<div class="input-group">
+									<label for="item-description">Description</label>
+									<textarea id="item-description" class="text-input input-blue" name="item-description" placeholder="<textarea>"></textarea>
+								</div>
+							</div>
+							<div>
+								<input id="add-item-button" type="button" class="no-margin" value="Add Item">
+							</div>
+						</form>
 
+						<!-- Form Demo 1 Output-->
+						<table id="item-table" class="hidden">
+							<thead>
+								<tr>
+									<th><p>name</p></th>
+									<th><p>description</p></th>
+									<th class="item-button-column"><!-- Empty header for button --></th>
+								</tr>
+							</thead>
+								<tbody id="item-list"></tbody>
+							<tfoot></tfoot>
+						</table>
+					</div>
+				</section>
 
-<!-- BEGIN HTML ELEMENTS -->
-<div class="wrapper">	
+				<!-- Form Demo 2: Centered Form	-->
+				<section id="for-demo-2">
+					<h2>Form Demo 2: <small>Centered Form</small></h2>
+					<div class="box-inshadow no-margin">
+						<form class="center">
+							<div>
+								<textarea class="text-input input-blue" placeholder="<textarea>"></textarea>
+							</div>
+							<input type="button" value="Button" class="no-margin">
+						</form> 
+					</div>
+				</section>
 
-	<div class="title borderWhite fontNormal">
-			<h1>Hello Tizen ivi: H1 example</h1>
-			<h2>Subtitle: H2 example</h2>
-			<h3>Description: H3 example</h3>
-			<h4>Last header style: H4 example</h4>
-			<br>		
-		<button type="button" class="lrg-btn box-shadow-inset-1 font-white"><strong>Button</strong></button>
+				<!-- Form Demo 3: Input-Specific Buttons -->
+				<section id="form-demo-3">
+					<h2>Form Demo 3: <small>Input-Specific Buttons</small></h2>
+					<div class="box-inshadow no-margin">
+						<form>
+							<div class="input-group">
+								<label for="username-input">Username</label>
+								<input id="username-input" type="text" class="text-input input-yellow" placeholder="<input type='text'>">
+								<div class="clear-button"></div>
+							</div>
+							<div class="input-group">
+								<label for="user-password-input">Password</label>
+								<input id"user-password-input" type="password" class="text-input input-yellow" placeholder="<input type='password'>">
+								<div class="clear-button"></div>
+							</div>
+							<div>
+								<input class="submit" type="button" value="submit">
+							</div>
+						</form>
+					</div>
+				</section>
+			</div>
+			<!-- End App-Specific Content -->
+			<div id="keyboard-spacer" class="hidden"></div>
+			<!-- Modal Demo -->
+			<div id="modal" class="hidden">
+				<div class="modal-content box-out-orange">
+					<div class="close-button"></div>
+					<h6>warning!</h6>
+					<p>This is a demo of a modal view.</p>
+					<button type="button" id="exit-modal">Continue</button>
+				</div>
+			</div>
+		</div>
+		<div id="bottomBar"></div>
 	</div>
-		
-	<form name="add_item_form" class="input_form boxShadowI1Lt bgColorNormal">
-
-		<!--input information -->		 
-		<label>Title</label>
-		<input name="item_title" class="inputs box-shadow-inset-7">
-		<input type="button" value="Add Item" class="formButton" name="add_item_button">
-
-		<label>Description</label>
-		<textarea name="item_description" class="inputs"></textarea>
-
-	</form>
-
-	<!-- output from information form -->
-	<div class="output_form title borderLtBlue">
-		<table><thead>
-			<th>name</td>
-			<th>description</th>
-			</thead>
-			<tbody name="item_list_body">
-				<template name="item_template">
-					<tr>
-						<td name="item_title_field" class="td_name">Name</td>
-						<td name="item_description_field" class="td_description">Description</td>
-						<td class=""><input type="button" name="delete_item" class="formButton2" value="Delete"></td>
-					</tr>
-				</template>
-			</tbody>
-		</table>	
-	</div>	
-	
-	<!-- centered button sample	-->	
-	<div class="buttonsArea" onclick="$('#overlay').toggle();">
-		<div id="bluetoothRefreshButton" class="fontSizeMedium fontWeightBold lgBtnRnd">Model</div>
-	</div>		
-
-	<!-- Sample form, remove commenting to display -->		
-	<form name="" class="boxShadowI2Lt bgColorNormalTransparent">
-		<textarea placeholder="text input area here" class="font boxShadow1Med bgColorNormal"></textarea>
-	</form> 
-		
-	<!-- Sample form, remove commenting to display -->	
-	<form class="form_narrow bgColorDark boxShadowI4Lt">
-
-		<div class="labelBox">
-			<div class="text fontSizeLarge fontWeightBold ">PASSWORD</div>
-			<div class="text fontSizeLarge fontWeightBold ">User</div>
-		</div>
-
-		<!-- <div class="inputNumberBox">
-			<input class="inputNumber fontSizeLarge bgColorNormal box-shadow-inset-5 font-white" type="password">
-          <button type="button" class="button deleteButton box-shadow-inset-7 borderNormal font-white">Delete</button>
-		</div>-->
-		<div class="inputNumberBox">
-			<input class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow4Std" type="text">
-			<div class="button deleteButton boxShadowI3Std fontNormal borderNormal">Delete</div>
-		</div>
-		<div class="inputNumberBox">
-			<input class="inputNumber fontSizeLarge fontSizeNormalfontNormal bgColorNormal boxShadow4Std" type="password">
-			<div class="button deleteButton boxShadowI3Std fontNormal borderNormal">Delete</div>
-		</div>
-		<div >
-			<input class="submit" type="button" value="submit">
-		</div>
-
-	</form> <!---->
-	
-	
-	<!-- Sample WARNING/MODAL dialog box, remove commenting to display -->
-
-	<div id="overlay" style="display: none;">
-		<div class="modal" >
-		<form id="warning">
-			<div class="x_graphic_modal">X</div>
-			<div class="fontSizeMedium fontColorNormal clearBoth">WARNING!</div>
-			<p>This is a demo of a model box.</p>
-			<input id="" class="fontSizeSmall submit_button" type="button" value="CONTINUE" onclick="$('#overlay').toggle();">
-		</form>
-	</div>
-</div>
-
-	<!-- end of WARNING/MODAL dialog box  -->
-
-</div><!--end of wrapper -->
-
-<!-- END HTML ELEMENTS -->
-
-<div id="bottomBar"></div>
-
+	<div id="alert"></div>
 </body>
-
 </html>
