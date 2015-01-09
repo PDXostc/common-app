@@ -53,18 +53,32 @@
  $('.male-avatar').click(function(){ 
 	 $('.female-avatar').addClass('dim');
 	$('.male-avatar').removeClass('dim');
+	$('.female-avatar').val('');
 });
  $('.female-avatar').click(function(){ 
 	 $('.male-avatar').addClass('dim');
 	$('.female-avatar').removeClass('dim');
+	$('.male-avatar').val('');
 });
+$(".female-avatar, .male-avatar").focusout(function(){
+    $('.female-avatar, .male-avatar').removeClass('dim');
+    $('.female-avatar, .male-avatar').val('');
+    $("#profile-message").text("Select an Avatar for your Profile");
+  });
+
+  $(".female-avatar, .male-avatar").click(function(){
+   $("#profile-message").text("Enter up to 12 Characters then select Create Profile");
+
+ });
+
   $("#create-profile").click(function(){
    $("#create-profile-screen").show();
        $('#new-profile-screen, #load-profile-screen, #delete-profile-screen').hide();
 
  });
-
-	});
+ 
+ 
+ 	});
 		</script>
 	</head>
 	<body>
@@ -85,15 +99,37 @@
 					</div>
 					<div id="new-profile-screen">
 						<button type="button" class="menu button-blue">Menu</button>
-						<div id="new-profile-message">
-							<p>Dynamic Message Goes Here</p>
+						<div class="new-profile-message">
+							<p id="profile-message">Select an Avatar for your Profile</p>
 						</div>
-						<input type="text" maxlength="12" class="male-avatar">
-						<input type="text" maxlength="12" class="female-avatar">
+						<input type="text" maxlength="12" class="male-avatar" >
+						<input type="text" maxlength="12" class="female-avatar" >
 						<button type="button" id="create-profile" class="create-profile">Create Profile</button>
 					</div>
 					<div id="create-profile-screen">
-					<h2>Continue Creating Record Here</h2>
+						<div class="new-user-ID">
+							<p>Name and Stuff</p>
+						</div>
+						<div class="new-profile-message-2">
+							<p id="user-creation-message">Select the Record You Wish to Create</p>
+						</div>
+						<div class="left-hand-records">
+							<div id="l-thumb" class="print-record"><p>Thumb</p></div>
+							<div id="l-index" class="print-record"><p>Index</p></div>
+							<div id="l-middle" class="print-record"><p>Middle</p></div>
+							<div id="l-ring" class="print-record"><p>Ring</p></div>
+							<div id="l-pinky" class="print-record"><p>Pinky</p></div>
+						<h6 class="left-label-borders"> left Hand</h6>
+						</div>
+						<div class="right-hand-records">
+							<div id="r-thumb" class="print-record"><p>Thumb</p></div>
+							<div id="r-index" class="print-record"><p>Index</p></div>
+							<div id="r-middle" class="print-record"><p>Middle</p></div>
+							<div id="r-ring" class="print-record"><p>Ring</p></div>
+							<div id="r-pinky" class="print-record"><p>Pinky</p></div>
+							<h6 class="right-label-borders"> Right Hand</h6>
+						</div>
+					
 					<button type="button" class="menu button-blue">Menu</button>
 					</div>
 					<div id="load-profile-screen">

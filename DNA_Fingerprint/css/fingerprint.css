@@ -133,16 +133,20 @@ right: 0;
 opacity: .5;
 
 }
-#new-profile-message{
+.new-profile-message{
 	position:absolute;
 	top: 5em;
 	left: 9.4em;
 	width: 18em;
+	color: rgb (197, 197, 197);
+	font-size: 3rem;
 	text-align: center;
 	border: 1px solid;
 	border-color: #ffffff;
 	box-shadow: inset 0 0 40px rgba(255, 255, 178, 0.9);
 }
+
+
 .male-avatar {
 position: absolute;
 top: 11em;
@@ -153,9 +157,9 @@ background: url("../images/Male-Avatar.png") no-repeat;
 background-size: 100%;
 width: 7.9em;
 height: 1.9em;
-border: 1px solid;
+border: none;
 border-color: #ffffff;
-box-shadow: inset 0 0 40px rgba(255, 255, 178, 0.9);
+/*box-shadow: inset 0 0 40px rgba(255, 255, 178, 0.9);*/
 color: white;
 font-size: 3rem;
 
@@ -171,13 +175,15 @@ background: url("../images/Female-Avatar.png") no-repeat;
 background-size: 100%;
 width: 7.9em;
 height: 1.9em;
-border: 1px solid;
+border: none;
 border-color: #ffffff;
-box-shadow: inset 0 0 40px rgba(255, 255, 178, 0.9);
+/*box-shadow: inset 0 0 40px rgba(255, 255, 178, 0.9);*/
 color: white;
 font-size: 3rem;
 
 }
+
+
 button.create-profile{
 position: relative;
 top: 67rem;
@@ -185,15 +191,143 @@ left: 71rem;
 width: 12em;
 height: 2em;
 margin: 2em 0 2em 0;
-box-shadow: inset 0 0 20px rgba(255, 255, 178, 0.9);
+box-shadow: inset 0 0 100px rgba(255, 255, 178, 0.9);
 
 
 }
 
-position: relative;
-top: 67rem;
-left: 71rem;
-width: 12em;
-height: 2em;
-margin: 2em 0 2em 0;
-box-shadow: inset 0 0 20px rgba(255, 255, 178, 0.9);
+/*   //////////// New Profile Page 2////////////  */
+
+.new-profile-message-2{
+	position:absolute;
+	top: 5em;
+	left: 10.4em;
+	width: 18em;
+	color: rgb (197, 197, 197);
+	font-size: 3rem;
+	text-align: center;
+	border: 1px solid;
+	border-color: #ffffff;
+	box-shadow: inset 0 0 40px rgba(255, 255, 178, 0.9);
+}
+
+.new-user-ID {
+position: absolute;
+top: 2em;
+left: 1em;
+text-align: center;
+padding-top: 157px;
+background: url("../images/Male-Avatar.png") no-repeat;
+background-size: 100%;
+width: 7.9em;
+height: 1.9em;
+border: none;
+border-color: #ffffff;
+/*box-shadow: inset 0 0 40px rgba(255, 255, 178, 0.9);*/
+color: white;
+font-size: 3rem;
+
+}
+
+.right-hand-records {
+position: absolute;
+top: 35em;
+left: 0;
+width: 1080px;
+height: 15em;
+text-align: bottom;
+}
+.right-label-borders {
+border-left: 853px solid #fe9c00;
+padding-left: 2%;
+float: left;
+margin: 14em 0 0 -0.4em;
+}
+.left-hand-records {
+position: absolute;
+top: 13em;
+left: 0;
+width: 1080px;
+height: 15em;
+
+}
+.left-label-borders {
+border-right: 853px solid #fe9c00;
+padding-right: 2%;
+float: right;
+margin: 14em 0 0 -0.4em;
+}
+
+.print-record {
+text-align: center;
+padding-top: 165px;
+background: url("../images/print-record-empty.png") no-repeat;
+background-size: 100%;
+width: 197px;
+height: 197px;
+border: none;
+border-color: #ffffff;
+color: white;
+font-size: 3rem;
+
+}
+
+#l-thumb {
+position: absolute;
+top: 5em;
+left: 29em;
+}
+
+#l-index{
+position: absolute;
+top: 1em;
+left: 23em;
+}
+
+#l-middle{
+position: absolute;
+top: 0em;
+left: 16em;
+}
+
+#l-ring{
+position: absolute;
+top: .5em;
+left: 9em;
+}
+
+#l-pinky{
+position: absolute;
+top: 2em;
+left: 2em;
+}
+
+#r-thumb {
+position: absolute;
+top: 5em;
+left: 1em;
+}
+
+#r-index{
+position: absolute;
+top: 1em;
+left: 7em;
+}
+
+#r-middle{
+position: absolute;
+top: 0em;
+left: 14em;
+}
+
+#r-ring{
+position: absolute;
+top: .5em;
+left: 21em;
+}
+
+#r-pinky{
+position: absolute;
+top: 2em;
+left: 28em;
+}
