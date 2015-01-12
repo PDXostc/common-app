@@ -185,7 +185,7 @@ TabController.addTab = function(url) {
 
 		tabId = TabController.generateTabId();
 		$('#tabBar #addTabBtn').before('<div id="tab_' + tabId + '" class="tab boxShadowInset"></div>');
-		$('#browserContent').append('<iframe id="content_' + tabId + '" name="content_' + tabId + '" class="jlrIFrame"></iframe>');
+		$('#browserContent').append('<iframe id="content_' + tabId + '" name="content_' + tabId + '" class="jlrIFrame" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts"></iframe>');
 		for ( var i = 0; i < TabController.tabs.length; i++) {
 			TabController.tabs[i].deactivate();
 		}

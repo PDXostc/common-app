@@ -27,7 +27,7 @@ function Tab(id, url) {
 	this.tabView = $('#tab_' + id);
 	this.contentView = $('#content_' + id);
 
-	this.tabView.append('<div class="tabIcon"></div><div class="text fontWeightBold"></div><div class="closeTabBtn fontSizeXLarge"></div>');
+	this.tabView.append($("#tabTemplate").html());
 
 	url = url || TabController.EMPTY_URL;
 	this.changeUrl(url, true);

@@ -15,4 +15,5 @@
     <tizen:setting screen-orientation="portrait" context-menu="enable" background-support="disable" encryption="disable" install-location="auto"/>	
     <tizen:allow-navigation>*</tizen:allow-navigation>
     <access origin="http://*/" subdomains="true"></access>
+    <access origin="http://accuweather.com" subdomains="true"></access>
 </widget>

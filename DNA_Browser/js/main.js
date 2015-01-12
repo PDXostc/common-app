@@ -10,7 +10,9 @@
 
 includeJs("./js/tab.js",function(){
 	includeJs("./js/tabController.js",function(){
-		includeJs("./js/browser.js",init);
+		includeJs("./js/browser.js",function(){
+			onDepenancy("knockout.js",browser_init);
+		});
 	});
 });
 includeJs("./js/historyModel.js");
@@ -109,7 +111,7 @@ var browser;
  * @method init
  * @static
  */
-function init() {
+function browser_init() {
 	"use strict";
 	console.log("init() called");
 
@@ -127,10 +129,12 @@ function init() {
 	});
 	window.setInterval(function() {
 		var wait = document.getElementById("loadingDots");
-		if (wait.innerHTML.length >= 3) {
-			wait.innerHTML = "";
-		} else {
-			wait.innerHTML += ".";
+		if (wait) {
+			if (wait.innerHTML.length >= 3) {
+				wait.innerHTML = "";
+			} else {
+				wait.innerHTML += ".";
+			}
 		}
 	}, 300);
 	browser = new Browser();
@@ -141,5 +145,3 @@ function init() {
 	console.log('applyBindings');
 	ko.applyBindings(browser.historyModel);
 }
-
-//$(document).ready(init());

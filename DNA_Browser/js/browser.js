@@ -46,9 +46,10 @@ var Browser = function(defaultHomePage, inputBrowserSelector) {
 	this.loadBrowserHistory();
 
 	this.checkOnlineWifiNetwork();
+	/*
 	window.setInterval(function() {
 		self.checkOnlineWifiNetwork();
-	}, 30000);
+	}, 30000);*/
 
 	$('#tabBar').on("activeTabChanged", function(event) {
 		self.activeTab = TabController.getActiveTab();
@@ -351,6 +352,7 @@ Browser.prototype.loadBrowserHistory = function() {
 	} else {
 		throw "window.localStorage, not defined";
 	}
+	console.log("loadBrowserHistory",this.browserHistory);
 };
 /** 
  * The method provides save browserHistory array into local storage.
@@ -359,6 +361,7 @@ Browser.prototype.loadBrowserHistory = function() {
  */
 Browser.prototype.saveBrowserHistory = function() {
 	"use strict";
+	console.log("saveBrowserHistory",this.browserHistory);
 	if (typeof (window.localStorage) !== 'undefined') {
 		window.localStorage.setItem(this.localStorageBrowserHistoryKey, JSON.stringify(this.browserHistory));
 
@@ -420,6 +423,7 @@ Browser.prototype.saveCurrentTabs = function() {
 	"use strict";
 	var i, tabsCount;
 	var tabsUrl = [];
+	console.log("Browser.saveCurrentTabs ",this.tabsHistory);
 	if (typeof (window.localStorage) !== 'undefined') {
 		if (!this.initializeBrowser) {
 			window.localStorage.setItem(this.localStorageTabsUrlBrowserKey, JSON.stringify(this.tabsHistory));
@@ -449,6 +453,7 @@ Browser.prototype.goToHomePage = function() {
 
 Browser.prototype.addCurrentTabHistory = function(newUrl) {
 	"use strict";
+	console.log("Browser.addCurrentTabHistory()");
 	this.addTabHistory(newUrl, this.activeTabIndex);
 };
 /** 
@@ -460,6 +465,7 @@ Browser.prototype.addCurrentTabHistory = function(newUrl) {
 Browser.prototype.addTabHistory = function(newUrl, index) {
 	"use strict";
 	newUrl = newUrl.toString().trim().toLowerCase();
+	console.log("Browser.addTabHistory("+newUrl+","+index+")");
 	var theTabHistory = this.tabsHistory[index];
 	var i;
 	if (!this.moveInHistory[index]) {
@@ -486,6 +492,7 @@ Browser.prototype.addTabHistory = function(newUrl, index) {
 
 			this.tabsHistory[index] = theTabHistory;
 			this.tabsHistoryCurrentPosition[index] = theTabHistory.length - 1;
+			console.log("addTabHistory Position ",this.tabsHistoryCurrentPosition[this.activeTabIndex]);
 		}
 	}
 	this.enableDisableControlButton();
@@ -548,7 +555,7 @@ Browser.prototype.removeTabHistory = function(index) {
  */
 Browser.prototype.backButtonClick = function() {
 	"use strict";
-	console.log('backButtonClick');
+	console.log('Browser.backButtonClick');
 	var theTabHistory = this.tabsHistory[this.activeTabIndex];
 	var currentHistoryPosition = this.tabsHistoryCurrentPosition[this.activeTabIndex];
 	currentHistoryPosition = currentHistoryPosition - 1;
@@ -556,11 +563,15 @@ Browser.prototype.backButtonClick = function() {
 		currentHistoryPosition = 0;
 	}
 	var newUrl = this.getValidInput(theTabHistory[currentHistoryPosition]);
+	console.log("backButtonClick Url ",newUrl);
 	this.tabsHistoryCurrentPosition[this.activeTabIndex] = currentHistoryPosition;
-	this.historyModel.inputValue(newUrl);
-	this.goToUrl();
+	console.log("backButtonClick Position ",this.tabsHistoryCurrentPosition[this.activeTabIndex]);
+	
+	this.moveInHistory[this.activeTabIndex] = false;
 	this.enableDisableControlButton();
-	this.moveInHistory[this.activeTabIndex] = true;
+	this.historyModel.inputValue(newUrl);
+	this.activeTab.changeUrl(newUrl);
+	//this.goToUrl();
 };
 /** 
  * The method provides action for next button click in browser.
@@ -568,7 +579,7 @@ Browser.prototype.backButtonClick = function() {
  */
 Browser.prototype.nextButtonClick = function() {
 	"use strict";
-	console.log('nextButtonClick');
+	console.log('Browser.nextButtonClick()');
 	var theTabHistory = this.tabsHistory[this.activeTabIndex];
 	var currentHistoryPosition = this.tabsHistoryCurrentPosition[this.activeTabIndex];
 	currentHistoryPosition = currentHistoryPosition + 1;
@@ -576,12 +587,15 @@ Browser.prototype.nextButtonClick = function() {
 		currentHistoryPosition = theTabHistory.length - 1;
 	}
 	var newUrl = this.getValidInput(theTabHistory[currentHistoryPosition]);
+	console.log("nextButtonClick Url ",newUrl);
 	this.tabsHistoryCurrentPosition[this.activeTabIndex] = currentHistoryPosition;
+	console.log("nextButtonClick Position ",this.tabsHistoryCurrentPosition[this.activeTabIndex]);
 
-	this.historyModel.inputValue(newUrl);
-	this.goToUrl();
+	this.moveInHistory[this.activeTabIndex] = false;
 	this.enableDisableControlButton();
-	this.moveInHistory[this.activeTabIndex] = true;
+	this.historyModel.inputValue(newUrl);
+	this.activeTab.changeUrl(newUrl);
+	//this.goToUrl();
 };
 /** 
  * The method adds new history entry to browser history array.
@@ -591,6 +605,7 @@ Browser.prototype.nextButtonClick = function() {
 Browser.prototype.addHistory = function(newUrl) {
 	"use strict";
 	var browserHistorylength, i;
+	console.log("Browser.addHistory("+newUrl+")");
 	if (!this.moveInHistory[this.activeTabIndex]) {
 		browserHistorylength = this.browserHistory.length;
 		if (this.browserHistory[0] !== newUrl && newUrl.search("error.html") === -1 && newUrl.toLowerCase().search("file") === -1) {
@@ -620,7 +635,7 @@ Browser.prototype.goToUrl = function() {
 	var inputValue = this.historyModel.inputValue();
 	inputValue = document.getElementById('inputBrowser').value;
 	var inputValueLowerCase = inputValue.toString().trim().toLowerCase();
-	console.log("goToUrl "+inputValue);
+	console.log("Browser.goToUrl "+inputValue);
 	try {
 		if (inputValue !== "" && inputValue !== TabController.EMPTY_URL) {
 			if (inputValueLowerCase.indexOf("http") === -1 && inputValueLowerCase.indexOf("www") !== -1) {
@@ -729,6 +744,8 @@ Browser.prototype.checkOnlineWifiNetwork = function() {
 			}
 		};
 	var self = this;
+	success();
+	/*
 	$.ajax({
 		type : 'HEAD',
 		url : "http://www.bing.com",
@@ -736,6 +753,6 @@ Browser.prototype.checkOnlineWifiNetwork = function() {
 		//dataType: "html",
 		success : success,
 		error : success
-	});
+	});*/
 };
 console.log('Browser.js end');
