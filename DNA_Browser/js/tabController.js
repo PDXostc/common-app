@@ -184,8 +184,14 @@ TabController.addTab = function(url) {
 		var tabId, tab;
 
 		tabId = TabController.generateTabId();
-		$('#tabBar #addTabBtn').before('<div id="tab_' + tabId + '" class="tab boxShadowInset"></div>');
-		$('#browserContent').append('<iframe id="content_' + tabId + '" name="content_' + tabId + '" class="jlrIFrame" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts"></iframe>');
+		var tabCtlTemplate = 
+		$('#tabBar #addTabBtn').before($("#tabCtlTemplate").html());
+		$('#tab_000000').attr("id","tab_"+tabId);
+		//$('#tabBar #addTabBtn').before('<div id="tab_' + tabId + '" class="tab boxShadowInset"></div>');
+		$('#browserContent').append($("#tabFrameTemplate").html());
+		$('#content_000000').attr("id","content_"+tabId);
+		$('#content_000000').attr("name","content_"+tabId);
+		//$('#browserContent').append('<iframe id="content_' + tabId + '" name="content_' + tabId + '" class="jlrIFrame" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts"></iframe>');
 		for ( var i = 0; i < TabController.tabs.length; i++) {
 			TabController.tabs[i].deactivate();
 		}
@@ -195,7 +201,8 @@ TabController.addTab = function(url) {
 		tab.activate();
 
 		if (TabController.tabs.length >= TabController.TABS_COUNT_LIMIT) {
-			$('#tabBar #addTabBtn').css('display', 'none');
+			$('#tabBar #addTabBtn').toggleClass("hidden");
+			//$('#tabBar #addTabBtn').css('display', 'none');
 		}
 		TabController.calculateTabMaxWidth();
 

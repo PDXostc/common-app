@@ -44,6 +44,9 @@ function Tab(id, url) {
 
 	this.contentView.on('load', function() {
 		var i, links, touchTimeout, link, iconUrl, iconUrls = [], title, index;
+		//not able to capture url history within iframe because of app:// is not http://
+		//I can not access the src or url attributes.
+		//console.log("contentView.load(url="+that.contentView.contents()[0].src+")");
 
 		//error on while page request handling
 		if (that.contentView.contents()[0].URL !== 'about:blank') {
