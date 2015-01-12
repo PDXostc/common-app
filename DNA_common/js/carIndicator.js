@@ -128,6 +128,9 @@ CarIndicator.prototype._listeners = {};
  */
 CarIndicator.prototype._listenerIDs = [];
 
+// Set by first call to addListener, it provides a way for the promise in getFunction to access _mappingTable.
+var GlobalSelf=0;
+
 /** 
  * Signal mapping table.
  * Each entry should form an object
@@ -342,7 +345,32 @@ CarIndicator.prototype._mappingTable = {
 		propertyName : "VehicleSpeed",
 		callBackPropertyName : "speed",
 		conversionFunction : parseInteger,
-		zone : "000000"
+		zone : "000000",
+		curValue: 0,
+		getFunction : function() { 
+			"use strict";
+			var zone = new Zone([]);
+			 tizen.vehicle.vehicleSpeed.get(zone).then(function(vehicleSpeed) 
+			 {
+				 var value2 = vehicleSpeed.speed;
+				 // TODO: add != 0 conditional, or a try/catch.
+				 GlobalSelf._mappingTable["VehicleSpeed"].curValue = vehicleSpeed.speed;
+				 speedCurVal += vehicleSpeed.speed;
+			     console.log("AMB: vehicle speed get sees speed as: " + vehicleSpeed.speed);
+			 },
+			 function(error) {
+			  console.log("AMB: There was an error on the speed get.");
+			 });	
+		},
+		subscribeFunction : function() { 
+			"use strict";
+			console.log("AMB: in subscribeFunc.");
+			tizen.vehicle.vehicleSpeed.subscribe(function(vehicleSpeed) {
+				console.log("AMB vehicle speed changed to: " + vehicleSpeed.speed);
+				vehicle.vehicleSpeed.unsubscribe(vehicleSpeedSub);
+		  
+			});
+		}
 	},
 	"Odometer" : {
 		propertyName : "Odometer",
@@ -494,6 +522,7 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 	var subscribeCallback = function(data) {
 		self.onDataUpdate(data, self);
 	};
+
 	for ( var i in aCallbackObject) {
 		if (aCallbackObject.hasOwnProperty(i)) {
 			var prop = i.replace("on", "").replace("Changed", "");
@@ -511,9 +540,22 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 						mapping.subscribeCount = typeof (mapping.subscribeCount) === 'undefined' ? 0 : mapping.subscribeCount++;
 						if (typeof (tizen) !== 'undefined') {
 							console.log(tizen);
+
 							if (!(subscribeName.toString().trim().toLowerCase() === "nightmode" && id === this._listenerIDs[0])) {
 								var setUpData = 0;//tizen.vehicle.get(subscribeName, zone);
-								self.onDataUpdate(setUpData, self, id);
+								
+								// New XW API subscribe call:
+								if( mapping.subscribeFunction !== undefined)
+								{
+									mapping.subscribeFunction();
+									var tag = signal.toString();
+									// Create an object containing the zone, signal name, and sognal value, in a format that onDataUpdate can parse:
+									var o = {zone: '000000', signalAndValue: { signalName: signal, signalVal: mapping.curValue }  };
+									console.log("AMB: calling subscribeFunction and onUpdate for "+signal.toString()+" "+ mapping.curValue+" id: "+id);
+
+									self.onDataUpdate(o, self, id);	
+																	}
+								// WRT: self.onDataUpdate(setUpData, self, id);
 							}
 
 							//TODO: tizen.vehicle.subscribe(subscribeName, subscribeCallback, zone);
@@ -538,33 +580,51 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 CarIndicator.prototype.onDataUpdate = function(data, self, lisenersID) {
 	"use strict";
 	if (data !== undefined) {
-		var zone = "2";//data.zone.toString(2);
+	// ORG: 	var zone = "2";//data.zone.toString(2);
+		var zone = data.zone.toString(2);
 		var mapping;
 
 		for ( var property in data) {
 			if (data.hasOwnProperty(property)) {
+
 				mapping = undefined;
 				if (property !== "time" && property !== "zone" && property.search("Sequence") === -1) {
+
 					for ( var element in self._mappingTable) {
 						if (self._mappingTable.hasOwnProperty(element)) {
-							if (self._mappingTable[element].propertyName.toLowerCase() === property.toLowerCase()) {
+						
+							// ORG: if (self._mappingTable[element].propertyName.toLowerCase() === property.toLowerCase()) {
+							if(typeof(property) !== 'undefined') 
+							{
+							  if (self._mappingTable[element].propertyName.toLowerCase() === data[property].signalName.toLowerCase()) {
+
 								/* jshint bitwise: false */
 								if (!(zone ^ self._mappingTable[element].zone)) {
 									/* jshint bitwise: true */
+
 									mapping = self._mappingTable[element];
 									break;
 								}
+							  }
+							}
+							else
+							{
+								console.log("AMB: signalAndValue seen for property "+property+" but seen as undefined.");
+								return;
 							}
 						}
 					}
 
 					if (typeof (mapping) !== 'undefined') {
-						var value = data[property];
-						value = mapping.conversionFunction ? mapping.conversionFunction(value) : value;
 
-						var oldValue = self.status[mapping.callBackPropertyName];
-						if (oldValue !== value || property.toUpperCase() === "nightMode".toUpperCase()) {
-							console.info("AMB property '" + property + "' has changed to new value:" + value);
+							var value = data[property].signalVal;
+							value = mapping.conversionFunction ? mapping.conversionFunction(value) : value;
+
+							var oldValue = self.status[mapping.callBackPropertyName];
+
+						    if (oldValue !== value || data[property].signalName.toUpperCase() === "nightMode".toUpperCase()) {
+						
+							console.info("AMB property '" + data[property].signalName + "' has changed to new value:" + value);
 							self.status[mapping.callBackPropertyName] = value;
 
 							var callbackName = "on" + mapping.callBackPropertyName[0].toUpperCase() + mapping.callBackPropertyName.substring(1) + "Changed";
@@ -575,6 +635,7 @@ CarIndicator.prototype.onDataUpdate = function(data, self, lisenersID) {
 
 								if (typeof (listener[callbackName]) === 'function') {
 									try {
+										console.log("AMB: about to call onUpdate cb name: "+callbackName+" id: "+lisenersID);
 										listener[callbackName](value, oldValue);
 									} catch (ex) {
 										console.error("Error occured during executing listener", ex);
@@ -742,3 +803,16 @@ CarIndicator.prototype.setStatus = function(indicator, newValue, callback, zone)
 
 var carIndicator = new CarIndicator();
 
+testFunc = function() {	
+	
+	console.info("testFunc called.");
+//	var mapping = this._mappingTable["VehicleSpeed"];
+	
+	//mapping.getFunction();	
+	this._mappingTable["VehicleSpeed"].getFunction();
+	console.log("testFunc call time, get rets: " + GlobalSelf._mappingTable["VehicleSpeed"].curValue +" speedCurVal: "+speedCurVal );
+	
+	var o = {zone: '000000', VehicleSpeed: GlobalSelf._mappingTable["VehicleSpeed"].curValue};
+	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);	
+	
+}
