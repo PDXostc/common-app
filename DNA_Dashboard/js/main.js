@@ -113,6 +113,11 @@ function bigClick(item) {
     console.log("RE: setTheme stringify: "+JSON.stringify(jsonenc));
     wkb_client.clientSync(JSON.stringify(jsonenc), themeErrorCB);
 }
+/**
+ * Reference to instance of dashBoardIndicator; this class manage graphics elements on dashboard
+ * @property dashBoardIndicator {dashBoardIndicator}
+ */
+var dashBoardIndicator;
 
 /**
  * Initialize application components and register button events.
@@ -121,24 +126,108 @@ function bigClick(item) {
  * @static
  */
 
-
 var init = function () {
-    var bootstrap = new Bootstrap(function (status) {
-	$("#topBarIcons").topBarIconsPlugin('init', 'news');
-	$("#clockElement").ClockPlugin('init', 5);
-	$("#clockElement").ClockPlugin('startTimer');
-	$('#bottomPanel').bottomPanel('init');
 
+    // REVIEWERS: None of the commented out functions below ever return.
+    // Left in at Art's request for reference.
+    /*
+	$("#topBarIcons").topBarIconsPlugin('init', 'news');
+	
+	console.log("AMB: pre ClockPlugin1.");
+	$("#clockElement").ClockPlugin('init', 5);
+	
+	console.log("AMB: pre ClockPlugin2.");
+	$("#clockElement").ClockPlugin('startTimer');
+	
+	console.log("AMB: pre bottomPanel.");
+	$('#bottomPanel').bottomPanel('init');
+	
+	console.log("AMB: pre speech.");
+		
 	if (tizen.speech) {
 	    setupSpeechRecognition();
 	} else {
 	    console.log("Store: Speech Recognition not running, voice control will be unavailable");
 	}
-		
+	
+	console.log("AMB: pre theme engine.");	
 	bootstrap.themeEngine.addStatusListener(function (eData) {
 		// setThemeImageColor();
 	});
-    });
+	*/
+    dashBoardIndicator = new dashBoardControler();
+    
+    	this.carIndicator.addListener({
+        /* this is for steeringWheel game controller */
+        onSteeringWheelAngleChanged : function(newValue){
+            dashBoardIndicator.onWheelAngleChanged(newValue, carIndicator.status);
+        },
+        onWheelBrakeChanged : function(newValue){
+            dashBoardIndicator.onBreakLightsChanged(newValue);
+        },
+        /* end steeringWheel game controler*/
+        onTirePressureLeftFrontChanged : function (newValue){
+            dashBoardIndicator.onTirePressureLeftFrontChanged(newValue);
+        },
+        onTirePressureRightFrontChanged : function (newValue){
+            dashBoardIndicator.onTirePressureRightFrontChanged(newValue);
+        },
+        onTirePressureLeftRearChanged : function (newValue){
+            dashBoardIndicator.onTirePressureLeftRearChanged(newValue);
+        },
+        onTirePressureRightRearChanged : function (newValue){
+            dashBoardIndicator.onTirePressureRightRearChanged(newValue);
+        },
+        onChildLockChanged : function(newValue){
+            dashBoardIndicator.onChildLockChanged(newValue);
+        },
+        onFrontLightsChanged : function(newValue){
+            dashBoardIndicator.onFrontLightsChanged(newValue);
+        },
+        onRearLightsChanged : function(newValue){
+            dashBoardIndicator.onRearLightsChanged(newValue);
+        },
+        onBatteryStatusChanged : function(newValue) {
+            dashBoardIndicator.onBatteryStatusChanged(newValue, carIndicator.status);
+        },
+        onFullBatteryRange : function(newValue) {
+            dashBoardIndicator.onBatteryRangeChanged(newValue, carIndicator.status);
+        },
+        onOutsideTempChanged : function(newValue) {
+           dashBoardIndicator.onOutsiteTempChanged(newValue);
+        },
+        onInsideTempChanged : function(newValue) {
+            dashBoardIndicator.onInsideTempChanged(newValue);
+        },
+        onWheelAngleChanged : function(newValue){
+            dashBoardIndicator.onWheelAngleChanged(newValue, carIndicator.status);
+        },
+        onWeatherChanged : function(newValue){
+            dashBoardIndicator.onWeatherChanged(newValue);
+        },
+        onSpeedChanged : function(newValue) {
+            dashBoardIndicator.onSpeedChanged(newValue);
+        },
+        onOdoMeterChanged : function(newValue){
+            dashBoardIndicator.onOdoMeterChanged(newValue);
+        },
+        onGearChanged : function(newValue){
+            dashBoardIndicator.onGearChanged(newValue);
+        },
+        onRandomizeChanged : function(newValue) {
+            dashBoardIndicator.onRandomizerChanged(newValue);
+        },
+        onNightModeChanged : function(newValue) {
+            dashBoardIndicator.onNightModeChanged(newValue);
+        },
+        onExteriorBrightnessChanged : function(newValue) {
+            dashBoardIndicator.onExteriorBrightnessChanged(newValue);
+        },
+        onAvgKWChanged : function(newValue) {
+            dashBoardIndicator.onAvgKWChanged(newValue);
+        }
+    });	
+    
     $("input[name='add_item_button']").click(addItemClick);
     $("input[name='small_button']").click(smallClick);
     $("input[name='big_button']").click(bigClick);
@@ -150,8 +239,10 @@ var init = function () {
  * @method $(document).ready
  * @param init {function} Callback function for initialize Store.
  * @static
+ * This is part of the means to ensure that carIndicator.js has been parsed by the time
+ * Dashboard/js/main.js tries to reference the carIndicator object:
  **/
-$(document).ready(init);
+$(document).ready(function(){onDepenancy("carIndicator.js",init)});
 
 /**
  * Applies selected theme to application icons 

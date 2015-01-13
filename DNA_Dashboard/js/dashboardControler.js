@@ -125,7 +125,7 @@ dashBoardControler.prototype.onGearChanged = function(newStatus) {
  */
 dashBoardControler.prototype.onSpeedChanged = function(newStatus) {
 	"use strict";
-	$("#engineStatus #textIndicator").text(newStatus + " mph");
+	$("#bigSpeed").text(newStatus);// Add on "MPH"
 };
 
 /** 
@@ -394,6 +394,7 @@ dashBoardControler.prototype.onRandomizerChanged = function(newStatus) {
  * @method initInfos
  */
 dashBoardControler.prototype.initInfos = function() {
+	/* REVIEWERS: probably obsolete for DNA???
 	"use strict";
 	$("#weatherCaption").boxCaptionPlugin('init', 'weather');
 
@@ -416,7 +417,7 @@ dashBoardControler.prototype.initInfos = function() {
 
 	$("#leftRearPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'L Rear TIRE', 'OK');
 	$("#rightRearPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'R Rear TIRE', 'ok');
-
+*/
 };
 /** 
  * Method is setting new value of left front tire pressure.

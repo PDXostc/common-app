@@ -139,7 +139,9 @@ includeJs("DNA_common/components/jsViews/template.js");
 includeJs("DNA_common/components/boxCaption/boxCaption.js");
 includeJs("DNA_common/components/car/js/car.js");
 includeJs("DNA_common/components/configuration/js/configuration.js");
-includeJs("DNA_common/js/carIndicator.js");
+// Part of the mechanism to ensure that carIndicator.js has been parsed by the time
+// Dashboard needs it.
+includeJs("DNA_common/js/carIndicator.js",function(){depenancyMet("carIndicator.js");});
 includeJs("DNA_common/js/user.js");
 includeJs("DNA_common/js/bootstrap.js");
 includeJs("DNA_common/components/rvi/js/ej.js");
