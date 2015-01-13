@@ -38,6 +38,7 @@ $("#go-home").click(function(){
    $("#mainMenu").show();
        $('#new-profile-screen, #load-profile-screen, #delete-profile-screen, #create-profile-screen, #new-profile-screen, #modal').hide();
 		$(this).hide();
+		$("#scanReveal").css('top: 0px');
  });
 			 
 			 
@@ -96,7 +97,17 @@ $(".female-avatar, .male-avatar").focusout(function(){
 
 	});
 		</script>
+<script type="text/javascript">
+ $(document).ready(function() {
+	     $("#exit-modal").click(function() {
+			$("#scanReveal").animate({ 
+        top: "+=1900px",
+      }, 6900 );
+  }
+);
+	 });
 
+ </script>
 	</head>
 	<body>
 		<!-- Begin  #base -->
@@ -150,7 +161,8 @@ $(".female-avatar, .male-avatar").focusout(function(){
 					</div>
 					
 					<div id="load-profile-screen">
-						<div class="scan-print-animation">
+						<div id="scan-print-background">
+							<div id="scanReveal"></div>
 						</div>
 					</div>
 					<div id="delete-profile-screen">
@@ -173,8 +185,8 @@ $(".female-avatar, .male-avatar").focusout(function(){
 			<div id="modal" class="hidden">
 				<div class="modal-content box-out-orange">
 					<div class="close-button"></div>
-					<h6>warning!</h6>
-					<p>This is a demo of a modal view.</p>
+					<h6>ATTENTION!</h6>
+					<p>Place Finger on Fingerprint Scanner to Begin</p>
 					<button type="button" id="exit-modal">Continue</button>
 				</div>
 			</div>
