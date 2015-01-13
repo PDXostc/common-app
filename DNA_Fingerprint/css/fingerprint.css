@@ -41,32 +41,34 @@ left: 0;
 }
 #new-profile-screen {
 display:none;
-position: absolute;
-width:100%;
-top: 2em;
+position: relative;
+width: 100%;
+height: 0;
 left: 0;
+height:0;
 }
 
 #create-profile-screen {
 display:none;
-position: absolute;
-width:100%;
-top: 2em;
+position: relative;
+width: 100%;
+height: 0;
 left: 0;
 }
 
 #load-profile-screen {
 display:none;
-position: absolute;
-width:100%;
-top: 2em;
+position: relative;
+width: 100%;
+height: 0;
 left: 0;
 }
 #delete-profile-screen {
-display:none;
-position: absolute;
-width:100%;
-top: 2em;
+display: none;
+position: relative;
+width: 100%;
+height: 0;
+top: -1em;
 left: 0;
 }
 
@@ -122,9 +124,9 @@ color: rgb(255, 211, 140);
 /*   //////////// Generic Controls////////////  */
 .menu {
 position: absolute;
-top: 0;
-right: 0;
-
+top: 71px;
+right: 23px;
+display:none;
 }
 
 /*   //////////// New Profile Page////////////  */
@@ -195,7 +197,7 @@ box-shadow: inset 0 0 100px rgba(255, 255, 178, 0.9);
 /*   //////////// New Profile Page 2////////////  */
 
 .new-profile-message-2{
-	position:absolute;
+	margin: 0 auto;
 	top: 5em;
 	left: 10.4em;
 	width: 18em;
@@ -326,4 +328,64 @@ left: 21em;
 position: absolute;
 top: 2em;
 left: 28em;
+}
+/*   //////////// Delete Profile Page ////////////  */
+
+.delete-profile-message{
+position: relative;
+top: 5em;
+display: block;
+margin: 0 auto;
+	width: 30em;
+	color: rgb (197, 197, 197);
+	font-size: 3rem;
+	text-align: center;
+	border: 1px solid;
+	border-color: #ffffff;
+	box-shadow: inset 0 0 40px rgba(255, 211, 140, 0.9);
+}
+
+#delete-profile-screen ul {
+position: relative;
+margin: 200px auto;
+width: 31em;
+height: 100%;
+list-style: none;
+padding: 0;
+}
+#delete-profile-screen li {
+margin: 10px 7px 10px 17px;
+width: 275px;
+padding-top: 211px;
+vertical-align: text-bottom;
+height: 43px;
+text-align: center;
+background: url("../images/Male-Avatar.png") no-repeat;
+background-size: 100%;
+display: inline-block;
+}
+
+
+/*   //////////// Recall Profile Page ////////////  */
+
+.scan-print-animation {
+position: relative;
+display: block;
+margin: 126px auto;
+width: 1080px;
+height: 1366px;
+background: url("../images/scan-print-still.png") no-repeat;
+background-size: 100%;
+
+}
+
+
+/*   //////////// Recall Profile Page ////////////  */
+#modal {
+position: absolute;
+background: rgba (0, 0, 0, 0.5);
+width: 100%;
+height: 100%;
+
+
 }
