@@ -350,11 +350,65 @@ ul#settingsPageList > :last-child {
 	position: absolute;
 	text-transform: uppercase;
 }
-.hidden	{
+/*.hidden	{
 	display: none;
-}
+}*/
 .componentSubheader {
 	margin: 20px 20px 0 20px;
 	border-bottom: 1px solid rgba(255,255,255, 0.25);
 	padding-top: 1px;
+}
+.modal-bkgrnd{
+  -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
+  width: 615px;
+  background-color: #222;
+  top: 40%;  
+  left: 50%;  
+  position: absolute;  
+  transform: translate(-50%, -50%);
+  padding: 0 20px 20px 30px;
+}
+.next-button {
+  display: inline-block;
+  outline: 0px;
+  cursor: pointer;
+}
+.next-button::after {
+  content: "\025B8";
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: auto;
+  padding: 3px;
+  text-align: center;
+  color: #444;
+  font-size: 3.5rem;
+  outline: 1px solid #444;
+  cursor: pointer;
+  line-height: 2rem;
+  margin-left: -45px;
+}
+.previous-button {
+  display: inline-block;
+  outline: 0px;
+  cursor: pointer;
+  display: none;
+}
+.previous-button::after {
+  content: "\025C2";
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: auto;
+  padding: 3px;
+  text-align: center;
+  color: #444;
+  font-size: 3.5rem;
+  outline: 1px solid #444;
+  cursor: pointer;
+  line-height: 2rem;
+  margin-left: -45px;
+}
+.password-field .off {
+	display: none;
 }
