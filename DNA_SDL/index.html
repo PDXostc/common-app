@@ -1,24 +1,23 @@
 <html id="sdl-app">
-<head>
-	<meta name="viewport" content="width=1080, height=1920, user-scalable = no">
-	<meta http-equiv="cache-control" content="no-cache" />
-	<title>SmartDeviceLink</title>
+	<head>
+		<meta name="viewport" content="width=1080, height=1920, user-scalable = no">
+		<meta http-equiv="cache-control" content="no-cache" />
+		<title>SmartDeviceLink</title>
 
-	<link rel="stylesheet" href="./DNA_common/css/style.css"/>
-	<link rel="stylesheet" href="./css/style.css"/>
+		<link rel="stylesheet" href="./DNA_common/css/style.css"/>
+		<link rel="stylesheet" href="./css/style.css"/>
 
-	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
-	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
-	<script type="text/javascript">
-		includeJs("./js/main.js");
-	</script>
+		<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="./DNA_common/js/init.js"></script>
+		<script type="text/javascript">
+			includeJs("./js/main.js");
+		</script>
 
-	<!--Libs-->
-	<script type="text/javascript" src="js/lib/handlebars-1.0.0.beta.6.js"></script>
-	<script type="text/javascript" src="js/lib/ember-1.0.pre.min.js"></script>
-	<script type="text/javascript" src="js/lib/iscroll-lite.js"></script>
-
-	<script type="text/javascript" src="js/app/Flags.js"></script>
+		<!--Libs-->
+		<script type="text/javascript" src="js/lib/handlebars-1.0.0.beta.6.js"></script>
+		<script type="text/javascript" src="js/lib/ember-1.0.pre.min.js"></script>
+		<script type="text/javascript" src="js/lib/iscroll-lite.js"></script>
+		<script type="text/javascript" src="js/app/Flags.js"></script>
 
 		<!-- Framework -->
 		<script type="text/javascript" src="js/ffw/Framework.js"></script>
@@ -71,7 +70,6 @@
 
 		<!-- Controllers -->
 		<script type="text/javascript" src="js/app/controller/MediaController.js"></script>
-		<script type="text/javascript" src="js/app/controller/PhoneController.js"></script>
 		<script type="text/javascript" src="js/app/controller/InfoController.js"></script>
 		<script type="text/javascript" src="js/app/controller/SettingsController.js"></script>
 
@@ -86,9 +84,6 @@
 		<script type="text/javascript" src="js/app/mixins/PresetEventCustom.js"></script>
 
 		<!-- Views -->
-
-		<!-- phone views -->
-		<script type="text/javascript" src="js/app/view/phone/dialpadView.js"></script>
 
 		<!-- media views -->
 		<script type="text/javascript" src="js/app/view/media/sdl/controllsView.js"></script>
@@ -116,24 +111,13 @@
 		<script type="text/javascript" src="js/app/view/homeView.js"></script>
 		<script type="text/javascript" src="js/app/view/mediaView.js"></script>
 		<script type="text/javascript" src="js/app/view/infoView.js"></script>
-		<script type="text/javascript" src="js/app/view/climateView.js"></script>
-		<script type="text/javascript" src="js/app/view/phoneView.js"></script>
-		<script type="text/javascript" src="js/app/view/navigationView.js"></script>
 		<script type="text/javascript" src="js/app/view/settingsView.js"></script>
 		<script type="text/javascript" src="js/app/view/navigationApp/baseNavigationView.js"></script>
 		<script type="text/javascript" src="js/app/view/navigationAppView.js"></script>
 
 		<!-- home views -->
-		<script type="text/javascript" src="js/app/view/home/controlButtons.js"></script>
-
-		<script type="text/javascript" src="js/app/view/home/topControls.js"></script>
 		<script type="text/javascript" src="js/app/view/home/bottomControls.js"></script>
 
-		<script type="text/javascript" src="js/app/view/home/statusMediaView.js"></script>
-		<script type="text/javascript" src="js/app/view/home/statusPhoneView.js"></script>
-		<script type="text/javascript" src="js/app/view/home/statusInfoView.js"></script>
-		<script type="text/javascript" src="js/app/view/home/statusNavigationView.js"></script>
-		<script type="text/javascript" src="js/app/view/home/statusClimateView.js"></script>
 		<!-- SDL views -->
 		<script type="text/javascript" src="js/app/view/sdl/shared/AbstractView.js"></script>
 		<script type="text/javascript" src="js/app/view/sdl/shared/interactionChoicesView.js"></script>
@@ -142,29 +126,18 @@
 		<script type="text/javascript" src="js/app/view/sdl/shared/scrollableMessage.js"></script>
 		<script type="text/javascript" src="js/app/view/sdl/shared/turnByTurnView.js"></script>
 		<script type="text/javascript" src="js/app/view/sdl/shared/tbtTurnList.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/TTSPopUp.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/AlertPopUp.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/PopUp.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/AlertManeuverPopUp.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/AudioPassThruPopUp.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/VRPopUp.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/VehicleInfoView.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/tbtClientStateView.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/driverDistraction.js"></script>
-		<script type="text/javascript" src="js/app/view/sdl/SystemRequestView.js"></script>
-
 		<script type="text/javascript" src="js/app/StateManager.js"></script>
+
 		<!-- STATE MACHINE -->
 		<script type="text/javascript" src="js/app/AppViews.js"></script>
-</head>
+	</head>
 
-<body ontouchmove="event.preventDefault();">
-
-	<!-- Big Images Preloader block -->
-	<div id="topBar"></div>
-	<div id="preloader"></div>
-	<div id="app"></div>
-	<!-- TIMUR -->
-	<div id="bottomBar"></div>
-</body>
+	<body ontouchmove="event.preventDefault();">
+		<div id="topBar"></div>
+		<!-- Big Images Preloader block -->
+		<div id="preloader"></div>
+		<div id="app" class="ember-application"></div>
+		<!-- TIMUR -->
+		<div id="bottomBar"></div>
+	</body>
 </html>
