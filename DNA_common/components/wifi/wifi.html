@@ -13,8 +13,6 @@
 			</div>
 		</div>
 		<div id="wifiPowerButton" class="subPanelToggleButton subPanelToggleButtonWide">
-			<!-- wifi on/off button style here, hexagon slider instead of text -->
-			<!-- <div class="fontColorNormal fontSizeMedium fontWeightBold toggleButtonText">TURN ON</div> -->
 			<div class="switch off switch-xsmall">
 			  <div class="switch-plate">
 			    <div class="switch-control"></div>
@@ -30,16 +28,14 @@
 		<!-- start of wifi tabsContent portion-->
 		<div id="tabsContent" class="tabsContent wifiContent">
 			<div id="wifiNetworksList"><!-- name --></div>
-			<div class="fontColorNormal fontSizeMedium fontWeightBold">TETHERING IS ON</div>
+			<h4>Tethering is on</h4>
 			<div class="buttonsArea">
-				<div id="wifiRefreshButton" class="wifiRefreshButton">
-				</div>
-				<div id="addNetworkButton" class="addNetworkButton">
-				</div>
+				<div id="wifiRefreshButton" class="wifiRefreshButton"></div>
+				<div id="addNetworkButton" class="addNetworkButton"></div>
 			</div>
 		</div>
 	</div>
-</div>
+
 
 <div id="WifiDeviceTemplate" class="wifiElement borderColorTheme">
 	<div class="wifiElementInfoBox">
@@ -57,3 +53,46 @@
 	</div>
 </div>
  
+<div id="modal" class="">
+	<div class="modal-bkgrnd box-out-orange">
+	<h2>Add a Network</h2>
+	<div id="exit-modal" class="close-button"></div>	
+
+	<div class="flex-center">
+		<div class="labelBox">
+			<h4>SSID</h4>
+		</div>
+
+		<input type="text" name="focus" class="inputField" id="inputSsid" placeholder="Enter network name">
+		<div class="delete-button" type="reset"></div>					
+	</div>
+
+	<div class="flex-center">
+		<div class="labelBox">
+			<h4>Security</h4>
+		</div>
+
+		<input type="text" name="focus" class="inputField" id="inputSsid" placeholder="No security">
+		<!-- tap the next-button replace the previous inputField's placeholder text with WEP, WPA, or WPA2 and fold out password field: -->
+		<div class="next-button" id="buttonNextSecurity" type=""></div>
+		<!-- this toggles to the following and no security/password field: -->
+		<div class="previous-button" id="buttonPreviousSecurity" type=""></div>
+	</div>
+
+	<div class="password-field off">	
+		<div class="flex-center">
+			<div class="labelBox">
+				<h4>PASSWORD</h4>
+			</div>
+
+			<input type="password" name="focus" class="inputField" id="inputPassword" placeholder="Enter password">
+			<div class="delete-button" type="reset"></div>					
+		</div>
+	</div>					
+
+	<div class="center">
+		<input type="button" class="no-margin" value="Add" id="" >  
+	</div>            
+</div>
+
+</div>
