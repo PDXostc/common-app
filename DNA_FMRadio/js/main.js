@@ -170,6 +170,17 @@ $(document).ready(init);
 
 	$(".bar").each(function(i) {
     fluctuate($(this));
+    
+	    $("#station-id").on ("click", function () {
+		$("#keypad-modal").removeClass('hidden');
+		$("#spectAnalyzer").toggle();
+		});
+		
+	$("#manual-station-enter").on ("click", function() {
+		$("#keypad-modal").addClass('hidden');
+		$("#spectAnalyzer").toggle();
+		});
+    
 });
 
 /**
