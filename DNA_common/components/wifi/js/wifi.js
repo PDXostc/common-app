@@ -34,6 +34,12 @@ WifiSettingsPage.pageUpdate = function() {
 	else {
 		$("#settingsPage").append(WifiSettingsPage.import.getElementById('WifiPage'));
 		Settings.addUpdateSettingsPage('wifi','settings',WifiSettingsPage.ShowPage);
+	   document.querySelector('#addNetworkButton').onclick = function() {
+				$('#AddNetworkModal').removeClass("hidden");
+		   };
+	   document.querySelector('#AddNetworkExitModal').onclick = function() {
+				$('#AddNetworkModal').addClass("hidden");
+		   };
 		var close_button = document.getElementById('tabsCloseSubPanelWifiButton').onclick = WifiSettingsPage.HidePage;
 	}
 };
@@ -43,6 +49,8 @@ WifiSettingsPage.includeHTMLSucess = function(linkobj) {
    WifiSettingsPage.import = linkobj.path[0].import;
    WifiSettingsPage.wifiPageHTML = WifiSettingsPage.import.getElementById('WifiPage');
    WifiSettingsPage.WifiDeviceHTML = WifiSettingsPage.import.getElementById('WifiDeviceTemplate');
+   WifiSettingsPage.WifiAddNetworkModalHTML = WifiSettingsPage.import.getElementById('AddNetworkModal');
+   $("#WifiPage").append(WifiSettingsPage.WifiAddNetworkModalHTML);
    //$("#settingsPage").append(WifiSettingsPage.import.getElementById('WifiPage'));
    //$("body").append(WifiSettingsPage.import.getElementById('WifiPage'));
    //var close_button = document.getElementById('tabsCloseSubPanelWifiButton').onclick = WifiSettingsPage.HidePage;
