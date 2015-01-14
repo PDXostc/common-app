@@ -1,0 +1,61 @@
+<!-- bluetooth template file -->
+
+<div id="bluetoothPage" class="tabs bluetoothPage hidden">
+
+	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
+
+		<div id="tabsCloseSubPanelBluetoothButton" class="tabsCloseSubPanelButton"></div>
+		<div class="tabsSubPanelArea">
+			<div id="tabsTopSubPanelTitle">
+				<div class="boxIconRectangleSmall bgColorTheme"></div>
+				<div class="boxIconCaptionSmall boxCaptionText">SETTINGS</div>
+			</div>
+			<div id="tabsTopSubPanelSubtitle" class="componentHeader">Bluetooth</div>
+			<div class="tabsTabClear">
+			</div>
+		</div>
+		<div id="bluetoothPowerButton" class="subPanelToggleButton subPanelToggleButtonWide">
+			<div class="switch off switch-xsmall">
+			  <div class="switch-plate">
+			    <div class="switch-control"></div>
+			  </div>
+			</div>
+		</div>
+
+		<div id="loadingSpinnerWrapper" class="loadingSpinnerWrapper" style="display: none;">
+			<div id="loadingSpinner" class="loadingSpinner pageBgColorNormalTransparent">
+				<div id="loadingSpinnerContent" class="loading-container">
+					<div id="loadingSpinnerImg" class="loading"></div>
+					<div id="loadingSpinnerText" class="loading-text fontSizeXXSmall fontWeightBold fontColorNormal">Scanning</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
+
+		<!-- start of tabsContent portion-->
+		<div id="tabsContent" class="tabsContent wifiContent">
+			<div id="wifiNetworksList"></div>
+			<div style="text-align: center; display: none;" class="fontNormal fontSizeMedium"><strong>SELECTED</strong></div>
+			<div class="buttonsArea">
+				<div id="wifiRefreshButton" class="wifiRefreshButton" style="display:block"></div>
+				<div id="addNetworkButton" class="addNetworkButton" style="display:block"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="bluetoothDeviceTemplate" class="wifiElement borderColorTheme">
+	<div class="wifiElementInfoBox">
+		<div class="wifiElementTitle fontSizeLarge fontNormal"><strong><!-- name --></strong></div>
+		<div class="wifiElementSubtitle fontSizeSmaller fontNormal"><!-- address --></div>
+		<div class="wifiElementDescription fontSizeSmaller fontNormal"><!-- device class --></div>
+		<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- paired --></strong></div>
+		<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- is selected --></strong></div>
+	</div>
+
+	<div class="toggleButton wifiElementButton">
+		<div class="connectWhite connectGreen toggleButton toggleButtonBackground"></div>
+		<div class="fontNormal fontSizeMedium"><strong> </strong></div>
+	</div>
+</div>
