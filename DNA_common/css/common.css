@@ -189,7 +189,7 @@ section {
   height: inherit;
 }
 
-#modal,
+.modal,
 #settings {
   height: 100%;
   width: 100%;
@@ -200,7 +200,7 @@ section {
   display: flex;
 }
 
-#modal {
+.modal {
   align-items: center;
   justify-content: center;
 }
@@ -221,7 +221,7 @@ section {
 }
 
 #app .content,
-#modal .content,
+.modal .content,
 #settings .content {
   flex: 1;
   padding: 20px;
@@ -238,7 +238,7 @@ section {
   flex-grow: 1;
 }
 
-#modal .content {
+.modal .content {
   background-color: #333;
 }
 
@@ -386,7 +386,7 @@ section {
   background-color: black;
 }
 
-#modal,
+.modal,
 #settings,
 .overlay-bg {
   background-color: rgba(0,0,0,0.8);
@@ -605,7 +605,7 @@ textarea,
 /* Modifiers should stay at the bottom of the CSS *********/
 
 .hidden,
-#modal.hidden,
+.modal.hidden,
 #settings.hidden {
   display: none;
 }
