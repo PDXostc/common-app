@@ -36,7 +36,7 @@ rviSettingsPage.pageUpdate = function() {
 	}
 	else {
 		$("#settingsPage").append(rviSettingsPage.import.getElementById('rviPage'));
-		var close_button = document.getElementById('tabsCloseSubPanelRviButton').onclick = rviSettingsPage.HidePage;
+		var close_button = document.getElementById('rviBackArrow').onclick = rviSettingsPage.HidePage;
 		Settings.addUpdateSettingsPage('rvi','settings',rviSettingsPage.ShowPage);
 	}
 };

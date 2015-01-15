@@ -40,7 +40,7 @@ WifiSettingsPage.pageUpdate = function() {
 	   document.querySelector('#AddNetworkExitModal').onclick = function() {
 				$('#AddNetworkModal').addClass("hidden");
 		   };
-		var close_button = document.getElementById('tabsCloseSubPanelWifiButton').onclick = WifiSettingsPage.HidePage;
+		var close_button = document.getElementById('wifiBackArrow').onclick = WifiSettingsPage.HidePage;
 	}
 };
 

@@ -153,6 +153,7 @@ includeJs("DNA_common/components/settings/js/settings.js");
 includeJs("DNA_common/components/wifi/js/wifi.js");
 includeJs("DNA_common/components/bluetooth/js/bluetooth.js");
 includeJs("DNA_common/components/dateTime/js/dateTime.js");
+includeJs("DNA_common/components/hotspot/js/hotspot.js");
 
 includeJs("DNA_common/components/audioPlayer/most.js");
 includeJs("DNA_common/components/knockout/knockout.js",function(){
