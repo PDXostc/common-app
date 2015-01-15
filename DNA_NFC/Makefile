@@ -5,7 +5,7 @@ VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
 ifndef TIZEN_IP
-TIZEN_IP=TizenNuc
+TIZEN_IP=TizenVTC
 endif
 
 wgtPkg: clean common $(PROJECT).wgt
