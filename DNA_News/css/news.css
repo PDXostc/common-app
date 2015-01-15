@@ -230,15 +230,10 @@ ul#articleScroller {
 	margin-left: 50%;
 	margin-right: 50%;
 	margin-top: 20px;
-	background-image: url('../images/carron.png');
 }
 
 #bottomBarLogoImg {
 	content:url('/images/logo_icon.png');
-}
-
-.borderLtBlue_DNA {
-	border-color: #B2F0FF;
 }
 
 .padRight {

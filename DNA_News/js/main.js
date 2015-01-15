@@ -287,8 +287,8 @@ function showArticle(url) {
             console.log("each loop for article items");
         });
 
-        myHTMLOutput = '<li class=\"articleItem\"><div class=\"articleBody fontSizeMedium orange-viv\">';
-        myHTMLOutput += '<span class=\"articleHead fontSizeXLarge orange-viv\">'+ articleHead +'</span>'+ articleBody +'</div></li>';
+        myHTMLOutput = '<li class=\"articleItem\"><div class=\"articleBody orange-viv\">';
+        myHTMLOutput += '<h4 class=\"articleHead orange-viv\">'+ articleHead +'</h4>'+ articleBody +'</div></li>';
 
         $("#articleScroller").append(myHTMLOutput);
         console.log("article html sent");
