@@ -1,50 +1,50 @@
-console.log("start of bluetooth.js");
-var BluetoothSettingsPage={};
-BluetoothSettingsPage.TemplateHTML = "DNA_common/components/bluetooth/bluetooth.html";
+console.log("start of hotspot.js");
+var hotspotSettingsPage={};
+hotspotSettingsPage.TemplateHTML = "DNA_common/components/hotspot/hotspot.html";
 
-BluetoothSettingsPage.ShowPage = function() { 
-		console.log('bluetooth page show_click();');
+hotspotSettingsPage.ShowPage = function() { 
+		console.log('hotspot page show_click();');
 		$('#settingsPageList').addClass('hidden');
-		$('#bluetoothPage').removeClass('hidden');
+		$('#hotspotPage').removeClass('hidden');
 	};
 
-BluetoothSettingsPage.HidePage = function() { 
-		console.log('bluetooth page hide_click();');
+hotspotSettingsPage.HidePage = function() { 
+		console.log('hotspot page hide_click();');
 		$('#settingsPageList').removeClass('hidden');
-		$('#bluetoothPage').addClass('hidden');
+		$('#hotspotPage').addClass('hidden');
 	};
 
-BluetoothSettingsPage.pageUpdate = function() {
-	console.log("bluetooth pageUpdate()");
+hotspotSettingsPage.pageUpdate = function() {
+	console.log("hotspot pageUpdate()");
 
 	if (!$('#settingsPage').length) {
-		setTimeout(BluetoothSettingsPage.pageUpdate,1000);
+		setTimeout(hotspotSettingsPage.pageUpdate,1000);
 	}
 	else {
-		$("#settingsPage").append(BluetoothSettingsPage.import.getElementById('bluetoothPage'));
-		Settings.addUpdateSettingsPage('bluetooth','settings',BluetoothSettingsPage.ShowPage);
-		var close_button = document.getElementById('bluetoothBackArrow').onclick = BluetoothSettingsPage.HidePage;
+		$("#settingsPage").append(hotspotSettingsPage.import.getElementById('hotspotPage'));
+		Settings.addUpdateSettingsPage('hotspot','settings',hotspotSettingsPage.ShowPage);
+		var close_button = document.getElementById('hotspotBackArrow').onclick = hotspotSettingsPage.HidePage;
 	}
 };
 
-BluetoothSettingsPage.includeHTMLSucess = function(linkobj) {
-   console.log("loaded bluetooth.html");
-   BluetoothSettingsPage.import = linkobj.path[0].import;
-   BluetoothSettingsPage.bluetoothPageHTML = BluetoothSettingsPage.import.getElementById('bluetoothPage');
-   BluetoothSettingsPage.bluetoothDeviceHTML = BluetoothSettingsPage.import.getElementById('bluetoothDeviceTemplate');
+hotspotSettingsPage.includeHTMLSucess = function(linkobj) {
+   console.log("loaded hotspot.html");
+   hotspotSettingsPage.import = linkobj.path[0].import;
+   hotspotSettingsPage.hotspotPageHTML = hotspotSettingsPage.import.getElementById('hotspotPage');
+   hotspotSettingsPage.hotspotDeviceHTML = hotspotSettingsPage.import.getElementById('hotspotDeviceTemplate');
    
-   BluetoothSettingsPage.pageUpdate();
+   hotspotSettingsPage.pageUpdate();
 };
 
-BluetoothSettingsPage.includeHTMLFailed = function(linkobj) {
-	console.log("load bluetooth.html failed");
+hotspotSettingsPage.includeHTMLFailed = function(linkobj) {
+	console.log("load hotspot.html failed");
 	console.log(linkobj);
 };
 
 
-includeHTML(BluetoothSettingsPage.TemplateHTML, BluetoothSettingsPage.includeHTMLSucess, BluetoothSettingsPage.includeHTMLFailed);
+includeHTML(hotspotSettingsPage.TemplateHTML, hotspotSettingsPage.includeHTMLSucess, hotspotSettingsPage.includeHTMLFailed);
 
-console.log("end of bluetooth.js");
+console.log("end of hotspot.js");
 
 
 
@@ -66,7 +66,7 @@ includeJs(Wifi.ws); //include websocket
 //w.loadDefaultAdapter(test)
 //w.wifi.setPowered(true)
 
-BluetoothSettings = function(){
+hotspotSettings = function(){
 
 	self = this;
 	self.wifi = {};

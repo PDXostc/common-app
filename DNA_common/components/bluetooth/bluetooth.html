@@ -2,47 +2,44 @@
 
 <div id="bluetoothPage" class="tabs bluetoothPage hidden">
 
-	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
-
-		<div id="tabsCloseSubPanelBluetoothButton" class="tabsCloseSubPanelButton"></div>
-		<div class="tabsSubPanelArea">
-			<div id="tabsTopSubPanelTitle">
-				<div class="boxIconRectangleSmall bgColorTheme"></div>
-				<div class="boxIconCaptionSmall boxCaptionText">SETTINGS</div>
-			</div>
-			<div id="tabsTopSubPanelSubtitle" class="componentHeader">Bluetooth</div>
-			<div class="tabsTabClear">
-			</div>
+	<div class="component-top">
+		<div class="component-head"> 
+			<div id="bluetoothBackArrow" class="settings-back-arrow"></div>
+			<div class="blue-rectangle"></div>
+			<div class="blue-caption-text">SETTINGS</div>			
+			<div class="component-title">Bluetooth</div>
+			<div class="settings-clear">	</div>
 		</div>
-		<div id="bluetoothPowerButton" class="subPanelToggleButton subPanelToggleButtonWide">
+		<div id="bluetoothPowerButton" class="settings-switch">
 			<div class="switch off switch-xsmall">
 			  <div class="switch-plate">
 			    <div class="switch-control"></div>
 			  </div>
 			</div>
+			<div class="component-subhead">
+				<h2></h2>
+			</div>
 		</div>
-
-		<div id="loadingSpinnerWrapper" class="loadingSpinnerWrapper" style="display: none;">
+<!-- 		<div id="loadingSpinnerWrapper" class="loadingSpinnerWrapper" style="display: none;">
 			<div id="loadingSpinner" class="loadingSpinner pageBgColorNormalTransparent">
 				<div id="loadingSpinnerContent" class="loading-container">
 					<div id="loadingSpinnerImg" class="loading"></div>
 					<div id="loadingSpinnerText" class="loading-text fontSizeXXSmall fontWeightBold fontColorNormal">Scanning</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
-	<div id="tabsTopSubPanel" class="tabsTopSubPanel">
 
-		<!-- start of tabsContent portion-->
-		<div id="tabsContent" class="tabsContent wifiContent">
-			<div id="wifiNetworksList"></div>
-			<div style="text-align: center; display: none;" class="fontNormal fontSizeMedium"><strong>SELECTED</strong></div>
-			<div class="buttonsArea">
-				<div id="wifiRefreshButton" class="wifiRefreshButton" style="display:block"></div>
-				<div id="addNetworkButton" class="addNetworkButton" style="display:block"></div>
-			</div>
+	<!-- start of tabsContent portion-->
+	<div id="tabsContent" class="component-content">
+		<div id="wifiNetworksList"></div>
+		<div style="text-align: center; display: none;" class="fontNormal fontSizeMedium"><strong>SELECTED</strong></div>
+		<div class="buttonsArea">
+			<div id="wifiRefreshButton" class="wifiRefreshButton" style="display:block"></div>
+			<div id="addNetworkButton" class="addNetworkButton" style="display:block"></div>
 		</div>
 	</div>
+
 </div>
 
 <div id="bluetoothDeviceTemplate" class="wifiElement borderColorTheme">

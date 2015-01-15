@@ -11,19 +11,87 @@ sorted when there is time to organize all the components and make decisions*/
 	height: 100%;  
 	left: 0;
 	top: 0;
-	/*z-index: 20;  */
-	/* display: flex; */  
 	flex-direction: column;  
-	/*flex-grow: 1;  */
-	/*flex: none;*/
 	background-color: rgba(0, 0, 0, 0.8);
 }
-.componentHeader {
-	font-size: 62px;
+.settings-back-arrow {
+	cursor: pointer;
+	text-transform: uppercase;
+	width: 100px;
+	height: 100px;
+	float: left;
+	background-image: url('/DNA_common/components/settings/images/back.png');
+	background-repeat: no-repeat;
+	margin: 24px 20px 0 20px;
+}
+.component-top {
+	z-index: 0;
+	background-color: #222;
+	margin: 0 40px;
+}
+.component-head {
+	margin-top: 7px;
+	display: inline-block;
+	text-transform: uppercase;
+	width: 75%;
+	overflow: hidden;
+	height: 125px;
+}
+.component-subhead {
+	margin:  0 40px;
+	padding: 1px 20px;
+	background-color: #222;
+	border-top: 1px solid rgba(255,255,255, 0.25);
+}
+.component-content {
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-right: 20px;
+	padding: 20px 0;
+	background-color: #222;
+	margin: 0 40px;
+}
+.component-title {
+	font-size: 75px;
 	color: #fff;
 	font-weight: bold;
-	line-height: 44px;
+	line-height: 47px;
 	margin-left: 0;
+}
+.component-form {
+    position: relative;  
+    margin: 40px;  
+ 	outline: 1px solid rgba(255,255,255, 0.25);  
+ 	padding-bottom: 20px;  
+ 	display: flex;
+ 	flex: 1;
+ 	flex-direction: column;  
+ 	text-align: center;  
+ 	align-items: center;  
+ 	justify-content: center;  
+}
+.label-box	{
+	text-transform: uppercase;
+	text-align: right;
+	width: 35%;
+	margin-right: 10px;
+}
+.blue-rectangle {
+	width: 104px;
+	height: 17px;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: rgba(83, 181, 206, 1.0);
+	margin-right: 3px;
+	margin-left: 4px;
+}
+.blue-caption-text {
+	font-size: 22px;
+	font-weight: bold;
+	color: rgba(83, 181, 206, 1.0);
+	margin-left: 3px;
+	display: inline-block;
+	vertical-align: middle;
 }
 ul .settingElement {
 	text-transform: uppercase;
@@ -148,17 +216,12 @@ ul#settingsPageList > :last-child {
 	line-height: 43px;
 }
 
-.subPanelToggleButton {
-	/* position: absolute;*/
-	margin-right: 50px;
+.settings-switch {
 	float: right;
 	display:inline-block;
 	height: 100px;
-	padding-top: 25px;
-}
-
-.subPanelToggleButtonWide {
 	width: 200px;
+	padding-top: 25px;
 }
 
 .buttonsArea {
@@ -353,11 +416,11 @@ ul#settingsPageList > :last-child {
 /*.hidden	{
 	display: none;
 }*/
-.componentSubheader {
+/*.componentSubheader {
 	margin: 20px 20px 0 20px;
 	border-bottom: 1px solid rgba(255,255,255, 0.25);
 	padding-top: 1px;
-}
+}*/
 .modal-bkgrnd{
   -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
   width: 615px;
@@ -411,4 +474,12 @@ ul#settingsPageList > :last-child {
 }
 .password-field .off {
 	display: none;
+}
+.settings-clear {
+	display: inline-block;
+	height: 10px;
+	width: 100%;
+}
+.border {
+	border-bottom: 1px solid rgba(255,255,255, 0.25);
 }
