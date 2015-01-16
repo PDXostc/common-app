@@ -17,16 +17,17 @@
 			  </div>
 			</div>
 		</div>
-		<div class="component-subhead">
-			<h2></h2>
+		<div class="component-subhead border">
+			<h3 class="hidden">Wifi Connections Available</h3>
+			<div id="spinner" class="hidden">
+				<div id="loadingSpinnerWifi" class="loadingSpinnerWifi loading-container loading-container-small">
+					<div class="loading loading-small"></div>
+				</div>
+			</div>
 		</div>
-			<!-- 	<div id="loadingSpinnerWifi" class="loadingSpinnerWifi loading-container loading-container-small">
-			<div class="loading loading-small"></div>
-		</div> -->
 	</div>
 
-	<div class="component-content">
-		<h3>Wifi Connections available</h3>		
+	<div class="component-content">	
 		<div class="buttonsArea">
 			<div id="wifiRefreshButton" class="wifiRefreshButton"></div>
 			<div id="addNetworkButton" class="addNetworkButton"></div>
@@ -43,52 +44,39 @@
 				<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold"></div>
 				<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold"></div>
 			</div>
-			
+<!-- 			
 			<div class="toggleButton wifiElementButton">
 				<div class="connectWhite connectGreen toggleButton toggleButtonBackground"></div>
 				<div class="fontColorNormal fontSizeMedium fontWeightBold"></div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
 		<!-- wifi add a network modal --> 
 	<div id="AddNetworkModal" class="modal hidden">
 		<div class="modal-bkgrnd box-out-orange">
-			<h2>Add a Network</h2>
 			<div id="AddNetworkExitModal" class="close-button"></div>
-
-			<div class="flex-center">
-				<div class="labelBox">
-					<h4>SSID</h4>
-				</div>
-
-				<input type="text" name="focus" class="inputField" id="inputSsid" placeholder="Enter network name">
+			<h2>Add a Network</h2>
+			<div class="input-group">
+				<label for="" class="component-label">SSID</label>
+				<input id="inputSsid" type="text" name="focus" class="text-input input-white" placeholder="Enter network name">
 				<div class="delete-button" type="reset"></div>					
 			</div>
-
-			<div class="flex-center">
-				<div class="labelBox">
-					<h4>Security</h4>
-				</div>
-
-				<input type="text" name="focus" class="inputField" id="inputSsid" placeholder="No security">
-				<!-- tap the next-button replace the previous inputField's placeholder text with WEP, WPA, or WPA2 and fold out password field: -->
+			<div class="input-group">
+				<label for="" class="component-label">Security</label>
+				<input type="text" name="focus" class="text-input input-white" id="inputSsid" placeholder="No security">
+				<!-- tap the next-button replace the previous input field's placeholder text with WEP, WPA, or WPA2 and fold out password field: -->
 				<div class="next-button" id="buttonNextSecurity" type=""></div>
 				<!-- this toggles to the following and no security/password field: -->
 				<div class="previous-button" id="buttonPreviousSecurity" type=""></div>
 			</div>
-
 			<div class="password-field off">	
-				<div class="flex-center">
-					<div class="labelBox">
-						<h4>PASSWORD</h4>
-					</div>
-
-					<input type="password" name="focus" class="inputField" id="inputPassword" placeholder="Enter password">
+				<div class="input-group">
+					<label for="" class="component-label">PASSWORD</label>	
+					<input type="password" name="focus" class="text-input input-white" id="inputPassword" placeholder="Enter password">
 					<div class="delete-button" type="reset"></div>					
 				</div>
-			</div>					
-
+			</div>		
 			<div class="center">
 				<input type="button" class="no-margin" value="Add" id="" >  
 			</div>            

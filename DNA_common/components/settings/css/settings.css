@@ -41,7 +41,6 @@ sorted when there is time to organize all the components and make decisions*/
 	margin:  0 40px;
 	padding: 1px 20px;
 	background-color: #222;
-	border-top: 1px solid rgba(255,255,255, 0.25);
 }
 .component-content {
 	overflow-x: hidden;
@@ -62,19 +61,24 @@ sorted when there is time to organize all the components and make decisions*/
     position: relative;  
     margin: 40px;  
  	outline: 1px solid rgba(255,255,255, 0.25);  
- 	padding-bottom: 20px;  
- 	display: flex;
+ 	padding: 40px;  
+ /*	display: flex;
  	flex: 1;
  	flex-direction: column;  
  	text-align: center;  
- 	align-items: center;  
- 	justify-content: center;  
+ 	align-items: center;  */
+ 	/*justify-content: center; */ 
 }
-.label-box	{
+/*.label-box*/
+.component-label	{
 	text-transform: uppercase;
 	text-align: right;
-	width: 35%;
+	/*width: 35%;*/
 	margin-right: 10px;
+	font-weight: 400;
+	font-size: 4rem;
+	color: #fe9c00;
+	line-height: 2.5em;
 }
 .blue-rectangle {
 	width: 104px;
@@ -161,7 +165,12 @@ ul#settingsPageList > :last-child {
 	margin-left: 40px;
 	color: rgb(196, 196, 196);
 }
-
+.wifiElementTitle {
+	color: rgb(196, 196, 196);
+	color: rgba(196, 196, 196, 1.0); /*#c4c4c4*/
+	font-size: 3rem;
+	font-weight: bold;
+}
 .wifiElement .wifiElementInfoBox {
 	width: 495px;
 	display: block;
@@ -172,6 +181,7 @@ ul#settingsPageList > :last-child {
 	margin-top: 5px;
 	color: rgb(83, 181, 206);
 	font-weight: normal;
+
 }
 .wifiElement .wifiElementDescription {
 	color: rgb(83, 181, 206);
@@ -422,34 +432,47 @@ ul#settingsPageList > :last-child {
 	padding-top: 1px;
 }*/
 .modal-bkgrnd{
-  -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
-  width: 615px;
+  width: 675px;
   background-color: #222;
-  top: 40%;  
-  left: 50%;  
-  position: absolute;  
-  transform: translate(-50%, -50%);
+/*  position: absolute;  
+  transform: translate(-50%, -50%);*/
   padding: 0 20px 20px 30px;
+}
+.delete-button {
+  display: inline-block;
+  outline: 0px;
+}
+.delete-button::after {
+  	content: "\00d7";
+	display: block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	color: #444;
+	font-size: 5rem;
+	outline: 1px solid #444;
+	cursor: pointer;
+	line-height: .75em;
+	margin-left: -70px;
+	margin-top: 30px;
 }
 .next-button {
   display: inline-block;
   outline: 0px;
-  cursor: pointer;
 }
 .next-button::after {
   content: "\025B8";
-  display: block;
-  width: 25px;
-  height: 25px;
-  margin: auto;
-  padding: 3px;
-  text-align: center;
-  color: #444;
-  font-size: 3.5rem;
-  outline: 1px solid #444;
-  cursor: pointer;
-  line-height: 2rem;
-  margin-left: -45px;
+	display: block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	color: #444;
+	font-size: 5rem;
+	outline: 1px solid #444;
+	cursor: pointer;
+	line-height: .65em;
+	margin-left: -70px;
+	margin-top: 30px;
 }
 .previous-button {
   display: inline-block;
@@ -459,18 +482,17 @@ ul#settingsPageList > :last-child {
 }
 .previous-button::after {
   content: "\025C2";
-  display: block;
-  width: 25px;
-  height: 25px;
-  margin: auto;
-  padding: 3px;
-  text-align: center;
-  color: #444;
-  font-size: 3.5rem;
-  outline: 1px solid #444;
-  cursor: pointer;
-  line-height: 2rem;
-  margin-left: -45px;
+	display: block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	color: #444;
+	font-size: 5rem;
+	outline: 1px solid #444;
+	cursor: pointer;
+	line-height: .65em;
+	margin-left: -70px;
+	margin-top: 30px;
 }
 .password-field .off {
 	display: none;
@@ -481,5 +503,5 @@ ul#settingsPageList > :last-child {
 	width: 100%;
 }
 .border {
-	border-bottom: 1px solid rgba(255,255,255, 0.25);
+	border-top: 1px solid rgba(255,255,255, 0.25);
 }

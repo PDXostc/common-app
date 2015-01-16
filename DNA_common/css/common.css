@@ -570,9 +570,10 @@ textarea,
 /* Close button */
 .close-button {
   padding: 10px;
-  position: absolute;
+  position: relative;
   right: 20px;
   top: 0;
+  float: right;
 }
 .close-button::after {
   content: "\00d7";
@@ -584,21 +585,14 @@ textarea,
 }
 
 /* input field with input glow focus and grey placeholder text */
-.inputField {
+.input-white {
   border: none;
-  background-color: rgb(0, 0, 0);
-  width: 372px;
-  font-size: 3rem;
-  padding-left: 20px;
   color: rgba(196, 196, 196, 1.0);
-  width: 400px;  
-  height: 60px;  
-  margin-left: 10px;
 }
 ::-webkit-input-placeholder {
    color: #444;
 }
-.inputField:focus {
+.input-white:focus {
   outline: none;
   box-shadow: 0 0 15px 5px #b0e0ee;
 }
