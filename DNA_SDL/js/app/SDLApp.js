@@ -84,8 +84,10 @@ SDL = Em.Application.create( {
         /** State manager init */
         SDL.States = StateManager.create();
 
-        /** container for all views */
-        SDL.views = SDL.AppViews.create().appendTo('#app');
-        SDL.States.goToStates(SDL.InfoController.activeState);
+        /** containers for all views */
+        $('#app').load('js/sdl_template.html'); //construct container from the template
+        SDL.views = SDL.AppViews.create().appendTo('#app'); //hook up Ember interactivity
+        $('.ember-view .hidden').remove(); //remove Ember duplication
+        SDL.States.goToStates(SDL.InfoController.activeState); //go to active Ember state
     }
 });

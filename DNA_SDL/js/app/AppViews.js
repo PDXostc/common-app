@@ -35,6 +35,7 @@
 SDL.AppViews = Em.ContainerView.extend( {
 
     elementId: 'app-content',
+    classNames: ['hidden'],
 
     childViews: [
         SDL.HomeView,
@@ -60,7 +61,7 @@ SDL.AppViews = Em.ContainerView.extend( {
 //        SDL.StatusInfoView,
 //        SDL.StatusPhoneView,
 //        SDL.TopControls,
-        SDL.BottomControls
+//        SDL.BottomControls
 //        SDL.TTSPopUp,
 //        SDL.AlertPopUp,
 //        SDL.AlertManeuverPopUp,
