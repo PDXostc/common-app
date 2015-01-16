@@ -26,14 +26,14 @@ A collection of IVI software
 
 %build
 for app in %{app_list}; do
-    make "-DOBS=1" -C ${app}
+    make "OBS=1" -C ${app}
 done
 
 %install
 #rm -rf %{buildroot}
 for app in %{app_list}; do
     cd ${app}
-    %make_install "-DOBS=1"
+    %make_install "OBS=1"
     cd ..
 done
 
