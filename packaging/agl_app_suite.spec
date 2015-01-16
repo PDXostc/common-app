@@ -15,6 +15,7 @@ BuildRequires:  desktop-file-utils
 
 %global app_list HomeScreen Boilerplate Browser
 %global app_id_list cciaaojcnnbbpfioidejhigcboenjmmg kmmeobdkikjechfejkakmfmfgjldjkco gnipnignbkkkjeglidcdnedabpekbiah
+%global OBS 1
 
 %description
 A collection of IVI software
@@ -25,14 +26,14 @@ A collection of IVI software
 
 %build
 for app in %{app_list}; do
-    OBS=1 make -C ${app}
+    make "-DOBS=1" -C ${app}
 done
 
 %install
 #rm -rf %{buildroot}
 for app in %{app_list}; do
     cd ${app}
-    OBS=1 %make_install
+    %make_install "-DOBS=1"
     cd ..
 done
 

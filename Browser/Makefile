@@ -14,9 +14,6 @@ endif
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
-obs: dev-common
-	zip -r $(PROJECT).wgt $(WRT_FILES)
-
 $(PROJECT).wgt : dev
 
 deploy: $(PROJECT).wgt
@@ -34,7 +31,9 @@ clean:
 	rm -rf css/car
 	rm -rf css/user
 	rm -f $(PROJECT).wgt
+ifndef OBS
 	git clean -f
+endif
 
 DNA_common: /opt/usr/apps/DNA_common
 	cp -r /opt/usr/apps/DNA_common/js/* js/

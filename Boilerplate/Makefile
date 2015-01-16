@@ -15,9 +15,6 @@ endif
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
-obs: dev-common
-	zip -r $(PROJECT).wgt $(WRT_FILES)
-
 $(PROJECT).wgt : dev
 
 wgt:
@@ -47,7 +44,9 @@ clean:
 	rm -rf css/car
 	rm -rf css/user
 	rm -f $(PROJECT).wgt
+ifndef OBS
 	git clean -f
+endif
 
 common: /opt/usr/apps/common
 	cp -r /opt/usr/apps/common/js/* js/
