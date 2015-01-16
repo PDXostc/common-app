@@ -369,7 +369,7 @@ Tab.prototype.changeUrl = function(url, keepContent) {
 Tab.prototype.deactivate = function() {
 	"use strict";
 	this.contentView.css('display', 'none');
-	this.tabView.removeClass('active bgColorThemeTransparent');
+	this.tabView.removeClass('active browserBgColorThemeTransparent');
 	this.tabView.find('.closeTabBtn').removeAttr('style');
 	this.active = false;
 };
@@ -392,7 +392,7 @@ Tab.prototype.activate = function() {
 		}
 	}
 	this.contentView.css('display', 'block');
-	this.tabView.addClass('active bgColorThemeTransparent');
+	this.tabView.addClass('active browserBgColorThemeTransparent');
 	if (TabController.tabs.length > 1) {
 		this.tabView.find('.closeTabBtn').css('display', 'block');
 	}

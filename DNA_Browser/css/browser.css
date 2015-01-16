@@ -120,8 +120,7 @@
 .boxShadowInset { 
 	box-shadow: 0 0 3px 3px #53b5ce inset;
 }
-.bgColorThemeTransparent {
-	/* background-color: rgb(83, 181, 206); */
+.browserBgColorThemeTransparent {
 	background-color: rgba(83, 181, 206, 0.5);
 }
 .boxShadow4 {
