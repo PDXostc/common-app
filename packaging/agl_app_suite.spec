@@ -25,7 +25,7 @@ A collection of IVI software
 
 %build
 for app in %{app_list}; do
-    make -C ${app}
+    make -C ${app} obs
 done
 
 %install
