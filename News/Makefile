@@ -13,7 +13,10 @@ endif
 
 dev: clean dev-common
 	zip -r $(PROJECT).wgt $(WRT_FILES)
-	
+
+obs: dev-common
+	zip -r $(PROJECT).wgt $(WRT_FILES)
+
 $(PROJECT).wgt : dev
 
 deploy: $(PROJECT).wgt
