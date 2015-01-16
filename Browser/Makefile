@@ -17,7 +17,9 @@ dev: clean dev-common
 $(PROJECT).wgt : dev
 
 deploy: $(PROJECT).wgt
+ifndef OBS
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
+endif
 
 all:
 	@echo "Nothing to build"

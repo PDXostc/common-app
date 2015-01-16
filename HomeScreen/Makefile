@@ -29,7 +29,9 @@ install: deploy
 $(PROJECT).wgt : wgt
 
 deploy: dev
+ifndef OBS
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
+endif
 
 all:
 	@echo "Nothing to build"
