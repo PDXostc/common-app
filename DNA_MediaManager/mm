@@ -25,7 +25,7 @@ case "$action" in
         LD_LIBRARY_PATH=/opt/genivi/lib media-manager &
         cd /home/app/.cache/media-manager-artwork/ && python /home/app/.cache/media-manager-artwork/simpleserver.py &
         sleep 1
-        LD_LIBRARY_PATH=/opt/genivi/lib xwalk-launcher hfhfcghajndgphjagfgcnahcbclglcig
+        LD_LIBRARY_PATH=/opt/genivi/lib xwalk-launcher -d  JLRPOCX003.MediaManager
         ;;
     restart)
         $0 stop
