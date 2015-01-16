@@ -83,6 +83,8 @@ body {
     border: none;
     line-height: 1.25em;
     color: rgb(196,196,196);
+    font-size:3rem;
+    padding-left:20px;
 }
 
 .inputNumber:active {
