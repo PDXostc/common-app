@@ -33,7 +33,7 @@ done
 #rm -rf %{buildroot}
 for app in %{app_list}; do
     cd ${app}
-    %make_install "OBS=1"
+    make "OBS=1" install DESTDIR="%{?buildroot}"
     cd ..
 done
 
