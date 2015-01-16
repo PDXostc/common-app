@@ -52,10 +52,11 @@ var	Phone = (function() {
 			this.phone = null;
 		}
 
-		this.contacts = ko.observableArray([]);
-		this.callHistory = ko.observableArray([]);
+		this.contacts = [];
+		//this.callHistory = ko.observableArray([]);
+		this.callHistory = [];
 
-		this.contactsAlphabetFilter = ko.observable("");
+		/*this.contactsAlphabetFilter = ko.observable("");
 
 		this.contactsComputed = ko.computed(function() {
 			if (self.contactsAlphabetFilter() !== "") {
@@ -68,7 +69,7 @@ var	Phone = (function() {
 				});
 			}
 			return self.contacts();
-		});
+		});*/
 	}
 
 /**
@@ -80,12 +81,13 @@ var	Phone = (function() {
 	Phone.prototype.loadContacts = function(callback) {
 		var self = this;
 		var i, conntactsArrayLength;
+		//callback(null);
 		if ( !! self.phone) {
 
 			self.phone.getContacts(0, function(contactsArray) {
-
-				contactsArray = self.formatContacts(contactsArray);
-				self.contacts(contactsArray);
+				console.log("loadContacts",contactsArray);
+				//contactsArray = self.formatContacts(contactsArray);
+				self.contacts = contactsArray;
 				if ( !! callback) {
 					callback(null);
 				}
@@ -181,22 +183,24 @@ var	Phone = (function() {
 	Phone.prototype.getContactByPersonId = function(personId) {
 
 		var self = this;
-		var contact = ko.utils.arrayFirst(self.contacts(), function(contact) {
-			if (contact.personId === personId) {
-				return true;
+		var contact;
+		for (index = 0; index < self.contacts.length; index++) {
+			contact = self.contacts[index];
+			if (contact.personId) {
+				var cpersonId = contact.personId.replace(/[ ()+-]/g,"");
+				if (cpersonId === personId) {
+					return contact;
+				}
 			}
-
 			if ( !! contact.phoneNumbers && contact.phoneNumbers.length) {
 				for (var i = 0; i < contact.phoneNumbers.length; ++i) {
 					if ( !! contact.phoneNumbers[i].number && contact.phoneNumbers[i].number === personId) {
-						return true;
+						return contact;
 					}
 				}
 			}
-
-			return false;
-		});
-		return contact;
+		}
+		return null;
 	};
 	/** 
 	 * This method searches contact in contacts list by phoneNumber.
@@ -262,9 +266,12 @@ var	Phone = (function() {
 		var callHistoryArrayLength;
 		if ( !! self.phone) {
 			self.phone.getCallHistory(25, function(callHistoryArray) {
-				callHistoryArray = self.formatCallHistory(callHistoryArray);
+				console.log("loadCallHistory",callHistoryArray);
+				//callHistoryArray = self.formatCallHistory(callHistoryArray);
 
-				self.callHistory(callHistoryArray);
+				self.callHistory = callHistoryArray;
+				console.log("Phone.CallHistory",self.callHistory);
+				callHistoryCarousel.loadCallHistory(self.callHistory,0);
 				if ( !! callback) {
 					callback(null);
 				}
@@ -353,6 +360,7 @@ var	Phone = (function() {
 	Phone.prototype.getCallHistoryByPersonId = function(personId) {
 
 		var self = this;
+		/*
 		var callHistory = ko.utils.arrayFilter(self.callHistory(), function(callHistoryEntry) {
 			if ( !! callHistoryEntry.remoteParties) {
 				for (var i = 0; i < callHistoryEntry.remoteParties.length; ++i) {
@@ -364,6 +372,8 @@ var	Phone = (function() {
 			return false;
 		});
 		return callHistory;
+		*/
+		return null;
 	};
 	window.__phone = undefined === window.__phone ? new Phone() : window.__phone;
 	return window.__phone;
