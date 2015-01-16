@@ -25,14 +25,14 @@ A collection of IVI software
 
 %build
 for app in %{app_list}; do
-    make -C ${app} obs
+    OBS=1 make -C ${app}
 done
 
 %install
 #rm -rf %{buildroot}
 for app in %{app_list}; do
     cd ${app}
-    %make_install
+    OBS=1 %make_install
     cd ..
 done
 
