@@ -16,9 +16,6 @@
 			    <div class="switch-control"></div>
 			  </div>
 			</div>
-			<div class="component-subhead">
-				<h2></h2>
-			</div>
 		</div>
 		<div class="component-subhead border">
 			<h3 class="hidden">Bluetooth connections available</h3>
@@ -33,39 +30,60 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 
-	<!-- start of tabsContent portion-->
 	<div id="tabsContent" class="component-content">
-		<div id="BluetoothNetworksList"></div>
-		<div style="text-align: center; display: none;" class="fontNormal fontSizeMedium"><strong>SELECTED</strong></div>
+		<div id="BluetoothNetworksList">
+			<div id="bluetoothDeviceTemplate" class="wifiElement">
+				<div class="wifiElementInfoBox">
+					<p class="wifiElementTitle"><strong><!-- name -->OSTC-GUEST</strong></p>
+					<div class="wifiElementSubtitle fontSizeSmaller fontNormal"><!-- address -->Signal: AVERAGE</div>
+					<div class="wifiElementDescription fontSizeSmaller fontNormal"><!-- device class -->Encryption: AES</div>
+					<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- paired -->Security: PSK</strong></div>
+					<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- is selected -->Connected</strong></div>
+					<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold fontColorLightRed"><strong>NO INTERNET ACCESS</strong></div>
+				</div>
+				<div class="toggleButton wifiElementButton">
+					<div class="connectWhite toggleButton toggleButtonBackground">CONNECT</div>
+					<div class="connectGreen toggleButton toggleButtonBackground hidden">DISCONNECT</div>
+				</div>
+			</div>
+			<div class="wifiElement">
+				<div class="wifiElementInfoBox">
+					<p class="wifiElementTitle"><strong><!-- name -->NGI-DEV</strong></p>
+					<div class="wifiElementSubtitle fontSizeSmaller fontNormal"><!-- address -->Signal: AVERAGE</div>
+					<div class="wifiElementDescription fontSizeSmaller fontNormal"><!-- device class -->Encryption: AES</div>
+					<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- paired -->Security: PSK</strong></div>
+					<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- is selected -->Connected</strong></div>
+					<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold fontColorLightRed"><strong>NO INTERNET ACCESS</strong></div>
+				</div>
+				<div class="toggleButton wifiElementButton">
+					<div class="connectWhite toggleButton toggleButtonBackground">CONNECT</div>
+					<div class="connectGreen toggleButton toggleButtonBackground hidden">DISCONNECT</div>
+				</div>
+			</div>
+		</div>
+		<div class="fontNormal fontSizeMedium"><strong>SELECTED</strong></div>
 		<div class="buttonsArea">
-			<div id="bluetoothRefreshButton" class="wifiRefreshButton" style="display:block"></div>
+			<div id="BluetoothRefreshButton" class="wifiRefreshButton" style="display:block"></div>
 			<div id="addNetworkButton" class="addNetworkButton" style="display:block"></div>
 		</div>
 	</div>
 
 </div>
-
 <template>
-    <div id="bluetoothDeviceTemplate" class="wifiElement borderColorTheme">
+	<div id="bluetoothDeviceTemplate" class="wifiElement">
 		<div class="wifiElementInfoBox">
-			<div class="wifiElementTitle fontSizeLarge fontNormal"><strong><!-- name --></strong></div>
-			<div class="wifiElementSubtitle fontSizeSmaller fontNormal"><!-- address --></div>
-			<div class="wifiElementDescription fontSizeSmaller fontNormal"><!-- device class --></div>
-			<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- paired --></strong></div>
-			<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- is selected --></strong></div>
+			<p class="wifiElementTitle"><strong><!-- name -->OSTC-GUEST</strong></p>
+			<div class="wifiElementSubtitle fontSizeSmaller fontNormal"><!-- address -->Signal: AVERAGE</div>
+			<div class="wifiElementDescription fontSizeSmaller fontNormal"><!-- device class -->Encryption: AES</div>
+			<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- paired -->Security: PSK</strong></div>
+			<div class="wifiElementMore fontSizeSmaller fontColorSelected"><strong><!-- is selected -->Connected</strong></div>
+			<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold fontColorLightRed"><strong>NO INTERNET ACCESS</strong></div>
 		</div>
-
 		<div class="toggleButton wifiElementButton">
-			<div class="connectWhite connectGreen toggleButton toggleButtonBackground"></div>
-			<div class="fontNormal fontSizeMedium"><strong> </strong></div>
+			<div class="connectWhite toggleButton toggleButtonBackground">CONNECT</div>
+			<div class="connectGreen toggleButton toggleButtonBackground hidden">DISCONNECT</div>
 		</div>
-	</div>
-
-	<div class="toggleButton wifiElementButton">
-		<div class="connectWhite connectGreen toggleButton toggleButtonBackground"></div>
-		<div class="fontNormal fontSizeMedium"><strong> </strong></div>
 	</div>
 </template>
