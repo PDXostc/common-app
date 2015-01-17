@@ -28,6 +28,11 @@ ifndef OBS
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/HomeScreen.wgt"
 endif
 
+install_obs: $(INSTALL_DIR)
+	@echo "Installing $(PROJECT), stand by..."
+	mkdir -p $(INSTALL_DIR)/
+	cp $(PROJECT).wgt $(INSTALL_DIR)/
+
 $(PROJECT).wgt : wgt
 
 deploy: dev
@@ -70,7 +75,6 @@ dev-common: ../common
 
 $(INSTALL_DIR) :
 	mkdir -p $(INSTALL_DIR)/
-	cp $(PROJECT).wgt $(INSTALL_DIR)/
 
 install_xwalk: $(INSTALL_DIR)
 	@echo "Installing $(PROJECT), stand by..."
