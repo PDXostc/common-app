@@ -725,8 +725,9 @@ function onAppRecallSuccess(list) {
 						   gestureGame:"./DNA_common/images/gesture_game_inactive.png",
 						   GestureGame:"./DNA_common/images/gesture_game_inactive.png",
 						   saythis:"./DNA_common/images/say_this_inactive.png",
-						   FMRADIO:"./DNA_common/images/fmradio.png"
-};
+						   FMRADIO:"./DNA_common/images/fmradio.png",
+						   Cameras:"./DNA_common/images/camera_icon.png"
+						 };
 	var i = 0;
 	var path="";
 	try {
