@@ -19,6 +19,7 @@
 		</div>
 		<div class="component-subhead border">
 			<h3 class="hidden">Wifi Connections Available</h3>
+			<h4 id="" class="hidden">Hotspot tethering is on</h4>
 			<div id="spinner" class="hidden">
 				<div id="loadingSpinnerWifi" class="loadingSpinnerWifi loading-container loading-container-small">
 					<div class="loading loading-small"></div>
@@ -28,27 +29,14 @@
 	</div>
 
 	<div class="component-content">	
-		<div class="buttonsArea">
-			<div id="wifiRefreshButton" class="wifiRefreshButton"></div>
-			<div id="addNetworkButton" class="addNetworkButton"></div>
-		</div>
-		<div id="wifiNetworksList"><!-- name --></div>
-		<h4 id="" class="hidden">Hotspot tethering is on</h4>
-
-		<div id="WifiDeviceTemplate" class="wifiElement borderColorTheme">
-			<div class="wifiElementInfoBox">
-				<div class="wifiElementTitle fontSizeLarge fontColorNormal fontWeightBold"><!-- name --></div>
-				<div class="wifiElementSubtitle fontSizeSmaller fontColorNormal"></div>
-				<div class="wifiElementDescription fontSizeSmaller fontColorNormal"></div>
-				<div class="wifiElementMore fontSizeSmaller fontColorNormal"></div>
-				<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold"></div>
-				<div class="wifiElementMore fontSizeSmaller fontColorSelected fontWeightBold"></div>
+		<div id="wifiNetworksList">
+			<div id="wifiDeviceTemplate" class="networkElement">
+			<!-- template information inserts here -->
 			</div>
-<!-- 			
-			<div class="toggleButton wifiElementButton">
-				<div class="connectWhite connectGreen toggleButton toggleButtonBackground"></div>
-				<div class="fontColorNormal fontSizeMedium fontWeightBold"></div>
-			</div> -->
+		</div>
+		<div class="buttonsArea">
+			<div id="wifiRefreshButton" class="networkRefreshButton"></div>
+			<div id="addNetworkButton" class="addNetworkButton"></div>
 		</div>
 	</div>
 
@@ -83,3 +71,20 @@
 		</div>
 	</div>
 </div>
+
+<template>
+	<div id="wifiDeviceTemplate" class="networkElement">
+		<div class="networkElementInfoBox">
+			<div class="networkElementTitle"><!-- SSID -->NGI-DEV</div>
+			<div class="networkElementSubtitle"><!-- Signal -->Signal: AVERAGE</div>
+			<div class="networkElementDescription"><!-- Encryption -->Encryption: AES</div>
+			<div class="networkElementMore selected"><!-- Security -->Security: PSK</div>
+			<div class="networkElementMore selected"><!-- Connection-->Connected</div>
+			<div class="networkElementMore alert">NO INTERNET ACCESS</div>
+		</div>
+		<div class="networkElementButton">
+			<button class="">CONNECT</button>
+			<button class="button-green hidden">DISCONNECT</button>
+		</div>
+	</div>
+</template>
