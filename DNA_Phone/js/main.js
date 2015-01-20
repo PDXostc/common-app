@@ -608,11 +608,11 @@ $(document).ready(
 					window.setTimeout(function() {
 						Phone.loadContacts(function(err) {
 							if (!err) {
-								ContactsLibrary.init();
+								//ContactsLibrary.init();
 								Phone.loadCallHistory(function(err) {
 									if (!err) {
-										$("#loadingHistorySpinnerWrapper").hide();
-										callHistoryCarousel.loadCallHistory(Phone.callHistory(), 0);
+										//$("#loadingHistorySpinnerWrapper").hide();
+										callHistoryCarousel.loadCallHistory(Phone.callHistory, 0);
 									}
 								});
 							}

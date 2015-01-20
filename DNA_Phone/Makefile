@@ -20,8 +20,8 @@ wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
 run: install
-	ssh root@$(TIZEN_IP) "systemctl stop bluetooth"
-	ssh root@$(TIZEN_IP) "systemctl start bluetooth"
+	#ssh root@$(TIZEN_IP) "systemctl stop bluetooth"
+	#ssh root@$(TIZEN_IP) "systemctl start bluetooth"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Phone' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
 
 install: deploy
@@ -29,6 +29,12 @@ install: deploy
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/JLRPOCX031.Phone.wgt"
 
 $(PROJECT).wgt : wgt
+
+update.extention: 
+	#ssh root@$(TIZEN_IP) "zypper -n rr updated_repo"
+	#ssh root@$(TIZEN_IP) "zypper -n addrepo http://download.tizen.org/releases/daily/tizen/ivi/latest/repos/atom/packages/ updated_repo"
+	#ssh root@$(TIZEN_IP) "zypper -n refresh"
+	#ssh root@$(TIZEN_IP) "zypper -n install tizen-extensions-crosswalk"
 
 deploy: dev
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
