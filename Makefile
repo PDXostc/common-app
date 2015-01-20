@@ -75,3 +75,11 @@ clean_extensions:
 install:
 	cd HomeScreen && make install
 
+update.extention: 
+	-ssh root@$(TIZEN_IP) "zypper -n rr updated_repo"
+	#ssh root@$(TIZEN_IP) "zypper -n addrepo -G https://download.tizen.org/releases/daily/tizen/ivi/latest/repos/atom/packages/ updated_repo"
+	ssh root@$(TIZEN_IP) "zypper -n addrepo -G https://download.tizen.org/releases/daily/tizen/ivi/tizen-ivi_20150115.2/repos/atom/packages/ updated_repo"
+	ssh root@$(TIZEN_IP) "zypper -n refresh"
+	ssh root@$(TIZEN_IP) "zypper -n install tizen-extensions-crosswalk"
+
+
