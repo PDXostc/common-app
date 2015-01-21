@@ -123,15 +123,15 @@
 </div> -->
 
 	<div id="locationModal" class="modal-bkgrnd">	
-		<div id="search">
-			<h2>Location Search</h2>
-			<span onclick="hideLocationModal()" class="close-button" type="reset"></span>		   
-		    <input id="awxSearchTextBox" type="text" class="inputField" placeholder="city, state, or zip">
-		    <input id="awxSearchButton" class="button button-blue" type="submit" value="Search" />
-			<ul id="searchResults">
-				
-			</ul>
-		</div>
+		<span onclick="hideLocationModal()" class="close-button" type="reset"></span>
+		<h2>Location Search</h2>		   
+  	<div class="input-group">
+		  <input id="awxSearchTextBox" class="text-input input-white" type="text"  placeholder="city, state, or zip">
+    	<input id="awxSearchButton" value="Search" type="button" class="button-blue">
+    </div>
+		<ul id="searchResults" class="searchResults">
+			
+		</ul>
 	</div>
 
 	<div class="justify">
