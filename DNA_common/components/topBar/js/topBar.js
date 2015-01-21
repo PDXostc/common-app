@@ -93,7 +93,8 @@ var registeredApps = {"Home Screen":"/DNA_common/images/return_arrow_inactive.pn
 						"MiniBrowser":"/DNA_common/images/mini_browser_inactive.png", 
 						"Tizen":"/DNA_common/images/tizen_inactive.png",
 						"gestureGame":"/DNA_common/images/gesture_game_inactive.png",
-						"saythis":"/DNA_common/images/say_this_inactive.png"
+						"saythis":"/DNA_common/images/say_this_inactive.png",
+						"FMRADIO":"/DNA_common/images/fmradio.png"
 						};
 
 function launchApplication(id) {
