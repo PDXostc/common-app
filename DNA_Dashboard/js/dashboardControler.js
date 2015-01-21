@@ -135,7 +135,9 @@ dashBoardControler.prototype.onSpeedChanged = function(newStatus) {
  */
 dashBoardControler.prototype.onOdoMeterChanged = function(newStatus) {
 	"use strict";
-	$("#engineStatus #statusIndicator").text(newStatus + " mi");
+//	$("#engineStatus #statusIndicator").text(newStatus + " mi");
+	console.log("AMB: onOdoMeterChanged UI setting called.")
+	$("#OdometerValue").text(newStatus);
 };
 
 /** 
@@ -248,11 +250,14 @@ dashBoardControler.prototype.onBatteryRangeChanged = function(newValue, status) 
  * @method onOutsiteTempChanged
  * @param newValue {Number} New outside temperature status value.
  */
-dashBoardControler.prototype.onOutsiteTempChanged = function(newValue) {
+dashBoardControler.prototype.onOutsideTempChanged = function(newValue) {
 	"use strict";
-	var newOutsiteTemp = newValue + "°C";
+/*	var newOutsiteTemp = newValue + "°C";
 	$("#weatherStatus").empty();
 	$("#weatherStatus").append(newOutsiteTemp);
+*/
+	console.log("AMB: onOutsideTempChanged UI setting called.")
+	$("#OutdoorTemp").text(newValue);
 };
 
 /** 
@@ -291,9 +296,13 @@ dashBoardControler.prototype.onNightModeChanged = function(newValue) {
  */
 dashBoardControler.prototype.onInsideTempChanged = function(newValue) {
 	"use strict";
+	/*
 	var newInsiteTemp = newValue + "°F";
 	$("#fanStatus").empty();
 	$("#fanStatus").append(newInsiteTemp);
+	*/
+	console.log("AMB: onInsideTempChanged UI setting called.")
+	$("#InCarTemp").text(newValue);
 };
 
 /** 
@@ -389,6 +398,11 @@ dashBoardControler.prototype.onRandomizerChanged = function(newStatus) {
 	}
 };
 
+dashBoardControler.prototype.onYawRateChanged = function(newStatus) {
+	"use strict";
+	console.log("AMB TEST: onYawRateChanged")
+// $("#engineStatus #statusIndicator").text(newStatus + " mi");
+};
 /** 
  * Method initialize info status on HTML and jQuery plugins.
  * @method initInfos
@@ -426,7 +440,10 @@ dashBoardControler.prototype.initInfos = function() {
  */
 dashBoardControler.prototype.onTirePressureLeftFrontChanged = function(newValue) {
 	"use strict";
-	$("#leftFrontPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'L FRONT TIRE', newValue);
+	console.log("AMB: onTirePressureLeftFrontChanged called");
+//	$("#leftFrontPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'L FRONT TIRE', newValue);
+ 	$("#psiFL").text(newValue);
+	
 };
 /** 
  * Method is setting new value of right front tire pressure.
@@ -435,7 +452,8 @@ dashBoardControler.prototype.onTirePressureLeftFrontChanged = function(newValue)
  */
 dashBoardControler.prototype.onTirePressureRightFrontChanged = function(newValue) {
 	"use strict";
-	$("#rightFrontPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'R FRONT TIRE', newValue);
+//	$("#rightFrontPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'R FRONT TIRE', newValue);
+	$("#psiFR").text(newValue);
 };
 /** 
  * Method is setting new value of left rear tire pressure.
@@ -444,7 +462,8 @@ dashBoardControler.prototype.onTirePressureRightFrontChanged = function(newValue
  */
 dashBoardControler.prototype.onTirePressureLeftRearChanged = function(newValue) {
 	"use strict";
-	$("#leftRearPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'L Rear TIRE', newValue);
+//	$("#leftRearPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'L Rear TIRE', newValue);
+	$("#psiRL").text(newValue);
 };
 /** 
  * Method is setting new value of right rear tire pressure.
@@ -453,5 +472,17 @@ dashBoardControler.prototype.onTirePressureLeftRearChanged = function(newValue) 
  */
 dashBoardControler.prototype.onTirePressureRightRearChanged = function(newValue) {
 	"use strict";
-	$("#rightRearPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'R Rear TIRE', newValue);
+//	$("#rightRearPressure").statusBoxPlugin('init', 'PRESSSURE LEVEL', 'R Rear TIRE', newValue);
+	$("#psiRR").text(newValue);
 };
+dashBoardControler.prototype.onFuelLevelChanged = function(newValue) {
+	"use strict";
+	console.log("AMB: onFuelLevelChanged called");
+	$("#FuelLevel").text(newValue);
+};
+dashBoardControler.prototype.onDistanceToEmptyChanged = function(newValue) {
+	"use strict";
+	console.log("AMB: onDistanceToEmptyChanged called");
+	$("#DistToEmpty").text(newValue);
+};
+

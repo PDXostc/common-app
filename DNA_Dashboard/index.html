@@ -45,7 +45,7 @@
 							<div id="speedGauge"></div>
 							<div id="fullSpeedGauge"></div>
 							<p id="bigSpeed">45 <span id="littleMPH">MPH</span></p>
-							<p id="odometer" class="label">100,000.5 mi</p>
+							<p id="odometer" class="label"><span id="OdometerValue">100,000.5</span> mi</p>
 						</div>
 
 						<!-- Fuel and Temperature -->
@@ -56,8 +56,9 @@
 								<div id="fuelGauge"></div>
 								<div id="fullFuelGauge"></div>
 								<ul>
-									<li><strong>RANGE:</strong> 355 mi</li>
+									<li><strong>RANGE:</strong> <span id="DistToEmpty">355</span> mi</li>
 									<li><strong>AVG:</strong> 20.7 mpg</li>
+									<li><strong>LEVEL:</strong> <span id="FuelLevel">8.3</span> gallons</li>
 								</ul>
 							</div>
 
@@ -65,8 +66,8 @@
 								<h5 class="green-viv">TEMPERATURE <span id="unitTemperature" class="unitDescription green-lt">CELSIUS</span></h5>
 								<div id="temperatureIcon"></div>
 								<ul>
-									<li><strong>OUTDOOR:</strong> 80&deg;</li>
-									<li><strong>INDOOR:</strong> 72&deg;</li>
+									<li><strong>OUTDOOR:</strong> <span id="OutdoorTemp">80</span>&deg;</li>
+									<li><strong>INDOOR:</strong> <span id="InCarTemp">72</span>&deg;</li>
 								</ul>
 							</div>
 						</div>
@@ -77,25 +78,25 @@
 						<div class="frontTireData tirePressureData leftPSI">
 							<div class="PSI_statusPosition PSI_statusOK"></div>
 							<h6>Left Front Tire</h6>
-							<p class="psiText">26.0 PSI</p>
+							<p class="psiText"><span id="psiFL">26.0</span> PSI</p>
 						</div>
 
 						<div class="frontTireData tirePressureData rightPSI">
 							<div class="PSI_statusPosition PSI_statusOK"></div>
 							<h6>Right Front Tire</h6>
-							<p class="psiText">26.0 PSI</p>
+							<p class="psiText"><span id="psiFR">26.0</span> PSI</p>
 						</div>
 
 						<div class="rearTireData tirePressureData leftPSI">
 							<div class="PSI_statusPosition PSI_statusOK"></div>
 							<h6>Left Rear Tire</h6>
-							<p class="psiText">26.0 PSI</p>
+							<p class="psiText"><span id="psiRL">26.0</span> PSI</p>
 						</div>
 
 						<div class="rearTireData tirePressureData rightPSI">
 							<div class="PSI_statusPosition PSI_statusOK"></div>
 							<h6>Right Rear Tire</h6>
-							<p class="psiText">26.0 PSI</p>
+							<p class="psiText"><span id="psiRR">26.0</span> PSI</p>
 						</div>
 
 						<div id="carImage"></div>

@@ -194,7 +194,7 @@ var init = function () {
             dashBoardIndicator.onBatteryRangeChanged(newValue, carIndicator.status);
         },
         onOutsideTempChanged : function(newValue) {
-           dashBoardIndicator.onOutsiteTempChanged(newValue);
+           dashBoardIndicator.onOutsideTempChanged(newValue);
         },
         onInsideTempChanged : function(newValue) {
             dashBoardIndicator.onInsideTempChanged(newValue);
@@ -225,7 +225,16 @@ var init = function () {
         },
         onAvgKWChanged : function(newValue) {
             dashBoardIndicator.onAvgKWChanged(newValue);
-        }
+        },
+        onYawRateChanged : function(newValue) {
+            dashBoardIndicator.onYawRateChanged(newValue);
+        },
+        onFuelLevelChanged : function(newValue) {
+            dashBoardIndicator.onFuelLevelChanged(newValue);
+        },
+        onDistanceToEmptyChanged : function(newValue) {
+            dashBoardIndicator.onDistanceToEmptyChanged(newValue);
+        },
     });	
     
     $("input[name='add_item_button']").click(addItemClick);
