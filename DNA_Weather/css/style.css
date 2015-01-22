@@ -154,28 +154,6 @@ img.icon {
   -webkit-transition: opacity 0.6s ease-in-out;
   transition: opacity 0.6s ease-in-out;
 }
-/*.itemTextGradFade {
-  display: block;
-  width: 490px;
-  height: 35px;
-  z-index: 0;
-  left: 195px;
-  bottom: 36px;
-}*/
-/*.articleListGradFade {
-  display: block;
-  width: 712px;
-  height: 55px;
-  z-index: 1;
-  left: 2px;
-  top: 1032px;
-}*/
-/*.bottomPanelLogoImg {
-  background-repeat: no-repeat;
-  margin-top: 35px;
-  margin-left: -35px;
-  width: 285px !important;
-}*/
 .temp {
   font-size: 4em;
   color: white;
@@ -213,39 +191,15 @@ sup {
   border-bottom: 30px solid transparent;  
   border-right:55px solid rgba(255,255,255, 0.65)
 }
-#search > p {
-  color: #FFF;
-  padding: 10px 0 0 20px;
-}
-#search > form  {
-  margin-top:5px;
-}
-#search > label {
+.searchResults > li {
   color: #fff;
-  padding-left: 20px;
-  font-weight: bold;
-  font-size: 16px;
-}
-#searchResults > li {
-  color: #fff;
-  font-size: 1em;
+  font-size: 1.25em;
   margin: 10px;
-  padding: 5px 15px;
+  padding: 15px;
   background-color: rgba(83, 181, 206, .5);
   border: 1px solid rgb(83, 181, 206);
   width: 555px;
 }
-#awxSearchButton {
-  margin-top: 0; 
-  float: right;
-  margin-bottom: 30px;
-}
-#awxSearchTextBox {
-  /* width: 400px; */
-  /* height: 60px; */ 
-  /* float: left; */
-}
-
 .hour_temp  {
   font-weight: bold;
 }
@@ -272,7 +226,7 @@ span.fontSizeSmall {
   -webkit-box-shadow: 0 0 90px rgba(135,181,213,0.8);
   width: 615px;
   background-color: #222;
-  top: 30%;  
+  top: 40%;  
   left: 50%;  
   position: absolute;  
   transform: translate(-50%, -50%);
@@ -329,11 +283,6 @@ li {
     overflow: hidden;
     position: relative;
 }
-
-.border {
-    border: 2px solid rgba(255,255,255, 0.5);
-}
-
 .boxShadow4 {
   box-shadow: 0 0 70px 2px rgba(29, 162, 255, 0.4);
 }
@@ -341,97 +290,6 @@ li {
 .boxShadow4Active:active,.boxShadow4Active:focus {
   box-shadow: 0 0 70px 2px rgb(29, 162, 255);
 }
-
-/*input {
-  font-family: inherit;
-  font-weight: bold;
-}
-
-.inputBox .input {
-  width: 280px;
-  height: 75px;
-  padding-right: 75px;
-  padding-left: 25px;
-  border: none;
-  background-color: black;
-  background-color: rgba(0, 0, 0, 0.2);
-  -webkit-user-select: text;
-}
-
-.inputBox .input:focus {
-  border: 0;
-  outline: none;
-}
-
-.inputBox .deleteButton {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  width: 70px;
-  height: 75px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-
-.inputBox .deleteButton:active {
-  top: 1px;
-  right: 1px;
-}
-
-.inputBox .inputSelection {
-  width: 230px;
-  height: 75px;
-  padding-right: 75px;
-  padding-left: 75px;
-  border: none;
-  background-color: black;
-  background-color: rgba(0, 0, 0, 0.2);
-  -webkit-user-select: text;
-}
-
-.inputBox .inputSelection:focus {
-  border: 0;
-  outline: none;
-}
-
-.inputBox .previousButton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
-  padding: 0;
-  width: 70px;
-  height: 75px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-
-.inputBox .previousButton:active {
-  top: 1px;
-  left: 1px;
-}
-
-.inputBox .nextButton {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  width: 70px;
-  height: 75px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-
-.inputBox .nextButton:active {
-  top: 1px;
-  right: 1px;
-}*/
 .justify {
   display: flex;  
   align-items: flex-end;    
@@ -444,16 +302,6 @@ li {
   flex-direction: column;
   border: 2px solid rgba(255,255,255, 0.5);
 }
-
-.inputNumber {
-  /* margin-right: 10px; */
-  /* margin-bottom: 30px; */
-  /* margin-left: 10px; */
-}
-/*.close-button {
-  padding-bottom: 0;
-  width: 50px;
-}*/
 ul .settingElement {
   margin: 0 40px; 
 }

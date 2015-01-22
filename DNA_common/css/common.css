@@ -222,7 +222,7 @@ section {
   height: 0%;
 }
 
-#app .content,
+/*#app .content,
 .modal .content,
 #settings .content {
   flex: 1;
@@ -247,7 +247,7 @@ section {
 #top-bar {
   height: 114px;
   background-color: black;
-}
+}*/
 
 #app {
   display: flex;
@@ -257,11 +257,11 @@ section {
   position: relative;
 }
 
-#bottom-bar {
+/*#bottom-bar {
   height: 139px;
   background-color: black;
   display: flex;
-}
+}*/
 
 #top-bar,
 #bottom-bar {
