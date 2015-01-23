@@ -165,25 +165,6 @@ ul#settingsPageList > :last-child {
 	color: rgb(255, 255, 255);
 	font-weight: bold;
 }
-/*.toggleButton {
-	width: 89px;
-	height: 43px;
-}
-
-.toggleButtonBackground {
-	width: 100%;
-	height: 100%;
-	opacity: 0.5;
-	width: 180px;
-}
-
-.toggleButton .toggleButtonText {
-	position: relative;
-	text-align: center;
-	top: -43px;
-	line-height: 43px;
-}
-*/
 .settings-switch {
 	float: right;
 	display:inline-block;
@@ -352,4 +333,28 @@ ul#settingsPageList > :last-child {
 }
 .border {
 	border-top: 1px solid rgba(255,255,255, 0.25);
+}
+
+/************spinner styles**************/
+.spinner {
+	width: 80px;
+	height: 80px;
+	margin: auto;
+	background-image: url(../images/spinner_icon_white_lg.png);
+}
+
+.spinner.on {
+	-webkit-animation: spin 0.65s linear infinite;
+	animation: spin 0.65s linear infinite;
+}
+
+.spinner.off {
+	-webkit-animation: none;
+	animation: none;
+}
+.small-spinner {
+	width: 42px;
+	height: 42px;
+	margin: auto;
+	background-image: url(../images/spinner_icon_white.png);
 }

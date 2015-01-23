@@ -50,3 +50,15 @@ Settings.includeHTMLFailed = function(linkobj) {
 includeHTML(Settings.TemplateHTML, Settings.includeHTMLSucess, Settings.includeHTMLFailed);
 
 console.log("end of settings.js");
+
+enableSpinner();
+
+disableSpinner();
+
+function enableSpinner() {
+	$(".spinner").removeClass("off").addClass("on");
+}
+
+function disableSpinner() {
+	$(".spinner").removeClass("on").addClass("off");
+}
