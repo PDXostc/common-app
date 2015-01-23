@@ -52,6 +52,8 @@ includeHTML(BluetoothSettingsPage.TemplateHTML, BluetoothSettingsPage.includeHTM
 
 BluetoothSettingsPage.initialize = function(){
 	Bluetooth = new BluetoothSettings();
+	this.deviceTemplate = document.querySelector("template#bluetoothDeviceTemplate");
+
 
 	// Make the switch turn bluetooth on and off
 	document.querySelector("#bluetoothPowerButton .switch").addEventListener("touchend",function(){
@@ -67,7 +69,10 @@ BluetoothSettingsPage.initialize = function(){
 
 	//Update the powered switch on open.
 	this.updatePoweredSwitch();
-
+	
+	if(Bluetooth.adapter.powered == true){
+		Bluetooth.findDevices();
+	}
 }
 
 
@@ -81,17 +86,62 @@ BluetoothSettingsPage.updatePoweredSwitch = function(){
 		}else{
 			$("#bluetoothPowerButton .switch").addClass("off").removeClass("on");
 		}
+
+	//Also update the display of the network list.
+
 }
 
+BluetoothSettingsPage.listBluetoothDevice = function(template,device){
+
+			template.querySelector(".networkElement").setAttribute("data-address",device.address);
+			template.querySelector(".networkElementTitle").innerHTML = device.name;
+			template.querySelector(".networkElementSubtitle").innerHTML = device.address;
+
+			if(device.isBonded == true){
+				template.querySelector(".networkElementMore").innerHTML = "PAIRED";
+				
+				$(template.querySelector(".pairButton")).addClass("hidden");
+				$(template.querySelector(".unpairButton")).removeClass("hidden");
+
+			}else{
+				template.querySelector(".networkElementMore").innerHTML = "NOT PAIRED";
+				
+				$(template.querySelector(".pairButton")).removeClass("hidden");
+				$(template.querySelector(".unpairButton")).addClass("hidden");
+			}
+
+			var clone = document.importNode(template,true);
+			clone.querySelector(".pairButton").addEventListener('touchend',function(ev){				
+				var address = $(ev.target).closest(".networkElement").attr("data-address");
+				console.log("address to pair "+address);
+				Bluetooth.pairDevice(address);	
+			});
+
+			clone.querySelector(".unpairButton").addEventListener('touchend',function(ev){				
+				var address = $(ev.target).closest(".networkElement").attr("data-address");
+				console.log("address to unpair "+address);
+				Bluetooth.unpairDevice(address);	
+			});
+
+
+			document.querySelector("#BluetoothNetworksList").appendChild(clone);
+			console.log("added "+device.name);
+}
 
 
 //Bluetooth settings interacts with the rest of the page. 
 function BluetoothSettings(){
-	
-	this.adapter = tizen.bluetooth.getDefaultAdapter();
-	this.devices = {}; //object to hold discovered devices.
-
 	var self = this;
+
+	this.adapter = tizen.bluetooth.getDefaultAdapter();
+	this.devices = []; //object to hold discovered devices.
+	this.known = [];
+
+/*
+	this.adapter.getKnownDevices(function(knownDevices){
+		self.known = knownDevices;
+	});
+*/	
 	//Toggles the powered state of the Bluetooth hardware.
 	this.togglePowered = function(){
 		var p = self.adapter.powered;
@@ -99,8 +149,12 @@ function BluetoothSettings(){
 		if(p == true){
 			self.adapter.setPowered(false,
 				function(r){
-					BluetoothSettingsPage.updatePoweredSwitch()
-				},
+					BluetoothSettingsPage.updatePoweredSwitch();
+					self.known = [];
+					self.devices = [];
+
+					self.displayDevices();
+				},	
 				function(e){
 					powerError(e);
 				});
@@ -108,6 +162,7 @@ function BluetoothSettings(){
 			self.adapter.setPowered(true,
 				function(r){
 					BluetoothSettingsPage.updatePoweredSwitch();
+					self.findDevices();
 				},
 				function(e){
 					powerError(e);
@@ -120,6 +175,26 @@ function BluetoothSettings(){
 		}
 	}
 
+	this.getKnownDevices = function(){
+		self.adapter.getKnownDevices(function(devices){
+			//Devices previously paired or discovered.
+			
+			self.known.push(devices);
+
+		});
+		//this.devices = known;
+	}
+
+	//This is a helper function, that puts remembered devices in the list.
+	this.inKnown = function(address){
+		for(var d in self.known){
+			if(address == self.known[d].address){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	this.findDevices = function(){
 
 		//search handler is passed into the adapter discoverDevices method as a success handler.
@@ -128,39 +203,83 @@ function BluetoothSettings(){
 				console.log("Looking for devices");
 			},
 			ondevicefound: function(device){
-				console.log(device);
-				self.devices[device.address] = device;
-
+				
+				if(!self.inKnown(device.address)){
+					self.devices.push(device);
+				}
+				console.log("found "+device.name);
 				self.displayDevices();
+				
 			},
 			ondevicedisappeared: function(address){
-				console.log(address);
+				console.log("Lost "+address);
 			},
 			onfinished: function(devices){
 				console.log("Finished looking for devices");
+				self.displayDevices();
 			}
 		}
 
-		self.adapter.discoverDevices(searchHandler,function(e) {
-			console.log ("Failed to search devices: " + e.message + "(" + e.name + ")");
-  		});
+		self.adapter.getKnownDevices(function(devices){
+			//Devices previously paired or discovered.
+			
+			self.known = devices;
+			self.adapter.discoverDevices(searchHandler,function(e) {
+				console.log ("Failed to search devices: " + e.message + "(" + e.name + ")");
+	  		});	
+		});
 	}
 
 
 	this.displayDevices = function(){
-		
-		for(device in self.devices){
-			var d = BluetoothSettingsPage.bluetoothDeviceHTML.cloneNode();
-			d.querySelector(".wifiElementTitle").innerHTML = device.name;
-			d.querySelector(".wifiElementSubTitle").innerHTML = device.address;
+		var d = BluetoothSettingsPage.deviceTemplate.content;
 
-			document.querySelector("#BluetoothNetworksList").appendChild(d);
+		
+		var totalDevices = self.known.concat(self.devices);
+
+		//clear the existing network.
+		//document.querySelector("#BluetoothNetworksList").innerHTML = "";
+		$("#BluetoothNetworksList").empty();
+
+		for(device in totalDevices){
+			BluetoothSettingsPage.listBluetoothDevice(d,totalDevices[device]);
 		}
 	}
+
+
+	this.pairDevice = function(address){
+		console.log("Attempting to bond with "+address);
+		self.adapter.createBonding(address,
+			function(device){
+			console.log("successfully bonded to "+device.name);
+			self.displayDevices();
+
+			},function(error){
+				console.log("Error Bonding.");
+				thing = error;
+				console.log(error);
+			});
+	}
+
+	this.unpairDevice = function(address){
+		console.log("Attempting to unbond "+address);
+		self.adapter.destroyBonding(address,
+			function(){
+				console.log("successfully unbonded");
+				//self.displayDevices();
+				self.findDevices();
+
+			},function(error){
+				console.log("Error Unbonding.");
+				thing = error;
+				console.log(error);
+			});
+	}
+
+
+
 
 	console.log("Instantiated BluetoothSettings");
 	return this;
 }
-
-
 console.log("end of bluetooth.js");
