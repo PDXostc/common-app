@@ -25,47 +25,64 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=720, height=1280, user-scalable=no" />
   <title>Cameras</title>
+  <!-- Templates -->
+  <link rel="import" href="templates.html" id="templates">
 
   <link rel="stylesheet" href="./DNA_common/css/style.css"/>
   <link rel="stylesheet" href="./css/cameras.css"/>
 
   <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
   <script type="text/javascript" src="./DNA_common/js/init.js"></script>
+  <script type="text/javascript" src="./js/temp.js"></script>
   <script type="text/javascript">
     includeJs("./js/JLRCameras.js");
     includeJs("./js/main.js");
   </script>
 </head>
 <body>
-  <div id="base">
+
     <div id="topBar"></div>
-    <div id="app">
-      <div id="app-content">      
-        <div id='mainDiv' class="panel fontColorNormal fontSizeSmaller fontWeightBold">
-          <div id='swipedDiv' class="swipeContainer transitional unselectable">
-            <div class='pageCameras' id="pageANALOG">
-              <ul id='listAnalogId' class="cameraList"></ul>
-            </div>
-            <div class='pageCameras' id="pageUSB">
-              <ul id='listUsbId' class="cameraList"></ul>
-            </div>
-            <div class='pageCameras' id="pageIP">
-              <ul id='listIpId' class="cameraList"></ul>
+    <div id="center-panel">
+
+      <!-- #app-layer houses app-specific content -->
+      <div id="app-layer">
+
+        <!-- view-slider navigation -->
+        <ul class="slider-nav flex-parent">
+          <li class="slider-button active" data-buttonId="usb"><h2>USB</h2></li>
+          <li class="slider-button" data-buttonId="analog"><h2>Analog</h2></li>
+          <li class="slider-button" data-buttonId="ip"><h2>IP</h2></li>
+        </ul>
+
+        <!-- The camera currently broadcasting -->
+        <div class="active-camera"></div>
+
+        <!-- .view-slider houses the 3 camera-type panels -->
+        <div class="view-slider">
+          <div id="usb-cameras" class="cameras-panel active">
+            <div class="cameras-list">
+              <!-- Load camera-view templates here -->
             </div>
           </div>
-
-          <div id="menu"><ul></ul></div>
+          <div id="analog-cameras" class="cameras-panel hidden">
+            <div class="cameras-list">
+              <!-- Load camera-view templates here -->
+            </div>
+          </div>
+          <div id="ip-cameras" class="cameras-panel hidden">
+            <div class="cameras-list">
+              <!-- Load camera-view templates here -->
+            </div>
+          </div>
         </div>
+
+        <div id="menu"><ul></ul></div>
       </div>
-      <div id="modal"></div>
-      <!-- Logging area used as console -->
-      <div id="dev-log" style="position: absolute; bottom: 0; right: 0">  
-        <div id="debug_div" style="border:2px solid white; width:30px; height: 30px"></div>
-        <textarea id="debug_txt" rows="30" cols="80" style="display: none"></textarea>
-      </div>
+      <div id="modals-layer"    class="hidden"></div>
+      <div id="settings-layer"  class="hidden"></div>
+      <div id="app-grid-layer"  class="hidden"></div>
+      <div id="alerts-layer"    class="hidden"></div>
     </div>
     <div id="bottomBar"></div>
-
-  </div>
 </body>
 </html>
