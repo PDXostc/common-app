@@ -156,9 +156,9 @@ Carousel.prototype.loadCallHistory = function(callHistory, index) {
 Carousel.prototype.createSwipeItem = function(callHistoryEntry, index) {
 	"use strict";
 	var self = this;
-	console.log("callHistoryCarousel.createSwipeItem()", callHistoryEntry);
+	//console.log("callHistoryCarousel.createSwipeItem()", callHistoryEntry);
 	if (!!callHistoryEntry) {
-		console.log("!!callHistoryEntry true");
+		//console.log("!!callHistoryEntry true");
 		var carouselItem = this.CallHistoryItemTemplate.clone()[0];
 
 		var contact = null;
@@ -179,7 +179,7 @@ Carousel.prototype.createSwipeItem = function(callHistoryEntry, index) {
 		}
 
 		if (!!contact) {
-			console.log("contact true");
+			//console.log("contact true");
 			if (!!contact.id) {
 				id = contact.id;
 			}
@@ -191,7 +191,7 @@ Carousel.prototype.createSwipeItem = function(callHistoryEntry, index) {
 			}
 			name = Phone.getDisplayNameStr(contact);
 		} else {
-			console.log("contact false");
+			//console.log("contact false");
 		}
 
 		if (name === "") {
@@ -260,7 +260,7 @@ Carousel.prototype.createSwipeItem = function(callHistoryEntry, index) {
 			callContactCarousel(contact);
 		});
 		* */
-		console.log("createSwipeItem ",carouselItem);
+		//console.log("createSwipeItem ",carouselItem);
 		return carouselItem;
 	} else {
 		console.log("!!callHistoryEntry false");
@@ -282,7 +282,7 @@ Carousel.prototype.insertPagesToSwipe = function() {
 	//for ( var index = this.callHistory.length - 1; index >= 0; --index) {
 	for ( var index = 0; index < this.callHistory.length; index++) {
 		carouselItem = this.createSwipeItem(this.callHistory[index], index);
-		console.log("carouselItem ",carouselItem);
+		//console.log("carouselItem ",carouselItem);
 		$("#contactsCarousel").append(carouselItem);
 		/*
 		if (!!carouselItem && !!this.swipe) {

@@ -1,5 +1,4 @@
-{
-	"history": [{
+[{
 		"serviceId": 1350052304188,
 		"callType": "tizen.tel",
 		"tags": ["call.voice",
@@ -310,4 +309,3 @@
 		"cost": 0,
 		"currency": null
 	}]
-}

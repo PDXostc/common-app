@@ -1,5 +1,4 @@
-{
-    "contacts": [{
+[{
         "id": "F926BBEC-9FE7-4360-831B-814A03DAC655",
         "lastUpdated": "2012-10-05T12:05:57.386Z",
         "name": {
@@ -199,4 +198,3 @@
         "ringtoneURI": null,
         "categories": []
     }]
-}

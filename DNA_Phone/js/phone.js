@@ -79,26 +79,44 @@ var	Phone = (function() {
  */
 
 	Phone.prototype.loadContacts = function(callback) {
+		console.log("phone.loadContacts()");
 		var self = this;
 		var i, conntactsArrayLength;
+		var contactsCallback = function ( data ) 
+				{ 
+					//self.contacts = data.contacts; 
+					self.contacts = data; 
+					console.log("contactsCallback ",self.contacts);
+				}
 		//callback(null);
+		console.log("phone.loadContacts()");
+		console.log("phone.loadContacts()");
+		console.log("phone.loadContacts()");
 		if ( !! self.phone) {
-
+			$.getJSON( "data/contacts.json", contactsCallback);
+			callback(null);
 			self.phone.getContacts(0, function(contactsArray) {
-				console.log("loadContacts",contactsArray);
-				//contactsArray = self.formatContacts(contactsArray);
-				self.contacts = contactsArray;
-				if ( !! callback) {
+				if (contactsArray.length<1) { // Mock contacts if no contacts/
+					$.getJSON( "data/contacts.json", contactsCallback);
 					callback(null);
+				} else {
+					console.log("loadContacts",contactsArray);
+					//contactsArray = self.formatContacts(contactsArray);
+					self.contacts = contactsArray;
+					if ( !! callback) {
+						callback(null);
+					}
 				}
 			}, function(err) {
 				console.log("Error(" + err.code + "): " + err.message);
 				if ( !! callback) {
+					$.getJSON( "data/contacts.json", contactsCallback); // Mock contacts if error
 					callback(err);
 				}
 			});
 		} else {
 			if ( !! callback) {
+				$.getJSON( "data/contacts.json", contactsCallback); // Mock contacts if no api
 				callback("Phone API is not available.");
 			}
 		}
@@ -215,8 +233,6 @@ var	Phone = (function() {
 			phoneNumber = formatPhoneNumber(phoneNumber);
 			var foundContact = ko.utils.arrayFirst(self.contacts(), function(contact) {
 				if ( !! contact.phoneNumbers && contact.phoneNumbers.length) {
-
-
 					for (var i = 0; i < contact.phoneNumbers.length; ++i) {
 						if ( !! contact.phoneNumbers[i].number && contact.phoneNumbers[i].number === phoneNumber) {
 							return true;
@@ -264,25 +280,41 @@ var	Phone = (function() {
 		var self = this;
 		var i;
 		var callHistoryArrayLength;
+		var callHistoryCallback = function ( data ) 
+						{ 
+							//self.callHistory = data.history; 
+							self.callHistory = data; 
+							console.log("historyCallBack ",self.callHistory);
+						};
 		if ( !! self.phone) {
 			self.phone.getCallHistory(25, function(callHistoryArray) {
-				console.log("loadCallHistory",callHistoryArray);
-				//callHistoryArray = self.formatCallHistory(callHistoryArray);
-
-				self.callHistory = callHistoryArray;
-				console.log("Phone.CallHistory",self.callHistory);
-				callHistoryCarousel.loadCallHistory(self.callHistory,0);
-				if ( !! callback) {
+				if (callHistoryArray.length < 1) {
+					$.getJSON( "data/history.json", callHistoryCallback); // Mock history if no history
+					callHistoryCarousel.loadCallHistory(self.callHistory,0);
 					callback(null);
+				} else {
+					console.log("loadCallHistory",callHistoryArray);
+					//callHistoryArray = self.formatCallHistory(callHistoryArray);
+
+					self.callHistory = callHistoryArray;
+					console.log("Phone.CallHistory",self.callHistory);
+					callHistoryCarousel.loadCallHistory(self.callHistory,0);
+					if ( !! callback) {
+						callback(null);
+					}
 				}
 			}, function(err) {
 				console.log("Error(" + err.code + "): " + err.message);
 				if ( !! callback) {
+					$.getJSON( "data/history.json", callHistoryCallback); // Mock history if error
+					callHistoryCarousel.loadCallHistory(self.callHistory,0);
 					callback(err);
 				}
 			});
 		} else {
 			if ( !! callback) {
+				$.getJSON( "data/history.json", callHistoryCallback); // Mock history if no api
+				callHistoryCarousel.loadCallHistory(self.callHistory,0);
 				callback("Phone API is not available.");
 			}
 		}

@@ -1,4 +1,42 @@
 
+.contactList {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	height: 1197px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.contactElement {
+	width: 18%;
+	padding: 0 0 12px;
+	margin-bottom: 40px;
+	border-bottom: 1px solid white;
+}
+
+.contactName {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	white-space: normal;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	height: 2em;
+}
+
+.contactPhotoBox {
+	margin: 0 auto;
+	width: 130px;
+}
+
+
+.hidden {
+	display: none;
+}
+
+
 body {display:block;}
 
 .phoneBody {
@@ -127,7 +165,7 @@ box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
 	height:inherit;
 	white-space:normal;
 }
-.contactsCarousel::-webkit-scrollbar {
+.contactsCarousel::-webkit-scrollbar, .contactList::-webkit-scrollbar  {
 	display:none;
 }
 
@@ -430,7 +468,7 @@ background:radial-gradient(ellipse at center, rgba(254,156,0,1) 0%,rgba(142,87,4
 }
 
 .noContactPhoto {
-	background-image: url("../images/contact_picture_blue.png");
+	background: url("../images/contact_picture_blue.png") no-repeat;
 }
 .contactDetailBox3:hover .phoneIcon {
 	background-image: url("../images/icon_mobile_blue_hover.png");

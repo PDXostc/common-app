@@ -23,8 +23,10 @@ var ContactsLibrary = {
 	 */
 	init : function() {
 		"use strict";
-		$('#library').library("setSectionTitle", "PHONE CONTACTS");
-		$('#library').library("init");
+		//$('#library').library("setSectionTitle", "PHONE CONTACTS");
+		//$('#library').library("init");
+		
+		this.ContactTemplate = $("#ContactTemplate").clone();
 
 		var tabMenuModel = {
 			Tabs : [ {
@@ -33,30 +35,30 @@ var ContactsLibrary = {
 			} ]
 		};
 
-		$('#library').library("tabMenuTemplateCompile", tabMenuModel);
+		//$('#library').library("tabMenuTemplateCompile", tabMenuModel);
 
-		$('#library').bind('eventClick_GridViewBtn', function() {
-			ContactsLibrary.showContacts();
-		});
+		//$('#library').bind('eventClick_GridViewBtn', function() {
+		//	ContactsLibrary.showContacts();
+		//});
 
-		$('#library').bind('eventClick_ListViewBtn', function() {
-			ContactsLibrary.showContacts();
-		});
+		//$('#library').bind('eventClick_ListViewBtn', function() {
+		//	ContactsLibrary.showContacts();
+		//});
 
-		$('#library').bind('eventClick_SearchViewBtn', function() {
-		});
+		//$('#library').bind('eventClick_SearchViewBtn', function() {
+		//});
 
-		$('#library').bind('eventClick_menuItemBtn', function() {
-			ContactsLibrary.showContacts();
-		});
+		//$('#library').bind('eventClick_menuItemBtn', function() {
+		//	ContactsLibrary.showContacts();
+		//});
 
-		$('#library').bind('eventClick_closeSubpanel', function() {
-		});
+		//$('#library').bind('eventClick_closeSubpanel', function() {
+		//});
 
-		$("#alphabetBookmarkList").on("letterClick", function(event, letter) {
-			console.log(letter);
-			Phone.contactsAlphabetFilter(letter === "*" ? "" : letter);
-		});
+		//$("#alphabetBookmarkList").on("letterClick", function(event, letter) {
+		//	console.log(letter);
+		//	Phone.contactsAlphabetFilter(letter === "*" ? "" : letter);
+		//});
 
 		ContactsLibrary.showContacts();
 	},
@@ -67,7 +69,8 @@ var ContactsLibrary = {
 	 */
 	show : function() {
 		"use strict";
-		$('#library').library("showPage");
+		//$('#library').library("showPage");
+		$("#contactList").toggleClass("hidden");
 	},
 	/**
 	 * Method hides library page.
@@ -76,7 +79,7 @@ var ContactsLibrary = {
 	 */
 	hide : function() {
 		"use strict";
-		$('#library').library("hidePage");
+		//$('#library').library("hidePage");
 	},
 	/**
 	 * Method opens contact detail.
@@ -117,14 +120,14 @@ var ContactsLibrary = {
 				ContactsLibrary.currentSelectedContact = "";
 			}
 		};
-		$('#library').library("subpanelContentTemplateCompile", subpanelModel);
-		$('#library').library("clearContent");
-		$('#library').library("setContentDelegate", "templates/libraryContactDetailDelegate.html");
-		$('#library').library("contentTemplateCompile", contact, "contactDetail", function() {
-			$("#contactDetailMobileTitle").boxCaptionPlugin('initSmall', "MOBILE");
-			$("#contactDetailEmailTitle").boxCaptionPlugin('initSmall', "EMAIL");
-			$("#contactDetailAddressTitle").boxCaptionPlugin('initSmall', "ADDRESS");
-		});
+		//$('#library').library("subpanelContentTemplateCompile", subpanelModel);
+		//$('#library').library("clearContent");
+		//$('#library').library("setContentDelegate", "templates/libraryContactDetailDelegate.html");
+		//$('#library').library("contentTemplateCompile", contact, "contactDetail", function() {
+		//	$("#contactDetailMobileTitle").boxCaptionPlugin('initSmall', "MOBILE");
+		//	$("#contactDetailEmailTitle").boxCaptionPlugin('initSmall', "EMAIL");
+		//	$("#contactDetailAddressTitle").boxCaptionPlugin('initSmall', "ADDRESS");
+		//});
 	},
 	/**
 	 * Method which shows contacts in grid or list view.
@@ -133,8 +136,19 @@ var ContactsLibrary = {
 	 */
 	showContacts : function() {
 		"use strict";
-		console.log("show contacts called");
+		console.debug("show contacts called",Phone.contacts);
 		var view = "";
+		$("#contactList").empty();
+		for (i = 0; i < Phone.contacts.length; i++) {
+			var contact = this.ContactTemplate.clone();
+			contact.attr("id","contact_"+i);
+			console.log("showcontacts ",contact);
+			//console.log("contacts.showContacts ",contact.find("[name='contactName']").text());
+			contact.find("[name='contactName']").text(Phone.getDisplayNameStr(Phone.contacts[i]));
+			contact.appendTo("#contactList");
+			//$("#contectList").
+		}
+		/*
 		switch ($('#library').library('getSelectetLeftTabIndex')) {
 		case GRID_TAB:
 			view = "contactsLibraryContentGrid";
@@ -145,15 +159,15 @@ var ContactsLibrary = {
 		default:
 			view = "contactsLibraryContentList";
 			break;
-		}
-		$('#library').library('closeSubpanel');
-		$('#library').library("clearContent");
-		$('#library').library("changeContentClass", view);
-		loadTemplate("templates/", "template-contacts", function() {
-			var contactsElement = '<div data-bind="template: { name: \'template-contacts\', foreach: Phone.contactsComputed }"></div>';
-			$(contactsElement).appendTo($('.' + view));
-			ko.applyBindings(Phone);
-		});
+		}*/
+		//$('#library').library('closeSubpanel');
+		//$('#library').library("clearContent");
+		//$('#library').library("changeContentClass", view);
+		//loadTemplate("templates/", "template-contacts", function() {
+			//var contactsElement = '<div data-bind="template: { name: \'template-contacts\', foreach: Phone.contacts }"></div>';
+			//$(contactsElement).appendTo($('.' + view));
+			//ko.applyBindings(Phone);
+		//});
 	},
 	/**
 	 * Method which initializes contact detail.
