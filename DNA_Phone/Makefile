@@ -25,8 +25,10 @@ run: install
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Phone' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
 
 install: deploy
+ifndef OBS
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Phone' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/JLRPOCX031.Phone.wgt"
+endif
 
 $(PROJECT).wgt : wgt
 
@@ -37,7 +39,9 @@ update.extention:
 	#ssh root@$(TIZEN_IP) "zypper -n install tizen-extensions-crosswalk"
 
 deploy: dev
+ifndef OBS
 	scp $(PROJECT).wgt app@$(TIZEN_IP):/home/app
+endif
 
 all:
 	@echo "Nothing to build"

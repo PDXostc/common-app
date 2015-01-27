@@ -41,6 +41,11 @@ extensions:
 install_apps:
 	$(foreach app,$(app_list), make -C $(app) install TIZEN_IP=$(TIZEN_IP);)
 
+install_obs:
+	@echo "Installing $(PROJECT), stand by..."
+	mkdir -p $(DESTDIR)/opt/usr/apps/.preinstallWidgets
+	$(foreach app,$(app_list), cp $(PROJECT).wgt $(INSTALL_DIR)/;)
+
 deploy: deploy_apps 
 
 deploy_apps:
