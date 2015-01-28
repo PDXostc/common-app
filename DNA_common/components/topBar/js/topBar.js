@@ -94,6 +94,7 @@ var registeredApps = {"Home Screen":"/DNA_common/images/return_arrow_inactive.pn
 						"Tizen":"/DNA_common/images/tizen_inactive.png",
 						"gestureGame":"/DNA_common/images/gesture_game_inactive.png",
 						"saythis":"/DNA_common/images/say_this_inactive.png",
+						"Cameras":"/DNA_common/images/camera_icon.png",
 						"FMRADIO":"/DNA_common/images/fmradio.png"
 						};
 

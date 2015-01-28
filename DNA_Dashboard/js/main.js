@@ -236,6 +236,8 @@ var init = function () {
             dashBoardIndicator.onDistanceToEmptyChanged(newValue);
         },
     });	
+    	
+    	console.log("ADDLIST returned");
     
     $("input[name='add_item_button']").click(addItemClick);
     $("input[name='small_button']").click(smallClick);

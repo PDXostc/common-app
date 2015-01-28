@@ -13,7 +13,6 @@ BuildRequires:  desktop-file-utils
 #Requires:   wrt-installer
 #Requires:   wrt-plugins-ivi
 
-%global app_list HomeScreen Boilerplate Browser
 %global app_id_list cciaaojcnnbbpfioidejhigcboenjmmg kmmeobdkikjechfejkakmfmfgjldjkco gnipnignbkkkjeglidcdnedabpekbiah
 %global OBS 1
 
@@ -25,29 +24,17 @@ A collection of IVI software
 %setup -q -n %{name}-%{version}
 
 %build
-for app in %{app_list}; do
-    make "OBS=1" -C ${app}
-done
+make "OBS=1" apps
 
 %install
 #rm -rf %{buildroot}
-for app in %{app_list}; do
-    cd ${app}
-    make "OBS=1" install_obs DESTDIR="%{?buildroot}"
-    cd ..
-done
+make "OBS=1" install_obs DESTDIR="%{?buildroot}"
 
 %post
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
-for app in %{app_list}; do
-	su app -c'xwalkctl -i /opt/usr/apps/.preinstallWidgets/'${app}'.wgt'
+for app in /opt/usr/apps/.preinstallWidgets/*.wgt; do
+	su app -c'xwalkctl -i '${app}''
 done
-#su app -c'echo xwalkctl -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt'
-#su app -c'echo xwalkctl -i /opt/usr/apps/.preinstallWidgets/Boilerplate.wgt'
-#su app -c'echo xwalkctl -i /opt/usr/apps/.preinstallWidgets/Browser.wgt'
-#if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
-#    wrt-installer -i /opt/usr/apps/.preinstallWidgets/HomeScreen.wgt;
-#fi
 
 %postun
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
@@ -58,7 +45,5 @@ done
 
 %files
 %defattr(-,root,root,-)
-/opt/usr/apps/.preinstallWidgets/HomeScreen.wgt
-/opt/usr/apps/.preinstallWidgets/Boilerplate.wgt
-/opt/usr/apps/.preinstallWidgets/Browser.wgt
+/opt/usr/apps/.preinstallWidgets/*.wgt
 
