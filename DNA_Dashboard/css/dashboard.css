@@ -82,9 +82,9 @@ li {
 	background-image: url('../images/Speed_Icon.png');
 }
 
-#speed-gauge {
+#speed-gauge-meter {
 	margin: 20px 0px 0px 54px;
-	width: 225px;
+	width: 118px;
 	height: 10px;
 	background-color: #FE9C00;
 }
@@ -142,9 +142,9 @@ li {
 	background-image: url('../images/Fuel_Icon.png');
 }
 
-#fuel-gauge {
+#fuel-gauge-meter {
 	margin: 20px 0px 0px 54px;
-	width: 180px;
+	width: 152px;
 	height: 10px;
 	background-color: #FFFF00;
 }

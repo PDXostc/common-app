@@ -125,8 +125,8 @@ dashBoardControler.prototype.onGearChanged = function(newStatus) {
  */
 dashBoardControler.prototype.onSpeedChanged = function(newStatus) {
 	"use strict";
-	console.log("AMB: onSpeedChanged UI setting called. "+newStatus);
-	$("#bigSpeed").text(newStatus);// Add on "MPH"
+    console.log("AMB: onSpeedChanged UI setting called. "+newStatus);
+	$("#MPH").text(newStatus);// Add on "MPH"
 };
 
 /** 

@@ -8,19 +8,19 @@
  *
 -->
 <html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title>DNA Dashboard</title>
-		<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>DNA Dashboard</title>
+	<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
 
-		<link rel="stylesheet" href="./DNA_common/css/style.css"/>
-		<link rel="stylesheet" href="./css/dashboard.css"/>
-		<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
-		<!-- Need to load dashboardControler.js before init.js, since init.js loads main and main instantiates a dashBoardControler object.  -->
-		<script type="text/javascript" src="./js/dashboardControler.js"></script>
-		<script type="text/javascript" src="./DNA_common/js/init.js"></script>
+	<link rel="stylesheet" href="./DNA_common/css/style.css"/>
+	<link rel="stylesheet" href="./css/dashboard.css"/>
+	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+	<!-- Need to load dashboardControler.js before init.js, since init.js loads main and main instantiates a dashBoardControler object.  -->
+	<script type="text/javascript" src="./js/dashboardControler.js"></script>
+	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
 
-		<script type="text/javascript">
+	<script type="text/javascript">
 			/*includeJs("./DNA_common/js/predefAppModel.js");
 			includeJs("./DNA_common/js/installedApps.js");
 			includeJs("./DNA_common/js/keyControl.js");
@@ -37,31 +37,36 @@
 				<div id="clockElement"></div>
 				<!-- BEGIN HTML ELEMENTS -->
 				<div class="flex-item">
+
+				<!-- 01. Speed, Fuel and Temperature Information -->
 					<div id="speed-fuel-temp-container">
-						<!-- Speed -->
+
+						<!-- Speed (Orange) -->
 						<div id="speed-container">
 							<h5>SPEED <span id="unit-mph" class="unit-description">MPH</span></h5>
 							<div id="speed-icon"></div>
-							<div id="speed-gauge"></div>
+							<div id="speed-gauge-meter"></div>
 							<div id="speed-gauge-units"></div>
 							<p id="MPH">45 <span id="MPH-label">MPH</span></p>
 							<p id="odometer" class="label"><span id="OdometerValue">100,000.5</span> mi</p>
 						</div>
 
-						<!-- Fuel and Temperature -->
-						<div id="fuel-temp-container">
+						<div id="fuel-temp-container"> <!-- This container is for both the fuel and temperature information -->
+
+							<!-- Fuel (Yellow) -->
 							<div id="fuel-container">
 								<h5 class="yellow-viv">FUEL <span id="unit-gallons" class="unit-description">GALLONS</span></h5>
 								<div id="fuel-icon"></div>
-								<div id="fuel-gauge"></div>
+								<div id="fuel-gauge-meter"></div>
 								<div id="fuel-gauge-units"></div>
 								<ul>
+									<li><strong>LEVEL:</strong> <span id="FuelLevel">12</span> gallons</li>
 									<li><strong>RANGE:</strong> <span id="DistToEmpty">355</span> mi</li>
 									<li><strong>AVG:</strong> 20.7 mpg</li>
-									<li><strong>LEVEL:</strong> <span id="FuelLevel">8.3</span> gallons</li>
 								</ul>
 							</div>
-
+							
+							<!-- Temperature (Green) -->
 							<div id="temperature-container">
 								<h5 class="green-viv">TEMPERATURE <span id="unit-temperature" class="unit-description green-lt">CELSIUS</span></h5>
 								<div id="temperature-icon"></div>
@@ -73,8 +78,10 @@
 						</div>
 					</div>
 
-					<!-- Tire Pressure -->
+					<!-- 02. Tire Pressure Information -->
 					<div id="tire-pressure-container">
+
+						<!-- Front Tires -->
 						<div class="front-tire-data tire-pressure-data left-PSI">
 							<div class="PSI-status-position PSI-status-OK "></div>
 							<h6>Left Front Tire</h6>
@@ -86,7 +93,8 @@
 							<h6>Right Front Tire</h6>
 							<p class="psi-text"><span id="psiFR">26.0</span> PSI</p>
 						</div>
-
+						
+						<!-- Rear Tires -->
 						<div class="rear-tire-data tire-pressure-data left-PSI">
 							<div class="PSI-status-position PSI-status-OK "></div>
 							<h6>Left Rear Tire</h6>
@@ -99,7 +107,7 @@
 							<p class="psi-text"><span id="psiRR">26.0</span> PSI</p>
 						</div>
 
-						<div id="car-graphic"></div>
+						<div id="car-graphic"></div> <!-- This is the large Range Rover vehicle graphic -->
 					</div>
 				</div>
 				<!-- END CUSTOM ELEMENTS -->
@@ -109,4 +117,4 @@
 		</div>
 		<!-- End #base -->
 	</body>
-</html>
+	</html>
