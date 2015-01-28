@@ -44,7 +44,7 @@ install_apps:
 install_obs:
 	@echo "Installing $(PROJECT), stand by..."
 	mkdir -p $(DESTDIR)/opt/usr/apps/.preinstallWidgets
-	$(foreach app,$(app_list), cp $(app)/$(app).wgt /opt/usr/apps/.preinstallWidgets)
+	$(foreach app,$(app_list), cp $(app)/$(app).wgt $(DESTDIR)/opt/usr/apps/.preinstallWidgets)
 
 deploy: deploy_apps 
 
