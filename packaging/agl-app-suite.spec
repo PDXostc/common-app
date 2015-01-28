@@ -24,7 +24,7 @@ A collection of IVI software
 %setup -q -n %{name}-%{version}
 
 %build
-make "OBS=1"
+make "OBS=1" apps
 
 %install
 #rm -rf %{buildroot}
