@@ -32,8 +32,8 @@ make "OBS=1" install_obs DESTDIR="%{?buildroot}"
 
 %post
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
-for app in *.wgt; do
-	su app -c'xwalkctl -i /opt/usr/apps/.preinstallWidgets/'${app}'
+for app in /opt/usr/apps/.preinstallWidgets/*.wgt; do
+	su app -c'xwalkctl -i '${app}''
 done
 
 %postun
