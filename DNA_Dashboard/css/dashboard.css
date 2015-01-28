@@ -22,7 +22,7 @@
 
 /* Use left and right push for adjusting the amount of space between the edge of the screen and the graphics on either the left or right side of Dashboard.*/
 
-/*//////////// Text ////////////*/ 
+/*//////////// Global Text ////////////*/ 
 
 h5 {
 	margin-left: 50px;
@@ -33,16 +33,16 @@ h6 {
 	color: #B2F0FF;
 	text-transform: initial;
 }
-.psiText {
+.psi-text {
 	font-size: 2.3rem;
 }
 
-.unitDescription {
+.unit-description {
 	font-size: 2rem;
 	margin: 0px 0px 0px -3px;
 }
 
-/*//////////// Lists ////////////*/ 
+/*//////////// Global Lists ////////////*/ 
 
 ul {
 	margin: 18px 0px 0px 31px;
@@ -54,26 +54,26 @@ li {
 	list-style: square;
 }
 
-/*//////////// Speed, Fuel and Temperature ////////////*/ 
+/*//////////// 01. Speed, Fuel and Temperature Elements ////////////*/ 
 
 
-#speedFuelTemp {
+#speed-fuel-temp-container {
 	position: relative;
-	top: 80px;
+	top: 62px;
 }
 
 /*/// Speed ///*/
 
-#speedContainer {
+#speed-container {
 	position: absolute;
 	left: 72px;
 }
 
-#unitMPH {
+#unit-MPH {
 	color: rgba(255,211,140,.8);
 }
 
-#speedIcon {
+#speed-icon {
 	position: absolute;
 	left: -9px;
 	top: 13px;
@@ -82,58 +82,58 @@ li {
 	background-image: url('../images/Speed_Icon.png');
 }
 
-#speedGauge {
+#speed-gauge {
 	margin: 20px 0px 0px 54px;
 	width: 225px;
 	height: 10px;
 	background-color: #FE9C00;
 }
 
-#fullSpeedGauge {
+#speed-gauge-units {
 	margin: 8px 0px 0px 44px;
 	width: 322px;
 	height: 29px;
 	background-image: url('../images/Full_Speed_Gauge.png');
 }
 
-#bigSpeed {
+#MPH {
 	position: absolute;
 	font-size: 19rem;
-	top: -74px;
+	top: -41px;
 	left: 42px;
 }
 
-#littleMPH {
+#MPH-label {
 	position: absolute;
 	font-size: 5rem;
-	top: 130px;
-	left: 210px;
+	top: 139px;
+	left: 220px;
 }
 
 #odometer {
 	position: absolute;
-	top: 296px;
+	top: 350px;
 	left: 58px;
 	color: #C4C4C4;
 }
 
 /*/// Fuel ///*/
 
-#fuelTempContainer {
+#fuel-temp-container {
 	position: absolute;
 	right: 80px;
 	text-align: left;
 }
 
-#unitGALLONS {
+#unit-gallons {
 	color: rgba(255,255,178,.8);
 }
 
-#fuelContainer {
+#fuel-container {
 
 }
 
-#fuelIcon {
+#fuel-icon {
 	position: absolute;
 	left: 4px;
 	top: 16px;
@@ -142,14 +142,14 @@ li {
 	background-image: url('../images/Fuel_Icon.png');
 }
 
-#fuelGauge {
+#fuel-gauge {
 	margin: 20px 0px 0px 54px;
 	width: 180px;
 	height: 10px;
 	background-color: #FFFF00;
 }
 
-#fullFuelGauge {
+#fuel-gauge-units {
 	margin: 8px 0px 0px 44px;
 	width: 322px;
 	height: 29px;
@@ -158,12 +158,12 @@ li {
 
 /*/// Temperature ///*/
 
-#temperatureContainer {
+#temperature-container {
 	position: absolute;
-	top: 236px;
+	top: 272px;
 }
 
-#temperatureIcon {
+#temperature-icon {
 	position: absolute;
 	left: 18px;
 	top: 16px;
@@ -172,54 +172,54 @@ li {
 	background-image: url('../images/Temperature_Icon.png');
 }
 
-#unitTemperature {
+#unit-temperature {
 	color: rgba(205,255,178, .8);
 }
 
-/*//////////// Tire Pressure Data ////////////*/ 
+/*//////////// 02. Tire Pressure Elements ////////////*/ 
 
-#tirePressureContainer {
+#tire-pressure-container {
 	position: relative;
-	top: 0;
+	top: -33px;
 }
 
-.tirePressureData {
+.tire-pressure-data {
 	width: 200px;
 	line-height: 0.3;
 	text-align: left;
 }
 
-.rightPSI {
+.right-PSI {
 	right: 20px;
 }
 
-.leftPSI {
+.left-PSI {
 	left: 125px;
 }
 
-.frontTireData {
+.front-tire-data {
 	position: absolute;
 	top: 832px;
 }
 
-.rearTireData {
+.rear-tire-data {
 	position: absolute;
 	top: 1096px;
 }
 
-.PSI_statusPosition {
+.PSI-status-position {
 	position: absolute;
 	left: -43px;
 	top: 0px;
 }
 
-.PSI_statusOK {
+.PSI-status-OK {
 	background-image: url('../images/Status_OK.png');
 	width: 35px;
 	height: 35px;
 }
 
-#carImage {
+#car-graphic {
 	position: absolute;
 	left: 135px;
 	top: 569px;

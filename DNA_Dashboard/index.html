@@ -37,24 +37,24 @@
 				<div id="clockElement"></div>
 				<!-- BEGIN HTML ELEMENTS -->
 				<div class="flex-item">
-					<div id="speedFuelTemp">
+					<div id="speed-fuel-temp-container">
 						<!-- Speed -->
-						<div id="speedContainer">
-							<h5>SPEED <span id="unitMPH" class="unitDescription">MPH</span></h5>
-							<div id="speedIcon"></div>
-							<div id="speedGauge"></div>
-							<div id="fullSpeedGauge"></div>
-							<p id="bigSpeed">45 <span id="littleMPH">MPH</span></p>
+						<div id="speed-container">
+							<h5>SPEED <span id="unit-mph" class="unit-description">MPH</span></h5>
+							<div id="speed-icon"></div>
+							<div id="speed-gauge"></div>
+							<div id="speed-gauge-units"></div>
+							<p id="MPH">45 <span id="MPH-label">MPH</span></p>
 							<p id="odometer" class="label"><span id="OdometerValue">100,000.5</span> mi</p>
 						</div>
 
 						<!-- Fuel and Temperature -->
-						<div id="fuelTempContainer">
-							<div id="fuelContainer">
-								<h5 class="yellow-viv">FUEL <span id="unitGALLONS" class="unitDescription">GALLONS</span></h5>
-								<div id="fuelIcon"></div>
-								<div id="fuelGauge"></div>
-								<div id="fullFuelGauge"></div>
+						<div id="fuel-temp-container">
+							<div id="fuel-container">
+								<h5 class="yellow-viv">FUEL <span id="unit-gallons" class="unit-description">GALLONS</span></h5>
+								<div id="fuel-icon"></div>
+								<div id="fuel-gauge"></div>
+								<div id="fuel-gauge-units"></div>
 								<ul>
 									<li><strong>RANGE:</strong> <span id="DistToEmpty">355</span> mi</li>
 									<li><strong>AVG:</strong> 20.7 mpg</li>
@@ -62,9 +62,9 @@
 								</ul>
 							</div>
 
-							<div id="temperatureContainer">
-								<h5 class="green-viv">TEMPERATURE <span id="unitTemperature" class="unitDescription green-lt">CELSIUS</span></h5>
-								<div id="temperatureIcon"></div>
+							<div id="temperature-container">
+								<h5 class="green-viv">TEMPERATURE <span id="unit-temperature" class="unit-description green-lt">CELSIUS</span></h5>
+								<div id="temperature-icon"></div>
 								<ul>
 									<li><strong>OUTDOOR:</strong> <span id="OutdoorTemp">80</span>&deg;</li>
 									<li><strong>INDOOR:</strong> <span id="InCarTemp">72</span>&deg;</li>
@@ -74,32 +74,32 @@
 					</div>
 
 					<!-- Tire Pressure -->
-					<div id="tirePressureContainer">
-						<div class="frontTireData tirePressureData leftPSI">
-							<div class="PSI_statusPosition PSI_statusOK"></div>
+					<div id="tire-pressure-container">
+						<div class="front-tire-data tire-pressure-data left-PSI">
+							<div class="PSI-status-position PSI-status-OK "></div>
 							<h6>Left Front Tire</h6>
-							<p class="psiText"><span id="psiFL">26.0</span> PSI</p>
+							<p class="psi-text"><span id="psiFL">26.0</span> PSI</p>
 						</div>
 
-						<div class="frontTireData tirePressureData rightPSI">
-							<div class="PSI_statusPosition PSI_statusOK"></div>
+						<div class="front-tire-data tire-pressure-data right-PSI">
+							<div class="PSI-status-position PSI-status-OK"></div>
 							<h6>Right Front Tire</h6>
-							<p class="psiText"><span id="psiFR">26.0</span> PSI</p>
+							<p class="psi-text"><span id="psiFR">26.0</span> PSI</p>
 						</div>
 
-						<div class="rearTireData tirePressureData leftPSI">
-							<div class="PSI_statusPosition PSI_statusOK"></div>
+						<div class="rear-tire-data tire-pressure-data left-PSI">
+							<div class="PSI-status-position PSI-status-OK "></div>
 							<h6>Left Rear Tire</h6>
-							<p class="psiText"><span id="psiRL">26.0</span> PSI</p>
+							<p class="psi-text"><span id="psiRL">26.0</span> PSI</p>
 						</div>
 
-						<div class="rearTireData tirePressureData rightPSI">
-							<div class="PSI_statusPosition PSI_statusOK"></div>
+						<div class="rear-tire-data tire-pressure-data right-PSI">
+							<div class="PSI-status-position PSI-status-OK "></div>
 							<h6>Right Rear Tire</h6>
-							<p class="psiText"><span id="psiRR">26.0</span> PSI</p>
+							<p class="psi-text"><span id="psiRR">26.0</span> PSI</p>
 						</div>
 
-						<div id="carImage"></div>
+						<div id="car-graphic"></div>
 					</div>
 				</div>
 				<!-- END CUSTOM ELEMENTS -->
