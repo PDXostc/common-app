@@ -34,8 +34,27 @@
 			<div id="app">
 				<div id="clockElement"></div>
 				<div class="wrapper">
-					<div id="contactsLibraryButton"
-						class="libraryButton fontSizeSmaller white"><strong>A-Z</strong></div>
+					<div id="contactsLibraryButton_All"	class="libraryButton fontSizeSmaller white"><strong>A-Z</strong></div>
+<!--
+					<div id="contactsLibraryButton_Fav"	class="libraryButton fontSizeSmaller white"><strong>F</strong></div>
+					<div id="contactsLibraryFilter"><div id="contactsLibraryFilterButton"	class="libraryButton fontSizeSmaller white"><strong>A-Z</strong></div></div>
+-->
+					<ul id="contactList" class="contactList">
+						<li id="Contact_1" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
+							<div class="phoneIcon"></div>
+							<div class="contactPhotoBox noContactPhoto">
+								<img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
+							</div>
+							<div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_Doe1</div>
+						</li>
+						<li id="Contact_2" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
+							<div class="phoneIcon"></div>
+							<div class="contactPhotoBox noContactPhoto">
+								<img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
+							</div>
+							<div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_Doe2</div>
+						</li>
+					</ul>
 					<div class="phone-interface-wrapper">
 						<div class="inputPhoneNumberBox">
 							<input id="inputPhoneNumber"
@@ -117,6 +136,13 @@
 								</div>
 							</div>
 						</li>
+						<li id="ContactTemplate" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
+							<div class="phoneIcon"></div>
+							<div class="contactPhotoBox noContactPhoto">
+								<img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
+							</div>
+							<div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_doe</div>
+						</li>
 					</div>
 					<ul id="contactsCarousel" class="contactsCarousel">
 						<li style="margin-right: 0px; ">
@@ -167,7 +193,7 @@
 								</div>
 							</div>
 						</li>
-<li style="margin-right: 0px; ">
+						<li style="margin-right: 0px; ">
 							<div id="carouselBox_3" class="carouselBox " data-id="">
 								<div class="carouselPhotoArea ">
 									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
@@ -183,7 +209,7 @@
 								</div>
 							</div>
 						</li>
-<li style="margin-right: 0px; ">
+						<li style="margin-right: 0px; ">
 							<div id="carouselBox_3" class="carouselBox " data-id="">
 								<div class="carouselPhotoArea ">
 									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>

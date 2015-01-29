@@ -608,7 +608,7 @@ $(document).ready(
 					window.setTimeout(function() {
 						Phone.loadContacts(function(err) {
 							if (!err) {
-								//ContactsLibrary.init();
+								ContactsLibrary.init();
 								Phone.loadCallHistory(function(err) {
 									if (!err) {
 										//$("#loadingHistorySpinnerWrapper").hide();
@@ -649,7 +649,7 @@ $(document).ready(
 
 				});
 			}
-			$("#contactsLibraryButton").bind('click', function() {
+			$("#contactsLibraryButton_All").bind('click', function() {
 
 				ContactsLibrary.show();
 
