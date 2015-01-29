@@ -92,6 +92,9 @@
  * @class CarIndicator
  * @constructor
  */
+
+var logit=0;  // Set to 1 to enable AMB log output.
+
 var CarIndicator = function() {
 	"use strict";
 	console.info("Starting up service CarIndicator");
@@ -906,7 +909,7 @@ CarIndicator.prototype.addListener = function(aCallbackObject) {
 									var tag = signal.toString();
 									// Create an object containing the zone, signal name, and signal value, in a format that onDataUpdate can parse:
 									var o = {zone: '000000', signalAndValue: { signalName: signal, signalVal: mapping.curValue }  };
-									console.log("AMB: calling subscribeFunction and onUpdate for "+signal.toString()+" "+ mapping.curValue+" id: "+id);
+									if(logit) { console.log("AMB: calling subscribeFunction and onUpdate for "+signal.toString()+" "+ mapping.curValue+" id: "+id); }
 
 									self.onDataUpdate(o, self, id);	
 																	}
@@ -963,7 +966,7 @@ CarIndicator.prototype.onDataUpdate = function(data, self, lisenersID) {
 									/* jshint bitwise: true */
 
 									mapping = self._mappingTable[element];
-									console.log("AMB: onDataUpdate mapping for "+self._mappingTable[element].propertyName+", "+data[property].signalName);
+									 if(logit) { console.log("AMB: onDataUpdate mapping for "+self._mappingTable[element].propertyName+", "+data[property].signalName); }
 									break;
 								}
 							  }
@@ -990,7 +993,7 @@ CarIndicator.prototype.onDataUpdate = function(data, self, lisenersID) {
 
 						    if (oldValue !== value || data[property].signalName.toUpperCase() === "nightMode".toUpperCase()) {
 						
-							console.info("AMB property '" + data[property].signalName + "' has changed to new value:" + value);
+						    if(logit) { console.info("AMB property '" + data[property].signalName + "' has changed to new value:" + value); }
 							self.status[mapping.callBackPropertyName] = value;
 
 							var callbackName = "on" + mapping.callBackPropertyName[0].toUpperCase() + mapping.callBackPropertyName.substring(1) + "Changed";
@@ -1001,7 +1004,7 @@ CarIndicator.prototype.onDataUpdate = function(data, self, lisenersID) {
 
 								if (typeof (listener[callbackName]) === 'function') {
 									try {
-										console.log("AMB: about to call onUpdate cb name: "+callbackName+" id: "+lisenersID);
+										if(logit) { console.log("AMB: about to call onUpdate cb name: "+callbackName+" id: "+lisenersID); }
 										listener[callbackName](value, oldValue);
 									} catch (ex) {
 										console.error("Error occured during executing listener", ex);
@@ -1171,61 +1174,63 @@ CarIndicator.prototype.setStatus = function(indicator, newValue, callback, zone)
 	}
 };
 
+// This function polls AMB properties and sends them to the UI; should not need to do this, but AMB version being used is in
+// flux, so revisit this when a "final" AMB version is selected.
 var carIndicator = new CarIndicator();
 
-testFunc = function() {	
+uiUpdateFunc = function() {	
 	
 	var o;
 	
-	console.info("AMB: testFunc called.");
+	console.info("AMB: uiUpdateFunc called.");
 	
 	GlobalSelf._mappingTable["VehicleSpeed"].getFunction();
-	console.log("AMB: testFunc VehicleSpeed, get rets: " + GlobalSelf._mappingTable["VehicleSpeed"].curValue);
+	if(logit) { console.log("AMB: testFunc VehicleSpeed, get rets: " + GlobalSelf._mappingTable["VehicleSpeed"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "VehicleSpeed", signalVal: GlobalSelf._mappingTable["VehicleSpeed"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 	
 	GlobalSelf._mappingTable["TyrePressureFLMS"].getFunction();
-	console.log("AMB: testFunc TyrePressureFLMS, get rets: " + GlobalSelf._mappingTable["TyrePressureFLMS"].curValue);
+	if(logit) {console.log("AMB: testFunc TyrePressureFLMS, get rets: " + GlobalSelf._mappingTable["TyrePressureFLMS"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "TyrePressureFLMS", signalVal: GlobalSelf._mappingTable["TyrePressureFLMS"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 	
 	GlobalSelf._mappingTable["TyrePressureFRMS"].getFunction();
-	console.log("AMB: testFunc TyrePressureFRMS, get rets: " + GlobalSelf._mappingTable["TyrePressureFRMS"].curValue);
+	if(logit) { console.log("AMB: testFunc TyrePressureFRMS, get rets: " + GlobalSelf._mappingTable["TyrePressureFRMS"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "TyrePressureFRMS", signalVal: GlobalSelf._mappingTable["TyrePressureFRMS"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 	
 	GlobalSelf._mappingTable["TyrePressureRLMS"].getFunction();
-	console.log("AMB: testFunc TyrePressureRLMS, get rets: " + GlobalSelf._mappingTable["TyrePressureRLMS"].curValue);
+	if(logit) {console.log("AMB: testFunc TyrePressureRLMS, get rets: " + GlobalSelf._mappingTable["TyrePressureRLMS"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "TyrePressureRLMS", signalVal: GlobalSelf._mappingTable["TyrePressureRLMS"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 	
 	GlobalSelf._mappingTable["TyrePressureRRMS"].getFunction();
-	console.log("AMB: testFunc TyrePressureRRMS, get rets: " + GlobalSelf._mappingTable["TyrePressureRRMS"].curValue);
+	if(logit) {console.log("AMB: testFunc TyrePressureRRMS, get rets: " + GlobalSelf._mappingTable["TyrePressureRRMS"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "TyrePressureRRMS", signalVal: GlobalSelf._mappingTable["TyrePressureRRMS"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 	
 	GlobalSelf._mappingTable["ODORollingCount2101"].getFunction();
-	console.log("AMB: testFunc ODORollingCount2101, get rets: " + GlobalSelf._mappingTable["ODORollingCount2101"].curValue);
+	if(logit) {console.log("AMB: testFunc ODORollingCount2101, get rets: " + GlobalSelf._mappingTable["ODORollingCount2101"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "ODORollingCount2101", signalVal: GlobalSelf._mappingTable["ODORollingCount2101"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 	
 	GlobalSelf._mappingTable["FuelLevelIndicatedMS"].getFunction();
-	console.log("AMB: testFunc FuelLevelIndicatedMS, get rets: " + GlobalSelf._mappingTable["FuelLevelIndicatedMS"].curValue);
+	if(logit) {console.log("AMB: testFunc FuelLevelIndicatedMS, get rets: " + GlobalSelf._mappingTable["FuelLevelIndicatedMS"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "FuelLevelIndicatedMS", signalVal: GlobalSelf._mappingTable["FuelLevelIndicatedMS"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 	
 	GlobalSelf._mappingTable["AmbientTemp"].getFunction();
-	console.log("AMB: testFunc AmbientTemp, get rets: " + GlobalSelf._mappingTable["AmbientTemp"].curValue);
+	if(logit) {console.log("AMB: testFunc AmbientTemp, get rets: " + GlobalSelf._mappingTable["AmbientTemp"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "AmbientTemp", signalVal: GlobalSelf._mappingTable["AmbientTemp"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 	
 	GlobalSelf._mappingTable["DistanceToEmpty"].getFunction();
-	console.log("AMB: testFunc DistanceToEmpty, get rets: " + GlobalSelf._mappingTable["DistanceToEmpty"].curValue);
+	if(logit) {console.log("AMB: testFunc DistanceToEmpty, get rets: " + GlobalSelf._mappingTable["DistanceToEmpty"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "DistanceToEmpty", signalVal: GlobalSelf._mappingTable["DistanceToEmpty"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);	
 	
 	GlobalSelf._mappingTable["InCarTemp"].getFunction();
-	console.log("AMB: testFunc InCarTemp, get rets: " + GlobalSelf._mappingTable["InCarTemp"].curValue);
+	if(logit) {console.log("AMB: testFunc InCarTemp, get rets: " + GlobalSelf._mappingTable["InCarTemp"].curValue); }
 	o = {zone: '000000', signalAndValue: { signalName: "InCarTemp", signalVal: GlobalSelf._mappingTable["InCarTemp"].curValue }  };
 	GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);
 
@@ -1245,3 +1250,5 @@ testFunc = function() {
 	
 	
 }
+
+var uiUpdateTimer = setInterval(uiUpdateFunc, 2000);
