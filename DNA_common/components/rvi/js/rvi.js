@@ -20,6 +20,29 @@ rviSettingsPage.ShowPage = function() {
 		console.log('rvi page show_click();');
 		$('#settingsPageList').addClass('hidden');
 		$('#rviPage').removeClass('hidden');
+
+		// display or hide the contents of the tabbed sections when tapped, 
+		// and let the tab display a selected state.
+		$("#setup-tab").click(function() {
+			console.log("clicked the Setup Tab");
+			if ($("#setup-content").hasClass("hidden")) {
+				$("#setup-content").removeClass("hidden");
+				$("#setup-tab").addClass("tab-selected");
+				$("#apps-content").addClass("hidden");	
+				$("#apps-tab").removeClass("tab-selected");		
+			}
+		});
+
+		$("#apps-tab").click(function() {
+			console.log("clicked the Apps Tab");
+			if ($("#apps-content").hasClass("hidden")) {
+				$("#setup-content").addClass("hidden");
+				$("#setup-tab").removeClass("tab-selected");
+				$("#apps-content").removeClass("hidden");
+				$("#apps-tab").addClass("tab-selected");
+			}
+		});
+		
 	};
 
 rviSettingsPage.HidePage = function() { 
@@ -149,3 +172,29 @@ function message() {
 	
     return RVI().rvi_message.apply(RVI(),arguments);
 }
+
+
+// display or hide the contents of the tabbed sections when tapped, 
+// and let the tab display a selected state.
+
+/*$(document).ready(function(){
+	$("#setup-tab").click(function() {
+		console.log("clicked the Setup Tab");
+		if ($("#setup-content").hasClass("hidden")) {
+			$("#setup-content").removeClass("hidden");
+			$("#setup-tab").addClass("tab-selected");
+			$("#apps-content").addClass("hidden");	
+			$("#apps-tab").removeClass("tab-selected");		
+		}
+	});
+
+	$("#apps-tab").click(function() {
+		console.log("clicked the Apps Tab");
+		if ($("#apps-content").hasClass("hidden")) {
+			$("#setup-content").addClass("hidden");
+			$("#setup-tab").removeClass("tab-selected");
+			$("#apps-content").removeClass("hidden");
+			$("#apps-tab").addClass("tab-selected");
+		}
+	});
+});*/
