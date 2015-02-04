@@ -10,6 +10,8 @@ Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  zip
 BuildRequires:  desktop-file-utils
 
+Requires:       media-manager
+
 %description
 A collection of IVI software
 
