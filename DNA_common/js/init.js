@@ -119,17 +119,16 @@ function includeHTML(htmlFilePath,onload,onerror,id,name) {
 	}
 }
 
-includeJs("DNA_common/components/jQuery/jquery-1.8.2.js", function(){
-	//Import common libraries
-		//includeJs("DNA_common/jQuery/jquery-ui.js", function(){});
-		//includeJs("DNA_common/jQuery/jquery.mobile-1.4.5.js", function(){});
-
-	//Import the topBar and bottomBar
-	//	includeJs("DNA_common/components/topBar/js/topBar.js", function(){});
-	//	includeJs("DNA_common/components/bottomBar/js/bottomBar.js", function(){});
-});
-
+//includeJs("DNA_common/components/jQuery/jquery-1.8.2.js");
 //includeJs("DNA_common/components/knockout/knockout.js");
+includeJs("DNA_common/components/jQuery/jquery-ui.js",function(){
+	depenancyMet("jquery-ui.js");
+});
+onDepenancy("jquery-ui.js",function(){
+	includeJs("DNA_common/components/jQuery/jquery-ui.touch-punch.js",function(){
+		depenancyMet("jquery-ui.touch-punch.js");
+	});
+});
 includeJs("DNA_common/components/jQuery/jquery.nouislider.js");
 //includeJs("DNA_common/js/jquery.carouFredSel-6.2.1-packed.js");
 //includeJs("DNA_common/components/incomingCall/incomingCall.js");

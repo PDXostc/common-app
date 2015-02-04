@@ -539,13 +539,31 @@ function disconnectCall() {
     }
     CallDuration.resetIt();
     if (tizen.phone) {
-        tizen.phone.hangupCall(function(result) {
-            console.log(result.message);
-        });
+    	var ac = tizen.phone.activeCall();
+    	if (ac) {
+    		if (ac.state!="disconnected") {
+				tizen.phone.hangupCall(function(result) {
+					console.log(result.message);
+				});
+            }
+    	}
     }
     $("#inputPhoneNumber").val('');
 }
+Events = {};
 
+Events.LetterClick = function(letter) {
+				console.log("click contactsLibraryFilterButton_",letter.toUpperCase());
+				ContactsLibrary.Favorite = false;
+				if (ContactsLibrary.Letter != letter.toLowerCase()) { 
+					ContactsLibrary.Letter = letter.toLowerCase(); 
+				} else {
+					ContactsLibrary.Letter = null;
+				} 
+				ContactsLibrary.Search = null;
+				ContactsLibrary.showContacts();
+			};
+			
 $(document).ready(
     function() {
         "use strict";
@@ -650,10 +668,51 @@ $(document).ready(
 				});
 			}
 			$("#contactsLibraryButton_All").bind('click', function() {
-
-				ContactsLibrary.show();
-
+				console.log("click contactsLibraryButton_All");
+				if ((ContactsLibrary.Favorite)||(ContactsLibrary.Letter!=null)||(ContactsLibrary.Search != null)) {
+					ContactsLibrary.Favorite = false;
+					ContactsLibrary.Letter = null;
+					ContactsLibrary.Search = null;
+					ContactsLibrary.showContacts();
+				} else {
+					ContactsLibrary.show();
+				}
 			});
+			$("#contactsLibraryButton_Fav").bind('click', function() {
+				console.log("click contactsLibraryButton_Fav");
+				ContactsLibrary.Favorite = !ContactsLibrary.Favorite;
+				ContactsLibrary.Letter = null;
+				ContactsLibrary.Search = null;
+				ContactsLibrary.showContacts();
+				console.log("click contactsLibraryButton_Fav End");
+			});
+			$("#contactsLibraryFilterButton_A").bind('click', function() {Events.LetterClick("a");});
+			$("#contactsLibraryFilterButton_B").bind('click', function() {Events.LetterClick("b");});
+			$("#contactsLibraryFilterButton_C").bind('click', function() {Events.LetterClick("c");});
+			$("#contactsLibraryFilterButton_D").bind('click', function() {Events.LetterClick("d");});
+			$("#contactsLibraryFilterButton_E").bind('click', function() {Events.LetterClick("e");});
+			$("#contactsLibraryFilterButton_F").bind('click', function() {Events.LetterClick("f");});
+			$("#contactsLibraryFilterButton_G").bind('click', function() {Events.LetterClick("g");});
+			$("#contactsLibraryFilterButton_H").bind('click', function() {Events.LetterClick("h");});
+			$("#contactsLibraryFilterButton_I").bind('click', function() {Events.LetterClick("i");});
+			$("#contactsLibraryFilterButton_J").bind('click', function() {Events.LetterClick("j");});
+			$("#contactsLibraryFilterButton_K").bind('click', function() {Events.LetterClick("k");});
+			$("#contactsLibraryFilterButton_L").bind('click', function() {Events.LetterClick("l");});
+			$("#contactsLibraryFilterButton_M").bind('click', function() {Events.LetterClick("m");});
+			$("#contactsLibraryFilterButton_N").bind('click', function() {Events.LetterClick("n");});
+			$("#contactsLibraryFilterButton_O").bind('click', function() {Events.LetterClick("o");});
+			$("#contactsLibraryFilterButton_P").bind('click', function() {Events.LetterClick("p");});
+			$("#contactsLibraryFilterButton_Q").bind('click', function() {Events.LetterClick("q");});
+			$("#contactsLibraryFilterButton_R").bind('click', function() {Events.LetterClick("r");});
+			$("#contactsLibraryFilterButton_S").bind('click', function() {Events.LetterClick("s");});
+			$("#contactsLibraryFilterButton_T").bind('click', function() {Events.LetterClick("t");});
+			$("#contactsLibraryFilterButton_U").bind('click', function() {Events.LetterClick("u");});
+			$("#contactsLibraryFilterButton_V").bind('click', function() {Events.LetterClick("v");});
+			$("#contactsLibraryFilterButton_W").bind('click', function() {Events.LetterClick("w");});
+			$("#contactsLibraryFilterButton_X").bind('click', function() {Events.LetterClick("x");});
+			$("#contactsLibraryFilterButton_Y").bind('click', function() {Events.LetterClick("y");});
+			$("#contactsLibraryFilterButton_Z").bind('click', function() {Events.LetterClick("z");});
+			$("#librarySearchField").on('keypress keyup change paste',function() {console.log("librarySearchField = "+$("#librarySearchField")[0].value);});
 			console.log("Added click event for numbers");
 //Changed the ID to class w/in the delegate() method but it isn't  needed as the data-id is used to distinguish anyway
 			$(".numbersBox").delegate(".numberButton", "click", function() {
@@ -961,7 +1020,7 @@ $(document).ready(
             }
             });
 */
-        }, 0);
+        }, 11000);
 
     });
 

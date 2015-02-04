@@ -129,6 +129,36 @@ var ContactsLibrary = {
 		//	$("#contactDetailAddressTitle").boxCaptionPlugin('initSmall', "ADDRESS");
 		//});
 	},
+	Favorite : false,
+	Letter: null,
+	Search: null,
+	/**
+	 * Method which Searches a contact for the Search string and returns true if found.
+	 * 
+	 * @method contactString
+	 */
+	 contactSearch: function(contact) {
+		 var i = 0;
+		 var found = false;
+		 for (x in contact.name) {
+			 console.log("x",x,"contact.name[x]",contact.name[x],"Search",this.Search);
+			 if ((x!="nicknames")&&(contact.name[x]!=null)&&(contact.name[x].toLowerCase().indexOf(this.Search.toLowerCase())>=0)) {
+				 return true;
+			 }
+		 }
+		 for (i = 0; i< contact.name.nicknames.length; i++) {
+			 if (contact.name.nicknames[i].toLowerCase().indexOf(this.Search.toLowerCase())>=0) {
+				 return true;
+			 }
+		 }
+		 for (i = 0; i< contact.phoneNumbers.length; i++) {
+			 if (contact.phoneNumbers[i].number.indexOf(this.Search)>=0) { 
+				 return true;
+			 }
+		 }
+		 return false;
+	 }
+	,
 	/**
 	 * Method which shows contacts in grid or list view.
 	 * 
@@ -142,10 +172,43 @@ var ContactsLibrary = {
 		for (i = 0; i < Phone.contacts.length; i++) {
 			var contact = this.ContactTemplate.clone();
 			contact.attr("id","contact_"+i);
+			if (Phone.contacts[i].isFavorite==true) {
+				contact.addClass("Favorite");
+			}
 			console.log("showcontacts ",contact);
 			//console.log("contacts.showContacts ",contact.find("[name='contactName']").text());
 			contact.find("[name='contactName']").text(Phone.getDisplayNameStr(Phone.contacts[i]));
-			contact.appendTo("#contactList");
+			if (this.Favorite) {
+				if (Phone.contacts[i].isFavorite) { 
+					contact.appendTo("#contactList");
+				}
+			} else if (this.Letter!=null) {
+				if (Phone.getDisplayNameStr(Phone.contacts[i]).toLowerCase().startsWith(this.Letter.toLowerCase())) {
+					contact.appendTo("#contactList");
+				}
+			} else if (this.Search!=null) {
+				if (this.contactSearch(Phone.contacts[i])) {
+					contact.appendTo("#contactList");
+				} else {
+					console.log("Filtered:",this.Search,Phone.contacts[i]);
+				}
+			} else {
+				contact.appendTo("#contactList");
+			}
+			/*
+			if (((Favorite) &&(Phone.contacts[i].isFavorite==true))||(!Favorite)) {
+				if (Letter!=null) {
+					if (Phone.getDisplayNameStr(Phone.contacts[i]).toLowerCase().startsWidth(Letter)) {
+						contact.appendTo("#contactList");
+					}
+				} else if (Search!=null) {
+						if (Phone.contacts[i].toString().indexOf(Search)>=0) {
+							contact.appendTo("#contactList");
+						}
+				} else {
+					contact.appendTo("#contactList");
+				}
+			}*/
 			//$("#contectList").
 		}
 		/*
