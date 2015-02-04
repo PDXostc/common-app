@@ -2,19 +2,13 @@ Name:       agl-app-suite
 Summary:    A collection of IVI software
 Version:    0.0.1
 Release:    1
-Group:      Applications/System
+Group:      Applications/Web Applications
 License:    ASL 2.0
 URL:        http://www.tizen.org2
 Source0:    %{name}-%{version}.tar.bz2
-#BuildRequires:  common
+
 BuildRequires:  zip
 BuildRequires:  desktop-file-utils
-#Requires:  speech-recognition
-#Requires:   wrt-installer
-#Requires:   wrt-plugins-ivi
-
-%global app_id_list cciaaojcnnbbpfioidejhigcboenjmmg kmmeobdkikjechfejkakmfmfgjldjkco gnipnignbkkkjeglidcdnedabpekbiah
-%global OBS 1
 
 %description
 A collection of IVI software
@@ -27,21 +21,17 @@ A collection of IVI software
 make "OBS=1" apps
 
 %install
-#rm -rf %{buildroot}
 make "OBS=1" install_obs DESTDIR="%{?buildroot}"
 
 %post
-export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
 for app in /opt/usr/apps/.preinstallWidgets/*.wgt; do
-	su app -c'xwalkctl -i '${app}''
+	su app -c'xwalkctl -i '${app}'';
 done
 
 %postun
-export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/5000/dbus/user_bus_socket"
-for app in %{app_id_list}; do
-	su app -c'xwalkctl -u '${app}''
+for app in /opt/usr/apps/.preinstallWidgets/*.wgt; do
+    su app -c "xwalkctl | grep JLR | egrep -e `basename %{app} .wgt | sed 's/DNA_//'` | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u";
 done
-#    wrt-installer -un intelPoc10.HomeScreen
 
 %files
 %defattr(-,root,root,-)

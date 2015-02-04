@@ -1,6 +1,6 @@
 
 .contactList {
-	width: 100%;
+	/*width: 100%;*/
 	display: flex;
 	flex-wrap: wrap;
 	list-style: none;
@@ -164,6 +164,7 @@ box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
 	width:276px;
 	height:inherit;
 	white-space:normal;
+	margin: 0;
 }
 .contactsCarousel::-webkit-scrollbar, .contactList::-webkit-scrollbar  {
 	display:none;
@@ -493,15 +494,28 @@ background:radial-gradient(ellipse at center, rgba(254,156,0,1) 0%,rgba(142,87,4
 .nextButton {
 	background-image: url("DNA_common/images/bt_next_blue.png");
 }
+
+.contactsLibraryFilter {
+	margin:0;
+	padding:0;
+	position: absolute;
+}
+
+.contactsLibraryFilter li {
+	list-style-type: none;
+	height:55px;
+	margin:0;
+}
+
 .libraryButton {
-position: absolute;
-height: 82px;
-line-height: 3.4;
-right: 40px;
-top: 170px;
-text-align: center;
-text-transform: uppercase;
-width: 90px;
+	/*position: absolute;*/
+	/*height: 82px;*/
+	line-height: 3.4;
+	right: 40px;
+	top: 170px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 90px;
 }
 
 .libraryButton:active {

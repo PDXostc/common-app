@@ -34,12 +34,39 @@
 			<div id="app">
 				<div id="clockElement"></div>
 				<div class="wrapper">
-					<div id="contactsLibraryButton_All"	class="libraryButton fontSizeSmaller white"><strong>A-Z</strong></div>
-<!--
+					<div id="contactsLibraryButton_All"	class="libraryButton fontSizeSmaller white">
+						<strong>A-Z</strong>
+						<input id="librarySearchField" class="hidden"></input></div>
 					<div id="contactsLibraryButton_Fav"	class="libraryButton fontSizeSmaller white"><strong>F</strong></div>
-					<div id="contactsLibraryFilter"><div id="contactsLibraryFilterButton"	class="libraryButton fontSizeSmaller white"><strong>A-Z</strong></div></div>
--->
-					<ul id="contactList" class="contactList">
+					<ul id="contactsLibraryFilter" class="contactsLibraryFilter">
+						<li id="contactsLibraryFilterButton_A"	class="libraryButton fontSizeSmaller white"><strong>A</strong></li>
+						<li id="contactsLibraryFilterButton_B"	class="libraryButton fontSizeSmaller white"><strong>B</strong></li>
+						<li id="contactsLibraryFilterButton_C"	class="libraryButton fontSizeSmaller white"><strong>C</strong></li>
+						<li id="contactsLibraryFilterButton_D"	class="libraryButton fontSizeSmaller white"><strong>D</strong></li>
+						<li id="contactsLibraryFilterButton_E"	class="libraryButton fontSizeSmaller white"><strong>E</strong></li>
+						<li id="contactsLibraryFilterButton_F"	class="libraryButton fontSizeSmaller white"><strong>F</strong></li>
+						<li id="contactsLibraryFilterButton_G"	class="libraryButton fontSizeSmaller white"><strong>G</strong></li>
+						<li id="contactsLibraryFilterButton_H"	class="libraryButton fontSizeSmaller white"><strong>H</strong></li>
+						<li id="contactsLibraryFilterButton_I"	class="libraryButton fontSizeSmaller white"><strong>I</strong></li>
+						<li id="contactsLibraryFilterButton_J"	class="libraryButton fontSizeSmaller white"><strong>J</strong></li>
+						<li id="contactsLibraryFilterButton_K"	class="libraryButton fontSizeSmaller white"><strong>K</strong></li>
+						<li id="contactsLibraryFilterButton_L"	class="libraryButton fontSizeSmaller white"><strong>L</strong></li>
+						<li id="contactsLibraryFilterButton_M"	class="libraryButton fontSizeSmaller white"><strong>M</strong></li>
+						<li id="contactsLibraryFilterButton_N"	class="libraryButton fontSizeSmaller white"><strong>N</strong></li>
+						<li id="contactsLibraryFilterButton_O"	class="libraryButton fontSizeSmaller white"><strong>O</strong></li>
+						<li id="contactsLibraryFilterButton_P"	class="libraryButton fontSizeSmaller white"><strong>P</strong></li>
+						<li id="contactsLibraryFilterButton_Q"	class="libraryButton fontSizeSmaller white"><strong>Q</strong></li>
+						<li id="contactsLibraryFilterButton_R"	class="libraryButton fontSizeSmaller white"><strong>R</strong></li>
+						<li id="contactsLibraryFilterButton_S"	class="libraryButton fontSizeSmaller white"><strong>S</strong></li>
+						<li id="contactsLibraryFilterButton_T"	class="libraryButton fontSizeSmaller white"><strong>T</strong></li>
+						<li id="contactsLibraryFilterButton_U"	class="libraryButton fontSizeSmaller white"><strong>U</strong></li>
+						<li id="contactsLibraryFilterButton_V"	class="libraryButton fontSizeSmaller white"><strong>V</strong></li>
+						<li id="contactsLibraryFilterButton_W"	class="libraryButton fontSizeSmaller white"><strong>W</strong></li>
+						<li id="contactsLibraryFilterButton_X"	class="libraryButton fontSizeSmaller white"><strong>X</strong></li>
+						<li id="contactsLibraryFilterButton_Y"	class="libraryButton fontSizeSmaller white"><strong>Y</strong></li>
+						<li id="contactsLibraryFilterButton_Z"	class="libraryButton fontSizeSmaller white"><strong>Z</strong></li>
+					</ul>
+					<ul id="contactList" class="contactList hidden">
 						<li id="Contact_1" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
 							<div class="phoneIcon"></div>
 							<div class="contactPhotoBox noContactPhoto">

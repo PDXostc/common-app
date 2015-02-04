@@ -10,22 +10,19 @@
 			<div class="component-title">RVI</div>
 			<div class="settings-clear">	</div>
 		</div>
-		<div id="rviPowerButton" class="settings-switch">
-			<div class="switch off switch-xsmall">
-			  <div class="switch-plate">
-			    <div class="switch-control"></div>
-			  </div>
-			</div>
-		</div>
 		<div class="component-subhead border">
 			<h2>Remote Vehicle Interaction</h2>		
 		</div>
 	</div>
 
-	<div class="component-content">
-		<div class="component-subhead"><h3>Initial Set-up</h3></div>
-		<form id="rviSetup" class="component-form">	
-			<!-- <div class="close-button" type="reset"></div> -->			
+
+	<div class="component-tabs">
+		<h3 id="setup-tab" onclick="showContent" class="rvi-tabs">Setup</h3>
+		<h3 id="apps-tab" class="rvi-tabs tab-selected">Applications</h3>
+	</div>
+
+	<div id="setup-content" class="component-content hidden">
+		<form id="rviSetup" class="component-form">			
 			<div class="input-group">
 				<label for="" class="component-label">VIN Number</label>
 				<input type="text" name="focus" class="text-input input-white" id="vinNumber" placeholder="Enter new number">
@@ -37,6 +34,24 @@
 			</div>
 		</form>
 	</div>
+
+	<div id="apps-content" class="component-content">
+		<div class="component-form">
+			<div class="rviElement">
+				<div class="padding-top"><h4>HVAC</h4></div>
+				<div class="networkElementButton">
+					<div id="rvi-hvacPowerButton" class="settings-switch">
+						<div class="switch off switch-xsmall">
+						  <div class="switch-plate">
+						    <div class="switch-control"></div>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<div id="resultMessage" class="modal hidden">
 		<div class="modal-bkgrnd box-out-orange">
