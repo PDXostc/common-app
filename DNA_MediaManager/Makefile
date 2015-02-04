@@ -35,6 +35,7 @@ run: install
 install: deploy
 ifndef OBS
 	scp mm app@$(TIZEN_IP):
+	scp -r media-manager-artwork app@$(TIZEN_IP):.cache/
 	#ssh root@$(TIZEN_IP) "rpm --force -ivh weekeyboard-0.0.2-0.i686.rpm"
 	ssh app@$(TIZEN_IP) "chmod +x mm"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'JLRPOCX003.MediaManager' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
