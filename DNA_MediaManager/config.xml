@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/DNAMediaManager" version="1.0.0" viewmodes="fullscreen">
-    <tizen:application id="JLRPOCX026.MediaManager" package="JLRPOCX003" required_version="2.1"/>
+    <tizen:application id="JLRPOCX003.MediaManager" package="JLRPOCX003" required_version="2.1"/>
     <content src="index.html"/>
     <icon src="icon.png"/>
     <name>MediaManager</name>
