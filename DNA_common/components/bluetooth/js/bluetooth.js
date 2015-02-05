@@ -37,8 +37,8 @@ BluetoothSettingsPage.includeHTMLSucess = function(linkobj) {
    BluetoothSettingsPage.import = linkobj.path[0].import;
    BluetoothSettingsPage.bluetoothPageHTML = BluetoothSettingsPage.import.getElementById('bluetoothPage');
    BluetoothSettingsPage.bluetoothDeviceHTML = BluetoothSettingsPage.import.getElementById('bluetoothDeviceTemplate');
-   
-   BluetoothSettingsPage.pageUpdate();
+   onDepenancy("Settings.settingsPage",BluetoothSettingsPage.pageUpdate,"Bluetooth");
+   //BluetoothSettingsPage.pageUpdate();
 };
 
 BluetoothSettingsPage.includeHTMLFailed = function(linkobj) {

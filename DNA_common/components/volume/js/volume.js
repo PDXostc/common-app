@@ -196,7 +196,8 @@ volumeSettingsPage.includeHTMLSucess = function(linkobj) {
    volumeSettingsPage.import = linkobj.path[0].import;
    volumeSettingsPage.volumePageHTML = volumeSettingsPage.import.getElementById('volumePage');
    volumeSettingsPage.volumeDeviceHTML = volumeSettingsPage.import.getElementById('volumeDeviceTemplate');   
-   volumeSettingsPage.pageUpdate();
+   onDepenancy("Settings.settingsPage",volumeSettingsPage.pageUpdate,"Bluetooth");
+   //volumeSettingsPage.pageUpdate();
 };
 
 volumeSettingsPage.includeHTMLFailed = function(linkobj) {

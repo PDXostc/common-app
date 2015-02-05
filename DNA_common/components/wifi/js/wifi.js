@@ -54,8 +54,8 @@ WifiSettingsPage.includeHTMLSucess = function(linkobj) {
    //$("#settingsPage").append(WifiSettingsPage.import.getElementById('WifiPage'));
    //$("body").append(WifiSettingsPage.import.getElementById('WifiPage'));
    //var close_button = document.getElementById('tabsCloseSubPanelWifiButton').onclick = WifiSettingsPage.HidePage;
-   
-   WifiSettingsPage.pageUpdate();
+   onDepenancy("Settings.settingsPage",WifiSettingsPage.pageUpdate,"Wifi");
+   //WifiSettingsPage.pageUpdate();
 };
 
 WifiSettingsPage.includeHTMLFailed = function(linkobj) {
