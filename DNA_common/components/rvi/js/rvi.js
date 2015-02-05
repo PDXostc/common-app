@@ -61,6 +61,12 @@ rviSettingsPage.pageUpdate = function() {
 		$("#settingsPage").append(rviSettingsPage.import.getElementById('rviPage'));
 		var close_button = document.getElementById('rviBackArrow').onclick = rviSettingsPage.HidePage;
 		Settings.addUpdateSettingsPage('rvi','settings',rviSettingsPage.ShowPage);
+
+		rvi = new rviSettings();
+		rviSettingsPage.initialize();
+		rvi.loaded.done(function(){
+			rviSettingsPage.displayValues();
+		});
 	}
 };
 
@@ -80,34 +86,84 @@ rviSettingsPage.includeHTMLFailed = function(linkobj) {
 	console.log(linkobj);
 };
 
-$(".setup").click(function(ev){
+rviSettingsPage.initialize = function(){
 
-  $("#resultMessage").hide();
-  $("#setupForm").show();
+	$(".setup").click(function(ev){
+	  $("#resultMessage").hide();
+	  $("#setupForm").show();
 
-  $("#vinNumber").val(localStorage["com.jlr.rvi.vin"]);
+	  $("#messageOverlay").css("display","block");
+	  $("#inputBox").css("display","inline-block");
+	});
 
-  $("#messageOverlay").css("display","block");
-  $("#inputBox").css("display","inline-block");
-});
+	$("#cancel").click(function(ev){
+	  $("#messageOverlay").css("display","none");
+	  $("#inputBox").css("display","none");
+	});
 
-$("#cancel").click(function(ev){
-  $("#messageOverlay").css("display","none");
-  $("#inputBox").css("display","none");
-});
+	$("#saveRviSettings").click(function(ev){
+		console.log("save rvi settings button");
+		rviSettingsPage.saveSettings();
+	});
 
-$("#submit").click(function(ev){
-  submitSettings();
-});
+	$("#resultMessage").click(function(ev){
+	  $("#messageOverlay").css("display","none");
+	  $("#inputBox").css("display","none");
+	});
 
-$("#resultMessage").click(function(ev){
-  $("#messageOverlay").css("display","none");
-  $("#inputBox").css("display","none");
-});
+}
+
+
 
 includeHTML(rviSettingsPage.TemplateHTML, rviSettingsPage.includeHTMLSucess, rviSettingsPage.includeHTMLFailed);
 
-console.log("end of rvi settings template");
+rviSettingsPage.displayValues = function(){
+	console.log("calling display values");
+	document.querySelector("#vinNumber").value = rvi.settings.vin;
+}
+
+rviSettingsPage.saveSettings = function(){
+	var vin = document.querySelector("#vinNumber").value;
+	//document.querySelector("")
+
+	formattedSettings = {"vin":vin};
+
+	rvi.setRviSettings(formattedSettings);
+
+	//rviSettingsPage.displayValues();
+}
+
+
+var rviSettings = function(){
+
+	self = this;
+	this.loaded = new $.Deferred();
+
+	this.getRviSettings = function(){
+		Configuration.reload(function(){
+			self.settings = Configuration.get("Settings.rvi");
+
+			//resolve the promise.
+			if(self.loaded.state() != "resolved"){
+				self.loaded.resolve();
+			}
+		});
+		
+	}
+
+	this.setRviSettings = function(settings){
+		console.log("Saving entered values");
+		
+		Configuration.set("Settings.rvi",settings);
+		Configuration.save();
+		
+
+		tihs.getRviSettings();
+	}
+	
+	//get the settings on 
+	this.getRviSettings();
+}
 
 
 // Singleton
@@ -198,3 +254,5 @@ function message() {
 		}
 	});
 });*/
+
+console.log("end of rvi settings template");
