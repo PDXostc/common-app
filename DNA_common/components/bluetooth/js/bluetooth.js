@@ -252,6 +252,7 @@ function BluetoothSettings(){
 		self.adapter.createBonding(address,
 			function(device){
 			console.log("successfully bonded to "+device.name);
+			tizen.phone.selectRemoteDevice(address);
 			self.displayDevices();
 
 			},function(error){
