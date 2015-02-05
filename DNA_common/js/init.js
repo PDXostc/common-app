@@ -170,3 +170,4 @@ includeJs("DNA_common/components/weather/weather.js");
 //includeJs("DNA_common/components/audioPlayer/audioPlayer.js");
 //includeJs("DNA_common/components/alphabetBookmark/alphabetBookmark.js");
 includeJs("DNA_common/components/library/js/library.js");
+includeJs("DNA_common/components/volume/js/volume.js");
