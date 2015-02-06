@@ -249,16 +249,34 @@ margin: 0 auto;
 #voiceprint-visual {
 position: relative;
 display: block;
-margin: 300px auto;
-width: 1080px;
+margin: 200px auto;
+width: 1030px;
 height: 550px;
 background: rgba (0, 0, 0, 0.8);
 border: 1px solid;
-	border-color: rgb(205, 255, 178);
+	border-color: rgb(89, 255, 0);
 	box-shadow: inset 0 0 10px rgba(205, 255, 178, 0.9);
+	text-align: center;
 
 }
+#record-button {
+position: relative;
+margin: 154px auto;
+background: url("../images/mic-off.png") no-repeat;
+background-size: 100%;
+width: 5.9em;
+height: 5.2em;
 
+}
+#record-button:active {
+position: relative;
+margin: 154px auto;
+background: url("../images/mic-on.png") no-repeat;
+background-size: 100%;
+width: 5.9em;
+height: 5.2em;
+
+}
 /*   //////////// Recall Profile Page ////////////  */
 #modal {
 position: absolute;
