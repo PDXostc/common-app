@@ -39,6 +39,7 @@ a {
 	visibility: visible;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	height: 88%;
 }
 
 #topArticleList ul {
@@ -59,6 +60,7 @@ a {
 	display: none;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	height: 88%;
 }
 
 #entertainArticleList li {
@@ -79,6 +81,7 @@ a {
 	display: none;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	height: 88%;
 }
 
 #sportsArticleList li {
