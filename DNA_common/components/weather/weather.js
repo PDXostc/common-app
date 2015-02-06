@@ -15,7 +15,7 @@ var severeWeatherInterval = setInterval(checkSevereWeather,300000);
 function getCurrentLatLong(){
 	//This will be updated later to interface with a GPS device 
 	return {"lat":33.472404,"long":-104.545898}
-	//lat:33.349960,long:-105.68.2983
+	//return {"lat":42.1889,"long":-120.3458}
 }
 
 function getLocationKey(){
@@ -51,7 +51,7 @@ function checkSevereWeather(){
 }
 
 function generateSevereWeatherAlert(alertInfo){
-	var alertBlock = $(document.createElement('div')).attr("id","weather_alert");
+	var alertBlock = $(document.createElement('div')).attr("id","weather_alert").addClass("weather-alert");
 	
 	var dismiss = $(document.createElement('div')).addClass("close-button").click(function(ev){$(ev.target).closest("#weather_alert").remove()});
 	
