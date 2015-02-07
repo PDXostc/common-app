@@ -77,8 +77,8 @@ rviSettingsPage.includeHTMLSucess = function(linkobj) {
    rviSettingsPage.rviDeviceHTML = rviSettingsPage.import.getElementById('rviDeviceTemplate');
    //$("#settingsPage").append(rviSettingsPage.import.getElementById('rviPage'));
    //$("body").append(rviSettingsPage.import.getElementById('rviPage'));
-   onDepenancy("Settings.settingsPage",rviSettingsPage.pageUpdate,"Rvi");
-   //rviSettingsPage.pageUpdate();
+   
+   rviSettingsPage.pageUpdate();
 };
 
 rviSettingsPage.includeHTMLFailed = function(linkobj) {
@@ -133,7 +133,7 @@ rviSettingsPage.saveSettings = function(){
 	//rviSettingsPage.displayValues();
 }
 
-
+/*
 var rviSettings = function(){
 
 	self = this;
@@ -143,7 +143,7 @@ var rviSettings = function(){
 		Configuration.reload(function(){
 			self.settings = Configuration.get("Settings.rvi");
 
-			//resolve the promise.
+			//resolve the promise for initial setup.
 			if(self.loaded.state() != "resolved"){
 				self.loaded.resolve();
 			}
@@ -153,7 +153,7 @@ var rviSettings = function(){
 
 	this.setRviSettings = function(settings){
 		console.log("Saving entered values");
-		
+
 		Configuration.set("Settings.rvi",settings);
 		Configuration.save();
 		
@@ -164,19 +164,21 @@ var rviSettings = function(){
 	//get the settings on 
 	this.getRviSettings();
 }
-
+*/
 
 // Singleton
 function RVI() {
+	/*
     if (typeof RVI.instance === 'object') {
 	console.log("Returning existing instance");
 	return RVI.instance
     }
-
+    */
+	
 
     console.log("Starting up service RVI 1");
     RVI.instance = this
-    this.service_map = [];
+    this.service_map = {};
     this.connect = function(address, err_cb) {
 	try {
 	    if (Wse.open(address))
@@ -213,20 +215,25 @@ function RVI() {
     }
 
     this.rvi_message = function()  {
+    	console.log("RVI message called, callback should execute");
+
 	if (this.service_map[arguments[0]]) {
 	    this.service_map[arguments[0]].apply(null, arguments);
 	}
 	else
 	    console.warn("Service: " + arguments[0] + " not mapped to any callback. Ignore");
     }
+
 }
 
 // "ws://10.0.0.36:1234/websession"
+
 function message() {
     for (var i = 0; i < arguments.length; ++i) 
 	console.log("message arguments[" + i + "]: " + arguments[i]);
 	
-    return RVI().rvi_message.apply(RVI(),arguments);
+    //return RVI().rvi_message.apply(RVI(),arguments);
+    return r.rvi_message.apply(r,arguments);
 }
 
 
