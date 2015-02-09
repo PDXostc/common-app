@@ -1,18 +1,106 @@
+.contact-list-wrapper{
+width: 100%;
+list-style: none;
+height: 96%;
+overflow-y: scroll;
+overflow-x: hidden;
+position: absolute;
+top: 26px;
+padding:48px;
+z-index: 2;
+box-sizing:border-box;
+display: flex;
+background: url("../DNA_common/images/Hex-Background.jpg") no-repeat 0 0 #000;
+}
+
+.open-contact-list {
+	background: url("../images/contact_picture_blue.png") no-repeat 50% 50%;
+	background-size: 83%;
+	width: 100px;
+	box-shadow: none;
+	border: none;
+}
+.push-left-65{margin-left:65px;}
+
+#contactsLibraryButton_All{
+	color:#fe9c00;
+	margin-bottom:20px;
+}
+#contactsLibraryButton_All span {
+	padding-left:15px;
+}
+
+ #contactsLibraryButton_Fav {
+	color: #53b5ce;
+	margin-bottom:34px;
+ }
+#contactsLibraryButton_Fav span{
+	color:#fe9c00;
+	padding-left:15px;
+}
+.nav-filter-btns {
+	font-weight:bold;
+	font-size: 2rem;
+}
+.contactsLibraryFilter {
+	margin:0;
+	padding:0;
+	position: absolute;
+	display:flex;
+	flex-direction: column;
+	flex-wrap:wrap;
+	height: 47%;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.contactsLibraryFilter li {
+	list-style-type: none;
+	height:55px;
+}
+
+.contact-btn {
+margin:	20px 0 0 35px;
+}
+
+.contact-btn span {
+	padding-left:1.2rem;
+}
+
+#contact-filtering-controls {
+	display:flex;
+	flex-direction:column;
+	/* flex:1;*/
+	width:300px;
+	font-size:2.5rem;
+}
+
+.contactsCarousel::-webkit-scrollbar, .contact-list-wrapper::-webkit-scrollbar, .contactList::-webkit-scrollbar  {
+	display:none;
+}
+
+.visibility-hidden{
+	visibility:hidden;
+}
+.visibility-visible{
+	visibility:visible;
+}
 
 .contactList {
-	/*width: 100%;*/
-	display: flex;
+	margin-top:0;
 	flex-wrap: wrap;
 	list-style: none;
-	height: 1197px;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	flex: 1;
 }
 .contactElement {
 	width: 18%;
 	padding: 0 0 12px;
 	margin-bottom: 40px;
 	border-bottom: 1px solid white;
+	display:inline-flex;
+	flex-direction:column;
 }
 
 .contactName {
@@ -47,9 +135,11 @@ body {display:block;}
 	display:none;
 }
 
-.phone-interface-wrapper{position:relative; width:334px;margin:auto;padding-top:20px;}
-.inputPhoneNumberBox {
+.phone-interface-wrapper{position:relative; width:334px;margin:10% auto 35%;}
+
+.input-phone-number-box {
 	position: relative;
+	border: thin rgba(255,255,255, 0.5) solid;
 }
 div.numbersBox .numberButton {
 	font-size: 40px;
@@ -65,6 +155,7 @@ input#inputPhoneNumber {
 .callHistoryDetails {
 	font-size:14px;
 }
+/*OLD STYLE FOR NOW
 .inputPhoneNumber {
 	height: 75px;
 	border: none;
@@ -74,6 +165,33 @@ input#inputPhoneNumber {
 	padding:0 12px;
 	width:311px;
 }
+*/
+
+.input-phone-number {
+height: 75px;
+border: none;
+background-color: rgba(0, 0, 0, 0.2);
+color: rgb(196,196,196);
+position: relative;
+padding: 0 12px;
+/* width: 311px;*/
+color: rgba(255, 255, 255, .8);
+box-shadow: inset 0 0 20px rgba(0, 0, 0, 1), inset 0 0 6em 2em rgba(0, 0, 0, .5);
+border-color: rgba(255, 255, 255, 0.9);
+border: 2px;
+}
+
+.box-infill-blue {
+background-color: rgba(83, 181, 206, .8);
+}
+
+.box-infill {
+border-width: 1px;
+border-style: solid;
+border-color: rgba(255, 255, 255, 0.5);
+color: rgba(255, 255, 255, .8);
+box-shadow: inset 0 0 20px rgba(0, 0, 0, 1), inset 0 0 6em 2em rgba(0, 0, 0, .5);
+}
 
 .inputPhoneNumber:focus {
 	outline: none;
@@ -82,7 +200,7 @@ input#inputPhoneNumber {
 font-size:14px;
 }
 
-.inputPhoneNumberBox .deleteButton {
+.input-phone-number-box .delete-button, .close-contacts {
 
 	position: absolute;
 	top: 13px;
@@ -93,7 +211,8 @@ font-size:14px;
 	background-position: center center;
 	background-repeat: no-repeat;
 	cursor: pointer;
-	background-color: #53b5ce;
+	background-color: rgba(83, 181, 206, .4);
+	color:#c4c4c4;
 	font-size: 30px;
 	line-height:1.6;
 	text-align: center;
@@ -119,15 +238,14 @@ font-size:14px;
 	position: relative;
 }
 
-.numberButton {
+.number-button {
 	float: left;
 	padding: 0;
-	padding-top: 20px;
+	/* padding-top: 20px; */
 	width: 105px;
 	height: 80px;
 	margin-right: 10px;
 	margin-bottom: 10px;
-	background-color: rgba(0, 0, 0, 0.2);
 	text-transform: uppercase;
 	text-align: center;
 }
@@ -136,16 +254,17 @@ font-size:14px;
 	margin-top: -3px;
 }
 
-.specialChar {
-	padding-top: 30px;
-	height: 70px;
+.special-char {
+	padding-top: 18px;
+	/* height: 70px;*/
 }
+
+.special-fa-size {font-size:18px;padding-top:26px;}
 
 .contactsCarousel {
 margin: 0;
 padding: 0 24px 24px;
 list-style: none;
-/* display: block;*/
 height: 350px;
 width: 98%;
 text-align: left;
@@ -156,8 +275,8 @@ white-space:nowrap;
 overflow-x:scroll;
 overflow-y:hidden;
 box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
+box-sizing:border-box;
 }
-
 
 .contactsCarousel li {
 	display: inline-block;
@@ -165,9 +284,6 @@ box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
 	height:inherit;
 	white-space:normal;
 	margin: 0;
-}
-.contactsCarousel::-webkit-scrollbar, .contactList::-webkit-scrollbar  {
-	display:none;
 }
 
 .carouselBox {
@@ -244,20 +360,16 @@ box-shadow: 0 0 13px rgba(178, 240, 255, 0.8);
 	width: 76px;
 	height:163px;
 	position:absolute;
-	top: -44px;
 	left: -96px;
 	margin:0;
 	
 }
 .callBox {
 position: relative;
-margin: 0 auto;
-width: 760px;
+margin: 154px 10% 0;
 border-top: 10px solid rgb(83, 181, 206);
-padding-top: 30px;
-z-index: 100;
--webkit-transition-timing-function: linear;
--webkit-transition: left 1s;
+padding:30px 0 30px 0;
+box-sizing:border-box;
 }
 
 .callBoxShow {
@@ -297,9 +409,8 @@ display: inline-block;
 	padding-top: 46px;
 }
 .callingFalse {
-	margin-top: 117px;
-	background-color: rgb(138, 255, 0);
-	background-color: rgba(89, 255, 0, .8);
+	box-shadow: inset 0 0 20px rgba(0, 0, 0, .2), inset 0 0 6em 2em rgba(0, 0, 0, .2);
+	background-color: rgba(89, 255, 0, .7);
 }
 .inCallWith {
 	margin-top: 11px;
@@ -312,14 +423,14 @@ display: inline-block;
 
 .callControlsBox {
 position: absolute;
-width: 292px;
-display: inline-block;
+width: 332px;
+display: inline-flex;
 font-size: 0;
 right: 0;
+flex-wrap: wrap;
 }
 
 .controlButton {
-	display: inline-block;
 	padding: 70px 0 13px 0;
 	width: 140px;
 	margin-right: 6px;
@@ -495,18 +606,6 @@ background:radial-gradient(ellipse at center, rgba(254,156,0,1) 0%,rgba(142,87,4
 	background-image: url("DNA_common/images/bt_next_blue.png");
 }
 
-.contactsLibraryFilter {
-	margin:0;
-	padding:0;
-	position: absolute;
-}
-
-.contactsLibraryFilter li {
-	list-style-type: none;
-	height:55px;
-	margin:0;
-}
-
 .libraryButton {
 	/*position: absolute;*/
 	/*height: 82px;*/
@@ -537,6 +636,7 @@ background:radial-gradient(ellipse at center, rgba(254,156,0,1) 0%,rgba(142,87,4
 	box-shadow: 0 0 30px 2px rgba(83, 181, 206, 0.8);
 }
 .box-shadow-4Active:active, .box-shadow-4Active:focus {
-color:#53bce;
-box-shadow: 0 0 30px 2px rgba(178, 240, 255, 0.8);
+	color:#53bce;
+	box-shadow: 0 0 30px 2px rgba(178, 240, 255, 0.8);
 }
+

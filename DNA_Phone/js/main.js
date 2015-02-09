@@ -715,7 +715,7 @@ $(document).ready(
 			$("#librarySearchField").on('keypress keyup change paste',function() {console.log("librarySearchField = "+$("#librarySearchField")[0].value);});
 			console.log("Added click event for numbers");
 //Changed the ID to class w/in the delegate() method but it isn't  needed as the data-id is used to distinguish anyway
-			$(".numbersBox").delegate(".numberButton", "click", function() {
+			$(".numbersBox").delegate(".number-button", "click", function() {
 				console.log("Number button "+$(this).data("id"));
 				var pressTime = new Date(),
 					number, oneCharPX = 32;
