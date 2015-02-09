@@ -43,23 +43,61 @@ function loadCameras(cameraType, count) {
 	}
 }
 
+function getCameraId(cameraType) {
+	return cameraType + "-cameras";
+};
+
+function setActiveTab(tabID) {
+	var tab = document.getElementById(tabID);
+	$(tab).siblings().removeClass("active");
+	$(tab).addClass("active");
+}
+
+function scrollToPanel(panel) {
+	var sliderParent = $("#cameras-slider");
+	var leftScroll = sliderParent.scrollLeft() + $(panel).position().left;
+	sliderParent.animate({ scrollLeft: leftScroll }, 250);
+};
+
 var tempInit = function() {
 	loadCameras("usb", 6);
 	loadCameras("analog", 4);
 	loadCameras("ip", 6);
+	// Clears timer for development only
+	// setTimeout(function() { clearInterval(uiUpdateTimer)}, 1000);
 }
 
 $(document).ready(tempInit);
 
 // Camera Panel Tabs 
-$(document).on("click", ".slider-button", function() {
-	$(this).siblings().removeClass("active");
-	$(this).addClass("active");
+$(document).on("click", ".slider-tab", function() {
+	// Sets active view of tab
+	setActiveTab(this.id);
 
-	var cameraType = $(this).data("buttonid");
-	var camerasPanelId = "#" + cameraType + "-cameras";
-	$(camerasPanelId).siblings().removeClass("active").addClass("hidden");
-	$(camerasPanelId).removeClass("hidden").addClass("active");
+	// sets active view of panels
+	var cameraType = $(this).data("tabid");
+	var camerasPanelId = getCameraId(cameraType);
+	$(camerasPanelId).siblings().removeClass("active");
+	$(camerasPanelId).addClass("active");
+
+	// Slides selected panel into view
+	var panel = document.getElementById(camerasPanelId); 
+	scrollToPanel(panel);
+})
+
+// Camera Panel Touch Scroll
+$(document).on("touchend", "#cameras-slider", function() {
+	var sliderParent = $("#cameras-slider");
+	var panelCount = sliderParent.children().length;
+	var scrollPosition = sliderParent.scrollLeft();
+	var sliderWidth = sliderParent.width();
+	var dominentPanelIndex = Math.round(scrollPosition / sliderWidth );
+	var dominentPanel = sliderParent.children()[dominentPanelIndex];
+	var tabID = dominentPanel.dataset.panelid + "-tab";
+
+	scrollToPanel(dominentPanel);
+	setActiveTab(tabID);
+
 })
 
 // Power Toggle

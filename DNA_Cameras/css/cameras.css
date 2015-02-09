@@ -26,6 +26,13 @@ ul, li {
   padding: 0;
 }
 
+.active {
+  background: none;
+  background-image: none;
+  text-shadow: none;
+  color: initial;
+}
+
 /* Proposed items for common.css */
 
 #center-panel,
@@ -67,18 +74,6 @@ ul, li {
 
 }
 
-.view-slider {
-  display: flex;
-  flex: 1;
-  min-width: 100%;
-  overflow-x: auto;
-  touch-action: pan-x;
-}
-
-.view-slider::-webkit-scrollbar {
-  display: none;
-}
-
 .slider-nav {
   list-style: none;
   border-bottom: 4px solid #FE9C00; 
@@ -90,6 +85,7 @@ ul, li {
 }
 
 .slider-nav li h2 {
+  transition: color 500ms;
   color: white;
 }
 
@@ -97,7 +93,12 @@ ul, li {
   color: #FE9C00;
 }
 
-.slider-nav .slider-button.active {
+.slider-nav .slider-tab {
+  transition: border-bottom 250ms;
+  border-bottom: 8px solid rgba(0,0,0,0);
+}
+
+.slider-nav .slider-tab.active {
   border-bottom: 8px solid #fe9c00;
 }
 
