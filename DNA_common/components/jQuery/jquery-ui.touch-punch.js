@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Touch Punch 0.2.3 (b) (updated "Simulate a mouse event based on a corresponding touch event" below)
+ * jQuery UI Touch Punch 0.2.3 (b) (updated "Simulate a mouse event based on a corresponding touch event" and "Handle the jQuery UI widget's touchend events" below)
  *
  * Copyright 2011–2014, Dave Furfero
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -102,7 +102,6 @@ if ($(touch.target).is("input") || $(touch.target).is("textarea")) {
    * @param {Object} event The document's touchmove event
    */
   mouseProto._touchMove = function (event) {
-
     // Ignore event if not handled
     if (!touchHandled) {
       return;
@@ -126,21 +125,29 @@ if ($(touch.target).is("input") || $(touch.target).is("textarea")) {
       return;
     }
 
-    // Simulate the mouseup event
-    simulateMouseEvent(event, 'mouseup');
+	// Simulate the mouseup event
+	simulateMouseEvent(event, 'mouseup');
 
-    // Simulate the mouseout event
-    simulateMouseEvent(event, 'mouseout');
+	// Simulate the mouseout event
+	simulateMouseEvent(event, 'mouseout');
 
-    // If the touch interaction did not move, it should trigger a click
-    if (!this._touchMoved) {
+	//define object aliases
+	var eot = event.originalEvent.changedTouches[0]; //clientX/Y, screenX/Y, pageX/Y
+	var etr = event.target.getBoundingClientRect();
+	var w = window;
+	var de = document.documentElement;
 
-      // Simulate the click event
-      simulateMouseEvent(event, 'click');
-    }
+	//define drag distances
+	var horizontalDrag = Math.abs(eot.clientX - (etr.left + w.pageXOffset - de.clientLeft));
+	var verticalDrag = Math.abs(eot.clientY - (etr.top + w.pageYOffset - de.clientTop));
 
-    // Unset the flag to allow other widgets to inherit the touch event
-    touchHandled = false;
+	// Simulate the click event, unless dragged away from source
+	if(verticalDrag < 80 && horizontalDrag < 80){
+		simulateMouseEvent(event, 'click');
+	}
+
+	// Unset the flag to allow other widgets to inherit the touch event
+	touchHandled = false;
   };
 
   /**

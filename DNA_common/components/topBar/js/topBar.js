@@ -8,7 +8,8 @@ TopBar.TemplateHTML = "DNA_common/components/topBar/topBar.html";
 TopBar.topbarBack = function() {
 	if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001"){
 		tizen.application.launch('JLRPOCX001.HomeScreen', TopBar.backButtonWin, TopBar.backButtonFail);
-		tizen.application.getCurrentApplication().exit();
+		//Uncomment for Singletasking mode
+		//tizen.application.getCurrentApplication().exit();
 	}
 }
 
@@ -21,7 +22,6 @@ topbarTouchstart = function(event){
 		return false;
 	}
 }
-$("body").on('touchstart', topbarTouchstart); // PREVENT MULTITOUCH ZOOM BUBBLING
 
 TopBar.pageUpdate = function() {
 	$('#topBar').replaceWith(TopBar.topBarHTML.valueOf());
@@ -466,7 +466,7 @@ function onTaskInfoSuccess(list){
 		}
 
 		for (i = 0; i < 7; i++) {
-			var taskDiv = $("<div><img /></div>").addClass("topTask droppable");
+			var taskDiv = $("<div></div>").addClass("topTask droppable");
 			$(taskDiv).attr('id','topTask'+i);
 			$("#topBar").append(taskDiv);
 		}
@@ -491,7 +491,7 @@ function shiftLeft(){
 			id2=id-1;
 			if(!isPopulated(id) && isPopulated(id2)){
 				$("#topTask"+id2).html($("#topTask"+id).html());
-				$("#topTask"+id).html("<img>");
+				$("#topTask"+id).html("");
 				if(lastBlank==true) recheck=true;
 				$("#topTask"+id2).find("img").css("visibility", "visible");
 			}else{
@@ -508,20 +508,10 @@ function removeClones(id){
 	for(var id2=0;id2<=6;id2++){
 		if(id2!=id){ //don't remove the id itself
 			if($("#topTask"+id2).find("img").attr("src")==$("#topTask"+id).find("img").attr("src")){
-				$("#topTask"+id2).html("<img>");
+				$("#topTask"+id2).html("");
 			}
 		}
 	}
-}
-function dnaAddLaunch(spot,content){
-	console.log("f:dnaAddLaunch");
-	/*
-	for(x=7;x>spot;x--){
-		$("#topTask"+x).html($("#topTask"+(x-1)).contents());
-	}
-	$("#topTask"+spot).html(content);
-	*/
-	return true;
 }
 
 function rightMost(text){
@@ -531,6 +521,10 @@ function dnaGridLaunch(id1,id2){
 	//Adding from App Grid
 	var x=$("#"+id1).contents().slice(0,1).clone().css("visibility","visible");
 	$("#"+id2).html(x);
+	$("#"+id2).click(function(){
+		$("#"+id1).parent().click();
+	});
+	console.log(id2+" handler now points to parent of "+id1);
 	removeClones(rightMost(id2));
 	shiftLeft();
 	return true;
@@ -540,7 +534,7 @@ function dnaSwitchLaunch(id1,id2){
 	if(id1!==id2){
 		var x=$("#"+id1).contents();
 		$("#"+id2).html(x);
-		$("#"+id1).html("<img>");
+		$("#"+id1).html("");
 	}
 	removeClones(rightMost(id2));
 	shiftLeft();
@@ -548,7 +542,7 @@ function dnaSwitchLaunch(id1,id2){
 }
 function dnaDropLaunch(element){
 	//Dragging off topbar
-	element.parent().html("<img>");
+	element.parent().html("");
 	shiftLeft();
 	return true;
 }
