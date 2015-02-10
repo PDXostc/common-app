@@ -422,7 +422,7 @@ Spinner.prototype = {
 		
 		//A click has been registered
 		if(G.Mouseclick){
-			for(i=0;i<Object.keys(G.HotZone).length;i++){
+			for(var i in G.HotZone){
 				try{
 					//if the coordinates line up, and the icon isn't too far away
 					if(G.LastMouseX>G.HotZone[i]["X"] && G.LastMouseX<G.HotZone[i]["X"]+G.HotZone[i]["S"] && G.HotZone[i]["Cos"] < ClickableDistance){
