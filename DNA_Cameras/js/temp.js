@@ -64,7 +64,7 @@ var tempInit = function() {
 	loadCameras("analog", 4);
 	loadCameras("ip", 6);
 	// Clears timer for development only
-	// setTimeout(function() { clearInterval(uiUpdateTimer)}, 1000);
+	setTimeout(function() { clearInterval(uiUpdateTimer)}, 1000);
 }
 
 $(document).ready(tempInit);
@@ -101,7 +101,7 @@ $(document).on("touchend", "#cameras-slider", function() {
 })
 
 // Power Toggle
-$(document).on("click", ".camera-power", function() {
+$(document).on("click", ".camera-power, .camera-screen", function() {
 	var cameraScreen = $(this).closest(".camera-view").find(".camera-screen");
 	cameraScreen.toggleClass("camera-ready camera-on");
 });
@@ -113,10 +113,18 @@ $(document).on("click", ".expand-icon", function() {
 	enlargement.addClass("enlarged-view");
 	enlargement.find(".camera-scale").removeClass("expand-icon").addClass("contract-icon");
 	$(".active-camera").html(enlargement);
-	$(".cameras-list").addClass("scrollable-x");
+	$(".cameras-panel").toggleClass("panel-minimized");
 });
 
 $(document).on("click", ".contract-icon", function() {
 	$(this).closest(".camera-view").empty();
-	$(".cameras-list").removeClass("scrollable-x");
+	$(".cameras-panel").toggleClass("panel-minimized");
+});
+
+// Mirroring
+
+$(document).on("click", ".camera-mirror", function() {
+	var cameraScreen = $(this).closest(".camera-view").find(".camera-screen");
+	cameraScreen.toggleClass("mirror-on");
+	$(this).toggleClass("mirror-on");
 });

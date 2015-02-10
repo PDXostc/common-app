@@ -85,7 +85,7 @@ ul, li {
 }
 
 .slider-nav li h2 {
-  transition: color 500ms;
+  transition: color 250ms;
   color: white;
 }
 
@@ -155,16 +155,25 @@ ul, li {
   background-color: #555;
 }
 
+.panel-minimized .camera-screen {
+  width: 300px;
+  height: 175px;
+}
+
 .camera-ready {
   background-image: url(../images/connection_ready_bg.png);
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
 }
 
 .camera-on {
-  background-image: url(../images/rear_facing_camera_view.jpg);
+  background-image: url(../images/rolling_2.gif);
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
+}
+
+.mirror-on {
+  transform: scaleX(-1);
 }
 
 .enlarged-view {
@@ -208,9 +217,9 @@ ul, li {
 }
 
 .camera-mirror {
-  width: 60px;
-  height: 62px;
-  background-image: url(../images/mirror_icon_alt2_grey.png);
+  width: 68px;
+  height: 60px;
+  background-image: url(../images/mirror_icon_alt4_grey.png);
 }
 
 .transitional {
