@@ -697,7 +697,7 @@ function onAppRecallSuccess(list) {
 						   "Hello Tizen":"./DNA_common/images/tizen_inactive.png",
 						   "Audio Settings":"./DNA_common/images/audio_settings_inactive.png",
 						   "MOST AUDIO":"./DNA_common/images/audio_settings_inactive.png",
-						   "Finger Print":"./DNA_common/images/fingerprint_inactive.png",
+						   "Fingerprint":"./DNA_common/images/fingerprint_inactive.png",
 						   "Multimedia Player":"./DNA_common/images/mediaplayer_inactive.png",
 						   "SmartDeviceLink":"./DNA_common/images/sdl_inactive.png",
 						   "pkgmgr-install":"./DNA_common/images/pkgmgr-install_inactive.png",
