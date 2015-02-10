@@ -49,17 +49,23 @@
 
         <!-- view-slider navigation -->
         <ul class="slider-nav flex-parent">
-          <li id="usb-tab" class="slider-tab active" data-tabId="usb"><h2>USB</h2></li>
-          <li id="analog-tab" class="slider-tab" data-tabId="analog"><h2>Analog</h2></li>
-          <li id="ip-tab" class="slider-tab" data-tabId="ip"><h2>IP</h2></li>
+          <li id="usb-tab"    class="slider-tab active" data-tabId="usb"><h2>USB</h2></li>
+          <li id="analog-tab" class="slider-tab"        data-tabId="analog"><h2>Analog</h2></li>
+          <li id="ip-tab"     class="slider-tab"        data-tabId="ip"><h2>IP</h2></li>
         </ul>
 
         <!-- The camera currently broadcasting -->
-        <div class="active-camera"></div>
+        <div id="active-camera" class="hidden">
+          <div class="camera-view"></div>
+          <div class="camera-controls">
+            <div class="camera-scale contract-icon"></div>
+            <div class="camera-mirror"></div>
+          </div>
+        </div>
 
         <!-- houses the 3 camera-type panels -->
         <div id="cameras-slider" class="flex-parent flex-item scrollable-x">
-          <div id="usb-cameras" class="cameras-panel active" data-panelId="usb">
+          <div id="usb-cameras" class="cameras-panel" data-panelId="usb">
             <div class="cameras-list">
               <!-- Load camera-view templates here -->
             </div>

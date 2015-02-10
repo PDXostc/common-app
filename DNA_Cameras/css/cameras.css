@@ -60,19 +60,17 @@ ul, li {
   transition: height .25s ease-out;
 }
 
-#settings-layer {
-}
+#settings-layer {}
 
-#app-grid-layer {
-}
+#app-grid-layer {}
 
-#modals-layer {
+#modals-layer {}
 
-}
+#alert-layer {}
 
-#alert-layer {
+/* END proposed items from common */
 
-}
+/* Slider Nav Tabs */
 
 .slider-nav {
   list-style: none;
@@ -102,22 +100,33 @@ ul, li {
   border-bottom: 8px solid #fe9c00;
 }
 
-/* End proposed items for common.css */
+/* Start current app-specific styles */
 
-/* Start approved app-specific styles */
-
+/* .cameras-panel is the entire view for a group of cameras */
 .cameras-panel {
   min-width: 100%;
 }
 
-.cameras-panel.active {
-}
-
+/* .camera-view is the housing for the camera-specific content and data */
 .camera-view {
   margin: 0;
   padding: 0;
 }
 
+.camera-view h4 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.camera-view[data-camera-type*='usb'] .camera-title .camera-type,
+.camera-view[data-camera-type*='ip'] .camera-title .camera-type {
+  text-transform: uppercase;
+}
+
+.camera-view[data-camera-type*='analog'] .camera-title .camera-type {
+  text-transform: capitalize;
+}
+
+/* .cameras-list is the housing for the individual cameras in a group */
 .cameras-list {
   display: flex;
   flex: 1;
@@ -127,6 +136,7 @@ ul, li {
   padding: 40px;
 }
 
+/* provides horizontal scrolling */
 .cameras-list.scrollable-x {
   white-space: nowrap;
   display: block;
@@ -140,45 +150,56 @@ ul, li {
   margin-right: 40px;
 }
 
-.camera-view[data-camera-type*='usb'] .camera-title .camera-type,
-.camera-view[data-camera-type*='ip'] .camera-title .camera-type {
-  text-transform: uppercase;
-}
-
-.camera-view[data-camera-type*='analog'] .camera-title .camera-type {
-  text-transform: capitalize;
-}
-
+/* .camera-screen houses the camera screen of a single camera */
 .camera-screen {
   width: 450px;
   height: 250px;
-  background-color: #555;
+  background-color: transparent;
 }
 
+.camera-on h4 {
+  color: #fe9c00;
+}
+
+/* .panel-minimized changes screen sizing when enalrged view is present */
 .panel-minimized .camera-screen {
   width: 300px;
   height: 175px;
 }
 
-.camera-ready {
-  background-image: url(../images/connection_ready_bg.png);
-  background-repeat: no-repeat;
+/* dual views .standard-view and .reverse-view are required for the 3D flip animation */
+.standard-view,
+.reverse-view {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  position: absolute;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../images/demo_still_frame.jpg);
 }
 
-.camera-on {
-  background-image: url(../images/rolling_2.gif);
-  background-repeat: no-repeat;
-  background-size: cover;
+.camera-on .standard-view,
+.camera-on .reverse-view {
+  opacity: 1;
 }
 
-.mirror-on {
-  transform: scaleX(-1);
+.camera-on .standard-view,
+.camera-on .reverse-view {
+  background-image: url(../images/demo.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .enlarged-view {
   order: -1;
   width: 100%;
+}
+
+.enlarged-view h4 {
+  padding: 0 40px;
 }
 
 .enlarged-view .camera-controls {
@@ -190,17 +211,33 @@ ul, li {
   height: 555px;
 }
 
+/* .camera-controls houses the icon controls */
+
 .camera-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  padding: 20px 40px;
+}
+
+/* Icons */
+
+.camera-mirror.mirror-on {
+  transform: scaleX(-1);
+  background-image: url(../images/mirror_icon_orange.png);
 }
 
 .camera-power {
-  width: 42px;
-  height: 48px;
-  background-image: url(../images/power_icon_grey.png);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(../images/power_icon_white.png);
+}
+
+.camera-on .camera-power {
+  display: none;
 }
 
 .camera-scale {
@@ -217,23 +254,44 @@ ul, li {
 }
 
 .camera-mirror {
-  width: 68px;
+  width: 71px;
   height: 60px;
-  background-image: url(../images/mirror_icon_alt4_grey.png);
+  background-image: url(../images/mirror_icon_grey.png);
 }
 
-.transitional {
-  -webkit-transition: left 1.4s ease;
+/* 3D Screen Flipper */
+
+/* keeps perspective of screen */
+.camera-screen {
+  -webkit-perspective: 1000;
 }
 
-.unselectable {
-  -webkit-user-select: none;
-  user-select: none;
+/* .flipper houses the dual screen views, .standard-view and .reverse-view */
+.flipper {
+  transition: transform .5s;
+  transform-style: preserve-3d;
+  width: inherit;
+  height: inherit;
+  position: relative;
 }
 
-/* End approved app-specific styles */
+/* flips the screen when class is added via JS */
+.camera-screen.mirror-on .flipper {
+  transform: rotateY(180deg);
+}
 
-/* Other styles */
+/* Required to prevent visibility of .standard-view during flip */
+.reverse-view {
+  backface-visibility: hidden;
+}
+
+.reverse-view {
+  transform: rotateY(180deg);
+}
+
+/* End current app-specific styles */
+
+/* old styles from previous version of app */
 
 .panel {
   top: 190px;
