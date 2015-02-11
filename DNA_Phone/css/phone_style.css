@@ -1,12 +1,12 @@
 .contact-list-wrapper{
 width: 100%;
 list-style: none;
-height: 96%;
+height: 93%;
 overflow-y: scroll;
 overflow-x: hidden;
 position: absolute;
-top: 26px;
-padding:48px;
+top: 115px;
+padding:0 24px;
 z-index: 2;
 box-sizing:border-box;
 display: flex;
@@ -22,36 +22,52 @@ background: url("../DNA_common/images/Hex-Background.jpg") no-repeat 0 0 #000;
 }
 .push-left-65{margin-left:65px;}
 
-#contactsLibraryButton_All{
+.fa-users{
 	color:#fe9c00;
 	margin-bottom:20px;
 }
-#contactsLibraryButton_All span {
+.fa-users span, .fa-list span, .fa-star span, .fa-th span {
 	padding-left:15px;
+	color:#fff;
 }
 
- #contactsLibraryButton_Fav {
+.fa-star{
 	color: #53b5ce;
 	margin-bottom:34px;
  }
-#contactsLibraryButton_Fav span{
-	color:#fe9c00;
-	padding-left:15px;
+
+.fa-list{
+	color: #53b5ce;
+	margin-bottom:34px;
+ }
+
+.fa-th {
 }
+
 .nav-filter-btns {
 	font-weight:bold;
 	font-size: 2rem;
 }
+
+.dk-grey {
+	color:#666;
+}
+
 .contactsLibraryFilter {
-	margin:0;
-	padding:0;
-	position: absolute;
-	display:flex;
-	flex-direction: column;
-	flex-wrap:wrap;
-	height: 47%;
-	justify-content: space-between;
-	align-items: flex-end;
+margin: 0;
+padding: 10px 20px 0 15px;
+position: absolute;
+display: flex;
+flex-wrap: wrap;
+width: 13%;
+height: 47%;
+justify-content: space-between;
+align-items: flex-end;
+}
+
+.sort-filter-heads {
+	border-bottom: 6px solid #000;
+	padding-bottom: 15px;
 }
 
 .contactsLibraryFilter li {
@@ -70,9 +86,10 @@ margin:	20px 0 0 35px;
 #contact-filtering-controls {
 	display:flex;
 	flex-direction:column;
-	/* flex:1;*/
 	width:300px;
 	font-size:2.5rem;
+	background-color:rgba(34, 34, 34, .9);
+	padding:20px;
 }
 
 .contactsCarousel::-webkit-scrollbar, .contact-list-wrapper::-webkit-scrollbar, .contactList::-webkit-scrollbar  {
@@ -92,26 +109,39 @@ margin:	20px 0 0 35px;
 	list-style: none;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	flex: 1;
+	flex:1;
 }
 .contactElement {
-	width: 18%;
-	padding: 0 0 12px;
-	margin-bottom: 40px;
-	border-bottom: 1px solid white;
-	display:inline-flex;
-	flex-direction:column;
+width: 29%;
+padding: 0 0 12px;
+margin-bottom: 40px;
+border-bottom: 1px solid white;
+display: inline-flex;
+flex-direction: column;
+flex: 1;
+justify-content: space-between;
 }
 
 .contactName {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	white-space: normal;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
-	height: 2em;
+overflow: hidden;
+text-overflow: ellipsis;
+word-wrap: break-word;
+white-space: normal;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+font-weight: bold;
+font-size: 3.5rem;
+height: 95px;
+flex: 2;
+}
+
+.contact-name-number-flex-wrap {
+	display: flex;
+	flex-direction: column;
+}
+.phone-type-mobile, .phone-type-home, .phone-type-work {
+	flex:1;
 }
 
 .contactPhotoBox {
@@ -123,7 +153,15 @@ margin:	20px 0 0 35px;
 .hidden {
 	display: none;
 }
+.fa.fa-phone, .fa.fa-home, .fa.fa-briefcase {
+font-size:22px /*I know, pixels... but once templates are in place, we'll see */
+}
 
+.phone-type-mobile, .phone-type-home {margin-bottom:12px;}
+
+.fa-briefcase span {padding-left:13px;color:#53b5ce;}
+.fa-phone span {padding-left:18px;color:#53b5ce;}
+.fa-home span {padding-left:14px;color:#53b5ce;}
 
 body {display:block;}
 
@@ -155,17 +193,6 @@ input#inputPhoneNumber {
 .callHistoryDetails {
 	font-size:14px;
 }
-/*OLD STYLE FOR NOW
-.inputPhoneNumber {
-	height: 75px;
-	border: none;
-	background-color: rgba(0, 0, 0, 0.2);
-	color:rgb(196,196,196);
-	position: relative;
-	padding:0 12px;
-	width:311px;
-}
-*/
 
 .input-phone-number {
 height: 75px;
@@ -200,7 +227,7 @@ box-shadow: inset 0 0 20px rgba(0, 0, 0, 1), inset 0 0 6em 2em rgba(0, 0, 0, .5)
 font-size:14px;
 }
 
-.input-phone-number-box .delete-button, .close-contacts {
+.input-phone-number-box .delete-button {
 
 	position: absolute;
 	top: 13px;
@@ -216,6 +243,16 @@ font-size:14px;
 	font-size: 30px;
 	line-height:1.6;
 	text-align: center;
+}
+
+.close-contacts {
+	position: absolute;
+	top: 13px;
+	right: 13px;
+	padding: 0;
+	width: 55px;
+	height: 47px;
+	color:#fff;
 }
 .noPairedDevice{
 	top:130px;
@@ -298,9 +335,8 @@ box-sizing:border-box;
 }
 
 .carouselEdgeBox {
-	width: 140px;/*240px;*/
+	width: 140px;
 	height: 315px;
-	/* margin: 0 15px 20px 0; */
 	white-space: normal;
 	visibility: hidden;
 }
