@@ -8,17 +8,17 @@
  *
 -->
 <html>
-	<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Phone</title>
-	<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
-
-	<link rel="stylesheet" href="./DNA_common/css/style.css"/>
-	<link rel="stylesheet" href="./css/phone_style.css"/>
-	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
-	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
-
-	<script type="text/javascript">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Phone</title>
+        <meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+        <link rel="stylesheet" href="./DNA_common/css/style.css"/>
+        <link rel="stylesheet" href="./css/phone_style.css"/>
+        <link rel="stylesheet" href="./css/font-awesome.css">
+            <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
+            <script type="text/javascript" src="./DNA_common/js/init.js"></script>
+            <script type="text/javascript" src="js/interactions.js"></script>
+            <script type="text/javascript">
 	    /*includeJs("./DNA_common/js/predefAppModel.js");
 	    includeJs("./DNA_common/js/installedApps.js");
 	    includeJs("./DNA_common/js/keyControl.js");
@@ -26,262 +26,471 @@
 	    includeJs("./DNA_common/js/HomeScreenMain.js");*/
 	    includeJs("./js/main.js");
 	</script>
-	</head>
-
-	<body>
-		<div id="base">
-			<div id="topBar"></div>
-			<div id="app">
-				<div id="clockElement"></div>
-				<div class="wrapper">
-					<div id="contactsLibraryButton_All"	class="libraryButton fontSizeSmaller white">
-						<strong>A-Z</strong>
-						<input id="librarySearchField" class="hidden"></input></div>
-					<div id="contactsLibraryButton_Fav"	class="libraryButton fontSizeSmaller white"><strong>F</strong></div>
-					<ul id="contactsLibraryFilter" class="contactsLibraryFilter">
-						<li id="contactsLibraryFilterButton_A"	class="libraryButton fontSizeSmaller white"><strong>A</strong></li>
-						<li id="contactsLibraryFilterButton_B"	class="libraryButton fontSizeSmaller white"><strong>B</strong></li>
-						<li id="contactsLibraryFilterButton_C"	class="libraryButton fontSizeSmaller white"><strong>C</strong></li>
-						<li id="contactsLibraryFilterButton_D"	class="libraryButton fontSizeSmaller white"><strong>D</strong></li>
-						<li id="contactsLibraryFilterButton_E"	class="libraryButton fontSizeSmaller white"><strong>E</strong></li>
-						<li id="contactsLibraryFilterButton_F"	class="libraryButton fontSizeSmaller white"><strong>F</strong></li>
-						<li id="contactsLibraryFilterButton_G"	class="libraryButton fontSizeSmaller white"><strong>G</strong></li>
-						<li id="contactsLibraryFilterButton_H"	class="libraryButton fontSizeSmaller white"><strong>H</strong></li>
-						<li id="contactsLibraryFilterButton_I"	class="libraryButton fontSizeSmaller white"><strong>I</strong></li>
-						<li id="contactsLibraryFilterButton_J"	class="libraryButton fontSizeSmaller white"><strong>J</strong></li>
-						<li id="contactsLibraryFilterButton_K"	class="libraryButton fontSizeSmaller white"><strong>K</strong></li>
-						<li id="contactsLibraryFilterButton_L"	class="libraryButton fontSizeSmaller white"><strong>L</strong></li>
-						<li id="contactsLibraryFilterButton_M"	class="libraryButton fontSizeSmaller white"><strong>M</strong></li>
-						<li id="contactsLibraryFilterButton_N"	class="libraryButton fontSizeSmaller white"><strong>N</strong></li>
-						<li id="contactsLibraryFilterButton_O"	class="libraryButton fontSizeSmaller white"><strong>O</strong></li>
-						<li id="contactsLibraryFilterButton_P"	class="libraryButton fontSizeSmaller white"><strong>P</strong></li>
-						<li id="contactsLibraryFilterButton_Q"	class="libraryButton fontSizeSmaller white"><strong>Q</strong></li>
-						<li id="contactsLibraryFilterButton_R"	class="libraryButton fontSizeSmaller white"><strong>R</strong></li>
-						<li id="contactsLibraryFilterButton_S"	class="libraryButton fontSizeSmaller white"><strong>S</strong></li>
-						<li id="contactsLibraryFilterButton_T"	class="libraryButton fontSizeSmaller white"><strong>T</strong></li>
-						<li id="contactsLibraryFilterButton_U"	class="libraryButton fontSizeSmaller white"><strong>U</strong></li>
-						<li id="contactsLibraryFilterButton_V"	class="libraryButton fontSizeSmaller white"><strong>V</strong></li>
-						<li id="contactsLibraryFilterButton_W"	class="libraryButton fontSizeSmaller white"><strong>W</strong></li>
-						<li id="contactsLibraryFilterButton_X"	class="libraryButton fontSizeSmaller white"><strong>X</strong></li>
-						<li id="contactsLibraryFilterButton_Y"	class="libraryButton fontSizeSmaller white"><strong>Y</strong></li>
-						<li id="contactsLibraryFilterButton_Z"	class="libraryButton fontSizeSmaller white"><strong>Z</strong></li>
-					</ul>
-					<ul id="contactList" class="contactList hidden">
-						<li id="Contact_1" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
-							<div class="phoneIcon"></div>
-							<div class="contactPhotoBox noContactPhoto">
-								<img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
-							</div>
-							<div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_Doe1</div>
-						</li>
-						<li id="Contact_2" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
-							<div class="phoneIcon"></div>
-							<div class="contactPhotoBox noContactPhoto">
-								<img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
-							</div>
-							<div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_Doe2</div>
-						</li>
-					</ul>
-					<div class="phone-interface-wrapper">
-						<div class="inputPhoneNumberBox">
-							<input id="inputPhoneNumber"
-							class="inputPhoneNumber box-shadow-4"
+        </head>
+        <body>
+            <div id="base">
+                <div id="topBar"></div>
+                <div id="app">
+                    <div id="clockElement"></div>
+                    <li class="fa fa-users contact-btn orange-viv">
+                        <span>CONTACTS</span>
+                    </li>
+                    <div class="contact-list-wrapper visibility-hidden">
+                        <div class="close-contacts"><i class="fa fa-times"></i></div>
+                        <div id="contact-filtering-controls">
+                            <div id="contactsLibraryButton_All"	class="nav-filter-btns fa fa-users">
+                                <span>
+                                    <strong>ALL CONTACTS</strong>
+                                </span>
+                                <input id="librarySearchField" class="hidden"></input>
+                            </div>
+                            <div id="contactsLibraryButton_Fav"	class="nav-filter-btns fa fa-star">
+                                <span>
+                                    <strong>FAVORITES</strong>
+                                </span>
+                            </div>
+                            <ul id="contactsLibraryFilter" class="contactsLibraryFilter">
+                                <li id="contactsLibraryFilterButton_A"	class="contact-index-ltr white">
+                                    <strong>A</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_B"	class="contact-index-ltr white">
+                                    <strong>B</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_C"	class="contact-index-ltr white">
+                                    <strong>C</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_D"	class="contact-index-ltr white">
+                                    <strong>D</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_E"	class="contact-index-ltr white">
+                                    <strong>E</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_F"	class="contact-index-ltr white">
+                                    <strong>F</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_G"	class="contact-index-ltr white">
+                                    <strong>G</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_H"	class="contact-index-ltr white">
+                                    <strong>H</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_I"	class="contact-index-ltr white">
+                                    <strong>I</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_J"	class="contact-index-ltr white">
+                                    <strong>J</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_K"	class="contact-index-ltr white">
+                                    <strong>K</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_L"	class="contact-index-ltr white">
+                                    <strong>L</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_M"	class="contact-index-ltr white">
+                                    <strong>M</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_N"	class="contact-index-ltr white">
+                                    <strong>N</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_O"	class="contact-index-ltr white">
+                                    <strong>O</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_P"	class="contact-index-ltr white">
+                                    <strong>P</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_Q"	class="contact-index-ltr white">
+                                    <strong>Q</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_R"	class="contact-index-ltr white">
+                                    <strong>R</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_S"	class="contact-index-ltr white">
+                                    <strong>S</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_T"	class="contact-index-ltr white">
+                                    <strong>T</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_U"	class="contact-index-ltr white">
+                                    <strong>U</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_V"	class="contact-index-ltr white">
+                                    <strong>V</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_W"	class="contact-index-ltr white">
+                                    <strong>W</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_X"	class="contact-index-ltr white">
+                                    <strong>X</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_Y"	class="contact-index-ltr white">
+                                    <strong>Y</strong>
+                                </li>
+                                <li id="contactsLibraryFilterButton_Z"	class="contact-index-ltr white">
+                                    <strong>Z</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- end contact-filtering-controls -->
+                        <ul id="contactList" class="contactList hidden">
+                            <li id="Contact_1" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
+                                <div class="phoneIcon"></div>
+                                <div class="contactPhotoBox noContactPhoto">
+                                    <img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
+                                </div>
+                                <div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_Doe1</div>
+                            </li>
+                            <li id="Contact_2" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
+                                <div class="phoneIcon"></div>
+                                <div class="contactPhotoBox noContactPhoto">
+                                    <img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
+                                </div>
+                                <div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_Doe2</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="phone-interface-wrapper">
+                        <div class="input-phone-number-box">
+                            <input id="inputPhoneNumber"
+							class="input-phone-number box-infill-blue"
 							type="text"
 				            onkeydown="if (event.keyCode === 13) { contact = { phoneNumbers: [{number: this.value}]}; acceptCall(contact); }"/>
-							<div id="deleteButton" class="deleteButton"><strong>X</strong></div>
-						</div>
-						<div class="numbersBox">
-							<div id="callButton" class="callButton box-shadow-4Active"></div>
-							<div id="numberButton" data-id="1"
-							class="numberButton white box-shadow-4 box-shadow-4Active"><strong>1</strong></div>
-							<div id="numberButton" data-id="2"
-							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>2</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>ABC</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="3"
-							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>3</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>DEF</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="4"
-							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>4</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>GHI</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="5"
-							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>5</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>JKL</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="6"
-							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>6</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>MNO</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="7"
-							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>7</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>PQRS</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="8"
-							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>8</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>TUV</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="9"
-							class="numberButton white box-shadow-4 box-shadow-4Active"> <strong>9</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>WXYZ</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="*"
-							class="numberButton blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>*</strong></div>
-							<div id="numberButton" data-id="0"
-							class="numberButton white box-shadow-4 box-shadow-4Active"><strong>0</strong>
-								<div
-								class="numberButtonLetters blue-viv"><strong><small>+</small></strong></div>
-							</div>
-							<div id="numberButton" data-id="#"
-							class="numberButton blue-viv box-shadow-4 box-shadow-4Active specialChar"><strong>#</strong></div>
-						</div>
-					</div>	
-					<div class="hidden">
-						<li id="CallHistoryItemTemplate" style="margin-right: 0px; ">
-							<div id="carouselBox_1" class="carouselBox" data-id="">
-								<div class="carouselPhotoArea ">
-									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src="" name="contactPhoto"></div>
-								</div>
-								<h5 class="carouselInfoBox carouselName"><strong name="contactName">Droopy</strong></h5>
-								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small name="contactPhone">8003456789</small></strong></div>
-								<div class="callHistoryElement ">
-									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-									<div class="callHistoryDetails">
-										<div class="date-of-call-missed" name="callTime">Jan/05/2015 07:15<br />
-										<span class="grey mc-call-datetime hidden"><strong name="contactTime2">MC-CALL-DATETIME</strong></span></div>
-										<div class="fontSizeXXSmall"><strong name="callDirection">testing direction</strong></div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li id="ContactTemplate" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
-							<div class="phoneIcon"></div>
-							<div class="contactPhotoBox noContactPhoto">
-								<img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
-							</div>
-							<div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_doe</div>
-						</li>
-					</div>
-					<ul id="contactsCarousel" class="contactsCarousel">
-						<li style="margin-right: 0px; ">
-							<div id="carouselBox_1" class="carouselBox" data-id="">
-								<div class="carouselPhotoArea ">
-									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
-								</div>
-								<h5 class="carouselInfoBox carouselName"><strong>Droopy</strong></h5>
-								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
-								<div class="callHistoryElement ">
-									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-									<div class="callHistoryDetails">
-										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
-										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li style="margin-right: 0px; ">
-							<div id="carouselBox_2" class="carouselBox " data-id="">
-								<div class="carouselPhotoArea ">
-									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
-								</div>
-								<h5 class="carouselInfoBox carouselName"><strong>Doc</strong></h5>
-								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
-								<div class="callHistoryElement ">
-									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-									<div class="callHistoryDetails">
-										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
-										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li style="margin-right: 0px; ">
-							<div id="carouselBox_3" class="carouselBox " data-id="">
-								<div class="carouselPhotoArea ">
-									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
-								</div>
-								<h5 class="carouselInfoBox carouselName"><strong>Grumpy</strong></h5>
-								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
-								<div class="callHistoryElement ">
-									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-									<div class="callHistoryDetails">
-										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
-										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li style="margin-right: 0px; ">
-							<div id="carouselBox_3" class="carouselBox " data-id="">
-								<div class="carouselPhotoArea ">
-									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
-								</div>
-								<h5 class="carouselInfoBox carouselName"><strong>Bashful</strong></h5>
-								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
-								<div class="callHistoryElement ">
-									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-									<div class="callHistoryDetails">
-										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
-										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li style="margin-right: 0px; ">
-							<div id="carouselBox_3" class="carouselBox " data-id="">
-								<div class="carouselPhotoArea ">
-									<div class="carouselPhotoBox noContactPhoto"><img class="carouselPhoto" src=""></div>
-								</div>
-								<h5 class="carouselInfoBox carouselName"><strong>Sleepy</strong></h5>
-								<div class="carouselInfoBox carouselNumber orange-viv"><strong><small>8003456789</small></strong></div>
-								<div class="callHistoryElement ">
-									<div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
-									<div class="callHistoryDetails">
-										<div class="date-of-call-missed">Jan/05/2015 07:15<br />
-										<span class="grey mc-call-datetime"><strong>MC-CALL-DATETIME</strong></span></div>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				<div id="callBox" class="callBox callBoxHidden">
-					<div class="callInfoBox">
-						<div class="callPhotoBox noContactPhoto"> <img id="callPhoto" class="callPhoto" /> </div>
-						<div id="callDuration" class="callDuration fontSizeLarge grey"><strong>00:00</strong></div>
-						<div id="inCallWith" class="inCallWith grey">Santa Claus</div>
-						<div id="callName" class="callName fontSizeXLarge grey"><strong>Call Name</strong></div>
-						<div id="callNumber" class="callNumber blue-viv"><small><strong>xxx-xxxx-xxx</strong></small></div>
-					</div>
-					<div class="callControlsBox">
-						<div
-								class="button controlButton grey bgColorDark boxShadowI1Lt speakerButton"><strong><small>SPEAKER</small></strong></div>
-						<div
-								class="button controlButton grey bgColorDark boxShadowI1Lt muteButton"><strong><small>MUTE</small></strong></div>
-						<div
-								class="button controlButton grey bgColorDark boxShadowI1Lt holdButton"><strong><small>HOLD</small></strong></div>
-						<div
-								class="button controlButton grey bgColorDark boxShadowI1Lt addCallButton"><strong><small>ADD CALL</small></strong></div>
-					</div>
-					<div id="callVolumeControl">
-						<div id = "VCicon"></div>
-						<div class = "sliderStart"></div>
-						<div id = "VCline" class =  "bgColorTheme"></div>
-						<div id = "VCinner" class =  "bgColorTheme boxShadow3"></div>
-						<div class="noVolumeSlider"></div>
-					</div>				
-				</div>
-				</div>
-			</div>
-			<div id="bottomBar"></div>
-		</div>
-	</body>
-</html>
+                            <div id="deleteButton" class="delete-button">
+                                <strong>X</strong>
+                            </div>
+                        </div>
+                        <div class="numbersBox">
+                            <div id="callButton" class="callButton"></div>
+                            <div id="numberButton" data-id="1"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>1</strong>
+                            </div>
+                            <div id="numberButton" data-id="2"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>2</strong>
+                                <div
+								class="number-buttonLetters blue-viv">
+                                    <strong>
+                                        <small>ABC</small>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div id="numberButton" data-id="3"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>3</strong>
+                                <div
+								class="number-buttonLetters blue-viv">
+                                    <strong>
+                                        <small>DEF</small>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div id="numberButton" data-id="4"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>4</strong>
+                                <div
+								class="number-buttonLetters blue-viv">
+                                    <strong>
+                                        <small>GHI</small>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div id="numberButton" data-id="5"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>5</strong>
+                                <div
+								class="number-buttonLetters blue-viv">
+                                    <strong>
+                                        <small>JKL</small>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div id="numberButton" data-id="6"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>6</strong>
+                                <div
+								class="number-buttonLetters blue-viv">
+                                    <strong>
+                                        <small>MNO</small>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div id="numberButton" data-id="7"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>7</strong>
+                                <div
+								class="number-buttonLetters blue-viv">
+                                    <strong>
+                                        <small>PQRS</small>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div id="numberButton" data-id="8"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>8</strong>
+                                <div
+								class="number-buttonLetters blue-viv">
+                                    <strong>
+                                        <small>TUV</small>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div id="numberButton" data-id="9"
+							class="number-button white box-infill-blue box-infill">
+                                <strong>9</strong>
+                                <div
+								class="number-buttonLetters blue-viv">
+                                    <strong>
+                                        <small>WXYZ</small>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div id="numberButton" data-id="*" class="number-button white box-infill-blue box-infill special-char">*</div>
+                            <div id="numberButton" data-id="0"
+							class="number-button white box-infill-blue box-infill special-char">
+                                <strong>0</strong>
+                            </div>
+                            <div id="numberButton" data-id="#" class="number-button white box-infill-blue box-infill special-char">
+                                <strong>#</strong>
+                            </div>
+                        </div>
+                        <div class="hidden">
+                            <li id="CallHistoryItemTemplate" style="margin-right: 0px; ">
+                                <div id="carouselBox_1" class="carouselBox" data-id="">
+                                    <div class="carouselPhotoArea ">
+                                        <div class="carouselPhotoBox noContactPhoto">
+                                            <img class="carouselPhoto" src="" name="contactPhoto">
+                                            </div>
+                                        </div>
+                                        <h5 class="carouselInfoBox carouselName">
+                                            <strong name="contactName">Droopy</strong>
+                                        </h5>
+                                        <div class="carouselInfoBox carouselNumber orange-viv">
+                                            <strong>
+                                                <small name="contactPhone">8003456789</small>
+                                            </strong>
+                                        </div>
+                                        <div class="callHistoryElement ">
+                                            <div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+                                            <div class="callHistoryDetails">
+                                                <div class="date-of-call-missed" name="callTime">Jan/05/2015 07:15
+                                                    <br />
+                                                    <span class="grey mc-call-datetime hidden">
+                                                        <strong name="contactTime2">MC-CALL-DATETIME</strong>
+                                                    </span>
+                                                </div>
+                                                <div class="fontSizeXXSmall">
+                                                    <strong name="callDirection">testing direction</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="ContactTemplate" class="contactElement boxShadow4 borderColorTheme" data-bind="click: ContactsLibrary.openContactDetail">
+                                    <div class="phoneIcon"></div>
+                                    <div class="contactPhotoBox noContactPhoto">
+                                        <img name="contactPhoto" class="contactPhoto" src="images/contact_picture_blue.png" data-bind="attr:{src: photoURI}" />
+                                    </div>
+                                    <div name="contactName" class="contactName fontSizeLarge fontWeightBold fontColorNormal textBgColorNormalTransparent" data-bind="text: Phone.getDisplayNameStr($data)">John_doe</div>
+                                </li>
+                            </div>
+
+                        </div>
+                                                    <div id="callBox" class="callBox callBoxHidden">
+                                <div class="callInfoBox">
+                                    <div class="callPhotoBox noContactPhoto">
+                                        <img id="callPhoto" class="callPhoto" />
+                                    </div>
+                                    <div id="callDuration" class="callDuration fontSizeLarge grey">
+                                        <strong>00:00</strong>
+                                    </div>
+                                    <div id="inCallWith" class="inCallWith grey">Santa Claus</div>
+                                    <div id="callName" class="callName fontSizeXLarge grey">
+                                        <strong>Call Name</strong>
+                                    </div>
+                                    <div id="callNumber" class="callNumber blue-viv">
+                                        <small>
+                                            <strong>xxx-xxxx-xxx</strong>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="callControlsBox">
+                                    <div
+								class="button controlButton grey bgColorDark boxShadowI1Lt speakerButton">
+                                        <strong>
+                                            <small>SPEAKER</small>
+                                        </strong>
+                                    </div>
+                                    <div
+								class="button controlButton grey bgColorDark boxShadowI1Lt muteButton">
+                                        <strong>
+                                            <small>MUTE</small>
+                                        </strong>
+                                    </div>
+                                    <div
+								class="button controlButton grey bgColorDark boxShadowI1Lt holdButton">
+                                        <strong>
+                                            <small>HOLD</small>
+                                        </strong>
+                                    </div>
+                                    <div
+								class="button controlButton grey bgColorDark boxShadowI1Lt addCallButton">
+                                        <strong>
+                                            <small>ADD CALL</small>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div id="callVolumeControl">
+                                    <div id = "VCicon"></div>
+                                    <div class = "sliderStart"></div>
+                                    <div id = "VCline" class =  "bgColorTheme"></div>
+                                    <div id = "VCinner" class =  "bgColorTheme boxShadow3"></div>
+                                    <div class="noVolumeSlider"></div>
+                                </div>
+                            </div>
+                        <ul id="contactsCarousel" class="contactsCarousel">
+                            <li style="margin-right: 0px; ">
+                                <div id="carouselBox_1" class="carouselBox" data-id="">
+                                    <div class="carouselPhotoArea ">
+                                        <div class="carouselPhotoBox noContactPhoto">
+                                            <img class="carouselPhoto" src="">
+                                            </div>
+                                        </div>
+                                        <h5 class="carouselInfoBox carouselName">
+                                            <strong>Droopy</strong>
+                                        </h5>
+                                        <div class="carouselInfoBox carouselNumber orange-viv">
+                                            <strong>
+                                                <small>8003456789</small>
+                                            </strong>
+                                        </div>
+                                        <div class="callHistoryElement ">
+                                            <div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+                                            <div class="callHistoryDetails">
+                                                <div class="date-of-call-missed">Jan/05/2015 07:15
+                                                    <br />
+                                                    <span class="grey mc-call-datetime">
+                                                        <strong>MC-CALL-DATETIME</strong>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li style="margin-right: 0px; ">
+                                    <div id="carouselBox_2" class="carouselBox " data-id="">
+                                        <div class="carouselPhotoArea ">
+                                            <div class="carouselPhotoBox noContactPhoto">
+                                                <img class="carouselPhoto" src="">
+                                                </div>
+                                            </div>
+                                            <h5 class="carouselInfoBox carouselName">
+                                                <strong>Doc</strong>
+                                            </h5>
+                                            <div class="carouselInfoBox carouselNumber orange-viv">
+                                                <strong>
+                                                    <small>8003456789</small>
+                                                </strong>
+                                            </div>
+                                            <div class="callHistoryElement ">
+                                                <div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+                                                <div class="callHistoryDetails">
+                                                    <div class="date-of-call-missed">Jan/05/2015 07:15
+                                                        <br />
+                                                        <span class="grey mc-call-datetime">
+                                                            <strong>MC-CALL-DATETIME</strong>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li style="margin-right: 0px; ">
+                                        <div id="carouselBox_3" class="carouselBox " data-id="">
+                                            <div class="carouselPhotoArea ">
+                                                <div class="carouselPhotoBox noContactPhoto">
+                                                    <img class="carouselPhoto" src="">
+                                                    </div>
+                                                </div>
+                                                <h5 class="carouselInfoBox carouselName">
+                                                    <strong>Grumpy</strong>
+                                                </h5>
+                                                <div class="carouselInfoBox carouselNumber orange-viv">
+                                                    <strong>
+                                                        <small>8003456789</small>
+                                                    </strong>
+                                                </div>
+                                                <div class="callHistoryElement ">
+                                                    <div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+                                                    <div class="callHistoryDetails">
+                                                        <div class="date-of-call-missed">Jan/05/2015 07:15
+                                                            <br />
+                                                            <span class="grey mc-call-datetime">
+                                                                <strong>MC-CALL-DATETIME</strong>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li style="margin-right: 0px; ">
+                                            <div id="carouselBox_3" class="carouselBox " data-id="">
+                                                <div class="carouselPhotoArea ">
+                                                    <div class="carouselPhotoBox noContactPhoto">
+                                                        <img class="carouselPhoto" src="">
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="carouselInfoBox carouselName">
+                                                        <strong>Bashful</strong>
+                                                    </h5>
+                                                    <div class="carouselInfoBox carouselNumber orange-viv">
+                                                        <strong>
+                                                            <small>8003456789</small>
+                                                        </strong>
+                                                    </div>
+                                                    <div class="callHistoryElement ">
+                                                        <div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+                                                        <div class="callHistoryDetails">
+                                                            <div class="date-of-call-missed">Jan/05/2015 07:15
+                                                                <br />
+                                                                <span class="grey mc-call-datetime">
+                                                                    <strong>MC-CALL-DATETIME</strong>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li style="margin-right: 0px; ">
+                                                <div id="carouselBox_3" class="carouselBox " data-id="">
+                                                    <div class="carouselPhotoArea ">
+                                                        <div class="carouselPhotoBox noContactPhoto">
+                                                            <img class="carouselPhoto" src="">
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="carouselInfoBox carouselName">
+                                                            <strong>Sleepy</strong>
+                                                        </h5>
+                                                        <div class="carouselInfoBox carouselNumber orange-viv">
+                                                            <strong>
+                                                                <small>8003456789</small>
+                                                            </strong>
+                                                        </div>
+                                                        <div class="callHistoryElement ">
+                                                            <div class="missedNewCallIcon callHistoryIcon callHistoryIconGen"></div>
+                                                            <div class="callHistoryDetails">
+                                                                <div class="date-of-call-missed">Jan/05/2015 07:15
+                                                                    <br />
+                                                                    <span class="grey mc-call-datetime">
+                                                                        <strong>MC-CALL-DATETIME</strong>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div id="bottomBar"></div>
+                                    </div>
+                                </body>
+                            </html>
