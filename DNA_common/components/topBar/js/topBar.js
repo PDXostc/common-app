@@ -66,13 +66,6 @@ TopBar.includeHTMLFailed = function(linkobj) {
 
 includeHTML("DNA_common/components/topBar/topBar.html", TopBar.includeHTMLSucess, TopBar.includeHTMLFailed);
 
-TopBar.backbuttonTimeout = setTimeout(function() {
-	if(tizen.application.getCurrentApplication().appInfo.packageId == "JLRPOCX001")
-		$("#homeScreenIcon").attr('src', '/DNA_common/images/Tizen.png');
-	else
-		$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
-}, 1000);
-
 TopBar.backButtonWin = function(x){console.log(x);tizen.application.getCurrentApplication().exit();}
 TopBar.backButtonFail = function(x){console.log(x);}
 
@@ -410,6 +403,12 @@ function initTaskLauncher(){
 	"use strict";
 	if (typeof tizen !== 'undefined') {
 		try {
+			//Update the topbar icon
+			if(tizen.application.getCurrentApplication().appInfo.packageId == "JLRPOCX001")
+				$("#homeScreenIcon").attr('src', '/DNA_common/images/Tizen.png');
+			else
+				$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
+
 			// get the installed applications list
 			tizen.application.getAppsInfo(onTaskInfoSuccess, function(err) {
 				// Workaround due to https://bugs.tizen.org/jira/browse/TIVI-2018
@@ -426,7 +425,6 @@ function initTaskLauncher(){
 }
 function onTaskInfoSuccess(list){
 	try {
-
 		for (i = 0; i < list.length; i++) {
 			var app = list[i];
 			var newApp = {
@@ -469,32 +467,33 @@ function supports_html5_storage() {
     return false;
   }
 }
-function setIcons(id,text){
+function setIcons(id){
 	addLineToFile('./Documents/.topbar.ini',id)
-	addLineToFile('./Documents/.topbar.ini',text)
-	return localStorage.setItem(id,JSON.stringify(text));
+	addLineToFile('./Documents/.topbar.ini',taskList[id].source)
+	addLineToFile('./Documents/.topbar.ini',taskList[id].cb)
+	return localStorage.setItem(id,JSON.stringify(taskList[id]));
 }
 function getIcons(id){
 	return JSON.parse(localStorage.getItem(id) || getLineFromFile('./Documents/.topbar.ini',id) || null);
 }
 function initIcon(num){
 	//initialize icons
-	name="topTask"+num;
-	$('#'+name).html(getIcons(name));
+	name="taskList #"+num;
+	getIcons(num)
+	displayTasks();
 	return " Retrieved ::"+name+" : "+getIcons(name)+"\n";
 }
 function saveIcon(num){
 	//save icons
-	name="topTask"+num;
-	setIcons(name,$('#'+name).html());
+	name="taskList #"+num;
+	setIcons(num);
 	return " Saved ::"+name+" : "+getIcons(name)+"\n";
 }
-function setHtml(id,content){
-	return $("#topTask"+id).html(content);
-}
-function setClick(id, id2){
+function primeIcon(id,content){
+	$("#topTask"+id).html(content);
+
 	$("#topTask"+id).click(function(){
-		id2.click();
+		taskList[id].cb.click();
 	});
 }
 
@@ -516,16 +515,15 @@ function topbarReindex(){
     	if(taskList[i].source.length>0)
         	temp[start++] = taskList[i];
     }
-    for(var n=start;n<=6;n++){
+    for(var n=start;n<7;n++){
     	temp[n] = {source:"", cb:function(){}};
     }
 	return temp;
 }
 function topbarRender(){
-	for(var id=0;id<=6;id++){
-		setHtml(id,taskList[id].source);
-		setClick(id,taskList[id].cb);
-	}	
+	for(var id=0;id<7;id++){
+		primeIcon(id,taskList[id].source);
+	}
 }
 function displayTasks(){
 	//removes all icon duplicates
@@ -546,7 +544,7 @@ function emptyIcon(task){
 }
 function dropIcon(icon){
 	var comparison1 = icon;
-	for(n = 0; n <= 6; n++){
+	for(n = 0; n < 7; n++){
 		var comparison2 = taskList[n].source[0];
 		if(typeof comparison1 === "object"  && typeof comparison2 === "object" && comparison1 == comparison2){
 			taskList[n] = {source:"", cb:function(){}};
@@ -554,7 +552,8 @@ function dropIcon(icon){
 	}
 }
 function replaceIcon(id,icon){
-	$("#hex"+id).prepend(icon).children().css("visibility", "visible");
+	if($("#hex"+id).html() == "<br>")
+		$("#hex"+id).prepend(icon).children().css("visibility", "visible");
 }
 function addIconAtLocation(topbarLocation, gridIcon, clickListener){
 	taskList[topbarLocation]={source:gridIcon, cb:clickListener};
@@ -565,15 +564,17 @@ function dnaGridLaunch(id1,id2){
 	id1=Right(id1,1);
 	id2=Right(id2,1);
 
-	//Adding from App Grid
-	var topbarLocation = id2;
-	var gridIcon = $("#hex"+id1).contents().slice(0,1).clone();
-	var clickListener = $("#hex"+id1).parent();
+		//Adding from App Grid
+		var topbarLocation = id2;
+		var gridIcon = $("#hex"+id1).contents().slice(0,1).clone();
+		//var gridIcon = $("#hex"+id1).parent().data()["appData"].style.slice(23).slice(0,-3) //"Grid Icon" is path to actual icon
+		var clickListener = $("#hex"+id1).parent();
+		//var clickListener = $("#hex"+id1).parent().data()["appData"]; //"Click listener" is actual app ID
 
-	addIconAtLocation(topbarLocation, gridIcon.prevObject, clickListener[0]);
-	replaceIcon(id1, gridIcon);
+		addIconAtLocation(topbarLocation, gridIcon.prevObject, clickListener[0]);
 
 	displayTasks();
+	replaceIcon(id1, gridIcon); // Don't remove it from the app grid!
 }
 function dnaSwitchLaunch(id1,id2){
 	//Get ID Numbers
