@@ -20,4 +20,6 @@ $(".close-contacts").click(function() {
 	$(".contact-btn").removeClass("visibility-hidden");
 
 });
+
+
 }); //end of doc ready

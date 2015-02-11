@@ -13,7 +13,7 @@
 		<div class="phoneIcon"></div>
 		<div class="contactDetailBox4">
 			<div id="contactDetailMobileTitle">MOBILE</div>
-			<div id= "contactDetailMobile" class="fontSizeLarger fontWeightBold fontColorNormal">{{:phoneNumber}}</div>
+			<div id= "contactDetailMobile" class=""><strong>{{:phoneNumber}}</strong></div>
 		</div>
 		
 	</div>
@@ -21,14 +21,14 @@
 		<div class="emailIcon"></div>
 		<div class="contactDetailBox4">
 			<div id="contactDetailEmailTitle">EMAIL</div>
-			<div class="fontSizeLarger fontWeightBold fontColorNormal">{{:email}}</div>
+			<div class=""><strong>{{:email}}</strong></div>
 		</div>
 	</div>
 	<div class="contactDetailBox3">
 		<div class="addressIcon"></div>
 		<div class="contactDetailBox4">
 			<div id="contactDetailAddressTitle">ADDRESS</div>
-			<div class="fontSizeLarger fontWeightBold fontColorNormal">{{:address.toUpperCase()}}</div>
+			<div class=""><strong>{{:address.toUpperCase()}}</strong></div>
 		</div>
 	</div>
 </div>
@@ -39,8 +39,8 @@
 		<div
 			class="{{if direction == 'missed-new'}}missedNew{{else}}{{:direction.toString().toLowerCase()}}{{/if}}CallIcon callHistoryIcon"></div>
 		<div class="callHistoryDetails">
-			<div class="fontSizeLarge fontWeightBold fontColorNormal">{{:startTime.toString().toUpperCase()}}</div>
-			<div class="fontSizeXSmall fontWeightBold fontColorTheme">{{:direction.toString().toUpperCase()}}</div>
+			<div class="text-large"><strong>{{:startTime.toString().toUpperCase()}}</strong></div>
+			<div class=""><small><strong>{{:direction.toString().toUpperCase()}}</strong></small></div>
 		</div>
 	</div>
 	{{/foreach}}
