@@ -227,22 +227,26 @@ var	Phone = (function() {
 	 * @return {Object} if contact is found, return contact. Else return first element from contacts list.
 	 */
 	Phone.prototype.getContactByPhoneNumber = function(phoneNumber) {
-
-		var self = this;
+		var contact=null;
+		console.log("getContactByPhoneNumber ",phoneNumber);
 		if ( !! phoneNumber && phoneNumber !== "") {
 			phoneNumber = formatPhoneNumber(phoneNumber);
-			var foundContact = ko.utils.arrayFirst(self.contacts(), function(contact) {
+			console.log("getContactByPhoneNumber ",phoneNumber);
+			for ( contact in this.contacts ) {
+				contact = this.contacts[contact];
+				console.log("Contact = ",contact);
 				if ( !! contact.phoneNumbers && contact.phoneNumbers.length) {
-					for (var i = 0; i < contact.phoneNumbers.length; ++i) {
-						if ( !! contact.phoneNumbers[i].number && contact.phoneNumbers[i].number === phoneNumber) {
-							return true;
+					for (var index = 0; index < contact.phoneNumbers.length; ++index) {
+						console.log("contact Numberx=",contact.phoneNumbers[index].number,formatPhoneNumber(contact.phoneNumbers[index].number).indexOf(phoneNumber));
+						if ( !! contact.phoneNumbers[index].number && formatPhoneNumber(contact.phoneNumbers[index].number).indexOf(phoneNumber)>=0) {
+							console.log("getContactByPhoneNumber contact=",JSON.stringify(contact));
+							return contact;
 						}
 					}
 				}
-				return false;
-			});
-			return foundContact;
+			}
 		}
+		console.log("getContactByPhoneNumber contact=null");
 		return null;
 	};
 	/** 

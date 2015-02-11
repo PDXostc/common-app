@@ -4,6 +4,27 @@
 		"tags": ["call.voice",
 		"call.video"],
 		"callParticipants": [{
+			"id": "F926BBEC-9FE7-4360-831B-A14A03DAC655",
+			"displayName": "Art McGee",
+			"contactRef": null
+		}],
+		"forwardedFrom": {
+			
+		},
+		"startTime": "2012-10-12T14:31:44.188Z",
+		"duration": 0,
+		"endReason": "local",
+		"direction": "missed-new",
+		"recording": [],
+		"cost": 0,
+		"currency": null
+	},
+	{
+		"serviceId": 1350052304188,
+		"callType": "tizen.tel",
+		"tags": ["call.voice",
+		"call.video"],
+		"callParticipants": [{
 			"id": "F57AA60B-011D-4210-9450-08E6BEDEAE8B",
 			"displayName": "Brad Rob",
 			"contactRef": null

@@ -287,7 +287,8 @@ var callingPanelInitialized = false;
 function initializeCallInfo(contact) {
     "use strict";
     var callNumber;
-    console.log(contact);
+    contact = Phone.getContactByPhoneNumber(contact);
+    console.log("initializeCallInfo" ,JSON.stringify(contact));
     if ( !! contact) {
 
         if ( !! contact.name) {
@@ -497,7 +498,7 @@ function acceptCall(contact) {
     if (tizen.phone) {
         CallDuration.resetIt();
 
-        initializeCallInfo(contact);
+        initializeCallInfo(contact.phoneNumbers[0].number);
         var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus !== "ACTIVE".toLowerCase() && callStatus !== "DIALING".toLowerCase()) {
 
@@ -688,8 +689,10 @@ $(document).ready(
 					ContactsLibrary.Letter = null;
 					ContactsLibrary.Search = null;
 					ContactsLibrary.showContacts();
-				} else {
+				} else if (ContactsLibrary.isHidden()) {
 					ContactsLibrary.show();
+				} else {
+					ContactsLibrary.hide();
 				}
 			});
 			$("#contactsLibraryButton_Fav").bind('click', function() {
@@ -698,6 +701,7 @@ $(document).ready(
 				ContactsLibrary.Letter = null;
 				ContactsLibrary.Search = null;
 				ContactsLibrary.showContacts();
+				ContactsLibrary.show();
 				console.log("click contactsLibraryButton_Fav End");
 			});
 			$("#contactsLibraryFilterButton_A").bind('click', function() {Events.LetterClick("a");});

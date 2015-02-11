@@ -65,6 +65,14 @@ var ContactsLibrary = {
 	/**
 	 * Method unhides library page.
 	 * 
+	 * @method isHidden
+	 */
+	 isHidden : function() {
+		 return $("#contactList").hasClass("hidden");
+	 },
+	/**
+	 * Method unhides library page.
+	 * 
 	 * @method show
 	 */
 	show : function() {
