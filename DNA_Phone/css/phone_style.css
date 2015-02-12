@@ -6,7 +6,7 @@ overflow-y: scroll;
 overflow-x: hidden;
 position: absolute;
 top: 115px;
-padding:0 24px;
+padding:60px 24px 0;
 z-index: 2;
 box-sizing:border-box;
 display: flex;
@@ -154,7 +154,8 @@ flex: 2;
 	display: none;
 }
 .fa.fa-phone, .fa.fa-home, .fa.fa-briefcase {
-font-size:22px /*I know, pixels... but once templates are in place, we'll see */
+font-size: 22px;
+color: #4cda00;
 }
 
 .phone-type-mobile, .phone-type-home {margin-bottom:12px;}
@@ -247,12 +248,13 @@ font-size:14px;
 
 .close-contacts {
 	position: absolute;
-	top: 13px;
-	right: 13px;
+	top: -10px;
+	right: 32px;
 	padding: 0;
-	width: 55px;
-	height: 47px;
+	width: 35px;
+	height: 40px;
 	color:#fff;
+	text-align:center;
 }
 .noPairedDevice{
 	top:130px;
@@ -293,8 +295,12 @@ font-size:14px;
 
 .special-char {
 	padding-top: 18px;
-	/* height: 70px;*/
 }
+.special-char-asterisk {
+	padding-top: 14px;
+	font-size: 6rem;
+}
+
 
 .special-fa-size {font-size:18px;padding-top:26px;}
 
@@ -350,7 +356,7 @@ box-sizing:border-box;
 }
 
 .carouselPhotoBox {
-	margin: 32px auto 28px auto;
+	margin: 16px auto 28px auto;
 	width: 120px;
 	height: 120px;
 	background-position: center center;
