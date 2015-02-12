@@ -27,10 +27,10 @@ make "OBS=1" apps
 %install
 make "OBS=1" install_obs DESTDIR="%{?buildroot}"
 
-%post
-for app in /opt/usr/apps/.preinstallWidgets/*.wgt; do
-	su app -c'xwalkctl -i '${app}'';
-done
+#%post
+#for app in /opt/usr/apps/.preinstallWidgets/*.wgt; do
+#	su app -c'xwalkctl -i '${app}'';
+#done
 
 %postun
 for app in /opt/usr/apps/.preinstallWidgets/*.wgt; do
