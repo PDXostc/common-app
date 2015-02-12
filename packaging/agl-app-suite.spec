@@ -11,6 +11,8 @@ BuildRequires:  zip
 BuildRequires:  desktop-file-utils
 
 Requires:       media-manager
+# Install requires existence of app user, who is created in meta-ivi
+Requires:       meta-ivi
 
 %description
 A collection of IVI software
