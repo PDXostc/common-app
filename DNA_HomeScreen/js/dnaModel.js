@@ -713,8 +713,8 @@ function onAppRecallSuccess(list) {
 		for (i = 0; i < list.length; i++) {
 			var app = list[i];
 			if(app.name != "Home Screen"){
-				if (registeredApps[app.name]) {
-					addIcon(app.name, null, registeredApps[app.name], app.id);
+				if (registeredApps[app.id]) {
+					addIcon(app.name, null, registeredApps[app.id], app.id);
 				}else{
 					if(app.iconPath.substr(app.iconPath.length - 4) != ".png"){
 						var path="./DNA_common/images/tizen_inactive.png";

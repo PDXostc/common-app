@@ -248,8 +248,8 @@ function onAppInfoSuccess(list) {
 			if( name != HomeScreenName ){
 				icon = list[index].iconPath;
 				id = list[index].id;
-				if(registeredApps[name]){
-					icon = registeredApps[name];
+				if(registeredApps[id]){
+					icon = registeredApps[id];
 				}
 				toptasks.push({"icon":icon,"id":id});
 			}
@@ -272,9 +272,9 @@ function onAppInfoSuccess(list) {
 				css: "app_" + app.id.replace(/\./g, "_").replace(/\ /g, "_"),
 				installed: true
 			};
-			if (registeredApps[app.name]) {
-				newApp.style = "background-image: url('"+ registeredApps[app.name] + "');";
-				newApp.iconPath = registeredApps[app.name];
+			if (registeredApps[app.id]) {
+				newApp.style = "background-image: url('"+ registeredApps[app.id] + "');";
+				newApp.iconPath = registeredApps[app.id];
 			}
 			applications.push(newApp);
 		}
@@ -438,9 +438,9 @@ function onTaskInfoSuccess(list){
 				css: "app_" + app.id.replace(/\./g, "_").replace(/\ /g, "_"),
 				installed: true
 			};
-			if (registeredApps[app.name]) {
-				newApp.style = "background-image: url('"+ registeredApps[app.name] + "');";
-				newApp.iconPath = registeredApps[app.name];
+			if (registeredApps[app.id]) {
+				newApp.style = "background-image: url('"+ registeredApps[app.id] + "');";
+				newApp.iconPath = registeredApps[app.id];
 			}
 			applications.push(newApp);
 		}
