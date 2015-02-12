@@ -5,7 +5,7 @@ var taskList = [];
 	for(var i=0;i<7;i++)
 		emptyIcon(i);
 var first=true;
-var dataResolved=false;
+//var dataResolved=false;
 var updateText='resolved\n';
 var name="";
 var extras = 0, index = 0, icon = 0, id = 0, installed=0;
@@ -66,14 +66,7 @@ TopBar.includeHTMLFailed = function(linkobj) {
 
 includeHTML("DNA_common/components/topBar/topBar.html", TopBar.includeHTMLSucess, TopBar.includeHTMLFailed);
 
-TopBar.backbuttonTimeout = setTimeout(function() {
-	if(tizen.application.getCurrentApplication().appInfo.packageId == "JLRPOCX001")
-		$("#homeScreenIcon").attr('src', '/DNA_common/images/Tizen.png');
-	else
-		$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
-}, 1000);
-
-TopBar.backButtonWin = function(x){console.log(x);tizen.application.getCurrentApplication().exit();}
+TopBar.backButtonWin = function(x){console.log(x);/*tizen.application.getCurrentApplication().exit();*/}
 TopBar.backButtonFail = function(x){console.log(x);}
 
 /* ==== ==== ==== init app grid js code ==== ==== ==== */
@@ -180,6 +173,9 @@ function initAppGrid(){
 
 function Right(str, len){
 	return str.substring(str.length-len, str.length);
+}
+function After(str, len){
+	return str.substring(len);
 }
 function Divisible(integer,by){
 	return integer/by == Math.floor(integer/by);
@@ -410,6 +406,12 @@ function initTaskLauncher(){
 	"use strict";
 	if (typeof tizen !== 'undefined') {
 		try {
+			//Update the topbar icon
+			if(tizen.application.getCurrentApplication().appInfo.packageId == "JLRPOCX001")
+				$("#homeScreenIcon").attr('src', '/DNA_common/images/Tizen.png');
+			else
+				$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
+
 			// get the installed applications list
 			tizen.application.getAppsInfo(onTaskInfoSuccess, function(err) {
 				// Workaround due to https://bugs.tizen.org/jira/browse/TIVI-2018
@@ -426,7 +428,6 @@ function initTaskLauncher(){
 }
 function onTaskInfoSuccess(list){
 	try {
-
 		for (i = 0; i < list.length; i++) {
 			var app = list[i];
 			var newApp = {
@@ -451,15 +452,11 @@ function onTaskInfoSuccess(list){
 	} catch (exc) {
 		console.error(exc.message);
 	}
-	onStartTopBar();
+	Configuration.reload(onStartTopBar);
 	return true;
 }
 
 /* ==== ==== ==== persistence functions ==== ==== ==== */
-
-//disk backup unsupported at this time
-function addLineToFile(file, line){}
-function getLineFromFile(file, line){}
 
 function supports_html5_storage() {
 	//Check for html5 localstorage support: Returns true or false
@@ -469,33 +466,39 @@ function supports_html5_storage() {
     return false;
   }
 }
-function setIcons(id,text){
-	addLineToFile('./Documents/.topbar.ini',id)
-	addLineToFile('./Documents/.topbar.ini',text)
-	return localStorage.setItem(id,JSON.stringify(text));
+function setIcons(id){
+	//localStorage.setItem(id,JSON.stringify(taskList[id]));
+	Configuration.set("Settings.topBar.task"+id,taskList[id]);
+	Configuration.save();
 }
 function getIcons(id){
-	return JSON.parse(localStorage.getItem(id) || getLineFromFile('./Documents/.topbar.ini',id) || null);
+	//return JSON.parse(localStorage.getItem(id));
+	return Configuration.get("Settings.topBar.task"+id);
 }
 function initIcon(num){
 	//initialize icons
-	name="topTask"+num;
-	$('#'+name).html(getIcons(name));
-	return " Retrieved ::"+name+" : "+getIcons(name)+"\n";
+	name="taskList #"+num;
+	if(JSON.stringify(getIcons(num)).length < 22)
+		taskList[num] = {source:"", cb:""};
+	else
+		taskList[num]=getIcons(num);
+	displayTasks();
 }
 function saveIcon(num){
 	//save icons
-	name="topTask"+num;
-	setIcons(name,$('#'+name).html());
-	return " Saved ::"+name+" : "+getIcons(name)+"\n";
+	name="taskList #"+num;
+	setIcons(num);
 }
-function setHtml(id,content){
-	return $("#topTask"+id).html(content);
-}
-function setClick(id, id2){
-	$("#topTask"+id).click(function(){
-		id2.click();
-	});
+function primeIcon(id,content){
+	if(content.length>0){
+		$("#topTask"+id).html("<img class='draggable' src='"+content+"''>");
+		$("#topTask"+id).click(function(){
+			tizen.application.launch(taskList[id].cb, TopBar.backButtonFail, TopBar.backButtonFail);
+			//tizen.application.getCurrentApplication().exit();
+		});
+	}else{
+		$("#topTask"+id).html("");
+	}
 }
 
 /* ==== ==== ==== topbar display code ==== ==== ==== */
@@ -503,10 +506,8 @@ function setClick(id, id2){
 function topbarDedupe(){
 	for(i in taskList){
 		for(n = 6; n >= 0; n--){
-			var comparison1 = taskList[n].source;
-			var comparison2 = taskList[i].source;
-			if(n != i && typeof comparison1 === "object"  && typeof comparison2 === "object" && comparison1.attr("src") == comparison2.attr("src") && taskList[n].cb == taskList[i].cb)
-				taskList[i] = {source:"", cb:function(){}};
+			if(n != i && taskList[n].cb == taskList[i].cb)
+				taskList[i] = {source:"", cb:""};
 		}
 	}
 }
@@ -516,16 +517,15 @@ function topbarReindex(){
     	if(taskList[i].source.length>0)
         	temp[start++] = taskList[i];
     }
-    for(var n=start;n<=6;n++){
-    	temp[n] = {source:"", cb:function(){}};
+    for(var n=start;n<7;n++){
+    	temp[n] = {source:"", cb:""};
     }
 	return temp;
 }
 function topbarRender(){
-	for(var id=0;id<=6;id++){
-		setHtml(id,taskList[id].source);
-		setClick(id,taskList[id].cb);
-	}	
+	for(var id=0;id<7;id++){
+		primeIcon(id,taskList[id].source);
+	}
 }
 function displayTasks(){
 	//removes all icon duplicates
@@ -542,19 +542,19 @@ function displayTasks(){
 /* ==== ==== ==== dragging functions ==== ==== ==== */
 
 function emptyIcon(task){
-	taskList[task] = {source:"", cb:function(){}};
+	taskList[task] = {source:"", cb:""};
 }
 function dropIcon(icon){
-	var comparison1 = icon;
-	for(n = 0; n <= 6; n++){
-		var comparison2 = taskList[n].source[0];
-		if(typeof comparison1 === "object"  && typeof comparison2 === "object" && comparison1 == comparison2){
-			taskList[n] = {source:"", cb:function(){}};
+	var comparison1 = icon.attr("src");
+	for(n = 0; n < 7; n++){
+		var comparison2 = taskList[n].source;
+		if(comparison1 == comparison2){
+			taskList[n] = {source:"", cb:""};
 		}
 	}
 }
 function replaceIcon(id,icon){
-	$("#hex"+id).prepend(icon).children().css("visibility", "visible");
+	$("#hex"+id).children().css("visibility", "visible");
 }
 function addIconAtLocation(topbarLocation, gridIcon, clickListener){
 	taskList[topbarLocation]={source:gridIcon, cb:clickListener};
@@ -562,18 +562,20 @@ function addIconAtLocation(topbarLocation, gridIcon, clickListener){
 
 function dnaGridLaunch(id1,id2){
 	//Get ID Numbers
-	id1=Right(id1,1);
+	id1=After(id1,3);
 	id2=Right(id2,1);
 
-	//Adding from App Grid
-	var topbarLocation = id2;
-	var gridIcon = $("#hex"+id1).contents().slice(0,1).clone();
-	var clickListener = $("#hex"+id1).parent();
+		//Adding from App Grid
+		var topbarLocation = id2;
+		//var gridIcon = $("#hex"+id1).contents().slice(0,1).clone(); //icon image straight from app grid
+		var gridIcon = $("#hex"+id1).parent().data()["appData"].style.slice(23).slice(0,-3); //"Grid Icon" is path to actual icon
+		//var clickListener = $("#hex"+id1).parent(); //event listener from app grid
+		var clickListener = $("#hex"+id1).parent().data()["appData"].id; //"Click listener" is actual app ID
 
-	addIconAtLocation(topbarLocation, gridIcon.prevObject, clickListener[0]);
-	replaceIcon(id1, gridIcon);
+		addIconAtLocation(topbarLocation, gridIcon, clickListener);
 
 	displayTasks();
+	replaceIcon(id1, gridIcon); // Don't remove it from the app grid!
 }
 function dnaSwitchLaunch(id1,id2){
 	//Get ID Numbers
@@ -592,7 +594,7 @@ function dnaSwitchLaunch(id1,id2){
 }
 function dnaDropLaunch(element){
 	//Dragging off topbar
-	dropIcon(element[0]);
+	dropIcon(element);
 	displayTasks();
 }
 
@@ -607,7 +609,7 @@ function onStartTopBar(){
 			updateText+=initIcon(tasks);
 		}
 		console.log(updateText);updateText="";
-		dataResolved=true;
+		//dataResolved=true;
 	} catch (exc) {
 		console.log(':: No data was retrieved for customizable topbar. '+exc.message);
 	}
@@ -615,7 +617,7 @@ function onStartTopBar(){
 
 function onUpdateTopBar(){
 	//add/move/remove? save data
-	if(dataResolved){
+	//if(dataResolved){
 		try {
 			//overwrite data
 			for(tasks=0;tasks<7;tasks++){
@@ -626,5 +628,5 @@ function onUpdateTopBar(){
 		} catch (exc) {
 			console.log(':: Could not save data during top bar update: ' + exc.message);
 		}
-	}
+	//}
 }
