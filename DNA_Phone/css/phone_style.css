@@ -7,10 +7,8 @@ overflow-x: hidden;
 position: absolute;
 top: 115px;
 padding:60px 24px 0;
-z-index: 2;
 box-sizing:border-box;
 display: flex;
-background: url("../DNA_common/images/Hex-Background.jpg") no-repeat 0 0 #000;
 }
 
 .open-contact-list {

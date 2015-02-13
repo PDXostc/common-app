@@ -667,6 +667,20 @@ $(document).ready(
 
 				});
 			}
+			//show the contact when the contacts button is clicked
+			//and hide the button
+			$("#opencontactlist").click(function() {
+				ContactsLibrary.show();
+				ContactsLibrary.Favorite = false;
+				ContactsLibrary.Letter = null;
+				ContactsLibrary.Search = null;
+			});
+
+			$(".close-contacts").click(function() {
+				$(".contact-list-wrapper").addClass("visibility-hidden");
+				$(".contact-btn").removeClass("visibility-hidden");
+				ContactsLibrary.hide();
+			});
 			$("#contactsLibraryButton_All").bind('click', function() {
 				console.log("click contactsLibraryButton_All");
 				if ((ContactsLibrary.Favorite)||(ContactsLibrary.Letter!=null)||(ContactsLibrary.Search != null)) {
