@@ -213,25 +213,17 @@ function generateLocListItem(locationObject,isCurrent){
 	
 	centerSection.append(removeControl);
 	
-	var locationName = $(document.createElement('span')).addClass('locName fontSizeXXXLarge fontLtBlue').html(locationObject.LocalizedName);
-	var moreInfo = 	$(document.createElement('div')).addClass('moreInfo').css("opacity","1");
+	var locationName = $(document.createElement('span')).addClass('locName').html(locationObject.LocalizedName);
+	var moreInfo = 	$(document.createElement('div')).addClass('moreInfo').css("opacity","1");	
 	var currentDetails = $(document.createElement('div')).addClass('currentDetails');
+	var ptag = $(document.createElement('p'));
+	var humidity = $(document.createElement('span')).addClass('humidityData').html("--");
+	var wind = $(document.createElement('span')).addClass('windData').html("--");
+	var rain = $(document.createElement('span')).addClass('rainData').html("  ");
+	var realFeel = $(document.createElement('span')).addClass('rfData').html("--");
 	
-	var humidity = $(document.createElement('span')).addClass('fontSizeSmall humidityData').html("--");
-	var wind = $(document.createElement('span')).addClass('fontSizeSmall windData').html("--");
-	var rain = $(document.createElement('span')).addClass('fontSizeSmall rainData').html("  ");
-	var realFeel = $(document.createElement('span')).addClass('fontSizeSmall rfData').html("--");
-
-/*
-    //render HTML
-    $("#currentDetails").append('<span class="fontSizeSmall">Humidity: '+ humidity + '%</span>' +
-     '<span class="fontSizeSmall">Wind: ' + wind + '<br />' +
-     '<span class="fontSizeSmall">Chance of Rain: ' + rain + '</span>' + 
-     '<span class="fontSizeSmall">RealFeel&#174;: ' + realFeel + '</span></class>');
-     
-*/
-	
-	currentDetails.append(humidity,wind,'<br>',rain,realFeel);
+	ptag.append(humidity,wind,'<br>',rain,realFeel);
+	currentDetails.append(ptag);
 	moreInfo.append(currentDetails);
 	//locationName.append(moreInfo);
 	centerSection.append(locationName,moreInfo);
@@ -385,8 +377,8 @@ function populateListItem(weatherData,locationKey){
 	$("#_"+locationKey+" .tempVal").html(detail.Temperature.Imperial.Value);
 	$("#_"+locationKey+" .weatherIcon").attr("src","images/Accuweather_icons/" + detail.WeatherIcon + "-s.png");
 	
-	$("#_"+locationKey+" .humidityData").html("Humidity: "+detail.RelativeHumidity+"%");
-	$("#_"+locationKey+" .windData").html("Wind: "+detail.Wind.Direction.Localized+ " " + detail.Wind.Speed.Imperial.Value+detail.Wind.Speed.Imperial.Unit);
+	$("#_"+locationKey+" .humidityData").html("Humidity: "+detail.RelativeHumidity+"% ");
+	$("#_"+locationKey+" .windData").html(" Wind: "+detail.Wind.Direction.Localized+ " " + detail.Wind.Speed.Imperial.Value+detail.Wind.Speed.Imperial.Unit);
 	//$("#_"+locationKey+" .rainData").html("Chance of Rain: "+rain);
 	$("#_"+locationKey+" .rfData").html("RealFeel&#174;: "+detail.RealFeelTemperature.Imperial.Value+detail.RealFeelTemperature.Imperial.Unit);
 	fixscroll();
@@ -683,10 +675,10 @@ $(document).ready(function() {
         realFeel = RealFeelValue + "&deg;" + RealFeelUnit; 
 
         //render HTML
-        $("#currentDetails").append('<span class="fontSizeSmall">Humidity: '+ humidity + '%</span>' +
-         '<span class="fontSizeSmall">Wind: ' + wind + '<br />' +
-         //'<span class="fontSizeSmall">Chance of Rain: ' + rain + '</span>' + 
-         '<span class="fontSizeSmall">RealFeel&#174;: ' + realFeel + '</span></class>');
+        $("#currentDetails").append('<p><span class="humidityData">Humidity: '+ humidity + '% </span>' +
+         '<span class="windData"> Wind: ' + wind + '<br />' +
+         //'<span class="rainData">Chance of Rain: ' + rain + '</span>' + 
+         '<span class="rfData">RealFeel&#174;: ' + realFeel + '</span></class></p>');
       }
     });
   };

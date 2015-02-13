@@ -95,10 +95,19 @@ html {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  color: rgb(178, 240, 255);
+  font-size: 62px;  
+  line-height: 62px;
 }
 .currentDetails {
   line-height: 10px;
   padding-bottom: 20px;
+}
+.currentDetails > p {
+  color: #fff;
+  padding: 10px;
+  font-size: 24px;
+  line-height: 24px;
 }
 .condImage {
   margin-left: 10px;
@@ -214,9 +223,6 @@ sup {
   font-weight: bold;
   padding-top: 2px;
   font-size: .85em;
-}
-span.fontSizeSmall {
-  padding: 10px;
 }
 
 #locationModal{
