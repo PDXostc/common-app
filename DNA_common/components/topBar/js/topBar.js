@@ -28,7 +28,7 @@ TopBar.topbarBack = function() {
 	if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001"){
 		tizen.application.launch('JLRPOCX001.HomeScreen', TopBar.backButtonWin, TopBar.backButtonFail);
 		//Uncomment for Singletasking mode
-		//tizen.application.getCurrentApplication().exit();
+		tizen.application.getCurrentApplication().exit();
 	}
 }
 
@@ -66,7 +66,7 @@ TopBar.includeHTMLFailed = function(linkobj) {
 
 includeHTML("DNA_common/components/topBar/topBar.html", TopBar.includeHTMLSucess, TopBar.includeHTMLFailed);
 
-TopBar.backButtonWin = function(x){console.log(x);/*tizen.application.getCurrentApplication().exit();*/}
+TopBar.backButtonWin = function(x){console.log(x);tizen.application.getCurrentApplication().exit();}
 TopBar.backButtonFail = function(x){console.log(x);}
 
 /* ==== ==== ==== init app grid js code ==== ==== ==== */
@@ -494,7 +494,7 @@ function primeIcon(id,content){
 		$("#topTask"+id).html("<img class='draggable' src='"+content+"''>");
 		$("#topTask"+id).click(function(){
 			tizen.application.launch(taskList[id].cb, TopBar.backButtonFail, TopBar.backButtonFail);
-			//tizen.application.getCurrentApplication().exit();
+			tizen.application.getCurrentApplication().exit();
 		});
 	}else{
 		$("#topTask"+id).html("");
