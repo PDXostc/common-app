@@ -738,7 +738,52 @@ ul, ol {
 .scrollable-xy::-webkit-scrollbar {
   display: none;
 }
+  ::-webkit-scrollbar {
+  width: 11px;  
+  margin-top: 20px; 
+} 
+::-webkit-scrollbar-track { 
+  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
+  border-left: 1px solid #202020; 
+  border-right: 1px solid #606060;  
+  border-top: none; 
+  border-bottom: none;  
+  margin-bottom: -1px;  
+} 
+::-webkit-scrollbar-thumb {   
+  background:linear-gradient(to right, rgba(112,112,112, .8), rgba(72,72,72, .8));  
+  border-radius:5px;  
+  border: 1px solid #202020;  
+}   
+ ::-webkit-scrollbar-button { 
+  height:11px;  
+  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
+  border-left: 1px solid #202020; 
+  border-right: 1px solid #606060;  
+  border-top: none; 
+  border-bottom: none;  
+}   
+::-webkit-scrollbar-corner {  
+  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
+  border-left: 1px solid #202020; 
+  border-right: 1px solid #606060;  
+  border-top: none; 
+  border-bottom: none;  
+  width: 8px; 
+  height: 8px;  
+} 
 
+/*orange scrollbar*/  
+/*::-webkit-scrollbar-thumb {   
+  background-color:#fe9c00; 
+  border-radius:5px;  
+} */  
+
+
+/**********************************************************/
 /* Text Overflow *****************************************/
 /* Replaces older styles with camelCasing */
 
