@@ -13,8 +13,9 @@ not_installed =\
            DNA_RVITest \
 
 extension_list = extension_common wkb_client_ext most
+ifndef TIZEN_IP
 TIZEN_IP=TizenVTC
-#TIZEN_IP=192.168.6.11
+endif
 
 #to avoid typing a password for each scp or ssh command you need to copy
 #your public key over 
