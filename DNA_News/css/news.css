@@ -158,6 +158,11 @@ ul#articleScroller {
 	bottom: -1px;
 }
 
+.articlePhoto {
+	margin: 20px 38px 20px 0px;
+	float: left;
+}
+
 .articleHead {
 	display: block;
 	padding: -8px;
@@ -170,7 +175,7 @@ ul#articleScroller {
 .articleBody {
 	display: block;
 	padding: 22px 31px 31px 31px;
-	line-height: 120%;
+	line-height: 1.4;
 }
 
 .thumbnail {

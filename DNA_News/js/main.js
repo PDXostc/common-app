@@ -249,7 +249,7 @@ function showArticle(url) {
         $('item',xml).each(function(i) {
             articleHead = $(this).find("title").text();
             articleBody = $(this).find("body").text();
-            articleBody = articleBody.replace(/(?:^|[^"'])((ftp|http|https|file):\/\/[\S]+(\b|$))/gi, "<p><img width=\"627px\" class=\"articlePhoto\" src=\"$1\" />");
+            articleBody = articleBody.replace(/(?:^|[^"'])((ftp|http|https|file):\/\/[\S]+(\b|$))/gi, "<p><img width=\"550px\" class=\"articlePhoto\" src=\"$1\" />");
             itemId = $(this).find("id").text();
             console.log("each loop for article items");
         });
