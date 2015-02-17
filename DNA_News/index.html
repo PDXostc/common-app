@@ -13,12 +13,12 @@
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <link rel="stylesheet" href="./DNA_common/css/style.css">
   <link rel="stylesheet" href="./css/news.css">
-  <link rel="import" href="./imports.html">
+  <!-- JavaScript is being loaded in at the bottom of the page for allowing the page to load visibly before JavaScript is executed.-->
   <title>News</title>
   <template id="newsItem">
     <a href="#">
       <li>
-        <div class="articleListItem textBgColorThemeTransparent">
+        <div class="articleListItem">
           <div class="thumbnail">
             <img width="260px">
           </div>
@@ -39,23 +39,23 @@
     <div id="app">
       <div id="clockElement"></div>
       <div class="wrapper">
-        <div id="newsChannels" class="newsChannels textBgColorThemeTransparent_DNA">
+        <div id="newsChannels" class="news-categories grey-bg">
           <span id="top" class="orange-viv selected padRight" ontouchend="showTop();">TOP NEWS</span> &#160;
           <span id="entertain" class="orange-lt deselected padRight" ontouchend="showEntertain();">PEOPLE</span>&#160; 
           <span id="sports" class="orange-lt deselected" ontouchend="showSports();">SPORTS</span>
         </div>
-        <div id="topArticleList" class="articleList borderLtBlue">
+        <div id="topArticleList" class="articleList">
           <ul id="topArticleListInner"></ul>
         </div>
-        <div id="entertainArticleList" class="articleList borderLtBlue">
+        <div id="entertainArticleList" class="articleList">
           <ul id="entertainArticleListInner">
           </ul>
         </div>
-        <div id="sportsArticleList" class="articleList borderLtBlue">
+        <div id="sportsArticleList" class="articleList">
           <ul id="sportsArticleListInner"></ul>
         </div>
         <div class="articleListGradFade"><span class="scrollIndicator"></span></div>
-        <div id="articleContainer" class="article borderLtBlue">
+        <div id="articleContainer" class="article">
           <ul id="articleScroller"></ul>
         </div>
       </div>
