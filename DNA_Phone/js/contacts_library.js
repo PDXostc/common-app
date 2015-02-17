@@ -70,7 +70,11 @@ var ContactsLibrary = {
 	show : function() {
 		"use strict";
 		//$('#library').library("showPage");
-		$("#contactList").toggleClass("hidden");
+		$("#opencontactlist").addClass("visibility-hidden");
+		$(".contact-list-wrapper").removeClass("visibility-hidden");
+		$("#contactList").removeClass("hidden");
+		$("#phone-keypad").addClass("hidden");
+		$("#contactsCarousel").addClass("hidden");
 	},
 	/**
 	 * Method hides library page.
@@ -80,6 +84,11 @@ var ContactsLibrary = {
 	hide : function() {
 		"use strict";
 		//$('#library').library("hidePage");
+		$(".contact-list-wrapper").addClass("visibility-hidden");
+		$(".contact-btn").removeClass("visibility-hidden");
+		$("#contactList").addClass("hidden");
+		$("#phone-keypad").removeClass("hidden");
+		$("#contactsCarousel").removeClass("hidden");
 	},
 	/**
 	 * Method opens contact detail.
