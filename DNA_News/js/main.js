@@ -7,11 +7,7 @@
  *
  */
 
-/**
- * @module Store
- */
-/**
- * Reference to instance of  class object this class is inherited from dataModel {@link CarIndicator}
+/* Reference to instance of  class object this class is inherited from dataModel {@link CarIndicator}
 @property carInd {Object}
  */
 var carInd;
@@ -28,35 +24,6 @@ var te;
 var carIndicatorSignals = [
     "IviPoC_NightMode"
 ];
-
-/* initialize iScroll scrollers for one-finger touch scrolling
-   of articles and article lists
-*/
-
-/*
-var topScroll;
-var entScroll;
-var sportsScroll;
-
-function loaded() {
-    setTimeout(function () {
-        topScroll = new iScroll('#topArticleList', {
-            hScrollbar: false,
-            vScrollbar: false
-        });
-        entScroll = new iScroll('#entertainArticleList', {
-            hScrollbar: false,
-            vScrollbar: false
-        });
-        sportsScroll = new iScroll('#sportsArticleList', {
-            hScrollbar: false,
-            vScrollbar: false
-        });
-    }, 4000);
-}
-
-window.addEventListener('load', loaded, false);
-*/
 
 /**
  * Applies selected theme to application icons
@@ -186,7 +153,7 @@ function xml2html(url) {
     };
 }
 
-/* close all function to hide (as opposed to display:none) all
+/* Close all function to hide (as opposed to display:none) all
    items of a given class, usually used to dismiss article div.
    Visibility:hidden used because iScroll scrollers don't react
    well to having parent elements' display property set to 'none'.
@@ -299,7 +266,6 @@ function showArticle(url) {
 
         setTimeout(function() {
             var element = document.getElementById("articleScroller");
-            //element.style.height = document.defaultView.getComputedStyle(element,"").getPropertyValue("height");
             articleScroll.refresh();
         }, 1000);
         
