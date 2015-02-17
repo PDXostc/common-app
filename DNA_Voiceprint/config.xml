@@ -3,7 +3,7 @@
     <tizen:application id="JLRPOCX012.Voiceprint" package="JLRPOCX012" required_version="2.1"/>
     <content src="index.html"/>
     <icon src="icon.png"/>
-    <name>Fingerprint</name>
+    <name>Voiceprint</name>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
