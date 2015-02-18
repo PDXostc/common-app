@@ -22,8 +22,12 @@ $(PROJECT).wgt : dev
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
-run: install
+debug: install;
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -d 9888"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'HelloTizen' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
+
+run: install
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'HelloTizen' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher"
 
 install: deploy
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'HelloTizen' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"

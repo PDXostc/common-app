@@ -19,10 +19,25 @@ $(PROJECT).wgt : dev
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
+kill.xwalk:
+	ssh root@$(TIZEN_IP) "pkill xwalk"
+
+kill.feb1:
+	ssh app@$(TIZEN_IP) "pkgcmd -k JLRPOCX031.Phone"
+
 run: install
 	#ssh root@$(TIZEN_IP) "systemctl stop bluetooth"
 	#ssh root@$(TIZEN_IP) "systemctl start bluetooth"
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Phone' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
+
+run.feb1: install.feb1
+	ssh app@$(TIZEN_IP) "app_launcher -s JLRPOCX031.Phone -d "
+
+install.feb1: deploy
+ifndef OBS
+	-ssh app@$(TIZEN_IP) "pkgcmd -u -n JLRPOCX031.Phone -q"
+	ssh app@$(TIZEN_IP) "pkgcmd -i -t wgt -p /home/app/JLRPOCX031.Phone.wgt -q"
+endif
 
 install: deploy
 ifndef OBS

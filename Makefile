@@ -1,12 +1,10 @@
 app_list = \
            DNA_HomeScreen \
            DNA_News \
-           DNA_Phone \
            DNA_HVAC \
            DNA_Dashboard \
            DNA_Navigation \
            DNA_NFC \
-           DNA_MOST_AudioSettings \
            DNA_Browser \
            DNA_Weather
 
@@ -38,6 +36,9 @@ apps:
 extensions:
 	$(foreach extension,$(extension_list), make -C $(extension);)
 
+install_apps.feb1:
+	$(foreach app,$(app_list), make -C $(app) install.feb1 TIZEN_IP=$(TIZEN_IP);)
+
 install_apps:
 	$(foreach app,$(app_list), make -C $(app) install TIZEN_IP=$(TIZEN_IP);)
 
@@ -59,6 +60,9 @@ deploy_apps:
 
 deploy_extensions:
 	$(foreach extension,$(extension_list), make -C $(extension) deploy TIZEN_IP=$(TIZEN_IP);)
+
+run.feb1: install_apps.feb1
+	make -C DNA_HomeScreen run.feb1
 
 run:
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"

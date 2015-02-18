@@ -40,6 +40,14 @@ common: /opt/usr/apps/common
 	cp -r /opt/usr/apps/common/js/* js/
 	cp -r /opt/usr/apps/common/css/* css/
 
+run.feb1: install.feb1
+	ssh app@$(TIZEN_IP) "app_launcher -s JLRPOCX007.News -d "
+
+install.feb1: deploy
+ifndef OBS
+	-ssh app@$(TIZEN_IP) "pkgcmd -u -n JLJLRPOCX007.News -q"
+	ssh app@$(TIZEN_IP) "pkgcmd -i -t wgt -p /home/app/DNA_News.wgt -q"
+endif
 /opt/usr/apps/common:
 	@echo "Please install Common Assets"
 	exit 1

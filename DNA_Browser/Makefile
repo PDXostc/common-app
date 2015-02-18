@@ -22,8 +22,23 @@ $(PROJECT).wgt : dev
 wgt:
 	zip -r $(PROJECT).wgt $(WRT_FILES)
 
+kill.xwalk:
+	ssh root@$(TIZEN_IP) "pkill xwalk"
+
+kill.feb1:
+	ssh app@$(TIZEN_IP) "pkgcmd -k JLRPOCX030.Browser"
+
 run: install
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'DNA Browser' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d"
+
+run.feb1: install.feb1
+	ssh app@$(TIZEN_IP) "app_launcher -s JLRPOCX030.Browser -d "
+
+install.feb1: deploy
+ifndef OBS
+	-ssh app@$(TIZEN_IP) "pkgcmd -u -n JLRPOCX030.Browser -q"
+	ssh app@$(TIZEN_IP) "pkgcmd -i -t wgt -p /home/app/DNA_Browser.wgt -q"
+endif
 
 install: deploy
 ifndef OBS
