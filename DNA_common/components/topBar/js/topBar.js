@@ -32,7 +32,7 @@ TopBar.topbarBack = function() {
 	}
 }
 
-TopBar.topbarGrid = function(){
+TopBar.toggleGrid = function(){
 	$("#hexGridView").toggle();
 }
 
@@ -45,8 +45,8 @@ topbarTouchstart = function(event){
 TopBar.pageUpdate = function() {
 	$('#topBar').replaceWith(TopBar.topBarHTML.valueOf());
 	$("#homeScreenIcon").click(TopBar.topbarBack);
-	$("#appGridIcon").click(TopBar.topbarGrid);
-	$(".exitButton").click(TopBar.topbarGrid);
+	$("#appGridIcon").click(TopBar.toggleGrid);
+	$(".exitButton").click(TopBar.toggleGrid);
 	initAppGrid();
 	initTaskLauncher();
 }
@@ -139,8 +139,10 @@ function onFrameClick(appData) {
 						Settings.show();
 					}
 				} else {
-					tizen.application.launch(appData.id, onLaunchSuccess, onError);
-					tizen.application.getCurrentApplication().exit();
+					if( appData.id != tizen.application.getCurrentApplication().appInfo.id ){
+						tizen.application.launch(appData.id, onLaunchSuccess, onError);
+						tizen.application.getCurrentApplication().exit();
+					}else{TopBar.toggleGrid();}
 				}
 				break;
 			}
@@ -493,8 +495,10 @@ function primeIcon(id,content){
 	if(content.length>0){
 		$("#topTask"+id).html("<img class='draggable' src='"+content+"''>");
 		$("#topTask"+id).click(function(){
-			tizen.application.launch(taskList[id].cb, TopBar.backButtonFail, TopBar.backButtonFail);
-			tizen.application.getCurrentApplication().exit();
+			if( taskList[id].cb != tizen.application.getCurrentApplication().appInfo.id ){
+				tizen.application.launch(taskList[id].cb, TopBar.backButtonFail, TopBar.backButtonFail);
+				tizen.application.getCurrentApplication().exit();
+			}
 		});
 	}else{
 		$("#topTask"+id).html("");
