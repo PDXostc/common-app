@@ -29,7 +29,7 @@ kill.feb1:
 	ssh app@$(TIZEN_IP) "pkgcmd -k JLRPOCX001.HomeScreen"
 
 run: install
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && ail_list | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty app_launcher -s -d "
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty xwalk-launcher -d "
 
 run.feb1: install.feb1
 	ssh app@$(TIZEN_IP) "app_launcher -s JLRPOCX001.HomeScreen -d "
@@ -42,8 +42,8 @@ endif
 
 install: deploy
 ifndef OBS
-	-ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && pkgcmd -l | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty pkgcmd -u -n -q"
-	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && pkgcmd -i -t wgt -i /home/app/DNA_HomeScreen.wgt -q"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'Home Screen' | awk '{print $1}' | xargs --no-run-if-empty xwalkctl -u"
+	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl -i /home/app/DNA_HomeScreen.wgt"
 endif
 
 $(PROJECT).wgt : wgt
