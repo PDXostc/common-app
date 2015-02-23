@@ -1,6 +1,6 @@
 PROJECT = DNA_MediaManager
-INSTALL_FILES = images js icon.png index.html
-WRT_FILES = DNA_common css icon.png index.html setup config.xml js manifest.json
+INSTALL_FILES = media-manager-artwork images js icon.png index.html
+WRT_FILES = DNA_common css media-manager-artwork images icon.png index.html setup config.xml js manifest.json
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
@@ -12,8 +12,8 @@ endif
 
 wgtPkg: clean
 	cp -rf ../DNA_common .
-	zip -r $(PROJECT).wgt config.xml css icon.png index.html js DNA_common
-
+	zip -r $(PROJECT).wgt $(WRT_FILES)
+	
 config:
 	scp setup/weston.ini root@$(TIZEN_IP):/etc/xdg/weston/
 
@@ -31,6 +31,12 @@ stop:
 run: install
 	ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && ./mm start"
 	#ssh app@$(TIZEN_IP) "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/5000/dbus/user_bus_socket' && xwalkctl | egrep -e 'DNA_MediaManager' | awk '{print $1}' | xargs --no-run-if-empty LD_LIBRARY_PATH=/opt/genivi/lib xwalk-launcher"
+
+kill.xwalk:
+	ssh root@$(TIZEN_IP) "pkill xwalk"
+
+kill.feb1:
+	ssh app@$(TIZEN_IP) "pkgcmd -k JLRPOCX001.HomeScreen"
 
 install: deploy
 ifndef OBS

@@ -1,26 +1,37 @@
-<!DOCTYPE html>
-<!--
- * Copyright (c) 2014, Intel Corporation, Jaguar Land Rover
- *
- * This program is licensed under the terms and conditions of the
- * Apache License, version 2.0.  The full text of the Apache License is at
- * http://www.apache.org/licenses/LICENSE-2.0
- *
--->
-<html>
+<!-- Copyright (C) Jaguar Land Rover - All Rights Reserved -->
+
+<!-- Proprietary and confidential -->
+<!-- Unauthorized copying of this file, via any medium, is strictly prohibited -->
+
+<!-- THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY  -->
+<!-- KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE -->
+<!-- IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A -->
+<!-- PARTICULAR PURPOSE. -->
+
+<!-- Filename:             index.html -->
+<!-- Version:              1.1.2 -->
+<!-- Date:                 March 2014 -->
+<!-- Project:              JLR POC - Cameras -->
+<!-- Contributors:         - -->
+<!--                       - -->
+
+<!-- Incoming Code:        - -->
+
+<!DOCTYPE HTML>
+
+<html id="mediamanager-app">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>MultiMedia Manager</title>
-<meta name="viewport" content="width=720, height=1280, user-scalable=no" />
-
+<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
+<!-- <link rel="import" href="templates.html" id="templates"> -->
 <script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
 <script type="text/javascript" src="./DNA_common/js/init.js"></script>
-
 <script type="text/javascript" src="js/iscroll.js"></script>
-
-<link href="css/multimedia_manager_720.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./DNA_common/css/style.css"/>
+	        <link rel="stylesheet" href="./css/font-awesome.css">
+<link href="css/multimedia_manager.css" rel="stylesheet" type="text/css">
 <link href="common/components/dateTIme/dateTime.css" rel="stylesheet" type="text/css">
-
 <script type="text/javascript" src="js/mediamanager.js"></script>
 <script>
 	var coverScroll = {};
@@ -30,7 +41,7 @@
 
 		setTimeout(function(){
 
-			mminit();
+			/* mminit(); */ //kj took out when changing html
 
 			//temporary
 			clearTimeout(volumeTimer);
@@ -129,195 +140,154 @@
 
 </script>
 </head>
-
+</head>
 <body>
-<div class="wrapper">
-<div id="topBar">
-	<img class="header-title" src="images/mm-header-type-only.png" alt="">
-</div>
-<div id="clock-and-time">
-	<div id="date" class="date-element fontSizeXXLarge fontColorDark fontWeightBold">date</div>
-	<div id="clock" class="clock-element fontSizeXXLarge fontColorDark fontWeightBold">clock</div>
-</div>
-<div class="button libraryButton flag library-flag">
-	<div class="button-flag"> <span style="position:absolute;left:40px;top:12px;">LIBRARY</span>
-		<div id="right-triangle"></div>
+ <div id="base">
+    <div id="topBar"></div>
+    <div id="app">
+      <div id="clockElement"></div>
+      <div id="media-manager-wrapper">
+	<div class="libraryButton flag library-flag">
+      <div id="" class="fa fa-music library-btn orange-viv">
+		  <span>LIBRARY</span>
+       </div>
 	</div>
-</div>
-
-
-<div id="scroll-container" class="media-carousel-container">
-	<ul id="media-carousel-content" class="no-bullets media-carousel-items">
-		
-	</ul>
-</div>
-<!-- main element playing -->
-<div id="infoPanelWrapper" class="textPanel">
-	<template id="media_playing_item_template"></template>
-		<img id="thumbnail" class="currentlyPlayingPreviewClass albumThumbnail carouselImage boxShadow2" data-album-thumbnail-pic="" src="" alt="">
-		<div id="timeBar" class="timeBarClass" data-timebar="">
-			<div id="songIndex" class="fontColorNormal fontSizeLarge fontWeightBold" data-track-number-of-track=""></div>
-			<div id="songTime" class="rightText fontColorTheme fontSizeLarge fontWeightBold" data-song-time=""></div>
-		</div>
-
-
-	<div id="infoPanel" class="infoPanelClass">
-		<div class="nowPlaying">
-			<div class="boxIconRectangle bgColorTheme"></div>
-			<!-- this creates the thick bar to left of "Now Playing" -->
-			<div class="boxIconCaption fontSizeXSmall fontWeightBold fontColorLight">NOW PLAYING</div>
-		</div>
-		<div id="current-artist-name" class="fontColorNormal fontSizeLarger fontWeightBold artistNameTextMargin one-line-ellipsis" data-artist-name=""></div>
-		<div id="current-album-title" class="fontSizeSmaller fontColorTheme fontWeightBold one-line-ellipsis" data-album-title=""></div>
-		<div id="current-song-title" class="fontSizeXXLarge fontColorNormal fontWeightBold songNameTextPosition three-lines-ellipsis current-song-title-pad" data-song-title=""></div>		
-	</div>
-</div>
-<!-- <div id="spectAnalyzer" class="spectrumAnalyzer clear-me"></div> -->
-<div class="playback-console-container clear-me">
- <div id="songProgress" class="progressBar borderColorTheme" data-progress-bar="">
-		<div id="songSeek" class="progressPot bgColorTheme boxShadow3" data-song-seek="" style="width: 18.705035971223023%;">
-            <a>
-               <div></div><!-- not ideal, but works easily -->
-           </a>
-</div>
-	</div>
-	
-	<div id="set-media-time-slider" class="set-media-time-bar-holder" data-set-media-time-slider=""></div>
-	<div id="controlButtons" class="audio-control-btns-wrapper">
-		<div id="prevButton" class="audio-crtl-button btn-previous"></div>
-		<div id="fastRewindButton" class="audio-crtl-button btn-frewind"></div>
-		<div id="playButton" class="audio-crtl-button btn-play-pause"></div>
-		<div id="fastFowardButton" class="audio-crtl-button btn-fforward"></div>
-		<div id="nextButton" class="audio-crtl-button btn-next"></div>
-		<div id="shuffleButton" class="audio-crtl-button btn-shuffle"></div>
-		<div id="repeatButton" class="audio-crtl-button btn-repeat"><span></span></div>
-	</div>
-</div>
-
-<div id="musicLibrary" class="library pageBgColorNormalTransparent hideMe">
-<div class="libraryLeftPanel">
-	<div class="libraryLeftControl">
-		<div id="search" class="searchIcon"></div>
-	</div>
-</div>
-<div id="libraryTopPanel" class="libraryTopPanel">
-	<div class="libraryTopPanelTitle"> 
-		<div class="boxIconCaptionSmall fontSizeLarge fontWeightBold fontColorLight">MULTIMEDIA LIBRARY: LOCAL</div>
-	</div>
-
-</div>
-<div class="libraryTabClear"></div>
-<div id="libraryTopSubPanel" class="libraryTopSubPanel bgColorDark" style="display: block; ">
-    <div id="closeLibrary" class="closeLibraryButton" ></div>
-	<div id="libraryCloseSubPanelButton" class="fontSizeSmall fontWeightBold fontColorNormal closeLibrarySubPanelButton">BACK</div>
-	<div id="subPanelArea" class="subPanelArea">
-		<div id="libraryTopSubPanelTitle">
-			<div class="boxIconRectangleSmall bgColorTheme"></div>
-			<div class="boxIconCaptionSmall fontSizeXXSmall fontWeightBold fontColorLight">LOCAL</div>
-		</div>
-		<div id="libraryTopSubPanelSubtitle" class="fontSizeLarge fontWeightBold fontColorNormal oneLineEllipsis">MUSIC</div>
-	</div>
-</div>
-<div id="libraryContent" class="libraryContent musicLibraryContentGrid" style="max-height: 1170px; ">
-	<div class="searchBoxContainer">
- 		<input type="text" class="searchingBox fl-left inputs" value="search string"><div id="searchButton" class="fakeButton fl-left">SEARCH</div>
-  	</div>
-  	<div id="listingWrapper">
-		<ul class="musicContentListedItems">
-		<!--		<template id="media-content-list"></template>-->
-			<li class="content-listing">
-				<img src="images/replace-current-queue-btn.png" alt="" data-replace-current-btn="">
-			    <img src="images/album-art-test.jpg" alt="" class="listingImageSize albumArt">
-				<p class="artist-track-title" data-artist-track-title=""></p>
-				<div class="album-and-track-totals"><span class="number-of-albums" data-album-number-total=""></span><span class="track-time-total" data-track-time-total=""></span>
-					<img src="images/add-to-current-queue-btn.png" alt="" data-add-to-current-btn="">
+	<div id="scroll-container" class="media-carousel-container">
+		<ul id="media-carousel-content" class="no-bullets media-carousel-items">
+			<li class="carousel-item-container carousel-image-reflect" data-album-art="">
+				<img alt="" src="media-manager-artwork/album-art-test.jpg">
+				<div class="album-carousel-description">
+					<div class="song-title-carousel ellipsis-one-line" data-song-title="">Sample Song Title</div>
+					<div class="artist-name-carousel ellipsis-two-line" data-artist-name="">Artist Name</div>
 				</div>
 			</li>
+						<li class="carousel-item-container carousel-image-reflect" data-album-art="">
+				<img alt="" src="media-manager-artwork/album-art-test.jpg">
+				<div class="album-carousel-description">
+					<div class="song-title-carousel ellipsis-one-line" data-song-title="">Sample Song Title</div>
+					<div class="artist-name-carousel ellipsis-two-line" data-artist-name="">Artist Name</div>
+				</div>
+			</li>
+						<li class="carousel-item-container carousel-image-reflect" data-album-art="">
+				<img alt="" src="media-manager-artwork/album-art-test.jpg">
+				<div class="album-carousel-description">
+					<div class="song-title-carousel ellipsis-one-line" data-song-title="">Sample Song Title</div>
+					<div class="artist-name-carousel ellipsis-two-line" data-artist-name="">Artist Name</div>
+				</div>
+			</li>
+		
 		</ul>
 	</div>
-</div>
-
-<!-- Kept from original to maintain original functionality of general app-->
-<div id="incomingCall" class="incomingCall incomingCallHide">
-	<div class="pageBgColorNormalTransparent" style="width:100%; height: 100%"></div>
-	<div id="incomingCallTopPanel" class="tabsTopPanel"></div>
-	<div id="incomingCallTabs" class="tabsTab"></div>
-	<div id="incomingCallTitle" class="TopPanelTitle">
-		<div class="boxIconRectangle bgColorTheme"></div>
-		<div class="boxIconCaption fontSizeXSmall fontWeightBold fontColorLight">INCOMING CALL</div>
-	</div>
-	<div class="callInfoBox">
-		<div class="callPhotoBox noContactPhoto"><img id="incomingCallPhoto" class="callPhoto"></div>
-	</div>
-	<div id="incomingCallName" class="callName fontSizeXLarge fontWeightBold fontColorNormal">unknown</div>
-	<div id="incomingCallNumber" class="callNumber fontSizeXLarge fontWeightBold fontColorTheme">unknown</div>
-	<div id="incomingCallAccept" class="incomingCallAccept button callButton callingFalse boxShadow4Active"></div>
-	<div id="incomingCallDeny" class="incomingCallDeny button callButton callingTrue boxShadow4Active"></div>
-</div>
-
-</div>
-<div id="geniviBottomPanel">
-	<!-- for future logo swap <div class="logoCenter"><img src="images/genivi_white_sm.png" alt=""></div>-->
-</div>
-<!-- TEMPLATES BELOW -->
-
-<template id="carousel-items-template">
-	<li class="carousel-item-container carousel-image-reflect" data-album-art="">
-		<div class="album-carousel-description">
-			<div class="song-title-carousel one-line-ellipsis" data-song-title=""></div>
-			<div class="artist-name-carousel two-lines-ellipsis" data-artist-name=""></div>
+	<!-- main element playing -->
+	<div id="infoPanelWrapper" class="textPanel">
+		<template id="media_playing_item_template"></template>
+		<img id="thumbnail" class="currentlyPlayingPreviewClass albumThumbnail carouselImage boxShadow2" data-album-thumbnail-pic="" src="media-manager-artwork/album-art-test.jpg" alt="">
+		<div id="timeBar" class="timeBarClass" data-timebar="">
+			<h3 id="songIndex" class="white hidden" data-track-number-of-track=""><strong>Track Number</strong></h3>
+			<h6 id="songTime" class="rightText blue-viv hidden" data-song-time=""><strong>Song Time</strong></h6>
 		</div>
-	</li>
-</template>
-<!--
-<template id="media_playing_item_template"></template>
--->
-<template id="trackPlayingInformation">
-	<div class="fontColorNormal fontSizeLarger fontWeightBold artistNameTextMargin oneLineEllipsis" data-artist-name=""></div>
-	<div class="fontSizeSmaller fontColorTheme fontWeightBold oneLineEllipsis" data-album-title=""></div>
-	<div class="fontSizeXXLarge fontColorNormal fontWeightBold songNameTextPosition oneLineEllipsis" data-song-title=""></div>
-</template>
-<template id="song-progress-bar"> 
-	<!-- Aaron.. not sure if these three divs should actually be tempalted, but as they change per song, I just added the data attr here-->
-
-</template>
-<Template id="mediaContentItemTemplate">
-	<div class="musicElement boxShadow4 borderColorTheme"> <img src="" data-album-thumbnail-pic="" alt="" />
-		<div class="album-title-text fontSizeLarge fontWeightBold fontColorNormal oneLineEllipsis textTransformUppercase" data-artist-name=""></div>
-		<div class="artist-title-text fontSizeXSmall fontWeightBold fontColorTheme oneLineEllipsis textTransformUppercase" data-album-title=""></div>
+		<div id="infoPanel" class="infoPanelClass">
+			<div class="nowPlaying">
+				<div class="boxIconRectangle bgColorTheme"></div>
+				<!-- this creates the thick bar to left of "Now Playing" -->
+				<div class="boxIconCaption blue-lt"><strong>Now Playing</strong></div>
+			</div>
+			<div id="current-artist-name" class="white text-large artistNameTextMargin ellipsis-one-line" data-artist-name=""><strong>Prince</strong></div>
+			<p id="current-album-title" class="blue-viv ellipsis-one-line" data-album-title=""><strong>Purple Rain</strong></p>
+			<h4 id="current-song-title" class="white song-name-position ellipsis-three-line current-song-title-pad" data-song-title=""><strong>When Doves Cry</strong></h4>
+		</div>
 	</div>
-</template>
-<template id="media-content-list">		
-
-<li class="content-listing">
-
-	<img class="play-now-btn" src="images/replace-current-queue-btn.png" alt="" data-replace-current-btn="">
-
-    <img src="images/album-art-test.jpg" alt="" class="listingImageSize albumArt">
-
-	<p class="artist-track-title" data-artist-track-title=""></p>
-
-	<div class="album-and-track-totals"><span class="number-of-albums" data-album-number-total=""></span><span class="track-time-total" data-track-time-total=""></span>
-
-		<span class="addedNote hideMe">Added</span>
-
-		<img class="add-to-playlist-btn" src="images/add-to-current-queue-btn.png" alt="" data-add-to-current-btn="">
-
+	<div class="playback-console-container clear-me">
+		<div id="songProgress" class="progressBar borderColorTheme" data-progress-bar="">
+			<div id="songSeek" class="progressPot bgColorTheme boxShadow3" data-song-seek="" style="width: 18.705035971223023%;"> <a>
+				<div></div>
+				</a> </div>
+		</div>
+		<div id="set-media-time-slider" class="set-media-time-bar-holder" data-set-media-time-slider=""></div>
+		<div id="controlButtons" class="audio-control-btns-wrapper">
+			<div id="prevButton" class="audio-crtl-button btn-previous"></div>
+			<div id="fastRewindButton" class="audio-crtl-button btn-frewind"></div>
+			<div id="playButton" class="audio-crtl-button btn-play-pause"></div>
+			<div id="fastFowardButton" class="audio-crtl-button btn-fforward"></div>
+			<div id="nextButton" class="audio-crtl-button btn-next"></div>
+			<div id="shuffleButton" class="audio-crtl-button btn-shuffle"></div>
+			<div id="repeatButton" class="audio-crtl-button btn-repeat"><span></span></div>
+		</div>
 	</div>
-
-</li>
-
-</template>
-
-
-<template id="carousel-listed-items">
-<li> 
-	<img src="" class="carousel-image-reflect" alt="">
-	<span class="song-title-carousel one-line-ellipsis" data-song-title=""></span>
-	<span class="artist-name-carousel one-line-ellipsis" data-artist-name=""></span>
-</li>
-</template>
-
+	<div id="musicLibrary" class="library pageBgColorNormalTransparent hideMe">
+		<div class="libraryLeftPanel">
+			<div class="libraryLeftControl">
+				<div id="search" class="searchIcon"></div>
+			</div>
+		</div>
+		<div id="libraryTopPanel" class="libraryTopPanel">
+			<div class="libraryTopPanelTitle">
+				<p class="boxIconCaptionSmall blue-lt"><strong>MULTIMEDIA LIBRARY: LOCAL</strong></p>
+			</div>
+		</div>
+		<div class="libraryTabClear"></div>
+		<div id="libraryTopSubPanel" class="libraryTopSubPanel bgColorDark" style="display: block; ">
+			<div id="closeLibrary" class="closeLibraryButton" ></div>
+			<div id="libraryCloseSubPanelButton" class="small white closeLibrarySubPanelButton"><strong>Back</strong></div>
+			<div id="subPanelArea" class="subPanelArea">
+				<div id="libraryTopSubPanelTitle">
+					<div class="boxIconRectangleSmall bgColorTheme"></div>
+					<div class="boxIconCaptionSmall blue-lt"><strong>Local</strong></div>
+				</div>
+				<p id="libraryTopSubPanelSubtitle" class="white ellipsis-one-line"><strong>Music</strong></p>
+			</div>
+		</div>
+		<div id="libraryContent" class="libraryContent musicLibraryContentGrid" style="max-height: 1170px; ">
+			<div class="searchBoxContainer">
+				<input type="text" class="searchingBox fl-left inputs" value="search string">
+				<div id="searchButton" class="fakeButton fl-left">SEARCH</div>
+			</div>
+			<div id="listingWrapper">
+				<ul class="musicContentListedItems">
+					<!--		<template id="media-content-list"></template>-->
+					<li class="content-listing"> <img src="images/replace-current-queue-btn.png" alt="" data-replace-current-btn=""> <img src="images/album-art-test.jpg" alt="" class="listingImageSize albumArt">
+						<p class="artist-track-title" data-artist-track-title=""></p>
+						<div class="album-and-track-totals"><span class="number-of-albums" data-album-number-total=""></span><span class="track-time-total" data-track-time-total=""></span> <img src="images/add-to-current-queue-btn.png" alt="" data-add-to-current-btn=""> </div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+		<!-- TEMPLATES BELOW -->
+		<template id="carousel-items-template">
+			<li class="carousel-item-container carousel-image-reflect" data-album-art="">
+				<div class="album-carousel-description">
+					<div class="song-title-carousel ellipsis-one-line" data-song-title=""></div>
+					<div class="artist-name-carousel ellipsis-two-line" data-artist-name=""></div>
+				</div>
+			</li>
+		</template>
+		<template id="media_playing_item_template"></template>
+		<template id="trackPlayingInformation">
+			<div class="white text-large artistNameTextMargin ellipsis-one-line" data-artist-name=""><strong></strong></div>
+			<p class="blue-viv ellipsis-one-line" data-album-title=""><strong></strong></p>
+			<h3 class="white song-name-position ellipsis-one-line" data-song-title=""><strong></strong></h3>
+		</template>
+		<template id="song-progress-bar"> </template>
+		<Template id="mediaContentItemTemplate">
+			<div class="musicElement boxShadow4 borderColorTheme"> <img src="" data-album-thumbnail-pic="" alt="" />
+				<p class="album-title-text white ellipsis-one-line text-to-uppercase" data-artist-name=""><strong></strong></p>
+				<div class="artist-title-text blue-viv ellipsis-one-line text-to-uppercase" data-album-title=""><strong><small></small></strong></div>
+			</div>
+		</template>
+		<template id="media-content-list">
+			<li class="content-listing"> <img class="play-now-btn" src="images/replace-current-queue-btn.png" alt="" data-replace-current-btn=""> <img src="images/album-art-test.jpg" alt="" class="listingImageSize albumArt">
+				<p class="artist-track-title" data-artist-track-title=""></p>
+				<div class="album-and-track-totals"><span class="number-of-albums" data-album-number-total=""></span><span class="track-time-total" data-track-time-total=""></span> <span class="addedNote hideMe">Added</span> <img class="add-to-playlist-btn" src="images/add-to-current-queue-btn.png" alt="" data-add-to-current-btn=""> </div>
+			</li>
+		</template>
+		<template id="carousel-listed-items">
+			<li> <img src="" class="carousel-image-reflect" alt=""> <span class="song-title-carousel ellipsis-one-line" data-song-title=""></span> <span class="artist-name-carousel ellipsis-one-line" data-artist-name=""></span> </li>
+		</template>
+		<!-- MM HTML TO ADD STOPS HERE --> 
+    </div>
+  </div>
+      <div id="bottomBar"></div>
 
 </body>
 </html>
