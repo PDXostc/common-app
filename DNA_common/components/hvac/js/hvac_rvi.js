@@ -30,6 +30,7 @@ function setup_hvac_service(){
 	];
 
 	rvi.rviRegisterServices(hvacServices);
+	hvacSetupRVIListeners();
 }
 
 function aircirc_rcb(args){
@@ -89,93 +90,53 @@ function hvac_unsubscribe(args){
 	}
 }
 
-
-/*
-function handleRVIPublish(key, value) {
-    // A lookup table here would be nice, but we'll do that later.
-
-    console.log("publish - CALLED: [" + key + "] [" + value + "]");
-
-    // Manually managed through hvacIndicator.js
-    if (key === "auto") {
-	if (str2bool(value))   {
-	    console.log("publish - auto on");
-	    switchAutoACOn();
-	} else {
-	    console.log("publish - auto off");
-	    switchAutoACOff();
-	}
-	return;
-    }
-
-    // Manually managed through hvacIndicator.js
-    if (key === "defrost_max") {
-	if (str2bool(value))  {
-	    console.log("Will enable max defrost");
-	    if (!$("#defrost_max_btn").hasClass("on")) 
-		$("#defrost_max_btn").addClass("on");
-	}
-	else {
-	    console.log("Will enable  defrost");
-	    if ($("#defrost_max_btn").hasClass("on")) 
-		$("#defrost_max_btn").removeClass("on");
-	}
-	return;
-    }
-
-    if (key === "air_circ") {
-	bootstrap.carIndicator.setStatus("airRecirculation", str2bool(value));
-	return;
-    }
-
-    if (key === "fan") {
-	bootstrap.carIndicator.setStatus("fan", str2bool(value));
-	return;
-    }
-
-    if (key === "fan_speed") {
-	bootstrap.carIndicator.setStatus("fanSpeed", parseInt(value));
-	return;
-    }
-
-    if (key === "temp_left") {
-	bootstrap.carIndicator.setStatus("targetTemperatureLeft", parseInt(value));
-	return;
-    }
-
-    if (key === "temp_right") {
-	bootstrap.carIndicator.setStatus("targetTemperatureRight", parseInt(value));
-	return;
-    }
-
-    if (key === "hazard") {
-	hvacControler.prototype.onHazardChanged(str2bool(value));
-	return;
-    }
-
-    if (key === "seat_heat_right") {
-	bootstrap.carIndicator.setStatus("seatHeaterRight", parseInt(value));
-	return;
-    }
-
-    if (key === "seat_heat_left") {
-	bootstrap.carIndicator.setStatus("seatHeaterLeft", parseInt(value));
-	return;
-    }
-
-    if (key === "airflow_direction") {
-	bootstrap.carIndicator.setStatus("airflowDirection", parseInt(value));
-	return;
-    }
-    if (key === "defrost_rear") {
-	bootstrap.carIndicator.setStatus("rearDefrost", str2bool(value));
-	return;
-    }
-    if (key === "defrost_front") {
-	bootstrap.carIndicator.setStatus("frontDefrost", str2bool(value));
-	return;
-    }
+function hvacSetupRVIListeners(){
+	//Adds RVI listeners for HVAC changes.
+	rvi.hvacListener = carIndicator.addListener(
+		{
+	    onAirRecirculationChanged : function(newValue) {
+		//hvacIndicator.onAirRecirculationChanged(newValue);
+		sendRVIHVAC("air_circ", newValue);
+	    },
+	    onFanChanged : function(newValue) {
+		//hvacIndicator.onFanChanged(newValue);
+	    },
+	    onFanSpeedChanged : function(newValue) {
+		//hvacIndicator.onFanSpeedChanged(newValue);
+		sendRVIHVAC("fan_speed", newValue);
+	    },
+	    onTargetTemperatureRightChanged : function(newValue) {
+		//hvacIndicator.onTargetTemperatureRightChanged(newValue);
+		sendRVIHVAC("temp_right", newValue);
+	    },
+	    onTargetTemperatureLeftChanged : function(newValue) {
+		//hvacIndicator.onTargetTemperatureLeftChanged(newValue);
+		sendRVIHVAC("temp_left", newValue);
+	    },
+	    onHazardChanged : function(newValue) {
+		console.log("onHazardChanged: "+ newValue);
+		sendRVIHVAC("hazard", newValue);
+	    },
+	    onSeatHeaterRightChanged : function(newValue) {
+		//hvacIndicator.onSeatHeaterRightChanged(newValue);
+		sendRVIHVAC("seat_heat_right", newValue);
+	    },
+	    onSeatHeaterLeftChanged : function(newValue) {
+		//hvacIndicator.onSeatHeaterLeftChanged(newValue);
+		sendRVIHVAC("seat_heat_left", newValue);
+	    },
+	    onAirflowDirectionChanged : function(newValue) {
+		//hvacIndicator.onAirflowDirectionChanged(newValue);
+		sendRVIHVAC("airflow_direction", newValue);
+	    },
+	    onFrontDefrostChanged : function(newValue) {
+		//hvacIndicator.onFrontDefrostChanged(newValue);
+		sendRVIHVAC("defrost_front", newValue);
+	    },
+	    onRearDefrostChanged : function(newValue) {
+		//hvacIndicator.onRearDefrostChanged(newValue);
+		sendRVIHVAC("defrost_rear", newValue);
+	    }
+	});
+	
 }
-*/
-// We can either pass all HVAC callbacks to a single handler that manages the methods
-// Alternatively, we can supply callbacks that merely reference HVAC commands.
