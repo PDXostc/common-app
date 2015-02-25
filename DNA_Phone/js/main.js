@@ -498,7 +498,7 @@ function acceptCall(contact) {
     if (tizen.phone) {
         CallDuration.resetIt();
 
-        initializeCallInfo(contact.phoneNumbers[0].number);
+        initializeCallInfo(contact);
         var callStatus = tizen.phone.activeCall().state.toLowerCase();
         if (callStatus !== "ACTIVE".toLowerCase() && callStatus !== "DIALING".toLowerCase()) {
 
@@ -509,6 +509,8 @@ function acceptCall(contact) {
             } else if (callStatus === "DISCONNECTED".toLowerCase()) {
 
                 var callNumber = contact.phoneNumbers[0] && contact.phoneNumbers[0].number ? contact.phoneNumbers[0].number : "";
+                //callNumber = Phone.formatPhoneNumber(callNumber);
+                console.log("invokeCall('"+callNumber+"')");
                 tizen.phone.invokeCall(callNumber, function(result) {
                     console.log(result.message);
                 });
@@ -551,9 +553,9 @@ function disconnectCall() {
     }
     $("#inputPhoneNumber").val('');
 }
-Events = {};
+PhoneEvents = {};
 
-Events.LetterClick = function(letter) {
+PhoneEvents.LetterClick = function(letter) {
 				console.log("click contactsLibraryFilterButton_",letter.toUpperCase());
 				ContactsLibrary.Favorite = false;
 				if (ContactsLibrary.Letter != letter.toLowerCase()) { 

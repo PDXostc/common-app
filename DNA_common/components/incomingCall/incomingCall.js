@@ -9,6 +9,55 @@
 
 /* global launchApplication, getAppByID, acceptCall*/
 
+
+if (typeof(tizen) !== 'undefined' && tizen.phone) {
+	tizen.phone.addCallChangedListener(function(result) {
+		console.log("tizen.phone.addCallChangedListener callback");
+		/* global getAppByID */
+		var appId = getAppByID('intelPoc15.Phone');
+
+		var contact;
+		if (!!result.contact.name) {
+			contact = result.contact;
+		} else {
+			contact = {
+				phoneNumbers: [{
+					/* jshint camelcase: false */
+					number: tizen.phone.activeCall.line_id
+					/* jshint camelcase: true */
+				}]
+
+			};
+		}
+
+		console.log("result.state=",result);
+		switch (result.state.toLowerCase()) {
+			case "DISCONNECTED".toLowerCase():
+				try {
+					this.denyCall();
+				}
+				catch(...) {
+				}
+				Configuration.set("acceptedCall", "false");
+				break;
+			case "ACTIVE".toLowerCase():
+				if (Configuration._values.acceptedCall !== "true") {
+					this.acceptIncommingCall();
+					Configuration.set("acceptedCall", "true");
+				}
+				break;
+			case "DIALING".toLowerCase():
+				if (!appId.running) {
+					/*global launchApplication*/
+					launchApplication('intelPoc15.Phone');
+				}
+				break;
+			case "INCOMING".toLowerCase():
+				AnswerIncomingCall.show(contact);
+				break;
+		}
+	});
+}
 /**
  * @module CarTheme
  */
@@ -124,3 +173,5 @@ IncomingCall.prototype.denyCall = function() {
 		});
 	}
 };
+
+var AnswerIncomingCall = new IncomingCall();
