@@ -193,6 +193,10 @@ Carousel.prototype.createSwipeItem = function(callHistoryEntry, index) {
 		} else {
 			//console.log("contact false");
 		}
+		
+		if (callHistoryEntry.remoteParties[0].remoteParty) {
+			name = callHistoryEntry.remoteParties[0].remoteParty;
+		}
 
 		if (name === "") {
 			name = "Unknown";
