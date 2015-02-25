@@ -26,8 +26,7 @@ TopBar.TemplateHTML = "DNA_common/components/topBar/topBar.html";
 
 TopBar.topbarBack = function() {
 	if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001"){
-		tizen.application.launch('JLRPOCX001.HomeScreen', TopBar.backButtonWin, TopBar.backButtonFail);
-		houseclean();
+		callApp('JLRPOCX001.HomeScreen');
 	}
 }
 
@@ -65,14 +64,21 @@ TopBar.includeHTMLFailed = function(linkobj) {
 
 includeHTML("DNA_common/components/topBar/topBar.html", TopBar.includeHTMLSuccess, TopBar.includeHTMLFailed);
 
-TopBar.backButtonWin = function(x){console.log(x);}
-TopBar.backButtonFail = function(x){console.log(x);}
-
 /* ==== ==== ==== init app grid js code ==== ==== ==== */
 
-function houseclean(){
+function onLaunchSuccess(x){
 	$("#hexGridView").hide();
 	$("#volumeSlider").hide();
+	window.setTimeout(function() {
+		tizen.application.getCurrentApplication().hide();
+	}, 200);
+}
+function onError(x){
+	console.log(x);
+}
+
+function callApp(appId){
+	tizen.application.launch(appId, onLaunchSuccess, onError);
 }
 
 function launchApplication(id) {
@@ -85,14 +91,12 @@ function launchApplication(id) {
 	}
 
 	var app = getAppByID(id);
-	console.log(app);
 	if ( !! app) {
 		if( app != tizen.application.getCurrentApplication() ){
-			tizen.application.launch(app.id, onLaunchSuccess, onError);
-			houseclean();
+			callApp(app.id);
 		}
 	} else {
-		alert("Application is not installed!");
+		console.log("Application is not installed!");
 	}
 }
 
@@ -144,8 +148,7 @@ function onFrameClick(appData) {
 					}
 				} else {
 					if( appData.id != tizen.application.getCurrentApplication().appInfo.id ){
-						tizen.application.launch(appData.id, onLaunchSuccess, onError);
-						houseclean();
+						callApp(appData.id);
 					}else{TopBar.toggleGrid();}
 				}
 				break;
@@ -155,8 +158,6 @@ function onFrameClick(appData) {
 		console.error(exc.message);
 	}
 }
-function onLaunchSuccess(){}
-function onError(){}
 
 function initAppGrid(){
 	"use strict";
@@ -478,8 +479,7 @@ function primeIcon(id,content){
 		$("#topTask"+id).html("<img class='draggable' src='"+content+"''>");
 		$("#topTask"+id).click(function(){
 			if( taskList[id].cb != tizen.application.getCurrentApplication().appInfo.id ){
-				tizen.application.launch(taskList[id].cb, TopBar.backButtonFail, TopBar.backButtonFail);
-				houseclean();
+				callApp(taskList[id].cb);
 			}
 		});
 	}else{
