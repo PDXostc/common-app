@@ -3,7 +3,7 @@ Summary:    A collection of IVI software
 Version:    0.0.1
 Release:    1
 Group:      Applications/Web Applications
-License:    ASL 2.0
+License:    Apache-2.0
 URL:        http://www.tizen.org2
 Source0:    %{name}-%{version}.tar.bz2
 
