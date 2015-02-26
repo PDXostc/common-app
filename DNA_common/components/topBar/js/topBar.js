@@ -31,6 +31,7 @@ TopBar.topbarBack = function() {
 }
 
 TopBar.toggleGrid = function(){
+	$("#volumeSlider").hide();
 	$("#hexGridView").toggle();
 }
 
@@ -54,7 +55,7 @@ TopBar.includeHTMLSuccess = function(linkobj) {
 		TopBar.import = linkobj.path[0].import;
 		console.log(TopBar.import);
 		TopBar.topBarHTML = TopBar.import.getElementById('topBar');
-		setTimeout(TopBar.pageUpdate,2000);
+		setTimeout(TopBar.pageUpdate,250);
 }
 
 TopBar.includeHTMLFailed = function(linkobj) {
