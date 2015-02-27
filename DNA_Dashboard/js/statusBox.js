@@ -57,3 +57,21 @@
 		}
 	};
 }(jQuery));
+
+/** 
+ * Switch Vehicle Graphics
+ */
+
+var fType;
+
+function down () {
+	console.log("Function down successfully fired");
+}
+
+//function switchVehicle(){
+window.onload = function() {
+	fType = document.getElementById("f-type-button");
+	fType.onMousedown = down;
+}
+
+//document.addEventListener("DOMContentLoaded", switchVehicle, false);
