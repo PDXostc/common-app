@@ -337,10 +337,10 @@ ul#settingsPageList > :last-child {
 
 /************spinner styles**************/
 .spinner {
-	width: 80px;
-	height: 80px;
+/*	width: 80px;
+	height: 80px;*/
 	margin: auto;
-	background-image: url(../images/spinner_icon_white_lg.png);
+/*	background-image: url(../images/spinner_icon_white_lg.png);*/
 }
 
 .spinner.on {
@@ -365,4 +365,11 @@ ul#settingsPageList > :last-child {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+/*font-awesome components*/
+.fa {
+	color: rgba(255, 255, 255, .4);
+}
+.modal .fa {
+  color: rgba(254, 156, 0, 1);
 }
