@@ -177,6 +177,34 @@ var ContactsLibrary = {
 	 }
 	,
 	/**
+	 * Method which handles contact phone number calling in grid or list view.
+	 * 
+	 * @method onDialContactNumber
+	 */
+	 onDialContactNumber: function(event) {
+		var numberz = $(event.target).text();// check code!!!!
+		console.log("check ",numberz);
+		console.log("check ",$(event.target).data("phoneNumber"));
+		if (numberz.length>0) {
+			var contact = { phoneNumbers: [] };
+			numberz = numberz.trim().replace(/\D/g, "");  // remove all non-digit characters, ie. 00123-123(123) => 00123123123
+			console.log("check ",numberz);
+			numberz = numberz.trim().replace(/^\+/, "");
+			console.log("check ",numberz);
+			
+			if (numberz[0]==='1') {
+					numberz = numberz.substr(1);
+				}
+			contact.phoneNumbers[0]={ number: numberz };
+			console.log("check ",contact);
+			console.log("DIAL ",$(event.target).text());
+			tizen.phone.invokeCall(numberz, function(result) {
+                    console.log(result.message);
+                });			//acceptCall(contact);
+		}
+	 }
+	,
+	/**
 	 * Method which shows contacts in grid or list view.
 	 * 
 	 * @method showContacts
@@ -186,47 +214,93 @@ var ContactsLibrary = {
 		console.debug("show contacts called",Phone.contacts);
 		var view = "";
 		$("#contactList").empty();
+		$("#contactsLibraryFilter li").unbind("click");
+		$("#contactsLibraryFilter li").addClass("dk-grey");
 		for (i = 0; i < Phone.contacts.length; i++) {
-			var contact = this.ContactTemplate.clone();
-			contact.attr("id","contact_"+i);
-			if (Phone.contacts[i].isFavorite==true) {
-				contact.addClass("Favorite");
-			}
-			console.log("showcontacts ",contact);
-			//console.log("contacts.showContacts ",contact.find("[name='contactName']").text());
-			contact.find("[name='contactName']").text(Phone.getDisplayNameStr(Phone.contacts[i]));
-			if (this.Favorite) {
-				if (Phone.contacts[i].isFavorite) { 
-					contact.appendTo("#contactList");
+			if (Phone.contacts[i].phoneNumbers.length>0) {
+				var contact = this.ContactTemplate.clone();
+				contact.attr("id","contact_"+i);
+				if (Phone.contacts[i].isFavorite==true) {
+					contact.addClass("Favorite");
 				}
-			} else if (this.Letter!=null) {
-				if (Phone.getDisplayNameStr(Phone.contacts[i]).toLowerCase().startsWith(this.Letter.toLowerCase())) {
-					contact.appendTo("#contactList");
-				}
-			} else if (this.Search!=null) {
-				if (this.contactSearch(Phone.contacts[i])) {
-					contact.appendTo("#contactList");
+				console.log("showcontacts ",contact);
+				//console.log("contacts.showContacts ",contact.find("[name='contactName']").text());
+				var Name = Phone.getDisplayNameStr(Phone.contacts[i]);
+				contact.find("[name='contactName']").text(Name);
+				var displayPhone = Phone.getDisplayNumberStr(Phone.contacts[i],"mobile");
+				$("#contactsLibraryFilterButton_"+Name.charAt(0).toUpperCase()).removeClass("dk-grey");
+				$("#contactsLibraryFilterButton_"+Name.charAt(0).toUpperCase()).attr("onclick",'Events.LetterClick("'+Name.charAt(0).toLowerCase()+'")');
+				if (displayPhone.length===0) {
+					displayPhone = Phone.getDisplayNumberStr(Phone.contacts[i],0);
+					contact.find("[name='phone-type-mobile'] span").text(displayPhone);
+					contact.find("[name='phone-type-mobile'] span").data("phoneNumber",displayPhone);
+					contact.find("[name='phone-type-mobile']").click(this.onDialContactNumber);
+					//contact.find("[name='phone-type-mobile']").switchClass("");
 				} else {
-					console.log("Filtered:",this.Search,Phone.contacts[i]);
+					contact.find("[name='phone-type-mobile'] span").text(displayPhone);
+					contact.find("[name='phone-type-mobile'] span").data("phoneNumber",displayPhone);
+					contact.find("[name='phone-type-mobile']").click(this.onDialContactNumber);
+				}				
+				
+				displayPhone = Phone.getDisplayNumberStr(Phone.contacts[i],"home");
+				if (displayPhone.length===0) {
+					displayPhone = Phone.getDisplayNumberStr(Phone.contacts[i],1);
+					contact.find("[name='phone-type-home'] span").text(displayPhone);
+					contact.find("[name='phone-type-home'] span").data("phoneNumber",displayPhone);
+					contact.find("[name='phone-type-home']").removeClass("fa-home");
+					contact.find("[name='phone-type-home']").addClass("fa-phone");
+					contact.find("[name='phone-type-home']").click(this.onDialContactNumber);
+				} else {
+					contact.find("[name='phone-type-home'] span").text(displayPhone);
+					contact.find("[name='phone-type-home'] span").data("phoneNumber",displayPhone);
+					contact.find("[name='phone-type-home']").click(this.onDialContactNumber);
 				}
-			} else {
-				contact.appendTo("#contactList");
-			}
-			/*
-			if (((Favorite) &&(Phone.contacts[i].isFavorite==true))||(!Favorite)) {
-				if (Letter!=null) {
-					if (Phone.getDisplayNameStr(Phone.contacts[i]).toLowerCase().startsWidth(Letter)) {
+				displayPhone = Phone.getDisplayNumberStr(Phone.contacts[i],"work");
+				if (displayPhone.length===0) {
+					displayPhone = Phone.getDisplayNumberStr(Phone.contacts[i],2);
+					contact.find("[name='phone-type-work'] span").text(displayPhone);
+					contact.find("[name='phone-type-work'] span").data("phoneNumber",displayPhone);
+					contact.find("[name='phone-type-work']").removeClass("fa-briefcase");
+					contact.find("[name='phone-type-work']").addClass("fa-phone");
+				} else {
+					contact.find("[name='phone-type-work'] span").text(displayPhone);
+					contact.find("[name='phone-type-work'] span").data("phoneNumber",displayPhone);
+				}
+				contact.find("[name='phone-type-work'] span").data("phoneNumber",displayPhone);
+				contact.find("[name='phone-type-work']").click(this.onDialContactNumber);
+				if (this.Favorite) {
+					if (Phone.contacts[i].isFavorite) { 
 						contact.appendTo("#contactList");
 					}
-				} else if (Search!=null) {
-						if (Phone.contacts[i].toString().indexOf(Search)>=0) {
-							contact.appendTo("#contactList");
-						}
+				} else if (this.Letter!=null) {
+					if (Phone.getDisplayNameStr(Phone.contacts[i]).toLowerCase().startsWith(this.Letter.toLowerCase())) {
+						contact.appendTo("#contactList");
+					}
+				} else if (this.Search!=null) {
+					if (this.contactSearch(Phone.contacts[i])) {
+						contact.appendTo("#contactList");
+					} else {
+						console.log("Filtered:",this.Search,Phone.contacts[i]);
+					}
 				} else {
 					contact.appendTo("#contactList");
 				}
-			}*/
-			//$("#contectList").
+				/*
+				if (((Favorite) &&(Phone.contacts[i].isFavorite==true))||(!Favorite)) {
+					if (Letter!=null) {
+						if (Phone.getDisplayNameStr(Phone.contacts[i]).toLowerCase().startsWidth(Letter)) {
+							contact.appendTo("#contactList");
+						}
+					} else if (Search!=null) {
+							if (Phone.contacts[i].toString().indexOf(Search)>=0) {
+								contact.appendTo("#contactList");
+							}
+					} else {
+						contact.appendTo("#contactList");
+					}
+				}*/
+				//$("#contectList").
+			}
 		}
 		/*
 		switch ($('#library').library('getSelectetLeftTabIndex')) {

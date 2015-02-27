@@ -221,6 +221,30 @@ var	Phone = (function() {
 		return null;
 	};
 	/** 
+	* Function returns formatted phone number into unified format starting with + sign.
+	* @method formatPhoneNumber
+	* @for window
+	* @param {string} phoneNumber Unformated phone number.
+	*/
+	Phone.prototype.formatNumberDisplay= function (phoneNumber) {
+		"use strict";
+		var convPhoneNumber = phoneNumber;
+
+		if (!!convPhoneNumber) {
+			convPhoneNumber = convPhoneNumber.toString();
+			convPhoneNumber = convPhoneNumber.trim().replace(/^\+/, ""); // replace leading '+' by '00'
+			convPhoneNumber = convPhoneNumber.trim().replace(/\D/g, "");  // remove all non-digit characters, ie. 00123-123(123) => 00123123123
+			if (convPhoneNumber[0]==='1') {
+				convPhoneNumber=convPhoneNumber.substr(1);
+			}
+			//convPhoneNumber = convPhoneNumber.trim().replace(/^00/, "+"); // replace leading '00' by '+'
+			//convPhoneNumber.replace(/[^0-9]/g,'');
+			convPhoneNumber = convPhoneNumber.replace(/(\d{3})(\d{3})(\d{4})/,"$1-$2-$3");
+		}
+
+		return convPhoneNumber;
+	}
+	/** 
 	 * This method searches contact in contacts list by phoneNumber.
 	 * @method getContactByPhoneNumber
 	 * @param id {String} search contact phoneNumber
@@ -248,6 +272,30 @@ var	Phone = (function() {
 		}
 		console.log("getContactByPhoneNumber contact=null");
 		return null;
+	};
+	/** 
+	 * This method composes display name from contact names.
+	 * @method getDisplayNumberStr
+	 * @param contact {Object} contact object
+	 * @param type string number type to return
+	 * @return {String} contact name for display
+	 */
+	Phone.prototype.getDisplayNumberStr = function(contact,type) {
+
+		var self = this;
+		if ( !! contact && !! contact.name && (contact.phoneNumbers.length>0)) {
+			if ((typeof(type)==="number")&&(type<contact.phoneNumbers.length)) {
+				return this.formatNumberDisplay(contact.phoneNumbers[type].number);
+			} else if (typeof(type)==="string") {
+				var index;
+				for ( index in contact.phoneNumbers ) {
+					if ((contact.phoneNumbers[index].type) &&(contact.phoneNumbers[index].type.toLowerCase()===type)) {
+						return this.formatNumberDisplay(contact.phoneNumbers[index].number);
+					}
+				}
+			}
+		}
+		return "";
 	};
 	/** 
 	 * This method composes display name from contact names.
