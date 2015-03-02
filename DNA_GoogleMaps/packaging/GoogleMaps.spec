@@ -1,5 +1,5 @@
-Name:       Navigation
-Summary:    A HTML Navigation application
+Name:       Google Maps
+Summary:    A HTML Google Maps application
 Version:    0.0.1
 Release:    1
 Group:      Applications/System
@@ -14,7 +14,7 @@ Requires:   wrt-installer
 Requires:   wrt-plugins-ivi
 
 %description
-A HTML Navigation application for Directions and gps.
+A HTML Google Maps application for Directions and gps.
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -29,12 +29,12 @@ rm -rf %{buildroot}
 
 %post
 if [ -f /opt/usr/apps/.preinstallWidgets/preinstallDone ]; then
-    wrt-installer -i /opt/usr/apps/.preinstallWidgets/Navigation.wgt;
+    wrt-installer -i /opt/usr/apps/.preinstallWidgets/GoogleMaps.wgt;
 fi
 
 %postun
-    wrt-installer -un intelPoc??.Navigation
+    wrt-installer -un intelPoc??.GoogleMaps
 
 %files
 %defattr(-,root,root,-)
-/opt/usr/apps/.preinstallWidgets/Navigation.wgt
+/opt/usr/apps/.preinstallWidgets/GoogleMaps.wgt

@@ -115,7 +115,7 @@ var Speech = (function() {
 								commandFound = true;
 								break;
 							case "launch_homescreen":
-							case "launch_navigation":
+							case "launch_googlemaps":
 							case "launch_dashboard":
 							case "launch_store":
 							case "launch_multimediaplayer":

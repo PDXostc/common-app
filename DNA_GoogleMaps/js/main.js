@@ -19,7 +19,7 @@
 /*global google*/
 
 /** 
- * Navigation application allows user to use Google Maps to navigate around in predefined set of waypoints in Places library with Text-To-Speech feature
+ * Google Maps application allows user to use Google Maps to navigate around in predefined set of waypoints in Places library with Text-To-Speech feature
  * (via {{#crossLink "Speech"}}{{/crossLink}} object). Nvigation doesn't use GPS but updates position of marker along the route in periodic intervals.
  * Default navigation waypoints are defined by:
  *

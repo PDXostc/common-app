@@ -3,7 +3,7 @@ app_list = \
            DNA_News \
            DNA_HVAC \
            DNA_Dashboard \
-           DNA_Navigation \
+           DNA_GoogleMaps \
            DNA_NFC \
            DNA_Browser \
            DNA_Weather

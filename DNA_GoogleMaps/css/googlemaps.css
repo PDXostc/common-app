@@ -2,7 +2,7 @@
 
 /* Overrides DNA_common/css/common.css*/
 
-#navigation-app #app {
+#google-maps-app #app {
 	overflow: hidden;
 	position: relative;
 	flex-direction: column;
@@ -25,16 +25,16 @@
 
 /* Overrides DNA_common/components/progressBar/progressBar.css */
 
-#navigation-app #VCouter,
-#navigation-app #VCbarWrapper,
-#navigation-app #VCline,
-#navigation-app #VCinner {
+#google-maps-app #VCouter,
+#google-maps-app #VCbarWrapper,
+#google-maps-app #VCline,
+#google-maps-app #VCinner {
 	position: relative;
 	top: 0;
 	left: 0;
 }
 
-#navigation-app #VCinner {
+#google-maps-app #VCinner {
 	height: 6px;
 }
 

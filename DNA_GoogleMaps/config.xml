@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://com.intel.tizen/navigationgoogle" version="1.0.0" viewmodes="fullscreen">
     <access origin="*" subdomains="true"/>
-    <tizen:application id="JLRPOCX015.Navigation" package="JLRPOCX015" required_version="2.1"/>
+    <tizen:application id="JLRPOCX015.GoogleMaps" package="JLRPOCX015" required_version="2.1"/>
     <content src="index.html"/>
     <icon src="icon.png"/>
-    <name>Navigation</name>
+    <name>Google Maps</name>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
 	<tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
