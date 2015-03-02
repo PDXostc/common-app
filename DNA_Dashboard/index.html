@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
 	<!-- Need to load dashboardControler.js before init.js, since init.js loads main and main instantiates a dashBoardControler object.  -->
 	<script type="text/javascript" src="./js/dashboardControler.js"></script>
+	<script type="text/javascript" src="./js/statusBox.js"></script>
 	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
 
 	<script type="text/javascript">
@@ -38,7 +39,7 @@
 				<!-- BEGIN HTML ELEMENTS -->
 				<div class="flex-item">
 
-				<!-- 01. Speed, Fuel and Temperature Information -->
+					<!-- 01. Speed, Fuel and Temperature Information -->
 					<div id="speed-fuel-temp-container">
 
 						<!-- Speed (Orange) -->
@@ -106,8 +107,14 @@
 							<h6>Right Rear Tire</h6>
 							<p class="psi-text"><span id="psiRR">26.0</span> PSI</p>
 						</div>
+					</div>
 
-						<div id="car-graphic"></div> <!-- This is the large Range Rover vehicle graphic -->
+					<!-- 03. Vehicle Graphics -->
+					<div id="vehicle-graphic"></div> <!-- This is the large vehicle graphic with call out lines -->
+					<div id="vehicle-graphic-switches">
+						<div id="f-type-button"><a class="button button-orange">F-Type<a></div>
+						<div><a class="button button-orange">Range Rover<a></div>
+						<div><a class="button button-orange">LR4<a></div>
 					</div>
 				</div>
 				<!-- END CUSTOM ELEMENTS -->

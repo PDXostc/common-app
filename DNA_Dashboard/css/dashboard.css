@@ -58,8 +58,8 @@ li {
 
 
 #speed-fuel-temp-container {
-	position: relative;
-	top: 62px;
+	margin-top: 25px;
+	height: 450px;
 }
 
 /*/// Speed ///*/
@@ -199,18 +199,18 @@ li {
 
 .front-tire-data {
 	position: absolute;
-	top: 832px;
+	top: 286px;
 }
 
 .rear-tire-data {
 	position: absolute;
-	top: 1096px;
+	top: 564px;
 }
 
 .PSI-status-position {
 	position: absolute;
 	left: -43px;
-	top: 0px;
+	top: 5px;
 }
 
 .PSI-status-OK {
@@ -219,11 +219,27 @@ li {
 	height: 35px;
 }
 
-#car-graphic {
-	position: absolute;
-	left: 135px;
-	top: 569px;
-	width: 809px;
+/*//////////// 03. Vehicle Graphics ////////////*/ 
+
+#vehicle-graphic {
+	width: 100%;
 	height: 901px;
-	background-image: url('../images/Range_Rover_Outline_Call_Outs.png');
+	margin-bottom: 25px;
+	background-image: url('../images/LR4_Outline_Call_Outs.png');
+	background-position: top center;
+	background-repeat: no-repeat;
 } 
+
+#f-type-vehicle {
+	width: 100%;
+	height: 901px;
+	margin-bottom: 10px;
+	background-image: url('../images/fType_Call_Outs.png');
+	background-position: top center;
+	background-repeat: no-repeat;
+}
+
+#vehicle-graphic-switches {
+	display: flex;
+	justify-content: center;
+}
