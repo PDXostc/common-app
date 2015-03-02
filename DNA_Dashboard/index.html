@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="./DNA_common/components/jQuery/jquery-1.8.2.js"></script>
 	<!-- Need to load dashboardControler.js before init.js, since init.js loads main and main instantiates a dashBoardControler object.  -->
 	<script type="text/javascript" src="./js/dashboardControler.js"></script>
-	<script type="text/javascript" src="./js/statusBox.js"></script>
+	<script type="text/javascript" src="./js/vehicle_graphic_switch.js"></script>
 	<script type="text/javascript" src="./DNA_common/js/init.js"></script>
 
 	<script type="text/javascript">
@@ -72,8 +72,8 @@
 								<h5 class="green-viv">TEMPERATURE <span id="unit-temperature" class="unit-description green-lt">CELSIUS</span></h5>
 								<div id="temperature-icon"></div>
 								<ul>
-									<li><strong>OUTDOOR:</strong> <span id="OutdoorTemp">80</span>&deg;</li>
-									<li><strong>INDOOR:</strong> <span id="InCarTemp">72</span>&deg;</li>
+									<li><strong>OUTDOOR:</strong> <span id="OutdoorTemp">28.9</span>&deg;</li>
+									<li><strong>INDOOR:</strong> <span id="InCarTemp">20.4</span>&deg;</li>
 								</ul>
 							</div>
 						</div>
@@ -110,11 +110,11 @@
 					</div>
 
 					<!-- 03. Vehicle Graphics -->
-					<div id="vehicle-graphic"></div> <!-- This is the large vehicle graphic with call out lines -->
+					<div id="vehicle-graphic" class="rangeRoverVehicle"></div> <!-- This is the large vehicle graphic with call out lines -->
 					<div id="vehicle-graphic-switches">
-						<div id="f-type-button"><a class="button button-orange">F-Type<a></div>
-						<div><a class="button button-orange">Range Rover<a></div>
-						<div><a class="button button-orange">LR4<a></div>
+						<div id="rangeRoverButton"><a class="button button-orange">Range Rover<a></div>
+						<div id="lr4Button"><a class="button button-orange">LR4<a></div>
+						<div id="fTypeButton"><a class="button button-orange">F-Type<a></div>
 					</div>
 				</div>
 				<!-- END CUSTOM ELEMENTS -->
