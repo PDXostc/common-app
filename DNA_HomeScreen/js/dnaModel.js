@@ -15,7 +15,7 @@ function reqListener(e){
 var ScreenScale=1.5;
 	ScreenWidth = 720*ScreenScale,
 	ScreenHeight = 1280*ScreenScale, /*1920 or 1800, 1220 for testing*/
-	VerticalOffset = -200, /*-200, 200 for testing */
+	VerticalOffset = -250, /*-250, or +250 for testing */
 	ClickSensitivity = 50,
 	DragSensitivity = 50,
 	Edges = true,
@@ -591,7 +591,7 @@ function addIcon(Icon, Callback, Path, Id){
 	if(Callback!==null)
 		IconLinks.push([img,Callback]);
 	else
-		IconLinks.push([img,function (){ tizen.application.launch(Id);tizen.application.getCurrentApplication().exit(); }])
+		IconLinks.push([img,function (){ callApp(Id); }]); //callApp is defined in common component topBar.js
 	IconCount++;
 }
 function rescale(scale,cos){
@@ -712,17 +712,26 @@ function onAppRecallSuccess(list) {
 
 		for (i = 0; i < list.length; i++) {
 			var app = list[i];
-			if(app.name != "Home Screen"){
-				if (registeredApps[app.id]) {
-					addIcon(app.name, null, registeredApps[app.id], app.id);
-				}else{
-					if(app.iconPath.substr(app.iconPath.length - 4) != ".png"){
-						var path="./DNA_common/images/tizen_inactive.png";
+			switch(app.name){
+				case 'Home Screen':
+				case 'crosswalk':
+				case 'Dialer':
+				case 'Rygel':
+				case 'NFC Manager':
+				case 'pkgmgr-install':
+					//hide these apps from the DNA HMI for reasons
+				break;
+				default:
+					if (registeredApps[app.id]) {
+						addIcon(app.name, null, registeredApps[app.id], app.id);
 					}else{
-						var path=app.iconPath;
+						if(app.iconPath.substr(app.iconPath.length - 4) != ".png"){
+							var path="./DNA_common/images/tizen_inactive.png";
+						}else{
+							var path=app.iconPath;
+						}
+						addIcon(app.name, null, path, app.id);
 					}
-					addIcon(app.name, null, path, app.id);
-				}
 			}
 		}
 	} catch (exc) {
@@ -735,7 +744,7 @@ function getInstalledApps(callback){
 	G.Callback = callback;
 	//Add defaults until app pulls icons properly
 	/*for(i=0;i<SkipRows*StrandCount;i++){
-		addIcon('Dashboard',	function (){ tizen.application.launch("JLRPOCX033.Dashboard");			});
+		addIcon('Dashboard',	function (){ callApp("JLRPOCX033.Dashboard");			});
 	}*/
 	"use strict";
 	if (typeof tizen !== 'undefined') {
@@ -754,11 +763,11 @@ function getInstalledApps(callback){
 	}else{
 		//Add some defaults for the Web Simulator
 		//addIcon syntax: Image Name, Callback Function
-		addIcon('dashboard_inactive',	function (){ tizen.application.launch("JLRPOCX033.Dashboard");			});
-		addIcon('fingerprint_inactive',	function (){ tizen.application.launch("JLRPOCX011.FingerPrint");		});
-		addIcon('hvac_inactive',		function (){ tizen.application.launch("JLRPOCX008.HVAC");				});
-		addIcon('news_inactive',		function (){ tizen.application.launch("JLRPOCX007.News");				});
-		addIcon('phone_inactive',		function (){ tizen.application.launch("JLRPOCX031.phone");				});
+		addIcon('dashboard_inactive',	function (){ callApp("JLRPOCX033.Dashboard");			});
+		addIcon('fingerprint_inactive',	function (){ callApp("JLRPOCX011.FingerPrint");		});
+		addIcon('hvac_inactive',		function (){ callApp("JLRPOCX008.HVAC");				});
+		addIcon('news_inactive',		function (){ callApp("JLRPOCX007.News");				});
+		addIcon('phone_inactive',		function (){ callApp("JLRPOCX031.phone");				});
 		//IconCount=30; //for testing purposes
 		callback();
 	}

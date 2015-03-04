@@ -5,6 +5,7 @@ var taskList = [];
 	for(var i=0;i<7;i++)
 		emptyIcon(i);
 var first=true;
+var topbarDnD=false;
 //var dataResolved=false;
 var updateText='resolved\n';
 var name="";
@@ -55,7 +56,7 @@ TopBar.includeHTMLSuccess = function(linkobj) {
 		TopBar.import = linkobj.path[0].import;
 		console.log(TopBar.import);
 		TopBar.topBarHTML = TopBar.import.getElementById('topBar');
-		setTimeout(TopBar.pageUpdate,250);
+		setTimeout(TopBar.pageUpdate,200);
 }
 
 TopBar.includeHTMLFailed = function(linkobj) {
@@ -72,14 +73,32 @@ function onLaunchSuccess(x){
 	$("#volumeSlider").hide();
 	window.setTimeout(function() {
 		tizen.application.getCurrentApplication().hide();
-	}, 200);
+	}, 300);
+}
+function onSwitchSuccess(x){
+	$("#hexGridView").hide();
+	$("#volumeSlider").hide();
+	tizen.application.getCurrentApplication().hide();
 }
 function onError(x){
 	console.log(x);
 }
-
+function onRunningAppsContext(contexts,targetId){
+	var target = "";
+    for (var i = 0; i < contexts.length; i++) {
+        if (contexts[i].appId == targetId) {
+			tizen.application.launch(targetId, onSwitchSuccess, onError);
+			target="found";
+			console.log(targetId+" Switched!");
+        }
+    }
+    if(target!=="found"){
+		tizen.application.launch(targetId, onLaunchSuccess, onError);
+		console.log(targetId+" Launched!");
+	}
+}
 function callApp(appId){
-	tizen.application.launch(appId, onLaunchSuccess, onError);
+	tizen.application.getAppsContext(function(e){onRunningAppsContext(e,appId)});
 }
 
 function launchApplication(id) {
@@ -308,14 +327,20 @@ function onAppInfoSuccess(list) {
 			var offset = 0;
 			for (i = 0; i < applications.length; i++) {
 				console.log('i: '+i+' offset:'+offset+' appname: '+applications[i].appName);
-				if(applications[i].appName !== HomeScreenName){
-				console.log('Divisible: '+(i>1 && Divisible(i-offset,5)));
-					if(Divisible(i-offset,5)){
-						$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
-					}
-					insertAppFrame(applications[i]);
-				}else{
-					offset=offset+1;
+				switch(applications[i].appName){
+					case HomeScreenName:
+					case 'crosswalk':
+					case 'Dialer':
+					case 'Rygel':
+					case 'NFC Manager':
+					case 'pkgmgr-install':
+						offset=offset+1; //hide these apps from the App Grid for reasons
+						break;
+					default:
+						if(Divisible(i-offset,5)){
+							$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+						}
+						insertAppFrame(applications[i]);
 				}
 			}
 			if(Divisible(applications.length-offset,5)){
@@ -336,7 +361,7 @@ function onAppInfoSuccess(list) {
 			}
 		}
 	}first=false;//(!first)
-		if (jQuery.ui) {
+		if (topbarDnD && jQuery.ui) {
 			$(".topTask img").draggable({
 				opacity:0.7,delay:1000,zIndex:2000,scroll:false,
 				helper:"clone",appendTo:"body",
@@ -466,12 +491,20 @@ function getIcons(id){
 }
 function initIcon(){
 	//initialize icons
+	/*
 	for(tasks=0;tasks<7;tasks++){
 		if(JSON.stringify(getIcons(tasks)).length < 22)
 			taskList[tasks] = {source:"", cb:""};
 		else
 			taskList[tasks]=getIcons(tasks);
-	}
+	}*/
+	taskList=[{source:"/DNA_common/images/navigation_inactive.png",	cb:"JLRPOCX015.Navigation"},
+			  {source:"/DNA_common/images/browser_inactive.png",	cb:"JLRPOCX030.Browser"},
+			  {source:"/DNA_common/images/dashboard_inactive.png",	cb:"JLRPOCX033.Dashboard"},
+			  {source:"/DNA_common/images/hvac_inactive.png",		cb:"JLRPOCX008.HVAC"},
+			  {source:"/DNA_common/images/weather_inactive.png",	cb:"JLRPOCX035.Weather"},
+			  {source:"/DNA_common/images/news_inactive.png", 		cb:"JLRPOCX007.News"},
+			  {source:"/DNA_common/images/nfc_inactive.png", 		cb:"JLRPOCX034.NFC"}];
 	displayTasks();
 	initAppGrid();
 }
