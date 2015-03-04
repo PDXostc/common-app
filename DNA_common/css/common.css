@@ -80,9 +80,9 @@ body {
   justify-content:space-between;
 }
 
-input, textarea {
-  user-select: auto;
-  -webkit-user-select: auto;
+*:not(input):not(textarea) {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /*Typography **********************************************/
