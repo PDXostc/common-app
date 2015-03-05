@@ -226,7 +226,7 @@ var averageSpeed = 0;
  * @private
  * @property instructionIndex {Integer}
  */
-var instructionIndex = 0;
+var instructionIndex = 1;
 
 /**
  * Holds status value if instruction changed.
@@ -262,7 +262,7 @@ var bootstrap;
 function strip(html) {
 	"use strict";
     var tmp = document.createElement("DIV");
-    tmp.innerHTML = html;
+    tmp.innerHTML = html.replace('<div',' <div');
     return tmp.textContent || tmp.innerText;
 }
 /** 
@@ -514,7 +514,7 @@ function updateNavigationPanel() {
  */
 function animate(d) {
 	"use strict";
-	if (d + step > instructions[instructionIndex].distanceValue) {
+	if (d + step > instructions[instructionIndex-1].distanceValue) {
 		if (instructionIndex < instructions.length - 1) {
 			instructionChanged = true;
 			instructionIndex++;
@@ -540,7 +540,7 @@ function animate(d) {
 	}
 
 	remainingDistance = polDistance - d;
-	remainingStepDistance = instructions[instructionIndex].distanceValue - d;
+	remainingStepDistance = instructions[instructionIndex-1].distanceValue - d;
 
 	updateNavigationPanel();
 
@@ -783,7 +783,7 @@ function changeDestinationAddress(newDestinationAddress) {
 	averageSpeed = 0;
 
 	instructions = [];
-	instructionIndex = 0;
+	instructionIndex = 1;
 	instructionChanged = true;
 
 	marker.setMap(null);
