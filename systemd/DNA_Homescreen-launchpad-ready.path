@@ -1,0 +1,8 @@
+# Description=Path activation for DNA_Homescreen
+
+[Path]
+PathExists=%t/wayland-0
+Unit=DNA_Homescreen.service
+
+[Install]
+WantedBy=tizen-user-middleware.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=DNA Homescreen
+Requires=Tizen system middleware services
+After=Tizen system middleware services
+
+[Service]
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/dbus/user_bus_socket
+ExecStart=/usr/bin/DNA_launcher.sh --user app

@@ -29,15 +29,20 @@ txtred=$(tput setaf 1) # Red
 
 all: apps extensions
 
+autolaunch:
+	scp systemd/DNA_launcher.sh root@$(TIZEN_IP):/usr/bin
+	scp systemd/DNA_Homescreen* root@$(TIZEN_IP):/usr/lib/systemd/user/
+	ssh root@$(TIZEN_IP) "ln -sf /usr/lib/systemd/user/DNA_Homescreen-launchpad-ready.path /usr/lib/systemd/user/tizen-user-middleware.target.wants/"
+
 updatepackages:
-	ssh root@TizenVTC "rpm -qa" >package_list
+	ssh root@$(TIZEN_IP) "rpm -qa" >package_list
 
 packagecheck: package_list
-	ssh root@TizenVTC "rpm -qa" | diff package_list - ; if [ $$? -ne 0 ] ; then tput setaf 1 ; echo "packages do not match"; tput sgr0 ;exit 1 ; fi
+	ssh root@$(TIZEN_IP) "rpm -qa" | diff package_list - ; if [ $$? -ne 0 ] ; then tput setaf 1 ; echo "packages do not match"; tput sgr0 ;exit 1 ; fi
 	tput bold ; echo "packages match"; tput sgr0
 
 boxcheck: tizen-release
-	ssh root@TizenVTC "cat /etc/tizen-release" | diff tizen-release - ; if [ $$? -ne 0 ] ; then tput setaf 1 ; echo "tizen-release version not correct"; tput sgr0 ;exit 1 ; fi
+	ssh root@$(TIZEN_IP) "cat /etc/tizen-release" | diff tizen-release - ; if [ $$? -ne 0 ] ; then tput setaf 1 ; echo "tizen-release version not correct"; tput sgr0 ;exit 1 ; fi
 	
 
 apps:

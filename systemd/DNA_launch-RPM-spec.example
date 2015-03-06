@@ -1,0 +1,47 @@
+Name:       DNA-Homescreen
+VCS:        profile/ivi/DNA_Homescreen#821526ef7aa76fc789e03fc8b94fa867a090f58a
+Summary:    A proof of concept pure html5 UI
+Version:    0.0.2
+Release:    0
+Group:      Automotive/DNA
+License:    Apache-2.0
+URL:        http://www.tizen.org
+Source0:    %{name}-%{version}.tar.bz2
+Source1001: DNA-Homescreen.manifest
+
+BuildRequires: zip
+BuildRequires: pkgconfig(libtzplatform-config)
+Requires:      DNA-Common
+
+BuildArchitectures: noarch
+
+%description
+A proof of concept pure html5 UI files
+
+%prep
+%setup -q -n %{name}-%{version}
+cp %{SOURCE1001} .
+
+%build
+#empty
+
+%install
+    mkdir -p %{buildroot}%{TZ_SYS_APP_PREINSTALL}
+    mkdir -p %{buildroot}%{_datadir}/DNA/Common/icons
+    zip -r %{buildroot}%{TZ_SYS_APP_PREINSTALL}/%{name}.wgt config.xml manifest.json css Homescreen_icon.png index.html js
+    install -m 0644 Homescreen_icon.png %{buildroot}%{_datadir}/DNA/Common/icons
+
+    mkdir -p %{buildroot}%{_bindir}
+    install -m 755 systemd/DNA_launcher.sh %{buildroot}%{_bindir}
+    install -m 0644 systemd/DNA_Homescreen-launchpad-ready.path %{buildroot}%{_unitdir_user}
+    install -m 0644 systemd/DNA_Homescreen.service %{buildroot}%{_unitdir_user}
+    ln -sf ../DNA_Homescreen-launchpad-ready.path %{buildroot}%{_unitdir_user}/tizen-user-middleware.target.wants/
+
+%files
+%defattr(-,root,root,-)
+%{TZ_SYS_APP_PREINSTALL}/%{name}.wgt
+%{_datadir}/DNA/Common/icons/Homescreen_icon.png
+%{_unitdir_user}/DNA_Homescreen.service
+%{_unitdir_user}/DNA_Homescreen-launchpad-ready.path
+%{_bindir}/DNA_launcher.sh
+%{_unitdir_user}/tizen-user-middleware.target.wants
