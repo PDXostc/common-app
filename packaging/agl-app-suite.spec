@@ -26,6 +26,12 @@ make "OBS=1" apps
 
 %install
 make "OBS=1" install_obs DESTDIR="%{?buildroot}"
+mkdir -p %{?buildroot}%{_bindir}
+mkdir -p %{?buildroot}%{_unitdir_user}
+mkdir -p %{?buildroot}%{_unitdir_user}/tizen-user-middleware.target.wants/
+install -m 0755 systemd/DNA_launcher.sh %{?buildroot}%{_bindir}
+install -m 0644 systemd/DNA_Homescreen* %{?buildroot}%{_unitdir_user}
+ln -sf %{_unitdir_user}/DNA_Homescreen-launchpad-ready.path %{?buildroot}%{_unitdir_user}/tizen-user-middleware.target.wants/
 
 #%post
 #for app in /opt/usr/apps/.preinstallWidgets/*.wgt; do
@@ -40,4 +46,8 @@ done
 %files
 %defattr(-,root,root,-)
 /opt/usr/apps/.preinstallWidgets/*.wgt
+%{_bindir}/DNA_launcher.sh
+%{_unitdir_user}/DNA_Homescreen-launchpad-ready.path
+%{_unitdir_user}/tizen-user-middleware.target.wants/DNA_Homescreen-launchpad-ready.path
+%{_unitdir_user}/DNA_Homescreen.service
 
