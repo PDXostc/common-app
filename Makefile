@@ -29,6 +29,13 @@ txtred=$(tput setaf 1) # Red
 
 all: apps extensions
 
+updatepackages:
+	ssh root@TizenVTC "rpm -qa" >package_list
+
+packagecheck: package_list
+	ssh root@TizenVTC "rpm -qa" | diff package_list - ; if [ $$? -ne 0 ] ; then tput setaf 1 ; echo "packages do not match"; tput sgr0 ;exit 1 ; fi
+	tput bold ; echo "packages match"; tput sgr0
+
 boxcheck: tizen-release
 	ssh root@TizenVTC "cat /etc/tizen-release" | diff tizen-release - ; if [ $$? -ne 0 ] ; then tput setaf 1 ; echo "tizen-release version not correct"; tput sgr0 ;exit 1 ; fi
 	
