@@ -1189,9 +1189,19 @@ CarIndicator.prototype.setStatus = function(indicator, newValue, callback, zone)
             this.status[mappingElement.callBackPropertyName] = newValue;
 
             var callbackName = "on" + mappingElement.callBackPropertyName[0].toUpperCase() + mappingElement.callBackPropertyName.substring(1) + "Changed";
+            
+            for(var l in this._listenerIDs){
+            	var listener=this._listeners[this._listenerIDs[l]];
+
+				if (typeof (listener[callbackName]) === 'function')
+                	listener[callbackName](newValue);
+            }
+
+            /*
             var listener=this._listeners[this._listenerIDs[0]];
             if (typeof (listener[callbackName]) === 'function') 
                 listener[callbackName](newValue);
+            */
         }
         // TODO: remove up to here
 
