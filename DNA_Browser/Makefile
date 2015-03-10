@@ -1,6 +1,6 @@
 PROJECT = DNA_Browser
 INSTALL_FILES = images css js icon.png index.html templates
-WRT_FILES = DNA_common css icon.png setup images js templates config.xml error.html index.html search.html warning.html manifest.json
+WRT_FILES = DNA_common css icon.png setup images js templates config.xml error.html index.html search.html warning.html manifest.json README.txt
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
