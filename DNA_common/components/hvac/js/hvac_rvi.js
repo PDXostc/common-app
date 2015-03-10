@@ -12,24 +12,26 @@ $(document).ready(function(){onDepenancy("rvi.loaded",setup_hvac_service)});
 
 var no_reflect = "";
 
-function setup_hvac_service(){
-	console.log("setting up HVAC services.");
-	hvacServices = [
-		{"name":"hvac/air_circ","callback":"aircirc_rcb"},
-		{"name":"hvac/fan","callback":"fan_rcb"},
-		{"name":"hvac/fan_speed","callback":"fanspeed_rcb"},
-		{"name":"hvac/temp_left","callback":"temp_left_rcb"},
-		{"name":"hvac/temp_right","callback":"temp_right_rcb"},
-		{"name":"hvac/hazard","callback":"hazard_rcb"},
-		{"name":"hvac/seat_heat_right","callback":"seat_heat_right_rcb"},
-		{"name":"hvac/seat_heat_left","callback":"seat_heat_left_rcb"},
-		{"name":"hvac/airflow_direction","callback":"airflow_direction_rcb"},
-		{"name":"hvac/defrost_rear","callback":"defrost_rear_rcb"},
-		{"name":"hvac/defrost_front","callback":"defrost_front_rcb"},
+//Services/Indentifiers for HVAC in RVI.
+var hvacServices = [
+		{"name":"hvac/air_circ","callback":"aircirc_rcb","indicator_name":"airRecirculation"},
+		{"name":"hvac/fan","callback":"fan_rcb","indicator_name":"fan"},
+		{"name":"hvac/fan_speed","callback":"fanspeed_rcb","indicator_name":"fanSpeed"},
+		{"name":"hvac/temp_left","callback":"temp_left_rcb","indicator_name":"targetTemperatureLeft"},
+		{"name":"hvac/temp_right","callback":"temp_right_rcb","indicator_name":"targetTemperatureRight"},
+		{"name":"hvac/hazard","callback":"hazard_rcb","indicator_name":"hazard"},
+		{"name":"hvac/seat_heat_right","callback":"seat_heat_right_rcb","indicator_name":"seatHeaterRight"},
+		{"name":"hvac/seat_heat_left","callback":"seat_heat_left_rcb","indicator_name":"seatHeaterLeft"},
+		{"name":"hvac/airflow_direction","callback":"airflow_direction_rcb","indicator_name":"airflowDirection"},
+		{"name":"hvac/defrost_rear","callback":"defrost_rear_rcb","indicator_name":"rearDefrost"},
+		{"name":"hvac/defrost_front","callback":"defrost_front_rcb","indicator_name":"frontDefrost"},
 	
 		{"name":"hvac/subscribe","callback":"hvac_subscribe"}, //handles subscribing and unsubscribing other nodes.
 		{"name":"hvac/unsubscribe","callback":"hvac_unsubscribe"} //handles subscribing and unsubscribing other nodes.
 	];
+
+function setup_hvac_service(){
+	console.log("setting up HVAC services.");
 
 	rvi.rviRegisterServices(hvacServices);
 	hvacSetupRVIListeners();
@@ -98,10 +100,12 @@ function hvac_subscribe(args){
 	}
 	console.log("Current Subscribers: ");
 	console.log(rvi.settings.subscribers);
+
+	sendCurrentValues();
 }
 
 function hvac_unsubscribe(args){
-	var node = rvi.settings.subscribers.indexOf(args['node']);
+	var node = rvi.settings.subscribers.indexOf(args['sending_node']);
 	if(node != -1){
 		rvi.settings.subscribers.splice(node,1);	
 		rvi.setRviSettings(rvi.settings);
@@ -119,6 +123,7 @@ function hvacSetupRVIListeners(){
 	    },
 	    onFanChanged : function(newValue) {
 		//hvacIndicator.onFanChanged(newValue);
+		//sendRVIHVAC("fan_speed", newValue);
 	    },
 	    onFanSpeedChanged : function(newValue) {
 		//hvacIndicator.onFanSpeedChanged(newValue);
@@ -163,22 +168,14 @@ function hvacSetupRVIListeners(){
 //Sends current values over RVI
 function sendCurrentValues(){
 	carIndicator.getStatus(function(currentStatus){
-		var indicators =[
-			"airRecirculation",
-			"fanSpeed",
-			"frontDefrost",
-			"frontLights",
-			"hazard",
-			"rearDefrost",
-			"seatHeaterLeft",
-			"seatHeaterRight",
-			"targetTemperatureLeft",
-			"targetTemperatureRight"
-		];
 
-		for(v in indicators){
-			if(currentStatus[indicators[v]] != undefined){
-				console.log(indicators[v]+" "+currentStatus[indicators[v]]);
+		for(v in hvacServices){
+			if(hvacServices[v].indicator_name == undefined)
+				continue;
+
+			if(currentStatus[hvacServices[v].indicator_name] != undefined){
+				console.log("Name: "+hvacServices[v].name+" Current Val"+currentStatus[hvacServices[v].indicator_name]);
+				sendRVIHVAC(hvacServices[v].name,currentStatus[hvacServices[v].indicator_name])
 			}
 		}
 	});
@@ -189,23 +186,17 @@ function sendRVIHVAC(key,value){
 	//send message to all subscribers
 	//rvi.
 	var subs = rvi.settings.subscribers;
-	key = "hvac/"+key;
+	
+	if(key.indexOf("hvac/") == -1)
+		key = "hvac/"+key;
+
 	for(node in subs){
 
-	
-	//experimental
 		if (no_reflect == subs[node]) {
 			console.log();
 			no_reflect = "";
 			continue;
 		};
-	/*	
-		reflection = no_reflect.indexOf(subs[node]+key+"/"+value);
-		if(reflection != -1){
-			no_reflect.splice(reflection,1);
-			continue;
-		}
-	*/
 
 		service = subs[node]+key;
 		vals = JSON.stringify({value:value.toString()})
