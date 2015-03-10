@@ -148,6 +148,8 @@ var rviSettings = function(){
 	self = this;
 	this.loaded = new $.Deferred();
 	this.comm = new RVI();
+
+	//Load setting when they're available.
 	
 
 	this.getRviSettings = function(){
@@ -156,7 +158,7 @@ var rviSettings = function(){
 
 			var saved = Configuration.get("Settings.rvi");
 			if(saved != undefined){
-				
+				self.settings = saved;
 			}else{
 				self.settings = {};
 			}
@@ -211,8 +213,6 @@ var rviSettings = function(){
 		Configuration.save("Settings.rvi",self.settings);
 	}
 
-
-	//get the settings on 
 	this.getRviSettings();
 }
 
@@ -223,6 +223,7 @@ function RVI() {
     console.log("Starting up service RVI 1");
     RVI.instance = this
     this.service_map = {};
+
     this.connect = function(address, err_cb) {
 	try {
 	    if (Wse.open(address))

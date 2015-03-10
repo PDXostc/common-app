@@ -10,6 +10,8 @@
 //Incoming RVI messages to be executed by HVAC
 $(document).ready(function(){onDepenancy("rvi.loaded",setup_hvac_service)});
 
+var no_reflect = "";
+
 function setup_hvac_service(){
 	console.log("setting up HVAC services.");
 	hvacServices = [
@@ -33,53 +35,69 @@ function setup_hvac_service(){
 	hvacSetupRVIListeners();
 }
 
+
 function aircirc_rcb(args){
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("airRecirculation", str2bool(args.value));
-	return;
 }
+
 function fan_rcb(args){
+	
 	console.log("Setting fan status to "+args.value);
 	carIndicator.setStatus("fan", str2bool(args.value));
-	return;
 }
+
 function fanspeed_rcb(args){
+	
 	console.log("Setting fan speed to "+args.value);
 	carIndicator.setStatus("fanSpeed", parseInt(args.value));
-	return;
 }
+
 function temp_left_rcb(args){
+	
 	carIndicator.setStatus("targetTemperatureLeft", parseInt(args.value));
 }
 function temp_right_rcb(args){
+	
 	carIndicator.setStatus("targetTemperatureRight", parseInt(args.value));
 }
 function hazard_rcb(args){
+	
 	hvacControler.prototype.onHazardChanged(str2bool(args.value));
 }
 function seat_heat_right_rcb(args){
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("seatHeaterRight", parseInt(args.value));
 }
 function seat_heat_left_rcb(args){
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("seatHeaterLeft", parseInt(args.value));
 }
 function airflow_direction_rcb(args){
+	
 	carIndicator.setStatus("airflowDirection", parseInt(args.value));
 }
 function defrost_rear_rcb(args){
+	
 	carIndicator.setStatus("rearDefrost", str2bool(args.value));
 }
 function defrost_front_rcb(args){
+	
 	carIndicator.setStatus("frontDefrost", str2bool(args.value));
 }
 
+//Handles a Subscription request from a node.
 function hvac_subscribe(args){
+	console.log(args);
+	args = JSON.parse(args.value);
+	//Add this node to the list of subscribers
+	
 	if(rvi.settings.subscribers.indexOf(args['node']) == -1){
 		rvi.settings.subscribers.push(args['node']);
 		rvi.setRviSettings(rvi.settings);
-	}	
-
-	//if(rvi.subscribers.indexOf(args['']))
-	console.log(args);
+	}
+	console.log("Current Subscribers: ");
+	console.log(rvi.settings.subscribers);
 }
 
 function hvac_unsubscribe(args){
@@ -89,6 +107,7 @@ function hvac_unsubscribe(args){
 		rvi.setRviSettings(rvi.settings);
 	}
 }
+
 
 function hvacSetupRVIListeners(){
 	//Adds RVI listeners for HVAC changes.
@@ -139,4 +158,60 @@ function hvacSetupRVIListeners(){
 	    }
 	});
 	
+}
+
+//Sends current values over RVI
+function sendCurrentValues(){
+	carIndicator.getStatus(function(currentStatus){
+		var indicators =[
+			"airRecirculation",
+			"fanSpeed",
+			"frontDefrost",
+			"frontLights",
+			"hazard",
+			"rearDefrost",
+			"seatHeaterLeft",
+			"seatHeaterRight",
+			"targetTemperatureLeft",
+			"targetTemperatureRight"
+		];
+
+		for(v in indicators){
+			if(currentStatus[indicators[v]] != undefined){
+				console.log(indicators[v]+" "+currentStatus[indicators[v]]);
+			}
+		}
+	});
+}
+
+
+function sendRVIHVAC(key,value){
+	//send message to all subscribers
+	//rvi.
+	var subs = rvi.settings.subscribers;
+	key = "hvac/"+key;
+	for(node in subs){
+
+	
+	//experimental
+		if (no_reflect == subs[node]) {
+			console.log();
+			no_reflect = "";
+			continue;
+		};
+	/*	
+		reflection = no_reflect.indexOf(subs[node]+key+"/"+value);
+		if(reflection != -1){
+			no_reflect.splice(reflection,1);
+			continue;
+		}
+	*/
+
+		service = subs[node]+key;
+		vals = JSON.stringify({value:value.toString()})
+		console.log("Sending RVI message Node:"+subs[node])
+		console.log("Sending RVI message Key/Val:"+key+"/"+value);
+
+		rvi.comm.send_message(service, 5000, vals, key);
+	}
 }
