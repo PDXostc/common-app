@@ -199,7 +199,7 @@ function sendRVIHVAC(key,value){
 
 	//send message to all subscribers
 	var subs = rvi.settings.subscribers;
-	if (subs.length == 0 || subs == undefined) return;
+	if (subs == undefined || subs.length == 0) return;
 
 
 	if(key.indexOf("hvac/") == -1)
