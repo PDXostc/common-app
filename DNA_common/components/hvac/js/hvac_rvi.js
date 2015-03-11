@@ -8,7 +8,12 @@
  */
 
 //Incoming RVI messages to be executed by HVAC
-$(document).ready(function(){onDepenancy("rvi.loaded",setup_hvac_service)});
+$(document).ready(function(){
+	onDepenancy("rvi.loaded",function(){
+		onDepenancy("hvacIndicator.loaded",setup_hvac_service);
+	});
+});
+
 
 var no_reflect = "";
 
@@ -31,10 +36,13 @@ var hvacServices = [
 	];
 
 function setup_hvac_service(){
-	console.log("setting up HVAC services.");
 
-	rvi.rviRegisterServices(hvacServices);
-	hvacSetupRVIListeners();
+	if(hvacIndicator != undefined){
+		console.log("setting up HVAC services.");
+
+		rvi.rviRegisterServices(hvacServices);
+		hvacSetupRVIListeners();		
+	}
 }
 
 
@@ -94,6 +102,9 @@ function hvac_subscribe(args){
 	args = JSON.parse(args.value);
 	//Add this node to the list of subscribers
 	
+	//Make sure this is defined if it hasn't been previously.
+	if(rvi.settings.subscribers == undefined) rvi.settings.subscribers = [];
+	
 	if(rvi.settings.subscribers.indexOf(args['node']) == -1){
 		rvi.settings.subscribers.push(args['node']);
 		rvi.setRviSettings(rvi.settings);
@@ -105,6 +116,8 @@ function hvac_subscribe(args){
 }
 
 function hvac_unsubscribe(args){
+	if(rvi.settings.subscribers == undefined) rvi.settings.subscribers = [];
+
 	var node = rvi.settings.subscribers.indexOf(args['sending_node']);
 	if(node != -1){
 		rvi.settings.subscribers.splice(node,1);	
@@ -183,10 +196,12 @@ function sendCurrentValues(){
 
 
 function sendRVIHVAC(key,value){
+
 	//send message to all subscribers
-	//rvi.
 	var subs = rvi.settings.subscribers;
-	
+	if (subs.length == 0 || subs == undefined) return;
+
+
 	if(key.indexOf("hvac/") == -1)
 		key = "hvac/"+key;
 
