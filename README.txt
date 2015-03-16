@@ -15,6 +15,7 @@ limitations under the License.
 
 Name: AGL App Suite Release
 Version: XW_TizenIVI3_0_01FEB_AGL_05MAR2015
+Base Image: tizen-3.0-ivi_20150201.3(http://download.tizen.org/releases/milestone/tizen/ivi-3.0/tizen-3.0-ivi_20150201.3/images/atom/ivi-mbr-i586/)
 Maintainer: Art McGee <amcgee7@jaguarlandrover.com>
 Mailing list: dev@lists.tizen.org
 
