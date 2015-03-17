@@ -90,15 +90,20 @@ AudioMostImpl::AudioMostImpl(OptolyzerImpl& _theOptolyzer) : theOptolyzer(_theOp
 				new ControlDesc(destCmd.first, destCmd.second.cmd);
 		}
 	);
-	// OptolyzerImpl::addRecvCB(curVolCB);
 
 	// Final MOST initialization.
 
 	string si1("+87010FFF018000C00410120101\r\n");
 	string si2("+87020FFF0186002200111206010000010203\r\n");
+	string si3("+87010FFF0186000201A00C0101\r\n"); // Super premium amp. enable.
 
+	send(si3, 200000);
 	send(si1, 200000);
 	send(si2, 200000);
+
+	// NY demo: send a default volume.
+	string si4("+87000FFF018600220046D0090100E0E0E0E0E0E0E0\r\n");
+	send(si4, 200000);
 }
 
 /**  send: wraps Optolyzer::send()
