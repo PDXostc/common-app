@@ -52,7 +52,7 @@ TopBar.pageUpdate = function() {
 }
 
 TopBar.includeHTMLSuccess = function(linkobj) {
-		console.log("BottomBar.includeHTMLSuccess()");
+		console.log("TopBar.includeHTMLSuccess()");
 		TopBar.import = linkobj.path[0].import;
 		console.log(TopBar.import);
 		TopBar.topBarHTML = TopBar.import.getElementById('topBar');
