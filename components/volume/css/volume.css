@@ -1,0 +1,9 @@
+*, *:before, *:after{ 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box; 
+}
+.volume-content {
+  position: relative;
+  height: 200px;
+  padding: 0 60px;
+}

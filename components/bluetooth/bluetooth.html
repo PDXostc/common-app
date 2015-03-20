@@ -1,0 +1,61 @@
+<!-- bluetooth template file -->
+
+<div id="bluetoothPage" class="tabs bluetoothPage hidden">
+
+	<div class="component-top">
+		<div class="component-head"> 
+			<div id="bluetoothBackArrow" class="settings-back-arrow"></div>
+			<div class="blue-rectangle"></div>
+			<div class="blue-caption-text">SETTINGS</div>			
+			<div class="component-title">Bluetooth</div>
+			<div class="settings-clear">	</div>
+		</div>
+		<div id="bluetoothPowerButton" class="settings-switch">
+			<div class="switch off switch-xsmall">
+			  <div class="switch-plate">
+			    <div class="switch-control"></div>
+			  </div>
+			</div>
+		</div>
+		<div class="component-subhead border">
+			<div class="buttonsArea">			
+				<div class="spinner"><i class="fa fa-spinner fa-pulse fa-4x"></i></div>
+				<h3 class="hidden">Bluetooth connections available</h3>
+			</div>
+		</div>
+	</div>
+
+	<div id="" class="component-content">
+		<div class="buttonsArea">
+			<div id="bluetoothRefreshButton" class="networkRefreshButton" style="display:block"></div>
+			<!-- <div id="addNetworkButton" class="addNetworkButton" style="display:block"></div> -->
+		</div>
+		<div id="BluetoothNetworksList">
+
+		</div>		
+	</div>
+
+	<template id="bluetoothDeviceTemplate">
+		<div class="networkElement">
+					<div class="networkElementInfoBox">
+						<div class="networkElementTitle"><!-- name --></div>
+						<div class="networkElementSubtitle"><!-- address --></div>
+						<!-- <div class="networkElementDescription"> device class Encryption: AES</div> -->
+						<div class="networkElementMore selected"><!-- paired --> Paired</div>
+						<!-- <div class="networkElementMore alert"> Not Connected</div> -->
+						<!-- use the alert class to confirm 'Selected', otherwise, 'hidden' -->
+					</div>
+					<div class="networkElementButton">
+						<button class="pairButton">PAIR</button>
+						<button class="unpairButton button-green hidden">UNPAIR</button>
+					</div>
+				</div>
+	</template>
+
+	<div class="modal hidden">
+  	<div class="spinner"><i class="fa fa-spinner fa-pulse fa-4x"></i></div>
+  </div>
+
+</div>
+
+

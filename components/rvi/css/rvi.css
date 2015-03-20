@@ -1,0 +1,127 @@
+#settings {
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	z-index: 20;
+	display:none;
+}
+
+#messageOverlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    opacity: 0.8;
+    z-index: 2;
+    display: block;
+}
+
+.text {
+	padding: 30px 0;
+	text-align: right;
+	padding: 0;
+	line-height: 3rem;
+}
+
+.textBox {
+	padding-left: 1%;
+	margin: 1% 0 4% 2%;
+	border: none;
+	background-color: #fff;
+	color: #606060;
+	font-weight: bold;
+	font-family: sans-serif, "Arial";
+	font-size: 1.5rem;
+}
+
+#setupForm	{
+	display:block;
+}
+
+#resultMessage	{
+	/*display: flex;*/
+}
+
+.resultMessage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.message {
+	max-width: 50%;
+	z-index: 3;
+	background-color: #333;
+	text-align: center;
+}
+
+.resultMessage h2 {
+	text-transform: uppercase;
+}
+
+.resultMessage p {
+	margin:0 auto;
+	width: 80%;
+	text-align: left;
+}
+
+.settingsIcon	{
+	background: url('../images/settings_icon.png') no-repeat;
+	position: absolute;
+	left: 84%;
+	top: 1.5%;
+	width: 67px;
+	height: 67px;
+}
+
+.inputBox .deleteButton {
+	display: inline-block;
+	vertical-align: top;
+	margin: 18px 0 0 -73px;
+	padding: 0;
+	width: 55px;
+	height: 36px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	float: right;
+}
+
+#submit, #cancel {
+	background: none;
+	border: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 28px;
+	color: rgba(255, 255, 255, 1.0);	
+	line-height: 43px;
+}
+.button-area {
+	display: inline-block;
+	margin: 30px 0;
+}
+.rviElement {
+	/*border-bottom: 1px solid rgba(255,255,255, 0.25);*/ /*if there is more than one app, uncomment this line*/
+	margin: 0 40px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	/*padding: 20px 0;*/
+	align-items: center;
+}
+.component-tabs {
+	padding: 0 35px;
+	margin: 40px 40px 0 40px;
+}
+.rvi-tabs	{
+	display: inline-block;
+	padding: 10px 20px;
+	margin: 0 5px;
+	background: #181818;
+	color: rgba(254, 156, 0, .7);
+}
+.tab-selected {
+	background: #222;
+	color: #fe9c00;
+}
