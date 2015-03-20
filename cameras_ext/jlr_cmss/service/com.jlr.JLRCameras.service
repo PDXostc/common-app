@@ -1,4 +1,0 @@
-[D-BUS Service]
-Name=com.jlr.JLRCameras
-SystemdService=jlr_cmss.service
-Exec=/bin/false
