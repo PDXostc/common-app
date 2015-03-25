@@ -1,21 +1,15 @@
-PROJECT = _common
+PROJECT = common-apps
 
 VERSION := 0.0.1
 PACKAGE = $(PROJECT)-$(VERSION)
 
-INSTALL_FILES = 
-INSTALL_DIR = ${DESTDIR}/opt/usr/apps/
-
 all:
 
 install:
-	mkdir -p ${DESTDIR}/opt/usr/apps/_common
-	cp -r css ${DESTDIR}/opt/usr/apps/_common/css
-	cp -r js ${DESTDIR}/opt/usr/apps/_common/js
-
-#to clean old common files out to test.
-
-clean:
-	rm -rf css/car
-	rm -rf css/user
-	rm -rf js/services
+	mkdir -p ${DESTDIR}/opt/usr/apps/common-apps
+	cp -r css ${DESTDIR}/opt/usr/apps/common-apps/css
+	cp -r js ${DESTDIR}/opt/usr/apps/common-apps/js
+	cp -r fonts ${DESTDIR}/opt/usr/apps/common-apps/fonts
+	cp -r images ${DESTDIR}/opt/usr/apps/common-apps/images
+	cp -r json ${DESTDIR}/opt/usr/apps/common-apps/json
+	cp -r components ${DESTDIR}/opt/usr/apps/common-apps/components
