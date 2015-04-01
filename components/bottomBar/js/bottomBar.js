@@ -105,30 +105,22 @@ function volMove(e){
 		//encode some stringified json (jqY = level 163 to 255) and send to most
 		var jsonenc = {"api":"setTone","dest":"volume","level":jqY,"incr":0};
 		most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
+		ignoreNext=1;
 	}
 }
 // Volume control update timer; this keeps the volume control slider synchronized
 // when moving from widget to widget.
-
 var volumeTimer = setInterval(refreshVolume, 2000);
-var previousVolume = -1, curVolume=0;
+var ignoreNext=0;
 
 // This is called by a periodic timer to cause a volumeQuery command to be sent to MOST. This is done so that when
 // navigating from screen to screen, the volume control slider on the visible screen will stay in synch with the
 // current MOST volume setting.
 //
-var volLogCnt=0;
-
 function refreshVolume() {
 								
 	var jsonenc = {api:"setTone", dest:"volumeQuery", level:0, incr:0};
 	
-	volLogCnt++;
-	if(volLogCnt == 5)
-	{
-		//console.log("MOSTLOG refreshVolume query");
-		volLogCnt=0;
-	}
 	if (typeof(most)!=="undefined") {
 		most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
 	}	
@@ -139,16 +131,30 @@ var volLogCntCB=0;
 
 var volumeQueryCB = function(response) {
 
-	volLogCnt++;
-	if(volLogCntCB == 5)
+	volLogCntCB++;
+	if(volLogCntCB == 10)
 	{	
 		 console.log("MOSTLOG: volumeQueryCB " + response);
 		 volLogCntCB=0;
 	}
-	curVolume = response;
-	var sl = (curVolume - 159)/4;
 		
-	$(".noVolumeSlider").val(sl);
+ 	// Sometimes the query comes back as 0, so ignore these.
+ 	if( (response != 0) && (ignoreNext != 1) )
+ 	{
+ 		volSet(response);
+ 	}
+ 	ignoreNext=0; // Honor the next call to volumeQueryCB (unless setting the slider sets this var to 0 again.
 };
 
-
+// Call this when volumeQueryCB is invoked by a reply from the MOST hardware; sets the slider on the UI.
+function volSet(mostVol){
+	 var invY = Math.floor((mostVol-163)*1.087)-1;
+ 	//1.087 is 100/92, or the reciprocal of 92/100
+ 	var relY = 100-invY;
+ 	if(relY<1) relY=1;
+ 	if(relY>100) relY=100;
+ 
+ 	$("#volumeCrop").width(invY+'%');
+ 	$("#volumeSlideCrop").height(invY+'.1%');
+ 	$("#volumeKnob").css('top',(relY*8.80-70)+'px');
+ }
