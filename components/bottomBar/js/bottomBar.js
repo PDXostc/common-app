@@ -151,4 +151,39 @@ var volumeQueryCB = function(response) {
 	$(".noVolumeSlider").val(sl);
 };
 
+// New Hex Slider Indicator JS
 
+var level = function() {
+	return parseInt($("#bbar-volume-input").val());
+}
+
+function updateVolOutput() {
+  $("#bbar-volume-output").val(level);
+}
+
+function updateVol(num) {
+  $("#bbar-volume-input").val(num);
+}
+
+function updateVolLevel() {
+  $("#bbar-volume-level").css("width", level() + "%");
+}
+
+$(document).on("change", "#bbar-volume-input", function() {
+  updateVolOutput();
+});
+
+$(document).on("input", "#bbar-volume-input", function() {
+  updateVolLevel();
+  updateVolOutput();
+});
+
+$(document).on("click", "#bbar-less-volume, #bbar-more-volume", function() {
+  if ( $(this).attr("id") == "bbar-less-volume" ) {
+    updateVol(level()-10);
+  } else {
+    updateVol(level()+10);
+  }
+  updateVolLevel();
+  updateVolOutput();    
+});
