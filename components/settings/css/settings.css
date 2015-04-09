@@ -379,3 +379,20 @@ ul#settingsPageList > :last-child {
 .modal .fa {
   color: rgba(254, 156, 0, 1);
 }
+
+/* Styles moved here from bottomBar component */
+
+#settingsMenu {
+	height: 800px;
+	width: 117px;
+	position: fixed;
+	bottom: 131px;
+	left: 0;
+	display:none;
+	border: 1px solid white;
+	box-shadow: 0 0 36px rgba(196, 196, 196, 1) inset;
+}
+
+#settingsMenu img {
+	border-bottom:1px solid white;
+}

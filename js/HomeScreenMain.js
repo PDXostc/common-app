@@ -67,8 +67,8 @@ var init = function() {
         $('#dateTime').ClockPlugin('init', 60);
         $('#dateTime').ClockPlugin('startTimer');
 
-        $('#bottomBar').bottomBar('init', true);
-        $("#topBar").topBar('init', 'dashboard');
+        $('#bottom-bar').bottomBar('init', true);
+        $("#top-bar").topBar('init', 'dashboard');
 
         evalInstalledApps();
         window.intelIVI.main.init();
@@ -215,9 +215,9 @@ window.intelIVI.utility = (window.intelIVI.utility || {
         "use strict";
         $('#content_ul .sector' + index).css('opacity', '1');
         if (index === 4) {
-            $('#bottomBar').addClass('showBP');
+            $('#bottom-bar').addClass('showBP');
             $('#dateTime').addClass('showDT');
-            $('#topBar').addClass('showTBI');
+            $('#top-bar').addClass('showTBI');
         }
         if (index === 8) {
             $('#wrapper .step9').css('opacity', '0.4');

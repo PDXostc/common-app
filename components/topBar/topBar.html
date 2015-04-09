@@ -22,13 +22,31 @@
 		<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
 	</head>
 	<body>
-		<div id="topBar">
-			<img src="/DNA_common/images/homescreen_icon.png" id="homeScreenIcon">
-			<img src="/DNA_common/components/topBar/images/icon_apps_blue.png" id="appGridIcon" >
-			<div id="hexGridView">
-				<div class="hexGridHeading">APPS <div class="exitButton"><img src="/DNA_common/components/topBar/images/bt_close.png"></div></div>
-				<div id="hexGrid"></div>
+		<div id="top-bar">
+			<div id="home-screen-button" class="topbar-space">
+				<img src="/DNA_common/images/homescreen_icon.png" id="homeScreenIcon">
 			</div>
+
+			<div class="topbar-space droppable" data-app-space="0"></div>
+			<div class="topbar-space droppable" data-app-space="1"></div>
+			<div class="topbar-space droppable" data-app-space="2"></div>
+			<div class="topbar-space droppable" data-app-space="3"></div>
+			<div class="topbar-space droppable" data-app-space="4"></div>
+			<div class="topbar-space droppable" data-app-space="5"></div>
+			<div class="topbar-space droppable" data-app-space="6"></div>
+
+			<div id="app-grid-button" class="topbar-space">
+				<img src="/DNA_common/images/application_grid.png" id="appGridIcon" >
+			</div>
+		</div>
+
+		<div id="app-grid-view">
+			<div class="hexGridHeading">APPS
+				<div class="exitButton">
+					<img src="/DNA_common/components/topBar/images/bt_close.png">
+				</div>
+			</div>
+			<div id="hexGrid"></div>
 		</div>
 	</body>
 </html>

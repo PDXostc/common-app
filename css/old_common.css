@@ -1,0 +1,1372 @@
+/* Resets *************************************************/
+
+/* moved to common.css */
+/*:focus {
+  outline: none;
+}*/
+
+/* Fonts **************************************************/
+
+/* Adobe Source Sans */
+/* SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007 */
+/* http://scripts.sil.org/OFL */
+
+/* updated in common.css */
+/*@font-face {
+  font-family: SourceSansPro;
+  font-weight: 200;
+  src: url(../fonts/SourceSansPro-ExtraLight.ttf) format(truetype);
+}*/
+
+/* updated in common.css */
+/*@font-face {
+  font-family: SourceSansPro;
+  font-weight: 300;
+  src: url(../fonts/SourceSansPro-Light.ttf) format(truetype);
+}*/
+
+/* updated in common.css */
+/*@font-face {
+  font-family: SourceSansPro;
+  font-style: italic;
+  font-weight: 300;
+  src: url(../fonts/SourceSansPro-LightItalic.ttf) format(truetype);
+}*/
+
+/* updated in common.css */
+/*@font-face {
+  font-family: SourceSansPro;
+  font-weight: 400;
+  src: url(../fonts/SourceSansPro-Regular.ttf) format(truetype);
+}*/
+
+/* updated in common.css */
+/*@font-face {
+  font-family: SourceSansPro;
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/SourceSansPro-Italic.ttf) format(truetype);
+}*/
+
+/* updated in common.css */
+/*@font-face {
+  font-family: SourceSansPro;
+  font-weight: 600;
+  src: url(../fonts/SourceSansPro-Semibold.ttf) format(truetype);
+}*/
+
+/* updated in common.css */
+/*@font-face {
+  font-family: SourceSansPro;
+  font-weight: 700;
+  src: url(../fonts/SourceSansPro-Bold.ttf) format(truetype);
+}*/
+
+/* updated in common.css */
+/*@font-face {
+  font-family: SourceSansPro;
+  font-weight: 900;
+  src: url(../fonts/SourceSansPro-Black.ttf) format(truetype);
+}*/
+
+/* Root Elements ******************************************/
+
+/* moved to common.css */
+/*html {
+  font-size: 10px;
+}*/
+
+/* moved to common.css */
+/*body {
+  background-color: rgb(0,0,0);
+  background-image: url("../images/Hex-Background.jpg");
+  display: flex;
+  flex-direction:column;
+  font-family: SourceSansPro, sans-serif;
+  height: 1920px;
+  justify-content:space-between;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 1080px;
+}*/
+
+/* moved to common.css */
+/* Prevents the selection of text on all but text inputs */
+/*:not(input):not(textarea) {
+  -webkit-user-select: none;
+  user-select: none;
+}*/
+
+/*Typography **********************************************/
+
+/* Headings */
+
+/* moved to common.css */
+/*h1, h2, h3, h4, h5, h6 {
+  color: #fe9c00;
+  font-weight: 400;
+  line-height: 1em;
+  margin: .5em 0;
+}*/
+
+/* moved to common.css */
+/*h1 {
+  font-size: 7rem;
+}*/
+
+/* moved to common.css */
+/*h2 {
+  font-size: 6rem;
+}*/
+
+/* moved to common.css */
+/*h3 {
+  font-size: 5rem;
+}*/
+
+/* moved to common.css */
+/*h4 {
+  font-size: 4rem;
+}*/
+
+/* moved to common.css */
+/*h5 {
+  font-size: 3.6rem;
+}*/
+
+/* moved to common.css */
+/*h6, .label {
+  font-size: 3rem;
+  text-transform: uppercase;
+}*/
+
+/* Text */
+
+/* moved to common.css */
+/*p, ul {
+  margin-bottom: 1em;
+}*/
+
+/* moved to common.css */
+/*p, ul, li,
+.text-input {
+  color: white;
+  font-size: 3rem;
+}*/
+
+/* moved to common.css */
+/*.text-large {
+  font-size: 3.4rem;
+}*/
+
+/* moved to common.css */
+/*.text-medium {
+  font-size: 3.2rem;
+}*/
+
+/* moved to common.css */
+/*p.lead {
+  font-size: 4.5rem;
+  font-weight: 300;
+}*/
+
+/* Anchors */
+
+/* moved to common.css */
+/*a {
+  color: inherit;
+}*/
+
+/* Lists */
+
+/* moved to common.css */
+/*ul {
+  font-size: 3rem;
+  margin-left: 0;
+}*/
+
+/* moved to common.css */
+/*li {
+  margin-left: 1em;
+}*/
+
+/* Sectioning Content and Div *****************************/
+
+/* updated in common.css */
+/*div, 
+nav,
+aside,
+article,
+section {
+  font-size: 3rem;
+}*/
+
+/* Structural Elements ************************************/
+
+/*
+  These styles can only be used with
+  the HTML structure suggested in the Style Guide
+*/
+
+/* moved to common.css */
+/*#base {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: inherit;
+  justify-content: space-between;
+  position: relative;
+}*/
+
+/* moved to common.css */
+/*.modal,
+#settings {
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}*/
+
+/* moved to common.css */
+/*.modal {
+  align-items: center;
+  justify-content: center;
+}*/
+
+/* moved to common.css */
+/*.modal-content {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+}*/
+
+/* moved to common.css */
+/*#settings {
+  background-color: rgba(0, 0, 0, 0.9);
+  flex: 1;
+  transition: height .25s ease-out;
+}*/
+
+/* moved to common.css */
+/*#settings.collapsed {
+  height: 0%;
+  overflow: hidden;
+}*/
+
+/* moved to common.css */
+/*#app {
+  background-color: transparent;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+}*/
+
+/* moved to common.css */
+/*#top-bar,
+#bottom-bar {
+  box-shadow: inset 0 0 40px 2px rgba(255, 255, 255, 0.85);
+  text-align: center;
+}
+*/
+/* moved to common.css */
+/*#top-bar ul {
+  display: flex;
+  margin: 0;
+  padding: 0; 
+}*/
+
+/* moved to common.css */
+/*#top-bar .grid-space {
+  background-color: transparent;
+  box-sizing: border-box;
+  display: inline;
+  flex: 1;
+  height: 100%;
+  padding: 10px; 
+}
+*/
+/* moved to common.css */
+/*#top-bar .grid-space:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+}*/
+
+/* moved to common.css */
+/*#volume,
+#settings-button {
+  flex: 1;
+}*/
+
+/* moved to common.css */
+/*#agl-logo {
+  flex: 3;
+}*/
+
+/* Colors *************************************************/
+
+/* moved to common.css */
+/*.orange-lt {
+  color: #ffd38c;
+}*/
+
+/* moved to common.css */
+/*.orange-lt-bg {
+  background-color: #ffd38c;
+}*/
+
+/* moved to common.css */
+/*.orange-viv {
+  color: #fe9c00;
+}*/
+
+/* moved to common.css */
+/*.orange-viv-bg {
+  background-color: #fe9c00;
+}*/
+
+/* moved to common.css */
+/*.blue-lt {
+  color: #b2f0ff;
+}*/
+
+/* moved to common.css */
+/*.blue-lt-bg {
+  background-color: #b2f0ff;
+}*/
+
+/* moved to common.css */
+/*.blue-viv {
+  color: #53b5ce;
+}*/
+
+/* moved to common.css */
+/*.blue-viv-bg {
+  background-color: #53b5ce;
+}*/
+
+/* moved to common.css */
+/*.yellow-lt {
+  color: #ffffb2;
+}*/
+
+/* moved to common.css */
+/*.yellow-lt-bg {
+  background-color: #ffffb2;
+}*/
+
+/* moved to common.css */
+/*.yellow-viv {
+  color: #ffff00;
+}*/
+
+/* moved to common.css */
+/*.yellow-viv-bg {
+  background-color: #ffff00;
+}*/
+
+/* moved to common.css */
+/*.green-lt {
+  color: #cdffb2;
+}*/
+
+/* moved to common.css */
+/*.green-lt-bg {
+  background-color: #cdffb2;
+}*/
+
+/* moved to common.css */
+/*.green-viv {
+  color: #59ff00;
+}*/
+
+/* moved to common.css */
+/*.green-viv-bg {
+  background-color: #59ff00;
+}*/
+
+/* moved to common.css */
+/*.grey {
+  color: #c4c4c4;
+}
+*/
+/* moved to common.css */
+/*.grey-bg {
+  background-color: #c4c4c4;
+}*/
+
+/* moved to common.css */
+/*.white {
+  color: white;
+}*/
+
+/* moved to common.css */
+/*.white-bg {
+  background-color: white;
+}*/
+
+/* moved to common.css */
+/*.black {
+  color: black;
+}*/
+
+/* moved to common.css */
+/*.black-bg {
+  background-color: black;
+}*/
+
+/* updated in common.css */
+/*.modal,
+#settings,
+.overlay-bg {
+  background-color: rgba(0,0,0,0.8);
+}*/
+
+/* Controls ***********************************************/
+
+/* Buttons ************************************************/
+
+/* updated in common.css */
+/*button,
+.button,
+input[type='button'] {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.9);
+  color: white;
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 600;
+  font-family: inherit;
+  margin: 20px;
+  padding: 8px 20px 12px;
+  position: relative;
+}*/
+
+/* updated in common.css */
+/*.button-orange {
+  border-color: #fe9c00;
+  box-shadow: inset 0 0 20px rgba(254, 156, 0, 0.9);
+}*/
+
+/* updated in common.css */
+/*.button-blue {
+  border-color: #b2f0ff;
+  box-shadow: inset 0 0 20px rgba(178, 240, 255, 0.9);
+}*/
+
+
+/* updated in common.css */
+/*.button-green {
+  border-color: #59ff00;
+  box-shadow: inset 0 0 20px rgba(89, 255, 0, 0.9);
+}*/
+
+/*.button-yellow {
+  border-color: #ffff00;
+  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.9);
+}*/
+
+/* moved to common.css */
+/*.clear-button::after { 
+  color: gray; 
+  content: "\00d7";
+  font-size: 5rem;
+  line-height: 100px;
+  margin-left: -50px; 
+}*/
+
+/* Forms **************************************************/ 
+
+/* updated in common.css */
+/*.text-input {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  font-size: 3rem; 
+  margin: 10px;
+  padding: 20px;
+}*/
+
+/* moved to common.css */
+/*input,
+textarea,
+.text-input {
+  font-family: inherit;
+}*/
+
+/* updated to common.css */
+/*::-webkit-input-placeholder {
+   color: #444;
+}*/
+
+/* updated to common.css */
+/*.input-yellow {
+  border-color: rgba(255, 255, 0, 0.5);
+}*/
+
+/* updated to common.css */
+/*.input-yellow:focus {
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.9); 
+}*/
+
+/* updated to common.css */
+/*.input-blue {
+  border-color: rgba(178, 240, 255, 0.5);
+}*/
+
+/* updated to common.css */
+/*.input-blue:focus {
+  box-shadow: 0 0 20px rgba(178, 240, 255, 0.9);
+}*/
+
+/* updated to common.css */
+/*.input-white {
+  border: none;
+  color: rgba(196, 196, 196, 1.0);
+}*/
+
+/* updated to common.css */
+/*.input-white:focus {
+  outline: none;
+  box-shadow: 0 0 15px 5px #b0e0ee;
+}*/
+
+/* .input-group
+   A wrapper for grouping input fields, labels and other
+   form content. Best used on block elements (eg. div)
+*/ 
+
+/* moved to common.css */
+/*.input-group {
+  display: flex;
+  justify-content: space-between;
+}*/
+
+/* updated to common.css */
+/*.input-group label { 
+  flex: 1;
+}*/ 
+
+/* moved to common.css */
+/*.input-group .text-input { 
+  flex: 2;
+}*/
+
+/* Switches ***********************************************/
+
+/*  moved to common.css */
+/*.switch {
+  margin: 20px;
+}
+*/
+/* Sizes for varying switches */
+
+/*  updated to common.css */
+/*.switch-large {
+  height: 150px;
+  width: 450px;
+} */
+
+/*  updated to common.css */
+/*.switch-small {
+  height: 75px;
+  width: 225px;
+}*/
+
+/*  updated to common.css */
+/*.switch-xsmall {
+  height: 50px;
+  width: 150px;
+}*/
+
+/*  updated to common.css */
+/*.switch-plate {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}*/
+
+/*  updated to common.css */
+/*.switch-control {
+  -webkit-filter: drop-shadow(4px 4px 5px rgba(0,0,0,0.35));
+  background-image: url(../images/switchcontrol.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100%;
+}*/ 
+
+/* On/Off Styles for Background Plate */
+
+/*  updated to common.css */
+/*.off .switch-plate {
+  background-image: url(../images/switchplate_off.svg);
+}*/
+
+/*  updated to common.css */
+/*.on .switch-plate {
+  background-image: url(../images/switchplate_on.svg);
+}*/
+
+/* On/Off Styles for switch control(knob) */
+
+/*  updated to common.css */
+/*.off .switch-plate {
+  padding-left: 3%;
+  padding-right: 64%;
+}*/
+
+/*  updated to common.css */
+/*.on .switch-plate {
+  padding-left: 64%;
+  padding-right: 3%;
+}*/
+
+/* Close button */
+
+/*  updated to common.css */
+/*.close-button {
+  float: right;
+  padding: 10px;
+  position: relative;
+  right: 20px;
+  top: 0;
+}*/
+
+/*  updated to common.css */
+/*.close-button::after {
+  color: white;
+  content: "\00d7";
+  cursor: pointer;
+  font-size: 5rem;
+  height: 63px;
+  width: 26px;
+}*/
+
+/* Sliders ************************************************/
+
+/* Resets */
+
+/*  updated to common.css */
+/*.slider-input {
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}*/
+
+/*  moved to common.css */
+/*.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}*/
+
+/*  moved to common.css */
+/*.slider-input:focus {
+  outline: none; 
+}*/
+
+/* Slider Styles */
+
+/*  updated to common.css */
+/*.slider-input{
+  -webkit-appearance:none;
+  background: transparent;
+  cursor: pointer;
+  flex-basis: 82.5%;
+  font-size: 4em;
+  height:2em;
+  line-height: 0;
+  overflow:hidden;
+  padding: .25em 0;
+  position: relative;
+}*/
+
+/*  updated to common.css */
+/*.slider-input::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  -webkit-filter: drop-shadow(.05em .05em .05em rgba(0,0,0,.25));
+  background-image: url(../images/hex_thumb_white_vert.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: .85em;
+  font-size: 2em;
+  height: 1em;
+  margin: -.25em 0;
+  overflow: visible;
+  position:relative;
+  width: .85em;
+}*/
+
+/* Style the level bar */
+/*  updated to common.css */
+/*.slider-input::-webkit-slider-thumb:after{
+  background: rgba(178, 240, 255, 0.8);
+  box-shadow: inset .125em .125em .5em rgba(255,255,255,.6),
+              inset -1em -1em .125em -1em rgba(0,0,0,.5);
+  content:" ";
+  height: .5em;
+  margin: .25em 0;
+  position:absolute;
+  right: 100%;
+  width:100vw;
+}*/
+
+/* Styles the track */
+/*  updated to common.css */
+/*.slider-input::-webkit-slider-runnable-track {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 .125em rgba(126,126,126,.25),
+              inset 0 0 .5em .125em rgba(0,0,0,.5);
+  height: 1em;
+}*/
+
+/*  moved to common.css */
+/*.vertical-slider,
+.horizontal-slider {
+  align-items: center;
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+  position: relative;
+}*/
+
+/*  moved to common.css */
+/*.thin-slider .slider-input {
+  flex-basis: 90%;
+}*/
+
+/*  moved to common.css */
+/*.thick-slider .slider-input {
+  flex-basis: 75%;
+}*/
+
+/*  moved to common.css */
+/*.thin-slider {
+  font-size: .5rem;
+}*/
+
+/*  moved to common.css */
+/*.thick-slider {
+  font-size: 1.5rem;
+}*/
+
+/*  moved to common.css */
+/*.slider-button {
+  align-items: center;
+  animation: bounceInDown 900ms 200ms ease-in-out both;
+  background: linear-gradient(#db9604, #915a00);
+  border: 1px solid rgba(255, 255, 255, .4);
+  box-shadow: inset 0px 0px 2px 1px #5a3800;
+  display: flex;
+  height: 40px;
+  font-size: 4em;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 1px 1px 3px #444;
+  width: 40px;
+}*/
+
+/*  moved to common.css */
+/*.thin-slider .slider-button {
+  height: 20px;
+  width: 20px;
+}*/
+
+/*  moved to common.css */
+/*.thick-slider .slider-button {
+  height: 60px;
+  width: 60px;
+}*/
+
+/*  moved to common.css */
+/*.less-button::after {
+  content: "\02212";
+}*/
+
+/*  moved to common.css */
+/*.more-button::after {
+  content: "\0002b";
+}*/
+
+/*  moved to common.css */
+/*.less-button::after,
+.more-button::after {
+  color: white;
+  font-size: 1em;
+}*/
+
+/* Modifiers **********************************************/ 
+/* Modifiers should stay at the bottom of the CSS document */
+
+/* updated in common.css */
+/*.hidden,
+.modal.hidden,
+#settings.hidden {
+  display: none;
+}*/
+
+/* moved to common.css */
+/*.right {
+  float: right;
+}*/
+
+/* moved to common.css */
+/*.left {
+  float: left;
+}*/
+
+/* moved to common.css */
+/*.left-align {
+  text-align: left;
+}*/
+
+/* moved to common.css */
+/*.right-align {
+  text-align: right;
+}*/
+
+/* moved to common.css */
+/*.center {
+  text-align: center;
+}*/
+
+/* moved to common.css */
+/*.no-margin {
+  margin: 0;
+}*/
+
+/* Flex Modifiers */
+
+/* moved to common.css */
+/*.flex-parent {
+  display: flex;
+}*/
+
+/* moved to common.css */
+/*.flex-item {
+  flex: 1;
+}*/
+
+/* moved to common.css */
+/*.flex-item-2 {
+  flex: 2;
+}*/
+
+/* moved to common.css */
+/*.flex-item-3 {
+  flex: 3;
+}*/
+
+/* moved to common.css */
+/*.flex-column {
+  flex-direction: column;
+}*/
+
+/* moved to common.css */
+/*.flex-row {
+  flex-direction: row;
+}*/
+
+/* moved to common.css */
+/*.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}*/
+
+/* moved to common.css */
+/*.flex-column-center {
+  flex-direction: column;
+  justify-content: center;
+}*/
+
+/* moved to common.css */
+/*.space-between {
+  justify-content: space-between;
+}*/
+
+/* Touch Behavior *****************************************/
+
+/* Moved to common.css */
+/* Prevents scrolling and zooming where not specified */
+/*html,
+input,
+textarea {
+  touch-action: none;
+}*/
+
+/* Moved to common.css */
+/* Allows vertical and horizontal scrolling where specified 
+   for lists */
+/*ul, ol {
+  touch-action: pan-x pan-y;
+}*/
+
+/* 
+  Apply to elements where a scrollbar is desired.
+  Shows a standard scrollbar as needed.
+*/ 
+
+/* Updated in common.css */
+/*.scrollbar-x { 
+  overflow-x: auto;
+  touch-action: pan-x;
+} */
+
+/* Moved to common.css */
+/*.scrollbar-y {
+  overflow-y: auto;
+  touch-action: pan-y;
+}*/
+
+/* Moved to common.css */
+/*.scrollbar-xy {
+  overflow: auto;
+  touch-action: pan-x pan-y;
+}*/
+
+/*
+  Apply to elements where a scrolling without
+  a scrollbar is desired.
+*/
+
+/* Updated in common.css */
+/*.scrollable-x { 
+  overflow-x: auto; 
+  touch-action: pan-x;
+}*/
+
+/*.scrollable-y {
+  overflow-y: auto;
+  touch-action: pan-y;
+} */
+
+/* Moved to common.css */
+/*.scrollable-xy {
+  overflow: auto;
+  touch-action: pan-x pan-y;
+}*/
+
+/* Updated in common.css */
+/*.scrollable-x::-webkit-scrollbar,
+.scrollable-y::-webkit-scrollbar,
+.scrollable-xy::-webkit-scrollbar {
+  display: none;
+}*/
+
+/* Updated in common.css */
+/*::-webkit-scrollbar {
+  margin-top: 20px; 
+  width: 11px;  
+}*/
+
+/* Updated in common.css */
+/*::-webkit-scrollbar-track { 
+  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
+  border-left: 1px solid #202020; 
+  border-right: 1px solid #606060;  
+  border-bottom: none;  
+  border-top: none; 
+  margin-bottom: -1px;  
+} */
+
+/* Updated in common.css */
+/*::-webkit-scrollbar-thumb {   
+  background:linear-gradient(to right, rgba(112,112,112, .8), rgba(72,72,72, .8));  
+  border-radius:5px;  
+  border: 1px solid #202020;  
+}  */ 
+
+/* Updated in common.css */
+/*::-webkit-scrollbar-button { 
+  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
+  border-left: 1px solid #202020; 
+  border-right: 1px solid #606060;  
+  border-bottom: none;  
+  border-top: none; 
+  height:11px;  
+}   */
+
+/* Updated in common.css */
+/*::-webkit-scrollbar-corner {  
+  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
+  border-left: 1px solid #202020; 
+  border-right: 1px solid #606060;  
+  border-bottom: none;  
+  border-top: none; 
+  height: 8px;  
+  width: 8px; 
+} */
+
+/* Text Overflow *****************************************/
+
+/* Moved to common.css */
+/*.ellipsis-one-line,
+.ellipsis-two-line,
+.ellipsis-three-line {
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}*/
+
+/* Moved to common.css */
+/*.ellipsis-one-line {
+  -webkit-line-clamp: 1;
+}*/
+
+/* Moved to common.css */
+/*.ellipsis-two-line {
+  -webkit-line-clamp: 2;
+}*/
+
+/* Moved to common.css */
+/*.ellipsis-three-line, {
+  -webkit-line-clamp: 3;
+}*/
+
+/* Boxes and Modules ****************************/
+
+/* updated in common.css */
+/*.box-inshadow,
+.box-outshadow {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+  border-style: solid;
+  border-width: 1px;
+  color: white;
+  margin: 20px;
+  padding: 20px;
+}*/
+
+/* updated in common.css */
+/*.box-inshadow {
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.9);
+}*/
+
+/* updated in common.css */
+/*.box-outshadow {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+}*/
+
+/* Yellow */
+
+/* updated in common.css */
+/*.box-in-yellow,
+.box-out-yellow {
+  border-color: rgba(255, 255, 0, 0.5);
+  color: #FFFF00;
+}*/
+
+/* updated in common.css */
+/*.box-in-yellow {
+  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.9);
+}*/
+
+/* updated in common.css */
+/*.box-out-yellow {
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.9);
+}*/
+
+/* Orange */
+
+/* updated in common.css */
+/*.box-in-orange,
+.box-out-orange {
+  border-color: rgba(254, 156, 0, 0.5);
+  color: #FE9C00;
+}*/
+
+/* updated in common.css */
+/*.box-in-orange {
+  box-shadow: inset 0 0 20px rgba(254, 156, 0, 0.9);
+}*/
+
+/* updated in common.css */
+/*.box-out-orange {
+  box-shadow: 0 0 20px rgba(254, 156, 0, 0.9);
+}*/
+
+/* Blue */
+
+/* updated in common.css */
+/*.box-out-blue {
+  border-color: rgba(178, 240, 255, 0.5);
+  box-shadow: 0 0 20px rgba(178, 240, 255, 0.9);
+  color: #b2f0ff;
+}*/
+
+/* Style Rule Graveyard ***********************************/
+
+/* Still in use */
+.oneLineEllipsis {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+/* Still in use */
+.twoLinesEllipsis {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+/* Still in use */
+.threeLinesEllipsis {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+/* Still in use */
+.fontSizeXXSmall {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+/* Still in use */
+.fontSizeXSmall {
+  font-size: 18px;
+  line-height: 18px;
+}
+
+/* Still in use */
+.fontSizeSmaller {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+/* Still in use */
+.fontSizeSmall {
+  font-size: 24px;
+  line-height: 24px;
+}
+
+/* Still in use */
+.fontSizeMedium {
+  font-size: 28px;
+  line-height: 28px;
+}
+
+/* Still in use */
+.fontSizeLarge {
+  font-size: 30px;
+  line-height: 30px;
+}
+
+/* Still in use */
+.fontSizeLarger {
+  font-size: 34px;
+  line-height: 34px;
+}
+
+/* Still in use */
+.fontSizeXLarge {
+  font-size: 40px;
+  line-height: 40px;
+}
+
+/* Still in use */
+.fontSizeXXLarge {
+  font-size: 48px;
+  line-height: 48px;
+}
+
+/* Still in use */
+.fontSizeXXXLarge {
+  font-size: 62px;
+  line-height: 62px;
+}
+
+/* Still in use */
+.fontSizeXXXXLarge {
+  font-size: 80px;
+  line-height: 80px;
+}
+
+/* Font Weights */
+
+/* Still in use */
+.fontWeightNormal {
+  font-weight: normal;
+}
+
+/* Still in use */
+.fontWeightBold {
+  font-weight: bold;
+}
+
+/* Still in use */
+.fontWeightBolder {
+  font-weight: bolder;
+}
+
+/* Still in use */
+.fontWeightLighter {
+  font-weight: lighter;
+}
+
+/* Still in use */
+.fontLtBlue {
+  color: rgba(178, 240, 255, 1.0); /*#b2f0ff*/
+}
+
+/* Still in use */
+.fontNormal {
+  color: rgba(196, 196, 196, 1.0); /*#c4c4c4*/
+}
+
+/* Still in use */
+.fontColorNormal {
+  color: rgba(196, 196, 196, 1.0); /*#c4c4c4*/
+}
+
+/* Still in use */
+.fontColorTheme {
+  color: rgba(58, 174, 255, 1.0);
+}
+
+/* Still in use */
+.pageBgColorNormal {
+  background-color: rgba(0, 0, 0, 1.0);
+}
+
+/* Still in use */
+.pageBgColorNormalTransparent {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+/* Still in use */
+.bgColorDark {
+  background-color: rgba(0, 0, 0, 1.0);
+}
+
+/* Still in use */
+.bgColorNormal {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Still in use */
+.bgColorNormalTransparent {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Still in use */
+.bgColorThemeTransparent {
+  background-color: rgba(58, 174, 255, 0.5);
+}
+
+/* Still in use */
+.textBgColorThemeTransparent {
+  background-color: rgba(29, 162, 255, 0.4);
+}
+
+/* Still in use */
+.boxShadowI1Lt {
+  box-shadow: inset 0 0 13px rgba(178, 240, 255, 0.8);
+}
+
+/* Still in use */
+.boxShadowI2Lt {
+  box-shadow: inset 0 0 13px rgba(205, 255, 178, 0.8);
+}
+
+/* Still in use */
+.boxShadowI4Lt {
+  box-shadow: inset 0 0 13px rgba(255, 255, 178, 0.8);
+}
+
+/* Still in use */
+.boxShadowI3Std {
+  box-shadow: inset 0 0 30px rgba(255, 211, 140, 0.8);
+}
+
+/* Still in use */
+.borderWhite {
+  border-color: rgba(255, 255, 255, 1.0); /*#ffffff*/
+}
+
+/* Still in use */
+.borderLtBlue {
+  border-color: rgba(178, 240, 255, 1.0); /*#b2f0ff*/
+}
+
+/* Still in use */
+.borderNormal {
+  border-color: rgba(196, 196, 196, 1.0); /*#c4c4c4*/
+}
+
+/* Still in use */
+.boxShadow1Std {
+  box-shadow: 0 0 30px rgba(83, 181, 206, 0.8);
+}
+
+/* Still in use */
+.boxShadow4Std {
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
+}
+
+/* Still in use */
+.boxShadow1Med {
+  box-shadow:  0 0 50px rgba(83, 181, 206, 0.8);
+}
+
+/* Still in use */
+.textBgColorNormal {
+  background-color: rgba(0, 0, 0, 1.0);
+}
+
+/* Still in use */
+.textBgColorNormalTransparent {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Still in use */
+.callButton {
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: none;
+  display: inline-block;
+  height: 157px;
+  margin-left: 108px;
+  margin-right: 7px;
+  vertical-align: top;
+  width: 72px;
+}
+
+/* Still in use */
+.callingTrue {
+  margin-top: 279px;
+  background-color: rgba(255, 3, 3, 0.8);
+}
+
+/* Still in use */
+.callingFalse {
+  background-color: rgba(138, 255, 0, 0.54);
+  margin-top: 117px;
+}
+
