@@ -1,22 +1,21 @@
 /* ==== ==== ==== init top bar variables ==== ==== ==== */
 
 var TopBar = {};
-var taskList = [];
-	for(var i=0;i<7;i++)
-		emptyIcon(i);
-var first=true;
-var topbarDnD=false;
-//var dataResolved=false;
-var updateText='resolved\n';
-var name="";
+var firstRun=true, topbarDnD=true;//var dataResolved=false;
+var updateText='resolved\n', homeScreenName = "Home Screen";
 var extras = 0, index = 0, icon = 0, id = 0, installed=0;
-var appList = [], applications = [], topBarApplicationsModel = [], extraAppsModel = [], toptasks = [];
-var HomeScreenName = "Home Screen";
-var registeredApps;
+var registeredApps, topbarTimer;
+var appList = [], applications = [], topTasks = [], taskList = [];
+for(var i=0;i<7;i++)
+	emptyIcon(i);
+
+/* ==== ==== ==== preload app icon ==== ==== ==== */
+
 var jReq = new XMLHttpRequest();
 	jReq.onload = reqListener;
 	jReq.open("get", "/DNA_common/json/apps.json", true);
 	jReq.send();
+
 function reqListener(e){
 	registeredApps = JSON.parse(this.responseText)[0];
 }
@@ -255,7 +254,7 @@ function insertAppFrame(appFrame) {
 function onAppInfoSuccess(list) {
 	"use strict";
 	try { 
-	if(first){
+	if(firstRun){
 		var applications = [];
 		/*applications.push({
 			id: "http://com.intel.tizen/intelPocSettings",
@@ -268,24 +267,24 @@ function onAppInfoSuccess(list) {
 		});
 
 		//empty the topbar array
-		toptasks=[];
+		topTasks=[];
 		//enumerate the topbar array
 		$(list).each(function(index){
 			var name = list[index].name;
-			if( name != HomeScreenName ){
+			if( name != homeScreenName ){
 				icon = list[index].iconPath;
 				id = list[index].id;
 				if(registeredApps[id]){
 					icon = registeredApps[id];
 				}
-				toptasks.push({"icon":icon,"id":id});
+				topTasks.push({"icon":icon,"id":id});
 			}
 		});
 		//populate the topbar using the topbar tasks array
-		$(toptasks).each(function(index){
-			$("#topTask"+index+" img").attr("src", toptasks[index].icon);
+		$(topTasks).each(function(index){
+			$("#topTask"+index+" img").attr("src", topTasks[index].icon);
 			$("#topTask"+index+" img").attr("class", "draggable");
-			$("#topTask"+index+" img").on('click', function(){launchApplication(toptasks[index].id)});
+			$("#topTask"+index+" img").on('click', function(){launchApplication(topTasks[index].id)});
 		});
 		//console.log(appList); //for grid
 		for (i = 0; i < list.length; i++) {
@@ -326,9 +325,9 @@ function onAppInfoSuccess(list) {
 			appList = [];
 			var offset = 0;
 			for (i = 0; i < applications.length; i++) {
-				console.log('i: '+i+' offset:'+offset+' appname: '+applications[i].appName);
+				//console.log('i: '+i+' offset:'+offset+' appname: '+applications[i].appName);
 				switch(applications[i].appName){
-					case HomeScreenName:
+					case homeScreenName:
 					case 'crosswalk':
 					case 'Dialer':
 					case 'Rygel':
@@ -360,10 +359,10 @@ function onAppInfoSuccess(list) {
 				}
 			}
 		}
-	}first=false;//(!first)
+	}firstRun=false;//(!firstRun)
 		if (topbarDnD && jQuery.ui) {
 			$(".topTask img").draggable({
-				opacity:0.7,delay:1000,zIndex:2000,scroll:false,
+				opacity:0.7,delay:333,zIndex:2000,scroll:false,
 				helper:"clone",appendTo:"body",
 				revert:function(valid){
 					if(!valid){
@@ -383,7 +382,7 @@ function onAppInfoSuccess(list) {
 
 			});
 			$(".homeScrAppGridImg img").draggable({
-				opacity:0.7,delay:1000,zIndex:2000,scroll:false,
+				opacity:0.7,delay:333,zIndex:2000,scroll:false,
 				helper:"clone",appendTo:"body",
 				revert:"invalid",
 				start: function(event,ui){
@@ -491,20 +490,12 @@ function getIcons(id){
 }
 function initIcon(){
 	//initialize icons
-	/*
 	for(tasks=0;tasks<7;tasks++){
-		if(JSON.stringify(getIcons(tasks)).length < 22)
+		if(typeof JSON.stringify(getIcons(tasks)) !== typeof undefined && JSON.stringify(getIcons(tasks)).length < 22)
 			taskList[tasks] = {source:"", cb:""};
 		else
 			taskList[tasks]=getIcons(tasks);
-	}*/
-	taskList=[{source:"/DNA_common/images/navigation_inactive.png",	cb:"JLRPOCX015.Navigation"},
-			  {source:"/DNA_common/images/browser_inactive.png",	cb:"JLRPOCX030.Browser"},
-			  {source:"/DNA_common/images/dashboard_inactive.png",	cb:"JLRPOCX033.Dashboard"},
-			  {source:"/DNA_common/images/hvac_inactive.png",		cb:"JLRPOCX008.HVAC"},
-			  {source:"/DNA_common/images/weather_inactive.png",	cb:"JLRPOCX035.Weather"},
-			  {source:"/DNA_common/images/fmradio.png", 		cb:"JLRPOCX004.FMRadio"},
-			  {source:"/DNA_common/images/nfc_inactive.png", 		cb:"JLRPOCX034.NFC"}];
+	}
 	displayTasks();
 	initAppGrid();
 }
@@ -523,8 +514,9 @@ function primeIcon(id,content){
 
 /* ==== ==== ==== topbar display code ==== ==== ==== */
 
-function topbarDedupe(){
+function topbarDedupe(skip){
 	for(i in taskList){
+		if(i!=skip)
 		for(n = 6; n >= 0; n--){
 			if(n != i && taskList[n].cb == taskList[i].cb)
 				taskList[i] = {source:"", cb:""};
@@ -547,9 +539,9 @@ function topbarRender(){
 		primeIcon(id,taskList[id].source);
 	}
 }
-function displayTasks(){
+function displayTasks(topbarLocation){
 	//removes all icon duplicates
-	topbarDedupe();
+	topbarDedupe(topbarLocation);
 
 	//reindex the array
 	taskList = topbarReindex();
@@ -592,7 +584,7 @@ function dnaGridLaunch(id1,id2){
 
 		addIconAtLocation(topbarLocation, gridIcon, clickListener);
 
-	displayTasks();
+	displayTasks(topbarLocation);
 	replaceIcon(id1, gridIcon); // Don't remove it from the app grid!
 }
 function dnaSwitchLaunch(id1,id2){
@@ -608,7 +600,7 @@ function dnaSwitchLaunch(id1,id2){
 
 		addIconAtLocation(topbarLocation, gridIcon, clickListener);
 	}
-	displayTasks();
+	displayTasks(topbarLocation);
 }
 function dnaDropLaunch(element){
 	//Dragging off topbar
