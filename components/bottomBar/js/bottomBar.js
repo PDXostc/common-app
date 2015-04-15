@@ -8,7 +8,7 @@ var BottomBar = {};
 BottomBar.TemplateHTML = "DNA_common/components/bottomBar/bottomBar.html";
 
 BottomBar.LogoTimeoutMouseDown = function (e){
-		console.log("BottomBar.LogoTimeoutMouseDown()");
+		//console.log("BottomBar.LogoTimeoutMouseDown()");
 			homescreenTimeout = setTimeout(function() {
 				clearTimeout(homescreenTimeout);
 				if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001"){
@@ -32,15 +32,15 @@ BottomBar.pageUpdate = function () {
 	}
 
 BottomBar.includeHTMLSucess = function(linkobj) {
-		console.log("BottomBar.includeHTMLSucess()");
+		//console.log("BottomBar.includeHTMLSucess()");
 		BottomBar.import = linkobj.path[0].import;
-		console.log(BottomBar.import);
+		//console.log(BottomBar.import);
 		BottomBar.bottomBarHTML = BottomBar.import.getElementById('bottomBar');
 		setTimeout(BottomBar.pageUpdate,2000);
 	}
 
 BottomBar.includeHTMLFailed = function(linkobj) {
-	console.log("load bottomBar.html failed");
+	//console.log("load bottomBar.html failed");
 	console.log(linkobj);
 };
 	
@@ -52,24 +52,15 @@ includeHTML(BottomBar.TemplateHTML, BottomBar.includeHTMLSucess, BottomBar.inclu
 // when moving from widget to widget.
 
 var volumeTimer = setInterval(refreshVolume, 2000);
-var previousVolume = -1, curVolume=0;
 var ignoreNext=0;  // Gets set when we change slider, so that a volume query reply that's now out of date will be ignored.
 
 // This is called by a periodic timer to cause a volumeQuery command to be sent to MOST. This is done so that when
 // navigating from screen to screen, the volume control slider on the visible screen will stay in synch with the
 // current MOST volume setting.
 //
-var volLogCnt=0;
-
 function refreshVolume() {
 	var jsonenc = {api:"setTone", dest:"volumeQuery", level:0, incr:0};
 	
-	volLogCnt++;
-	if(volLogCnt == 5)
-	{
-		//console.log("MOSTLOG refreshVolume query");
-		volLogCnt=0;
-	}
 	if (typeof(most)!=="undefined") {
 		most.mostAsync(JSON.stringify(jsonenc), volumeQueryCB);
 	}	
@@ -86,13 +77,11 @@ var volumeQueryCB = function(response) {
 		 console.log("MOSTLOG: volumeQueryCB response " + response);
 		 volLogCntCB=0;
 	}
-	curVolume = response;
 
  	// Sometimes the query comes back as 0, so ignore these.
  	if( (response != 0) && (ignoreNext != 1) )
  	{
-		 console.log("MOST: Set volume of ("+curVolume+")!");
- 		volSet(curVolume);
+ 		volSet(response);
  	}
  	ignoreNext=0; // Honor the next call to volumeQueryCB (unless setting the slider sets this var to 0 again.
 };
@@ -104,7 +93,7 @@ function volGet(userVol){
 	inverseVol = Math.floor(inverseVol*0.92+163);
 	//0.92 is needed because there are 92 integers in the MOST range between 255 and 163 which must be mapped to 0-100
 
-		 console.log("USER: Set volume to "+inverseVol+" ("+userVol+")!");
+	//console.log("USER: Set volume to "+inverseVol+" ("+userVol+")!");
 
 	//encode some stringified json (jqY = level 163 to 255) and send to most
 	var jsonenc = {"api":"setTone","dest":"volume","level":inverseVol,"incr":0};
@@ -121,7 +110,7 @@ function volSet(mostVol){
  	if(userVol>100) userVol=100;
  
  	updateVol(level(inverseVol));
- 	console.log("MOST: Set volume to "+inverseVol+" ("+userVol+")!");
+ 	//console.log("MOST: Set volume to "+inverseVol+" ("+userVol+")!");
  }
 
 // New Hex Slider Indicator JS
