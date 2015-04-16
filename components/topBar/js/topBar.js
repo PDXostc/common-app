@@ -1,7 +1,7 @@
 /* ==== ==== ==== init top bar variables ==== ==== ==== */
 
 var TopBar = {};
-var firstRun=true, topbarDnD=true;//var dataResolved=false;
+var firstRun=true, topbarDnD=false;//var dataResolved=false;
 var updateText='resolved\n', homeScreenName = "Home Screen";
 var extras = 0, index = 0, icon = 0, id = 0, installed=0;
 var registeredApps, topbarTimer;
