@@ -1,7 +1,7 @@
 /* ==== ==== ==== init top bar variables ==== ==== ==== */
 
 var TopBar = {};
-var firstRun=true, topbarDnD=true;//var dataResolved=false;
+var firstRun=true, topbarDnD=false;//var dataResolved=false;
 var updateText='resolved\n', homeScreenName = "Home Screen";
 var extras = 0, index = 0, icon = 0, id = 0, installed=0;
 var registeredApps, topbarTimer;
@@ -490,11 +490,21 @@ function getIcons(id){
 }
 function initIcon(){
 	//initialize icons
-	for(tasks=0;tasks<7;tasks++){
-		if(typeof JSON.stringify(getIcons(tasks)) !== typeof undefined && JSON.stringify(getIcons(tasks)).length < 22)
-			taskList[tasks] = {source:"", cb:""};
-		else
-			taskList[tasks]=getIcons(tasks);
+	if(topbarDnD){
+		for(tasks=0;tasks<7;tasks++){
+			if(typeof JSON.stringify(getIcons(tasks)) !== typeof undefined && JSON.stringify(getIcons(tasks)).length < 22)
+				taskList[tasks] = {source:"", cb:""};
+			else
+				taskList[tasks]=getIcons(tasks);
+		}
+	}else{
+		taskList=[{source:"/DNA_common/images/navigation_inactive.png",	cb:"JLRPOCX015.Navigation"},
+				  {source:"/DNA_common/images/browser_inactive.png",	cb:"JLRPOCX030.Browser"},
+				  {source:"/DNA_common/images/dashboard_inactive.png",	cb:"JLRPOCX033.Dashboard"},
+				  {source:"/DNA_common/images/hvac_inactive.png",		cb:"JLRPOCX008.HVAC"},
+				  {source:"/DNA_common/images/weather_inactive.png",	cb:"JLRPOCX035.Weather"},
+				  {source:"/DNA_common/images/fmradio.png", 		cb:"JLRPOCX004.FMRadio"},
+				  {source:"/DNA_common/images/nfc_inactive.png", 		cb:"JLRPOCX034.NFC"}];
 	}
 	displayTasks();
 	initAppGrid();
