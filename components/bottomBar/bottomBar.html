@@ -20,13 +20,24 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<title>Bottom Bar</title>
 		<meta name="viewport" content="width=1080, height=1920, user-scalable=no" />
-		<link rel="stylesheet" href="./css/bottomBar.css" />
 	</head>
 	<body>
 		<div id="bottomBar">
 			<img id="settingsIcon">
 			<img id="bottomBarLogoImg" class="bottomBarLogo">
-			<div id="volumeIndicator">
+			<div id="bbar-volume-lockup">
+				<div id="bbar-less-volume" class="fa fa-minus"></div>
+				<div id="bbar-volume">
+					<div id="bbar-volume-track">
+						<div id="bbar-volume-level"></div>
+					</div>
+					<div id="bbar-volume-output-border"></div>
+					<output id="bbar-volume-output">50</output>
+					<input id="bbar-volume-input" type="range" value="50" min="0" max="100" />
+				</div>
+				<div id="bbar-more-volume" class="fa fa-plus"></div>
+			</div>
+			<!-- <div id="volumeIndicator">
 				<div id="volumeCrop">
 					<img id="volumeAmount" src="/DNA_common/components/bottomBar/images/VolFull.png">
 				</div>
@@ -39,7 +50,7 @@
 					<img src="/DNA_common/components/bottomBar/images/VolSlideCtrl.png">
 				</div>
 				<span id="VolLabel">Volume</span>
-			</div>
+			</div> -->
 		</div>
 	</body>
 </html>

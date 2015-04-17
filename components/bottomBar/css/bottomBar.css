@@ -1,126 +1,232 @@
+#bbar-volume-lockup {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  float: right;
+  width: auto;
+  padding: 10px;
+}
+
+#bbar-less-volume,
+#bbar-more-volume {
+  color: white;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 100%; 
+}
+
+#bbar-volume-input {
+  -webkit-appearance: none;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: inherit;
+  height: 100%;
+}
+
+#bbar-volume-input:focus {
+  outline: none;
+}
+
+#bbar-volume-input::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 50%;
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+}
+
+#bbar-volume-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 0;
+    width: 0;
+}
+
+#bbar-volume {
+  position:relative;
+  width: 85px;
+  height: 100px;
+  overflow: hidden;
+}
+
+#bbar-volume-track {
+  width: inherit;
+  height: inherit;
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  position: absolute;
+  background-color: #333;
+}
+
+#bbar-volume-level {
+  width: 50%;
+  height: 100%;
+  background-color: #b2f0ff;
+  position: absolute;
+  bottom: 0;
+}
+
+#bbar-volume-output {
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background-color: rgba(0,0,0,.7);
+  color: white;
+  font-family: 'SourceSansPro', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin: 0;
+  padding: 0;
+  width: inherit;
+  height: inherit;
+  transform: scale(.75);
+  position: absolute;
+  display: flex;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+#bbar-volume-output-border {
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  margin: 0;
+  padding: 0;
+  width: inherit;
+  height: inherit;
+  transform: scale(.80);
+  position: absolute;
+  background-color: rgba(255,255,255,.6);
+}
+
+/**********************************************************/
+
 /*
 body {
-	font-family: "Droid Sans", sans-serif;  *******this style in common.css******
+  font-family: "Droid Sans", sans-serif;  *******this style in common.css******
 }*/
 html {
 overflow: hidden; 
 }
 .clearBoth {
-	clear:both;
+  clear:both;
 }
 #bottomBar {
-	/*width: calc(100% - 2px);*/
-	height: 130px;
-	border: 1px solid white;
-	background: rgba(0, 0, 0, 0.9);
+  /*width: calc(100% - 2px);*/
+  height: 130px;
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.9);
   box-shadow: inset 0 0 20px rgb(179, 227, 255);
-	/*position: fixed;*/
-	position: relative;
-	/*bottom: 0px;*/
-	/*left: 0;*/
-	/*z-index: 21;*/
+  /*position: fixed;*/
+  position: relative;
+  /*bottom: 0px;*/
+  /*left: 0;*/
+  /*z-index: 21;*/
 }
 #settingsIcon {
-	width:89px;
-	height:89px;
-	position: absolute;
-	left:0;
-	top: 0;
-	margin: 20px 0 0 20px;
+  width:89px;
+  height:89px;
+  position: absolute;
+  left:0;
+  top: 0;
+  margin: 20px 0 0 20px;
 }
 #settingsMenu{
-	Height: 800px;
-	width: 117px;
-	position: fixed;
-	bottom: 131px;
-	left: 0;
-	display:none;
-	border: 1px solid white;
-	box-shadow: 0 0 36px rgba(196, 196, 196, 1) inset;
+  Height: 800px;
+  width: 117px;
+  position: fixed;
+  bottom: 131px;
+  left: 0;
+  display:none;
+  border: 1px solid white;
+  box-shadow: 0 0 36px rgba(196, 196, 196, 1) inset;
 }
 #settingsMenu img{
-	border-bottom:1px solid white;
+  border-bottom:1px solid white;
 }
 #closeApp{
-	display:none;
+  display:none;
 }
 /*drop in any logo of any size loading the image content to style.css in app; 
 the following style will center the image but not size or stretch it*/
 #bottomBarLogoImg{
-/*	width:400px;  this size stretches the logos out of proportion, doesn't work for all
-	height:100px;
-	margin: 16px 0 0 325px;*/
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: 300px;
-	transform: translate(-50%, -50%);
+/*  width:400px;  this size stretches the logos out of proportion, doesn't work for all
+  height:100px;
+  margin: 16px 0 0 325px;*/
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  transform: translate(-50%, -50%);
 }
 
 .bottomBarLogo {
-	content:url('/DNA_common/components/bottomBar/images/JLR-Logo.png');
+  content:url('/DNA_common/components/bottomBar/images/JLR-Logo.png');
 }
 
 #volumeIndicator{
-	float:right;
-	margin:50px 31px 0 0;
+  float:right;
+  margin:50px 31px 0 0;
 }
 #volumeSlideCrop, #volumeKnob, #volumeSlider{
-	position:absolute;
+  position:absolute;
 }
 #volumeChannel, #volumeVertical, #volumeKnob{
-	pointer-events: none;
+  pointer-events: none;
 }
 #volumeIndicator,#volumeSlider,#volumeSlideCrop{
-	width:210px;
+  width:210px;
 }
 #volumeChannel,#volumeSlider{
-	height:896px;
+  height:896px;
 }
 #volumeIndicator{
-	height:60px;
-	background-image:url('../images/VolBckgrnd.png');
+  height:60px;
+  background-image:url('../images/VolBckgrnd.png');
 }
 #volumeSlider{
-	display:none;
-	bottom:250px;
-	right:25px;
-	z-index:6;
-	background-image:url('../images/VolSlideBckgrnd.png')
+  display:none;
+  bottom:250px;
+  right:25px;
+  z-index:6;
+  background-image:url('../images/VolSlideBckgrnd.png')
 }
 #VolLabel{
-	font-weight:bold;
-	font-size:32px;
-	margin-left:45px;
-	line-height:60px;
-	color:white !important;
+  font-weight:bold;
+  font-size:32px;
+  margin-left:45px;
+  line-height:60px;
+  color:white !important;
 }
 #volumeSlideCrop{
-	height:60%;
-	bottom:6px;
-	overflow:hidden;
+  height:60%;
+  bottom:6px;
+  overflow:hidden;
 }
 #volumeKnob{
-	left:30px;
-	top:282px;
+  left:30px;
+  top:282px;
 }
 #volumeKnob img{
-	width:100px;
-	margin: 25px 0 0 25px;
+  width:100px;
+  margin: 25px 0 0 25px;
 }
 #volumeVertical{
-	width:209px;
+  width:209px;
 }
 #volumeCrop{
-	height:60px;
-	width:60%;
-	overflow:hidden;
+  height:60px;
+  width:60%;
+  overflow:hidden;
 }
 .shadowSmall
-{	
-	border: 1px solid white;
-	background: rgba(0, 0, 0, 0.9);
+{ 
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.9);
    -webkit-box-shadow: inset 0 0 20px rgb(179, 227, 255);
    box-shadow:         inset 0 0 20px rgb(179, 227, 255);
-	
+  
 }
