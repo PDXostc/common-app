@@ -1092,6 +1092,7 @@ label,
 
 .slider-button {
   align-items: center;
+  -webkit-animation: bounceInDown 900ms 200ms ease-in-out both;
   animation: bounceInDown 900ms 200ms ease-in-out both;
   background: linear-gradient(#db9604, #915a00);
   border: 1px solid rgba(255, 255, 255, .4);
@@ -1271,6 +1272,14 @@ ul, ol {
   -webkit-appearance: none; 
   background-color: transparent;
   box-shadow: inset 0 0 .5em .125em rgba(0,0,0,.5);
+}
+
+.scrollbar-x::-webkit-scrollbar-thumb,   
+.scrollbar-y::-webkit-scrollbar-thumb,   
+.scrollbar-xy::-webkit-scrollbar-thumb {   
+  -webkit-appearance: none;
+  border: 5px solid transparent;
+  border-radius: 10px; 
 }
 
 .scrollbar-x::-webkit-scrollbar-thumb,   

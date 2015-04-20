@@ -66,15 +66,13 @@
 #app-grid-view {
 	-webkit-mask: -webkit-gradient(linear, 0 1920, 0 1200,  from(rgba(0,0,0,0.5)), to(rgba(0,0,0,1)));
 	background-color:rgba(0,0,0,1);
-	bottom:130px;
+	bottom:120px;
 	display:none;
 	font-size:20px;
 	left: 0;
-	overflow-x:hidden;
-	overflow-y:scroll;
 	padding:32px;
 	position:absolute;
-	top:114px;
+	top:120px;
 	touch-action: pan-y;
 	width:100%;
 	z-index:5;

@@ -31,7 +31,6 @@ TopBar.topbarBack = function() {
 }
 
 TopBar.toggleGrid = function() {
-  $("#volumeSlider").hide();
   $("#app-grid-view").toggle();
 }
 
@@ -286,7 +285,7 @@ function onAppInfoSuccess(list) {
 			var tbarSpaceImage = $("#topbar-space" + index + " img");
 			
 			tbarSpaceImage.attr({
-          		src: topbarTasks[index].icon,
+          		src: topTasks[index].icon,
           		class: "draggable"
         	});
 
@@ -426,7 +425,7 @@ function initTaskLauncher(){
 		try {
 			//Update the topbar icon
 			if(tizen.application.getCurrentApplication().appInfo.packageId == "JLRPOCX001")
-				$("#homeScreenIcon").attr('src', '/DNA_common/images/Tizen.png');
+				$("#homeScreenIcon").attr('src', '/DNA_common/images/tizen.png');
 			else
 				$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
 
@@ -506,13 +505,13 @@ function initIcon(){
 				taskList[tasks]=getIcons(tasks);
 		}
 	}else{
-		taskList=[{source:"/DNA_common/images/navigation_inactive.png",	cb:"JLRPOCX015.Navigation"},
-				  {source:"/DNA_common/images/browser_inactive.png",	cb:"JLRPOCX030.Browser"},
-				  {source:"/DNA_common/images/dashboard_inactive.png",	cb:"JLRPOCX033.Dashboard"},
-				  {source:"/DNA_common/images/hvac_inactive.png",		cb:"JLRPOCX008.HVAC"},
-				  {source:"/DNA_common/images/weather_inactive.png",	cb:"JLRPOCX035.Weather"},
-				  {source:"/DNA_common/images/fmradio.png", 		cb:"JLRPOCX004.FMRadio"},
-				  {source:"/DNA_common/images/nfc_inactive.png", 		cb:"JLRPOCX034.NFC"}];
+		taskList=[{source:"/DNA_common/images/application_icons/googlemaps_app_icon.png",	cb:"JLRPOCX015.Navigation"},
+				  {source:"/DNA_common/images/application_icons/browser_app_icon.png",	cb:"JLRPOCX030.Browser"},
+				  {source:"/DNA_common/images/application_icons/dashboard_app_icon.png",	cb:"JLRPOCX033.Dashboard"},
+				  {source:"/DNA_common/images/application_icons/hvac_app_icon.png",		cb:"JLRPOCX008.HVAC"},
+				  {source:"/DNA_common/images/application_icons/weather_app_icon.png",	cb:"JLRPOCX035.Weather"},
+				  {source:"/DNA_common/images/application_icons/fmradio_app_icon.png", 		cb:"JLRPOCX004.FMRadio"},
+				  {source:"/DNA_common/images/application_icons/nfc_app_icon.png", 		cb:"JLRPOCX034.NFC"}];
 	}
 	displayTasks();
 	initAppGrid();
