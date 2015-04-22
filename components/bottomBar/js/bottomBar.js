@@ -1,41 +1,39 @@
 /* ==== ==== ==== init bottom bar js code ==== ==== ==== */
 
 var Slide=[];
-var homescreenTimeout, bottombarTimer;
+var homescreenTimeout;
 var BottomBar = {};
 
 
 BottomBar.TemplateHTML = "DNA_common/components/bottomBar/bottomBar.html";
 
-BottomBar.LogoTimeoutMouseDown = function (e){
-		//console.log("BottomBar.LogoTimeoutMouseDown()");
-			homescreenTimeout = setTimeout(function() {
-				clearTimeout(homescreenTimeout);
-				if(tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001"){
-					tizen.application.getCurrentApplication().exit();
-				}
-			}, 2500);
-		}
-		
-BottomBar.LogoTimeoutMouseUp = function (e){
-			clearTimeout(homescreenTimeout);
-		}
-		
-BottomBar.pageUpdate = function () {
-		$('#bottomBar').replaceWith(BottomBar.bottomBarHTML.valueOf());
-		
-		$("#bbar-logo").mousedown(BottomBar.LogoTimeoutPress);
-		
-		$("#bbar-logo").mouseup(BottomBar.LogoTimeoutMouseUp);
+BottomBar.LogoTimeoutMouseDown = function(e) {
+  // console.log("BottomBar.LogoTimeoutMouseDown()");
+  homescreenTimeout = setTimeout(function() {
+    clearTimeout(homescreenTimeout);
+    if (tizen.application.getCurrentApplication().appInfo.packageId != "JLRPOCX001") {
+      tizen.application.getCurrentApplication().exit();
+    }
+  }, 2500);
+}
 
-		depenancyMet("BottomBar.settingsIcon");
-	}
+BottomBar.LogoTimeoutMouseUp = function(e) {
+  clearTimeout(homescreenTimeout);
+}
+
+BottomBar.pageUpdate = function() {
+  $('#bottom-bar').replaceWith(BottomBar.bottomBarHTML.valueOf());
+  $("#bbar-logo").mousedown(BottomBar.LogoTimeoutPress);
+  $("#bbar-logo").mouseup(BottomBar.LogoTimeoutMouseUp);
+
+  depenancyMet("BottomBar.settingsIcon");
+}
 
 BottomBar.includeHTMLSucess = function(linkobj) {
 		//console.log("BottomBar.includeHTMLSucess()");
 		BottomBar.import = linkobj.path[0].import;
 		//console.log(BottomBar.import);
-		BottomBar.bottomBarHTML = BottomBar.import.getElementById('bottomBar');
+		BottomBar.bottomBarHTML = BottomBar.import.getElementById('bottom-bar');
 		setTimeout(BottomBar.pageUpdate,2000);
 	}
 

@@ -30,9 +30,8 @@ TopBar.topbarBack = function() {
 	}
 }
 
-TopBar.toggleGrid = function(){
-	$("#volumeSlider").hide();
-	$("#hexGridView").toggle();
+TopBar.toggleGrid = function() {
+  $("#app-grid-view").toggle();
 }
 
 topbarTouchstart = function(event){
@@ -42,20 +41,20 @@ topbarTouchstart = function(event){
 }
 
 TopBar.pageUpdate = function() {
-	$('#topBar').replaceWith(TopBar.topBarHTML.valueOf());
-	$("#homeScreenIcon").click(TopBar.topbarBack);
-	$("#appGridIcon").click(TopBar.toggleGrid);
-	$(".exitButton").click(TopBar.toggleGrid);
-	initAppGrid();
-	initTaskLauncher();
+  $('#top-bar').replaceWith(TopBar.topBarHTML.valueOf());
+  $("#homeScreenIcon").click(TopBar.topbarBack);
+  $("#appGridIcon").click(TopBar.toggleGrid);
+  $(".exitButton").click(TopBar.toggleGrid);
+  initAppGrid();
+  initTaskLauncher();
 }
 
 TopBar.includeHTMLSuccess = function(linkobj) {
-		console.log("TopBar.includeHTMLSuccess()");
-		TopBar.import = linkobj.path[0].import;
-		console.log(TopBar.import);
-		TopBar.topBarHTML = TopBar.import.getElementById('topBar');
-		setTimeout(TopBar.pageUpdate,200);
+  console.log("TopBar.includeHTMLSuccess()");
+  TopBar.import = linkobj.path[0].import;
+  console.log(TopBar.import);
+  TopBar.topBarHTML = TopBar.import.getElementById('top-bar');
+  setTimeout(TopBar.pageUpdate, 200);
 }
 
 TopBar.includeHTMLFailed = function(linkobj) {
@@ -67,17 +66,18 @@ includeHTML("DNA_common/components/topBar/topBar.html", TopBar.includeHTMLSucces
 
 /* ==== ==== ==== init app grid js code ==== ==== ==== */
 
-function onLaunchSuccess(x){
-	$("#hexGridView").hide();
-	$("#volumeSlider").hide();
-	window.setTimeout(function() {
-		tizen.application.getCurrentApplication().hide();
-	}, 300);
+function onLaunchSuccess(x) {
+  $("#app-grid-view").hide();
+  $("#volumeSlider").hide();
+  window.setTimeout(function() {
+    tizen.application.getCurrentApplication().hide();
+  }, 300);
 }
-function onSwitchSuccess(x){
-	$("#hexGridView").hide();
-	$("#volumeSlider").hide();
-	tizen.application.getCurrentApplication().hide();
+
+function onSwitchSuccess(x) {
+  $("#app-grid-view").hide();
+  $("#volumeSlider").hide();
+  tizen.application.getCurrentApplication().hide();
 }
 function onError(x){
 	console.log(x);
@@ -282,10 +282,17 @@ function onAppInfoSuccess(list) {
 		});
 		//populate the topbar using the topbar tasks array
 		$(topTasks).each(function(index){
-			$("#topTask"+index+" img").attr("src", topTasks[index].icon);
-			$("#topTask"+index+" img").attr("class", "draggable");
-			$("#topTask"+index+" img").on('click', function(){launchApplication(topTasks[index].id)});
-		});
+			var tbarSpaceImage = $("#topbar-space" + index + " img");
+			
+			tbarSpaceImage.attr({
+          		src: topTasks[index].icon,
+          		class: "draggable"
+        	});
+
+        	tbarSpaceImage.on('click', function() {
+          		launchApplication(toptasks[index].id)
+        	});
+      	});
 		//console.log(appList); //for grid
 		for (i = 0; i < list.length; i++) {
 
@@ -337,13 +344,13 @@ function onAppInfoSuccess(list) {
 						break;
 					default:
 						if(Divisible(i-offset,5)){
-							$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+							$('#app-grid-view #hexGrid').append($("<div></div>").addClass("hexrow"));
 						}
 						insertAppFrame(applications[i]);
 				}
 			}
 			if(Divisible(applications.length-offset,5)){
-				$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+				$('#app-grid-view #hexGrid').append($("<div></div>").addClass("hexrow"));
 			}
 			if(false){
 				for (j=0;j<5-(applications.length-offset)%5;j++){
@@ -351,7 +358,7 @@ function onAppInfoSuccess(list) {
 					extras++;
 				}
 				for (i = 1; i <= 8; i++) {
-					$('#hexGridView #hexGrid').append($("<div></div>").addClass("hexrow"));
+					$('#app-grid-view #hexGrid').append($("<div></div>").addClass("hexrow"));
 					for (j=1;j<=5;j++){
 						insertAppFrame({iconPath:'',appName:'',id:0});
 						extras++;
@@ -418,7 +425,7 @@ function initTaskLauncher(){
 		try {
 			//Update the topbar icon
 			if(tizen.application.getCurrentApplication().appInfo.packageId == "JLRPOCX001")
-				$("#homeScreenIcon").attr('src', '/DNA_common/images/Tizen.png');
+				$("#homeScreenIcon").attr('src', '/DNA_common/images/tizen.png');
 			else
 				$("#homeScreenIcon").attr('src', '/DNA_common/images/homescreen_icon.png');
 
@@ -436,34 +443,34 @@ function initTaskLauncher(){
 		}
 	}
 }
-function onTaskInfoSuccess(list){
-	try {
-		for (i = 0; i < list.length; i++) {
-			var app = list[i];
-			var newApp = {
-				id: app.id,
-				appName: app.name,
-				style: "background-image: url('file://" + app.iconPath + "');",
-				iconPath: app.iconPath,
-				css: "app_" + app.id.replace(/\./g, "_").replace(/\ /g, "_"),
-				installed: true
-			};
-			if (registeredApps[app.id]) {
-				newApp.style = "background-image: url('"+ registeredApps[app.id] + "');";
-				newApp.iconPath = registeredApps[app.id];
-			}
-			applications.push(newApp);
-		}
-		for (i = 0; i < 7; i++) {
-			var taskDiv = $("<div></div>").addClass("topTask droppable");
-			$(taskDiv).attr('id','topTask'+i);
-			$("#topBar").append(taskDiv);
-		}
-	} catch (exc) {
-		console.error(exc.message);
-	}
-	Configuration.reload(onStartTopBar);
-	return true;
+
+function onTaskInfoSuccess(list) {
+  try {
+    for (i = 0; i < list.length; i++) {
+      var app = list[i];
+      var newApp = {
+        id: app.id,
+        appName: app.name,
+        style: "background-image: url('file://" + app.iconPath + "');",
+        iconPath: app.iconPath,
+        css: "app_" + app.id.replace(/\./g, "_").replace(/\ /g, "_"),
+        installed: true
+      };
+      if (registeredApps[app.id]) {
+        newApp.style = "background-image: url('" + registeredApps[app.id] + "');";
+        newApp.iconPath = registeredApps[app.id];
+      }
+      applications.push(newApp);
+    }
+    for (i = 0; i < 7; i++) {
+      var gridSpace = $(".topbar-space[data-app-space='" + i + "']");
+      $(gridSpace).attr("id", "topbar-space" + i);
+    }
+  } catch (exc) {
+    console.error(exc.message);
+  }
+  Configuration.reload(onStartTopBar);
+  return true;
 }
 
 /* ==== ==== ==== persistence functions ==== ==== ==== */
@@ -498,28 +505,29 @@ function initIcon(){
 				taskList[tasks]=getIcons(tasks);
 		}
 	}else{
-		taskList=[{source:"/DNA_common/images/navigation_inactive.png",	cb:"JLRPOCX015.Navigation"},
-				  {source:"/DNA_common/images/browser_inactive.png",	cb:"JLRPOCX030.Browser"},
-				  {source:"/DNA_common/images/dashboard_inactive.png",	cb:"JLRPOCX033.Dashboard"},
-				  {source:"/DNA_common/images/hvac_inactive.png",		cb:"JLRPOCX008.HVAC"},
-				  {source:"/DNA_common/images/weather_inactive.png",	cb:"JLRPOCX035.Weather"},
-				  {source:"/DNA_common/images/fmradio.png", 		cb:"JLRPOCX004.FMRadio"},
-				  {source:"/DNA_common/images/nfc_inactive.png", 		cb:"JLRPOCX034.NFC"}];
+		taskList=[{source:"/DNA_common/images/application_icons/googlemaps_app_icon.png",	cb:"JLRPOCX015.Navigation"},
+				  {source:"/DNA_common/images/application_icons/browser_app_icon.png",	cb:"JLRPOCX030.Browser"},
+				  {source:"/DNA_common/images/application_icons/dashboard_app_icon.png",	cb:"JLRPOCX033.Dashboard"},
+				  {source:"/DNA_common/images/application_icons/hvac_app_icon.png",		cb:"JLRPOCX008.HVAC"},
+				  {source:"/DNA_common/images/application_icons/weather_app_icon.png",	cb:"JLRPOCX035.Weather"},
+				  {source:"/DNA_common/images/application_icons/fmradio_app_icon.png", 		cb:"JLRPOCX004.FMRadio"},
+				  {source:"/DNA_common/images/application_icons/nfc_app_icon.png", 		cb:"JLRPOCX034.NFC"}];
 	}
 	displayTasks();
 	initAppGrid();
 }
-function primeIcon(id,content){
-	if(content.length>0){
-		$("#topTask"+id).html("<img class='draggable' src='"+content+"''>");
-		$("#topTask"+id).click(function(){
-			if( taskList[id].cb != tizen.application.getCurrentApplication().appInfo.id ){
-				callApp(taskList[id].cb);
-			}
-		});
-	}else{
-		$("#topTask"+id).html("");
-	}
+
+function primeIcon(id, content) {
+  if (content.length > 0) {
+    $(".topbar-space[data-app-space='" + id + "']").html("<img class='draggable' src='" + content + "''>");
+    $(".topbar-space[data-app-space='" + id + "']").click(function() {
+      if (taskList[id].cb != tizen.application.getCurrentApplication().appInfo.id) {
+        callApp(taskList[id].cb);
+      }
+    });
+  } else {
+    $(".topbar-space[data-app-space='" + id + "']").html("");
+  }
 }
 
 /* ==== ==== ==== topbar display code ==== ==== ==== */

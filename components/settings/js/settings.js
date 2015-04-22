@@ -15,10 +15,7 @@ Settings.includeHTMLSucess = function(linkobj) {
    console.log("loaded settings.html");
    Settings.import = linkobj.path[0].import;
    
-   Settings.settingsIconHTML = Settings.import.getElementById('settingsIcon');
-   //Settings.settingsCarotHTML = Settings.import.getElementById('settingsCarot');
-   //Settings.settingsMenuHTML = Settings.import.getElementById('settingsMenu');
-   //Settings.settingsTabsHTML = Settings.import.getElementById('settingsTabs');
+   Settings.settingsIconHTML = Settings.import.getElementById('settings-icon');
    Settings.settingsPageItemHTML = Settings.import.getElementById('settingsPageItem').innerHTML;
    //$("body").append(Settings.import.getElementById('settingsPage'));
    //$("#settingsPage").toggle();
@@ -29,15 +26,18 @@ Settings.includeHTMLSucess = function(linkobj) {
 		
 Settings.pageUpdate = function() {
 	console.log("Settings.pageUpdate()");
-	if (!$('#settingsIcon').length) {
+	if (!$('#settings-button').length) {
 		setTimeout(Settings.pageUpdate,1000);
 	}
 	else {
 		console.log("replace settingsIcon with "+Settings.settingsIconHTML);
-		$('#settingsIcon').replaceWith(Settings.settingsIconHTML.valueOf());
-		$("body").append(Settings.import.getElementById('settingsPage'));
+		$('#settings-icon').replaceWith(Settings.settingsIconHTML.valueOf());
+		$("#center-panel").append(Settings.import.getElementById('settingsPage'));
 		depenancyMet("Settings.settingsPage");
-		document.getElementById('settingsIcon').onclick=function(){$("#volumeSlider").hide();$("#hexGridView").hide();$('#settingsPage').toggleClass('hidden');};
+		document.getElementById('settings-button').onclick=function(){
+			$("#app-grid-view").hide();
+			$('#settingsPage').toggleClass('hidden');
+		};
 		document.getElementById('SettingsTabsCloseButton').onclick=function(){
 			volumeSettingsPage.HidePage();
 			BluetoothSettingsPage.HidePage();
