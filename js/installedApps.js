@@ -196,14 +196,14 @@ var extras = 0;
 function onAppInfoSuccess(list) {
 	"use strict";
 	var registeredApps = {"Home Screen":"/DNA_common/images/homescreen_icon.png",
-						   Browser:"/DNA_common/images/browser_icon.png", 
+						   Browser:"/DNA_common/images/application_icons/browser_app_icon.png", 
 						   Boilerplate:"/DNA_common/images/boilerplate_icon.png",
-						   News:"/DNA_common/images/news_icon.png",
-						   gestureGame:"/DNA_common/images/GestureGame_icon.png",
-						   Phone:"/DNA_common/images/phone_icon.png",
-						   Dashboard:"/DNA_common/images/dashboard_icon.png",
-						   Weather:"/DNA_common/images/weather_icon.png",
-						   Handwriting:"/DNA_common/images/handwriting_icon.png"};
+						   News:"/DNA_common/images/application_icons/news_app_icon.png",
+						   gestureGame:"/DNA_common/images/application_icons/gesture_game_app_icon.png",
+						   Phone:"/DNA_common/images/application_icons/phone_app_icon.png",
+						   Dashboard:"/DNA_common/images/application_icons/dashboard_app_icon.png",
+						   Weather:"/DNA_common/images/application_icons/weather_app_icon.png",
+						   Handwriting:"/DNA_common/images/application_icons/handwriting_app_icon.png"};
 	var i = 0;
 	//console.log("onAppInfoSuccess(list)");
 	//console.log(list);
