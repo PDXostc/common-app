@@ -505,7 +505,7 @@ function initIcon(){
 				taskList[tasks]=getIcons(tasks);
 		}
 	}else{
-		taskList=[{source:"/DNA_common/images/application_icons/googlemaps_app_icon.png",	cb:"JLRPOCX015.Navigation"},
+		taskList=[{source:"/DNA_common/images/application_icons/googlemaps_app_icon.png",	cb:"JLRPOCX015.GoogleMaps"},
 				  {source:"/DNA_common/images/application_icons/browser_app_icon.png",	cb:"JLRPOCX030.Browser"},
 				  {source:"/DNA_common/images/application_icons/dashboard_app_icon.png",	cb:"JLRPOCX033.Dashboard"},
 				  {source:"/DNA_common/images/application_icons/hvac_app_icon.png",		cb:"JLRPOCX008.HVAC"},
