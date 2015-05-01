@@ -1,64 +1,88 @@
+@import 'old_common.css';
+
+/* Begin New Common Styles from Style Guide */
+
+/* PLEASE DO NOT CHANGE COMMENTS AS THEY ARE USED FOR 
+   PARSING SNIPPETS TO THE STYLE GUIDE */
+
 /* Resets *************************************************/
 
 :focus {
   outline: none;
 }
 
-/* Fonts **************************************************/
+/* Prevents the selection of text on all but text inputs */
 
-/* Adobe Source Sans */
-/* SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007 */
-/* http://scripts.sil.org/OFL */
+:not(input):not(textarea) {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Resets :: end ******************************************/
+
+
+
+/* Fonts ***************************************************
+
+   Adobe Source Sans
+   SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+   http://scripts.sil.org/OFL
+
+***********************************************************/
 
 @font-face {
   font-family: SourceSansPro;
-  src: url(../fonts/SourceSansPro-ExtraLight.ttf) format(truetype);
+  src: url('../fonts/SourceSansPro-ExtraLight.ttf') format('truetype');
   font-weight: 200;
 }
 
 @font-face {
   font-family: SourceSansPro;
-  src: url(../fonts/SourceSansPro-Light.ttf) format(truetype);
+  src: url('../fonts/SourceSansPro-Light.ttf') format('truetype');
   font-weight: 300;
 }
 
 @font-face {
   font-family: SourceSansPro;
-  src: url(../fonts/SourceSansPro-LightItalic.ttf) format(truetype);
+  src: url('../fonts/SourceSansPro-LightItalic.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: SourceSansPro;
-  src: url(../fonts/SourceSansPro-Regular.ttf) format(truetype);
+  src: url('../fonts/SourceSansPro-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
   font-family: SourceSansPro;
-  src: url(../fonts/SourceSansPro-Italic.ttf) format(truetype);
+  src: url('../fonts/SourceSansPro-Italic.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: SourceSansPro;
-  src: url(../fonts/SourceSansPro-Semibold.ttf) format(truetype);
+  src: url('../fonts/SourceSansPro-Semibold.ttf') format('truetype');
   font-weight: 600;
 }
 
 @font-face {
   font-family: SourceSansPro;
-  src: url(../fonts/SourceSansPro-Bold.ttf) format(truetype);
+  src: url('../fonts/SourceSansPro-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 
 @font-face {
   font-family: SourceSansPro;
-  src: url(../fonts/SourceSansPro-Black.ttf) format(truetype);
+  src: url('../fonts/SourceSansPro-Black.ttf') format('truetype');
   font-weight: 900;
 }
+
+/* Fonts :: end *******************************************/
+
+
 
 /* Root Elements ******************************************/
 
@@ -67,33 +91,109 @@ html {
 }
 
 body {
-  font-family: SourceSansPro, sans-serif;
-  width: 1080px;
-  height: 1920px;
-  margin: 0;
-  padding: 0;
   background-color: rgb(0,0,0);
   background-image: url("../images/Hex-Background.jpg");
-  position: relative;
   display: flex;
-  flex-direction:column;
-  justify-content:space-between;
+  flex-direction: column;
+  font-family: SourceSansPro, sans-serif;
+  height: 1920px;
+  justify-content: space-between;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 1080px;
 }
 
-*:not(input):not(textarea) {
-  user-select: none;
-  -webkit-user-select: none;
+/* Sectioning Content */
+
+article,
+aside,
+body,
+div, 
+nav,
+section {
+  font-size: 3rem;
 }
+
+/* Root Elements :: end ***********************************/
+
+
+
+/* Structural Elements *************************************
+
+   These styles can only be used with
+   the HTML structure suggested in the Style Guide
+
+***********************************************************/
+
+#center-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: inherit;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal,
+#settings {
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.modal {
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#settings {
+  background-color: rgba(0, 0, 0, 0.9);
+  flex: 1;
+  transition: height .25s ease-out;
+}
+
+#settings.collapsed {
+  height: 0%;
+  overflow: hidden;
+}
+
+#app {
+  background-color: transparent;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* Structural Elements :: end *****************************/
+
+
 
 /*Typography **********************************************/
 
 /* Headings */
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #fe9c00;
-  margin: .5em 0;
+  font-weight: 400;
   line-height: 1em;
+  margin: .5em 0;
 }
 
 h1 {
@@ -123,22 +223,25 @@ h6, .label {
 
 /* Text */
 
-p, ul {
+p,
+ul {
   margin-bottom: 1em;
 }
 
-p, ul, li,
+p,
+ul,
+li,
 .text-input {
   color: white;
   font-size: 3rem;
 }
 
-.text-large {
-  font-size: 3.4rem;
-}
-
 .text-medium {
   font-size: 3.2rem;
+}
+
+.text-large {
+  font-size: 3.4rem;
 }
 
 p.lead {
@@ -163,143 +266,32 @@ li {
   margin-left: 1em;
 }
 
-/* Sectioning Content and Div *****************************/
+/* Text Overflow */
 
-div, 
-nav,
-aside,
-article,
-section {
-  font-size: 3rem;
-}
-
-/* Structural Elements ************************************/
-
-/*
-  These styles can only be used with
-  the HTML structure suggested in the Style Guide
-*/
-
-#base {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  height: inherit;
-}
-
-.modal,
-#settings {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  display: flex;
-}
-
-.modal {
-  align-items: center;
-  justify-content: center;
-}
-.modal-content {
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-#settings {
-  flex: 1;
-  background-color: rgba(0, 0, 0, 0.9);
-  transition: height .25s ease-out;
-}
-
-#settings.collapsed {
+.ellipsis-one-line,
+.ellipsis-two-line,
+.ellipsis-three-line {
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 0%;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 
-/* Pending styles for integration - do not delete
-
-    #app .content,
-    .modal .content,
-    #settings .content {
-      flex: 1;
-      padding: 20px;
-    }
-
-    #app .content,
-    #settings .content {
-      margin: 20px;
-    }
-    .wrapper {
-      overflow: hidden;
-      display: flex;
-      flex-direction : column;
-      flex-grow: 1;
-    }
-
-    .modal .content {
-      background-color: #333;
-    }
-
-    #top-bar {
-      height: 114px;
-      background-color: black;
-    }
-
-    #bottom-bar {
-      height: 139px;
-      background-color: black;
-      display: flex;
-    }
-
-End pending */
-
-#app {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  background-color: transparent;
-  position: relative;
+.ellipsis-one-line {
+  -webkit-line-clamp: 1;
 }
 
-
-#top-bar,
-#bottom-bar {
-  text-align: center;
-  box-shadow: inset 0 0 40px 2px rgba(255, 255, 255, 0.85);
-  align-items: center;
+.ellipsis-two-line {
+  -webkit-line-clamp: 2;
 }
 
-#top-bar ul {
-  display: flex;
-  margin: 0;
-  padding: 0; 
+.ellipsis-three-line, {
+  -webkit-line-clamp: 3;
 }
 
-#top-bar .grid-space {
-  display: inline;
-  padding: 10px; 
-  flex: 1;
-  height: 100%;
-  background-color: transparent;
-  box-sizing: border-box;
-}
+/* Typography :: end **************************************/
 
-#top-bar .grid-space:not(:last-child) {
-  border-right: 1px solid rgba(255, 255, 255, 0.25);
-}
 
-#volume,
-#settings-button {
-  flex: 1;
-}
-
-#agl-logo {
-  flex: 3;
-}
 
 /* Colors *************************************************/
 
@@ -391,78 +383,449 @@ End pending */
   background-color: black;
 }
 
-.modal,
-#settings,
 .overlay-bg {
   background-color: rgba(0,0,0,0.8);
 }
 
-/* Controls ***********************************************/
+/* Colors :: end ******************************************/
+
+
+/* Tables *************************************************/
+
+table {
+  width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+}
+
+th, td {
+  color: white;
+  font-size: 2rem;
+  text-align: left;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+th.no-flex,
+td.no-flex {
+  display: table-cell;
+}
+
+th {
+  font-weight: 100;
+  justify-content: flex-end;
+}
+
+td {
+  font-weight: 100;
+  justify-content: flex-start;
+}
+
+table tr {
+  display: flex;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255,211,140,.1);
+}
+
+table tr > :nth-child(1n) {
+  flex: 2;
+}
+
+table tr > :nth-child(n+2) {
+  flex: 1;
+}
+
+table.no-text-wrap td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  /*display: -webkit-box;*/
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+/* Tables :: end ******************************************/
+
 
 /* Buttons ************************************************/
 
 button,
-.button,
+.button-infill,
+.button-inshadow,
+.button-outline,
+.button-outshadow,
 input[type='button'] {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+  border-style: solid;
+  border-width: 1px;
   color: white;
-  position: relative;
   display: inline-block;
+  font-family: inherit;
   font-size: 3rem;
   font-weight: 600;
-  font-family: inherit;
-  padding: 8px 20px 12px;
   margin: 20px;
-  border-width: 1px;
-  border-style: solid;
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.9);
+  padding: 8px 20px 12px;
+  position: relative;
 }
+/* Button Colors */
 
 .button-orange {
-  border-color: #fe9c00;
-  box-shadow: inset 0 0 20px rgba(254, 156, 0, 0.9);
+  color: #fe9c00;
+  border-color: rgba(254, 156, 0, 0.5);
 }
 
 .button-blue {
-  border-color: #b2f0ff;
-  box-shadow: inset 0 0 20px rgba(178, 240, 255, 0.9);
+  color: #b2f0ff;
+  border-color: rgba(178, 240, 255, 0.5);
 }
 
 .button-green {
-  border-color: #59ff00;
-  box-shadow: inset 0 0 20px rgba(89, 255, 0, 0.9);
+  color: #59ff00;
+  border-color: rgba(205, 255, 178, 0.5);
 }
 
 .button-yellow {
-  border-color: #ffff00;
-  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.9);
+  color: #ffff00;
+  border-color: rgba(255, 255, 178, 0.5);
 }
+/* Button Inshadow */
+
+.button-inshadow {
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.button-inshadow.button-orange {
+  box-shadow: inset 0 0 20px rgba(254, 156, 0, 0.5);
+}
+
+.button-inshadow.button-blue {
+  box-shadow: inset 0 0 20px rgba(178, 240, 255, 0.5);
+}
+
+.button-inshadow.button-green {
+  box-shadow: inset 0 0 20px rgba(89, 255, 0, 0.5);
+}
+
+.button-inshadow.button-yellow {
+  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+/* Button Outshadow */
+
+.button-outshadow {
+  box-shadow: 0 0 20px rgba(255, 255, 255, .5);
+}
+
+.button-outshadow.button-orange {
+  box-shadow: 0 0 20px rgba(254, 156, 0, .5);
+}
+
+.button-outshadow.button-blue {
+  box-shadow: 0 0 20px rgba(178, 240, 255, .5);
+}
+
+.button-outshadow.button-green {
+  box-shadow: 0 0 20px rgba(89, 255, 0, 0.5);
+}
+
+.button-outshadow.button-yellow {
+  box-shadow: 0 0 20px rgba(255, 255, 0, .5);
+}
+
+/* Button Infill */
+
+.button-infill {
+  background-color: rgba(128, 128, 128, .8);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 1), inset 0 0 6em 2em rgba(0, 0, 0, .5);
+  color: rgba(255, 255, 255, .8);
+}
+
+.button-infill.button-orange {
+  background-color: rgba(254, 156, 0, .8);
+}
+
+.button-infill.button-blue {
+  background-color: rgba(83, 181, 206, .8);
+}
+
+.button-infill.button-green {
+  background-color: rgba(89, 255, 0, .7);
+}
+
+.button-infill.button-yellow {
+  background-color: rgba(255, 255, 0, .8);
+}
+
+/* Clear Button */
+
 .clear-button::after { 
-  margin-left: -50px; 
+  color: #c4c4c4; 
   content: "\00d7";
-  line-height: 100px;
   font-size: 5rem;
-  color: gray; 
+  line-height: 100px;
+  margin-left: -50px; 
 }
+
+/* Close Button */
+
+.close-button::after {
+  align-items: center;
+  content: "\00d7";
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 5rem;
+  height: 60px;
+  justify-content: center;
+  line-height: 5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60px;
+}
+
+/* Buttons :: end *****************************************/
+
+
+
+/* Boxes **************************************************/
+
+.box-infill,
+.box-inshadow,
+.box-outline,
+.box-outshadow {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+  border-style: solid;
+  border-width: 1px;
+  color: #fe9c00;
+  margin: 20px;
+  padding: 20px;
+}
+
+.box-inshadow {
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5);
+}
+
+.box-outshadow {
+  box-shadow: 0 0 20px rgba(255, 255, 255, .5);
+}
+
+.box-infill {
+  background-color: rgba(128, 128, 128, .8);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 1), inset 0 0 6em 2em rgba(0, 0, 0, .5);
+  color: rgba(255, 255, 255, .8);
+}
+
+.box-header {
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-color: inherit;
+  color: inherit;
+  margin: -20px -20px 10px;
+  padding: 20px;
+}
+
+.box-title {
+  color: inherit;
+  margin: 0;
+}
+
+.box-content {
+  margin: -20px;
+  padding: 20px;
+}
+
+/* Yellow */
+
+.box-yellow,
+.box-in-yellow,
+.box-out-yellow {
+  border-color: rgba(255, 255, 178, 0.5);
+  color: #FFFFb2;
+}
+
+.box-in-yellow {
+  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+.box-out-yellow {
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+.box-infill-yellow {
+  background-color: rgba(255, 255, 0, .8);
+}
+
+/* Orange */
+
+.box-orange,
+.box-in-orange,
+.box-out-orange {
+  border-color: rgba(254, 156, 0, .5);
+  color: #FE9C00;
+}
+
+.box-in-orange {
+  box-shadow: inset 0 0 20px rgba(254, 156, 0, .5);
+}
+
+.box-out-orange {
+  box-shadow: 0 0 20px rgba(254, 156, 0, .5);
+}
+
+.box-infill-orange {
+  background-color: rgba(254, 156, 0, .8);
+}
+
+/* Blue */
+
+.box-blue,
+.box-in-blue,
+.box-out-blue {
+  border-color: rgba(178, 240, 255, .5);
+  color: #b2f0ff;
+}
+
+.box-in-blue {
+  box-shadow: inset 0 0 20px rgba(178, 240, 255, .5);
+}
+
+.box-out-blue {
+  box-shadow: 0 0 20px rgba(178, 240, 255, .5);
+}
+
+.box-infill-blue {
+  background-color: rgba(83, 181, 206, .8);
+}
+
+/* Green */
+
+.box-green,
+.box-in-green,
+.box-out-green {
+  border-color: rgba(205, 255, 178, 0.5);
+  color: #cdffb2;
+}
+
+.box-in-green {
+  box-shadow: inset 0 0 20px rgba(205, 255, 178, .5);
+}
+
+.box-out-green {
+  box-shadow: 0 0 20px rgba(205, 255, 178, .5);
+}
+
+.box-infill-green {
+  background-color: rgba(89, 255, 0, .7);
+}
+
+/* Boxes :: end *******************************************/
+
+
+
+/* Switches ***********************************************/
+
+.switch {
+  margin: 20px;
+}
+
+/* Sizes for switches */
+
+.switch-xsmall {
+  height: 50px;
+  width: 100px;
+}
+
+.switch-small {
+  height: 75px;
+  width: 150px;
+}
+
+.switch-medium {
+  height: 105px;
+  width: 210px;
+}
+
+.switch-large {
+  height: 150px;
+  width: 300px;
+} 
+
+/* Switch Plate (long background hexagon) */
+
+.switch-plate {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+}
+
+/* On/Off Styles for Switch Plate */
+
+.off .switch-plate {
+  background-image: url('../images/switchplate_off.svg');
+  justify-content: flex-start;
+  padding-left: 10%;
+  padding-right: 0 !important;
+}
+
+.on .switch-plate {
+  background-image: url('../images/switchplate_on.svg');
+  justify-content: flex-end;
+  padding-left: 0 !important;
+  padding-right: 10%;
+}
+
+/* Switch Control (hexagon) */
+
+.switch-control {
+  background-image: url('../images/switchcontrol.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 80%;
+  width: 50%;
+} 
+
+.switch-xsmall .switch-control {
+  -webkit-filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.35));
+}
+
+.switch-small .switch-control {
+  -webkit-filter: drop-shadow(4px 4px 4px rgba(0,0,0,0.35));
+}
+
+.switch-medium .switch-control {
+  -webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.35));
+}
+
+.switch-large .switch-control {
+  -webkit-filter: drop-shadow(8px 8px 8px rgba(0,0,0,0.35));
+}
+
+/* Switches :: end ****************************************/
+
+
 
 /* Forms **************************************************/ 
 
-/* 
-for consistent styling, apply .text-input class to elements: 
-- input type='text'
-- input type='password'
-- textarea 
-*/ 
+/* Text Inputs */
 
 .text-input {
-  font-size: 3rem; 
-  color: white;
-  padding: 20px;
-  margin: 10px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgba(255, 255, 255, 0.5);
   background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+  color: rgba(255, 255, 255, .8);
+  font-size: 3rem; 
+  margin: 10px;
+  padding: 20px;
 }
 
 input,
@@ -471,217 +834,250 @@ textarea,
   font-family: inherit;
 }
 
-::-webkit-input-placeholder {
+::-webkit-input-placeholder,
+::-moz-placeholder {
    color: #444;
 }
 
-.input-yellow {
-  border-color: rgba(255, 255, 0, 0.5);
+label {
+  text-transform: uppercase;
+  color: #fe9c00;
+  display: block;
 }
 
-.input-yellow:focus {
-  box-shadow: 0 0 20px rgba(255, 255, 0, 0.9); 
+label,
+.text-input {
+  margin: 10px;
 }
 
-.input-blue {
-  border-color: rgba(178, 240, 255, 0.5);
-}
-
-.input-blue:focus {
-  box-shadow: 0 0 20px rgba(178, 240, 255, 0.9);
-}
-
-.input-white {
-  border: none;
-  color: rgba(196, 196, 196, 1.0);
-}
-
-.input-white:focus {
+.text-input:focus {
   outline: none;
-  box-shadow: 0 0 15px 5px #b0e0ee;
+  color: white;
+  box-shadow: 0 0 20px rgba(255,255,255,.8);
 }
 
-/* .input-group
-   A wrapper for grouping input fields, labels and other
-   form content. Best used on block elements (eg. div)
-*/ 
+/* Input Group */
+/* A wrapper for grouping input fields, labels and other 
+   form content. Best used on unstyled block elements (eg. div) */ 
 
 .input-group {
   display: flex;
   justify-content: space-between;
 }
 
-.input-group label { 
+.input-group label {
+  align-items: center;
+  display: flex;
   flex: 1;
+  justify-content: flex-end;
+  text-align: right;
 } 
+
+.input-group label.left-label {
+  justify-content: flex-start;
+}
 
 .input-group .text-input { 
   flex: 2;
 }
 
-/* Switches ***********************************************/
+/* Colorized text inputs*/
 
-.switch {
-  margin: 20px;
+.input-yellow {
+  color: rgba(255, 255, 178, .8);
 }
 
-/* Sizes for varying switches */
-
-.switch-large {
-  width: 450px;
-  height: 150px;
-} 
-
-.switch-small {
-  width: 225px;
-  height: 75px;
+.input-yellow:focus {
+  color: #ffffb2;
+  box-shadow: 0 0 20px rgba(255, 255, 178, .8); 
 }
 
-.switch-xsmall {
-  width: 150px;
-  height: 50px;
+.input-blue {
+  color: rgba(178, 240, 255, .8);
 }
 
-.switch-plate {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+.input-blue:focus {
+  color: #b2f0ff;
+  box-shadow: 0 0 20px rgba(178, 240, 255, .8);
 }
 
-.switch-control {
-  height: 100%;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  background-image: url(../images/switchcontrol.svg);
-  -webkit-filter: drop-shadow(4px 4px 5px rgba(0,0,0,0.35));
-} 
-
-/* On/Off Styles for Background Plate */
-
-.off .switch-plate {
-  background-image: url(../images/switchplate_off.svg);
+.input-green {
+  color: rgba(205, 255, 178, 0.8);
 }
 
-.on .switch-plate {
-  background-image: url(../images/switchplate_on.svg);
+.input-green:focus {
+  color: #cdffb2;
+  box-shadow: 0 0 20px rgba(205, 255, 178, 0.8);
 }
 
-/* On/Off Styles for switch control(knob) */
-
-.off .switch-plate {
-  padding-left: 3%;
-  padding-right: 64%;
+.input-orange {
+  color: rgba(255, 211, 140, 0.8);
 }
 
-.on .switch-plate {
-  padding-left: 64%;
-  padding-right: 3%;
+.input-orange:focus {
+  color: #ffd38c;
+  box-shadow: 0 0 20px rgba(255, 211, 140, 0.8);
 }
 
-/* Close button */
+/* Forms :: end *******************************************/ 
 
-.close-button {
-  padding: 10px;
-  position: relative;
-  right: 20px;
-  top: 0;
-  float: right;
-}
 
-.close-button::after {
-  content: "\00d7";
-  width: 26px;
-  height: 63px;
-  color: white;
-  font-size: 5rem;
-  cursor: pointer;
-}
 
 /* Sliders ************************************************/
 
-/* Resets */
+/* Slider Resets */
 
+/* Hides the slider so that custom slider can be made */
 .slider-input {
-  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  -webkit-appearance: none;
 }
 
+/* Hides the slider thumb so that custom thumb can be made */
 .slider-input::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Hides the slider thumb so that custom thumb can be made */
+  -webkit-appearance: none;
 }
 
+/* Removes the blue accessibility border. */
 .slider-input:focus {
-  outline: none; /* Removes the blue accessibility border. */
+  outline: none;
 }
 
 /* Slider Styles */
 
-.slider-input{
-  height:2em;
-  font-size: 4em; /* Base size for scalability */
-  line-height: 0;
-  flex-basis: 82.5%;
-  overflow:hidden;
-  cursor: pointer;
-  padding: .25em 0;
-  position: relative;
-  -webkit-appearance:none;
+/* Font-size required: Base size for scalability */
+.slider-input {
   background: transparent;
+  cursor: pointer;
+  flex: 1;
+  font-size: 4em;
+  line-height: 0;
+  margin: 0;
+  overflow:hidden;
+  position: relative;
 }
+
+/* The slider handle (thumb) */
 
 .slider-input::-webkit-slider-thumb {
-  height: 1em;
-  width: .85em;
   font-size: 2em;
-  margin: -.25em 0;
   overflow: visible;
   position:relative;
-  background-size: .85em;
-  -webkit-appearance:none;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url(../images/hex_thumb_white_vert.png);
-  -webkit-filter: drop-shadow(.05em .05em .05em rgba(0,0,0,.25));
 }
 
-/* Style the level bar */
-.slider-input::-webkit-slider-thumb:after{
-  content:" ";
-  width:100vw;
-  right: 100%;
-  height: .5em;
-  margin: .25em 0;
-  position:absolute;
-  background: rgba(178, 240, 255, 0.8);
-  box-shadow: inset .125em .125em .5em rgba(255,255,255,.6),
-              inset -1em -1em .125em -1em rgba(0,0,0,.5);
-}
+/* The slider track (background) */
 
-/* Styles the track */
 .slider-input::-webkit-slider-runnable-track {
-  height: 1em;
-  background-color: transparent;
-  box-shadow: inset 0 0 0 .125em rgba(126,126,126,.25),
-              inset 0 0 .5em .125em rgba(0,0,0,.5);
-              
+  background-color: #222;
+  box-shadow: inset 0 0 0 .125em rgba(110, 110, 110,.25),
+              inset 0 0 .5em .125em rgba(0, 0, 0, .5);
 }
+
+/* The slider level indicator bar */
+
+.slider-input::-webkit-slider-thumb:after{
+  background: rgba(178, 240, 255, 1);
+  box-shadow: inset .125em .125em .5em rgba(255, 255, 255, .6),
+              inset -1em -1em .125em -1em rgba(0, 0, 0, .5);
+  content:" ";
+  position:absolute;
+}
+
+/* Direction-Specific Styles */
 
 .vertical-slider,
 .horizontal-slider {
-  font-size: 1rem;
-  display: flex;
-  position: relative;
   align-items: center;
+  display: flex;
+  font-size: 1rem;
   justify-content: space-between;
+  position: relative;
+}
+
+/* Vertical Slider Styles */
+
+.vertical-slider {
+  flex-direction: column;
+}
+
+.vertical-slider .slider-input {
+  -webkit-appearance: slider-vertical;
+  width: 2em;
+}
+
+.vertical-slider .slider-input::-webkit-slider-thumb:after {
+  height: 100vh;
+  margin: 0;
+  top: 100%;
+  width: .5em;
+}
+
+.vertical-slider .slider-input::-webkit-slider-thumb:before {
+  -webkit-filter: drop-shadow(.05em .05em .05em rgba(0,0,0,.25));
+  background-image: url('../images/hex_thumb_white_horz.png');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 1em;
+  bottom: 0;
+  content: " ";
+  height: 100vh;
+  margin: 0 -.5em;
+  position: absolute;
+  width: 1.5em;
+  z-index: 1;
+}
+
+.vertical-slider .slider-input::-webkit-slider-runnable-track {
+  overflow-y: visible; 
+  padding-top: 1.4em;
+  width: 1em;
+}
+
+/* prevents thumb from getting cropped out at ends */
+.vertical-slider.thin-slider .slider-input::-webkit-slider-runnable-track {
+  padding-top: 1.2em;
+}
+
+.vertical-slider.thick-slider .slider-input::-webkit-slider-runnable-track {
+  padding-top: 1.5em;
+}
+
+/* Horizontal Slider Styles */
+
+.horizontal-slider .slider-input {
+  height: 2em;
+  padding: .25em 0;
+}
+
+.horizontal-slider .slider-input::-webkit-slider-thumb {
+  -webkit-filter: drop-shadow(.05em .05em .05em rgba(0,0,0,.25));
+  background-image: url('../images/hex_thumb_white_vert.png');
+  background-repeat: no-repeat;
+  background-size: .85em;
+  background-position: center;
+  height: 1em;
+  margin: -.25em 0;
+  width: .85em;
+}
+
+.horizontal-slider .slider-input::-webkit-slider-thumb:after {
+  height: .5em;
+  margin: .25em 0;
+  right: 100%;
+  width: 100vw;
+}
+
+.horizontal-slider .slider-input::-webkit-slider-runnable-track {
+  height: 1em;            
+}
+
+/* Weight-Specific Slider Styles */
+
+.thin-slider {
+  font-size: .5rem;
+}
+
+.thick-slider {
+  font-size: 1.5rem;
 }
 
 .thin-slider .slider-input {
@@ -692,37 +1088,26 @@ textarea,
   flex-basis: 75%;
 }
 
-.thin-slider {
-  font-size: .5rem;
-}
-
-.thick-slider {
-  font-size: 1.5rem;
-}
+/* Button slider Styles */
 
 .slider-button {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  font-size: 4em;
-  text-align: center;
   align-items: center;
-  justify-content: center;
-  text-shadow: 1px 1px 3px #444;
+  -webkit-animation: bounceInDown 900ms 200ms ease-in-out both;
+  animation: bounceInDown 900ms 200ms ease-in-out both;
+  background: linear-gradient(#db9604, #915a00);
   border: 1px solid rgba(255, 255, 255, .4);
   box-shadow: inset 0px 0px 2px 1px #5a3800;
-  background: linear-gradient(#db9604, #915a00);
-  animation: bounceInDown 900ms 200ms ease-in-out both;
+  display: flex;
+  font-size: 4em;
+  height: 40px;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 1px 1px 3px #444;
+  width: 40px;
 }
 
-.thin-slider .slider-button {
-  width: 20px;
-  height: 20px;
-}
-
-.thick-slider .slider-button {
-  width: 60px;
-  height: 60px;
+.button-slider .slider-input {
+  flex: 0 0 82.5%;
 }
 
 .less-button::after {
@@ -739,17 +1124,257 @@ textarea,
   font-size: 1em;
 }
 
+/* Weight-Specific Button Slider Styles */
+
+
+.button-slider.thin-slider .slider-input {
+  flex: 0 0 90%;
+}
+
+.button-slider.thick-slider .slider-input {
+  flex: 0 0 75%;
+}
+
+.thin-slider .slider-button {
+  height: 20px;
+  width: 20px;
+}
+
+.thick-slider .slider-button {
+  height: 60px;
+  width: 60px;
+}
+
+/* Sliders :: end *****************************************/
+
+
+
+/* Tabs ***************************************************/
+
+.tabs-component {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-labels {
+  border-bottom: 1px solid rgba(0,0,0,.25);
+  display: flex;
+  flex: 1;
+  margin-bottom: 1em;
+  z-index: 1;
+}
+
+.tab-item {
+  border-radius: 40px;
+  color: rgba(0,0,0,.5);
+  flex: 1;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.tab-item:not(:last-child) {
+  margin-right: 10px;
+}
+
+.tab-item.active {
+  background-color: rgba(0,0,0,.25);
+  color: rgba(0,0,0,.8);
+  text-shadow: 1px 1px 0 rgba(255,255,255,.5);
+}
+
+.tabs-content {
+  z-index: 0;
+}
+
+/* Tabs :: end ********************************************/
+
+
+
+/* Touch Behavior *****************************************/
+
+/* Prevents scrolling and zooming where not specified */
+html,
+input,
+textarea {
+  touch-action: none;
+}
+
+/* Allows vertical and horizontal scrolling where specified 
+   for lists */
+ul, ol {
+  touch-action: pan-x pan-y;
+}
+
+/* Touch Behavior :: end **********************************/
+
+
+
+/* Scrolling Content **************************************/
+
+/* Scrolling is disabled by default on all but list elements. */
+
+/* Scrollbar classes */
+
+.scrollbar-x { 
+  overflow-x: auto;
+  touch-action: pan-x;
+  white-space: nowrap;
+} 
+
+.scrollbar-y {
+  overflow-y: auto;
+  touch-action: pan-y;
+}
+
+.scrollbar-xy {
+  overflow: auto;
+  touch-action: pan-x pan-y;
+}
+
+/* Scrollable classes */
+
+.scrollable-x { 
+  overflow-x: auto; 
+  touch-action: pan-x;
+  white-space: nowrap;
+}
+
+.scrollable-y {
+  overflow-y: auto;
+  touch-action: pan-y;
+}
+
+.scrollable-xy {
+  overflow: auto;
+  touch-action: pan-x pan-y;
+}
+
+.scrollable-x::-webkit-scrollbar,
+.scrollable-y::-webkit-scrollbar,
+.scrollable-xy::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+/* Custom Scrollbar Styling */
+
+.scrollbar-x::-webkit-scrollbar,
+.scrollbar-y::-webkit-scrollbar,
+.scrollbar-xy::-webkit-scrollbar {
+  -webkit-appearance: none; 
+  width: 20px;
+  height: 20px;
+}
+
+.scrollbar-x::-webkit-scrollbar-track, 
+.scrollbar-y::-webkit-scrollbar-track, 
+.scrollbar-xy::-webkit-scrollbar-track {
+  -webkit-appearance: none; 
+  background-color: transparent;
+  box-shadow: inset 0 0 .5em .125em rgba(0,0,0,.5);
+}
+
+.scrollbar-x::-webkit-scrollbar-thumb,   
+.scrollbar-y::-webkit-scrollbar-thumb,   
+.scrollbar-xy::-webkit-scrollbar-thumb {   
+  -webkit-appearance: none;
+  border: 5px solid transparent;
+  border-radius: 10px; 
+}
+
+.scrollbar-x::-webkit-scrollbar-thumb,   
+.scrollbar-xy::-webkit-scrollbar-thumb:horizontal {
+  background:linear-gradient(to bottom, rgba(254, 156, 0, .8), rgba(254, 156, 0, .5));  
+  background-clip: content-box;
+}
+
+.scrollbar-y::-webkit-scrollbar-thumb,   
+.scrollbar-xy::-webkit-scrollbar-thumb:vertical {
+  background:linear-gradient(to right, rgba(254, 156, 0, .8), rgba(254, 156, 0, .5));  
+  background-clip: content-box;
+}
+
+.scrollbar-x::-webkit-scrollbar-button, 
+.scrollbar-y::-webkit-scrollbar-button, 
+.scrollbar-xy::-webkit-scrollbar-button {
+  -webkit-appearance: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: inset .1em .1em .25em rgba(126,126,126,.1), inset -.1em -.1em .25em rgba(0,0,0,.2);
+}
+
+.scrollbar-x::-webkit-scrollbar-button,
+.scrollbar-xy::-webkit-scrollbar-button:horizontal {
+  background-size: 6px 10px;
+}
+
+.scrollbar-y::-webkit-scrollbar-button,
+.scrollbar-xy::-webkit-scrollbar-button:vertical {
+  background-size: 10px 6px;
+}
+
+.scrollbar-x::-webkit-scrollbar-button:start,
+.scrollbar-xy::-webkit-scrollbar-button:horizontal:start {
+  background-image: url('../images/scroll_button_left_arrow_white.png');
+}
+
+.scrollbar-x::-webkit-scrollbar-button:end,
+.scrollbar-xy::-webkit-scrollbar-button:horizontal:end {
+  background-image: url('../images/scroll_button_right_arrow_white.png');
+}
+
+.scrollbar-y::-webkit-scrollbar-button:start,
+.scrollbar-xy::-webkit-scrollbar-button:vertical:start {
+  background-image: url('../images/scroll_button_up_arrow_white.png');
+}
+
+.scrollbar-y::-webkit-scrollbar-button:end,
+.scrollbar-xy::-webkit-scrollbar-button:vertical:end {
+  background-image: url('../images/scroll_button_down_arrow_white.png');
+}
+
+.scrollable-x::-webkit-scrollbar-corner,  
+.scrollable-y::-webkit-scrollbar-corner,  
+.scrollable-xy::-webkit-scrollbar-corner {
+  -webkit-appearance: none;
+}
+
+.scrollbar-x::-webkit-scrollbar-corner,  
+.scrollbar-y::-webkit-scrollbar-corner,  
+.scrollbar-xy::-webkit-scrollbar-corner {  
+  -webkit-appearance: none;
+  background-color: transparent;
+  box-shadow: inset 0 0 .5em .125em rgba(0,0,0,.5);
+}
+
+/* Scrolling Content :: end *******************************/
+
+
+
 /* Modifiers **********************************************/ 
+
 /* Modifiers should stay at the bottom of the CSS document */
 
-.hidden,
-.modal.hidden,
-#settings.hidden {
+.hidden {
   display: none;
 }
 
-.right {
-  float: right;
+.borderless {
+  border: none;
+}
+
+/* Positions within the first positioned parent */
+.z-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.no-margin {
+  margin: 0;
 }
 
 .left {
@@ -760,16 +1385,16 @@ textarea,
   text-align: left;
 }
 
+.right {
+  float: right;
+}
+
 .right-align {
   text-align: right;
 }
 
 .center {
   text-align: center;
-}
-
-.no-margin {
-  margin: 0;
 }
 
 /* Flex Modifiers */
@@ -800,8 +1425,8 @@ textarea,
 
 .flex-center {
   align-items: center;
-  justify-content: center;
   display: flex;
+  justify-content: center;
 }
 
 .flex-column-center {
@@ -812,474 +1437,3 @@ textarea,
 .space-between {
   justify-content: space-between;
 }
-
-/* Touch Behavior *****************************************/
-
-/* Prevents scrolling and zooming where not specified */
-html,
-input,
-textarea {
-  touch-action: none;
-}
-
-/* Allows vertical and horizontal scrolling where specified 
-   for lists */
-ul, ol {
-  touch-action: pan-x pan-y;
-}
-
-/* 
-  Apply to elements where a scrollbar is desired.
-  Shows a standard scrollbar as needed.
-*/ 
-
-.scrollbar-x { 
-  overflow-x: auto;
-  touch-action: pan-x;
-} 
-
-.scrollbar-y {
-  overflow-y: auto;
-  touch-action: pan-y;
-}
-
-.scrollbar-xy {
-  overflow: auto;
-  touch-action: pan-x pan-y;
-}
-
-/*
-  Apply to elements where a scrolling without
-  a scrollbar is desired.
-*/
-
-.scrollable-x { 
-  overflow-x: auto; 
-  touch-action: pan-x;
-}
-
-.scrollable-y {
-  overflow-y: auto;
-  touch-action: pan-y;
-}
-
-.scrollable-xy {
-  overflow: auto;
-  touch-action: pan-x pan-y;
-}
-
-.scrollable-x::-webkit-scrollbar,
-.scrollable-y::-webkit-scrollbar,
-.scrollable-xy::-webkit-scrollbar {
-  display: none;
-}
-  ::-webkit-scrollbar {
-  width: 11px;  
-  margin-top: 20px; 
-} 
-::-webkit-scrollbar-track { 
-  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
-  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
-  border-left: 1px solid #202020; 
-  border-right: 1px solid #606060;  
-  border-top: none; 
-  border-bottom: none;  
-  margin-bottom: -1px;  
-} 
-::-webkit-scrollbar-thumb {   
-  background:linear-gradient(to right, rgba(112,112,112, .8), rgba(72,72,72, .8));  
-  border-radius:5px;  
-  border: 1px solid #202020;  
-}   
- ::-webkit-scrollbar-button { 
-  height:11px;  
-  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
-  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
-  border-left: 1px solid #202020; 
-  border-right: 1px solid #606060;  
-  border-top: none; 
-  border-bottom: none;  
-}   
-::-webkit-scrollbar-corner {  
-  background: -webkit-linear-gradient(right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8));  
-  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(72, 72, 72, .8)); 
-  border-left: 1px solid #202020; 
-  border-right: 1px solid #606060;  
-  border-top: none; 
-  border-bottom: none;  
-  width: 8px; 
-  height: 8px;  
-} 
-
-/*orange scrollbar*/  
-/*::-webkit-scrollbar-thumb {   
-  background-color:#fe9c00; 
-  border-radius:5px;  
-} */  
-
-
-/**********************************************************/
-/* Text Overflow *****************************************/
-/* Replaces older styles with camelCasing */
-
-.ellipsis-one-line,
-.ellipsis-two-line,
-.ellipsis-three-line {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-}
-
-.ellipsis-one-line {
-  -webkit-line-clamp: 1;
-}
-
-.ellipsis-two-line {
-  -webkit-line-clamp: 2;
-}
-
-.ellipsis-three-line, {
-  -webkit-line-clamp: 3;
-}
-
-/* Boxes and Modules ****************************/
-
-.box-inshadow,
-.box-outshadow {
-  color: white;
-  padding: 20px;
-  margin: 20px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.box-inshadow {
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.9);
-}
-
-.box-outshadow {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
-}
-
-/* Yellow */
-
-.box-in-yellow,
-.box-out-yellow {
-  color: #FFFF00;
-  border-color: rgba(255, 255, 0, 0.5);
-}
-
-.box-in-yellow {
-  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.9);
-}
-
-.box-out-yellow {
-  box-shadow: 0 0 20px rgba(255, 255, 0, 0.9);
-}
-
-/* Orange */
-
-.box-in-orange,
-.box-out-orange {
-  color: #FE9C00;
-  border-color: rgba(254, 156, 0, 0.5);
-}
-
-.box-in-orange {
-  box-shadow: inset 0 0 20px rgba(254, 156, 0, 0.9);
-}
-
-.box-out-orange {
-  box-shadow: 0 0 20px rgba(254, 156, 0, 0.9);
-}
-
-/* Blue */
-
-.box-out-blue {
-  color: #b2f0ff;
-  box-shadow: 0 0 20px rgba(178, 240, 255, 0.9);
-  border-color: rgba(178, 240, 255, 0.5);
-}
-
-/* Style Rule Graveyard ***********************************/
-
-/* Still in use */
-.oneLineEllipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-}
-
-/* Still in use */
-.twoLinesEllipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-/* Still in use */
-.threeLinesEllipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-
-/* Still in use */
-.fontSizeXXSmall {
-  font-size: 14px;
-  line-height: 14px;
-}
-
-/* Still in use */
-.fontSizeXSmall {
-  font-size: 18px;
-  line-height: 18px;
-}
-
-/* Still in use */
-.fontSizeSmaller {
-  font-size: 20px;
-  line-height: 20px;
-}
-
-/* Still in use */
-.fontSizeSmall {
-  font-size: 24px;
-  line-height: 24px;
-}
-
-/* Still in use */
-.fontSizeMedium {
-  font-size: 28px;
-  line-height: 28px;
-}
-
-/* Still in use */
-.fontSizeLarge {
-  font-size: 30px;
-  line-height: 30px;
-}
-
-/* Still in use */
-.fontSizeLarger {
-  font-size: 34px;
-  line-height: 34px;
-}
-
-/* Still in use */
-.fontSizeXLarge {
-  font-size: 40px;
-  line-height: 40px;
-}
-
-/* Still in use */
-.fontSizeXXLarge {
-  font-size: 48px;
-  line-height: 48px;
-}
-
-/* Still in use */
-.fontSizeXXXLarge {
-  font-size: 62px;
-  line-height: 62px;
-}
-
-/* Still in use */
-.fontSizeXXXXLarge {
-  font-size: 80px;
-  line-height: 80px;
-}
-
-/* Font Weights */
-
-/* Still in use */
-.fontWeightNormal {
-  font-weight: normal;
-}
-
-/* Still in use */
-.fontWeightBold {
-  font-weight: bold;
-}
-
-/* Still in use */
-.fontWeightBolder {
-  font-weight: bolder;
-}
-
-/* Still in use */
-.fontWeightLighter {
-  font-weight: lighter;
-}
-
-/* Still in use */
-.fontLtBlue {
-  color: rgb(178, 240, 255);
-  color: rgba(178, 240, 255, 1.0); /*#b2f0ff*/
-}
-
-/* Still in use */
-.fontNormal {
-  color: rgb(196, 196, 196);
-  color: rgba(196, 196, 196, 1.0); /*#c4c4c4*/
-}
-
-/* Still in use */
-.fontColorNormal {
-  color: rgb(196, 196, 196);
-  color: rgba(196, 196, 196, 1.0); /*#c4c4c4*/
-}
-
-/* Still in use */
-.fontColorTheme {
-  color: rgb(58, 174, 255);
-  color: rgba(58, 174, 255, 1.0);
-}
-
-/* Still in use */
-.pageBgColorNormal {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 1.0);
-}
-
-/* Still in use */
-.pageBgColorNormalTransparent {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.8);
-}
-/* Still in use */
-.bgColorDark {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 1.0);
-}
-
-/* Still in use */
-.bgColorNormal {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Still in use */
-.bgColorNormalTransparent {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Still in use */
-.bgColorThemeTransparent {
-  background-color: rgb(58, 174, 255);
-  background-color: rgba(58, 174, 255, 0.5);
-}
-
-/* Still in use */
-.textBgColorThemeTransparent {
-  background-color: rgb(29, 162, 255);
-  background-color: rgba(29, 162, 255, 0.4);
-}
-
-/* Still in use */
-.boxShadowI1Lt {
-  box-shadow: inset 0 0 13px rgba(178, 240, 255, 0.8);
-}
-
-/* Still in use */
-.boxShadowI2Lt {
-  box-shadow: inset 0 0 13px rgba(205, 255, 178, 0.8);
-}
-
-/* Still in use */
-.boxShadowI4Lt {
-  box-shadow: inset 0 0 13px rgba(255, 255, 178, 0.8);
-}
-
-/* Still in use */
-.boxShadowI3Std {
-  box-shadow: inset 0 0 30px rgba(255, 211, 140, 0.8);
-}
-
-/* Still in use */
-.borderWhite {
-  border-color: rgb(255, 255, 255);
-  border-color: rgba(255, 255, 255, 1.0); /*#ffffff*/
-}
-
-/* Still in use */
-.borderLtBlue {
-  border-color: rgb(178, 240, 255);
-  border-color: rgba(178, 240, 255, 1.0); /*#b2f0ff*/
-}
-
-/* Still in use */
-.borderNormal {
-  border-color: rgb(196, 196, 196);
-  border-color: rgba(196, 196, 196, 1.0); /*#c4c4c4*/
-}
-
-/* Still in use */
-.boxShadow1Std {
-  box-shadow: 0 0 30px rgba(83, 181, 206, 0.8);
-}
-
-/* Still in use */
-.boxShadow4Std {
-  box-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
-}
-
-/* Still in use */
-.boxShadow1Med {
-  box-shadow:  0 0 50px rgba(83, 181, 206, 0.8);
-}
-
-/* Still in use */
-.textBgColorNormal {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 1.0);
-}
-
-/* Still in use */
-.textBgColorNormalTransparent {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Still in use */
-.callButton {
-  vertical-align: top;
-  display: inline-block;
-  margin-left: 108px;
-  border: none;
-  width: 72px;
-  height: 157px;
-  margin-right: 7px;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-/* Still in use */
-.callingTrue {
-  margin-top: 279px;
-  background-color: rgb(255, 3, 3);
-  background-color: rgba(255, 3, 3, 0.8);
-  /*background-image: url("../images/phone/icon_endcall_blue.png");*/
-}
-
-/* Still in use */
-.callingFalse {
-  margin-top: 117px;
-  background-color: rgb(138, 255, 0);
-  background-color: rgba(138, 255, 0, 0.54);
-}
-

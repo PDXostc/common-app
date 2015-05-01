@@ -230,14 +230,14 @@ function launchApplication(id) {
 		onAppInfoSuccess: function(list) {
 			try {
 				var registeredApps = {"Home Screen":"/common/images/homescreen_icon.png",
-									   Browser:"/common/images/browser_icon.png", 
+									   Browser:"/common/images/application_icons/browser_app_icon.png", 
 									   Boilerplate:"/common/images/boilerplate_icon.png",
-									   News:"/common/images/news_icon.png",
-									   gestureGame:"/common/images/GestureGame_icon.png",
-									   Phone:"/common/images/phone_icon.png",
-									   Dashboard:"/common/images/dashboard_icon.png",
-									   Weather:"/common/images/weather_icon.png",
-									   Handwriting:"/common/images/handwriting_icon.png"};
+									   News:"/common/images/application_icons/news_app_icon.png",
+									   gestureGame:"/common/images/application_icons/gesture_game_app_icon.png",
+									   Phone:"/common/images/application_icons/phone_app_icon.png",
+									   Dashboard:"/common/images/application_icons/dashboard_app_icon.png",
+									   Weather:"/common/images/application_icons/weather_app_icon.png",
+									   Handwriting:"/common/images/application_icons/handwriting_app_icon.png"};
 				var appListLenght;
 					var i = 0,
 						j = 0;

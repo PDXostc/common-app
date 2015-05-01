@@ -260,7 +260,7 @@
 										handle.css(pos, proposal + '%').data('input').val(percentage.is(settings.range, proposal).toFixed(res));
 										call(settings.slide, slider.data('_n', true));
 										previousProposal = proposal;
-										handle.css('z-index', handles.length == 2 && proposal == 100 && handle.is(':first-child') ? 2 : 1);
+										// handle.css('z-index', handles.length == 2 && proposal == 100 && handle.is(':first-child') ? 2 : 1);
 									}
 
 									previousClick = currentClick;
