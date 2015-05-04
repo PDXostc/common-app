@@ -101,7 +101,8 @@
  * @constructor
  */
 
-var logit=1;  // Set to 1 to enable AMB log output.
+var logit=0;  // Set to 1 to enable AMB log output.
+var ambFailCnt=10; // If AMB not installed or ambd not running, don;t fill up the log with failure messages.
 
 var CarIndicator = function() {
 	"use strict";
@@ -272,6 +273,7 @@ CarIndicator.prototype._mappingTable = {
 			 },
 			 function(error) {
 			  console.log("AMB: There was an error on the TyrePressureFLMS get.");
+			  ambFailCnt--;
 				 });
 		},
 		subscribeFunction : function() { 
@@ -652,6 +654,7 @@ CarIndicator.prototype._mappingTable = {
 			 },
 			 function(error) {
 			  console.log("AMB: There was an error on the speed get.");
+			  ambFailCnt--;
 			 });
 		},
 		subscribeFunction : function() { 
@@ -1404,9 +1407,10 @@ uiUpdateFunc = function() {
 	
 	var o;
 	
-	console.info("AMB: uiUpdateFunc 11 called.");
-	if (typeof(navigator.vehicle)!=="undefined") {
-
+	if(logit) {console.info("AMB: uiUpdateFunc 11 called.");}
+	
+	// If Speed and TyrePressure AMB get calls are failing, try N times then stop filling up the log with error messages.
+	if (ambFailCnt > 0) {
 		GlobalSelf._mappingTable["VehicleSpeed"].getFunction();
 		if(logit) { console.log("AMB: testFunc VehicleSpeed, get rets: " + GlobalSelf._mappingTable["VehicleSpeed"].curValue); }
 		o = {zone: '000000', signalAndValue: { signalName: "VehicleSpeed", signalVal: GlobalSelf._mappingTable["VehicleSpeed"].curValue }  };
@@ -1456,6 +1460,11 @@ uiUpdateFunc = function() {
 		if(logit) {console.log("AMB: testFunc InCarTemp, get rets: " + GlobalSelf._mappingTable["InCarTemp"].curValue); }
 		o = {zone: '000000', signalAndValue: { signalName: "InCarTemp", signalVal: GlobalSelf._mappingTable["InCarTemp"].curValue }  };
 		GlobalSelf.onDataUpdate(o, GlobalSelf, cbID);	
+	}
+	else if(ambFailCnt == 0)
+	{
+		console.log("AMB system not running; check installation, and that ambd is running.");
+		ambFailCnt = -1;
 	}
 	
 };
