@@ -1,36 +1,4 @@
-<div id="bottomPanel" class="bottomPanel bottomPanelImg"></div>
-
-<div class="sota_wrapper">
-<div id="overlay"></div>
-<div id="sotaPopups">
-
-  <!-- POPUP/MODAL dialog box to cancel or confirm SOTA updates -->
-  <div id="updates"> <!-- id="setupForm" -->
-    <div class="modal">
-      <form>
-        <h3>SOFTWARE UPDATES OVER THE AIR</h3>
-        <p>The Remote Software Upgrade feature has new software updates to install.</p>
-        <h4>DETAILS</h4>
-        <ul>
-          <li>[example] New feature for the Dashboard</li>
-          <li>[example] Bug fix for Bluetooth</li>
-          <li>[example] New effects for HomeScreen</li>
-        </ul>       
-      </form>
-    </div> 
-  </div>exit
-  
-
-  <div class="box-outshadow box-out-orange">
-    <form>
-      <header class="box-header">
-        <p class="box-title">SOFTWARE UPDATES OVER THE AIR</p>
-      </header>
-    </form>
-  </div>
-
-<!-- <div class="flex-center"> -->
-<div class="modal open">
+<div id="updates" class="modal open">
   <form class="box-infill box-infill-orange">
   <!-- <form class="box-outshadow box-out-orange flex-item"> -->
     <div id="close-sota" class="close-button"></div>
@@ -48,40 +16,26 @@
   </form>
 </div>
 
-add to css:
-.modal .close-button {
-  flex: 1;
-  position: relative;
-  margin-top: -10px;
-}
-
-$("#close-sota").click(function() {
-  if ($("#modal").hasClass("open")) {
-    $("#modal").addClass("hidden");
-  }  
-  else {
-    $("#modal").addClass("open")) {
-    $("#modal").removeClass("hidden");
-  }
-}
-
-
-  <!-- PROGRESS BAR -->
-  <div id="progressBar">      
-    <div class="special-progress-container">
-      <progress value="70" max="100"><span>0</span>%</progress>
-    </div>
+<!-- PROGRESS BAR -->
+<div id="progressBar">      
+  <div class="special-progress-container">
+    <progress value="70" max="100"><span>0</span>%</progress>
   </div>
-
-  <!-- POPUP/MODAL dialog box to dismiss confirmation -->
-  <div id="sotaComplete">     
-    <div class="modal"> 
-      <form id="">
-        <h3>SOFTWARE INSTALLATION IS COMPLETE!</h3>
-      </form>
-    </div>      
-  </div> 
-
 </div>
-</div><!-- end of sota wrapper -->
-</div>
+
+<!-- POPUP/MODAL dialog box to dismiss confirmation -->
+<div id="sota-complete" class="modal open">     
+  <div class="modal open"> 
+    <form class="box-infill box-infill-orange">
+    <!-- <form class="box-outshadow box-out-orange flex-item"> -->
+    <div id="close-sota" class="close-button"></div>
+      <header class="box-header">
+        <p class="box-title">SOFTWARE UPDATES OVER THE AIR</p>
+      </header>
+      <header class="box-content">
+        <p class="box-title">Software installation is complete!</p>
+      </header>
+      </div>
+    </form>
+  </div>      
+</div> 
