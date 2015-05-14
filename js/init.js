@@ -179,3 +179,4 @@ includeJs("DNA_common/components/library/js/library.js");
 includeJs("DNA_common/components/volume/js/volume.js");
 
 includeJs("DNA_common/components/hvac/js/hvac_rvi.js");
+includeJs("DNA_common/components/sota/js/sota.js");

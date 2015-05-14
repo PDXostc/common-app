@@ -5,6 +5,7 @@
 }
 
 #updates .box-header,
+#progress-bar .box-header,
 #sota-complete .box-header {
   min-width: 550px;
 }
