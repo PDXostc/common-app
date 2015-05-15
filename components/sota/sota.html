@@ -6,7 +6,7 @@ once progress reaches 100%, or use "hidden" on "progress-container" and show
 to keep these modals in 3 parts -->
 
 <!-- Initial SOTA notification -->
-<div id="updates" class="modal open">
+<div id="updates" class="modal open hidden">
   <form class="box-infill box-infill-orange">
     <div id="close-sota" class="close-button"></div>
     <header class="box-header">
@@ -15,9 +15,6 @@ to keep these modals in 3 parts -->
     <div class="box-content">
       <p>Details</p>
       <ul>
-        <li>[example] New feature for the Dashboard</li>
-        <li>[example] Bug fix for Bluetooth</li>
-        <li>[example] New effects for HomeScreen</li>
       </ul>  
     </div>
   </form>
@@ -26,7 +23,7 @@ to keep these modals in 3 parts -->
 <!-- PROGRESS BAR -->
 <!-- it is necessary to dynamically insert the value and content in order to see
 both the bar and the text percentage -->
-<div id="progress-bar" class="modal open">
+<div id="progress-bar" class="modal open hidden">
   <form class="box-infill box-infill-orange">
     <div id="close-sota" class="close-button"></div>
     <header class="box-header">
@@ -41,7 +38,7 @@ both the bar and the text percentage -->
 </div>
 
 <!-- POPUP/MODAL dialog box to notify of confirmation -->
-<div id="sota-complete" class="modal open">     
+<div id="sota-complete" class="modal open hidden">     
   <div class="modal open"> 
     <form class="box-infill box-infill-orange">
     <div id="close-sota" class="close-button"></div>
