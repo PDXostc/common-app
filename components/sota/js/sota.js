@@ -25,35 +25,52 @@ sotaUpdateElements.importSuccess = function(html){
   console.log("Appending SOTA components");
   var importSet = html.path[0].import;
 
+  //attach SOTA modals to the interface.
   var update = importSet.getElementById('updates');
   var progress = importSet.getElementById('progress-bar');
   var complete = importSet.getElementById('sota-complete');
+
 
   $("#center-panel").append(update);
   $("#center-panel").append(progress);
   $("#center-panel").append(complete);
 
+  //modal close handlers
   $("#updates #close-sota").click(function() {
-    console.log("closed the sota updates box");
-    if ($("#updates").hasClass("open")) {
-      $("#updates").removeClass("open").addClass("hidden");
-    }
+    hideModal('updates');
   });
 
   $("#progress-bar #close-sota").click(function() {
     console.log("closed the sota progress-bar");
-    if ($("#progress-bar").hasClass("open")) {
-      $("#progress-bar").removeClass("open").addClass("hidden");
-    }
+    hideModal('progress-bar');
   });
 
   $("#sota-complete #close-sota").click(function() {
     console.log("closed the sota confirmation box");
-    if ($("#sota-complete").hasClass("open")) {
-      $("#sota-complete").removeClass("open").addClass("hidden");
-    }
+    hideModal('sota-complete');
+    sota.startCheckUpdates();
   });
+
+  $("button#sota-install").click(function(ev){
+    sota.startUpdate();
+    return false;
+  });
+
+
 }
+
+function hideModal(modalId){
+  if ($("#"+modalId).hasClass("open")) {
+      $("#"+modalId).removeClass("open").addClass("hidden");
+    }
+}
+
+function showModal(modalId){
+  if ($("#"+modalId).hasClass("hidden")) {
+      $("#"+modalId).removeClass("hidden").addClass("open");
+    }
+}
+
 
 sotaUpdateElements.importFail = function(error){
   console.log("Error importing SOTA html");
@@ -64,10 +81,9 @@ sotaUpdateElements.importFail = function(error){
 $(document).ready(function() {
 
   sota = new sotaUpdater();
-  includeHTML("DNA_common/components/sota/sota.html",sotaUpdateElements.importSuccess,sotaUpdateElements.importFail);  
+  includeHTML("DNA_common/components/sota/sota.html",sotaUpdateElements.importSuccess,sotaUpdateElements.importFail);
+  sota.startCheckUpdates();
 });
-
-
 
 function sotaUpdater(){
   
@@ -75,6 +91,7 @@ function sotaUpdater(){
   this.conn = new WebSocket("ws://localhost:9000");
   this.idCounter = 0;
   this.idMap = {};
+  this.checkInterval;
 
   self.conn.onmessage = function(message){
     var result = JSON.parse(message.data);
@@ -82,43 +99,57 @@ function sotaUpdater(){
   }
 
   this.receive = function(data){
-    console.log(data);
-    //TODO: switch statement for handling reponse cases.
     switch(self.idMap[data.id]){
       case 'checkUpdates':
-        self.handleUpdateResponse(data.result);
+        self.handleAvailableUpdate(data.result);
       break;
-      default:
-        console.log(data.result);
 
+      case 'StartUpdate':
+        self.handleStartUpdate(data.result);
+      break;
+
+      case 'GetCarSyncState':
+        self.handleProgress(data.result);
+      break;
+
+      default:
+        console.log("No method for handling RVI SOTA response");
+        console.log(data);
       break;
     }
   }
 
   this.checkUpdates = function(){
-    //JSON-RPC request
+    //console.log("Checking for updates");
 
     var mid = self.idCounter+1;
     self.idMap[mid] = "checkUpdates";
 
+    //JSON-RPC request
     var request = {"method":"GetPendingUpdates","params":[],"id":mid};
     self.conn.send(JSON.stringify(request));
   }
 
   //When a response comes back from the web socket.
-  this.handleUpdateResponse = function(result){
-    console.log("update response");
+  this.handleAvailableUpdate = function(result){
+    //console.log("update response");
     if(result.length > 0){
       
+      //Avoid checking for updates while we're updating.
+      clearTimeout(self.checkInterval);
+
+      //Clear old listing
       $("#updates .box-content ul").empty();
       $("#updates").removeClass("hidden");
       
+      //Populate Box
       for(i in result){
         var newItem = $(document.createElement("li")).html(result[i].uuid);
         $("#updates .box-content ul").append(newItem);
       }
+
     }else{
-      console.log("no updates");
+      //console.log("no updates");
     }
   }
 
@@ -133,8 +164,11 @@ function sotaUpdater(){
 
   //Handle Start pending update response
   this.handleStartUpdate = function(result){
+    hideModal('updates');
+    showModal('progress-bar');
 
-
+    //initiate get progess calls
+    self.getProgress();
   }
 
   //Get progress for ongoing update.
@@ -146,14 +180,21 @@ function sotaUpdater(){
     self.conn.send(JSON.stringify(request));
   }
 
+  //Handle progress messages
   this.handleProgress = function(result){
-    console.log(result);
-//    result.progress
-//    result.state
-      
-      if(result.state != "Idle"){
-        setTimeout(self.getProcess,1000);
-      }
+    //console.log(result);
+    if(result.state != "Idle"){
+      $("progress").val(result.progress);
+
+      setTimeout(self.getProgress,1000);
+    }else{
+      hideModal("progress-bar");
+      showModal("sota-complete");
+    }
+  }
+
+  this.startCheckUpdates = function(){
+    self.checkInterval = setInterval(function(){self.checkUpdates()},2000);
   }
 
 }
