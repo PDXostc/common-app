@@ -82,7 +82,12 @@ $(document).ready(function() {
 
   sota = new sotaUpdater();
   includeHTML("DNA_common/components/sota/sota.html",sotaUpdateElements.importSuccess,sotaUpdateElements.importFail);
-  sota.startCheckUpdates();
+ 
+  currentApp = tizen.application.getCurrentApplication();
+  if(currentApp.appInfo.id == "JLRPOCX001.HomeScreen"){
+    sota.startCheckUpdates();  
+  }
+
 });
 
 function sotaUpdater(){
