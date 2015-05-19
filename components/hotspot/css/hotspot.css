@@ -1,0 +1,19 @@
+.radio-input {
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, .8);
+  font-size: 3rem; 
+  margin: 10px;
+  padding: 20px;
+}
+
+.input-group .radio-input {
+  display: flex;
+  flex: 2;
+  align-items: center;
+}
+
+input[type="radio"] {
+  flex: 2;
+  height: 2em;
+}

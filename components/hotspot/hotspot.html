@@ -34,19 +34,22 @@
 				<input id="" type="text" name="focus" class="text-input input-white"  placeholder="Enter network name">
 				<div class="delete-button" type="reset"></div>
 			</div>
-			<div class="input-group">
-				<label class="component-label" for="">Security</label>
-				<input id="" type="text" name="focus" class="text-input input-white" placeholder="WPA2">
-				<!-- tap the next-button replace the previous input field's placeholder text with WEP, WPA, or WPA2 and fold out password field: -->
-				<div class="next-button" id="buttonNextSecurity" type=""></div>
-				<!-- this toggles to the following and no security/password field: -->
-				<!-- <div class="previous-button" id="buttonPreviousSecurity" type=""></div> -->
-			</div>
+
 			<div class="input-group">
 				<label class="component-label" for="">Password</label>
 				<input id="" type="text" name="focus" class="text-input input-white"  placeholder="Enter password">
 				<div class="delete-button" type="reset"></div>
 			</div>
+
+      <div class="input-group">
+        <label class="component-label" for="hotspot-security">Security</label>
+        <div class="radio-input">
+          <input type="radio" name="hotspot-security" value="WPA2" checked="true"><p>WPA2</p>
+          <input type="radio" name="hotspot-security" value="WPA"><p>WPA</p>
+          <input type="radio" name="hotspot-security" value="WEP"><p>WEP</p>
+        </div>
+      </div>
+
 			<div class="center">
 				<input id="" type="button" class="submit" value="submit">  
 			</div> 
