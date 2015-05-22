@@ -29,11 +29,10 @@
 				<div class="delete-button" type="reset"></div>				
 			</div>
 
-			<div class="right-align">
-				<!-- <button id="qr-code" class="qrcode-button"></button> -->
+			<div class="flex-center">
 				<input type="button" class="no margin button-blue" value="submit" id="saveRviSettings">
 			</div>
-			<div class="flex-column-center center qrcode">
+			<div class="flex-column-center center qrcode hidden">
 				<h6 for="">VIN Number QR code</h6>
 				<div id="qr-code" class="qrcode-display"></div>
 			</div>
@@ -59,12 +58,15 @@
 
 
 	<div id="resultMessage" class="modal hidden">
-		<div class="modal-bkgrnd box-out-orange">
+		<section class="box-infill box-infill-orange">
 			<div id="" class="close-button"></div>
-			<h3>Success!</h3>
-			<p>You have saved information on this device that will enable up 
-			to 4 mobile devices to connect to and operate the HVAC system remotely.</p>
-		</div>
+			<header class="box-header">
+        <p class="box-title">Success!</p>
+      </header>
+      <div class="box-content">
+        <p>You have saved information on this device that will enable RVI.</p>
+      </div>
+		</section>
 	</div>
 </div>
 
