@@ -17,8 +17,10 @@
 
 /*Leave the "open" class for when we re-factor the modal to use 100% flex layout*/
 
+conn = {}; //Generic Object that will be a websocket connection
 sotaUpdateElements={};
 sotaUpdateElements.TemplateHTML = "components/sota/sota.html";
+currentApp = tizen.application.getCurrentApplication();
 
 sotaUpdateElements.importSuccess = function(html){
 
@@ -78,22 +80,63 @@ sotaUpdateElements.importFail = function(error){
 }
 
 
-$(document).ready(function() {
+function connectToSotaSocket(){
 
-  sota = new sotaUpdater();
-  includeHTML("DNA_common/components/sota/sota.html",sotaUpdateElements.importSuccess,sotaUpdateElements.importFail);
- 
-  currentApp = tizen.application.getCurrentApplication();
-  if(currentApp.appInfo.id == "JLRPOCX001.HomeScreen"){
-    sota.startCheckUpdates();  
+  conn = new WebSocket("ws://localhost:9000");
+  conn.onopen = function(){
+    console.log("Successfully connected to SOTA Web Socket");
+
+    if(currentApp.appInfo.id == "JLRPOCX001.HomeScreen"){
+      sota = new sotaUpdater(conn);
+      sota.startCheckUpdates();  
+    }
   }
+
+  conn.onclose = function(closeEvent){
+    console.log("SOTA Socket closed.");
+
+    if(sota && sota.checkInterval != undefined){
+      clearInterval(sota.checkInterval);
+    }
+
+    if(closeEvent.code == "1006"){
+      //unintentional closing, set a timeout and try to connect again.
+      if(connectFails < 12){
+        connectFails++;
+        console.log("Connection Failed, Will attempt reconnection");
+        setTimeout(connectToSotaSocket,5000);
+      }else{
+        console.log("SOTA Socket not available. Abandoning connection attempts.");
+      }
+    }else{
+      console.log("Unexpected websocket closure - see information below:");
+      console.log(closeEvent);
+    }
+  }
+
+  conn.onerror = function(errorEvent){
+    //console.log("Error",errorEvent);
+    console.log()
+  }
+
+  return conn;
+}
+
+
+$(document).ready(function() {
+  connectFails = 0;
+  if(currentApp.appInfo.id == "JLRPOCX001.HomeScreen"){
+    includeHTML("DNA_common/components/sota/sota.html",sotaUpdateElements.importSuccess,sotaUpdateElements.importFail);
+  }
+
+  sota = connectToSotaSocket();
 
 });
 
-function sotaUpdater(){
+function sotaUpdater(webSocket){
   
   var self = this
-  this.conn = new WebSocket("ws://localhost:9000");
+  this.conn = webSocket;
   this.idCounter = 0;
   this.idMap = {};
   this.checkInterval;
