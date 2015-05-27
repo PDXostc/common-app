@@ -1,140 +1,105 @@
-#settings {
-	background: rgba(0,0,0,0.5);
-	width: 100%;
-	z-index: 20;
-	display:none;
-}
+/*#settings {
+  z-index: 20;
+  display: none;
+  width: 100%;
+  background: rgba(0,0,0,.5);
+}*/
 
 #messageOverlay {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    opacity: 0.8;
-    z-index: 2;
-    display: block;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: .8;
+  background: rgba(0,0,0,.8);
 }
 
-.text {
-	padding: 30px 0;
-	text-align: right;
-	padding: 0;
-	line-height: 3rem;
-}
+/*.text {
+  line-height: 3rem;
+  padding: 30px 0;
+  padding: 0;
+  text-align: right;
+}*/
 
-.textBox {
-	padding-left: 1%;
-	margin: 1% 0 4% 2%;
-	border: none;
-	background-color: #fff;
-	color: #606060;
-	font-weight: bold;
-	font-family: sans-serif, "Arial";
-	font-size: 1.5rem;
-}
+/*.textBox {
+  font-family: sans-serif, 'Arial';
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1% 0 4% 2%;
+  padding-left: 1%;
+  color: #606060;
+  border: none;
+  background-color: #fff;
+}*/
 
-#setupForm	{
-	display:block;
-}
-
-#resultMessage	{
-	/*display: flex;*/
-}
-
-.resultMessage {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.message {
-	max-width: 50%;
-	z-index: 3;
-	background-color: #333;
-	text-align: center;
-}
-
-.resultMessage h2 {
-	text-transform: uppercase;
-}
-
-.resultMessage p {
-	margin:0 auto;
-	width: 80%;
-	text-align: left;
+#setupForm {
+  display: block;
 }
 
 .inputBox .deleteButton {
-	display: inline-block;
-	vertical-align: top;
-	margin: 18px 0 0 -73px;
-	padding: 0;
-	width: 55px;
-	height: 36px;
-	background-position: center center;
-	background-repeat: no-repeat;
-	cursor: pointer;
-	float: right;
-}
-
-#submit, #cancel {
-	background: none;
-	border: none;
-	color: rgba(255, 255, 255, 1.0);	
-	font-size: 28px;
-	font-weight: bold;
-	line-height: 43px;
-	text-transform: uppercase;
-}
-
-.button-area {
-	display: inline-block;
-	margin: 30px 0;
+  display: inline-block;
+  float: right;
+  width: 55px;
+  height: 36px;
+  margin: 18px 0 0 -73px;
+  padding: 0;
+  cursor: pointer;
+  vertical-align: top;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .rviElement {
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: row;
-	margin: 0 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 40px;
 }
 
 .component-tabs {
-	margin: 40px 40px 0 40px;
-	padding: 0 35px;
+  margin: 40px 40px 0 40px;
+  padding: 0 35px;
 }
 
-.rvi-tabs	{
-	background: #181818;
-	color: rgba(254, 156, 0, .7);
-	display: inline-block;
-	margin: 0 5px;
-	padding: 10px 20px;
+.rvi-tabs {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 10px 20px;
+  color: rgba(254, 156, 0, .7);
+  background: #181818;
 }
 
 .tab-selected {
-	background: #222;
-	color: #fe9c00;
+  color: #fe9c00;
+  background: #222;
 }
 
 .qrcode {
-	align-items: center;
-	display: flex;
-	margin-top: 50px;
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
 }
 
 .qrcode-display {
-  background: url("../../../images/qrcode.png");
-  background-color: #000;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 300px 300px; 
-  border: 1px solid rgba(255, 255, 255, .4);
-  box-shadow: inset 0px 0px 2px 1px #444;    
+  width: 300px;
   height: 300px;
-  width: 300px;                                   
+  border: 1px solid rgba(255, 255, 255, .4);
+  background: url('../../../images/qrcode.png');
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 300px 300px;
+  box-shadow: inset 0 0 2px 1px #444;
 }
 
+section.box-infill {
+  max-width: 60%;
+}
+
+#resultMessage .box-header {
+  min-width: 550px;
+}
