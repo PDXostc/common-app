@@ -192,7 +192,7 @@ function sotaUpdater(webSocket){
 
       //Clear old listing
       $("#updates .box-content ul").empty();
-      $("#updates").removeClass("hidden");
+      showModal('updates');
       
       //Populate Box
       for(i in result){
@@ -238,7 +238,7 @@ function sotaUpdater(webSocket){
     if(result.state != "Idle"){
       $("progress").val(result.progress);
 
-      setTimeout(self.getProgress,1000);
+      setTimeout(self.getProgress,300);
     }else{
       hideModal("progress-bar");
       showModal("sota-complete");
