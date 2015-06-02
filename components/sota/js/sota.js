@@ -101,10 +101,14 @@ function connectToSotaSocket(){
 
     if(closeEvent.code == "1006"){
       //unintentional closing, set a timeout and try to connect again.
-      if(connectFails < 12){
-        connectFails++;
+      if(connectRetries != 0){
+        
         console.log("Connection Failed, Will attempt reconnection");
         setTimeout(connectToSotaSocket,5000);
+        if(connectRetries > 0){
+          connectRetries--;
+        }
+
       }else{
         console.log("SOTA Socket not available. Abandoning connection attempts.");
       }
@@ -124,7 +128,7 @@ function connectToSotaSocket(){
 
 
 $(document).ready(function() {
-  connectFails = 0;
+  connectRetries = -1; // -1 == infinitely retry.
   if(currentApp.appInfo.id == "JLRPOCX001.HomeScreen"){
     includeHTML("DNA_common/components/sota/sota.html",sotaUpdateElements.importSuccess,sotaUpdateElements.importFail);
   }
