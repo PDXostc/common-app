@@ -30,7 +30,9 @@ var hvacServices = [
 		{"name":"hvac/airflow_direction","callback":"airflow_direction_rcb","indicator_name":"airflowDirection"},
 		{"name":"hvac/defrost_rear","callback":"defrost_rear_rcb","indicator_name":"rearDefrost"},
 		{"name":"hvac/defrost_front","callback":"defrost_front_rcb","indicator_name":"frontDefrost"},
-	
+
+		{"name":"hvac/defrost_max","callback":"defrost_max_rcb","indicator_name":null},
+
 		{"name":"hvac/subscribe","callback":"hvac_subscribe"}, //handles subscribing and unsubscribing other nodes.
 		{"name":"hvac/unsubscribe","callback":"hvac_unsubscribe"} //handles subscribing and unsubscribing other nodes.
 	];
@@ -41,7 +43,7 @@ function setup_hvac_service(){
 		console.log("setting up HVAC services.");
 
 		rvi.rviRegisterServices(hvacServices);
-		hvacSetupRVIListeners();		
+		hvacSetupRVIListeners();
 	}
 }
 
@@ -52,28 +54,28 @@ function aircirc_rcb(args){
 }
 
 function fan_rcb(args){
-	
+
 	console.log("Setting fan status to "+args.value);
 	carIndicator.setStatus("fan", str2bool(args.value));
 }
 
 function fanspeed_rcb(args){
-	
+
 	console.log("Setting fan speed to "+args.value);
 	carIndicator.setStatus("fanSpeed", parseInt(args.value));
 }
 
 function temp_left_rcb(args){
-	
+
 	carIndicator.setStatus("targetTemperatureLeft", parseInt(args.value));
 }
 function temp_right_rcb(args){
-	
+
 	carIndicator.setStatus("targetTemperatureRight", parseInt(args.value));
 }
 function hazard_rcb(args){
-	
-	hvacControler.prototype.onHazardChanged(str2bool(args.value));
+
+	hvacControler.prototype.onHazardChanged(args.value);
 }
 function seat_heat_right_rcb(args){
 	no_reflect = args.sending_node;
@@ -84,16 +86,20 @@ function seat_heat_left_rcb(args){
 	carIndicator.setStatus("seatHeaterLeft", parseInt(args.value));
 }
 function airflow_direction_rcb(args){
-	
+
 	carIndicator.setStatus("airflowDirection", parseInt(args.value));
 }
 function defrost_rear_rcb(args){
-	
-	carIndicator.setStatus("rearDefrost", str2bool(args.value));
+
+	carIndicator.setStatus("rearDefrost", args.value);
 }
 function defrost_front_rcb(args){
-	
-	carIndicator.setStatus("frontDefrost", str2bool(args.value));
+
+	carIndicator.setStatus("frontDefrost", args.value);
+}
+
+function defrost_max_rcb(args){
+	hvacIndicator.onMaxDefrostChanged(args.value);
 }
 
 //Handles a Subscription request from a node.
@@ -101,10 +107,10 @@ function hvac_subscribe(args){
 	console.log(args);
 	args = JSON.parse(args.value);
 	//Add this node to the list of subscribers
-	
+
 	//Make sure this is defined if it hasn't been previously.
 	if(rvi.settings.subscribers == undefined) rvi.settings.subscribers = [];
-	
+
 	if(rvi.settings.subscribers.indexOf(args['node']) == -1){
 		rvi.settings.subscribers.push(args['node']);
 		rvi.setRviSettings(rvi.settings);
@@ -120,7 +126,7 @@ function hvac_unsubscribe(args){
 
 	var node = rvi.settings.subscribers.indexOf(args['sending_node']);
 	if(node != -1){
-		rvi.settings.subscribers.splice(node,1);	
+		rvi.settings.subscribers.splice(node,1);
 		rvi.setRviSettings(rvi.settings);
 	}
 }
@@ -175,7 +181,6 @@ function hvacSetupRVIListeners(){
 		sendRVIHVAC("defrost_rear", newValue);
 	    }
 	});
-	
 }
 
 //Sends current values over RVI
@@ -187,8 +192,8 @@ function sendCurrentValues(){
 				continue;
 
 			if(currentStatus[hvacServices[v].indicator_name] != undefined){
-				console.log("Name: "+hvacServices[v].name+" Current Val"+currentStatus[hvacServices[v].indicator_name]);
-				sendRVIHVAC(hvacServices[v].name,currentStatus[hvacServices[v].indicator_name])
+				console.log("Name: " + hvacServices[v].name + " Current Val" + currentStatus[hvacServices[v].indicator_name]);
+				sendRVIHVAC(hvacServices[v].name, currentStatus[hvacServices[v].indicator_name])
 			}
 		}
 	});
@@ -214,8 +219,8 @@ function sendRVIHVAC(key,value){
 		};
 
 		service = subs[node]+key;
-		vals = JSON.stringify({value:value.toString()})
-		console.log("Sending RVI message Node:"+subs[node])
+		vals = JSON.stringify({value:value.toString()});
+		console.log("Sending RVI message Node:"+subs[node]);
 		console.log("Sending RVI message Key/Val:"+key+"/"+value);
 
 		rvi.comm.send_message(service, 5000, vals, key);
