@@ -47,7 +47,6 @@ function setup_hvac_service(){
 	}
 }
 
-
 function aircirc_rcb(args){
 	no_reflect = args.sending_node;
 	carIndicator.setStatus("airRecirculation", str2bool(args.value));
@@ -69,30 +68,36 @@ function temp_left_rcb(args){
 
 	carIndicator.setStatus("targetTemperatureLeft", parseInt(args.value));
 }
+
 function temp_right_rcb(args){
 
 	carIndicator.setStatus("targetTemperatureRight", parseInt(args.value));
 }
-function hazard_rcb(args){
 
-	hvacControler.prototype.onHazardChanged(args.value);
+function hazard_rcb(args){
+    hvacIndicator.onHazardChanged(args.value);
 }
+
 function seat_heat_right_rcb(args){
 	no_reflect = args.sending_node;
 	carIndicator.setStatus("seatHeaterRight", parseInt(args.value));
 }
+
 function seat_heat_left_rcb(args){
 	no_reflect = args.sending_node;
 	carIndicator.setStatus("seatHeaterLeft", parseInt(args.value));
 }
+
 function airflow_direction_rcb(args){
 
 	carIndicator.setStatus("airflowDirection", parseInt(args.value));
 }
+
 function defrost_rear_rcb(args){
 
 	carIndicator.setStatus("rearDefrost", args.value);
 }
+
 function defrost_front_rcb(args){
 
 	carIndicator.setStatus("frontDefrost", args.value);
@@ -130,7 +135,6 @@ function hvac_unsubscribe(args){
 		rvi.setRviSettings(rvi.settings);
 	}
 }
-
 
 function hvacSetupRVIListeners(){
 	//Adds RVI listeners for HVAC changes.
@@ -198,7 +202,6 @@ function sendCurrentValues(){
 		}
 	});
 }
-
 
 function sendRVIHVAC(key,value){
 
