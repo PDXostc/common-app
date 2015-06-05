@@ -139,7 +139,7 @@ rviSettingsPage.saveSettings = function(){
 	formattedSettings = {"vin":vin};
 
 	rvi.setRviSettings(formattedSettings);
-
+	rvi.setVin(vin);
 	//rviSettingsPage.displayValues();
 }
 
@@ -169,9 +169,12 @@ var rviSettings = function(){
 			if(self.settings.services == undefined) self.settings.services = [];
 
 			//resolve the promise for initial setup.
-			if(self.loaded.state() != "resolved"){
-				self.loaded.resolve();
-			}
+
+			self.getVin().done(function(){
+				if(self.loaded.state() != "resolved"){
+					self.loaded.resolve();
+				}
+			});
 		});
 		
 	}
@@ -189,6 +192,29 @@ var rviSettings = function(){
 		
 		this.getRviSettings();
 	}
+
+	this.getVin = function(){
+		var vinRetrieved  = new $.Deferred();
+		var vin = "";
+		tizen.filesystem.resolve("documents/vin",function(file){
+			file.openStream("r",function(fs){
+				self.settings.vin = fs.read(file.fileSize);
+				vinRetrieved.resolve();
+			});	
+		})
+		return vinRetrieved;
+	}
+
+	this.setVin = function(vin){
+		var vinWrite = new $.Deferred();
+		tizen.filesystem.resolve("documents/vin",function(file){
+			file.openStream("w",function(fs){
+				console.log(fs.write(vin));
+
+			});
+		});
+	}
+
 	
    	this.rviError = function(message){
     	console.log(message);
