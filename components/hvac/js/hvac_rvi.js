@@ -136,6 +136,7 @@ function hvac_unsubscribe(args){
 	}
 }
 
+
 function hvacSetupRVIListeners(){
 	//Adds RVI listeners for HVAC changes.
 	rvi.hvacListener = carIndicator.addListener(
@@ -222,7 +223,7 @@ function sendRVIHVAC(key,value){
 		};
 
 		service = subs[node]+key;
-		vals = JSON.stringify({value:value.toString()});
+		vals = {value: value.toString()};
 		console.log("Sending RVI message Node:"+subs[node]);
 		console.log("Sending RVI message Key/Val:"+key+"/"+value);
 
