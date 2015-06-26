@@ -218,9 +218,9 @@ function sendRVIHVAC(key,value){
 
 
 	if(key.indexOf("hvac/") == -1)
-		key = "hvac/"+key;
+		key = "hvac/" + key;
 
-	for(node in subs){
+	for(var node in subs){
 
 		if (no_reflect == subs[node]) {
 			console.log();
@@ -228,11 +228,15 @@ function sendRVIHVAC(key,value){
 			continue;
 		};
 
-		service = subs[node]+key;
-		vals = {value: value.toString()};
-		console.log("Sending RVI message Node:"+subs[node]);
-		console.log("Sending RVI message Key/Val:"+key+"/"+value);
+		var service = subs[node]+key;
+		var foo = "jlr.com/vin/$rvi_file(/home/app/content/Documents/vin,no_vin)/";
+		var parameters = {value : value.toString(), sending_node : "jlr.com/vin/" + /*localStorage['mobileVin']*/ "TODO" + "/" };
 
-		rvi.comm.send_message(service, 5000, vals, key);
+		console.log("FOO: " + foo);
+
+		console.log("Sending RVI message Node:"+subs[node]);
+		console.log("Sending RVI message Key/Val:" + key + "/" + value);
+
+		rvi.comm.send_message(service, 5000, parameters);
 	}
 }
