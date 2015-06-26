@@ -148,8 +148,6 @@ includeJs("DNA_common/components/configuration/js/configuration.js");
 includeJs("DNA_common/js/carIndicator.js",function(){depenancyMet("carIndicator.js");});
 includeJs("DNA_common/js/user.js");
 includeJs("DNA_common/js/bootstrap.js");
-includeJs("DNA_common/components/rvi/js/ej.js");
-includeJs("DNA_common/components/rvi/js/wse.js");
 includeJs("DNA_common/components/rvi/js/rvi.js",function(){depenancyMet("rvi.js");});
 includeJs("DNA_common/components/topBar/js/topBar.js", function(){});
 includeJs("DNA_common/components/bottomBar/js/bottomBar.js", function(){});
