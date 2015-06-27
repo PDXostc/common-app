@@ -137,7 +137,7 @@ rviSettingsPage.saveSettings = function () {
     formattedSettings = {"vin": vin};
 
     rvi.setRviSettings(formattedSettings);
-
+    rvi.setVin(vin);
     //rviSettingsPage.displayValues();
 };
 
@@ -166,12 +166,15 @@ var rviSettings = function () {
             if (self.settings.services == undefined) self.settings.services = [];
 
             //resolve the promise for initial setup.
-            if (self.loaded.state() != "resolved") {
-                self.loaded.resolve();
-            }
+
+            self.getVin().done(function () {
+                if (self.loaded.state() != "resolved") {
+                    self.loaded.resolve();
+                }
+            });
         });
 
-    };
+    }
 
     this.setRviSettings = function (settings) {
         console.log("Saving entered values");
@@ -187,6 +190,29 @@ var rviSettings = function () {
         this.getRviSettings();
     };
 
+    this.getVin = function () {
+        var vinRetrieved = new $.Deferred();
+        var vin = "";
+        tizen.filesystem.resolve("documents/vin", function (file) {
+            file.openStream("r", function (fs) {
+                self.settings.vin = fs.read(file.fileSize);
+                vinRetrieved.resolve();
+            });
+        });
+        return vinRetrieved;
+    };
+
+    this.setVin = function (vin) {
+        var vinWrite = new $.Deferred();
+        tizen.filesystem.resolve("documents/vin", function (file) {
+            file.openStream("w", function (fs) {
+                console.log(fs.write(vin));
+
+            });
+        });
+    };
+
+
     this.rviError = function (message) {
         console.log(message);
     };
@@ -198,7 +224,7 @@ var rviSettings = function () {
 
     this.wsConnect = function () {
         self.comm.on_connect = self.rviConnect;
-        self.comm.on_error   = self.rviError;
+        self.comm.on_error = self.rviError;
 
         self.comm.connect("ws://127.0.0.1:8818/websession");//, self.rviConnect, self.rviError);
     };
