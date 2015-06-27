@@ -260,7 +260,7 @@ CarIndicator.prototype._mappingTable = {
 								GlobalSelf._mappingTable["WheelBrake"].curValue = WheelBrake.value;
 							},
 							function (error) {
-								console.log("AMB: There was an error on the WheelBrake get: " + error");
+								console.log("AMB: There was an error on the WheelBrake get: " + error);
 							});
 				} catch (ex) {
 					console.log("AMB: There was an error on the WheelBrake get: ", ex);
