@@ -19,22 +19,23 @@ var no_reflect = "";
 
 //Services/Indentifiers for HVAC in RVI.
 var hvacServices = [
-		{"name":"hvac/air_circ","callback":"aircirc_rcb","indicator_name":"airRecirculation"},
-		{"name":"hvac/fan","callback":"fan_rcb","indicator_name":"fan"},
-		{"name":"hvac/fan_speed","callback":"fanspeed_rcb","indicator_name":"fanSpeed"},
-		{"name":"hvac/temp_left","callback":"temp_left_rcb","indicator_name":"targetTemperatureLeft"},
-		{"name":"hvac/temp_right","callback":"temp_right_rcb","indicator_name":"targetTemperatureRight"},
-		{"name":"hvac/hazard","callback":"hazard_rcb","indicator_name":"hazard"},
-		{"name":"hvac/seat_heat_right","callback":"seat_heat_right_rcb","indicator_name":"seatHeaterRight"},
-		{"name":"hvac/seat_heat_left","callback":"seat_heat_left_rcb","indicator_name":"seatHeaterLeft"},
-		{"name":"hvac/airflow_direction","callback":"airflow_direction_rcb","indicator_name":"airflowDirection"},
-		{"name":"hvac/defrost_rear","callback":"defrost_rear_rcb","indicator_name":"rearDefrost"},
-		{"name":"hvac/defrost_front","callback":"defrost_front_rcb","indicator_name":"frontDefrost"},
+	{"name":"hvac/air_circ","callback":aircirc_rcb,"indicator_name":"airRecirculation"},
+	{"name":"hvac/fan","callback":fan_rcb,"indicator_name":"fan"},
+	{"name":"hvac/fan_speed","callback":fanspeed_rcb,"indicator_name":"fanSpeed"},
+	{"name":"hvac/temp_left","callback":temp_left_rcb,"indicator_name":"targetTemperatureLeft"},
+	{"name":"hvac/temp_right","callback":temp_right_rcb,"indicator_name":"targetTemperatureRight"},
+	{"name":"hvac/hazard","callback":hazard_rcb,"indicator_name":"hazard"},
+	{"name":"hvac/seat_heat_right","callback":seat_heat_right_rcb,"indicator_name":"seatHeaterRight"},
+	{"name":"hvac/seat_heat_left","callback":seat_heat_left_rcb,"indicator_name":"seatHeaterLeft"},
+	{"name":"hvac/airflow_direction","callback":airflow_direction_rcb,"indicator_name":"airflowDirection"},
+	{"name":"hvac/defrost_rear","callback":defrost_rear_rcb,"indicator_name":"rearDefrost"},
+	{"name":"hvac/defrost_front","callback":defrost_front_rcb,"indicator_name":"frontDefrost"},
 
-		{"name":"hvac/defrost_max","callback":"defrost_max_rcb","indicator_name":null},
+	{"name":"hvac/defrost_max","callback":defrost_max_rcb,"indicator_name":null},
 
-		{"name":"hvac/subscribe","callback":"hvac_subscribe"}, //handles subscribing and unsubscribing other nodes.
-		{"name":"hvac/unsubscribe","callback":"hvac_unsubscribe"} //handles subscribing and unsubscribing other nodes.
+	{"name":"hvac/subscribe","callback":hvac_subscribe}, //handles subscribing and unsubscribing other nodes.
+	{"name":"hvac/unsubscribe","callback":hvac_unsubscribe} //handles subscribing and unsubscribing other nodes.
+
 	];
 
 function setup_hvac_service(){
@@ -136,6 +137,7 @@ function hvac_unsubscribe(args){
 	}
 }
 
+
 function hvacSetupRVIListeners(){
 	//Adds RVI listeners for HVAC changes.
 	rvi.hvacListener = carIndicator.addListener(
@@ -222,7 +224,7 @@ function sendRVIHVAC(key,value){
 		};
 
 		service = subs[node]+key;
-		vals = JSON.stringify({value:value.toString()});
+		vals = {value: value.toString()};
 		console.log("Sending RVI message Node:"+subs[node]);
 		console.log("Sending RVI message Key/Val:"+key+"/"+value);
 
