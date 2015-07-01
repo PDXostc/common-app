@@ -206,7 +206,7 @@ var rviSettings = function () {
         var vinWrite = new $.Deferred();
         tizen.filesystem.resolve("documents/vin", function (file) {
             file.openStream("w", function (fs) {
-                console.log(fs.write(vin));
+                console.log(fs.write(vin+"\n"));
 
             });
         });
