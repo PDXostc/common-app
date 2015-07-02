@@ -198,17 +198,27 @@ var rviSettings = function () {
                 self.settings.vin = fs.read(file.fileSize);
                 vinRetrieved.resolve();
             });
+        },function(errorResponse) {
+            vinRetrieved.reject(errorResponse.message);
         });
         return vinRetrieved;
     };
 
     this.setVin = function (vin) {
+
         var vinWrite = new $.Deferred();
         tizen.filesystem.resolve("documents/vin", function (file) {
-            file.openStream("w", function (fs) {
-                console.log(fs.write(vin+"\n"));
 
+            file.openStream("w", function (fs) {
+                console.log(fs.write(vin.trim() + "\n"));
+
+            }, function (writeError){
+                console.log("Error Writing to file");
+                console.log(writeError.message);
             });
+        },function (error){
+            console.log("=== Error message for file resolve on setVin ===");
+            console.log(error.message);
         });
     };
 
