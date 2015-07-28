@@ -32,6 +32,7 @@ var hvacServices = [
 	{"name":"hvac/defrost_front","callback":defrost_front_rcb,"indicator_name":"frontDefrost"},
 
 	{"name":"hvac/defrost_max","callback":defrost_max_rcb,"indicator_name":null},
+	{"name":"hvac/control_auto","callback":control_auto_rcb,"indicator_name":null},
 
 	{"name":"hvac/subscribe","callback":hvac_subscribe}, //handles subscribing and unsubscribing other nodes.
 	{"name":"hvac/unsubscribe","callback":hvac_unsubscribe} //handles subscribing and unsubscribing other nodes.
@@ -45,18 +46,18 @@ function setup_hvac_service(){
 
 		rvi.rviRegisterServices(hvacServices);
 		hvacSetupRVIListeners();
-	}
+	} 
 }
 
 function aircirc_rcb(args){
-	no_reflect = args.sending_node;
-	carIndicator.setStatus("airRecirculation", str2bool(args.value));
+	//no_reflect = args.sending_node;
+	carIndicator.setStatus("airRecirculation", args.value);
 }
 
 function fan_rcb(args){
 
 	console.log("Setting fan status to "+args.value);
-	carIndicator.setStatus("fan", str2bool(args.value));
+	carIndicator.setStatus("fan", args.value);
 }
 
 function fanspeed_rcb(args){
@@ -108,6 +109,10 @@ function defrost_max_rcb(args){
 	hvacIndicator.onMaxDefrostChanged(args.value);
 }
 
+function control_auto_rcb(args){
+	hvacIndicator.onAutoChanged(args.value);
+}
+
 //Handles a Subscription request from a node.
 function hvac_subscribe(args){
 	console.log(args);
@@ -148,7 +153,7 @@ function hvacSetupRVIListeners(){
 	    },
 	    onFanChanged : function(newValue) {
 		//hvacIndicator.onFanChanged(newValue);
-		//sendRVIHVAC("fan_speed", newValue);
+		sendRVIHVAC("fan", newValue);
 	    },
 	    onFanSpeedChanged : function(newValue) {
 		//hvacIndicator.onFanSpeedChanged(newValue);
