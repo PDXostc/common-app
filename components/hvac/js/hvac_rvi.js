@@ -50,33 +50,34 @@ function setup_hvac_service(){
 }
 
 function aircirc_rcb(args){
-	//no_reflect = args.sending_node;
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("airRecirculation", args.value);
 }
 
 function fan_rcb(args){
-
+	no_reflect = args.sending_node;
 	console.log("Setting fan status to "+args.value);
 	carIndicator.setStatus("fan", args.value);
 }
 
 function fanspeed_rcb(args){
-
+	no_reflect = args.sending_node;
 	console.log("Setting fan speed to "+args.value);
 	carIndicator.setStatus("fanSpeed", parseInt(args.value));
 }
 
 function temp_left_rcb(args){
-
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("targetTemperatureLeft", parseInt(args.value));
 }
 
 function temp_right_rcb(args){
-
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("targetTemperatureRight", parseInt(args.value));
 }
 
 function hazard_rcb(args){
+	no_reflect = args.sending_node;
     hvacIndicator.onHazardChanged(args.value);
 }
 
@@ -91,25 +92,27 @@ function seat_heat_left_rcb(args){
 }
 
 function airflow_direction_rcb(args){
-
+	//no_reflect = args.sending_node;
 	carIndicator.setStatus("airflowDirection", parseInt(args.value));
 }
 
 function defrost_rear_rcb(args){
-
+	//no_reflect = args.sending_node;
 	carIndicator.setStatus("rearDefrost", args.value);
 }
 
 function defrost_front_rcb(args){
-
+	//no_reflect = args.sending_node;
 	carIndicator.setStatus("frontDefrost", args.value);
 }
 
 function defrost_max_rcb(args){
+	//no_reflect = args.sending_node;
 	hvacIndicator.onMaxDefrostChanged(args.value);
 }
 
 function control_auto_rcb(args){
+	no_reflect = args.sending_node;
 	hvacIndicator.onAutoChanged(args.value);
 }
 
