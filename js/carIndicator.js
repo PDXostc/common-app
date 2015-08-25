@@ -1673,6 +1673,15 @@ CarIndicator.prototype.setStatus = function(indicator, newValue, callback, zone)
 	}
 };
 
+
+/**
+ * Adding this to hold the values of the things in the HVAC ui that aren't part of standard car indicator
+ */
+CarIndicator.prototype.extras = {
+	controlAuto : false,
+	defrostMax : false
+};
+
 // This function polls AMB properties and sends them to the UI; should not need to do this, but AMB version being used is in
 // flux, so revisit this when a "final" AMB version is selected.
 var carIndicator = new CarIndicator();

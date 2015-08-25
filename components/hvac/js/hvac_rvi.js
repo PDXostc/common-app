@@ -31,8 +31,8 @@ var hvacServices = [
 	{"name":"hvac/defrost_rear","callback":defrost_rear_rcb,"indicator_name":"rearDefrost"},
 	{"name":"hvac/defrost_front","callback":defrost_front_rcb,"indicator_name":"frontDefrost"},
 
-	{"name":"hvac/defrost_max","callback":defrost_max_rcb,"indicator_name":null},
-	{"name":"hvac/control_auto","callback":control_auto_rcb,"indicator_name":null},
+	{"name":"hvac/defrost_max","callback":defrost_max_rcb,"indicator_name":null,"indicator_extra_name":"defrostMax"},
+	{"name":"hvac/control_auto","callback":control_auto_rcb,"indicator_name":null,"indicator_extra_name":"controlAuto"},
 
 	{"name":"hvac/subscribe","callback":hvac_subscribe}, //handles subscribing and unsubscribing other nodes.
 	{"name":"hvac/unsubscribe","callback":hvac_unsubscribe} //handles subscribing and unsubscribing other nodes.
@@ -46,7 +46,7 @@ function setup_hvac_service(){
 
 		rvi.rviRegisterServices(hvacServices);
 		hvacSetupRVIListeners();
-	} 
+	}
 }
 
 function aircirc_rcb(args){
@@ -202,12 +202,19 @@ function sendCurrentValues(){
 	carIndicator.getStatus(function(currentStatus){
 
 		for(v in hvacServices){
-			if(hvacServices[v].indicator_name == undefined)
+			var hvacService = hvacServices[v];
+
+			if (hvacService.indicator_extra_name != undefined && carIndicator.extras[hvacService.indicator_extra_name] != undefined) {
+				console.log("Name: " + hvacService.name + " Current Val: " + carIndicator.extras[hvacService.indicator_extra_name]);
+				sendRVIHVAC(hvacService.name, carIndicator.extras[hvacService.indicator_extra_name]);
+			}
+
+			if(hvacService.indicator_name == undefined)
 				continue;
 
-			if(currentStatus[hvacServices[v].indicator_name] != undefined){
-				console.log("Name: " + hvacServices[v].name + " Current Val" + currentStatus[hvacServices[v].indicator_name]);
-				sendRVIHVAC(hvacServices[v].name, currentStatus[hvacServices[v].indicator_name])
+			if(currentStatus[hvacService.indicator_name] != undefined){
+				console.log("Name: " + hvacService.name + " Current Val: " + currentStatus[hvacService.indicator_name]);
+				sendRVIHVAC(hvacService.name, currentStatus[hvacService.indicator_name]);
 			}
 		}
 	});
