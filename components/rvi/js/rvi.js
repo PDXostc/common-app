@@ -72,7 +72,7 @@ rviSettingsPage.pageUpdate = function () {
         rvi = new rviSettings();
         rviSettingsPage.initialize();
         rvi.loaded.done(function () {
-            console.log("RVI Object loaded");
+            console.log("rviSettings object loaded");
             rviSettingsPage.displayValues();
             rvi.wsConnect();
         });
@@ -232,6 +232,7 @@ var rviSettings = function () {
     };
 
     this.wsConnect = function () {
+        console.log("Connecting the websocket to rvi core");
         self.comm.on_connect = self.rviConnect;
         self.comm.on_error = self.rviError;
 
@@ -283,10 +284,12 @@ function RVI() {
         this.ws.binaryType = "arraybuffer";
         this.ws.parent     = this;
 
-        this.ws.onopen     = this.on_open;
-        this.ws.close      = this.on_close;
+        this.ws.onopen     = this.ws_on_open;
+        this.ws.close      = this.ws_on_close;
 
-        this.ws.onmessage  = this.on_message;
+        this.ws.onmessage  = this.ws_on_message;
+
+        this.ws.onerror    = this.ws_on_error;
     };
 
 
@@ -423,7 +426,7 @@ function RVI() {
         return this.service_name[local_service_name].full_name;
     };
 
-    this.on_open = function (evt) {
+    this.ws_on_open = function (evt) {
         console.log("RVI connected to: " + this.url);
 
         this.parent.is_connected = true;
@@ -440,14 +443,20 @@ function RVI() {
             this.parent.on_connect(this.parent);
     };
 
-    this.on_close = function (evt) {
+    this.ws_on_close = function (evt) {
         console.log("RVI disconnected.");
         this.connected = false;
+
+        this.parent.is_connected = false;
     };
 
-    this.on_message = function (evt) {
+    function methodIsRegisterServiceHack() {
+
+    }
+
+    this.ws_on_message = function (evt) {
         console.log("RVI: on_message: " + evt.data);
-        
+
         var data = JSON.parse(evt.data);
 
         if (data.method === "register_service") {
@@ -496,6 +505,14 @@ function RVI() {
             this.on_service_unavailable(data.params.services);
 
         }
+    };
+
+    this.ws_on_error = function (evt) {
+        console.log("There was an error on the websocket: " + evt);
+
+        if (typeof this.parent.on_error != undefined)
+            this.parent.on_error(evt);
+
     };
 
     this.on_service_available = function () {
