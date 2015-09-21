@@ -341,9 +341,13 @@ function RVI() {
         //    }
         //};
 
+        var transactionId = this.next_trans_id();
+
+        this.service_map[service].trans_id = transactionId;
+
         this.ws.send(JSON.stringify({
             'json-rpc': "2.0",
-            'id': this.next_trans_id(),
+            'id': transactionId,//this.next_trans_id(),
             method: "register_service",
             params: {
                 service_name: service
@@ -460,10 +464,20 @@ function RVI() {
         var data = JSON.parse(evt.data);
 
         if (data.method === "register_service") {
-            var service = JSON.parse(evt.data).service;
+            var serviceShortName;
+            var serviceLongName;
 
-            console.log("RVI: Register service result: " + service);
-            this.parent.service_map[service].full_name = service;
+            for (serviceShortName in this.parent.service_map) {
+                var serviceMapObject = this.parent.service_map[serviceShortName];
+
+                if (serviceMapObject.trans_id == JSON.parse(evt.data).id) {
+                    serviceLongName  = JSON.parse(evt.data).service;
+                    break;
+                }
+            }
+
+            console.log("RVI: Register service result: " + serviceShortName);
+            this.parent.service_map[serviceShortName].full_name = serviceLongName;
 
         } else if (data.method === "unregister_service") {
             var service = JSON.parse(evt.data).service;
@@ -483,14 +497,14 @@ function RVI() {
 
             // CHECK USE of window
             if (sending_node != "TODO") {
-                if (!!this.service_map[svc]) {
+                if (!!this.parent.service_map[svc]) {
                     // Original tizen code had
                     // window[this.service_map[svc].cb_fun](parameters);
-                    this.service_map[svc].cb_fun(parameters);
+                    this.parent.service_map[svc].cb_fun(parameters);
 
                 } else {
                     console.warn("Service: " + svc + " not mapped to any callback. Ignore");
-                    console.log("Service: " + JSON.stringify(this.service_map));
+                    console.log("Service: " + JSON.stringify(this.parent.service_map));
                 }
             }
 
@@ -498,11 +512,11 @@ function RVI() {
 
         } else if (data.method === "services_available") {
             console.log("RVI service_available");
-            this.on_service_available(data.params.services);
+            this.parent.on_service_available(data.params.services);
 
         } else if (data.method === "services_unavailable") {
             console.log("RVI service_unavailable");
-            this.on_service_unavailable(data.params.services);
+            this.parent.on_service_unavailable(data.params.services);
 
         }
     };
