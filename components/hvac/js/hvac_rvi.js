@@ -46,7 +46,7 @@ function setup_hvac_service(){
 
 		rvi.rviRegisterServices(hvacServices);
 		hvacSetupRVIListeners();
-	} 
+	}
 }
 
 function aircirc_rcb(args){
@@ -216,27 +216,22 @@ function sendRVIHVAC(key,value){
 	var subs = rvi.settings.subscribers;
 	if (subs == undefined || subs.length == 0) return;
 
-
 	if(key.indexOf("hvac/") == -1)
 		key = "hvac/" + key;
 
-	for(var node in subs){
+	for(var node in subs) {
 
 		if (no_reflect == subs[node]) {
 			console.log();
 			no_reflect = "";
 			continue;
-		};
+		}
 
-		var service = subs[node]+key;
-		var foo = "jlr.com/vin/$rvi_file(/home/app/content/Documents/vin,no_vin)/";
-		var parameters = {value : value.toString(), sending_node : "jlr.com/vin/" + /*localStorage['mobileVin']*/ "TODO" + "/" };
+		service = subs[node] + key;
+		vals = {value: value.toString()};
+		console.log("Sending RVI message Node: " + subs[node]);
+		console.log("Sending RVI message Key/Val: " + key + "/" + value);
 
-		console.log("FOO: " + foo);
-
-		console.log("Sending RVI message Node:"+subs[node]);
-		console.log("Sending RVI message Key/Val:" + key + "/" + value);
-
-		rvi.comm.send_message(service, 5000, parameters);
+		rvi.comm.send_message(service, 5000, vals, key);
 	}
 }

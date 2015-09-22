@@ -495,17 +495,14 @@ function RVI() {
             console.log("RVI: on_message service: " + svc);
             console.log("RVI: on_message parameters: " + parameters);
 
-            // CHECK USE of window
-            if (sending_node != "TODO") {
-                if (!!this.parent.service_map[svc]) {
-                    // Original tizen code had
-                    // window[this.service_map[svc].cb_fun](parameters);
-                    this.parent.service_map[svc].cb_fun(parameters);
+            if (!!this.parent.service_map[svc]) {
+                // Original tizen code had
+                // window[this.service_map[svc].cb_fun](parameters);
+                this.parent.service_map[svc].cb_fun(parameters);
 
-                } else {
-                    console.warn("Service: " + svc + " not mapped to any callback. Ignore");
-                    console.log("Service: " + JSON.stringify(this.parent.service_map));
-                }
+            } else {
+                console.warn("Service: " + svc + " not mapped to any callback. Ignore");
+                console.log("Service: " + JSON.stringify(this.parent.service_map));
             }
 
             console.log("RVI Message completed");
