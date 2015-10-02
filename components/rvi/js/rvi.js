@@ -72,7 +72,7 @@ rviSettingsPage.pageUpdate = function () {
         rvi = new rviSettings();
         rviSettingsPage.initialize();
         rvi.loaded.done(function () {
-            console.log("RVI Object loaded");
+            console.log("rviSettings object loaded");
             rviSettingsPage.displayValues();
             rvi.wsConnect();
         });
@@ -148,7 +148,6 @@ var rviSettings = function () {
     this.comm = new RVI();
 
     //Load setting when they're available.
-
 
     this.getRviSettings = function () {
 
@@ -233,6 +232,7 @@ var rviSettings = function () {
     };
 
     this.wsConnect = function () {
+        console.log("Connecting the websocket to rvi core");
         self.comm.on_connect = self.rviConnect;
         self.comm.on_error = self.rviError;
 
@@ -266,12 +266,6 @@ function RVI() {
 
     this.OK = 0;
     this.NOT_CONNECTED = 1;
-    this.on_service_available = function () {
-    };
-    this.on_service_unavailable = function () {
-    };
-    this.on_error = function () {
-    };
 
     this.next_trans_id = function () {
         this.trans_id = this.trans_id + 1;
@@ -285,44 +279,23 @@ function RVI() {
             return;
 
         this.url = url;
-        this.ws = new WebSocket(url);
-        this.ws.onerror = this.on_error;
+        this.ws  = new WebSocket(url);
+
         this.ws.binaryType = "arraybuffer";
-        this.ws.parent = this;
+        this.ws.parent     = this;
 
-        this.ws.onopen = function (evt) {
-            console.log("RVI connected to: " + this.url);
+        this.ws.onopen     = this.ws_on_open;
+        this.ws.close      = this.ws_on_close;
 
-            this.parent.is_connected = true;
+        this.ws.onmessage  = this.ws_on_message;
 
-            // Register all services that have been
-            // setup with register_service()
-            for (svc in this.parent.service_map) {
-                console.log("Will reg: " + JSON.stringify(svc));
-                this.parent.register_service(svc, this.parent.service_map[svc].cb_fun)
-            }
-            // Invoke connect cb, if defined
-            if (typeof this.parent.on_connect != "undefined")
-                this.parent.on_connect(this.parent);
-        };
-
-        this.ws.close = function (evt) {
-            console.log("RVI disconnected.");
-            this.connected = false;
-        };
-
-        this.ws.onmessage = function (evt) {
-            console.log("onmessage(): Got: " + JSON.stringify(evt));
-            this.parent.dispatch_message(evt);
-        };
-
-        this.ws.onerror = this.on_error;
+        this.ws.onerror    = this.ws_on_error;
     };
 
 
     // Register a service.
     this.register_service = function (service, service_fun) {
-        // Add a leading slash if necessar
+        // Add a leading slash if necessary
         console.log("Registering service: " + service);
         if (service[0] != '/')
             service = '/' + service;
@@ -343,34 +316,38 @@ function RVI() {
 
         console.log("RVI: Registering RVI service: " + service);
 
+        ////
+        //// Redirect ws.onmessage to handle service registration replies
+        ////
+        //this.ws.onmessage = function (evt) {
+        //    console.log("RVI: Register service result: " + JSON.parse(evt.data).service);
         //
-        // Redirect ws.onmessage to handle service registration replies
+        //    //// If this is a new service, set it up
+        //    //if (typeof this.parent.service_map[service] === "undefined") {
+        //    //    this.parent.service_map[service] = {
+        //    //        cb_fun: service_fun,
+        //    //        full_name: JSON.parse(evt.data).service
+        //    //    };
+        //    //
+        //    //    console.log("Service: " + JSON.stringify(this.parent.service_map));
+        //    //
+        //    //} else // Update full name of existing service.
+        //        this.parent.service_map[service].full_name = JSON.parse(evt.data).service;
         //
-        this.ws.onmessage = function (evt) {
-            console.log("RVI: Register service result: " + JSON.parse(evt.data).service);
 
-            //// If this is a new service, set it up
-            //if (typeof this.parent.service_map[service] === "undefined") {
-            //    this.parent.service_map[service] = {
-            //        cb_fun: service_fun,
-            //        full_name: JSON.parse(evt.data).service
-            //    };
-            //
-            //    console.log("Service: " + JSON.stringify(this.parent.service_map));
-            //
-            //} else // Update full name of existing service.
-                this.parent.service_map[service].full_name = JSON.parse(evt.data).service;
+        //    // Reset the onmessage handler
+        //    this.onmessage = function (evt) {
+        //        this.parent.on_message(evt);
+        //    }
+        //};
 
+        var transactionId = this.next_trans_id();
 
-            // Reset the onmessage handler
-            this.onmessage = function (evt) {
-                this.parent.dispatch_message(evt);
-            }
-        };
+        this.service_map[service].trans_id = transactionId;
 
         this.ws.send(JSON.stringify({
             'json-rpc': "2.0",
-            'id': this.next_trans_id(),
+            'id': transactionId,//this.next_trans_id(),
             method: "register_service",
             params: {
                 service_name: service
@@ -390,6 +367,8 @@ function RVI() {
 
         console.log("RVI: unregistering: " + service);
 
+        delete this.service_map[service];
+
         this.ws.send(JSON.stringify({
             'json-rpc': "2.0",
             'id': this.next_trans_id(),
@@ -399,11 +378,8 @@ function RVI() {
             }
         }));
 
-        delete this.service_map[service];
-
         return this.OK;
     };
-
 
     this.disconnect = function () {
         if (!this.is_connected)
@@ -413,29 +389,29 @@ function RVI() {
         return this.OK;
     };
 
-    this.send_message = function (service, timeout, payload, cb) {// TODO: Fix the parameters and the method that calls this method
+    this.send_message = function (service, timeout, payload) {
         console.log("RVI: message:  " + service);
         console.log("RVI: timeout:  " + timeout);
         console.log("RVI: params:   " + JSON.stringify(payload));
-        console.log("RVI: callback: " + cb);
 
         // Redirect ws.onmessage to handle replies.
 
         if (!this.is_connected)
             return this.NOT_CONNECTED;
 
-        this.ws.onmessage = function (evt) {
-            console.log("RVI: message result: " + JSON.parse(evt.data).status);
-            console.log("RVI: message TID: " + JSON.parse(evt.data).transaction_id);
-
-            // Invoke provided callback
-            //cb(JSON.parse(evt.data).result, JSON.parse(evt.data).transaction_id);
-
-            // Reset the onmessage handler
-            this.onmessage = function (evt) {
-                this.parent.dispatch_message(evt);
-            }
-        };
+        //this.ws.onmessage = function (evt) {
+        //    console.log("RVI: message result: " + JSON.parse(evt.data).status);
+        //    console.log("RVI: message TID: " + JSON.parse(evt.data).transaction_id);
+        //
+        //    // Invoke provided callback
+        //    if (!!callback)
+        //        callback(JSON.parse(evt.data).result, JSON.parse(evt.data).transaction_id);
+        //
+        //    // Reset the onmessage handler
+        //    this.onmessage = function (evt) {
+        //        this.parent.on_message(evt);
+        //    }
+        //};
 
         this.ws.send(JSON.stringify({
             'json-rpc': "2.0",
@@ -444,7 +420,7 @@ function RVI() {
             params: {
                 service_name: service,
                 timeout: timeout,
-                parameters: payload,
+                parameters: payload
             }
         }));
     };
@@ -454,43 +430,107 @@ function RVI() {
         return this.service_name[local_service_name].full_name;
     };
 
-    this.dispatch_message = function (evt) {
-        dt = JSON.parse(evt.data);
+    this.ws_on_open = function (evt) {
+        console.log("RVI connected to: " + this.url);
 
-        if (dt.method === "message") {
-            svc = dt.params.service_name;
-            parameters = dt.params.parameters;
-            console.log("RVI: dispatch_message: " + JSON.stringify(dt));
-            console.log("RVI: dispatch_message: " + svc);
-            console.log("RVI: dispatch_message: " + parameters);
+        this.parent.is_connected = true;
 
-            // CHECK USE of window
-            if (!!this.service_map[svc]) {
+        // Register all services that have been
+        // setup with register_service()
+        for (svc in this.parent.service_map) {
+            console.log("Will reg: " + JSON.stringify(svc));
+            this.parent.register_service(svc, this.parent.service_map[svc].cb_fun)
+        }
+
+        // Invoke connect cb, if defined
+        if (typeof this.parent.on_connect != "undefined")
+            this.parent.on_connect(this.parent);
+    };
+
+    this.ws_on_close = function (evt) {
+        console.log("RVI disconnected.");
+        this.connected = false;
+
+        this.parent.is_connected = false;
+    };
+
+    function methodIsRegisterServiceHack() {
+
+    }
+
+    this.ws_on_message = function (evt) {
+        console.log("RVI: on_message: " + evt.data);
+
+        var data = JSON.parse(evt.data);
+
+        if (data.method === "register_service") {
+            var serviceShortName;
+            var serviceLongName;
+
+            for (serviceShortName in this.parent.service_map) {
+                var serviceMapObject = this.parent.service_map[serviceShortName];
+
+                if (serviceMapObject.trans_id == JSON.parse(evt.data).id) {
+                    serviceLongName  = JSON.parse(evt.data).service;
+                    break;
+                }
+            }
+
+            console.log("RVI: Register service result: " + serviceShortName);
+            this.parent.service_map[serviceShortName].full_name = serviceLongName;
+
+        } else if (data.method === "unregister_service") {
+            var service = JSON.parse(evt.data).service;
+            console.log("RVI: Unregister service result:  " + service);
+
+        } else if (data.method === "message") {
+            var svc = data.params.service_name;
+            var parameters = data.params.parameters;
+            var sending_node = data.params.parameters.sending_node;
+
+            console.log("RVI: on_message result: " + JSON.parse(evt.data).status);
+            console.log("RVI: on_message message TID: " + JSON.parse(evt.data).transaction_id);
+
+            console.log("RVI: on_message data: " + JSON.stringify(data));
+            console.log("RVI: on_message service: " + svc);
+            console.log("RVI: on_message parameters: " + parameters);
+
+            if (!!this.parent.service_map[svc]) {
                 // Original tizen code had
                 // window[this.service_map[svc].cb_fun](parameters);
-                this.service_map[svc].cb_fun(parameters);
+                this.parent.service_map[svc].cb_fun(parameters);
 
             } else {
                 console.warn("Service: " + svc + " not mapped to any callback. Ignore");
-                console.log("Service: " + JSON.stringify(this.service_map));
+                console.log("Service: " + JSON.stringify(this.parent.service_map));
             }
 
             console.log("RVI Message completed");
-            return;
-        }
 
-        if (dt.method === "services_available") {
+        } else if (data.method === "services_available") {
             console.log("RVI service_available");
-            this.on_service_available(dt.params.services);
-            return;
-        }
+            this.parent.on_service_available(data.params.services);
 
-        if (dt.method === "services_unavailable") {
+        } else if (data.method === "services_unavailable") {
             console.log("RVI service_unavailable");
-            this.on_service_unavailable(dt.params.services);
-            return;
+            this.parent.on_service_unavailable(data.params.services);
+
         }
-    }
+    };
+
+    this.ws_on_error = function (evt) {
+        console.log("There was an error on the websocket: " + evt);
+
+        if (typeof this.parent.on_error != undefined)
+            this.parent.on_error(evt);
+
+    };
+
+    this.on_service_available = function () {
+    };
+
+    this.on_service_unavailable = function () {
+    };
 }
 
 // display or hide the contents of the tabbed sections when tapped,

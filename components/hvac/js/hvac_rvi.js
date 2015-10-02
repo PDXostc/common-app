@@ -226,22 +226,21 @@ function sendRVIHVAC(key,value){
 	var subs = rvi.settings.subscribers;
 	if (subs == undefined || subs.length == 0) return;
 
-
 	if(key.indexOf("hvac/") == -1)
-		key = "hvac/"+key;
+		key = "hvac/" + key;
 
-	for(node in subs){
+	for(var node in subs) {
 
 		if (no_reflect == subs[node]) {
 			console.log();
 			no_reflect = "";
 			continue;
-		};
+		}
 
-		service = subs[node]+key;
+		service = subs[node] + key;
 		vals = {value: value.toString()};
-		console.log("Sending RVI message Node:"+subs[node]);
-		console.log("Sending RVI message Key/Val:"+key+"/"+value);
+		console.log("Sending RVI message Node: " + subs[node]);
+		console.log("Sending RVI message Key/Val: " + key + "/" + value);
 
 		rvi.comm.send_message(service, 5000, vals, key);
 	}
