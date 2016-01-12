@@ -92,22 +92,22 @@ function seat_heat_left_rcb(args){
 }
 
 function airflow_direction_rcb(args){
-	//no_reflect = args.sending_node;
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("airflowDirection", parseInt(args.value));
 }
 
 function defrost_rear_rcb(args){
-	//no_reflect = args.sending_node;
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("rearDefrost", args.value);
 }
 
 function defrost_front_rcb(args){
-	//no_reflect = args.sending_node;
+	no_reflect = args.sending_node;
 	carIndicator.setStatus("frontDefrost", args.value);
 }
 
 function defrost_max_rcb(args){
-	//no_reflect = args.sending_node;
+	no_reflect = args.sending_node;
 	hvacIndicator.onMaxDefrostChanged(args.value);
 }
 
